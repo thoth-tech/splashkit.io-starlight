@@ -1,5 +1,5 @@
 ---
-title: Utilities 🛠️
+title: Utilities
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[Utilities]
@@ -11,7 +11,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## Functions
 ##
-## Current Ticks [🔗](#current-ticks)
+## Current Ticks [](#current-ticks)
 
  
 Gets the number of milliseconds that have passed since the program was
@@ -48,7 +48,7 @@ function CurrentTicks(): Cardinal
 </Tabs>
 
 ---
-## Delay [🔗](#delay)
+## Delay [](#delay)
 
  
 Puts the program to sleep for a specified number of milliseconds. If this
@@ -93,7 +93,7 @@ procedure Delay(milliseconds: Cardinal)
 </Tabs>
 
 ---
-## Display Dialog [🔗](#display-dialog)
+## Display Dialog [](#display-dialog)
 
  
 Display a dialog to the screen with a message for the user.
@@ -138,7 +138,7 @@ procedure DisplayDialog(const title: String; const msg: String; outputFont: Font
 </Tabs>
 
 ---
-## File As String [🔗](#file-as-string)
+## File As String [](#file-as-string)
 
  
 Return a SplashKit resource of `resource_kind` with name `filename`
@@ -182,7 +182,7 @@ function FileAsString(filename: String; kind: ResourceKind): String
 </Tabs>
 
 ---
-## Convert To Double [🔗](#convert-to-double)
+## Convert To Double [](#convert-to-double)
 
  
 Convert the passed in string into a double. This can fail in an error if
@@ -226,7 +226,7 @@ function ConvertToDouble(const text: String): Double
 </Tabs>
 
 ---
-## Convert To Integer [🔗](#convert-to-integer)
+## Convert To Integer [](#convert-to-integer)
 
  
 Convert the passed in string into an integer. This can fail in an error if
@@ -270,7 +270,7 @@ function ConvertToInteger(const text: String): Integer
 </Tabs>
 
 ---
-## Is Double [🔗](#is-double)
+## Is Double [](#is-double)
 
  
 Checks if a string contains a number.
@@ -312,7 +312,7 @@ function IsDouble(const text: String): Boolean
 </Tabs>
 
 ---
-## Is Integer [🔗](#is-integer)
+## Is Integer [](#is-integer)
 
  
 Checks if a string contains an integer value.
@@ -354,7 +354,7 @@ function IsInteger(const text: String): Boolean
 </Tabs>
 
 ---
-## Is Number [🔗](#is-number)
+## Is Number [](#is-number)
 
  
 Checks if a string contains a number.
@@ -396,7 +396,7 @@ function IsNumber(const text: String): Boolean
 </Tabs>
 
 ---
-## To Lowercase [🔗](#to-lowercase)
+## To Lowercase [](#to-lowercase)
 
  
 Return a lowercase version of the passed in string.
@@ -438,7 +438,7 @@ function ToLowercase(const text: String): String
 </Tabs>
 
 ---
-## To Uppercase [🔗](#to-uppercase)
+## To Uppercase [](#to-uppercase)
 
  
 Return a UPPERCASE version of the passed in string.
@@ -480,7 +480,7 @@ function ToUppercase(const text: String): String
 </Tabs>
 
 ---
-## Trim [🔗](#trim)
+## Trim [](#trim)
 
  
 Return a new string that removes the spaces from the start and end of
@@ -523,7 +523,7 @@ function Trim(const text: String): String
 </Tabs>
 
 ---
-## Rnd [🧬](#group-rnd)
+## Rnd [](#group-rnd)
 
 :::note
 
@@ -535,7 +535,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Rnd [🤖](#rnd--1) 
+### Rnd [](#rnd--1) 
 Generates a random number between 'min' and `max`, including 'min' and 'max'.
 
 **Return Type**
@@ -576,7 +576,7 @@ function Rnd(min: Integer; max: Integer): Integer
 </Tabs>
 
 ---
-### Rnd [🤖](#rnd--2) 
+### Rnd [](#rnd--2) 
 Generates a random number between 0 and 1
 
 **Return Type**
@@ -610,7 +610,7 @@ function Rnd(): Single
 </Tabs>
 
 ---
-### Rnd [🤖](#rnd--3) 
+### Rnd [](#rnd--3) 
 Generates a random number between 0 and `ubound`.
 
 **Return Type**

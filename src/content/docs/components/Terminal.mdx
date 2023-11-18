@@ -1,5 +1,5 @@
 ---
-title: Terminal 📟
+title: Terminal
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[Terminal]
@@ -12,7 +12,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## Functions
 ##
-## Activate Advanced Terminal [🔗](#activate-advanced-terminal)
+## Activate Advanced Terminal [](#activate-advanced-terminal)
 
  
 Start using the advanced terminal. Once you call this you will need
@@ -51,7 +51,7 @@ procedure ActivateAdvancedTerminal()
 </Tabs>
 
 ---
-## Advanced Terminal Active [🔗](#advanced-terminal-active)
+## Advanced Terminal Active [](#advanced-terminal-active)
 
  
 Is the terminal currently in advanced mode?
@@ -87,7 +87,7 @@ function AdvancedTerminalActive(): Boolean
 </Tabs>
 
 ---
-## Clear Terminal [🔗](#clear-terminal)
+## Clear Terminal [](#clear-terminal)
 
  
 In advanced mode, this will clear the terminal to the background color
@@ -124,7 +124,7 @@ procedure ClearTerminal()
 </Tabs>
 
 ---
-## End Advanced Terminal [🔗](#end-advanced-terminal)
+## End Advanced Terminal [](#end-advanced-terminal)
 
  
 Finish using advanced mode. The existing terminal display will be lost
@@ -162,7 +162,7 @@ procedure EndAdvancedTerminal()
 </Tabs>
 
 ---
-## Move Cursor To [🔗](#move-cursor-to)
+## Move Cursor To [](#move-cursor-to)
 
  
 In advanced mode, this will move the cursor to a given col, row of the
@@ -208,7 +208,7 @@ procedure MoveCursorTo(x: Integer; y: Integer)
 </Tabs>
 
 ---
-## Read Char [🔗](#read-char)
+## Read Char [](#read-char)
 
  
 Get a single character input by the user. This works in both standard and
@@ -246,7 +246,7 @@ function ReadChar(): Char
 </Tabs>
 
 ---
-## Read Line [🔗](#read-line)
+## Read Line [](#read-line)
 
  
 Read a line of text from the terminal. The user will see the text as
@@ -283,7 +283,7 @@ function ReadLine(): String
 </Tabs>
 
 ---
-## Refresh Terminal [🔗](#refresh-terminal)
+## Refresh Terminal [](#refresh-terminal)
 
  
 In advanced mode, this will display what has been written to the
@@ -321,7 +321,7 @@ procedure RefreshTerminal()
 </Tabs>
 
 ---
-## Set Terminal Bold [🔗](#set-terminal-bold)
+## Set Terminal Bold [](#set-terminal-bold)
 
  
 In advanced mode, this allows you to set if the text should draw as bold.
@@ -363,7 +363,7 @@ procedure SetTerminalBold(value: Boolean)
 </Tabs>
 
 ---
-## Set Terminal Colors [🔗](#set-terminal-colors)
+## Set Terminal Colors [](#set-terminal-colors)
 
  
 In advanced mode this allows you to set the color of the foreground and
@@ -459,7 +459,7 @@ procedure SetTerminalColors(foreground: Color; background: Color)
 </Tabs>
 
 ---
-## Set Terminal Echo Input [🔗](#set-terminal-echo-input)
+## Set Terminal Echo Input [](#set-terminal-echo-input)
 
  
 In advanced mode, this allows you to stop text read with `read_char`
@@ -503,7 +503,7 @@ procedure SetTerminalEchoInput(value: Boolean)
 </Tabs>
 
 ---
-## Terminal Height [🔗](#terminal-height)
+## Terminal Height [](#terminal-height)
 
  
 In advanced mode, this gives you the number of rows in the terminal.
@@ -539,7 +539,7 @@ function TerminalHeight(): Integer
 </Tabs>
 
 ---
-## Terminal Width [🔗](#terminal-width)
+## Terminal Width [](#terminal-width)
 
  
 In advanced mode, this gives you the number of columns in the terminal.
@@ -575,7 +575,7 @@ function TerminalWidth(): Integer
 </Tabs>
 
 ---
-## Write [🧬](#group-write)
+## Write [](#group-write)
 
 :::note
 
@@ -587,7 +587,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Write [🤖](#write--1) 
+### Write [](#write--1) 
 Write the passed in data to the terminal.
 
 **Return Type**
@@ -627,7 +627,7 @@ procedure Write(data: Double)
 </Tabs>
 
 ---
-### Write [🤖](#write--2) 
+### Write [](#write--2) 
 Write the passed in data to the terminal.
 
 **Return Type**
@@ -667,7 +667,7 @@ procedure Write(data: Integer)
 </Tabs>
 
 ---
-### Write [🤖](#write--3) 
+### Write [](#write--3) 
 Write the supplied text to the Terminal.
 
 **Return Type**
@@ -707,7 +707,7 @@ procedure Write(text: String)
 </Tabs>
 
 ---
-## Write At [🔗](#write-at)
+## Write At [](#write-at)
 
  
 In advanced mode, this will write the supplied text at the indicated
@@ -752,7 +752,7 @@ procedure WriteAt(text: String; x: Integer; y: Integer)
 </Tabs>
 
 ---
-## Write Line [🧬](#group-write-line)
+## Write Line [](#group-write-line)
 
 :::note
 
@@ -765,7 +765,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Write Line [🤖](#write-line--1) 
+### Write Line [](#write-line--1) 
 Move to the next line/row of the terminal.
 
 **Return Type**
@@ -799,7 +799,7 @@ procedure WriteLine()
 </Tabs>
 
 ---
-### Write Line [🤖](#write-line--2) 
+### Write Line [](#write-line--2) 
 Write the passed in data, then move to the next line/row of the terminal.
 
 **Return Type**
@@ -839,7 +839,7 @@ procedure WriteLine(data: Double)
 </Tabs>
 
 ---
-### Write Line [🤖](#write-line--3) 
+### Write Line [](#write-line--3) 
 Write the passed in data, then move to the next line/row of the terminal.
 
 **Return Type**
@@ -879,7 +879,7 @@ procedure WriteLine(data: Integer)
 </Tabs>
 
 ---
-### Write Line [🤖](#write-line--4) 
+### Write Line [](#write-line--4) 
 Write the passed in text, then move to the next line/row of the terminal.
 
 **Return Type**

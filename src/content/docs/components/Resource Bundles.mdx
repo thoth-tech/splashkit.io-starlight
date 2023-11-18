@@ -1,5 +1,5 @@
 ---
-title: Resource Bundles 🗞️
+title: Resource Bundles
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[SplashKit resource bundles allow you to quickly and easily load a number of resources in the `Resources` folder.]
@@ -13,7 +13,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 ## Functions
 ##
 
-## Free Resource Bundle [🔗](#free-resource-bundle)
+## Free Resource Bundle [](#free-resource-bundle)
 
 When you are finished with the resources in a bundle, you can free them all by calling this procedure. It will free the resource bundle and all of the associated resources.
 
@@ -49,7 +49,7 @@ procedure FreeResourceBundle(name: String)
 </Tabs>
 ---
 
-## Has Resource Bundle [🔗](#has-resource-bundle)
+## Has Resource Bundle [](#has-resource-bundle)
 
 Returns true when the named resource bundle has already been loaded.
 
@@ -91,7 +91,7 @@ function HasResourceBundle(const name: String): Boolean
   </TabItem>
 </Tabs>
 ---
-## Load Resource Bundle [🔗](#load-resource-bundle)
+## Load Resource Bundle [](#load-resource-bundle)
 Loads all of the resources in the resource bundle. The resource bundle is a text file that describes the resources you want to load. These rescources are then loaded when you call this procedure, and can all be released when you call `Release Resource Bundle`.
 
 Save the resource bundle text files into your projects `Resources` in the `Bundles` folder. Use the following as the format for each of the resources.

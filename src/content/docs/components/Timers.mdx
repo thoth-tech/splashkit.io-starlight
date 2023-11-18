@@ -1,5 +1,5 @@
 ---
-title: Timers⏳
+title: Timers
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[Timers]
@@ -13,7 +13,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## Functions
 ##
-## Create Timer [🔗](#create-timer)
+## Create Timer [](#create-timer)
 
  
 Create and return a new Timer. The timer will not be started, and will have
@@ -56,7 +56,7 @@ function CreateTimer(name: String): Timer
 </Tabs>
 
 ---
-## Free All Timers [🔗](#free-all-timers)
+## Free All Timers [](#free-all-timers)
 
  
 Free all of timers that have been created.
@@ -92,7 +92,7 @@ procedure FreeAllTimers()
 </Tabs>
 
 ---
-## Free Timer [🔗](#free-timer)
+## Free Timer [](#free-timer)
 
  
 Free the memory used to store this timer.
@@ -134,7 +134,7 @@ procedure FreeTimer(toFree: Timer)
 </Tabs>
 
 ---
-## Has Timer [🔗](#has-timer)
+## Has Timer [](#has-timer)
 
  
 Checks if SplashKit has a timer with the indicated name.
@@ -176,7 +176,7 @@ function HasTimer(name: String): Boolean
 </Tabs>
 
 ---
-## Pause Timer [🧬](#group-pause-timer)
+## Pause Timer [](#group-pause-timer)
 
 :::note
 
@@ -187,7 +187,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Pause Timer [🤖](#pause-timer--1) 
+### Pause Timer [](#pause-timer--1) 
 Pause the timer, getting ticks from a paused timer
 will continue to return the same time.
 
@@ -228,7 +228,7 @@ procedure PauseTimer(name: String)
 </Tabs>
 
 ---
-### Pause Timer [🤖](#pause-timer--2) 
+### Pause Timer [](#pause-timer--2) 
 Pause the timer, getting ticks from a paused timer
 will continue to return the same time.
 
@@ -269,7 +269,7 @@ procedure PauseTimer(toPause: Timer)
 </Tabs>
 
 ---
-## Reset Timer [🧬](#group-reset-timer)
+## Reset Timer [](#group-reset-timer)
 
 :::note
 
@@ -280,7 +280,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Reset Timer [🤖](#reset-timer--1) 
+### Reset Timer [](#reset-timer--1) 
 Resets the named timer
 
 **Return Type**
@@ -320,7 +320,7 @@ procedure ResetTimer(name: String)
 </Tabs>
 
 ---
-### Reset Timer [🤖](#reset-timer--2) 
+### Reset Timer [](#reset-timer--2) 
 Resets the time of a given timer
 
 **Return Type**
@@ -360,7 +360,7 @@ procedure ResetTimer(tmr: Timer)
 </Tabs>
 
 ---
-## Resume Timer [🧬](#group-resume-timer)
+## Resume Timer [](#group-resume-timer)
 
 :::note
 
@@ -371,7 +371,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Resume Timer [🤖](#resume-timer--1) 
+### Resume Timer [](#resume-timer--1) 
 Resumes the named timer.
 
 **Return Type**
@@ -411,7 +411,7 @@ procedure ResumeTimer(name: String)
 </Tabs>
 
 ---
-### Resume Timer [🤖](#resume-timer--2) 
+### Resume Timer [](#resume-timer--2) 
 Resumes a paused timer.
 
 **Return Type**
@@ -451,7 +451,7 @@ procedure ResumeTimer(toResume: Timer)
 </Tabs>
 
 ---
-## Start Timer [🧬](#group-start-timer)
+## Start Timer [](#group-start-timer)
 
 :::note
 
@@ -462,7 +462,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Start Timer [🤖](#start-timer--1) 
+### Start Timer [](#start-timer--1) 
 Start a timer. The timer will then start recording the time that has passed.
 You can check how long has past since the timer was started using the
 `timer_ticks` function.
@@ -504,7 +504,7 @@ procedure StartTimer(name: String)
 </Tabs>
 
 ---
-### Start Timer [🤖](#start-timer--2) 
+### Start Timer [](#start-timer--2) 
 Start a timer. The timer will then start recording the time that has passed.
 You can check how long has past since the timer was started using the
 `timer_ticks` function.
@@ -546,7 +546,7 @@ procedure StartTimer(toStart: Timer)
 </Tabs>
 
 ---
-## Stop Timer [🧬](#group-stop-timer)
+## Stop Timer [](#group-stop-timer)
 
 :::note
 
@@ -557,7 +557,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Stop Timer [🤖](#stop-timer--1) 
+### Stop Timer [](#stop-timer--1) 
 Stop the timer. The time is reset to 0 and you must
 recall start to begin the timer ticking again.
 
@@ -598,7 +598,7 @@ procedure StopTimer(name: String)
 </Tabs>
 
 ---
-### Stop Timer [🤖](#stop-timer--2) 
+### Stop Timer [](#stop-timer--2) 
 Stop the timer. The time is reset to 0 and you must
 recall start to begin the timer ticking again.
 
@@ -639,7 +639,7 @@ procedure StopTimer(toStop: Timer)
 </Tabs>
 
 ---
-## Timer Named [🔗](#timer-named)
+## Timer Named [](#timer-named)
 
  
 Get the timer created with the indicated name.
@@ -681,7 +681,7 @@ function TimerNamed(name: String): Timer
 </Tabs>
 
 ---
-## Timer Paused [🧬](#group-timer-paused)
+## Timer Paused [](#group-timer-paused)
 
 :::note
 
@@ -692,7 +692,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Timer Paused [🤖](#timer-paused--1) 
+### Timer Paused [](#timer-paused--1) 
 Indicates if the timer is paused.
 
 **Return Type**
@@ -732,7 +732,7 @@ function TimerPaused(name: String): Boolean
 </Tabs>
 
 ---
-### Timer Paused [🤖](#timer-paused--2) 
+### Timer Paused [](#timer-paused--2) 
 Indicates if the timer is paused.
 
 **Return Type**
@@ -772,7 +772,7 @@ function TimerPaused(toGet: Timer): Boolean
 </Tabs>
 
 ---
-## Timer Started [🧬](#group-timer-started)
+## Timer Started [](#group-timer-started)
 
 :::note
 
@@ -783,7 +783,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Timer Started [🤖](#timer-started--1) 
+### Timer Started [](#timer-started--1) 
 Indicates if the timer is started.
 
 **Return Type**
@@ -823,7 +823,7 @@ function TimerStarted(name: String): Boolean
 </Tabs>
 
 ---
-### Timer Started [🤖](#timer-started--2) 
+### Timer Started [](#timer-started--2) 
 Indicates if the timer is started.
 
 **Return Type**
@@ -863,7 +863,7 @@ function TimerStarted(toGet: Timer): Boolean
 </Tabs>
 
 ---
-## Timer Ticks [🧬](#group-timer-ticks)
+## Timer Ticks [](#group-timer-ticks)
 
 :::note
 
@@ -874,7 +874,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Timer Ticks [🤖](#timer-ticks--1) 
+### Timer Ticks [](#timer-ticks--1) 
 Gets the number of ticks (milliseconds) that have passed since the timer
 was started/reset. When paused the timer's ticks will not advance until
 the timer is once again resumed.
@@ -916,7 +916,7 @@ function TimerTicks(name: String): Cardinal
 </Tabs>
 
 ---
-### Timer Ticks [🤖](#timer-ticks--2) 
+### Timer Ticks [](#timer-ticks--2) 
 Gets the number of ticks (milliseconds) that have passed since the timer
 was started/reset. When paused the timer's ticks will not advance until
 the timer is once again resumed.
@@ -965,5 +965,5 @@ function TimerTicks(toGet: Timer): Cardinal
 
 ## Types
 
-## Timer [🧾](#timer)
+## Timer [](#timer)
 Timers in SplashKit can be used to track the passing of time. In general you will create a timer, start it, then use it to track time by asking for the timer's ticks (milliseconds).

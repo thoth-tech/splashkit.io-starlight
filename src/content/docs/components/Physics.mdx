@@ -1,5 +1,5 @@
 ---
-title: Physics 🚀
+title: Physics
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[Physics]
@@ -12,7 +12,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## Functions
 ##
-## Bitmap Circle Collision [🧬](#group-bitmap-circle-collision)
+## Bitmap Circle Collision [](#group-bitmap-circle-collision)
 
 :::note
 
@@ -26,7 +26,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Bitmap Circle Collision [🤖](#bitmap-circle-collision--1) 
+### Bitmap Circle Collision [](#bitmap-circle-collision--1) 
 Tests if a bitmap drawn at `pt` would intersect with a circle.
 
 **Return Type**
@@ -68,7 +68,7 @@ function BitmapCircleCollision(bmp: Bitmap; const pt: Point2D; const circ: Circl
 </Tabs>
 
 ---
-### Bitmap Circle Collision [🤖](#bitmap-circle-collision--2) 
+### Bitmap Circle Collision [](#bitmap-circle-collision--2) 
 Tests if a bitmap drawn at `x`, `y` would intersect with a circle.
 
 **Return Type**
@@ -111,7 +111,7 @@ function BitmapCircleCollision(bmp: Bitmap; x: Double; y: Double; const circ: Ci
 </Tabs>
 
 ---
-### Bitmap Circle Collision [🤖](#bitmap-circle-collision--3) 
+### Bitmap Circle Collision [](#bitmap-circle-collision--3) 
 Tests if a bitmap cell drawn using a passed in translation, will
 intersect with a circle. You can use this to detect collisions between
 bitmaps and circles.
@@ -156,7 +156,7 @@ function BitmapCircleCollision(bmp: Bitmap; cell: Integer; const translation: Ma
 </Tabs>
 
 ---
-### Bitmap Circle Collision [🤖](#bitmap-circle-collision--4) 
+### Bitmap Circle Collision [](#bitmap-circle-collision--4) 
 Tests if a bitmap cell drawn at `pt` would intersect with a circle.
 
 **Return Type**
@@ -199,7 +199,7 @@ function BitmapCircleCollision(bmp: Bitmap; cell: Integer; const pt: Point2D; co
 </Tabs>
 
 ---
-### Bitmap Circle Collision [🤖](#bitmap-circle-collision--5) 
+### Bitmap Circle Collision [](#bitmap-circle-collision--5) 
 Tests if a bitmap cell drawn at `x`, `y` would intersect with a circle.
 
 **Return Type**
@@ -243,7 +243,7 @@ function BitmapCircleCollision(bmp: Bitmap; cell: Integer; x: Double; y: Double;
 </Tabs>
 
 ---
-## Bitmap Collision [🧬](#group-bitmap-collision)
+## Bitmap Collision [](#group-bitmap-collision)
 
 :::note
 
@@ -257,7 +257,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Bitmap Collision [🤖](#bitmap-collision--1) 
+### Bitmap Collision [](#bitmap-collision--1) 
 Check if two bitmaps collide.
 
 **Return Type**
@@ -302,7 +302,7 @@ function BitmapCollision(bmp1: Bitmap; x1: Double; y1: Double; bmp2: Bitmap; x2:
 </Tabs>
 
 ---
-### Bitmap Collision [🤖](#bitmap-collision--2) 
+### Bitmap Collision [](#bitmap-collision--2) 
 Check if two bitmaps collide.
 
 **Return Type**
@@ -345,7 +345,7 @@ function BitmapCollision(bmp1: Bitmap; const pt1: Point2D; bmp2: Bitmap; const p
 </Tabs>
 
 ---
-### Bitmap Collision [🤖](#bitmap-collision--3) 
+### Bitmap Collision [](#bitmap-collision--3) 
 Check if two bitmaps collide, based on their cell and transform
 matricies.
 
@@ -391,7 +391,7 @@ function BitmapCollision(bmp1: Bitmap; cell1: Integer; const matrix1: Matrix2D; 
 </Tabs>
 
 ---
-### Bitmap Collision [🤖](#bitmap-collision--4) 
+### Bitmap Collision [](#bitmap-collision--4) 
 Check if two bitmaps collide.
 
 **Return Type**
@@ -436,7 +436,7 @@ function BitmapCollision(bmp1: Bitmap; cell1: Integer; const pt1: Point2D; bmp2:
 </Tabs>
 
 ---
-### Bitmap Collision [🤖](#bitmap-collision--5) 
+### Bitmap Collision [](#bitmap-collision--5) 
 Check if two bitmaps collide.
 
 **Return Type**
@@ -483,7 +483,7 @@ function BitmapCollision(bmp1: Bitmap; cell1: Integer; x1: Double; y1: Double; b
 </Tabs>
 
 ---
-## Bitmap Point Collision [🧬](#group-bitmap-point-collision)
+## Bitmap Point Collision [](#group-bitmap-point-collision)
 
 :::note
 
@@ -498,7 +498,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Bitmap Point Collision [🤖](#bitmap-point-collision--1) 
+### Bitmap Point Collision [](#bitmap-point-collision--1) 
 Tests if a bitmap drawn using the passed in translation matrix would draw a pixel
 at the passed in point. Use to check collisions between a point and a bitmap.
 
@@ -542,7 +542,7 @@ function BitmapPointCollision(bmp: Bitmap; const translation: Matrix2D; const pt
 </Tabs>
 
 ---
-### Bitmap Point Collision [🤖](#bitmap-point-collision--2) 
+### Bitmap Point Collision [](#bitmap-point-collision--2) 
 Tests if a bitmap drawn at the `bmp_pt` point would draw a pixel
 at point `pt`. Use to check collisions between a point and a bitmap.
 
@@ -585,7 +585,7 @@ function BitmapPointCollision(bmp: Bitmap; const bmpPt: Point2D; const pt: Point
 </Tabs>
 
 ---
-### Bitmap Point Collision [🤖](#bitmap-point-collision--3) 
+### Bitmap Point Collision [](#bitmap-point-collision--3) 
 Tests if a bitmap drawn at x,y would draw a pixel at the passed in point. Use 
 to check collisions between a point and a bitmap.
 
@@ -630,7 +630,7 @@ function BitmapPointCollision(bmp: Bitmap; bmpX: Double; bmpY: Double; x: Double
 </Tabs>
 
 ---
-### Bitmap Point Collision [🤖](#bitmap-point-collision--4) 
+### Bitmap Point Collision [](#bitmap-point-collision--4) 
 Tests if a bitmap cell drawn using the passed in translation matrix would draw a pixel
 at the passed in point.
 
@@ -675,7 +675,7 @@ function BitmapPointCollision(bmp: Bitmap; cell: Integer; const translation: Mat
 </Tabs>
 
 ---
-### Bitmap Point Collision [🤖](#bitmap-point-collision--5) 
+### Bitmap Point Collision [](#bitmap-point-collision--5) 
 Tests if a cell of a bitmap drawn at x,y would draw a pixel at the passed in point. Use
 to check collisions between a point and a bitmap.
 
@@ -719,7 +719,7 @@ function BitmapPointCollision(bmp: Bitmap; cell: Integer; const bmpPt: Point2D; 
 </Tabs>
 
 ---
-### Bitmap Point Collision [🤖](#bitmap-point-collision--6) 
+### Bitmap Point Collision [](#bitmap-point-collision--6) 
 Tests if a cell of a bitmap drawn at x,y would draw a pixel at the passed in point. Use
 to check collisions between a point and a bitmap.
 
@@ -765,7 +765,7 @@ function BitmapPointCollision(bmp: Bitmap; cell: Integer; bmpX: Double; bmpY: Do
 </Tabs>
 
 ---
-## Bitmap Rectangle Collision [🧬](#group-bitmap-rectangle-collision)
+## Bitmap Rectangle Collision [](#group-bitmap-rectangle-collision)
 
 :::note
 
@@ -779,7 +779,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Bitmap Rectangle Collision [🤖](#bitmap-rectangle-collision--1) 
+### Bitmap Rectangle Collision [](#bitmap-rectangle-collision--1) 
 Tests if a bitmap drawn at `pt` would intersect with a rectangle.
 
 **Return Type**
@@ -821,7 +821,7 @@ function BitmapRectangleCollision(bmp: Bitmap; const pt: Point2D; const rect: Re
 </Tabs>
 
 ---
-### Bitmap Rectangle Collision [🤖](#bitmap-rectangle-collision--2) 
+### Bitmap Rectangle Collision [](#bitmap-rectangle-collision--2) 
 Tests if a bitmap drawn at `x`, `y` would intersect with a rectangle.
 
 **Return Type**
@@ -864,7 +864,7 @@ function BitmapRectangleCollision(bmp: Bitmap; x: Double; y: Double; const rect:
 </Tabs>
 
 ---
-### Bitmap Rectangle Collision [🤖](#bitmap-rectangle-collision--3) 
+### Bitmap Rectangle Collision [](#bitmap-rectangle-collision--3) 
 Tests if a bitmap cell drawn using a passed in translation, will
 intersect with a rectangle. You can use this to detect collisions between
 bitmaps and rectangles.
@@ -909,7 +909,7 @@ function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const translation:
 </Tabs>
 
 ---
-### Bitmap Rectangle Collision [🤖](#bitmap-rectangle-collision--4) 
+### Bitmap Rectangle Collision [](#bitmap-rectangle-collision--4) 
 Tests if a bitmap cell drawn at `pt` would intersect with a rectangle.
 
 **Return Type**
@@ -952,7 +952,7 @@ function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; const pt: Point2D;
 </Tabs>
 
 ---
-### Bitmap Rectangle Collision [🤖](#bitmap-rectangle-collision--5) 
+### Bitmap Rectangle Collision [](#bitmap-rectangle-collision--5) 
 Tests if a cell of the bitmap drawn at `x`, `y` would intersect with a rectangle.
 
 **Return Type**
@@ -996,7 +996,7 @@ function BitmapRectangleCollision(bmp: Bitmap; cell: Integer; x: Double; y: Doub
 </Tabs>
 
 ---
-## Sprite Bitmap Collision [🧬](#group-sprite-bitmap-collision)
+## Sprite Bitmap Collision [](#group-sprite-bitmap-collision)
 
 :::note
 
@@ -1008,7 +1008,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Bitmap Collision [🤖](#sprite-bitmap-collision--1) 
+### Sprite Bitmap Collision [](#sprite-bitmap-collision--1) 
 Tests if a sprite will collide with a bitmap drawn at the indicated
 location.
 
@@ -1052,7 +1052,7 @@ function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; x: Double; y: Double): Bo
 </Tabs>
 
 ---
-### Sprite Bitmap Collision [🤖](#sprite-bitmap-collision--2) 
+### Sprite Bitmap Collision [](#sprite-bitmap-collision--2) 
 Tests if a sprite will collide with a bitmap drawn at the indicated
 location.
 
@@ -1096,7 +1096,7 @@ function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; const pt: 
 </Tabs>
 
 ---
-### Sprite Bitmap Collision [🤖](#sprite-bitmap-collision--3) 
+### Sprite Bitmap Collision [](#sprite-bitmap-collision--3) 
 Tests if a sprite will collide with a bitmap drawn at the indicated
 location.
 
@@ -1141,7 +1141,7 @@ function SpriteBitmapCollision(s: Sprite; bmp: Bitmap; cell: Integer; x: Double;
 </Tabs>
 
 ---
-## Sprite Collision [🔗](#sprite-collision)
+## Sprite Collision [](#sprite-collision)
 
  
 Tests if two given sprites `s1` and `s2` are collided
@@ -1184,7 +1184,7 @@ function SpriteCollision(s1: Sprite; s2: Sprite): Boolean
 </Tabs>
 
 ---
-## Sprite Point Collision [🔗](#sprite-point-collision)
+## Sprite Point Collision [](#sprite-point-collision)
 
  
 Tests if a sprite is drawn at a given point.
@@ -1227,7 +1227,7 @@ function SpritePointCollision(s: Sprite; const pt: Point2D): Boolean
 </Tabs>
 
 ---
-## Sprite Rectangle Collision [🔗](#sprite-rectangle-collision)
+## Sprite Rectangle Collision [](#sprite-rectangle-collision)
 
  
 Tests if a sprite is drawn within an given area (rectangle).
@@ -1270,7 +1270,7 @@ function SpriteRectangleCollision(s: Sprite; const rect: Rectangle): Boolean
 </Tabs>
 
 ---
-## Apply Matrix [🧬](#group-apply-matrix)
+## Apply Matrix [](#group-apply-matrix)
 
 :::note
 
@@ -1281,7 +1281,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Apply Matrix [🤖](#apply-matrix--1) 
+### Apply Matrix [](#apply-matrix--1) 
 Use a matrix to transform all of the points in a quad.
 
 **Return Type**
@@ -1322,7 +1322,7 @@ procedure ApplyMatrix(const matrix: Matrix2D; var q: Quad)
 </Tabs>
 
 ---
-### Apply Matrix [🤖](#apply-matrix--2) 
+### Apply Matrix [](#apply-matrix--2) 
 Use a matrix to transform all of the points in a triangle.
 
 **Return Type**
@@ -1363,7 +1363,7 @@ procedure ApplyMatrix(const m: Matrix2D; var tri: Triangle)
 </Tabs>
 
 ---
-## Identity Matrix [🔗](#identity-matrix)
+## Identity Matrix [](#identity-matrix)
 
  
 Returns the identity matrix. When a matrix_2d or Vector is multiplied by
@@ -1400,7 +1400,7 @@ function IdentityMatrix(): Matrix2D
 </Tabs>
 
 ---
-## Matrix Inverse [🔗](#matrix-inverse)
+## Matrix Inverse [](#matrix-inverse)
 
  
 Calculate the inverse of a matrix.
@@ -1442,7 +1442,7 @@ function MatrixInverse(const m: Matrix2D): Matrix2D
 </Tabs>
 
 ---
-## Matrix Multiply [🧬](#group-matrix-multiply)
+## Matrix Multiply [](#group-matrix-multiply)
 
 :::note
 
@@ -1454,7 +1454,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Matrix Multiply [🤖](#matrix-multiply--1) 
+### Matrix Multiply [](#matrix-multiply--1) 
 Multiplies the [`Point 2D`](/components/types/#point-2d) parameter `v with the [`Matrix 2D`](/components/physics/#matrix-2d) `m and
 returns the result as a [`Point 2D`](/components/types/#point-2d). Use this to transform the vector with
 the matrix (to apply scaling, rotation or translation effects).
@@ -1497,7 +1497,7 @@ function MatrixMultiply(const m: Matrix2D; const pt: Point2D): Point2D
 </Tabs>
 
 ---
-### Matrix Multiply [🤖](#matrix-multiply--2) 
+### Matrix Multiply [](#matrix-multiply--2) 
 Multiplies the two [`Matrix 2D`](/components/physics/#matrix-2d) parameters, `m1` by `m2`, and returns
 the result as a new [`Matrix 2D`](/components/physics/#matrix-2d). Use this to combine the effects to two
 matrix transformations.
@@ -1540,7 +1540,7 @@ function MatrixMultiply(const m1: Matrix2D; const m2: Matrix2D): Matrix2D
 </Tabs>
 
 ---
-### Matrix Multiply [🤖](#matrix-multiply--3) 
+### Matrix Multiply [](#matrix-multiply--3) 
 Multiplies the `Vector` parameter `v` with the [`Matrix 2D`](/components/physics/#matrix-2d) `m` and
 returns the result as a `Vector`. Use this to transform the vector with
 the matrix (to apply scaling, rotation or translation effects).
@@ -1583,7 +1583,7 @@ function MatrixMultiply(const m: Matrix2D; const v: Vector2D): Vector2D
 </Tabs>
 
 ---
-## Matrix To String [🔗](#matrix-to-string)
+## Matrix To String [](#matrix-to-string)
 
  
 This function returns a string representation of a Matrix.
@@ -1625,7 +1625,7 @@ function MatrixToString(const matrix: Matrix2D): String
 </Tabs>
 
 ---
-## Rotation Matrix [🔗](#rotation-matrix)
+## Rotation Matrix [](#rotation-matrix)
 
  
 Returns a rotation matrix that rotates 2d points by the angle.
@@ -1667,7 +1667,7 @@ function RotationMatrix(deg: Double): Matrix2D
 </Tabs>
 
 ---
-## Scale Matrix [🧬](#group-scale-matrix)
+## Scale Matrix [](#group-scale-matrix)
 
 :::note
 
@@ -1679,7 +1679,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Scale Matrix [🤖](#scale-matrix--1) 
+### Scale Matrix [](#scale-matrix--1) 
 Create a scale matrix that scales x and y to
 different degrees.
 
@@ -1720,7 +1720,7 @@ function ScaleMatrix(const scale: Point2D): Matrix2D
 </Tabs>
 
 ---
-### Scale Matrix [🤖](#scale-matrix--2) 
+### Scale Matrix [](#scale-matrix--2) 
 Create a scale matrix that scales x and y to
 different degrees.
 
@@ -1761,7 +1761,7 @@ function ScaleMatrix(const scale: Vector2D): Matrix2D
 </Tabs>
 
 ---
-### Scale Matrix [🤖](#scale-matrix--3) 
+### Scale Matrix [](#scale-matrix--3) 
 Returns a matrix that can be used to scale 2d points (both x and y).
 
 **Return Type**
@@ -1801,7 +1801,7 @@ function ScaleMatrix(scale: Double): Matrix2D
 </Tabs>
 
 ---
-## Scale Rotate Translate Matrix [🔗](#scale-rotate-translate-matrix)
+## Scale Rotate Translate Matrix [](#scale-rotate-translate-matrix)
 
  
 Create a matrix that can scale, rotate then translate geometry points.
@@ -1845,7 +1845,7 @@ function ScaleRotateTranslateMatrix(const scale: Point2D; deg: Double; const tra
 </Tabs>
 
 ---
-## Translation Matrix [🧬](#group-translation-matrix)
+## Translation Matrix [](#group-translation-matrix)
 
 :::note
 
@@ -1857,7 +1857,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Translation Matrix [🤖](#translation-matrix--1) 
+### Translation Matrix [](#translation-matrix--1) 
 Returns a translation matric used to translate 2d points by the
 distance in the point_2d.
 
@@ -1898,7 +1898,7 @@ function TranslationMatrix(const pt: Point2D): Matrix2D
 </Tabs>
 
 ---
-### Translation Matrix [🤖](#translation-matrix--2) 
+### Translation Matrix [](#translation-matrix--2) 
 Returns a translation matric used to translate 2d points by the
 distance in the vector_2d.
 
@@ -1939,7 +1939,7 @@ function TranslationMatrix(const pt: Vector2D): Matrix2D
 </Tabs>
 
 ---
-### Translation Matrix [🤖](#translation-matrix--3) 
+### Translation Matrix [](#translation-matrix--3) 
 Returns a matrix that can be used to translate 2d points. Moving them
 by dx and dy.
 
@@ -1981,7 +1981,7 @@ function TranslationMatrix(dx: Double; dy: Double): Matrix2D
 </Tabs>
 
 ---
-## Angle Between [🔗](#angle-between)
+## Angle Between [](#angle-between)
 
  
 Calculates the angle from one vector to another.
@@ -2024,7 +2024,7 @@ function AngleBetween(const v1: Vector2D; const v2: Vector2D): Double
 </Tabs>
 
 ---
-## Dot Product [🔗](#dot-product)
+## Dot Product [](#dot-product)
 
  
 Calculates the dot product (scalar product) between the two vector
@@ -2074,7 +2074,7 @@ function DotProduct(const v1: Vector2D; const v2: Vector2D): Double
 </Tabs>
 
 ---
-## Is Zero Vector [🔗](#is-zero-vector)
+## Is Zero Vector [](#is-zero-vector)
 
  
 Returns if the vector is a null/zero vector -- having no size or direction.
@@ -2116,7 +2116,7 @@ function IsZeroVector(const v: Vector2D): Boolean
 </Tabs>
 
 ---
-## Ray Intersection Point [🔗](#ray-intersection-point)
+## Ray Intersection Point [](#ray-intersection-point)
 
  
 Casts a ray in a heading and returns true is it intersects with a line
@@ -2161,7 +2161,7 @@ function RayIntersectionPoint(const fromPt: Point2D; const heading: Vector2D; co
 </Tabs>
 
 ---
-## Unit Vector [🔗](#unit-vector)
+## Unit Vector [](#unit-vector)
 
  
 Returns the unit vector of the parameter vector (v). The unit vector has a
@@ -2205,7 +2205,7 @@ function UnitVector(const v: Vector2D): Vector2D
 </Tabs>
 
 ---
-## Vector Add [🔗](#vector-add)
+## Vector Add [](#vector-add)
 
  
 Adds the two passed in vectors returns the result as new [`Vector 2D`](/components/types/#vector-2d).
@@ -2248,7 +2248,7 @@ function VectorAdd(const v1: Vector2D; const v2: Vector2D): Vector2D
 </Tabs>
 
 ---
-## Vector Angle [🔗](#vector-angle)
+## Vector Angle [](#vector-angle)
 
  
 Calculates the angle of a vector
@@ -2290,7 +2290,7 @@ function VectorAngle(v: Vector2D): Double
 </Tabs>
 
 ---
-## Vector From Angle [🔗](#vector-from-angle)
+## Vector From Angle [](#vector-from-angle)
 
  
 Returns a [`Vector 2D`](/components/types/#vector-2d) from the supplied angle and distance.
@@ -2333,7 +2333,7 @@ function VectorFromAngle(angle: Double; magnitude: Double): Vector2D
 </Tabs>
 
 ---
-## Vector From Line [🔗](#vector-from-line)
+## Vector From Line [](#vector-from-line)
 
  
 Returns a vector that points from the start to the end of a line.
@@ -2375,7 +2375,7 @@ function VectorFromLine(const l: Line): Vector2D
 </Tabs>
 
 ---
-## Vector From Point To Rect [🔗](#vector-from-point-to-rect)
+## Vector From Point To Rect [](#vector-from-point-to-rect)
 
  
 Returns a vector from a point to a rectangle.
@@ -2418,7 +2418,7 @@ function VectorFromPointToRect(const pt: Point2D; const rect: Rectangle): Vector
 </Tabs>
 
 ---
-## Vector In Rect [🔗](#vector-in-rect)
+## Vector In Rect [](#vector-in-rect)
 
  
 Returns true if the resulting vector would end in the rectangle if
@@ -2462,7 +2462,7 @@ function VectorInRect(const v: Vector2D; const rect: Rectangle): Boolean
 </Tabs>
 
 ---
-## Vector Invert [🔗](#vector-invert)
+## Vector Invert [](#vector-invert)
 
  
 Returns a new Vector that is an inverted version of the parameter
@@ -2505,7 +2505,7 @@ function VectorInvert(const v: Vector2D): Vector2D
 </Tabs>
 
 ---
-## Vector Limit [🔗](#vector-limit)
+## Vector Limit [](#vector-limit)
 
  
 Returns a scaled vector that ensures the new vector points
@@ -2550,7 +2550,7 @@ function VectorLimit(const v: Vector2D; limit: Double): Vector2D
 </Tabs>
 
 ---
-## Vector Magnitude [🔗](#vector-magnitude)
+## Vector Magnitude [](#vector-magnitude)
 
  
 Returns the magnitude (or "length") of the vector.
@@ -2592,7 +2592,7 @@ function VectorMagnitude(const v: Vector2D): Double
 </Tabs>
 
 ---
-## Vector Magnitude Sqared [🔗](#vector-magnitude-sqared)
+## Vector Magnitude Sqared [](#vector-magnitude-sqared)
 
  
 Returns the squared magnitude (or "length") of the vector.
@@ -2634,7 +2634,7 @@ function VectorMagnitudeSqared(const v: Vector2D): Double
 </Tabs>
 
 ---
-## Vector Multiply [🔗](#vector-multiply)
+## Vector Multiply [](#vector-multiply)
 
  
 Multiplies the vector by the passed in value.
@@ -2677,7 +2677,7 @@ function VectorMultiply(const v1: Vector2D; s: Double): Vector2D
 </Tabs>
 
 ---
-## Vector Normal [🔗](#vector-normal)
+## Vector Normal [](#vector-normal)
 
  
 Returns a new [`Vector 2D`](/components/types/#vector-2d) that is perpendicular ("normal") to the parameter
@@ -2724,7 +2724,7 @@ function VectorNormal(const v: Vector2D): Vector2D
 </Tabs>
 
 ---
-## Vector Out Of Circle From Circle [🔗](#vector-out-of-circle-from-circle)
+## Vector Out Of Circle From Circle [](#vector-out-of-circle-from-circle)
 
  
 Returns a vector to back one circle out of another, assuming the first circle was
@@ -2769,7 +2769,7 @@ function VectorOutOfCircleFromCircle(const src: Circle; const bounds: Circle; co
 </Tabs>
 
 ---
-## Vector Out Of Circle From Point [🔗](#vector-out-of-circle-from-point)
+## Vector Out Of Circle From Point [](#vector-out-of-circle-from-point)
 
  
 Returns the vector out to move a point back out of a circle,
@@ -2814,7 +2814,7 @@ function VectorOutOfCircleFromPoint(const pt: Point2D; const c: Circle; const ve
 </Tabs>
 
 ---
-## Vector Out Of Rect From Circle [🔗](#vector-out-of-rect-from-circle)
+## Vector Out Of Rect From Circle [](#vector-out-of-rect-from-circle)
 
  
 Returns a vector that can be used to move a circle back out of a rectangle,
@@ -2859,7 +2859,7 @@ function VectorOutOfRectFromCircle(const c: Circle; const rect: Rectangle; const
 </Tabs>
 
 ---
-## Vector Out Of Rect From Point [🔗](#vector-out-of-rect-from-point)
+## Vector Out Of Rect From Point [](#vector-out-of-rect-from-point)
 
  
 Determines the vector needed to move back from point `pt` out of rectangle `rect` given
@@ -2905,7 +2905,7 @@ function VectorOutOfRectFromPoint(const pt: Point2D; const rect: Rectangle; cons
 </Tabs>
 
 ---
-## Vector Out Of Rect From Rect [🔗](#vector-out-of-rect-from-rect)
+## Vector Out Of Rect From Rect [](#vector-out-of-rect-from-rect)
 
  
 Returns the vector needed to move rectangle `src` back out of rectangle `bounds`
@@ -2950,7 +2950,7 @@ function VectorOutOfRectFromRect(const src: Rectangle; const bounds: Rectangle; 
 </Tabs>
 
 ---
-## Vector Point To Point [🔗](#vector-point-to-point)
+## Vector Point To Point [](#vector-point-to-point)
 
  
 Returns a [`Vector 2D`](/components/types/#vector-2d) created from the difference from the `p1` to
@@ -2994,7 +2994,7 @@ function VectorPointToPoint(const start: Point2D; const endPt: Point2D): Vector2
 </Tabs>
 
 ---
-## Vector Subtract [🔗](#vector-subtract)
+## Vector Subtract [](#vector-subtract)
 
  
 Subtracts the second vector parameter (`v2`) from the first vector
@@ -3038,7 +3038,7 @@ function VectorSubtract(const v1: Vector2D; const v2: Vector2D): Vector2D
 </Tabs>
 
 ---
-## Vector To [🧬](#group-vector-to)
+## Vector To [](#group-vector-to)
 
 :::note
 
@@ -3049,7 +3049,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Vector To [🤖](#vector-to--1) 
+### Vector To [](#vector-to--1) 
 Returns a new [`Vector 2D`](/components/types/#vector-2d) using the x and y value of a [`Point 2D`](/components/types/#point-2d) parameter.
 This is a vector from the origin to that point.
 
@@ -3090,7 +3090,7 @@ function VectorTo(const p1: Point2D): Vector2D
 </Tabs>
 
 ---
-### Vector To [🤖](#vector-to--2) 
+### Vector To [](#vector-to--2) 
 Returns a vector to the indicated point.
 
 **Return Type**
@@ -3131,7 +3131,7 @@ function VectorTo(x: Double; y: Double): Vector2D
 </Tabs>
 
 ---
-## Vector To String [🔗](#vector-to-string)
+## Vector To String [](#vector-to-string)
 
  
 Get a text description of the [`Vector 2D`](/components/types/#vector-2d).
@@ -3173,7 +3173,7 @@ function VectorToString(const v: Vector2D): String
 </Tabs>
 
 ---
-## Vectors Equal [🔗](#vectors-equal)
+## Vectors Equal [](#vectors-equal)
 
  
 Determines if two vectors are the same.
@@ -3216,7 +3216,7 @@ function VectorsEqual(const v1: Vector2D; v2: Vector2D): Boolean
 </Tabs>
 
 ---
-## Vectors Not Equal [🔗](#vectors-not-equal)
+## Vectors Not Equal [](#vectors-not-equal)
 
  
 Determines if two vectors are not the same.
@@ -3264,7 +3264,7 @@ function VectorsNotEqual(const v1: Vector2D; v2: Vector2D): Boolean
 ## Types
 ##
 
-## Matrix 2D [🧾](#matrix-2d)
+## Matrix 2D [](#matrix-2d)
 
 In SplashKit, matrices can be used to combine together a number of
 operations that need to be performed on [`Vector 2D`](/components/types/#vector-2d) values. You can

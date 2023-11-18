@@ -1,5 +1,5 @@
 ---
-title: JSON 🗄️
+title: JSON
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[SplashKit Json allows you to create and read JSON objects.]
@@ -12,7 +12,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## Functions
 ##
-## Create Json [🧬](#group-create-json)
+## Create Json [](#group-create-json)
 
 :::note
 
@@ -23,7 +23,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Create Json [🤖](#create-json--1) 
+### Create Json [](#create-json--1) 
 The empty [`JSON`](/components/json/#json) object returned can be filled with data and read by the
 functions and procedures prefixed with `json_add_` and `json_read_`
 
@@ -58,7 +58,7 @@ function CreateJson(): Json
 </Tabs>
 
 ---
-### Create Json [🤖](#create-json--2) 
+### Create Json [](#create-json--2) 
 `string json_string` must be valid JSON.
 The [`JSON`](/components/json/#json) object returned can be filled with data and read by the functions
 and procedures prefixed with `json_add_` and `json_read_`
@@ -100,7 +100,7 @@ function CreateJson(jsonString: String): Json
 </Tabs>
 
 ---
-## Free All Json [🔗](#free-all-json)
+## Free All Json [](#free-all-json)
 
  
 Releases all of the [`JSON`](/components/json/#json) objects which have been loaded.
@@ -136,7 +136,7 @@ procedure FreeAllJson()
 </Tabs>
 
 ---
-## Free Json [🔗](#free-json)
+## Free Json [](#free-json)
 
  
 Frees the SplashKit resources associated with the [`JSON`](/components/json/#json) object.
@@ -178,7 +178,7 @@ procedure FreeJson(j: Json)
 </Tabs>
 
 ---
-## Json Count Keys [🔗](#json-count-keys)
+## Json Count Keys [](#json-count-keys)
 
  
 Returns the count of keys in the top-level [`JSON`](/components/json/#json) object.
@@ -220,7 +220,7 @@ function JsonCountKeys(j: Json): Integer
 </Tabs>
 
 ---
-## Json From Color [🔗](#json-from-color)
+## Json From Color [](#json-from-color)
 
  
 Converts a [`Color`](/components/types/#color) to a [`JSON`](/components/json/#json) object.
@@ -262,7 +262,7 @@ function JsonFromColor(clr: Color): Json
 </Tabs>
 
 ---
-## Json From File [🔗](#json-from-file)
+## Json From File [](#json-from-file)
 
  
 Reads a [`JSON`](/components/json/#json) object from a JSON string stored in `Resources/json/filename`
@@ -305,7 +305,7 @@ function JsonFromFile(const filename: String): Json
 </Tabs>
 
 ---
-## Json From String [🔗](#json-from-string)
+## Json From String [](#json-from-string)
 
  
 Reads a [`JSON`](/components/json/#json) object from a `String` in the JSON format.
@@ -347,7 +347,7 @@ function JsonFromString(const jString: String): Json
 </Tabs>
 
 ---
-## Json Has Key [🔗](#json-has-key)
+## Json Has Key [](#json-has-key)
 
  
 Checks if the [`JSON`](/components/json/#json) object contains the given `String` key.
@@ -390,7 +390,7 @@ function JsonHasKey(j: Json; key: String): Boolean
 </Tabs>
 
 ---
-## Json Read Array [🧬](#group-json-read-array)
+## Json Read Array [](#group-json-read-array)
 
 :::note
 
@@ -403,7 +403,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Json Read Array [🤖](#json-read-array--1) 
+### Json Read Array [](#json-read-array--1) 
 Reads an array of `Double` values from the [`JSON`](/components/json/#json) object for
 the given `String` key.
 
@@ -446,7 +446,7 @@ procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfDouble)
 </Tabs>
 
 ---
-### Json Read Array [🤖](#json-read-array--2) 
+### Json Read Array [](#json-read-array--2) 
 Reads an array of [`JSON`](/components/json/#json) object values from the [`JSON`](/components/json/#json) object for
 the given `String` key.
 
@@ -489,7 +489,7 @@ procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfJson)
 </Tabs>
 
 ---
-### Json Read Array [🤖](#json-read-array--3) 
+### Json Read Array [](#json-read-array--3) 
 Reads an array of `String` values from the [`JSON`](/components/json/#json) object for
 the given `String` key.
 
@@ -532,7 +532,7 @@ procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfString)
 </Tabs>
 
 ---
-### Json Read Array [🤖](#json-read-array--4) 
+### Json Read Array [](#json-read-array--4) 
 Reads an array of `Boolean` values from the [`JSON`](/components/json/#json) object for
 the given `String` key.
 
@@ -575,7 +575,7 @@ procedure JsonReadArray(j: Json; key: String; var outResult: ArrayOfBoolean)
 </Tabs>
 
 ---
-## Json Read Bool [🔗](#json-read-bool)
+## Json Read Bool [](#json-read-bool)
 
  
 Reads a `Boolean` value from the [`JSON`](/components/json/#json) object for the given `String` key.
@@ -618,7 +618,7 @@ function JsonReadBool(j: Json; key: String): Boolean
 </Tabs>
 
 ---
-## Json Read Number [🔗](#json-read-number)
+## Json Read Number [](#json-read-number)
 
  
 Reads a `Float` value from the [`JSON`](/components/json/#json) object for the given `String` key.
@@ -661,7 +661,7 @@ function JsonReadNumber(j: Json; key: String): Single
 </Tabs>
 
 ---
-## Json Read Number As Double [🔗](#json-read-number-as-double)
+## Json Read Number As Double [](#json-read-number-as-double)
 
  
 Reads a `Double` value from the [`JSON`](/components/json/#json) object for the given `String` key.
@@ -704,7 +704,7 @@ function JsonReadNumberAsDouble(j: Json; key: String): Double
 </Tabs>
 
 ---
-## Json Read Number As Int [🔗](#json-read-number-as-int)
+## Json Read Number As Int [](#json-read-number-as-int)
 
  
 Reads a `integer` value from the [`JSON`](/components/json/#json) object for the given `String` key.
@@ -747,7 +747,7 @@ function JsonReadNumberAsInt(j: Json; key: String): Integer
 </Tabs>
 
 ---
-## Json Read Object [🔗](#json-read-object)
+## Json Read Object [](#json-read-object)
 
  
 Reads a [`JSON`](/components/json/#json) object value from the [`JSON`](/components/json/#json) object for the given `String` key.
@@ -790,7 +790,7 @@ function JsonReadObject(j: Json; key: String): Json
 </Tabs>
 
 ---
-## Json Read String [🔗](#json-read-string)
+## Json Read String [](#json-read-string)
 
  
 Reads a `String` value from the [`JSON`](/components/json/#json) object for the given `String` key.
@@ -833,7 +833,7 @@ function JsonReadString(j: Json; key: String): String
 </Tabs>
 
 ---
-## Json Set Array [🧬](#group-json-set-array)
+## Json Set Array [](#group-json-set-array)
 
 :::note
 
@@ -846,7 +846,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Json Set Array [🤖](#json-set-array--1) 
+### Json Set Array [](#json-set-array--1) 
 Adds an array of `String` values to the [`JSON`](/components/json/#json) object for
 the given `String` key.
 
@@ -889,7 +889,7 @@ procedure JsonSetArray(j: Json; key: String; value: ArrayOfString)
 </Tabs>
 
 ---
-### Json Set Array [🤖](#json-set-array--2) 
+### Json Set Array [](#json-set-array--2) 
 Adds an array of `Double` values to the [`JSON`](/components/json/#json) object for
 the given `String` key.
 
@@ -932,7 +932,7 @@ procedure JsonSetArray(j: Json; key: String; value: ArrayOfDouble)
 </Tabs>
 
 ---
-### Json Set Array [🤖](#json-set-array--3) 
+### Json Set Array [](#json-set-array--3) 
 Adds an array of `Boolean` values to the [`JSON`](/components/json/#json) object for
 the given `String` key.
 
@@ -975,7 +975,7 @@ procedure JsonSetArray(j: Json; key: String; value: ArrayOfBoolean)
 </Tabs>
 
 ---
-### Json Set Array [🤖](#json-set-array--4) 
+### Json Set Array [](#json-set-array--4) 
 Adds an array of [`JSON`](/components/json/#json) object values to the [`JSON`](/components/json/#json) object for
 the given `String` key.
 
@@ -1018,7 +1018,7 @@ procedure JsonSetArray(j: Json; key: String; value: ArrayOfJson)
 </Tabs>
 
 ---
-## Json Set Bool [🔗](#json-set-bool)
+## Json Set Bool [](#json-set-bool)
 
  
 Adds a `Boolean` value to the [`JSON`](/components/json/#json) object for the given `String` key.
@@ -1062,7 +1062,7 @@ procedure JsonSetBool(j: Json; key: String; value: Boolean)
 </Tabs>
 
 ---
-## Json Set Number [🧬](#group-json-set-number)
+## Json Set Number [](#group-json-set-number)
 
 :::note
 
@@ -1074,7 +1074,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Json Set Number [🤖](#json-set-number--1) 
+### Json Set Number [](#json-set-number--1) 
 Adds an `Integer` value to the [`JSON`](/components/json/#json) object for the given `String` key.
 
 **Return Type**
@@ -1116,7 +1116,7 @@ procedure JsonSetNumber(j: Json; key: String; value: Integer)
 </Tabs>
 
 ---
-### Json Set Number [🤖](#json-set-number--2) 
+### Json Set Number [](#json-set-number--2) 
 Adds a `Double` value to the [`JSON`](/components/json/#json) object for the given `String` key.
 
 **Return Type**
@@ -1158,7 +1158,7 @@ procedure JsonSetNumber(j: Json; key: String; value: Double)
 </Tabs>
 
 ---
-### Json Set Number [🤖](#json-set-number--3) 
+### Json Set Number [](#json-set-number--3) 
 Adds a `Float` value to the [`JSON`](/components/json/#json) object for the given `String` key.
 
 **Return Type**
@@ -1200,7 +1200,7 @@ procedure JsonSetNumber(j: Json; key: String; value: Single)
 </Tabs>
 
 ---
-## Json Set Object [🔗](#json-set-object)
+## Json Set Object [](#json-set-object)
 
  
 Adds a [`JSON`](/components/json/#json) object to the [`JSON`](/components/json/#json) object for the given `String` key.
@@ -1244,7 +1244,7 @@ procedure JsonSetObject(j: Json; key: String; obj: Json)
 </Tabs>
 
 ---
-## Json Set String [🔗](#json-set-string)
+## Json Set String [](#json-set-string)
 
  
 Adds a `String` value to the [`JSON`](/components/json/#json) object for the given `String` key.
@@ -1288,7 +1288,7 @@ procedure JsonSetString(j: Json; key: String; value: String)
 </Tabs>
 
 ---
-## Json To Color [🔗](#json-to-color)
+## Json To Color [](#json-to-color)
 
  
 Converts a [`JSON`](/components/json/#json) object to a [`Color`](/components/types/#color) object.
@@ -1330,7 +1330,7 @@ function JsonToColor(j: Json): Color
 </Tabs>
 
 ---
-## Json To File [🔗](#json-to-file)
+## Json To File [](#json-to-file)
 
  
 Writes the [`JSON`](/components/json/#json) object to a JSON string stored in `Resources/json/filename`.
@@ -1373,7 +1373,7 @@ procedure JsonToFile(j: Json; const filename: String)
 </Tabs>
 
 ---
-## Json To String [🔗](#json-to-string)
+## Json To String [](#json-to-string)
 
  
 Converts and returns the [`JSON`](/components/json/#json) object as a `String`.
@@ -1420,7 +1420,7 @@ function JsonToString(j: Json): String
 ## Types
 ##
 
-## JSON [🧾](#json)
+## JSON [](#json)
 The JSON type is used to refer to objects in the JSON format that can be manipulated by the SplashKit JSON functions and procedures.
 
 All JSON objects are:

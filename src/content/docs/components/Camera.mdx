@@ -1,5 +1,5 @@
 ---
-title: Camera 📷
+title: Camera 
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[SplashKit camera functionality allows you to move a virtual camera around in your world.]
@@ -14,7 +14,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 ##
 ## Functions
 ##
-## Camera Position [🔗](#camera-position)
+## Camera Position [](#camera-position)
 
  
 Returns the position of the camera in game coordinates. This will be the
@@ -51,7 +51,7 @@ function CameraPosition(): Point2D
 </Tabs>
 
 ---
-## Camera X [🔗](#camera-x)
+## Camera X [](#camera-x)
 
  
 Returns the x location of the camera in game coordinates. This represents
@@ -89,7 +89,7 @@ function CameraX(): Double
 </Tabs>
 
 ---
-## Camera Y [🔗](#camera-y)
+## Camera Y [](#camera-y)
 
  
 Returns the y location of the camera in game coordinates. This represents
@@ -127,7 +127,7 @@ function CameraY(): Double
 </Tabs>
 
 ---
-## Center Camera On [🧬](#group-center-camera-on)
+## Center Camera On [](#group-center-camera-on)
 
 :::note
 
@@ -138,7 +138,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Center Camera On [🤖](#center-camera-on--1) 
+### Center Camera On [](#center-camera-on--1) 
 Set the camera view to be centered over the specific sprite. The offset
 vector allows you to move the sprite from the direct center of the screen.
 
@@ -181,7 +181,7 @@ procedure CenterCameraOn(s: Sprite; const offset: Vector2D)
 </Tabs>
 
 ---
-### Center Camera On [🤖](#center-camera-on--2) 
+### Center Camera On [](#center-camera-on--2) 
 Set the camera view to be centered over the specific sprite. The offset
 vector allows you to move the sprite from the direct center of the screen.
 
@@ -226,7 +226,7 @@ procedure CenterCameraOn(s: Sprite; offsetX: Double; offsetY: Double)
 </Tabs>
 
 ---
-## Move Camera By [🧬](#group-move-camera-by)
+## Move Camera By [](#group-move-camera-by)
 
 :::note
 
@@ -237,7 +237,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Move Camera By [🤖](#move-camera-by--1) 
+### Move Camera By [](#move-camera-by--1) 
 Move the camera (offset its world x and y values) using the specified
 vector. For example, if you move the camera by the same speed vector of
 a sprite the camera will "track" (be locked on to) the sprite as it moves.
@@ -279,7 +279,7 @@ procedure MoveCameraBy(const offset: Vector2D)
 </Tabs>
 
 ---
-### Move Camera By [🤖](#move-camera-by--2) 
+### Move Camera By [](#move-camera-by--2) 
 Move the camera (offset its world x and y values) using the specified
 dx (change in x) and dy (change in x) values.
 
@@ -321,7 +321,7 @@ procedure MoveCameraBy(dx: Double; dy: Double)
 </Tabs>
 
 ---
-## Move Camera To [🧬](#group-move-camera-to)
+## Move Camera To [](#group-move-camera-to)
 
 :::note
 
@@ -332,7 +332,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Move Camera To [🤖](#move-camera-to--1) 
+### Move Camera To [](#move-camera-to--1) 
 Move the camera view (screen top left) to a specified point in the world.
 This will be the new top left corner of the screen.
 
@@ -373,7 +373,7 @@ procedure MoveCameraTo(const pt: Point2D)
 </Tabs>
 
 ---
-### Move Camera To [🤖](#move-camera-to--2) 
+### Move Camera To [](#move-camera-to--2) 
 Move the camera view to a world location specified by the x and y values.
 This will be the new top left corner of the screen.
 
@@ -415,7 +415,7 @@ procedure MoveCameraTo(x: Double; y: Double)
 </Tabs>
 
 ---
-## Point In Window [🔗](#point-in-window)
+## Point In Window [](#point-in-window)
 
  
 Tests if the point is in the window.
@@ -458,7 +458,7 @@ function PointInWindow(wind: Window; const pt: Point2D): Boolean
 </Tabs>
 
 ---
-## Point On Screen [🔗](#point-on-screen)
+## Point On Screen [](#point-on-screen)
 
  
 Tests if the point is on the screen.
@@ -500,7 +500,7 @@ function PointOnScreen(const pt: Point2D): Boolean
 </Tabs>
 
 ---
-## Rect In Window [🔗](#rect-in-window)
+## Rect In Window [](#rect-in-window)
 
  
 Tests if the rectangle is within the bounds of the window.
@@ -543,7 +543,7 @@ function RectInWindow(wind: Window; const rect: Rectangle): Boolean
 </Tabs>
 
 ---
-## Rect On Screen [🔗](#rect-on-screen)
+## Rect On Screen [](#rect-on-screen)
 
  
 Tests if the rectangle is on the screen.
@@ -585,7 +585,7 @@ function RectOnScreen(const rect: Rectangle): Boolean
 </Tabs>
 
 ---
-## Screen Center [🔗](#screen-center)
+## Screen Center [](#screen-center)
 
  
 Returns the center of the screen in world coordinates.
@@ -621,7 +621,7 @@ function ScreenCenter(): Point2D
 </Tabs>
 
 ---
-## Screen Rectangle [🔗](#screen-rectangle)
+## Screen Rectangle [](#screen-rectangle)
 
  
 Returns a rectangle that represents the dimensions of the window.
@@ -657,7 +657,7 @@ function ScreenRectangle(): Rectangle
 </Tabs>
 
 ---
-## Set Camera Position [🔗](#set-camera-position)
+## Set Camera Position [](#set-camera-position)
 
  
 Change the position of the camera to a specified world coordinate. This
@@ -700,7 +700,7 @@ procedure SetCameraPosition(pos: Point2D)
 </Tabs>
 
 ---
-## Set Camera X [🔗](#set-camera-x)
+## Set Camera X [](#set-camera-x)
 
  
 Change the X position of the camera to a specified world coordinate. This
@@ -743,7 +743,7 @@ procedure SetCameraX(x: Double)
 </Tabs>
 
 ---
-## Set Camera Y [🔗](#set-camera-y)
+## Set Camera Y [](#set-camera-y)
 
  
 Change the Y position of the camera to a specified world coordinate. This
@@ -786,7 +786,7 @@ procedure SetCameraY(y: Double)
 </Tabs>
 
 ---
-## To Screen [🧬](#group-to-screen)
+## To Screen [](#group-to-screen)
 
 :::note
 
@@ -797,7 +797,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### To Screen [🤖](#to-screen--1) 
+### To Screen [](#to-screen--1) 
 Convert the passed in world coordinates to screen coordinates.
 
 **Return Type**
@@ -837,7 +837,7 @@ function ToScreen(const pt: Point2D): Point2D
 </Tabs>
 
 ---
-### To Screen [🤖](#to-screen--2) 
+### To Screen [](#to-screen--2) 
 Convert the rectangle in world coordinates to screen coordinates.
 
 **Return Type**
@@ -877,7 +877,7 @@ function ToScreen(const rect: Rectangle): Rectangle
 </Tabs>
 
 ---
-## To Screen X [🔗](#to-screen-x)
+## To Screen X [](#to-screen-x)
 
  
 Translate a world x value to the current screen x value which is based on
@@ -920,7 +920,7 @@ function ToScreenX(worldX: Double): Double
 </Tabs>
 
 ---
-## To Screen Y [🔗](#to-screen-y)
+## To Screen Y [](#to-screen-y)
 
  
 Translate a world y value to the current screen y value set by the camera.
@@ -962,7 +962,7 @@ function ToScreenY(worldY: Double): Double
 </Tabs>
 
 ---
-## To World [🔗](#to-world)
+## To World [](#to-world)
 
  
 Converts the passed in point from screen coordinates to world coordinates.
@@ -1004,7 +1004,7 @@ function ToWorld(const pt: Point2D): Point2D
 </Tabs>
 
 ---
-## To World X [🔗](#to-world-x)
+## To World X [](#to-world-x)
 
  
 Translate a screen x value (based on the camera) to a world x value
@@ -1047,7 +1047,7 @@ function ToWorldX(screenX: Double): Double
 </Tabs>
 
 ---
-## To World Y [🔗](#to-world-y)
+## To World Y [](#to-world-y)
 
  
 Translate a screen y value (based on the camera) to a world y value
@@ -1090,7 +1090,7 @@ function ToWorldY(screenY: Double): Double
 </Tabs>
 
 ---
-## Vector World To Screen [🔗](#vector-world-to-screen)
+## Vector World To Screen [](#vector-world-to-screen)
 
  
 Returns a vector that can transform points from world to screen coordinates.
@@ -1126,7 +1126,7 @@ function VectorWorldToScreen(): Vector2D
 </Tabs>
 
 ---
-## Window Area [🔗](#window-area)
+## Window Area [](#window-area)
 
  
 Returns a rectangle that represents the dimensions of the window based

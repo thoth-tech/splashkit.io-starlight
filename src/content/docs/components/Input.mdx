@@ -1,5 +1,5 @@
 ---
-title: Input 🖱️
+title: Input
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[Input]
@@ -12,7 +12,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## Functions
 ##
-## Process Events [🔗](#process-events)
+## Process Events [](#process-events)
 
  
 ProcessEvents allows SplashKit to react to user interactions. This
@@ -54,7 +54,7 @@ procedure ProcessEvents()
 </Tabs>
 
 ---
-## Quit Requested [🔗](#quit-requested)
+## Quit Requested [](#quit-requested)
 
  
 Checks to see if the user has asked for the application to quit. This
@@ -92,7 +92,7 @@ function QuitRequested(): Boolean
 </Tabs>
 
 ---
-## Reset Quit [🔗](#reset-quit)
+## Reset Quit [](#reset-quit)
 
  
 Cancels a quit request, ensuring the quit requested will return false.
@@ -128,7 +128,7 @@ procedure ResetQuit()
 </Tabs>
 
 ---
-## Draw Collected Text [🔗](#draw-collected-text)
+## Draw Collected Text [](#draw-collected-text)
 
  
 Draw the text that the user is currently enterring on the current window.
@@ -172,7 +172,7 @@ procedure DrawCollectedText(clr: Color; fnt: Font; fontSize: Integer; const opts
 </Tabs>
 
 ---
-## End Reading Text [🧬](#group-end-reading-text)
+## End Reading Text [](#group-end-reading-text)
 
 :::note
 
@@ -183,7 +183,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### End Reading Text [🤖](#end-reading-text--1) 
+### End Reading Text [](#end-reading-text--1) 
 Ends reading text in for the current window.
 
 **Return Type**
@@ -216,7 +216,7 @@ procedure EndReadingText()
 </Tabs>
 
 ---
-### End Reading Text [🤖](#end-reading-text--2) 
+### End Reading Text [](#end-reading-text--2) 
 Ends reading text for the passed in window.
 
 **Return Type**
@@ -255,7 +255,7 @@ procedure EndReadingText(wind: Window)
 </Tabs>
 
 ---
-## Reading Text [🧬](#group-reading-text)
+## Reading Text [](#group-reading-text)
 
 :::note
 
@@ -266,7 +266,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Reading Text [🤖](#reading-text--1) 
+### Reading Text [](#reading-text--1) 
 Returns true when the current window is reading text.
 
 **Return Type**
@@ -299,7 +299,7 @@ function ReadingText(): Boolean
 </Tabs>
 
 ---
-### Reading Text [🤖](#reading-text--2) 
+### Reading Text [](#reading-text--2) 
 Returns true when the window is reading text.
 
 **Return Type**
@@ -338,7 +338,7 @@ function ReadingText(wind: Window): Boolean
 </Tabs>
 
 ---
-## Start Reading Text [🧬](#group-start-reading-text)
+## Start Reading Text [](#group-start-reading-text)
 
 :::note
 
@@ -351,7 +351,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Start Reading Text [🤖](#start-reading-text--1) 
+### Start Reading Text [](#start-reading-text--1) 
 Start reading text in the current window within the bounds of the
 supplied rectangle.
 
@@ -391,7 +391,7 @@ procedure StartReadingText(rect: Rectangle)
 </Tabs>
 
 ---
-### Start Reading Text [🤖](#start-reading-text--2) 
+### Start Reading Text [](#start-reading-text--2) 
 Start reading text in the current window within the bounds of the
 supplied rectangle. The text will start with an initial value.
 
@@ -432,7 +432,7 @@ procedure StartReadingText(rect: Rectangle; initialText: String)
 </Tabs>
 
 ---
-### Start Reading Text [🤖](#start-reading-text--3) 
+### Start Reading Text [](#start-reading-text--3) 
 Start reading text in the window within the bounds of the
 supplied rectangle.
 
@@ -473,7 +473,7 @@ procedure StartReadingText(wind: Window; rect: Rectangle)
 </Tabs>
 
 ---
-### Start Reading Text [🤖](#start-reading-text--4) 
+### Start Reading Text [](#start-reading-text--4) 
 Start reading text in the window within the bounds of the
 supplied rectangle. The text will start with an initial value.
 
@@ -515,7 +515,7 @@ procedure StartReadingText(wind: Window; rect: Rectangle; initialText: String)
 </Tabs>
 
 ---
-## Text Entry Cancelled [🧬](#group-text-entry-cancelled)
+## Text Entry Cancelled [](#group-text-entry-cancelled)
 
 :::note
 
@@ -526,7 +526,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Text Entry Cancelled [🤖](#text-entry-cancelled--1) 
+### Text Entry Cancelled [](#text-entry-cancelled--1) 
 Did the user press escape and cancel the enterring of text?
 
 **Return Type**
@@ -559,7 +559,7 @@ function TextEntryCancelled(): Boolean
 </Tabs>
 
 ---
-### Text Entry Cancelled [🤖](#text-entry-cancelled--2) 
+### Text Entry Cancelled [](#text-entry-cancelled--2) 
 Did the user press escape and cancel the enterring of text?
 
 **Return Type**
@@ -598,7 +598,7 @@ function TextEntryCancelled(wind: Window): Boolean
 </Tabs>
 
 ---
-## Text Input [🧬](#group-text-input)
+## Text Input [](#group-text-input)
 
 :::note
 
@@ -609,7 +609,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Text Input [🤖](#text-input--1) 
+### Text Input [](#text-input--1) 
 The text the user has currently enterred on the current window.
 
 **Return Type**
@@ -642,7 +642,7 @@ function TextInput(): String
 </Tabs>
 
 ---
-### Text Input [🤖](#text-input--2) 
+### Text Input [](#text-input--2) 
 The text the user has currently enterred on the current window.
 
 **Return Type**
@@ -681,7 +681,7 @@ function TextInput(wind: Window): String
 </Tabs>
 
 ---
-## Hide Mouse [🔗](#hide-mouse)
+## Hide Mouse [](#hide-mouse)
 
  
 Tells the mouse cursor to hide (no longer visible) if it is currently
@@ -717,7 +717,7 @@ procedure HideMouse()
 </Tabs>
 
 ---
-## Mouse Clicked [🔗](#mouse-clicked)
+## Mouse Clicked [](#mouse-clicked)
 
  
 Returns true if the specified button was clicked since the last time
@@ -759,7 +759,7 @@ function MouseClicked(button: MouseButton): Boolean
 </Tabs>
 
 ---
-## Mouse Down [🔗](#mouse-down)
+## Mouse Down [](#mouse-down)
 
  
 Returns `true` if the specified button is currently pressed down.
@@ -800,7 +800,7 @@ function MouseDown(button: MouseButton): Boolean
 </Tabs>
 
 ---
-## Mouse Movement [🔗](#mouse-movement)
+## Mouse Movement [](#mouse-movement)
 
  
 Returns the amount of accumulated mouse movement, since the last time
@@ -836,7 +836,7 @@ function MouseMovement(): Vector2D
 </Tabs>
 
 ---
-## Mouse Position [🔗](#mouse-position)
+## Mouse Position [](#mouse-position)
 
  
 Returns the current window position of the mouse as a `Point2D`
@@ -871,7 +871,7 @@ function MousePosition(): Point2D
 </Tabs>
 
 ---
-## Mouse Position Vector [🔗](#mouse-position-vector)
+## Mouse Position Vector [](#mouse-position-vector)
 
  
 Returns The current window position of the mouse as a `Vector`
@@ -906,7 +906,7 @@ function MousePositionVector(): Vector2D
 </Tabs>
 
 ---
-## Mouse Shown [🔗](#mouse-shown)
+## Mouse Shown [](#mouse-shown)
 
  
 Returns `true` if the mouse is currently visible, `false` if not.
@@ -941,7 +941,7 @@ function MouseShown(): Boolean
 </Tabs>
 
 ---
-## Mouse Up [🔗](#mouse-up)
+## Mouse Up [](#mouse-up)
 
  
 Returns `true` if the specified button is currently up.
@@ -982,7 +982,7 @@ function MouseUp(button: MouseButton): Boolean
 </Tabs>
 
 ---
-## Mouse Wheel Scroll [🔗](#mouse-wheel-scroll)
+## Mouse Wheel Scroll [](#mouse-wheel-scroll)
 
  
 Returns the amount the mouse wheel was scrolled since the last call
@@ -1021,7 +1021,7 @@ function MouseWheelScroll(): Vector2D
 </Tabs>
 
 ---
-## Mouse X [🔗](#mouse-x)
+## Mouse X [](#mouse-x)
 
  
 Returns the current x value of the mouse's position.
@@ -1056,7 +1056,7 @@ function MouseX(): Single
 </Tabs>
 
 ---
-## Mouse Y [🔗](#mouse-y)
+## Mouse Y [](#mouse-y)
 
  
 Returns the current y value of the mouse's position.
@@ -1091,7 +1091,7 @@ function MouseY(): Single
 </Tabs>
 
 ---
-## Move Mouse [🧬](#group-move-mouse)
+## Move Mouse [](#group-move-mouse)
 
 :::note
 
@@ -1102,7 +1102,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Move Mouse [🤖](#move-mouse--1) 
+### Move Mouse [](#move-mouse--1) 
 Moves the mouse cursor to the specified screen location.
 
 **Return Type**
@@ -1142,7 +1142,7 @@ procedure MoveMouse(x: Double; y: Double)
 </Tabs>
 
 ---
-### Move Mouse [🤖](#move-mouse--2) 
+### Move Mouse [](#move-mouse--2) 
 Moves the mouse cursor to the specified screen location.
 
 **Return Type**
@@ -1181,7 +1181,7 @@ procedure MoveMouse(point: Point2D)
 </Tabs>
 
 ---
-## Show Mouse [🧬](#group-show-mouse)
+## Show Mouse [](#group-show-mouse)
 
 :::note
 
@@ -1192,7 +1192,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Show Mouse [🤖](#show-mouse--1) 
+### Show Mouse [](#show-mouse--1) 
 Tells the mouse cursor to be visible if it was previously hidden with
 by a `HideMouse` or `SetMouseVisible`(False) call.
 
@@ -1226,7 +1226,7 @@ procedure ShowMouse()
 </Tabs>
 
 ---
-### Show Mouse [🤖](#show-mouse--2) 
+### Show Mouse [](#show-mouse--2) 
 Used to explicitly set the mouse cursors visible state (if it is showing
 in the window or not) based on the show parameter.
 
@@ -1266,7 +1266,7 @@ procedure ShowMouse(show: Boolean)
 </Tabs>
 
 ---
-## Any Key Pressed [🔗](#any-key-pressed)
+## Any Key Pressed [](#any-key-pressed)
 
  
 Checks to see if any key has been pressed since the last time
@@ -1302,7 +1302,7 @@ function AnyKeyPressed(): Boolean
 </Tabs>
 
 ---
-## Deregister Callback On Key Down [🔗](#deregister-callback-on-key-down)
+## Deregister Callback On Key Down [](#deregister-callback-on-key-down)
 
  
 Remove the registered callback from receiving events related to key down actions.
@@ -1343,7 +1343,7 @@ procedure DeregisterCallbackOnKeyDown(callback: KeyCallback)
 </Tabs>
 
 ---
-## Deregister Callback On Key Typed [🔗](#deregister-callback-on-key-typed)
+## Deregister Callback On Key Typed [](#deregister-callback-on-key-typed)
 
  
 Remove the registered callback from receiving events related to key typed actions.
@@ -1384,7 +1384,7 @@ procedure DeregisterCallbackOnKeyTyped(callback: KeyCallback)
 </Tabs>
 
 ---
-## Deregister Callback On Key Up [🔗](#deregister-callback-on-key-up)
+## Deregister Callback On Key Up [](#deregister-callback-on-key-up)
 
  
 Remove the registered callback from receiving events related to key up actions.
@@ -1425,7 +1425,7 @@ procedure DeregisterCallbackOnKeyUp(callback: KeyCallback)
 </Tabs>
 
 ---
-## Key Down [🔗](#key-down)
+## Key Down [](#key-down)
 
  
 Returns true when the key requested is being held down. This is updated
@@ -1468,7 +1468,7 @@ function KeyDown(key: KeyCode): Boolean
 </Tabs>
 
 ---
-## Key Name [🔗](#key-name)
+## Key Name [](#key-name)
 
  
 The `key_name` function returns a string name for a given [`Key Code`](/components/input/#key-code). For
@@ -1511,7 +1511,7 @@ function KeyName(key: KeyCode): String
 </Tabs>
 
 ---
-## Key Released [🔗](#key-released)
+## Key Released [](#key-released)
 
  
 Returns true if the specified key was released since the last time
@@ -1555,7 +1555,7 @@ function KeyReleased(key: KeyCode): Boolean
 </Tabs>
 
 ---
-## Key Typed [🔗](#key-typed)
+## Key Typed [](#key-typed)
 
  
 Returns true when the key requested is just pressed down. This is updated
@@ -1599,7 +1599,7 @@ function KeyTyped(key: KeyCode): Boolean
 </Tabs>
 
 ---
-## Key Up [🔗](#key-up)
+## Key Up [](#key-up)
 
  
 Returns false when the key requested is being held down. This is updated
@@ -1642,7 +1642,7 @@ function KeyUp(key: KeyCode): Boolean
 </Tabs>
 
 ---
-## Register Callback On Key Down [🔗](#register-callback-on-key-down)
+## Register Callback On Key Down [](#register-callback-on-key-down)
 
  
 Register the passed in callback function to receive notification of key down
@@ -1685,7 +1685,7 @@ procedure RegisterCallbackOnKeyDown(callback: KeyCallback)
 </Tabs>
 
 ---
-## Register Callback On Key Typed [🔗](#register-callback-on-key-typed)
+## Register Callback On Key Typed [](#register-callback-on-key-typed)
 
  
 Register the passed in callback function to receive notification of key typed
@@ -1728,7 +1728,7 @@ procedure RegisterCallbackOnKeyTyped(callback: KeyCallback)
 </Tabs>
 
 ---
-## Register Callback On Key Up [🔗](#register-callback-on-key-up)
+## Register Callback On Key Up [](#register-callback-on-key-up)
 
  
 Register the passed in callback function to receive notification of key up
@@ -1776,9 +1776,9 @@ procedure RegisterCallbackOnKeyUp(callback: KeyCallback)
 ## Types
 ##
 
-## Key Callback [🧾](#key-callback)
+## Key Callback [](#key-callback)
 The [`Key Callback`]() is a function pointer used to register your code with SplashKit or keyboard related events. See [`Register Callback On Key Down`]() , [`Register Callback On Key Up`](), and [`Register Callback On Key Typed`]()
-## Key Code [🧾](#key-code)
+## Key Code [](#key-code)
 
 These are the key codes you can use to check details of keyboard actions. See [Key Down](/components/types/#key-down), [Key Up](/components/types/#key-up), [Key Typed](/components/types/#key-typed), and [Key Released](/components/types/#key-released) functions. You can get a string representation of these keys using [Key Name](/components/types/#key-name).
 
@@ -1919,7 +1919,7 @@ These are the key codes you can use to check details of keyboard actions. See [K
 
 ---
 
-## Mouse Button [🧾](#mouse-button)
+## Mouse Button [](#mouse-button)
 
 A mouse can have many different types of buttons. Most people know about the simple Left and Right buttons, but there is also a Middle button (sometimes part of a scroll wheel), and possible side buttons.
 

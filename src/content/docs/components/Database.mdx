@@ -1,5 +1,5 @@
 ---
-title: Database 📁
+title: Database
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[SplashKit Database allows you to create, query and otherwise manipulate a database. ]
@@ -12,7 +12,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## Functions
 ##
-## Database Named [🔗](#database-named)
+## Database Named [](#database-named)
 
  
 Retrieves a [`Database`](/components/database/#database) that has been loaded into SplashKit.
@@ -54,7 +54,7 @@ function DatabaseNamed(name: String): Database
 </Tabs>
 
 ---
-## Free All Databases [🔗](#free-all-databases)
+## Free All Databases [](#free-all-databases)
 
  
 Releases all of the databases which have been loaded.
@@ -90,7 +90,7 @@ procedure FreeAllDatabases()
 </Tabs>
 
 ---
-## Free All Query Results [🔗](#free-all-query-results)
+## Free All Query Results [](#free-all-query-results)
 
  
 Frees all of the databases which have been loaded.
@@ -126,7 +126,7 @@ procedure FreeAllQueryResults()
 </Tabs>
 
 ---
-## Free Database [🧬](#group-free-database)
+## Free Database [](#group-free-database)
 
 :::note
 
@@ -137,7 +137,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Free Database [🤖](#free-database--1) 
+### Free Database [](#free-database--1) 
 Frees the SplashKit resources associated with the database.
 
 **Return Type**
@@ -177,7 +177,7 @@ procedure FreeDatabase(dbToClose: Database)
 </Tabs>
 
 ---
-### Free Database [🤖](#free-database--2) 
+### Free Database [](#free-database--2) 
 Frees the SplashKit resources associated with the database at a given name.
 
 **Return Type**
@@ -217,7 +217,7 @@ procedure FreeDatabase(nameOfDbToClose: String)
 </Tabs>
 
 ---
-## Free Query Result [🔗](#free-query-result)
+## Free Query Result [](#free-query-result)
 
  
 Releases the SplashKit resources associated with the query.
@@ -259,7 +259,7 @@ procedure FreeQueryResult(query: QueryResult)
 </Tabs>
 
 ---
-## Get Next Row [🔗](#get-next-row)
+## Get Next Row [](#get-next-row)
 
  
 Gets the next row available on a given [`Query Result`](/components/database/#query-result).
@@ -301,7 +301,7 @@ function GetNextRow(dbResult: QueryResult): Boolean
 </Tabs>
 
 ---
-## Has Database [🔗](#has-database)
+## Has Database [](#has-database)
 
  
 Determines if SplashKit has a database loaded for the supplied name.
@@ -348,7 +348,7 @@ function HasDatabase(name: String): Boolean
 </Tabs>
 
 ---
-## Has Row [🔗](#has-row)
+## Has Row [](#has-row)
 
  
 Checks if a given [`Query Result`](/components/database/#query-result) has a valid row of data.
@@ -390,7 +390,7 @@ function HasRow(dbResult: QueryResult): Boolean
 </Tabs>
 
 ---
-## Open Database [🔗](#open-database)
+## Open Database [](#open-database)
 
  
 Loads or creates, and returns a database.
@@ -439,7 +439,7 @@ function OpenDatabase(name: String; filename: String): Database
 </Tabs>
 
 ---
-## Query Column For Bool [🔗](#query-column-for-bool)
+## Query Column For Bool [](#query-column-for-bool)
 
  
 Queries a given column in the current row of the [`Query Result`](/components/database/#query-result) for a bool.
@@ -482,7 +482,7 @@ function QueryColumnForBool(dbResult: QueryResult; col: Integer): Boolean
 </Tabs>
 
 ---
-## Query Column For Double [🔗](#query-column-for-double)
+## Query Column For Double [](#query-column-for-double)
 
  
 Queries a given column in the current row of the [`Query Result`](/components/database/#query-result) for a double.
@@ -525,7 +525,7 @@ function QueryColumnForDouble(dbResult: QueryResult; col: Integer): Double
 </Tabs>
 
 ---
-## Query Column For Int [🔗](#query-column-for-int)
+## Query Column For Int [](#query-column-for-int)
 
  
 Queries a given column in the current row of the [`Query Result`](/components/database/#query-result) for an integer.
@@ -568,7 +568,7 @@ function QueryColumnForInt(dbResult: QueryResult; col: Integer): Integer
 </Tabs>
 
 ---
-## Query Column For String [🔗](#query-column-for-string)
+## Query Column For String [](#query-column-for-string)
 
  
 Queries a given column in the current row of the [`Query Result`](/components/database/#query-result) for a string.
@@ -611,7 +611,7 @@ function QueryColumnForString(dbResult: QueryResult; col: Integer): String
 </Tabs>
 
 ---
-## Query Success [🔗](#query-success)
+## Query Success [](#query-success)
 
  
 Checks if the most recent query at the given [`Query Result`](/components/database/#query-result) was a success or failure.
@@ -653,7 +653,7 @@ function QuerySuccess(dbResult: QueryResult): Boolean
 </Tabs>
 
 ---
-## Query Type Of Col [🔗](#query-type-of-col)
+## Query Type Of Col [](#query-type-of-col)
 
  
 Queries a given column in the current row of the [`Query Result`](/components/database/#query-result) for the data type at its postition.
@@ -696,7 +696,7 @@ function QueryTypeOfCol(dbResult: QueryResult; col: Integer): String
 </Tabs>
 
 ---
-## Reset Query Result [🔗](#reset-query-result)
+## Reset Query Result [](#reset-query-result)
 
  
 Resets a query_result back to its initial state, ready to be re-executed.
@@ -738,7 +738,7 @@ procedure ResetQueryResult(dbResult: QueryResult)
 </Tabs>
 
 ---
-## Rows Changed [🔗](#rows-changed)
+## Rows Changed [](#rows-changed)
 
  
 Calculates the number of row changed in the database at the last time
@@ -781,7 +781,7 @@ function RowsChanged(db: Database): Integer
 </Tabs>
 
 ---
-## Run Sql [🧬](#group-run-sql)
+## Run Sql [](#group-run-sql)
 
 :::note
 
@@ -792,7 +792,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Run Sql [🤖](#run-sql--1) 
+### Run Sql [](#run-sql--1) 
 Returns the [`Query Result`](/components/database/#query-result) for the query passed into `sql`.
 
 **Return Type**
@@ -833,7 +833,7 @@ function RunSql(db: Database; sql: String): QueryResult
 </Tabs>
 
 ---
-### Run Sql [🤖](#run-sql--2) 
+### Run Sql [](#run-sql--2) 
 Returns the [`Query Result`](/components/database/#query-result) for the query passed into `sql`.
 
 **Return Type**
@@ -878,14 +878,14 @@ function RunSql(databaseName: String; sql: String): QueryResult
 
 
 ## TYPES
-### Database [🧾](#database)
+### Database [](#database)
 The [`Database`](/components/database/#database) type is used to refer to databases that can be manipulated by the SplashKit database code. Databases are:
 
 - opened with [Open Database](/components/database/#open-database),
 
 - and must be released using [Free Database](/components/database/#free-database) (to release a specific database) or `Delete All Databases` (to release all loaded databases).
 
-### Query Result [🧾](#query-result)
+### Query Result [](#query-result)
 
 The [`Query Result`](/components/database/#query-result) type is used to store the result of performing a query on the database. It can:
 

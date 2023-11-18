@@ -1,5 +1,5 @@
 ---
-title: Sprites 🌆
+title: Sprites
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[Sprites]
@@ -12,7 +12,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## Functions
 ##
-## Call For All Sprites [🧬](#group-call-for-all-sprites)
+## Call For All Sprites [](#group-call-for-all-sprites)
 
 :::note
 
@@ -23,7 +23,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Call For All Sprites [🤖](#call-for-all-sprites--1) 
+### Call For All Sprites [](#call-for-all-sprites--1) 
 Call the supplied function for all sprites in the current pack.
 
 **Return Type**
@@ -64,7 +64,7 @@ procedure CallForAllSprites(fn: SpriteFloatFunction; val: Single)
 </Tabs>
 
 ---
-### Call For All Sprites [🤖](#call-for-all-sprites--2) 
+### Call For All Sprites [](#call-for-all-sprites--2) 
 Call the supplied function for all sprites in the current pack.
 
 **Return Type**
@@ -104,7 +104,7 @@ procedure CallForAllSprites(fn: SpriteFunction)
 </Tabs>
 
 ---
-## Call On Sprite Event [🔗](#call-on-sprite-event)
+## Call On Sprite Event [](#call-on-sprite-event)
 
  
 Register a procedure to be called when an events occur on any sprite.
@@ -146,7 +146,7 @@ procedure CallOnSpriteEvent(handler: SpriteEventHandler)
 </Tabs>
 
 ---
-## Center Point [🔗](#center-point)
+## Center Point [](#center-point)
 
  
 Returns the center point of the passed in sprite. This is based on the sprite's
@@ -189,7 +189,7 @@ function CenterPoint(s: Sprite): Point2D
 </Tabs>
 
 ---
-## Create Sprite [🧬](#group-create-sprite)
+## Create Sprite [](#group-create-sprite)
 
 :::note
 
@@ -204,7 +204,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Create Sprite [🤖](#create-sprite--1) 
+### Create Sprite [](#create-sprite--1) 
 Creates a sprite for the passed in bitmap image. The sprite will use the
 cell information within the bitmap if it is animated at a later stage.
 
@@ -250,7 +250,7 @@ function CreateSprite(layer: Bitmap): Sprite
 </Tabs>
 
 ---
-### Create Sprite [🤖](#create-sprite--2) 
+### Create Sprite [](#create-sprite--2) 
 Creates a sprite for the passed in bitmap image. The sprite will use the
 cell information within the bitmap if it is animated at a later stage.
 This version of `create_sprite` will initialise the sprite to use
@@ -298,7 +298,7 @@ function CreateSprite(layer: Bitmap; ani: AnimationScript): Sprite
 </Tabs>
 
 ---
-### Create Sprite [🤖](#create-sprite--3) 
+### Create Sprite [](#create-sprite--3) 
 Creates a sprite for the passed in bitmap image. The sprite will use the
 cell information within the bitmap if it is animated at a later stage.
 
@@ -344,7 +344,7 @@ function CreateSprite(const bitmapName: String): Sprite
 </Tabs>
 
 ---
-### Create Sprite [🤖](#create-sprite--4) 
+### Create Sprite [](#create-sprite--4) 
 Creates a sprite for the passed in bitmap image. The sprite will use the
 cell information within the sprite if it is animated at a later stage.
 This version of create_sprite will initialise the sprite to use pixel level
@@ -388,7 +388,7 @@ function CreateSprite(const name: String; layer: Bitmap): Sprite
 </Tabs>
 
 ---
-### Create Sprite [🤖](#create-sprite--5) 
+### Create Sprite [](#create-sprite--5) 
 Creates a sprite for the passed in bitmap image. The sprite will use the cell
 information within the sprite if it is animated at a later stage. This
 version of create_sprite will initialise the sprite to use pixel level
@@ -433,7 +433,7 @@ function CreateSprite(const name: String; layer: Bitmap; ani: AnimationScript): 
 </Tabs>
 
 ---
-### Create Sprite [🤖](#create-sprite--6) 
+### Create Sprite [](#create-sprite--6) 
 Creates a sprite. The bitmap_name is used to indicate the bitmap the sprite
 will use, and the animation_name is used to indicate which animation_script
 to use.
@@ -477,7 +477,7 @@ function CreateSprite(const bitmapName: String; const animationName: String): Sp
 </Tabs>
 
 ---
-## Create Sprite Pack [🔗](#create-sprite-pack)
+## Create Sprite Pack [](#create-sprite-pack)
 
  
 Create a new sprite_pack with a given name. This pack can then be
@@ -521,7 +521,7 @@ procedure CreateSpritePack(const name: String)
 </Tabs>
 
 ---
-## Current Sprite Pack [🔗](#current-sprite-pack)
+## Current Sprite Pack [](#current-sprite-pack)
 
  
 Returns the name of the currently selected sprite_pack.
@@ -557,7 +557,7 @@ function CurrentSpritePack(): String
 </Tabs>
 
 ---
-## Draw All Sprites [🔗](#draw-all-sprites)
+## Draw All Sprites [](#draw-all-sprites)
 
  
 draws all of the sprites in the current sprite pack. Packs can be
@@ -594,7 +594,7 @@ procedure DrawAllSprites()
 </Tabs>
 
 ---
-## Draw Sprite [🧬](#group-draw-sprite)
+## Draw Sprite [](#group-draw-sprite)
 
 :::note
 
@@ -606,7 +606,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Draw Sprite [🤖](#draw-sprite--1) 
+### Draw Sprite [](#draw-sprite--1) 
 Draws the sprite at its position in the game offset by a given amount. Only
 use this method when you want to draw the sprite displaced from its location
 in your game. Otherwise you should change the sprite's location and then
@@ -650,7 +650,7 @@ procedure DrawSprite(s: Sprite; const offset: Vector2D)
 </Tabs>
 
 ---
-### Draw Sprite [🤖](#draw-sprite--2) 
+### Draw Sprite [](#draw-sprite--2) 
 Draws the sprite at its location in the world. This is affected by the
 position of the camera and the sprites current location.
 
@@ -694,7 +694,7 @@ procedure DrawSprite(s: Sprite)
 </Tabs>
 
 ---
-### Draw Sprite [🤖](#draw-sprite--3) 
+### Draw Sprite [](#draw-sprite--3) 
 Draws the sprite at its position in the game offset by a given amount. Only
 use this method when you want to draw the sprite displaced from its location
 in your game. Otherwise you should change the sprite's location and then
@@ -739,7 +739,7 @@ procedure DrawSprite(s: Sprite; xOffset: Double; yOffset: Double)
 </Tabs>
 
 ---
-## Free All Sprites [🔗](#free-all-sprites)
+## Free All Sprites [](#free-all-sprites)
 
  
 Releases all of the sprites that have been loaded.
@@ -775,7 +775,7 @@ procedure FreeAllSprites()
 </Tabs>
 
 ---
-## Free Sprite [🔗](#free-sprite)
+## Free Sprite [](#free-sprite)
 
  
 Free the resources associated with a sprite.
@@ -817,7 +817,7 @@ procedure FreeSprite(s: Sprite)
 </Tabs>
 
 ---
-## Free Sprite Pack [🔗](#free-sprite-pack)
+## Free Sprite Pack [](#free-sprite-pack)
 
  
 Frees the sprite pack and all of its sprites.
@@ -859,7 +859,7 @@ procedure FreeSpritePack(const name: String)
 </Tabs>
 
 ---
-## Has Sprite [🔗](#has-sprite)
+## Has Sprite [](#has-sprite)
 
  
 Determines if SplashKit has a sprite for the supplied name.
@@ -903,7 +903,7 @@ function HasSprite(const name: String): Boolean
 </Tabs>
 
 ---
-## Has Sprite Pack [🔗](#has-sprite-pack)
+## Has Sprite Pack [](#has-sprite-pack)
 
  
 Indicates if a given sprite_pack has already been created.
@@ -945,7 +945,7 @@ function HasSpritePack(const name: String): Boolean
 </Tabs>
 
 ---
-## Move Sprite [🧬](#group-move-sprite)
+## Move Sprite [](#group-move-sprite)
 
 :::note
 
@@ -958,7 +958,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Move Sprite [🤖](#move-sprite--1) 
+### Move Sprite [](#move-sprite--1) 
 moves the sprite as indicated by its velocity. You can call this directly ot
 alternatively, this action is performed when the sprite is updated using
 the ''update_sprite'' routine.
@@ -1000,7 +1000,7 @@ procedure MoveSprite(s: Sprite)
 </Tabs>
 
 ---
-### Move Sprite [🤖](#move-sprite--2) 
+### Move Sprite [](#move-sprite--2) 
 Moves the sprite a given distance based on the value passed in rather than
 based on the sprite's velocity. Typically this method is used to apply
 other movement actions to the sprite and the velocity of the sprite is
@@ -1045,7 +1045,7 @@ procedure MoveSprite(s: Sprite; const distance: Vector2D)
 </Tabs>
 
 ---
-### Move Sprite [🤖](#move-sprite--3) 
+### Move Sprite [](#move-sprite--3) 
 Moves the sprite a percentage of a given distance based on the value
 passed in rather than based on the sprite's velocity. Typically this
 method is used to apply other movement actions to the sprite and the
@@ -1091,7 +1091,7 @@ procedure MoveSprite(s: Sprite; const distance: Vector2D; pct: Single)
 </Tabs>
 
 ---
-### Move Sprite [🤖](#move-sprite--4) 
+### Move Sprite [](#move-sprite--4) 
 Moves the sprite as indicated by a percentage of its velocity. You can call
 this directly ot alternatively, this action is performed when the sprite is
 updated using the ''update_sprite'' routines that require a percentage.
@@ -1134,7 +1134,7 @@ procedure MoveSprite(s: Sprite; pct: Single)
 </Tabs>
 
 ---
-## Move Sprite To [🔗](#move-sprite-to)
+## Move Sprite To [](#move-sprite-to)
 
  
 This method moves a sprite to a given position in the game.
@@ -1178,7 +1178,7 @@ procedure MoveSpriteTo(s: Sprite; x: Double; y: Double)
 </Tabs>
 
 ---
-## Select Sprite Pack [🔗](#select-sprite-pack)
+## Select Sprite Pack [](#select-sprite-pack)
 
  
 Selects the named sprite_pack (if it has been created). The
@@ -1222,7 +1222,7 @@ procedure SelectSpritePack(const name: String)
 </Tabs>
 
 ---
-## Sprite Add Layer [🔗](#sprite-add-layer)
+## Sprite Add Layer [](#sprite-add-layer)
 
  
 Adds a new layer to the sprite.
@@ -1266,7 +1266,7 @@ function SpriteAddLayer(s: Sprite; newLayer: Bitmap; const layerName: String): I
 </Tabs>
 
 ---
-## Sprite Add To Velocity [🔗](#sprite-add-to-velocity)
+## Sprite Add To Velocity [](#sprite-add-to-velocity)
 
  
 Alters the current velocity of the sprite, adding the passed in vector_2d to the current velocity.
@@ -1311,7 +1311,7 @@ procedure SpriteAddToVelocity(s: Sprite; const value: Vector2D)
 </Tabs>
 
 ---
-## Sprite Add Value [🧬](#group-sprite-add-value)
+## Sprite Add Value [](#group-sprite-add-value)
 
 :::note
 
@@ -1322,7 +1322,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Add Value [🤖](#sprite-add-value--1) 
+### Sprite Add Value [](#sprite-add-value--1) 
 Adds a new kind of value to the sprite
 
 **Return Type**
@@ -1363,7 +1363,7 @@ procedure SpriteAddValue(s: Sprite; const name: String)
 </Tabs>
 
 ---
-### Sprite Add Value [🤖](#sprite-add-value--2) 
+### Sprite Add Value [](#sprite-add-value--2) 
 Adds a new kind of value to the sprite, setting the initial value
 to the value passed in.
 
@@ -1406,7 +1406,7 @@ procedure SpriteAddValue(s: Sprite; const name: String; initVal: Single)
 </Tabs>
 
 ---
-## Sprite Anchor Point [🔗](#sprite-anchor-point)
+## Sprite Anchor Point [](#sprite-anchor-point)
 
  
 Returns the anchor point of the sprite. This is the point around which the
@@ -1450,7 +1450,7 @@ function SpriteAnchorPoint(s: Sprite): Point2D
 </Tabs>
 
 ---
-## Sprite Anchor Position [🔗](#sprite-anchor-position)
+## Sprite Anchor Position [](#sprite-anchor-position)
 
  
 The sprite anchor position, is the location of the anchor point in world
@@ -1493,7 +1493,7 @@ function SpriteAnchorPosition(s: Sprite): Point2D
 </Tabs>
 
 ---
-## Sprite Animation Has Ended [🔗](#sprite-animation-has-ended)
+## Sprite Animation Has Ended [](#sprite-animation-has-ended)
 
  
 Indicates if the sprites animation has ended.
@@ -1535,7 +1535,7 @@ function SpriteAnimationHasEnded(s: Sprite): Boolean
 </Tabs>
 
 ---
-## Sprite Animation Name [🔗](#sprite-animation-name)
+## Sprite Animation Name [](#sprite-animation-name)
 
  
 Returns the name of the sprite's current animation.
@@ -1577,7 +1577,7 @@ function SpriteAnimationName(s: Sprite): String
 </Tabs>
 
 ---
-## Sprite At [🔗](#sprite-at)
+## Sprite At [](#sprite-at)
 
  
 Determines if a sprite is at a given point.
@@ -1620,7 +1620,7 @@ function SpriteAt(s: Sprite; const pt: Point2D): Boolean
 </Tabs>
 
 ---
-## Sprite Bring Layer Forward [🔗](#sprite-bring-layer-forward)
+## Sprite Bring Layer Forward [](#sprite-bring-layer-forward)
 
  
 Sends the layer specified forward in the visible layer order.
@@ -1663,7 +1663,7 @@ procedure SpriteBringLayerForward(s: Sprite; visibleLayer: Integer)
 </Tabs>
 
 ---
-## Sprite Bring Layer To Front [🔗](#sprite-bring-layer-to-front)
+## Sprite Bring Layer To Front [](#sprite-bring-layer-to-front)
 
  
 Sends the layer specified to the front in the visible layer order.
@@ -1706,7 +1706,7 @@ procedure SpriteBringLayerToFront(s: Sprite; visibleLayer: Integer)
 </Tabs>
 
 ---
-## Sprite Call On Event [🔗](#sprite-call-on-event)
+## Sprite Call On Event [](#sprite-call-on-event)
 
  
 Register a procedure to call when events occur on the sprite.
@@ -1749,7 +1749,7 @@ procedure SpriteCallOnEvent(s: Sprite; handler: SpriteEventHandler)
 </Tabs>
 
 ---
-## Sprite Circle [🔗](#sprite-circle)
+## Sprite Circle [](#sprite-circle)
 
  
 Gets a circle in the bounds of the base layer of the indicated sprite.
@@ -1791,7 +1791,7 @@ function SpriteCircle(s: Sprite): Circle
 </Tabs>
 
 ---
-## Sprite Collision Bitmap [🔗](#sprite-collision-bitmap)
+## Sprite Collision Bitmap [](#sprite-collision-bitmap)
 
  
 Returns the bitmap used by the sprite to determine if it has collided with
@@ -1834,7 +1834,7 @@ function SpriteCollisionBitmap(s: Sprite): Bitmap
 </Tabs>
 
 ---
-## Sprite Collision Circle [🔗](#sprite-collision-circle)
+## Sprite Collision Circle [](#sprite-collision-circle)
 
  
 Gets a circle in the bounds of the indicated sprite's collision rectangle.
@@ -1876,7 +1876,7 @@ function SpriteCollisionCircle(s: Sprite): Circle
 </Tabs>
 
 ---
-## Sprite Collision Kind [🔗](#sprite-collision-kind)
+## Sprite Collision Kind [](#sprite-collision-kind)
 
  
 Returns the kind of collision used with this sprite. This is used when
@@ -1919,7 +1919,7 @@ function SpriteCollisionKind(s: Sprite): CollisionTestKind
 </Tabs>
 
 ---
-## Sprite Collision Rectangle [🔗](#sprite-collision-rectangle)
+## Sprite Collision Rectangle [](#sprite-collision-rectangle)
 
  
 Returns the collision rectangle for the specified sprite.
@@ -1961,7 +1961,7 @@ function SpriteCollisionRectangle(s: Sprite): Rectangle
 </Tabs>
 
 ---
-## Sprite Current Cell [🔗](#sprite-current-cell)
+## Sprite Current Cell [](#sprite-current-cell)
 
  
 Returns the current animation cell for an animated sprite. The cell is
@@ -2004,7 +2004,7 @@ function SpriteCurrentCell(s: Sprite): Integer
 </Tabs>
 
 ---
-## Sprite Current Cell Rectangle [🔗](#sprite-current-cell-rectangle)
+## Sprite Current Cell Rectangle [](#sprite-current-cell-rectangle)
 
  
 Returns a rectangle of the current cell within the sprite's image. This is used
@@ -2047,7 +2047,7 @@ function SpriteCurrentCellRectangle(s: Sprite): Rectangle
 </Tabs>
 
 ---
-## Sprite Dx [🔗](#sprite-dx)
+## Sprite Dx [](#sprite-dx)
 
  
 Returns the X value of the sprite's velocity.
@@ -2089,7 +2089,7 @@ function SpriteDx(s: Sprite): Single
 </Tabs>
 
 ---
-## Sprite Dy [🔗](#sprite-dy)
+## Sprite Dy [](#sprite-dy)
 
  
 Returns the Y value of the sprite's velocity.
@@ -2131,7 +2131,7 @@ function SpriteDy(s: Sprite): Single
 </Tabs>
 
 ---
-## Sprite Has Value [🔗](#sprite-has-value)
+## Sprite Has Value [](#sprite-has-value)
 
  
 Indicates if the sprite has a value with the given name.
@@ -2174,7 +2174,7 @@ function SpriteHasValue(s: Sprite; name: String): Boolean
 </Tabs>
 
 ---
-## Sprite Heading [🔗](#sprite-heading)
+## Sprite Heading [](#sprite-heading)
 
  
 Returns the direction the sprite is heading in degrees.
@@ -2216,7 +2216,7 @@ function SpriteHeading(s: Sprite): Single
 </Tabs>
 
 ---
-## Sprite Height [🔗](#sprite-height)
+## Sprite Height [](#sprite-height)
 
  
 The current height of the sprite (aligned to the Y axis).
@@ -2258,7 +2258,7 @@ function SpriteHeight(s: Sprite): Integer
 </Tabs>
 
 ---
-## Sprite Hide Layer [🧬](#group-sprite-hide-layer)
+## Sprite Hide Layer [](#group-sprite-hide-layer)
 
 :::note
 
@@ -2269,7 +2269,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Hide Layer [🤖](#sprite-hide-layer--1) 
+### Sprite Hide Layer [](#sprite-hide-layer--1) 
 Hide the specified layer of the sprite.
 
 **Return Type**
@@ -2310,7 +2310,7 @@ procedure SpriteHideLayer(s: Sprite; const name: String)
 </Tabs>
 
 ---
-### Sprite Hide Layer [🤖](#sprite-hide-layer--2) 
+### Sprite Hide Layer [](#sprite-hide-layer--2) 
 Hide the specified layer of the sprite.
 
 **Return Type**
@@ -2351,7 +2351,7 @@ procedure SpriteHideLayer(s: Sprite; id: Integer)
 </Tabs>
 
 ---
-## Sprite Layer [🧬](#group-sprite-layer)
+## Sprite Layer [](#group-sprite-layer)
 
 :::note
 
@@ -2362,7 +2362,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Layer [🤖](#sprite-layer--1) 
+### Sprite Layer [](#sprite-layer--1) 
 Returns the bitmap of the indicated layer of the sprite.
 
 **Return Type**
@@ -2403,7 +2403,7 @@ function SpriteLayer(s: Sprite; const name: String): Bitmap
 </Tabs>
 
 ---
-### Sprite Layer [🤖](#sprite-layer--2) 
+### Sprite Layer [](#sprite-layer--2) 
 Returns the bitmap of the indicated layer of the sprite.
 
 **Return Type**
@@ -2444,7 +2444,7 @@ function SpriteLayer(s: Sprite; idx: Integer): Bitmap
 </Tabs>
 
 ---
-## Sprite Layer Circle [🧬](#group-sprite-layer-circle)
+## Sprite Layer Circle [](#group-sprite-layer-circle)
 
 :::note
 
@@ -2455,7 +2455,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Layer Circle [🤖](#sprite-layer-circle--1) 
+### Sprite Layer Circle [](#sprite-layer-circle--1) 
 Gets a circle in the bounds of the indicated layer.
 
 **Return Type**
@@ -2496,7 +2496,7 @@ function SpriteLayerCircle(s: Sprite; const name: String): Circle
 </Tabs>
 
 ---
-### Sprite Layer Circle [🤖](#sprite-layer-circle--2) 
+### Sprite Layer Circle [](#sprite-layer-circle--2) 
 Gets a circle in the bounds of the indicated layer.
 
 **Return Type**
@@ -2537,7 +2537,7 @@ function SpriteLayerCircle(s: Sprite; idx: Integer): Circle
 </Tabs>
 
 ---
-## Sprite Layer Count [🔗](#sprite-layer-count)
+## Sprite Layer Count [](#sprite-layer-count)
 
  
 Returns the number of layers within the sprite.
@@ -2579,7 +2579,7 @@ function SpriteLayerCount(s: Sprite): Integer
 </Tabs>
 
 ---
-## Sprite Layer Height [🧬](#group-sprite-layer-height)
+## Sprite Layer Height [](#group-sprite-layer-height)
 
 :::note
 
@@ -2590,7 +2590,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Layer Height [🤖](#sprite-layer-height--1) 
+### Sprite Layer Height [](#sprite-layer-height--1) 
 The height of a given layer of the sprite (aligned to the Y axis).
 
 **Return Type**
@@ -2631,7 +2631,7 @@ function SpriteLayerHeight(s: Sprite; const name: String): Integer
 </Tabs>
 
 ---
-### Sprite Layer Height [🤖](#sprite-layer-height--2) 
+### Sprite Layer Height [](#sprite-layer-height--2) 
 The height of a given layer of the sprite (aligned to the Y axis).
 
 **Return Type**
@@ -2672,7 +2672,7 @@ function SpriteLayerHeight(s: Sprite; idx: Integer): Integer
 </Tabs>
 
 ---
-## Sprite Layer Index [🔗](#sprite-layer-index)
+## Sprite Layer Index [](#sprite-layer-index)
 
  
 Returns the index of the specified layer.
@@ -2715,7 +2715,7 @@ function SpriteLayerIndex(s: Sprite; const name: String): Integer
 </Tabs>
 
 ---
-## Sprite Layer Name [🔗](#sprite-layer-name)
+## Sprite Layer Name [](#sprite-layer-name)
 
  
 Returns the name of the specified layer.
@@ -2758,7 +2758,7 @@ function SpriteLayerName(s: Sprite; idx: Integer): String
 </Tabs>
 
 ---
-## Sprite Layer Offset [🧬](#group-sprite-layer-offset)
+## Sprite Layer Offset [](#group-sprite-layer-offset)
 
 :::note
 
@@ -2769,7 +2769,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Layer Offset [🤖](#sprite-layer-offset--1) 
+### Sprite Layer Offset [](#sprite-layer-offset--1) 
 Gets the offset of the specified layer.
 
 **Return Type**
@@ -2810,7 +2810,7 @@ function SpriteLayerOffset(s: Sprite; const name: String): Vector2D
 </Tabs>
 
 ---
-### Sprite Layer Offset [🤖](#sprite-layer-offset--2) 
+### Sprite Layer Offset [](#sprite-layer-offset--2) 
 Gets the offset of the specified layer.
 
 **Return Type**
@@ -2851,7 +2851,7 @@ function SpriteLayerOffset(s: Sprite; idx: Integer): Vector2D
 </Tabs>
 
 ---
-## Sprite Layer Rectangle [🧬](#group-sprite-layer-rectangle)
+## Sprite Layer Rectangle [](#group-sprite-layer-rectangle)
 
 :::note
 
@@ -2862,7 +2862,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Layer Rectangle [🤖](#sprite-layer-rectangle--1) 
+### Sprite Layer Rectangle [](#sprite-layer-rectangle--1) 
 Gets a rectangle that surrounds the indicated layer.
 
 **Return Type**
@@ -2903,7 +2903,7 @@ function SpriteLayerRectangle(s: Sprite; const name: String): Rectangle
 </Tabs>
 
 ---
-### Sprite Layer Rectangle [🤖](#sprite-layer-rectangle--2) 
+### Sprite Layer Rectangle [](#sprite-layer-rectangle--2) 
 Gets a rectangle that surrounds the indicated layer.
 
 **Return Type**
@@ -2944,7 +2944,7 @@ function SpriteLayerRectangle(s: Sprite; idx: Integer): Rectangle
 </Tabs>
 
 ---
-## Sprite Layer Width [🧬](#group-sprite-layer-width)
+## Sprite Layer Width [](#group-sprite-layer-width)
 
 :::note
 
@@ -2955,7 +2955,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Layer Width [🤖](#sprite-layer-width--1) 
+### Sprite Layer Width [](#sprite-layer-width--1) 
 The width of a given layer of the sprite (aligned to the X axis).
 
 **Return Type**
@@ -2996,7 +2996,7 @@ function SpriteLayerWidth(s: Sprite; const name: String): Integer
 </Tabs>
 
 ---
-### Sprite Layer Width [🤖](#sprite-layer-width--2) 
+### Sprite Layer Width [](#sprite-layer-width--2) 
 The width of a given layer of the sprite (aligned to the X axis).
 
 **Return Type**
@@ -3037,7 +3037,7 @@ function SpriteLayerWidth(s: Sprite; idx: Integer): Integer
 </Tabs>
 
 ---
-## Sprite Location Matrix [🔗](#sprite-location-matrix)
+## Sprite Location Matrix [](#sprite-location-matrix)
 
  
 Returns a matrix that can be used to transform points into the coordinate
@@ -3080,7 +3080,7 @@ function SpriteLocationMatrix(s: Sprite): Matrix2D
 </Tabs>
 
 ---
-## Sprite Mass [🔗](#sprite-mass)
+## Sprite Mass [](#sprite-mass)
 
  
 This indicates the mass of the sprite for any of the collide methods from
@@ -3124,7 +3124,7 @@ function SpriteMass(s: Sprite): Single
 </Tabs>
 
 ---
-## Sprite Move From Anchor Point [🔗](#sprite-move-from-anchor-point)
+## Sprite Move From Anchor Point [](#sprite-move-from-anchor-point)
 
  
 Indicates if the sprite is moved from its anchor point, or from its top left.
@@ -3168,7 +3168,7 @@ function SpriteMoveFromAnchorPoint(s: Sprite): Boolean
 </Tabs>
 
 ---
-## Sprite Move To [🔗](#sprite-move-to)
+## Sprite Move To [](#sprite-move-to)
 
  
 This void starts the sprite moving to the indicated
@@ -3214,7 +3214,7 @@ procedure SpriteMoveTo(s: Sprite; const pt: Point2D; takingSeconds: Single)
 </Tabs>
 
 ---
-## Sprite Name [🔗](#sprite-name)
+## Sprite Name [](#sprite-name)
 
  
 Returns the name of the sprite. This name is used for resource management
@@ -3257,7 +3257,7 @@ function SpriteName(s: Sprite): String
 </Tabs>
 
 ---
-## Sprite Named [🔗](#sprite-named)
+## Sprite Named [](#sprite-named)
 
  
 Returns the [`Sprite`](/components/sprites/#sprite) with the specified name.
@@ -3299,7 +3299,7 @@ function SpriteNamed(const name: String): Sprite
 </Tabs>
 
 ---
-## Sprite Offscreen [🔗](#sprite-offscreen)
+## Sprite Offscreen [](#sprite-offscreen)
 
  
 Returns true if the sprite is entirely off the current screen.
@@ -3341,7 +3341,7 @@ function SpriteOffscreen(s: Sprite): Boolean
 </Tabs>
 
 ---
-## Sprite On Screen At [🧬](#group-sprite-on-screen-at)
+## Sprite On Screen At [](#group-sprite-on-screen-at)
 
 :::note
 
@@ -3352,7 +3352,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite On Screen At [🤖](#sprite-on-screen-at--1) 
+### Sprite On Screen At [](#sprite-on-screen-at--1) 
 Returns true if a pixel of the [`Sprite`](/components/sprites/#sprite) `s` is at the screen location
 specified (`pt`), which is converted to a world location.
 
@@ -3394,7 +3394,7 @@ function SpriteOnScreenAt(s: Sprite; const pt: Point2D): Boolean
 </Tabs>
 
 ---
-### Sprite On Screen At [🤖](#sprite-on-screen-at--2) 
+### Sprite On Screen At [](#sprite-on-screen-at--2) 
 Returns true if a pixel of the [`Sprite`](/components/sprites/#sprite) `s` is at the screen location
 specified.
 
@@ -3437,7 +3437,7 @@ function SpriteOnScreenAt(s: Sprite; x: Double; y: Double): Boolean
 </Tabs>
 
 ---
-## Sprite Position [🔗](#sprite-position)
+## Sprite Position [](#sprite-position)
 
  
 Returns the sprite's position.
@@ -3479,7 +3479,7 @@ function SpritePosition(s: Sprite): Point2D
 </Tabs>
 
 ---
-## Sprite Replay Animation [🧬](#group-sprite-replay-animation)
+## Sprite Replay Animation [](#group-sprite-replay-animation)
 
 :::note
 
@@ -3490,7 +3490,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Replay Animation [🤖](#sprite-replay-animation--1) 
+### Sprite Replay Animation [](#sprite-replay-animation--1) 
 Restart the sprite's current animation, this will play a sound if the
 first cell of the animation is associated with a sound effect.
 
@@ -3531,7 +3531,7 @@ procedure SpriteReplayAnimation(s: Sprite)
 </Tabs>
 
 ---
-### Sprite Replay Animation [🤖](#sprite-replay-animation--2) 
+### Sprite Replay Animation [](#sprite-replay-animation--2) 
 Restart the sprite's current animation, this will play a sound if
 with_sound is true and the first cell of the animation is associated
 with a sound effect.
@@ -3575,7 +3575,7 @@ procedure SpriteReplayAnimation(s: Sprite; withSound: Boolean)
 </Tabs>
 
 ---
-## Sprite Rotation [🔗](#sprite-rotation)
+## Sprite Rotation [](#sprite-rotation)
 
  
 This indicates the angle of rotation of the sprite. This will rotate any
@@ -3619,7 +3619,7 @@ function SpriteRotation(s: Sprite): Single
 </Tabs>
 
 ---
-## Sprite Scale [🔗](#sprite-scale)
+## Sprite Scale [](#sprite-scale)
 
  
 This indicates the scale of the sprite. This will scale any
@@ -3663,7 +3663,7 @@ function SpriteScale(s: Sprite): Single
 </Tabs>
 
 ---
-## Sprite Screen Rectangle [🔗](#sprite-screen-rectangle)
+## Sprite Screen Rectangle [](#sprite-screen-rectangle)
 
  
 Returns the rectangle representing the location of the sprite on the
@@ -3706,7 +3706,7 @@ function SpriteScreenRectangle(s: Sprite): Rectangle
 </Tabs>
 
 ---
-## Sprite Send Layer Backward [🔗](#sprite-send-layer-backward)
+## Sprite Send Layer Backward [](#sprite-send-layer-backward)
 
  
 Sends the layer specified backward in the visible layer order.
@@ -3749,7 +3749,7 @@ procedure SpriteSendLayerBackward(s: Sprite; visibleLayer: Integer)
 </Tabs>
 
 ---
-## Sprite Send Layer To Back [🔗](#sprite-send-layer-to-back)
+## Sprite Send Layer To Back [](#sprite-send-layer-to-back)
 
  
 Sends the layer specified to the back in the visible layer order.
@@ -3792,7 +3792,7 @@ procedure SpriteSendLayerToBack(s: Sprite; visibleLayer: Integer)
 </Tabs>
 
 ---
-## Sprite Set Anchor Point [🔗](#sprite-set-anchor-point)
+## Sprite Set Anchor Point [](#sprite-set-anchor-point)
 
  
 Allows you to set the anchor point for the sprite. This is the point around
@@ -3837,7 +3837,7 @@ procedure SpriteSetAnchorPoint(s: Sprite; const pt: Point2D)
 </Tabs>
 
 ---
-## Sprite Set Collision Bitmap [🔗](#sprite-set-collision-bitmap)
+## Sprite Set Collision Bitmap [](#sprite-set-collision-bitmap)
 
  
 Sets the bitmap used by the sprite to determine if it has collided with
@@ -3882,7 +3882,7 @@ procedure SpriteSetCollisionBitmap(s: Sprite; bmp: Bitmap)
 </Tabs>
 
 ---
-## Sprite Set Collision Kind [🔗](#sprite-set-collision-kind)
+## Sprite Set Collision Kind [](#sprite-set-collision-kind)
 
  
 Sets the kind of collision used with this sprite. This is used when
@@ -3926,7 +3926,7 @@ procedure SpriteSetCollisionKind(s: Sprite; value: CollisionTestKind)
 </Tabs>
 
 ---
-## Sprite Set Dx [🔗](#sprite-set-dx)
+## Sprite Set Dx [](#sprite-set-dx)
 
  
 Sets the X value of the sprite's velocity.
@@ -3969,7 +3969,7 @@ procedure SpriteSetDx(s: Sprite; value: Single)
 </Tabs>
 
 ---
-## Sprite Set Dy [🔗](#sprite-set-dy)
+## Sprite Set Dy [](#sprite-set-dy)
 
  
 Sets the Y value of the sprite's velocity.
@@ -4012,7 +4012,7 @@ procedure SpriteSetDy(s: Sprite; value: Single)
 </Tabs>
 
 ---
-## Sprite Set Heading [🔗](#sprite-set-heading)
+## Sprite Set Heading [](#sprite-set-heading)
 
  
 Alters the direction the sprite is heading without changing the speed.
@@ -4056,7 +4056,7 @@ procedure SpriteSetHeading(s: Sprite; value: Single)
 </Tabs>
 
 ---
-## Sprite Set Layer Offset [🧬](#group-sprite-set-layer-offset)
+## Sprite Set Layer Offset [](#group-sprite-set-layer-offset)
 
 :::note
 
@@ -4067,7 +4067,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Set Layer Offset [🤖](#sprite-set-layer-offset--1) 
+### Sprite Set Layer Offset [](#sprite-set-layer-offset--1) 
 Sets the offset of the specified layer. The offset is used when the layer
 is drawn in the sprite, and moves the image relative to the sprite.
 
@@ -4110,7 +4110,7 @@ procedure SpriteSetLayerOffset(s: Sprite; const name: String; const value: Vecto
 </Tabs>
 
 ---
-### Sprite Set Layer Offset [🤖](#sprite-set-layer-offset--2) 
+### Sprite Set Layer Offset [](#sprite-set-layer-offset--2) 
 Sets the offset of the specified layer.
 
 **Return Type**
@@ -4152,7 +4152,7 @@ procedure SpriteSetLayerOffset(s: Sprite; idx: Integer; const value: Vector2D)
 </Tabs>
 
 ---
-## Sprite Set Mass [🔗](#sprite-set-mass)
+## Sprite Set Mass [](#sprite-set-mass)
 
  
 Allows you to change the mass of a sprite.
@@ -4195,7 +4195,7 @@ procedure SpriteSetMass(s: Sprite; value: Single)
 </Tabs>
 
 ---
-## Sprite Set Move From Anchor Point [🔗](#sprite-set-move-from-anchor-point)
+## Sprite Set Move From Anchor Point [](#sprite-set-move-from-anchor-point)
 
  
 Allows you to indicate if the sprite is moved from its anchor point, or from its
@@ -4242,7 +4242,7 @@ procedure SpriteSetMoveFromAnchorPoint(s: Sprite; value: Boolean)
 </Tabs>
 
 ---
-## Sprite Set Position [🔗](#sprite-set-position)
+## Sprite Set Position [](#sprite-set-position)
 
  
 Sets the sprite's position.
@@ -4285,7 +4285,7 @@ procedure SpriteSetPosition(s: Sprite; const value: Point2D)
 </Tabs>
 
 ---
-## Sprite Set Rotation [🔗](#sprite-set-rotation)
+## Sprite Set Rotation [](#sprite-set-rotation)
 
  
 Allows you to change the rotation of a sprite.
@@ -4328,7 +4328,7 @@ procedure SpriteSetRotation(s: Sprite; value: Single)
 </Tabs>
 
 ---
-## Sprite Set Scale [🔗](#sprite-set-scale)
+## Sprite Set Scale [](#sprite-set-scale)
 
  
 Allows you to change the scale of a sprite.
@@ -4371,7 +4371,7 @@ procedure SpriteSetScale(s: Sprite; value: Single)
 </Tabs>
 
 ---
-## Sprite Set Speed [🔗](#sprite-set-speed)
+## Sprite Set Speed [](#sprite-set-speed)
 
  
 Alters the speed of the sprite without effecting the direction.
@@ -4414,7 +4414,7 @@ procedure SpriteSetSpeed(s: Sprite; value: Single)
 </Tabs>
 
 ---
-## Sprite Set Value [🔗](#sprite-set-value)
+## Sprite Set Value [](#sprite-set-value)
 
  
 Assigns a value to the sprite.
@@ -4458,7 +4458,7 @@ procedure SpriteSetValue(s: Sprite; const name: String; val: Single)
 </Tabs>
 
 ---
-## Sprite Set Velocity [🔗](#sprite-set-velocity)
+## Sprite Set Velocity [](#sprite-set-velocity)
 
  
 Sets the current velocity of the sprite. When the sprite is updated
@@ -4502,7 +4502,7 @@ procedure SpriteSetVelocity(s: Sprite; const value: Vector2D)
 </Tabs>
 
 ---
-## Sprite Set X [🔗](#sprite-set-x)
+## Sprite Set X [](#sprite-set-x)
 
  
 Sets the X position of the sprite.
@@ -4545,7 +4545,7 @@ procedure SpriteSetX(s: Sprite; value: Single)
 </Tabs>
 
 ---
-## Sprite Set Y [🔗](#sprite-set-y)
+## Sprite Set Y [](#sprite-set-y)
 
  
 Sets the Y position of the sprite.
@@ -4588,7 +4588,7 @@ procedure SpriteSetY(s: Sprite; value: Single)
 </Tabs>
 
 ---
-## Sprite Show Layer [🧬](#group-sprite-show-layer)
+## Sprite Show Layer [](#group-sprite-show-layer)
 
 :::note
 
@@ -4599,7 +4599,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Show Layer [🤖](#sprite-show-layer--1) 
+### Sprite Show Layer [](#sprite-show-layer--1) 
 Show the specified layer of the sprite.
 
 **Return Type**
@@ -4640,7 +4640,7 @@ function SpriteShowLayer(s: Sprite; const name: String): Integer
 </Tabs>
 
 ---
-### Sprite Show Layer [🤖](#sprite-show-layer--2) 
+### Sprite Show Layer [](#sprite-show-layer--2) 
 Show the specified layer of the sprite.
 
 **Return Type**
@@ -4681,7 +4681,7 @@ function SpriteShowLayer(s: Sprite; id: Integer): Integer
 </Tabs>
 
 ---
-## Sprite Speed [🔗](#sprite-speed)
+## Sprite Speed [](#sprite-speed)
 
  
 Returns the current speed (distance travelled per update) of the sprite.
@@ -4723,7 +4723,7 @@ function SpriteSpeed(s: Sprite): Single
 </Tabs>
 
 ---
-## Sprite Start Animation [🧬](#group-sprite-start-animation)
+## Sprite Start Animation [](#group-sprite-start-animation)
 
 :::note
 
@@ -4736,7 +4736,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Start Animation [🤖](#sprite-start-animation--1) 
+### Sprite Start Animation [](#sprite-start-animation--1) 
 Start playing an animation from the sprite's animation template.
 This will play a sound effect if the first cell of the animation
 has a sound.
@@ -4779,7 +4779,7 @@ procedure SpriteStartAnimation(s: Sprite; const named: String)
 </Tabs>
 
 ---
-### Sprite Start Animation [🤖](#sprite-start-animation--2) 
+### Sprite Start Animation [](#sprite-start-animation--2) 
 Start playing an animation from the sprite's animation template.
 The with_sound parameter determines whether to play a sound effect
 if the first cell of the animation has a sound.
@@ -4824,7 +4824,7 @@ procedure SpriteStartAnimation(s: Sprite; const named: String; withSound: Boolea
 </Tabs>
 
 ---
-### Sprite Start Animation [🤖](#sprite-start-animation--3) 
+### Sprite Start Animation [](#sprite-start-animation--3) 
 Start playing an animation from the sprite's animation template.
 This will play a sound effect if the first cell of the animation
 has a sound.
@@ -4867,7 +4867,7 @@ procedure SpriteStartAnimation(s: Sprite; idx: Integer)
 </Tabs>
 
 ---
-### Sprite Start Animation [🤖](#sprite-start-animation--4) 
+### Sprite Start Animation [](#sprite-start-animation--4) 
 Start playing an animation from the sprite's animation template.
 The with_sound parameter determines whether to play a sound effect
 if the first cell of the animation has a sound.
@@ -4912,7 +4912,7 @@ procedure SpriteStartAnimation(s: Sprite; idx: Integer; withSound: Boolean)
 </Tabs>
 
 ---
-## Sprite Stop Calling On Event [🔗](#sprite-stop-calling-on-event)
+## Sprite Stop Calling On Event [](#sprite-stop-calling-on-event)
 
  
 Removes an event handler from the sprite, stopping events from this
@@ -4956,7 +4956,7 @@ procedure SpriteStopCallingOnEvent(s: Sprite; handler: SpriteEventHandler)
 </Tabs>
 
 ---
-## Sprite Toggle Layer Visible [🧬](#group-sprite-toggle-layer-visible)
+## Sprite Toggle Layer Visible [](#group-sprite-toggle-layer-visible)
 
 :::note
 
@@ -4967,7 +4967,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Toggle Layer Visible [🤖](#sprite-toggle-layer-visible--1) 
+### Sprite Toggle Layer Visible [](#sprite-toggle-layer-visible--1) 
 Toggle the visibility of the specified layer of the sprite.
 
 **Return Type**
@@ -5008,7 +5008,7 @@ procedure SpriteToggleLayerVisible(s: Sprite; const name: String)
 </Tabs>
 
 ---
-### Sprite Toggle Layer Visible [🤖](#sprite-toggle-layer-visible--2) 
+### Sprite Toggle Layer Visible [](#sprite-toggle-layer-visible--2) 
 Toggle the visibility of the specified layer of the sprite.
 
 **Return Type**
@@ -5049,7 +5049,7 @@ procedure SpriteToggleLayerVisible(s: Sprite; id: Integer)
 </Tabs>
 
 ---
-## Sprite Value [🔗](#sprite-value)
+## Sprite Value [](#sprite-value)
 
  
 Returns the indicated value of the sprite
@@ -5092,7 +5092,7 @@ function SpriteValue(s: Sprite; const name: String): Single
 </Tabs>
 
 ---
-## Sprite Value Count [🔗](#sprite-value-count)
+## Sprite Value Count [](#sprite-value-count)
 
  
 Returns the number of sprite's values.
@@ -5134,7 +5134,7 @@ function SpriteValueCount(s: Sprite): Integer
 </Tabs>
 
 ---
-## Sprite Velocity [🔗](#sprite-velocity)
+## Sprite Velocity [](#sprite-velocity)
 
  
 Returns the current velocity of the sprite. When the sprite is updated
@@ -5177,7 +5177,7 @@ function SpriteVelocity(s: Sprite): Vector2D
 </Tabs>
 
 ---
-## Sprite Visible Index Of Layer [🧬](#group-sprite-visible-index-of-layer)
+## Sprite Visible Index Of Layer [](#group-sprite-visible-index-of-layer)
 
 :::note
 
@@ -5188,7 +5188,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Sprite Visible Index Of Layer [🤖](#sprite-visible-index-of-layer--1) 
+### Sprite Visible Index Of Layer [](#sprite-visible-index-of-layer--1) 
 Returns the index (z-order) of the sprite's layer.
 
 **Return Type**
@@ -5229,7 +5229,7 @@ function SpriteVisibleIndexOfLayer(s: Sprite; const name: String): Integer
 </Tabs>
 
 ---
-### Sprite Visible Index Of Layer [🤖](#sprite-visible-index-of-layer--2) 
+### Sprite Visible Index Of Layer [](#sprite-visible-index-of-layer--2) 
 Returns the index (z-order) of the sprite's layer.
 
 **Return Type**
@@ -5270,7 +5270,7 @@ function SpriteVisibleIndexOfLayer(s: Sprite; id: Integer): Integer
 </Tabs>
 
 ---
-## Sprite Visible Layer [🔗](#sprite-visible-layer)
+## Sprite Visible Layer [](#sprite-visible-layer)
 
  
 Returns the index of the n'th (idx parameter) visible layer.
@@ -5313,7 +5313,7 @@ function SpriteVisibleLayer(s: Sprite; idx: Integer): Integer
 </Tabs>
 
 ---
-## Sprite Visible Layer Count [🔗](#sprite-visible-layer-count)
+## Sprite Visible Layer Count [](#sprite-visible-layer-count)
 
  
 Returns the number of layers that are currently visible for the sprite.
@@ -5355,7 +5355,7 @@ function SpriteVisibleLayerCount(s: Sprite): Integer
 </Tabs>
 
 ---
-## Sprite Visible Layer Id [🔗](#sprite-visible-layer-id)
+## Sprite Visible Layer Id [](#sprite-visible-layer-id)
 
  
 Returns the id of the layer at index `idx` that is currently visible.
@@ -5400,7 +5400,7 @@ function SpriteVisibleLayerId(s: Sprite; idx: Integer): Integer
 </Tabs>
 
 ---
-## Sprite Width [🔗](#sprite-width)
+## Sprite Width [](#sprite-width)
 
  
 The current Width of the sprite (aligned to the X axis).
@@ -5442,7 +5442,7 @@ function SpriteWidth(s: Sprite): Integer
 </Tabs>
 
 ---
-## Sprite X [🔗](#sprite-x)
+## Sprite X [](#sprite-x)
 
  
 Returns the X position of the sprite.
@@ -5484,7 +5484,7 @@ function SpriteX(s: Sprite): Single
 </Tabs>
 
 ---
-## Sprite Y [🔗](#sprite-y)
+## Sprite Y [](#sprite-y)
 
  
 Returns the Y position of the sprite.
@@ -5526,7 +5526,7 @@ function SpriteY(s: Sprite): Single
 </Tabs>
 
 ---
-## Stop Calling On Sprite Event [🔗](#stop-calling-on-sprite-event)
+## Stop Calling On Sprite Event [](#stop-calling-on-sprite-event)
 
  
 Removes an global event handler, stopping events calling the indicated void.
@@ -5568,7 +5568,7 @@ procedure StopCallingOnSpriteEvent(handler: SpriteEventHandler)
 </Tabs>
 
 ---
-## Update All Sprites [🧬](#group-update-all-sprites)
+## Update All Sprites [](#group-update-all-sprites)
 
 :::note
 
@@ -5579,7 +5579,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Update All Sprites [🤖](#update-all-sprites--1) 
+### Update All Sprites [](#update-all-sprites--1) 
 Update all of the sprites in the current sprite pack.
 
 **Return Type**
@@ -5613,7 +5613,7 @@ procedure UpdateAllSprites()
 </Tabs>
 
 ---
-### Update All Sprites [🤖](#update-all-sprites--2) 
+### Update All Sprites [](#update-all-sprites--2) 
 Update all of the sprites in the current sprite pack, passing in a
 percentage value to indicate the percentage to update.
 
@@ -5654,7 +5654,7 @@ procedure UpdateAllSprites(pct: Single)
 </Tabs>
 
 ---
-## Update Sprite [🧬](#group-update-sprite)
+## Update Sprite [](#group-update-sprite)
 
 :::note
 
@@ -5667,7 +5667,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Update Sprite [🤖](#update-sprite--1) 
+### Update Sprite [](#update-sprite--1) 
 Update the position and animation details of the sprite.
 This will play a sound effect if the new cell of the animation
 has a sound.
@@ -5709,7 +5709,7 @@ procedure UpdateSprite(s: Sprite)
 </Tabs>
 
 ---
-### Update Sprite [🤖](#update-sprite--2) 
+### Update Sprite [](#update-sprite--2) 
 Update the position and animation details of the sprite.
 This will play a sound effect if the new cell of the animation
 has a sound and with_sound is true.
@@ -5753,7 +5753,7 @@ procedure UpdateSprite(s: Sprite; withSound: Boolean)
 </Tabs>
 
 ---
-### Update Sprite [🤖](#update-sprite--3) 
+### Update Sprite [](#update-sprite--3) 
 Update the position and animation details of the sprite by a
 given percentage of a single unit of movement/animation.
 This will play a sound effect if the new cell of the animation
@@ -5797,7 +5797,7 @@ procedure UpdateSprite(s: Sprite; pct: Single)
 </Tabs>
 
 ---
-### Update Sprite [🤖](#update-sprite--4) 
+### Update Sprite [](#update-sprite--4) 
 Update the position and animation details of the sprite by a
 given percentage of a single unit of movement/animation.
 This will play a sound effect if the new cell of the animation
@@ -5843,7 +5843,7 @@ procedure UpdateSprite(s: Sprite; pct: Single; withSound: Boolean)
 </Tabs>
 
 ---
-## Update Sprite Animation [🧬](#group-update-sprite-animation)
+## Update Sprite Animation [](#group-update-sprite-animation)
 
 :::note
 
@@ -5856,7 +5856,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Update Sprite Animation [🤖](#update-sprite-animation--1) 
+### Update Sprite Animation [](#update-sprite-animation--1) 
 Updates the animation details of the sprite.
 This will play a sound effect if the new cell of the animation
 has a sound.
@@ -5898,7 +5898,7 @@ procedure UpdateSpriteAnimation(s: Sprite)
 </Tabs>
 
 ---
-### Update Sprite Animation [🤖](#update-sprite-animation--2) 
+### Update Sprite Animation [](#update-sprite-animation--2) 
 Update the animation details of the sprite.
 This will play a sound effect if the new cell of the animation
 has a sound and with_sound is true.
@@ -5942,7 +5942,7 @@ procedure UpdateSpriteAnimation(s: Sprite; withSound: Boolean)
 </Tabs>
 
 ---
-### Update Sprite Animation [🤖](#update-sprite-animation--3) 
+### Update Sprite Animation [](#update-sprite-animation--3) 
 Update the animation details of the sprite by a
 given percentage of a single unit of movement/animation.
 This will play a sound effect if the new cell of the animation
@@ -5986,7 +5986,7 @@ procedure UpdateSpriteAnimation(s: Sprite; pct: Single)
 </Tabs>
 
 ---
-### Update Sprite Animation [🤖](#update-sprite-animation--4) 
+### Update Sprite Animation [](#update-sprite-animation--4) 
 Update the position and animation details of the sprite by a
 given percentage of a single unit of movement/animation.
 This will play a sound effect if the new cell of the animation
@@ -6032,7 +6032,7 @@ procedure UpdateSpriteAnimation(s: Sprite; pct: Single; withSound: Boolean)
 </Tabs>
 
 ---
-## Vector From Center Sprite To Point [🔗](#vector-from-center-sprite-to-point)
+## Vector From Center Sprite To Point [](#vector-from-center-sprite-to-point)
 
  
 Returns a [`Vector 2D`](/components/types/#vector-2d) that is the difference in location from the center of
@@ -6076,7 +6076,7 @@ function VectorFromCenterSpriteToPoint(s: Sprite; const pt: Point2D): Vector2D
 </Tabs>
 
 ---
-## Vector From To [🔗](#vector-from-to)
+## Vector From To [](#vector-from-to)
 
  
 Returns a [`Vector 2D`](/components/types/#vector-2d) that is the difference in the position of two sprites
@@ -6126,7 +6126,7 @@ function VectorFromTo(s1: Sprite; s2: Sprite): Vector2D
 ## Types
 ##
 
-## Collision Test Kind [🧾](#collison-test-kind)
+## Collision Test Kind [](#collison-test-kind)
 
 This enumeration can be used to set the kind of collisions a sprite will check for.
 
@@ -6139,17 +6139,17 @@ This enumeration can be used to set the kind of collisions a sprite will check f
 
 ---
 
-## Sprite [🧾](#sprite)
+## Sprite [](#sprite)
 Sprites combine an image, with position and animation details. You can create a sprite using [`Create Sprite`](/components/sprites/#create-sprite), draw it with [`Draw Sprite`](/components/sprites/#draw-sprite), move it using the [`Sprite Velocity`](/components/sprites/#sprite-velocity) with [`Update Sprite`](/components/sprites/#update-sprite), and animate it using an [`Animation Script`](/components/types/#animation-script).
 
 ---
 
-## Sprite Event Handler [🧾](#sprite-event-handler)
+## Sprite Event Handler [](#sprite-event-handler)
 The `spriteeventhandler` function pointer is used when you want to register to receive events from a Sprite.
 
 ---
 
-## Sprite Event Kind [🧾](#sprite-event-kind)
+## Sprite Event Kind [](#sprite-event-kind)
 
 This enumeration contains a list of all of the different kinds of events that a Sprite can raise. When the event is raised, the associated `sprite_event_kind` value is passed to the event handler to indicate the kind of event that has occurred.
 
@@ -6165,12 +6165,12 @@ This enumeration contains a list of all of the different kinds of events that a 
 ---
 
 
-## Sprite Float Function [🧾](#sprite-float-function)
+## Sprite Float Function [](#sprite-float-function)
 The sprite single function is used with sprite packs to provide a procedure to be called for each of the Sprites in the sprite pack, where a float value is required.
 
 ---
 
-## Sprite Function [🧾](#sprite-function)
+## Sprite Function [](#sprite-function)
 `sprite_function` is used with SpritePacks to provide a procedure to be called for each of the Sprites in the SpritePack.
 
 ---

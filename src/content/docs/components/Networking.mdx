@@ -1,5 +1,5 @@
 ---
-title: Networking 🌐
+title: Networking
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 ---
 :::tip[Networking]
@@ -12,7 +12,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 
 ## Functions
 ##
-## Download Bitmap [🔗](#download-bitmap)
+## Download Bitmap [](#download-bitmap)
 
  
 Download an image from a web server and load it into SplashKit so that
@@ -56,7 +56,7 @@ function DownloadBitmap(const name: String; const url: String; port: Word): Bitm
 </Tabs>
 
 ---
-## Download Font [🔗](#download-font)
+## Download Font [](#download-font)
 
  
 Download a font from a web server and load it into SplashKit so that
@@ -100,7 +100,7 @@ function DownloadFont(const name: String; const url: String; port: Word): Font
 </Tabs>
 
 ---
-## Download Music [🔗](#download-music)
+## Download Music [](#download-music)
 
  
 Download a music file from a web server and load it into SplashKit so
@@ -144,7 +144,7 @@ function DownloadMusic(const name: String; const url: String; port: Word): Music
 </Tabs>
 
 ---
-## Download Sound Effect [🔗](#download-sound-effect)
+## Download Sound Effect [](#download-sound-effect)
 
  
 Download a sound effect from a web server and load it into SplashKit so
@@ -188,7 +188,7 @@ function DownloadSoundEffect(const name: String; const url: String; port: Word):
 </Tabs>
 
 ---
-## Free Response [🔗](#free-response)
+## Free Response [](#free-response)
 
  
 Free the response resource.
@@ -230,7 +230,7 @@ procedure FreeResponse(response: HttpResponse)
 </Tabs>
 
 ---
-## Http Get [🔗](#http-get)
+## Http Get [](#http-get)
 
  
 Make a get request to access a resource on the internet.
@@ -272,7 +272,7 @@ function HttpGet(const url: String; port: Word): HttpResponse
 </Tabs>
 
 ---
-## Http Post [🧬](#group-http-post)
+## Http Post [](#group-http-post)
 
 :::note
 
@@ -283,7 +283,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Http Post [🤖](#http-post--1) 
+### Http Post [](#http-post--1) 
 Post the supplied information to the indicated url with the given headers.
 
 **Return Type**
@@ -325,7 +325,7 @@ function HttpPost(const url: String; port: Word; const body: String; const heade
 </Tabs>
 
 ---
-### Http Post [🤖](#http-post--2) 
+### Http Post [](#http-post--2) 
 Post the supplied information to the indicated url.
 
 **Return Type**
@@ -366,7 +366,7 @@ function HttpPost(const url: String; port: Word; body: String): HttpResponse
 </Tabs>
 
 ---
-## Http Response To String [🔗](#http-response-to-string)
+## Http Response To String [](#http-response-to-string)
 
  
 Read the HTTP response and convert it to text
@@ -407,7 +407,7 @@ function HttpResponseToString(response: HttpResponse): String
 </Tabs>
 
 ---
-## Save Response To File [🔗](#save-response-to-file)
+## Save Response To File [](#save-response-to-file)
 
  
 Save the HTTP response downloaded into a file.
@@ -449,7 +449,7 @@ procedure SaveResponseToFile(response: HttpResponse; path: String)
 </Tabs>
 
 ---
-## Has Incoming Requests [🔗](#has-incoming-requests)
+## Has Incoming Requests [](#has-incoming-requests)
 
  
 Returns true if the given `web_sever` has pending requests.
@@ -491,7 +491,7 @@ function HasIncomingRequests(server: WebServer): Boolean
 </Tabs>
 
 ---
-## Is Delete Request For [🔗](#is-delete-request-for)
+## Is Delete Request For [](#is-delete-request-for)
 
  
 Checks if a request wants to delete a given resource.
@@ -534,7 +534,7 @@ function IsDeleteRequestFor(request: HttpRequest; const path: String): Boolean
 </Tabs>
 
 ---
-## Is Get Request For [🔗](#is-get-request-for)
+## Is Get Request For [](#is-get-request-for)
 
  
 Checks if a request wants to get a given resource.
@@ -577,7 +577,7 @@ function IsGetRequestFor(request: HttpRequest; const path: String): Boolean
 </Tabs>
 
 ---
-## Is Options Request For [🔗](#is-options-request-for)
+## Is Options Request For [](#is-options-request-for)
 
  
 Checks if a request wants to check options for given resource.
@@ -620,7 +620,7 @@ function IsOptionsRequestFor(request: HttpRequest; const path: String): Boolean
 </Tabs>
 
 ---
-## Is Post Request For [🔗](#is-post-request-for)
+## Is Post Request For [](#is-post-request-for)
 
  
 Checks if a request wants to create (post) a given resource.
@@ -663,7 +663,7 @@ function IsPostRequestFor(request: HttpRequest; const path: String): Boolean
 </Tabs>
 
 ---
-## Is Put Request For [🔗](#is-put-request-for)
+## Is Put Request For [](#is-put-request-for)
 
  
 Checks if a request wants to update (put) a given resource.
@@ -706,7 +706,7 @@ function IsPutRequestFor(request: HttpRequest; const path: String): Boolean
 </Tabs>
 
 ---
-## Is Request For [🔗](#is-request-for)
+## Is Request For [](#is-request-for)
 
  
 Checks if a request is after a given resource.
@@ -750,7 +750,7 @@ function IsRequestFor(request: HttpRequest; method: HttpMethod; const path: Stri
 </Tabs>
 
 ---
-## Is Trace Request For [🔗](#is-trace-request-for)
+## Is Trace Request For [](#is-trace-request-for)
 
  
 Checks if a request wants to trace a given resource.
@@ -793,7 +793,7 @@ function IsTraceRequestFor(request: HttpRequest; const path: String): Boolean
 </Tabs>
 
 ---
-## Next Web Request [🔗](#next-web-request)
+## Next Web Request [](#next-web-request)
 
  
 Returns the next request on a given [`Web Server`](/components/networking/#web-server) instance
@@ -835,7 +835,7 @@ function NextWebRequest(server: WebServer): HttpRequest
 </Tabs>
 
 ---
-## Request Body [🔗](#request-body)
+## Request Body [](#request-body)
 
  
 Returns the body of the request.
@@ -877,7 +877,7 @@ function RequestBody(r: HttpRequest): String
 </Tabs>
 
 ---
-## Request Has Query Parameter [🔗](#request-has-query-parameter)
+## Request Has Query Parameter [](#request-has-query-parameter)
 
  
 Returns true if the parameter exists in the query string.
@@ -920,7 +920,7 @@ function RequestHasQueryParameter(r: HttpRequest; const name: String): Boolean
 </Tabs>
 
 ---
-## Request Method [🔗](#request-method)
+## Request Method [](#request-method)
 
  
 Returns the HTTP method of the client request.
@@ -962,7 +962,7 @@ function RequestMethod(r: HttpRequest): HttpMethod
 </Tabs>
 
 ---
-## Request Query Parameter [🔗](#request-query-parameter)
+## Request Query Parameter [](#request-query-parameter)
 
  
 Returns the value of a parameter from within the query string, or the supplied default
@@ -1007,7 +1007,7 @@ function RequestQueryParameter(r: HttpRequest; const name: String; const default
 </Tabs>
 
 ---
-## Request Query String [🔗](#request-query-string)
+## Request Query String [](#request-query-string)
 
  
 Returns the URI query string of the client request.
@@ -1049,7 +1049,7 @@ function RequestQueryString(r: HttpRequest): String
 </Tabs>
 
 ---
-## Request Uri [🔗](#request-uri)
+## Request Uri [](#request-uri)
 
  
 Returns the server URI of the client request.
@@ -1091,7 +1091,7 @@ function RequestURI(r: HttpRequest): String
 </Tabs>
 
 ---
-## Request Uri Stubs [🔗](#request-uri-stubs)
+## Request Uri Stubs [](#request-uri-stubs)
 
  
 Returns an array of strings representing each stub of the URI.
@@ -1137,7 +1137,7 @@ function RequestURIStubs(r: HttpRequest): ArrayOfString
 </Tabs>
 
 ---
-## Send Css File Response [🔗](#send-css-file-response)
+## Send Css File Response [](#send-css-file-response)
 
  
 Serves a css file to the given [`HTTP Request`](/components/networking/#http-request).
@@ -1180,7 +1180,7 @@ procedure SendCSSFileResponse(r: HttpRequest; const filename: String)
 </Tabs>
 
 ---
-## Send File Response [🔗](#send-file-response)
+## Send File Response [](#send-file-response)
 
  
 Serves a file to the given [`HTTP Request`](/components/networking/#http-request).
@@ -1224,7 +1224,7 @@ procedure SendFileResponse(r: HttpRequest; const filename: String; const content
 </Tabs>
 
 ---
-## Send Html File Response [🔗](#send-html-file-response)
+## Send Html File Response [](#send-html-file-response)
 
  
 Serves a HTML file to the given [`HTTP Request`](/components/networking/#http-request).
@@ -1267,7 +1267,7 @@ procedure SendHtmlFileResponse(r: HttpRequest; const filename: String)
 </Tabs>
 
 ---
-## Send Javascript File Response [🔗](#send-javascript-file-response)
+## Send Javascript File Response [](#send-javascript-file-response)
 
  
 Serves a javascript file to the given [`HTTP Request`](/components/networking/#http-request).
@@ -1310,7 +1310,7 @@ procedure SendJavascriptFileResponse(r: HttpRequest; const filename: String)
 </Tabs>
 
 ---
-## Send Response [🧬](#group-send-response)
+## Send Response [](#group-send-response)
 
 :::note
 
@@ -1325,7 +1325,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Send Response [🤖](#send-response--1) 
+### Send Response [](#send-response--1) 
 Sends a response with no content to a [`HTTP Request`](/components/networking/#http-request).
 
 **Return Type**
@@ -1365,7 +1365,7 @@ procedure SendResponse(r: HttpRequest)
 </Tabs>
 
 ---
-### Send Response [🤖](#send-response--2) 
+### Send Response [](#send-response--2) 
 Sends a message to a given [`HTTP Request`](/components/networking/#http-request).
 
 **Return Type**
@@ -1406,7 +1406,7 @@ procedure SendResponse(r: HttpRequest; const message: String)
 </Tabs>
 
 ---
-### Send Response [🤖](#send-response--3) 
+### Send Response [](#send-response--3) 
 Sends a response code to a given [`HTTP Request`](/components/networking/#http-request).
 
 **Return Type**
@@ -1447,7 +1447,7 @@ procedure SendResponse(r: HttpRequest; code: HttpStatusCode)
 </Tabs>
 
 ---
-### Send Response [🤖](#send-response--4) 
+### Send Response [](#send-response--4) 
 Sends a message to a given [`HTTP Request`](/components/networking/#http-request) with the specified content type.
 
 **Return Type**
@@ -1489,7 +1489,7 @@ procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: Stri
 </Tabs>
 
 ---
-### Send Response [🤖](#send-response--5) 
+### Send Response [](#send-response--5) 
 Sends a message to a given [`HTTP Request`](/components/networking/#http-request) with the specified content type.
 
 **Return Type**
@@ -1532,7 +1532,7 @@ procedure SendResponse(r: HttpRequest; code: HttpStatusCode; const message: Stri
 </Tabs>
 
 ---
-### Send Response [🤖](#send-response--6) 
+### Send Response [](#send-response--6) 
 Send a JSON response to a given [`HTTP Request`](/components/networking/#http-request)
 
 **Return Type**
@@ -1573,7 +1573,7 @@ procedure SendResponse(r: HttpRequest; j: Json)
 </Tabs>
 
 ---
-## Split Uri Stubs [🔗](#split-uri-stubs)
+## Split Uri Stubs [](#split-uri-stubs)
 
  
 Returns an array of strings representing each stub of the URI.
@@ -1619,7 +1619,7 @@ function SplitURIStubs(const uri: String): ArrayOfString
 </Tabs>
 
 ---
-## Start Web Server [🧬](#group-start-web-server)
+## Start Web Server [](#group-start-web-server)
 
 :::note
 
@@ -1630,7 +1630,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Start Web Server [🤖](#start-web-server--1) 
+### Start Web Server [](#start-web-server--1) 
 Creates a new web server instance and starts it.
 
 **Return Type**
@@ -1664,7 +1664,7 @@ function StartWebServer(): WebServer
 </Tabs>
 
 ---
-### Start Web Server [🤖](#start-web-server--2) 
+### Start Web Server [](#start-web-server--2) 
 Starts the web server on a given port number.
 
 **Return Type**
@@ -1704,7 +1704,7 @@ function StartWebServer(port: Word): WebServer
 </Tabs>
 
 ---
-## Stop Web Server [🔗](#stop-web-server)
+## Stop Web Server [](#stop-web-server)
 
  
 Stops a given [`Web Server`](/components/networking/#web-server) instance.
@@ -1746,7 +1746,7 @@ procedure StopWebServer(server: WebServer)
 </Tabs>
 
 ---
-## Accept All New Connections [🔗](#accept-all-new-connections)
+## Accept All New Connections [](#accept-all-new-connections)
 
  
 Accept new connections for all servers.
@@ -1782,7 +1782,7 @@ function AcceptAllNewConnections(): Boolean
 </Tabs>
 
 ---
-## Accept New Connection [🔗](#accept-new-connection)
+## Accept New Connection [](#accept-new-connection)
 
  
 Accept new connections for a server
@@ -1824,7 +1824,7 @@ function AcceptNewConnection(server: ServerSocket): Boolean
 </Tabs>
 
 ---
-## Broadcast Message [🧬](#group-broadcast-message)
+## Broadcast Message [](#group-broadcast-message)
 
 :::note
 
@@ -1836,7 +1836,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Broadcast Message [🤖](#broadcast-message--1) 
+### Broadcast Message [](#broadcast-message--1) 
 Broadcast a message to all connections of a server.
 
 **Return Type**
@@ -1877,7 +1877,7 @@ procedure BroadcastMessage(const aMsg: String; svr: ServerSocket)
 </Tabs>
 
 ---
-### Broadcast Message [🤖](#broadcast-message--2) 
+### Broadcast Message [](#broadcast-message--2) 
 Broadcase a message to all of the connections.
 
 **Return Type**
@@ -1917,7 +1917,7 @@ procedure BroadcastMessage(const aMsg: String)
 </Tabs>
 
 ---
-### Broadcast Message [🤖](#broadcast-message--3) 
+### Broadcast Message [](#broadcast-message--3) 
 Broadcast a message to all connections of a server.
 
 **Return Type**
@@ -1958,7 +1958,7 @@ procedure BroadcastMessage(const aMsg: String; const name: String)
 </Tabs>
 
 ---
-## Check Network Activity [🔗](#check-network-activity)
+## Check Network Activity [](#check-network-activity)
 
  
 Check network activity, looking for new connections and messages.
@@ -1994,7 +1994,7 @@ procedure CheckNetworkActivity()
 </Tabs>
 
 ---
-## Clear Messages [🧬](#group-clear-messages)
+## Clear Messages [](#group-clear-messages)
 
 :::note
 
@@ -2006,7 +2006,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Clear Messages [🤖](#clear-messages--1) 
+### Clear Messages [](#clear-messages--1) 
 Clear all of the messages from a server or connection with the supplied name.
 
 **Return Type**
@@ -2046,7 +2046,7 @@ procedure ClearMessages(const name: String)
 </Tabs>
 
 ---
-### Clear Messages [🤖](#clear-messages--2) 
+### Clear Messages [](#clear-messages--2) 
 Clear all of the messages from a connection.
 
 **Return Type**
@@ -2086,7 +2086,7 @@ procedure ClearMessages(aConnection: Connection)
 </Tabs>
 
 ---
-### Clear Messages [🤖](#clear-messages--3) 
+### Clear Messages [](#clear-messages--3) 
 Clear all of the messages from a server.
 
 **Return Type**
@@ -2126,7 +2126,7 @@ procedure ClearMessages(svr: ServerSocket)
 </Tabs>
 
 ---
-## Close All Connections [🔗](#close-all-connections)
+## Close All Connections [](#close-all-connections)
 
  
 Close all of the connections you have opened. This does not close
@@ -2163,7 +2163,7 @@ procedure CloseAllConnections()
 </Tabs>
 
 ---
-## Close All Servers [🔗](#close-all-servers)
+## Close All Servers [](#close-all-servers)
 
  
 Close all of the servers that are currently open.
@@ -2199,7 +2199,7 @@ procedure CloseAllServers()
 </Tabs>
 
 ---
-## Close Connection [🧬](#group-close-connection)
+## Close Connection [](#group-close-connection)
 
 :::note
 
@@ -2210,7 +2210,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Close Connection [🤖](#close-connection--1) 
+### Close Connection [](#close-connection--1) 
 Close the connection
 
 **Return Type**
@@ -2250,7 +2250,7 @@ function CloseConnection(aConnection: Connection): Boolean
 </Tabs>
 
 ---
-### Close Connection [🤖](#close-connection--2) 
+### Close Connection [](#close-connection--2) 
 Close the connection
 
 **Return Type**
@@ -2290,7 +2290,7 @@ function CloseConnection(const name: String): Boolean
 </Tabs>
 
 ---
-## Close Message [🔗](#close-message)
+## Close Message [](#close-message)
 
  
 Closes the message.
@@ -2332,7 +2332,7 @@ procedure CloseMessage(msg: Message)
 </Tabs>
 
 ---
-## Close Server [🧬](#group-close-server)
+## Close Server [](#group-close-server)
 
 :::note
 
@@ -2343,7 +2343,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Close Server [🤖](#close-server--1) 
+### Close Server [](#close-server--1) 
 Closes the server with the indicated name.
 
 **Return Type**
@@ -2383,7 +2383,7 @@ function CloseServer(const name: String): Boolean
 </Tabs>
 
 ---
-### Close Server [🤖](#close-server--2) 
+### Close Server [](#close-server--2) 
 Closes the server, all connections with clients will be shut and
 the port will be closed.
 
@@ -2424,7 +2424,7 @@ function CloseServer(svr: ServerSocket): Boolean
 </Tabs>
 
 ---
-## Connection Count [🧬](#group-connection-count)
+## Connection Count [](#group-connection-count)
 
 :::note
 
@@ -2435,7 +2435,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Connection Count [🤖](#connection-count--1) 
+### Connection Count [](#connection-count--1) 
 Returns the number of clients connected to a server.
 
 **Return Type**
@@ -2475,7 +2475,7 @@ function ConnectionCount(const name: String): Cardinal
 </Tabs>
 
 ---
-### Connection Count [🤖](#connection-count--2) 
+### Connection Count [](#connection-count--2) 
 Returns the number of clients connected to a server.
 
 **Return Type**
@@ -2515,7 +2515,7 @@ function ConnectionCount(server: ServerSocket): Cardinal
 </Tabs>
 
 ---
-## Connection Ip [🧬](#group-connection-ip)
+## Connection Ip [](#group-connection-ip)
 
 :::note
 
@@ -2526,7 +2526,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Connection Ip [🤖](#connection-ip--1) 
+### Connection Ip [](#connection-ip--1) 
 Gets the ip address of the passed in connection.
 
 **Return Type**
@@ -2566,7 +2566,7 @@ function ConnectionIP(aConnection: Connection): Cardinal
 </Tabs>
 
 ---
-### Connection Ip [🤖](#connection-ip--2) 
+### Connection Ip [](#connection-ip--2) 
 Gets the ip address of the connection with the supplied name.
 
 **Return Type**
@@ -2606,7 +2606,7 @@ function ConnectionIP(const name: String): Cardinal
 </Tabs>
 
 ---
-## Connection Named [🔗](#connection-named)
+## Connection Named [](#connection-named)
 
  
 Fetch the connection with the indicated name.
@@ -2648,7 +2648,7 @@ function ConnectionNamed(const name: String): Connection
 </Tabs>
 
 ---
-## Connection Port [🧬](#group-connection-port)
+## Connection Port [](#group-connection-port)
 
 :::note
 
@@ -2659,7 +2659,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Connection Port [🤖](#connection-port--1) 
+### Connection Port [](#connection-port--1) 
 Gets the port of the connection.
 
 **Return Type**
@@ -2699,7 +2699,7 @@ function ConnectionPort(aConnection: Connection): Word
 </Tabs>
 
 ---
-### Connection Port [🤖](#connection-port--2) 
+### Connection Port [](#connection-port--2) 
 Gets the part of the connection.
 
 **Return Type**
@@ -2739,7 +2739,7 @@ function ConnectionPort(const name: String): Word
 </Tabs>
 
 ---
-## Create Server [🧬](#group-create-server)
+## Create Server [](#group-create-server)
 
 :::note
 
@@ -2750,7 +2750,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Create Server [🤖](#create-server--1) 
+### Create Server [](#create-server--1) 
 Creates a new TCP server that can accept connections from other programs.
 
 **Return Type**
@@ -2791,7 +2791,7 @@ function CreateServer(const name: String; port: Word): ServerSocket
 </Tabs>
 
 ---
-### Create Server [🤖](#create-server--2) 
+### Create Server [](#create-server--2) 
 Creates a new server that can accept connections from other programs.
 
 **Return Type**
@@ -2833,7 +2833,7 @@ function CreateServer(const name: String; port: Word; protocol: ConnectionType):
 </Tabs>
 
 ---
-## Dec To Hex [🔗](#dec-to-hex)
+## Dec To Hex [](#dec-to-hex)
 
  
 Converts the supplied decimal integer into it's hexadecimal representation.
@@ -2876,7 +2876,7 @@ function DecToHex(aDec: Cardinal): String
 </Tabs>
 
 ---
-## Fetch New Connection [🔗](#fetch-new-connection)
+## Fetch New Connection [](#fetch-new-connection)
 
  
 Get the oldest new connections made to the server, and
@@ -2919,7 +2919,7 @@ function FetchNewConnection(server: ServerSocket): Connection
 </Tabs>
 
 ---
-## Has Connection [🔗](#has-connection)
+## Has Connection [](#has-connection)
 
  
 Does the connection with the supplied name exist?
@@ -2961,7 +2961,7 @@ function HasConnection(const name: String): Boolean
 </Tabs>
 
 ---
-## Has Messages [🧬](#group-has-messages)
+## Has Messages [](#group-has-messages)
 
 :::note
 
@@ -2974,7 +2974,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Has Messages [🤖](#has-messages--1) 
+### Has Messages [](#has-messages--1) 
 Checks if there are any messages waiting to be read.
 
 **Return Type**
@@ -3008,7 +3008,7 @@ function HasMessages(): Boolean
 </Tabs>
 
 ---
-### Has Messages [🤖](#has-messages--2) 
+### Has Messages [](#has-messages--2) 
 Checks if a connection has messages waiting to be read.
 
 **Return Type**
@@ -3048,7 +3048,7 @@ function HasMessages(con: Connection): Boolean
 </Tabs>
 
 ---
-### Has Messages [🤖](#has-messages--3) 
+### Has Messages [](#has-messages--3) 
 Checks if a server or connection has any messages.
 
 **Return Type**
@@ -3088,7 +3088,7 @@ function HasMessages(const name: String): Boolean
 </Tabs>
 
 ---
-### Has Messages [🤖](#has-messages--4) 
+### Has Messages [](#has-messages--4) 
 Checks if a server has any messages waiting to be read.
 
 **Return Type**
@@ -3128,7 +3128,7 @@ function HasMessages(svr: ServerSocket): Boolean
 </Tabs>
 
 ---
-## Has New Connections [🔗](#has-new-connections)
+## Has New Connections [](#has-new-connections)
 
  
 Checks if any of the servers have new connections.
@@ -3164,7 +3164,7 @@ function HasNewConnections(): Boolean
 </Tabs>
 
 ---
-## Has Server [🔗](#has-server)
+## Has Server [](#has-server)
 
  
 Checks if there is a server with the indicated name.
@@ -3206,7 +3206,7 @@ function HasServer(const name: String): Boolean
 </Tabs>
 
 ---
-## Hex Str To Ipv4 [🔗](#hex-str-to-ipv4)
+## Hex Str To Ipv4 [](#hex-str-to-ipv4)
 
  
 The supplied hexadecimal string is translated into ipv4 standard address string.
@@ -3250,7 +3250,7 @@ function HexStrToIpv4(const aHex: String): String
 </Tabs>
 
 ---
-## Hex To Dec String [🔗](#hex-to-dec-string)
+## Hex To Dec String [](#hex-to-dec-string)
 
  
 The supplied hexadecimal string is converted into it's decimal representation
@@ -3293,7 +3293,7 @@ function HexToDecString(const aHex: String): String
 </Tabs>
 
 ---
-## Ipv4 To Dec [🔗](#ipv4-to-dec)
+## Ipv4 To Dec [](#ipv4-to-dec)
 
  
 Encodes the supplied ipv4 address string (in format X.X.X.X) into a single integer
@@ -3336,7 +3336,7 @@ function Ipv4ToDec(const aIP: String): Cardinal
 </Tabs>
 
 ---
-## Ipv4 To Hex [🔗](#ipv4-to-hex)
+## Ipv4 To Hex [](#ipv4-to-hex)
 
  
 Converts an ipv4 address into it's hexadecimal representation
@@ -3379,7 +3379,7 @@ function Ipv4ToHex(const aIP: String): String
 </Tabs>
 
 ---
-## Ipv4 To Str [🔗](#ipv4-to-str)
+## Ipv4 To Str [](#ipv4-to-str)
 
  
 Decodes the supplied unsigned 32 bit integer into it's ipv4 address form
@@ -3422,7 +3422,7 @@ function Ipv4ToStr(ip: Cardinal): String
 </Tabs>
 
 ---
-## Is Connection Open [🧬](#group-is-connection-open)
+## Is Connection Open [](#group-is-connection-open)
 
 :::note
 
@@ -3433,7 +3433,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Is Connection Open [🤖](#is-connection-open--1) 
+### Is Connection Open [](#is-connection-open--1) 
 Checks if the connection currently is open.
 
 **Return Type**
@@ -3473,7 +3473,7 @@ function IsConnectionOpen(con: Connection): Boolean
 </Tabs>
 
 ---
-### Is Connection Open [🤖](#is-connection-open--2) 
+### Is Connection Open [](#is-connection-open--2) 
 Checks if the connection with the supplied name currently is open.
 
 **Return Type**
@@ -3513,7 +3513,7 @@ function IsConnectionOpen(const name: String): Boolean
 </Tabs>
 
 ---
-## Last Connection [🧬](#group-last-connection)
+## Last Connection [](#group-last-connection)
 
 :::note
 
@@ -3524,7 +3524,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Last Connection [🤖](#last-connection--1) 
+### Last Connection [](#last-connection--1) 
 Gets the last client that connected to a server.
 
 **Return Type**
@@ -3564,7 +3564,7 @@ function LastConnection(const name: String): Connection
 </Tabs>
 
 ---
-### Last Connection [🤖](#last-connection--2) 
+### Last Connection [](#last-connection--2) 
 Gets the last client that connected to a server.
 
 **Return Type**
@@ -3604,7 +3604,7 @@ function LastConnection(server: ServerSocket): Connection
 </Tabs>
 
 ---
-## Message Connection [🔗](#message-connection)
+## Message Connection [](#message-connection)
 
  
 Returns the connection that sent a message.
@@ -3646,7 +3646,7 @@ function MessageConnection(msg: Message): Connection
 </Tabs>
 
 ---
-## Message Count [🧬](#group-message-count)
+## Message Count [](#group-message-count)
 
 :::note
 
@@ -3658,7 +3658,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Message Count [🤖](#message-count--1) 
+### Message Count [](#message-count--1) 
 Returns the number of messages on a server.
 
 **Return Type**
@@ -3698,7 +3698,7 @@ function MessageCount(svr: ServerSocket): Cardinal
 </Tabs>
 
 ---
-### Message Count [🤖](#message-count--2) 
+### Message Count [](#message-count--2) 
 Returns the number of messages on a connection.
 
 **Return Type**
@@ -3738,7 +3738,7 @@ function MessageCount(aConnection: Connection): Cardinal
 </Tabs>
 
 ---
-### Message Count [🤖](#message-count--3) 
+### Message Count [](#message-count--3) 
 Returns the number of messages on a server or connection.
 
 **Return Type**
@@ -3778,7 +3778,7 @@ function MessageCount(const name: String): Cardinal
 </Tabs>
 
 ---
-## Message Data [🔗](#message-data)
+## Message Data [](#message-data)
 
  
 Gets the body of a message as a string.
@@ -3820,7 +3820,7 @@ function MessageData(msg: Message): String
 </Tabs>
 
 ---
-## Message Data Bytes [🔗](#message-data-bytes)
+## Message Data Bytes [](#message-data-bytes)
 
  
 Gets the body of a message as a list of bytes.
@@ -3862,7 +3862,7 @@ function MessageDataBytes(msg: Message): ArrayOfChar
 </Tabs>
 
 ---
-## Message Host [🔗](#message-host)
+## Message Host [](#message-host)
 
  
 Returns the host who made the message.
@@ -3904,7 +3904,7 @@ function MessageHost(msg: Message): String
 </Tabs>
 
 ---
-## Message Port [🔗](#message-port)
+## Message Port [](#message-port)
 
  
 Returns the port used to send a message.
@@ -3946,7 +3946,7 @@ function MessagePort(msg: Message): Word
 </Tabs>
 
 ---
-## Message Protocol [🔗](#message-protocol)
+## Message Protocol [](#message-protocol)
 
  
 Returns the protocol used to send a message.
@@ -3988,7 +3988,7 @@ function MessageProtocol(msg: Message): ConnectionType
 </Tabs>
 
 ---
-## My Ip [🔗](#my-ip)
+## My Ip [](#my-ip)
 
  
 Returns the ipv4 string of the localhost loopback for the current computer.
@@ -4024,7 +4024,7 @@ function MyIP(): String
 </Tabs>
 
 ---
-## Name For Connection [🔗](#name-for-connection)
+## Name For Connection [](#name-for-connection)
 
  
 Returns the name SplashKit would use for a connection made to a server
@@ -4068,7 +4068,7 @@ function NameForConnection(host: String; port: Cardinal): String
 </Tabs>
 
 ---
-## New Connection Count [🔗](#new-connection-count)
+## New Connection Count [](#new-connection-count)
 
  
 Get the number of new connections made to the server.
@@ -4113,7 +4113,7 @@ function NewConnectionCount(server: ServerSocket): Integer
 </Tabs>
 
 ---
-## Open Connection [🧬](#group-open-connection)
+## Open Connection [](#group-open-connection)
 
 :::note
 
@@ -4124,7 +4124,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Open Connection [🤖](#open-connection--1) 
+### Open Connection [](#open-connection--1) 
 Opens a TCP connection to a server using the supplied details.
 
 **Return Type**
@@ -4166,7 +4166,7 @@ function OpenConnection(const name: String; const host: String; port: Word): Con
 </Tabs>
 
 ---
-### Open Connection [🤖](#open-connection--2) 
+### Open Connection [](#open-connection--2) 
 Opens a connection to a server using the supplied details.
 
 **Return Type**
@@ -4209,7 +4209,7 @@ function OpenConnection(const name: String; const host: String; port: Word; prot
 </Tabs>
 
 ---
-## Read Message [🧬](#group-read-message)
+## Read Message [](#group-read-message)
 
 :::note
 
@@ -4222,7 +4222,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Read Message [🤖](#read-message--1) 
+### Read Message [](#read-message--1) 
 Read a message from the network (from a server or connection).
 
 **Return Type**
@@ -4256,7 +4256,7 @@ function ReadMessage(): Message
 </Tabs>
 
 ---
-### Read Message [🤖](#read-message--2) 
+### Read Message [](#read-message--2) 
 Reads the first message from the connection.
 
 **Return Type**
@@ -4296,7 +4296,7 @@ function ReadMessage(aConnection: Connection): Message
 </Tabs>
 
 ---
-### Read Message [🤖](#read-message--3) 
+### Read Message [](#read-message--3) 
 Reads the first message from a connection or server.
 
 **Return Type**
@@ -4336,7 +4336,7 @@ function ReadMessage(const name: String): Message
 </Tabs>
 
 ---
-### Read Message [🤖](#read-message--4) 
+### Read Message [](#read-message--4) 
 Reads the first message from the server.
 
 **Return Type**
@@ -4376,7 +4376,7 @@ function ReadMessage(svr: ServerSocket): Message
 </Tabs>
 
 ---
-## Read Message Data [🧬](#group-read-message-data)
+## Read Message Data [](#group-read-message-data)
 
 :::note
 
@@ -4388,7 +4388,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Read Message Data [🤖](#read-message-data--1) 
+### Read Message Data [](#read-message-data--1) 
 Read message data from a connection or server.
 
 **Return Type**
@@ -4428,7 +4428,7 @@ function ReadMessageData(const name: String): String
 </Tabs>
 
 ---
-### Read Message Data [🤖](#read-message-data--2) 
+### Read Message Data [](#read-message-data--2) 
 Read message data from a connection.
 
 **Return Type**
@@ -4468,7 +4468,7 @@ function ReadMessageData(aConnection: Connection): String
 </Tabs>
 
 ---
-### Read Message Data [🤖](#read-message-data--3) 
+### Read Message Data [](#read-message-data--3) 
 Read message data from a server.
 
 **Return Type**
@@ -4508,7 +4508,7 @@ function ReadMessageData(svr: ServerSocket): String
 </Tabs>
 
 ---
-## Reconnect [🧬](#group-reconnect)
+## Reconnect [](#group-reconnect)
 
 :::note
 
@@ -4519,7 +4519,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Reconnect [🤖](#reconnect--1) 
+### Reconnect [](#reconnect--1) 
 Attempt to reconnect the connection.
 
 **Return Type**
@@ -4559,7 +4559,7 @@ procedure Reconnect(aConnection: Connection)
 </Tabs>
 
 ---
-### Reconnect [🤖](#reconnect--2) 
+### Reconnect [](#reconnect--2) 
 Attempt to reconnect the connection.
 
 **Return Type**
@@ -4599,7 +4599,7 @@ procedure Reconnect(const name: String)
 </Tabs>
 
 ---
-## Release All Connections [🔗](#release-all-connections)
+## Release All Connections [](#release-all-connections)
 
  
 Close and release the resources used by all of the connections.
@@ -4635,7 +4635,7 @@ procedure ReleaseAllConnections()
 </Tabs>
 
 ---
-## Reset New Connection Count [🔗](#reset-new-connection-count)
+## Reset New Connection Count [](#reset-new-connection-count)
 
  
 Allows you to reset the new connection count to 0.
@@ -4678,7 +4678,7 @@ procedure ResetNewConnectionCount(server: ServerSocket)
 </Tabs>
 
 ---
-## Retrieve Connection [🧬](#group-retrieve-connection)
+## Retrieve Connection [](#group-retrieve-connection)
 
 :::note
 
@@ -4689,7 +4689,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Retrieve Connection [🤖](#retrieve-connection--1) 
+### Retrieve Connection [](#retrieve-connection--1) 
 Get a connection from the server.
 
 **Return Type**
@@ -4730,7 +4730,7 @@ function RetrieveConnection(const name: String; idx: Integer): Connection
 </Tabs>
 
 ---
-### Retrieve Connection [🤖](#retrieve-connection--2) 
+### Retrieve Connection [](#retrieve-connection--2) 
 Get a connection from the server.
 
 **Return Type**
@@ -4771,7 +4771,7 @@ function RetrieveConnection(server: ServerSocket; idx: Integer): Connection
 </Tabs>
 
 ---
-## Send Message To [🧬](#group-send-message-to)
+## Send Message To [](#group-send-message-to)
 
 :::note
 
@@ -4782,7 +4782,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Send Message To [🤖](#send-message-to--1) 
+### Send Message To [](#send-message-to--1) 
 Send a message to the connection.
 
 **Return Type**
@@ -4823,7 +4823,7 @@ function SendMessageTo(const aMsg: String; aConnection: Connection): Boolean
 </Tabs>
 
 ---
-### Send Message To [🤖](#send-message-to--2) 
+### Send Message To [](#send-message-to--2) 
 Send a message to the connection with the given name.
 
 **Return Type**
@@ -4864,7 +4864,7 @@ function SendMessageTo(const aMsg: String; const name: String): Boolean
 </Tabs>
 
 ---
-## Server Has New Connection [🧬](#group-server-has-new-connection)
+## Server Has New Connection [](#group-server-has-new-connection)
 
 :::note
 
@@ -4875,7 +4875,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Server Has New Connection [🤖](#server-has-new-connection--1) 
+### Server Has New Connection [](#server-has-new-connection--1) 
 Checks of there are new connections waiting for a server.
 
 **Return Type**
@@ -4915,7 +4915,7 @@ function ServerHasNewConnection(const name: String): Boolean
 </Tabs>
 
 ---
-### Server Has New Connection [🤖](#server-has-new-connection--2) 
+### Server Has New Connection [](#server-has-new-connection--2) 
 Checks of there are new connections waiting for a server.
 
 **Return Type**
@@ -4955,7 +4955,7 @@ function ServerHasNewConnection(server: ServerSocket): Boolean
 </Tabs>
 
 ---
-## Server Named [🔗](#server-named)
+## Server Named [](#server-named)
 
  
 Gets the server with the indicated name.
@@ -4997,7 +4997,7 @@ function ServerNamed(const name: String): ServerSocket
 </Tabs>
 
 ---
-## Set Udp Packet Size [🔗](#set-udp-packet-size)
+## Set Udp Packet Size [](#set-udp-packet-size)
 
  
 Change the size of the UDP packets.
@@ -5039,7 +5039,7 @@ procedure SetUDPPacketSize(udpPacketSize: Cardinal)
 </Tabs>
 
 ---
-## Udp Packet Size [🔗](#udp-packet-size)
+## Udp Packet Size [](#udp-packet-size)
 
  
 Returns the size SplashKit is using for UDP packets.
@@ -5081,12 +5081,12 @@ function UDPPacketSize(): Cardinal
 ## Types
 ##
 
-## Connection [🧾](#connection)
+## Connection [](#connection)
 A connection represents the communication channel from a client going to a server. This can be used for the client and the server to send and receive messages.
 
 ---
 
-## Connection Type [🧾](#connection-type)
+## Connection Type [](#connection-type)
 
 The kind of protocol used for a server or connection.
 
@@ -5101,7 +5101,7 @@ The kind of protocol used for a server or connection.
 ---
 
 
-## HTTP Method [🧾](#http-method)
+## HTTP Method [](#http-method)
 
 The method token is used to indicate the kind of action to be performed on the server. See [W3 specifications](https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html).
 
@@ -5120,27 +5120,27 @@ The method token is used to indicate the kind of action to be performed on the s
 ---
 
 
-## HTTP Request [🧾](#http-request)
+## HTTP Request [](#http-request)
 The request contains the details of the resource the user is requesting.
 
 ---
 
-## HTTP Response [🧾](#http-response)
+## HTTP Response [](#http-response)
 A HTTP response is a resource that comes back from a HTTP request. This may be the text related to a web page, or the data related to a resource. Once you have used the response, you need to make sure to call [Free Response](/components/networking/#free-response).
 
 ---
 
-## Message [🧾](#message)
+## Message [](#message)
 A message contains data that has been transferred between a client connection and a server (or visa versa).
 
 ---
 
-## Server Socket [🧾](#server-socket)
+## Server Socket [](#server-socket)
 A server represents a network resource that clients can connect to. The server will receive messages from all of the client connections, and can be used to access the clients connected to the server.
 
 ---
 
-## Web Server [🧾](#web-server)
+## Web Server [](#web-server)
 The web server is able to listen for incomming requests, and you can then provide the response.
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: Animations 📽️
+title: Animations
 description: Animations in SplashKit can be used to move between cells in bitmaps and sprites. Each animation generates a number sequence that can then be used when drawing bitmaps.
 prev:
   link: /installation/windows/mingw/
@@ -23,7 +23,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 ## Functions
 
 
-## Animation Count [🔗](#animation-count)
+## Animation Count [](#animation-count)
 
  
 Returns the number of [`Animation`](/components/types/#animation)s within an [`Animation Script`](/components/types/#animation-script).
@@ -65,7 +65,7 @@ function AnimationCount(script: AnimationScript): Integer
 </Tabs>
 
 ---
-## Animation Current Cell [🔗](#animation-current-cell)
+## Animation Current Cell [](#animation-current-cell)
 
  
 Returns the current cell (the part of the image or sprite) of this
@@ -108,7 +108,7 @@ function AnimationCurrentCell(anim: Animation): Integer
 </Tabs>
 
 ---
-## Animation Current Vector [🔗](#animation-current-vector)
+## Animation Current Vector [](#animation-current-vector)
 
  
 Returns the [`Vector 2D`](/components/types/#vector-2d) assigned to the current frame in the animation.
@@ -150,7 +150,7 @@ function AnimationCurrentVector(anim: Animation): Vector2D
 </Tabs>
 
 ---
-## Animation Ended [🔗](#animation-ended)
+## Animation Ended [](#animation-ended)
 
  
 Checks if an [`Animation`](/components/types/#animation) has ended.
@@ -192,7 +192,7 @@ function AnimationEnded(anim: Animation): Boolean
 </Tabs>
 
 ---
-## Animation Entered Frame [🔗](#animation-entered-frame)
+## Animation Entered Frame [](#animation-entered-frame)
 
  
 Returns true if the [`Animation`](/components/types/#animation) entered a new frame on its last update.
@@ -235,7 +235,7 @@ function AnimationEnteredFrame(anim: Animation): Boolean
 </Tabs>
 
 ---
-## Animation Frame Time [🔗](#animation-frame-time)
+## Animation Frame Time [](#animation-frame-time)
 
  
 Returns the amount of time spent in the current frame. When this
@@ -278,7 +278,7 @@ function AnimationFrameTime(anim: Animation): Single
 </Tabs>
 
 ---
-## Animation Index [🔗](#animation-index)
+## Animation Index [](#animation-index)
 
  
 Searches an [`Animation Script`](/components/types/#animation-script) for an [`Animation`](/components/types/#animation) and returns its
@@ -322,7 +322,7 @@ function AnimationIndex(script: AnimationScript; const name: String): Integer
 </Tabs>
 
 ---
-## Animation Name [🔗](#animation-name)
+## Animation Name [](#animation-name)
 
  
 Searches an [`Animation Script`](/components/types/#animation-script) for an animation and returns its name.
@@ -364,7 +364,7 @@ function AnimationName(temp: Animation): String
 </Tabs>
 
 ---
-## Animation Script Name [🔗](#animation-script-name)
+## Animation Script Name [](#animation-script-name)
 
  
 Retuns the name of an [`Animation Script`](/components/types/#animation-script).
@@ -406,7 +406,7 @@ function AnimationScriptName(script: AnimationScript): String
 </Tabs>
 
 ---
-## Animation Script Named [🔗](#animation-script-named)
+## Animation Script Named [](#animation-script-named)
 
  
 Loads and returns a [`Animation Script`](/components/types/#animation-script). The supplied filename is
@@ -452,7 +452,7 @@ function AnimationScriptNamed(const name: String): AnimationScript
 </Tabs>
 
 ---
-## Assign Animation [🧬](#group-assign-animation)
+## Assign Animation [](#group-assign-animation)
 
 :::note
 
@@ -471,7 +471,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Assign Animation [🤖](#assign-animation--1) 
+### Assign Animation [](#assign-animation--1) 
 Setup an [`Animation`](/components/types/#animation) to follow the script from an indicated name.
 This will switch the animation to use the supplied script.
 It locates the name of the animation with the animation script and
@@ -516,7 +516,7 @@ procedure AssignAnimation(anim: Animation; script: AnimationScript; const name: 
 </Tabs>
 
 ---
-### Assign Animation [🤖](#assign-animation--2) 
+### Assign Animation [](#assign-animation--2) 
 Assigns an [`Animation`](/components/types/#animation) to an [`Animation Script`](/components/types/#animation-script). This may play a
 sound effect if the animation is set to play a sound effect on its
 first frame.
@@ -561,7 +561,7 @@ procedure AssignAnimation(anim: Animation; script: AnimationScript; const name: 
 </Tabs>
 
 ---
-### Assign Animation [🤖](#assign-animation--3) 
+### Assign Animation [](#assign-animation--3) 
 Assigns an [`Animation`](/components/types/#animation) to an [`Animation Script`](/components/types/#animation-script).
 
 **Return Type**
@@ -603,7 +603,7 @@ procedure AssignAnimation(anim: Animation; script: AnimationScript; idx: Integer
 </Tabs>
 
 ---
-### Assign Animation [🤖](#assign-animation--4) 
+### Assign Animation [](#assign-animation--4) 
 Assigns an [`Animation`](/components/types/#animation) to an [`Animation Script`](/components/types/#animation-script). This may play a
 sound effect if the animation is set to play a sound effect on its
 first frame.
@@ -648,7 +648,7 @@ procedure AssignAnimation(anim: Animation; script: AnimationScript; idx: Integer
 </Tabs>
 
 ---
-### Assign Animation [🤖](#assign-animation--5) 
+### Assign Animation [](#assign-animation--5) 
 Assigns an [`Animation`](/components/types/#animation) to an [`Animation Script`](/components/types/#animation-script).
 
 **Return Type**
@@ -690,7 +690,7 @@ procedure AssignAnimation(anim: Animation; const scriptName: String; const name:
 </Tabs>
 
 ---
-### Assign Animation [🤖](#assign-animation--6) 
+### Assign Animation [](#assign-animation--6) 
 Assigns an [`Animation`](/components/types/#animation) to an [`Animation Script`](/components/types/#animation-script). This may play a
 sound effect if the animation is set to play a sound effect on its
 first frame.
@@ -735,7 +735,7 @@ procedure AssignAnimation(anim: Animation; const scriptName: String; const name:
 </Tabs>
 
 ---
-### Assign Animation [🤖](#assign-animation--7) 
+### Assign Animation [](#assign-animation--7) 
 Setup an [`Animation`](/components/types/#animation) to follow the script from an indicated index.
 This uses the index from the current animation script and
 sets the supplied animation to start at that point in the script.
@@ -778,7 +778,7 @@ procedure AssignAnimation(anim: Animation; idx: Integer)
 </Tabs>
 
 ---
-### Assign Animation [🤖](#assign-animation--8) 
+### Assign Animation [](#assign-animation--8) 
 Setup an [`Animation`](/components/types/#animation) to follow the script from an indicated index.
 This uses the index from the current animation script and
 sets the supplied animation to start at that point in the script.
@@ -822,7 +822,7 @@ procedure AssignAnimation(anim: Animation; idx: Integer; withSound: Boolean)
 </Tabs>
 
 ---
-### Assign Animation [🤖](#assign-animation--9) 
+### Assign Animation [](#assign-animation--9) 
 Setup an [`Animation`](/components/types/#animation) to follow the script from an indicated name.
 This locates the name of the animation from the current animation script and
 sets the supplied animation to start at that point in the script.
@@ -865,7 +865,7 @@ procedure AssignAnimation(anim: Animation; name: String)
 </Tabs>
 
 ---
-### Assign Animation [🤖](#assign-animation--10) 
+### Assign Animation [](#assign-animation--10) 
 Setup an [`Animation`](/components/types/#animation) to follow the script from an indicated name.
 This locates the name of the animation from the current animation script and
 sets the supplied animation to start at that point in the script.
@@ -909,7 +909,7 @@ procedure AssignAnimation(anim: Animation; name: String; withSound: Boolean)
 </Tabs>
 
 ---
-## Create Animation [🧬](#group-create-animation)
+## Create Animation [](#group-create-animation)
 
 :::note
 
@@ -923,7 +923,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Create Animation [🤖](#create-animation--1) 
+### Create Animation [](#create-animation--1) 
 Creates an animation from an [`Animation Script`](/components/types/#animation-script). This may play a
 sound effect if the animation is set to play a sound effect on its
 first frame.
@@ -967,7 +967,7 @@ function CreateAnimation(script: AnimationScript; idx: Integer; withSound: Boole
 </Tabs>
 
 ---
-### Create Animation [🤖](#create-animation--2) 
+### Create Animation [](#create-animation--2) 
 Creates an animation from an [`Animation Script`](/components/types/#animation-script).
 
 **Return Type**
@@ -1008,7 +1008,7 @@ function CreateAnimation(script: AnimationScript; const name: String): Animation
 </Tabs>
 
 ---
-### Create Animation [🤖](#create-animation--3) 
+### Create Animation [](#create-animation--3) 
 Creates an animation from a [`Animation Script`](/components/types/#animation-script). This may play a
 sound effect if the animation is set to play a sound effect on
 its first frame.
@@ -1052,7 +1052,7 @@ function CreateAnimation(script: AnimationScript; const name: String; withSound:
 </Tabs>
 
 ---
-### Create Animation [🤖](#create-animation--4) 
+### Create Animation [](#create-animation--4) 
 Creates an animation from an [`Animation Script`](/components/types/#animation-script)'s name. This may
 play a sound effect if the animation is set to play a sound effect
 on its first frame.
@@ -1095,7 +1095,7 @@ function CreateAnimation(const scriptName: String; const name: String): Animatio
 </Tabs>
 
 ---
-### Create Animation [🤖](#create-animation--5) 
+### Create Animation [](#create-animation--5) 
 Creates an animation from an [`Animation Script`](/components/types/#animation-script)'s name. This may
 play a sound effect if the animation is set to play a sound effect
 on its first frame.
@@ -1139,7 +1139,7 @@ function CreateAnimation(const scriptName: String; const name: String; withSound
 </Tabs>
 
 ---
-## Free All Animation Scripts [🔗](#free-all-animation-scripts)
+## Free All Animation Scripts [](#free-all-animation-scripts)
 
  
 Frees all loaded [`Animation Script`](/components/types/#animation-script)s.
@@ -1175,7 +1175,7 @@ procedure FreeAllAnimationScripts()
 </Tabs>
 
 ---
-## Free Animation [🔗](#free-animation)
+## Free Animation [](#free-animation)
 
  
 Disposes of the resources used in the animation.
@@ -1217,7 +1217,7 @@ procedure FreeAnimation(ani: Animation)
 </Tabs>
 
 ---
-## Free Animation Script [🧬](#group-free-animation-script)
+## Free Animation Script [](#group-free-animation-script)
 
 :::note
 
@@ -1228,7 +1228,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Free Animation Script [🤖](#free-animation-script--1) 
+### Free Animation Script [](#free-animation-script--1) 
 Frees loaded animation frames data. Use this when you will no
 longer be using the animation for any purpose, including within
 sprite.
@@ -1270,7 +1270,7 @@ procedure FreeAnimationScript(scriptToFree: AnimationScript)
 </Tabs>
 
 ---
-### Free Animation Script [🤖](#free-animation-script--2) 
+### Free Animation Script [](#free-animation-script--2) 
 Frees loaded [`Animation Script`](/components/types/#animation-script) data. Use this when you will no
 longer be using the animation for any purpose, including within
 sprite.
@@ -1312,7 +1312,7 @@ procedure FreeAnimationScript(const name: String)
 </Tabs>
 
 ---
-## Has Animation Named [🔗](#has-animation-named)
+## Has Animation Named [](#has-animation-named)
 
  
 Returns whether an [`Animation Script`](/components/types/#animation-script) has been loaded with the
@@ -1356,7 +1356,7 @@ function HasAnimationNamed(script: AnimationScript; const name: String): Boolean
 </Tabs>
 
 ---
-## Has Animation Script [🔗](#has-animation-script)
+## Has Animation Script [](#has-animation-script)
 
  
 Determines if SplashKit has animation frames loaded for the
@@ -1400,7 +1400,7 @@ function HasAnimationScript(const name: String): Boolean
 </Tabs>
 
 ---
-## Load Animation Script [🔗](#load-animation-script)
+## Load Animation Script [](#load-animation-script)
 
  
 Load animation details from an animation frames file.
@@ -1443,7 +1443,7 @@ function LoadAnimationScript(const name: String; const filename: String): Animat
 </Tabs>
 
 ---
-## Restart Animation [🧬](#group-restart-animation)
+## Restart Animation [](#group-restart-animation)
 
 :::note
 
@@ -1454,7 +1454,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Restart Animation [🤖](#restart-animation--1) 
+### Restart Animation [](#restart-animation--1) 
 Restarts an [`Animation`](/components/types/#animation).
 
 **Return Type**
@@ -1494,7 +1494,7 @@ procedure RestartAnimation(anim: Animation)
 </Tabs>
 
 ---
-### Restart Animation [🤖](#restart-animation--2) 
+### Restart Animation [](#restart-animation--2) 
 Restarts an [`Animation`](/components/types/#animation). This may play a sound effect if the first
 frame triggers a sound.
 
@@ -1536,7 +1536,7 @@ procedure RestartAnimation(anim: Animation; withSound: Boolean)
 </Tabs>
 
 ---
-## Update Animation [🧬](#group-update-animation)
+## Update Animation [](#group-update-animation)
 
 :::note
 
@@ -1548,7 +1548,7 @@ This function is overloaded. The following versions exist:
 
 :::
 
-### Update Animation [🤖](#update-animation--1) 
+### Update Animation [](#update-animation--1) 
 Updates the animation, updating the time spent and possibly moving to
 a new frame in the animation. This may play a sound effect if the new
 frame triggers a sound.
@@ -1592,7 +1592,7 @@ procedure UpdateAnimation(anim: Animation; pct: Single; withSound: Boolean)
 </Tabs>
 
 ---
-### Update Animation [🤖](#update-animation--2) 
+### Update Animation [](#update-animation--2) 
 Updates the animation, updating the time spent and possibly moving to
 a new frame in the animation. This may play a sound effect if the new
 frame triggers a sound.
@@ -1634,7 +1634,7 @@ procedure UpdateAnimation(anim: Animation)
 </Tabs>
 
 ---
-### Update Animation [🤖](#update-animation--3) 
+### Update Animation [](#update-animation--3) 
 Updates the animation, updating the time spent and possibly moving to
 a new frame in the animation. This may play a sound effect if the new
 frame triggers a sound.
