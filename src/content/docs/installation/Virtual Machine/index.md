@@ -1,5 +1,5 @@
 ---
-title: Virtual Machine Guide 🖳
+title: Virtual Machine Guide
 description: Virtual machine SKm installation
 ---
 
