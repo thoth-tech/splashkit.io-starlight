@@ -41,8 +41,8 @@
 } */
 .astro-JBFSKTT5 img {
   /* Image */
-
-  transition: transform 0.3s ease; /* Add a smooth transition effect */
+  transition: transform 0.3s ease;
+  /* Add a smooth transition effect */
 }
 .astro-JBFSKTT5 img:hover {
   /* Image */
@@ -63,7 +63,10 @@
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }
+
 [data-has-hero] .hero > img {
+  width: 60%; /* Set the width to 60% of the original size */
+  height: auto; /* Maintain the aspect ratio */
   filter: drop-shadow(0 0 3rem var(--overlay-blurple));
 }
 
@@ -79,6 +82,10 @@ iframe[id="stackblitz-iframe"] {
   margin: 0 auto;
 }
 
+[data-has-hero] .sl-container .content{
+  margin-top: -40px;
+}
+
 [data-has-hero] .hero .action {
   border-radius: 24px;
   transition: background-color ease-in-out 0.25s;
@@ -89,9 +96,9 @@ iframe[id="stackblitz-iframe"] {
   font-weight: bold;
 }
 
-[data-has-hero] .hero .action.primary:hover {
+/* [data-has-hero] .hero .action.primary:hover {
   background: var(--sl-color-text-accent-darker);
-}
+} */
 
 [data-has-hero] .hero .action.minimal {
   border: solid 1px var(--sl-color-text-accent);
