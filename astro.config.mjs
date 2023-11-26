@@ -27,6 +27,7 @@ export default defineConfig({
       social: {
         github: "https://github.com/splashkit",
         twitter: "http://twitter.com/splashkit",
+        facebook:"http://facebook.com/splashkit",
       },
       favicon: "/images/favicon.svg",
       logo: {
