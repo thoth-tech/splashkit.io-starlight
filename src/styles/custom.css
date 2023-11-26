@@ -41,8 +41,8 @@
 } */
 .astro-JBFSKTT5 img {
   /* Image */
-  transition: transform 0.3s ease;
-  /* Add a smooth transition effect */
+  
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
 }
 .astro-JBFSKTT5 img:hover {
   /* Image */
