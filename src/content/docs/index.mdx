@@ -21,6 +21,7 @@ hero:
 
 import { Card, CardGrid } from "@astrojs/starlight/components";
 import { ScriptComp } from "../../assets/ScriptComp";
+import Social from '../../components/social.astro';
 
 
 ### To install SplashKit Beta, copy and paste the following into your terminal:
@@ -73,8 +74,16 @@ bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-sc
 </CardGrid>
 
 <ScriptComp client:only />
+
 <footer>
+
+
 <center>
+  <div>
+    <Social platform="github" link="https://github.com/splashkit" />
+    <Social platform="twitter" link="https://twitter.com/splashkit" />
+    <Social platform="facebook" link="https://www.facebook.com/splashkit" />
+  </div>
 
   SplashKit is an open source project maintained by the [core team](https://github.com/orgs/splashkit/people) with the help of all our [contributors](https://github.com/splashkit/splashkit-core/graphs/contributors). 
 
