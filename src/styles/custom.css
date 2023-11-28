@@ -83,7 +83,7 @@ iframe[id="stackblitz-iframe"] {
 }
 
 [data-has-hero] .sl-container .content{
-  margin-top: -40px;
+  margin-top: -5vh;
 }
 
 [data-has-hero] .hero .action {
@@ -178,6 +178,7 @@ iframe[id="stackblitz-iframe"] {
 @media (max-width: 50em) {
   [data-has-hero] .hero img {
     display: none;
+    width: 1000px;
   }
 
   [data-has-hero] .header .right-group {
@@ -202,5 +203,11 @@ iframe[id="stackblitz-iframe"] {
     top: 6vh;
     right: 0vw;
     width: 1200px;
+  }
+}
+
+@media (max-width: 768px) {
+  [data-has-hero] .sl-container .content {
+     margin-top: 3vh; /* for responsive device dimensions, the title content */
   }
 }
