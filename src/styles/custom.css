@@ -269,3 +269,11 @@ code {
   border-radius: 0.6rem;
   box-shadow: var(--sl-shadow-md);
 }
+/* Color Boxes for Displaying Colors */
+.color-box {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 5px;
+  border: 1px solid #000000;
+}

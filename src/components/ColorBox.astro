@@ -1,0 +1,20 @@
+---
+// JavaScript section inside Astro component
+const colors = {
+    "ColorBlack": "#000000",
+    "ColorRed": "#FF0000",
+    "ColorBlue": "#0000FF",
+    "ColorGreen": "#00FF00",
+    // Continue adding other colors as needed
+};
+---
+
+<!-- HTML section for displaying colors -->
+<div class="color-list">
+    {Object.entries(colors).map(([colorName, colorCode]) => (
+        <div class="color-item" style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+            <div style={{ width: '20px', height: '20px', backgroundColor: colorCode, marginRight: '10px' }}></div>
+            <span>{colorName}</span>
+        </div>
+    ))}
+</div>
