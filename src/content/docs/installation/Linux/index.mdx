@@ -5,30 +5,71 @@ sidebar:
   attrs: { class: 'linux' }
 ---
 
-To get SplashKit installed on Linux, follow the four steps:
+Linux is an open-source operating system that is widely used for programming and development. Being open-source, there are several versions available called distributions (distros); this guide will focus on Debian, which is the base for many popular distros such as Ubuntu and Raspberry Pi OS. If you use a different Linux distro, the steps may differ slightly.
+
+In this guide, we will walk through the steps to install the necessary Applications and Tools that you will need to code in C# and C++ with SplashKit. To simplify things, we have an automated script for fresh installs that will install all the required tools and applications for you, or you can follow the manual steps.
+
+:::note[How do I open the Terminal?]
+To open the Terminal on Debian, click activities in the top left of the screen and type "Terminal" in the search bar, then click on the Terminal icon.
+
+
+![Gif showing how to open the Terminal](.\src\assets\gifs\setup-linux\OpenTerminal.gif)
+<div class="caption">Image not subject to The Programmer's Field Guide <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0 License</a></div>
+
+:::
+
+:::tip[Do you sudo?]
+`sudo` is a command that allows you to run a program with superuser privileges and is often required for installing software. Debian does not add the main user to the sudoers file by default.
+
+The following commands will let you check if your user is in the suders group and add it if required. To take effect, you must reboot your computer after adding your user to the sudoers group.
+
+*You will need to know your root user password* (*replace `username` with your username*):
+
+```bash
+groups username
+su
+sudo usermod -aG sudo username
+exit
+groups username
+```
+
+![Image showing the above commands run in the terminal](./src/assets/images/setup-linux/Setup_sudo.png)
+<div class="caption">Image not subject to The Programmer's Field Guide <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0 License</a></div>
+:::
+
+:::caution[Do you have git and curl installed?]
+
+A number of the commands in the setup require `git`, `curl`, and `clang` to be installed to function correctly. To check if they are installed on your system, type `curl`, `clang++`, then `git` into the terminal and press enter after each.
+
+If you see the following error messages you will need to install the missing programs.
+
+![image showing curl and git command not found error](./src/assets/images/setup-linux/curlGitNotFound.png)
+<div class="caption">Image not subject to The Programmer's Field Guide <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0 License</a></div>
+
+To install curl, git, and clang run the following commands in the Terminal (if only one is required, you can delete the other from the command):
+
+```bash
+sudo apt update
+sudo apt install curl git clang -y
+```
+
+:::
+
+
+To get SplashKit installed on Linux, follow the two steps:
 
 import { LinkCard, CardGrid } from "@astrojs/starlight/components";
 
 <CardGrid>
   <LinkCard
-    title="Installing the SplashKit Manager"
+    title="Automated Steps"
     description="Step 1"
-    href="/installation/macos/step-1/"
+    href="/installation/linux/step-1/"
   />
   <LinkCard
-    title="Make the SplashKit source"
+    title="Manual Setup Steps"
     description="Step 2"
-    href="/installation/macos/step-2/"
-  />
-  <LinkCard
-    title="Install Visual Studio Code"
-    description="Step 3"
-    href="/installation/macos/step-3/"
-  />
-  <LinkCard
-    title="Install Language Specific Tools"
-    description="Step 4"
-    href="/installation/macos/step-3/"
+    href="/installation/linux/step-2/"
   />
 </CardGrid>
 

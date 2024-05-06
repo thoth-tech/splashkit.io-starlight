@@ -1,0 +1,262 @@
+---
+title: Overview 2
+description: A guide on installing SplashKit SDK
+sidebar:
+  hidden: false
+---
+
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+import Card from "../../../components/Card.astro";
+import { ScriptComp } from '../../../assets/ScriptComp'
+
+:::tip[Supported Operating Systems]
+Click on one of the supported operating systems below to see more info about the setup guides available:
+
+<CardGrid>
+  <LinkCard
+    title="Raspberry Pi"
+    href="#raspberry-pi"
+  />
+  <LinkCard
+    title="Windows"
+    href="#windows"
+  />
+  <LinkCard 
+    title="Linux"
+    href="#linux"
+  />
+  <LinkCard
+    title="macOS"
+    href="#macos"
+  />
+</CardGrid>
+:::
+
+## Installation Guides
+
+These guides have been created to help you set up your computer and install the necessary Applications and Tools that you will need to code in C# and C++ with SplashKit.
+
+### <span style="display:none;">Raspberry Pi</span>
+
+<Card title="Raspberry Pi" icon="fa-brands:raspberry-pi">
+  Follow these steps to build a Raspberry Pi computer and set it up to get started coding.
+  
+  For this you will need a *Raspberry Pi 4* or later device, as described in the Hardware section.
+
+  **Hardware:**
+
+  <CardGrid>
+    <LinkCard
+      title="1. Getting the Hardware"
+      href="/installation/raspberrypi/hardware/step-1/"
+      description="Go to 'Getting the Hardware' page"
+    />
+    <LinkCard
+      title="2. Building your multi-tool" 
+      href="/installation/raspberrypi/hardware/step-2/"
+      description="Go to 'Building your multi-tool' page"
+    />
+     <LinkCard
+      title="3. Connecting the Accessories" 
+      href="/installation/raspberrypi/hardware/step-3/"
+      description="Go to 'Connecting the Accessories' page"
+    />
+    <LinkCard
+      title="4. Powering the Multi-tool" 
+      href="/installation/raspberrypi/hardware/step-4/"
+      description="Go to 'Powering the Multi-tool' page"
+    />
+    <LinkCard
+      title="5. Finalising the Mutli-tool Setup" 
+      href="/installation/raspberrypi/hardware/step-4/"
+      description="Go to 'Finalising the Mutli-tool Setup' page"
+    />
+  </CardGrid>
+
+  **Software**
+
+  <CardGrid>
+    <LinkCard
+      title="1. Download Raspberry Pi OS"
+      href="/installation/raspberrypi/software/step-1/"
+      description="Go to 'Download Raspberry Pi OS"
+    />
+    <LinkCard
+      title="2. Install Raspberry Pi OS" 
+      href="/installation/raspberrypi/software/step-2/"
+      description="Go to 'Install Raspberry Pi OS' page"
+    />
+     <LinkCard
+      title="3. Setup Raspberry Pi OS" 
+      href="/installation/raspberrypi/software/step-3/"
+      description="Go to 'Setup Raspberry Pi OS' page"
+    />
+    <LinkCard
+      title="4. Manual Setup Steps" 
+      href="/installation/raspberrypi/software/step-4/"
+      description="Go to 'Manual Setup Steps' page"
+    />
+  </CardGrid>
+</Card>
+
+### <span style="display:none;">Windows</span>
+
+<Card title="Windows" icon="fa-brands:windows">
+  Follow these steps to set up your Windows computer with MSYS2 or WSL to get started coding.
+
+  For this you will need a *Windows 64-bit or 32-bit* computer, with an X64 processor, running Windows 11 (preferred) or Windows 10.
+
+  Note: *If you are using a Windows computer with an ARM64 processor, you will need to follow the **Set up my Windows (with WSL)** setup guide.*
+
+  **MSYS2:**
+
+  <CardGrid>
+    <LinkCard
+      title="1. Install MSYS2"
+      href="/installation/windows/mingw/step-1/"
+      description="Go to 'Install MSYS2' page"
+    />
+    <LinkCard
+      title="2. Install git and clang Command Line Tools"
+      href="/installation/windows/mingw/step-2/"
+      description="Go to 'Install git and clang Command Line Tools' page" 
+    />
+    <LinkCard
+      title="3. Install SplashKit SDK"
+      href="/installation/windows/mingw/step-3/"
+      description="Go to 'Install SplashKit SDK' page" 
+    />
+    <LinkCard
+      title="4. Install SplashKit Globally"
+      href="/installation/windows/mingw/step-4/"
+      description="Go to 'Install SplashKit Globally' page" 
+    />
+    <LinkCard
+      title="5. Install Visual Studio Code"
+      href="/installation/windows/mingw/step-5/"
+      description="Go to 'Install Visual Studio Code' page" 
+    />
+     <LinkCard
+      title="6. Install Language Specific Tools"
+      href="/installation/windows/mingw/step-6/"
+      description="Go to 'Install Language Specific Tools' page" 
+    />
+  </CardGrid>
+
+   **WSL:**
+
+    <CardGrid>
+    <LinkCard
+      title="1. Install Windows Subsystem for Linux (WSL)"
+      href="/installation/windows/wsl/step-1/"
+      description="Go to 'Install Windows Subsystem for Linux (WSL)' page"
+    />
+    <LinkCard
+      title="2. Install Command Line Tools"
+      href="/installation/windows/wsl/step-2/"
+      description="Go to 'Install Command Line Tools' page" 
+    />
+    <LinkCard
+      title="3. Install SplashKit SDK"
+      href="/installation/windows/wsl/step-3/"
+      description="Go to 'Install SplashKit SDK' page" 
+    />
+    <LinkCard
+      title="4. Install SplashKit Globally"
+      href="/installation/windows/wsl/step-4/"
+      description="Go to 'Install SplashKit Globally' page" 
+    />
+    <LinkCard
+      title="5. Install Visual Studio Code"
+      href="/installation/windows/wsl/step-5/"
+      description="Go to 'Install Visual Studio Code' page" 
+    />
+     <LinkCard
+      title="6. Install Language Specific Tools"
+      href="/installation/windows/wsl/step-6/"
+      description="Go to 'Install Language Specific Tools' page" 
+    />
+  </CardGrid>
+</Card>
+
+### <span style="display:none;">Linux</span>
+
+<Card title="Linux" icon="fa-brands:linux">
+  Follow these steps to set up your Linux computer to get started coding.
+
+  For this you will need a *Linux* computer, or Virtual Machine, running the Debian distribution, or a distribution derived from Debian, such as Raspberry Pi OS.
+
+  *Note: If you use a different Linux distribution, the steps may differ slightly.*
+
+  <CardGrid>
+    <LinkCard
+      title="1. Automated Setup"
+      href="/installation/linux/step-1/"
+      description="Go to step 1 'Automated Setup' page"
+    />
+    <LinkCard
+      title="2. Manual Setup Steps"
+      href="/installation/linux/step-2"
+      description="Go to step 2 'Manual Setup Stepsp' page"
+    />
+  </CardGrid>
+</Card>
+
+### <span style="display:none;">macOS</span>
+
+<Card title="macOS" icon="fa-brands:apple">
+  Follow these steps to set up your Mac computer to get started coding.
+
+  For this you will need a *macOS* computer running OS X 12.0 or later.
+  
+  Note: *If you are running an earlier version, make sure to read the [No SplashKit Global Install](/book/part-0-getting-started/2-computer-use/0-installation/3-0-troubleshooting-install/#no-splashkit-global-install) troubleshooting guide once you have finished the setup steps, or if you have any issues.*
+
+  <CardGrid>
+    <LinkCard
+      title="1. Install XCode Command Line Tools"
+      href="/installation/macos/step-1/"
+      description="Go to 'Install XCode Command Line Tools' page"
+    />
+    <LinkCard
+      title="2. Install SplashKit SDK"
+      href="/installation/macos/step-2/"
+      description="Go to 'Install SplashKit SDK' page"
+    />
+    <LinkCard
+      title="3. Install SplashKit Globally"
+      href="/installation/macos/step-3/"
+      description="Go to 'Install SplashKit Globally' page"
+    />
+    <LinkCard
+      title="4. Install Visual Studio Code"
+      href="/installation/macos/step-4/"
+      description="Go to 'Install Visual Studio Code' page"
+    />
+    <LinkCard
+      title="5. Install Language Specific Tools"
+      href="/installation/macos/step-5"
+      description="Go to 'Install Language Specific Tools' page"
+    />
+  </CardGrid>
+</Card>
+
+## Installation Troubleshooting
+
+These guides have been created to simplify the process of troubleshooting any issues you might face during your software installation process.
+
+<Card title="Troubleshooting" icon="fa:wrench">
+  To get help with troubleshooting installation issues (or any other troubleshooting), you can read through the *General Troubleshooting* tips, or you may find the solution to your problem in the *Specific Issues* guides.
+
+  <CardGrid>
+    <LinkCard
+      title="General Troubleshooting"
+      href="https://programmers.guide/book/part-0-getting-started/2-computer-use/0-installation/3-0-troubleshooting-install/#general-troubleshooting"
+      description="Go to the 'General Troubleshooting' section of the 'Installation Troubleshooting' page"
+    />
+    <LinkCard
+      title="Specific Issues"
+      href="https://programmers.guide/book/part-0-getting-started/2-computer-use/0-installation/3-0-troubleshooting-install/#specific-issues"
+      description="Go to the 'Specific Issues' section of the 'Installation Troubleshooting' page"
+    />
+  </CardGrid>
+</Card>

@@ -1,17 +1,23 @@
 ---
 
-title: Visual Studio Code
-description: VSC on macOS
+title: 3. Install SplashKit Globally
+description: Gloabally on macOS
 sidebar:
   attrs:
     class: apple
 ---
-Visual Studio Code is essential for macOS because it provides a powerful and versatile integrated development environment (IDE) that enables efficient coding, debugging, and collaboration on SplashKit SDK projects.
-## Steps:
-1. Download `Visual Studio Code`, found at [code.visualstudio.com](https://code.visualstudio.com).
+Finally, you will need to install the SplashKit Global Libraries. This will install the SplashKit libraries and library include files into the system's default global locations so that the compiler can find these files when building (compiling) programs created with SplashKit.
 
-    ![](/gifs/macos/4.gif)
+To install SplashKit globally, copy and paste the following command into your Terminal window:
 
-1. Install Visual Studio Code.
+```bash
+skm global install
+```
 
-    ![](/gifs/macos/5.gif)
+![Gif showing skm installing globally in Terminal](/gifs/macos/setup-macos/skm-global-install.gif)
+<div class="caption">Image not subject to The Programmer's Field Guide <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0 License</a></div>
+
+:::note[What does this command do specifically?]
+The command above will add the **SplashKit libraries** into the `/usr/local/lib/` folder, and the required **SplashKit library include files** into the `/usr/local/include` folder.
+:::
+
