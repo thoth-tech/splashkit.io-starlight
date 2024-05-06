@@ -1,0 +1,236 @@
+﻿---
+title: Raspberry Pi Hardware Guide
+description: Set up Raspberry Pi Hardware 
+sidebar:
+  label: Raspberry Pi Hardware Guide
+  attrs:
+    class: pi
+---
+
+import MySwiper from '../../../components/react/myswiper.jsx';
+import Swiper1Slide1 from "./src/assets/images/Pi-Computer/Swiper1/Slide1.jpg";
+import Swiper1Slide2 from "./src/assets/images/Pi-Computer/Swiper1/Slide2.jpg";
+import Swiper1Slide3 from "./src/assets/images/Pi-Computer/Swiper1/Slide3.jpg";
+import Swiper1Slide4 from "./src/assets/images/Pi-Computer/Swiper1/Slide4.jpg";
+import Swiper1Slide5 from "./src/assets/images/Pi-Computer/Swiper1/Slide5.jpg";
+
+import Swiper2Slide1 from "./src/assets/images/Pi-Computer/Swiper2/Slide1.jpg";
+import Swiper2Slide2 from "./src/assets/images/Pi-Computer/Swiper2/Slide2.jpg";
+import Swiper2Slide3 from "./src/assets/images/Pi-Computer/Swiper2/Slide3.jpg";
+
+import Swiper3Slide1 from "./src/assets/images/Pi-Computer/Swiper3/Slide1.jpg";
+import Swiper3Slide2 from "./src/assets/images/Pi-Computer/Swiper3/Slide2.jpg";
+import Swiper3Slide3 from "./src/assets/images/Pi-Computer/Swiper3/Slide3.jpg";
+
+import Swiper4Slide1 from "./src/assets/images/Pi-Computer/Swiper4/Slide1.jpg";
+import Swiper4Slide2 from "./src/assets/images/Pi-Computer/Swiper4/Slide2.jpg";
+import Swiper4Slide3 from "./src/assets/images/Pi-Computer/Swiper4/Slide3.jpg";
+
+import Swiper5Slide1 from "./src/assets/images/Pi-Computer/Swiper5/Slide1.jpg";
+import Swiper5Slide2 from "./src/assets/images/Pi-Computer/Swiper5/Slide2.jpg";
+import Swiper5Slide3 from "./src/assets/images/Pi-Computer/Swiper5/Slide3.jpg";
+
+import Swiper6Slide1 from "./src/assets/images/Pi-Computer/Swiper6/Slide1.jpg";
+import Swiper6Slide2 from "./src/assets/images/Pi-Computer/Swiper6/Slide2.jpg";
+
+import Swiper7Slide1 from "./src/assets/images/Pi-Computer/Swiper7/Slide1.jpg";
+import Swiper7Slide2 from "./src/assets/images/Pi-Computer/Swiper7/Slide2.jpg";
+import Swiper7Slide3 from "./src/assets/images/Pi-Computer/Swiper7/Slide3.jpg";
+
+import Swiper8Slide1 from "./src/assets/images/Pi-Computer/Swiper8/Slide1.jpg";
+import Swiper8Slide2 from "./src/assets/images/Pi-Computer/Swiper8/Slide2.jpg";
+
+import { YouTube } from 'astro-embed';
+
+export const Swiper1 = [
+    {
+        src: Swiper1Slide1.src,
+        altText:
+            "Image showing raspberry Pi in it's case with 4 screws and a screwdriver",
+        tipHeader: "Make sure the ports are aligned",
+        tips: [],
+    },
+    {
+        src: Swiper1Slide2.src,
+        altText:
+            "Image showing the side of the pi with USB-C and HDMI ports aligned correctly",
+        tips: [],
+    },
+    {
+        src: Swiper1Slide3.src,
+        altText:
+            "Image showing the side of the pi with LAN and USB ports aligned correctly",
+        tips: [],
+    },
+    {
+        src: Swiper1Slide4.src,
+        altText: "Top Down Image showing the Pi without the screws installed",
+        tips: [],
+    },
+    {
+        src: Swiper1Slide5.src,
+        altText: "Top Down Image showing the Pi with the screws installed",
+        tips: [],
+    },
+];
+
+export const Swiper2 = [
+    {
+        src: Swiper2Slide1.src,
+        altText: "Image showing the VESA mount and the case",
+        tips: [],
+    },
+    {
+        src: Swiper2Slide2.src,
+        altText: "Image showing the VESA mount installed on the case",
+        tips: [],
+    },
+    {
+        src: Swiper2Slide3.src,
+        altText: "Image showing the VESA mount installed on the case",
+        tips: [],
+    },
+];
+
+export const Swiper3 = [
+    {
+        src: Swiper3Slide1.src,
+        altText:
+            "Image showing the VESA mount and the case sitting on top of the monitor with the nylon screws and spacers",
+        tips: [],
+    },
+    {
+        src: Swiper3Slide2.src,
+        altText: "Image showing the VESA mount installed on the case wide shot",
+        tips: [],
+    },
+    {
+        src: Swiper3Slide3.src,
+        altText:
+            "Image showing the VESA mount installed on the case close up, showing how the screws and spaces are installed",
+        tips: [],
+    },
+];
+
+export const Swiper4 = [
+    {
+        src: Swiper4Slide1.src,
+        altText:
+            "Image Wide Shot showing the USB-C and HDMI cables connected to the Pi and the screen",
+        tips: [],
+    },
+    {
+        src: Swiper4Slide2.src,
+        altText:
+            "Image Showing the Micro HDMi connected to the first port on the Pi",
+        tips: [],
+    },
+    {
+        src: Swiper4Slide3.src,
+        altText: "Image Showing the USB-A connected to the Raspberry Pi",
+        tips: [],
+    },
+];
+
+export const Swiper5 = [
+    {
+        src: Swiper5Slide1.src,
+        altText: "Image showing the screen sitting on the stand",
+        tips: [],
+    },
+    {
+        src: Swiper5Slide2.src,
+        altText:
+            "Image showing the side of the stand right with the VESA mount just inside of the stand",
+        tips: [],
+    },
+    {
+        src: Swiper5Slide3.src,
+        altText:
+            "Image showing the side of the stand left with the VESA mount just inside of the stand",
+        tips: [],
+    },
+];
+
+export const Swiper6 = [
+    {
+        src: Swiper6Slide1.src,
+        altText: "Image showing the keyboard and mouse connected to the Pi",
+        tips: [],
+    },
+    {
+        src: Swiper6Slide2.src,
+        altText:
+            "Close up image showing the keyboards USB cable connected to the Pi",
+        tips: [],
+    },
+];
+
+export const Swiper7 = [
+    {
+        src: Swiper7Slide1.src,
+        altText: "Image showing the the Pi and power Supply",
+        tips: [],
+    },
+    {
+        src: Swiper7Slide2.src,
+        altText: "Image showing the power supply connected to the Pi",
+        tips: [],
+    },
+    {
+        src: Swiper7Slide3.src,
+        altText: "Close up image showing the power supply connected to the Pi",
+        tips: [],
+    },
+];
+
+export const Swiper8 = [
+    {
+        src: Swiper8Slide1.src,
+        altText: "Image showing the pi connected to the battery bank.",
+        tips: [],
+    },
+    {
+        src: Swiper8Slide2.src,
+        altText:
+            "Image with the Pi folded down shwoing the Pi connected to the battery bank",
+        tips: [],
+    },
+];
+
+<div class="not-content">
+  <YouTube id="iQEsXnfwpqA" params="fs=1&modestbranding=1&rel=0&autoplay=1"/>
+</div>
+
+Building programs really requires that you have access to a computer that you can play around with. To maximise your experience, we have designed things to work with a [Raspberry Pi](https://www.raspberrypi.com) single board computer.
+
+![Image of the full Raspberry Pi multi-tool](./src/assets/images/Pi-Computer/CompeteSetup.jpg)
+
+Using the _Raspberry Pi_ Multi-tool will give you several advantages:
+
+- You can play around with Unix without risking your day-to-day computer (which you can switch to Linux once you are more confident)
+- The Raspberry Pi include pins for **General Purpose Input / Output** (**GPIO**) though a [40-pin header](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#gpio-and-the-40-pin-header) on the board:
+
+![Raspberry Pi 40-pin header](https://www.raspberrypi.com/documentation/computers/images/GPIO-Pinout-Diagram-2.png)
+<div class="caption">Image © Raspberry Pi Ltd, licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> (CC BY-SA)</div>
+
+We can use this to interact with electronics and see how we can control things in the real world using code.
+
+- Playing with a Raspberry Pi is just more fun 😁.
+
+:::note[Where do you get one of these multi-tools?]
+You don't. You _build it yourself_.
+
+The next couple of pages will go over how to build and configure the multi-tool. You can then use it for the activities in the next chapters.
+:::
+
+We will first look at the hardware you need, and where you can get it, and then we can look at the software you need and how you can install that using the [Terminal](/book/part-0-getting-started/2-computer-use/1-concepts/01-terminal) on your Pi.
+
+:::caution[Alternatives to the multi-tool]
+Not sure if you want the hardware, but still want to set something like this up? There are some alternatives.
+
+Rather than getting a new physical machine, you can download virtual machine software and follow the software setup to get it working in there.
+[Set up my Linux Box](/book/part-0-getting-started/2-computer-use/0-installation/2-0-setup-linux)
+:::
+
+Let's get going!

@@ -1,17 +1,21 @@
 ---
-title: Language Tools
-tags: installation,linux
+title:  Install SplashKit Globally
 sidebar:
- 
   attrs:
     class: windows
+  label: "4. Install SplashKit Globally"
 ---
-## Steps:
-SplashKit works with a number of programming languages. Each of these has its own set of tools you will need to install.
-/installation/windows/mingw/
-- For C#, install the [Dotnet core](/installation/windows/mingw/languages/dotnet/) tools.
-- For C++, install [g++](/installation/windows/mingw/languages/gcc) in MSYS2.
+Finally, you will need to install the SplashKit Global Libraries. This will install the SplashKit libraries and library include files into the system's default global locations so that the compiler can find these files when building (compiling) programs created with SplashKit.
 
+To install SplashKit globally, open the MINGW64 terminal as an **administrator**. Then run the following command in the terminal window:
 
-## What's next?
-Congratulations! If you've followed these steps correctly, then you will have installed all the tools needed to start programming with SplashKit!
+```bash
+skm global install
+```
+
+![MSYS Global Install](./src/assets/gifs/setup-windows/msys-global-install.gif)
+<div class="caption">Image not subject to The Programmer's Field Guide <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0 License</a></div>
+
+:::note[What does this command do specifically?]
+The command above will add the **SplashKit libraries** into the `/usr/local/lib/` folder, and the required **SplashKit library include files** into the `/usr/local/include` folder.
+:::

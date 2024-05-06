@@ -1,45 +1,25 @@
 ---
-title: SplashKit SDK
-description: A guide on installing SplashKit SDK through pacman.
+title:  Install git and clang Command Line Tools
 sidebar:
- 
   attrs:
     class: windows
+  label: "2. Install git and clang Command Line Tools"
 ---
-Once you have MSYS2 installed, you can install the SplashKit library:
 
-## Steps:
+To install SplashKit, you will firstly need to install **Git** and a compiler which is used to test the install.
 
-1. Start by installing the **git** client. This will be used to download and update SplashKit. Run the following at the Terminal:
+Copy and paste the following command into your **MINGW64** terminal window to install the `git` and `clang` command-line tool:
 
-    ```bash
-    pacman -S git --noconfirm --disable-download-timeout
-    ```
+```bash
+pacman -S git mingw-w64-{x86_64,i686}-clang --noconfirm --disable-download-timeout
+```
 
-1. In your MSYS2 Terminal, paste and run the following line
+:::caution[Paste commands into MINGW64 Terminal]
+Unfortunately, you won't be able to use `Ctrl` + `V` to paste.
 
-    ```bash
-    bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
-    ```
+Instead, right-click anywhere in the terminal window and then select **Paste**.
+:::
 
-    This can also be found on the [SplashKit](http://www.splashkit.io) home page.
-
-    ![](/gifs/windows/6.gif)
-
-1. Restart the terminal and execute `skm` to test it was successfully installed.
-
-    ```bash
-    skm
-    ```
-
-    You should see the following messages:
-
-    ```bash
-    SplashKit is installed successfully!
-    Missing skm command. For help use 'skm help'
-    ```
-
-    SplashKit supports a number of languages. Run `skm help` at the terminal to see the different commands you can run.
 
 
 

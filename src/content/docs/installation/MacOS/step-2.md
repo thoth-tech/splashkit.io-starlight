@@ -1,34 +1,27 @@
 ---
 
-title: SplashKit SDK
+title: 2. Install SplashKit SDK
 tags: installation,mac
 sidebar:
   attrs:
     class: apple
 ---
 
-1. Copy the following code and paste and run it within the Terminal.
+[SplashKit](https://splashkit.io) is a beginner's all-purpose software toolkit that will allow you to create fun and exciting programs more easily, especially for Graphical User Interface (GUI) programs.
 
-    ```
-    bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
-    ```
+Copy and paste the following command into your Terminal window to download and run the SplashKit installer:
 
-    This is the code from the [SplashKit Homepage](http://splashkit.io).
+```bash
+bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
+```
 
-    ![](/gifs/macos/2.gif)
+![Gif showing skm installing in Terminal](/gifs/macos/setup-macos/skm-install.gif)
+<div class="caption">Image not subject to The Programmer's Field Guide <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0 License</a></div>
 
-1. Restart the terminal and execute `skm` to test it was successfully installed.
+:::tip[Troubleshooting tips!:]
 
-    ```bash
-    skm
-    ```
+1. If the command above **does nothing**, go to the [No response when running SplashKit installation command](/book/part-0-getting-started/2-computer-use/0-installation/3-0-troubleshooting-install/#no-response-when-running-splashkit-installation-command) section in the Installation Troubleshooting page for an alternative installation process.
+2. If you see a message about "**permission denied**" or "**Operation not permitted**", go to the [Permission issue when running SplashKit installation command](/book/part-0-getting-started/2-computer-use/0-installation/3-0-troubleshooting-install/#permission-issue-when-running-splashkit-installation-command) section in the Installation Troubleshooting page for steps to follow to resolve this issue.
 
-    You should see the following messages:
-
-    ```bash
-    SplashKit is installed successfully!
-    Missing skm command. For help use 'skm help'
-    ```
-
-    SplashKit supports a number of languages. Run `skm help` at the terminal to see the different commands you can run.
+:::
 
