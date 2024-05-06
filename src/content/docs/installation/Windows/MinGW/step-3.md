@@ -1,21 +1,29 @@
 ---
-title: Visual Studio Code
-description: A guide on installing Visual Studio.
+title:  Install SplashKit SDK
 sidebar:
- 
   attrs:
     class: windows
+  label: "3. Install SplashKit SDK"
 ---
-Installing Visual Studio Code on Windows is essential for developers as it provides a lightweight and powerful code editor with a user-friendly interface. It offers a wide range of features, including syntax highlighting, code completion, debugging tools, and a vast library of extensions, making it an ideal choice for writing and editing code efficiently on the Windows platform.
+SplashKit is a beginner's all-purpose software toolkit that will allow you to create fun and exciting programs more easily, especially for Graphical User Interface (GUI) programs.
 
-**SplashKit works with Visual Studio Code, a light weight, cross platform, customisable code editor.
-**
-## Steps:
-1. Download [Visual Studio Code](https://code.visualstudio.com)
+:::tip[Curious to know more?]
+The **SplashKit SDK** is installed using the `skm-install.sh` shell script which is stored in the [**skm**](https://github.com/splashkit/skm) GitHub repository (in the **install-scripts** folder).
 
-    ![](/gifs/windows/10.gif)
+It will also add the required paths to your PATH environment variable.
+:::
 
-1. Run the installer.
+Copy and paste the following command into your MINGW64 terminal to download and run the SplashKit installer:
 
-    ![](/gifs/windows/11.gif)
+```bash
+bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
+```
 
+*For this step*, you can use any of the terminal environments provided by MSYS2, such as the **MSYS** terminal shown here:
+
+![MSYS SKM Install](./src/assets/gifs/setup-windows/msys-skm-install.gif)
+<div class="caption">Image not subject to The Programmer's Field Guide <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0 License</a></div>
+
+:::tip[Troubleshooting tip:]
+If you have issues installing the SplashKit SDK, go to the [No response when running SplashKit installation command](/book/part-0-getting-started/2-computer-use/0-installation/3-0-troubleshooting-install/#no-response-when-running-splashkit-installation-command) section in the Installation Troubleshooting page for an alternative installation process.
+:::

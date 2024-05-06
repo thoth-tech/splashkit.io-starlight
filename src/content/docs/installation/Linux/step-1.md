@@ -1,42 +1,45 @@
 ---
-title: SplashKit Manager
+title: 1. Automated Setup
 sidebar:
   attrs:
     class: linux
 ---
-The SplashKit Manager is essential for Linux users as it simplifies the installation and management of the SplashKit SDK, ensuring a seamless development experience.
-## Steps
-1. Open up a terminal.
+This script will install the following applications and tools:
 
-    ![Opening a terminal in Linux](/gifs/linux/open-terminal.gif)
+- Visual Studio Code
+  - C/C++ Extension
+  - C# Extension
+- .NET SDK
+- SplashKit
+  - SplashKit Global
+- wget
+- git
+- curl
+- clang
 
-2. Ensure you have **curl** and **git** installed, these are used in the SplashKit install process.
+Open the Terminal and run the following command:
 
-    Install using your package manager. For example:
+```bash
+curl -s "https://programmers.guide/resources/Linux_Pi_InstallScript.sh" | bash /dev/stdin
+```
 
-    ```bash
-    sudo apt-get install curl git
-    ```
+:::note
+This script will take a while to run (approx. 12-15 mins).
+:::
 
-3. Install the SplashKit Manager
+Once the automated script has finished running, close and reopen the Terminal.
 
-    Copy and paste the code in the box below into your terminal and press enter.
+Run the command `skm` to check SplashKit is installed correctly.
 
-    ```bash
-    bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
-    ```
+:::tip[Using options with the script]
+The linux_pi_install script supports several options that can be used to customise the installation; these can be added to the end of the command.
 
-4. Restart the terminal and execute `skm` to test it was successfully installed. 
+The example below will display the help menu, which lists the available options (scroll the command across to see the end):
 
-    ```bash
-    skm
-    ```
+```bash
+curl -s "https://programmers.guide/resources/Linux_Pi_InstallScript.sh"| bash /dev/stdin --help
+```
 
-    You should see the following messages:
-
-    ```bash
-    SplashKit is installed successfully!
-    Missing skm command. For help use 'skm help'
-    ```
+:::
 
 
