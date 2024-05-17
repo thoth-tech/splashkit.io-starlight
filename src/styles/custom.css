@@ -269,3 +269,11 @@ code {
   border-radius: 0.6rem;
   box-shadow: var(--sl-shadow-md);
 }
+
+.centered_img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  float: none!important;
+}
