@@ -1,0 +1,3 @@
+### Playing Bowling Sound Effect
+
+The following code is an example of using [Play Sound Effect](api/audio/#play-sound-effect) to play a bowling sound effect in the terminal.
