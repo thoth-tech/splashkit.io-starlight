@@ -1,0 +1,3 @@
+### Fade Music Out
+
+The following code is an example of using [Fade Music Out](api/audio/#fade-music-out) to gradually bring the music file to an end, based on how many milliseconds we set.
