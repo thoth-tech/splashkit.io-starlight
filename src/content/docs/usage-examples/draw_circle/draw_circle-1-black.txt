@@ -1,0 +1,3 @@
+### Draw a Circle
+
+The following code is an example of using [Draw Circle](api/graphics/#draw-circle) to draw a black circle. 
