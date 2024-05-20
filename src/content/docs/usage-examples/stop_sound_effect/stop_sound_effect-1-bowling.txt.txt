@@ -1,0 +1,3 @@
+### Stop Bowling Sound Effect
+
+The following code is an example of using [Stop Sound Effect](api/audio/#stop-sound-effect) to stop the playing of a bowling sound effect in the terminal. This builds upon previous examples. Please Note: the screen recording software is not able to pick up on the change in audio, so you will have better success running the code for yourself to see the function of this code. 
