@@ -1,0 +1,3 @@
+### Pause Music
+
+The following code is an example of using [Pause Music](api/audio/#pause-music) to pause the playing of music, allowing you to resume it later.
