@@ -1,0 +1,3 @@
+### Stop Music
+
+The following code is an example of using [Stop Music](api/audio/#stop-music) to stop the playing of the music we have loaded.
