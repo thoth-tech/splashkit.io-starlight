@@ -1,0 +1,3 @@
+### Set Music Volume
+
+The following code is an example of using [Set Music Volume](api/audio/#set-music-volume) to change the volume of the music. This code runs the normal volume at first, pauses, then reduces the volume and continues playing. 
