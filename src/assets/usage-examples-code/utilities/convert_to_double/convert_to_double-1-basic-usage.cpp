@@ -4,13 +4,11 @@
 
 double convert_to_double(const std::string &text)
 {
-    // Convert the string to a double using the standard library function
     return std::stod(text);
 }
 
 bool is_number(const std::string &text)
 {
-    // Check if the string is a valid number
     char* end = nullptr;
     strtod(text.c_str(), &end);
     return end != text.c_str() && *end == '\0';
