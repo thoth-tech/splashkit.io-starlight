@@ -1,0 +1,3 @@
+### Play Music
+
+The following code is an example of using [Play Music](api/audio/#play_music) to load and play the music that has been added.
