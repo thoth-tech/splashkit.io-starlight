@@ -1,0 +1,3 @@
+### Resume Music
+
+The following code is an example of using [Resume Music](api/audio/#resume-music) to resume the playing of music in the terminal. 
