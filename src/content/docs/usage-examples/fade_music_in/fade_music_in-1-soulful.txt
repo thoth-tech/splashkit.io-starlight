@@ -1,0 +1,3 @@
+### Fade Music In
+
+The following code is an example of using [Fade Music In](api/audio/#fade-music-in) to gradually bring the music file to full volume, depending on how many milliseconds we set.
