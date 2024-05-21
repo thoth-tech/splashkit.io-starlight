@@ -1,0 +1,3 @@
+### Basic String Input
+
+The following code shows examples of using [Read Line](/api/terminal#read-line) to read a line of input from the user in the terminal.

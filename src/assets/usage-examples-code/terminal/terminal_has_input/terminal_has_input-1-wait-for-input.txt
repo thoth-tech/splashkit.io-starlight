@@ -1,0 +1,3 @@
+### Checking Terminal Input
+
+The following code demonstrates using [Terminal Has Input](/api/terminal#terminal-has-input) to check if the terminal has input available and to wait until a key is pressed.
