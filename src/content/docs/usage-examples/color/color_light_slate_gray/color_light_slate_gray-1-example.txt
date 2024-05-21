@@ -1,0 +1,3 @@
+### Color Light Slate Gray
+
+The following code demonstrates how to use the predefined [ColorLightSlateGray](/api/color/#color-light-slate-gray) in SplashKit. It opens a window displaying the color in a filled circle.

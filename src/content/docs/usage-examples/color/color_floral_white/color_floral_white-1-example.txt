@@ -1,0 +1,3 @@
+### Color Floral White
+
+The following code demonstrates how to use the predefined [ColorFloralWhite](/api/color/#color-floral-white) in SplashKit. It opens a window displaying the color in a filled circle.

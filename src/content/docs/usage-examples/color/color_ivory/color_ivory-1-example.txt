@@ -1,0 +1,3 @@
+### Color Ivory
+
+The following code demonstrates how to use the predefined [ColorIvory](/api/color/#color-ivory) in SplashKit. It opens a window displaying the color in a filled circle.

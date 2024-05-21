@@ -1,0 +1,3 @@
+### Color Sandy Brown
+
+The following code demonstrates how to use the predefined [ColorSandyBrown](/api/color/#color-sandy-brown) in SplashKit. It opens a window displaying the color in a filled circle.

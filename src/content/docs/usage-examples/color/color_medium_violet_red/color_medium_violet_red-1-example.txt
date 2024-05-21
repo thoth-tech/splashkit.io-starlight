@@ -1,0 +1,3 @@
+### Color Medium Violet Red
+
+The following code demonstrates how to use the predefined [ColorMediumVioletRed](/api/color/#color-medium-violet-red) in SplashKit. It opens a window displaying the color in a filled circle.

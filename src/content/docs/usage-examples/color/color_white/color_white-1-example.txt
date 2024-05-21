@@ -1,0 +1,3 @@
+### Color White
+
+The following code demonstrates how to use the predefined [ColorWhite](/api/color/#color-white) in SplashKit. It opens a window displaying the color in a filled circle.

@@ -1,0 +1,3 @@
+### Color Dark Olive Green
+
+The following code demonstrates how to use the predefined [ColorDarkOliveGreen](/api/color/#color-dark-olive-green) in SplashKit. It opens a window displaying the color in a filled circle.

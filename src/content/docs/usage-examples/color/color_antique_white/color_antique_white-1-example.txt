@@ -1,0 +1,3 @@
+### Color Antique White
+
+The following code demonstrates how to use the predefined [ColorAntiqueWhite](/api/color/#color-antique-white) in SplashKit. It opens a window displaying the color in a filled circle.

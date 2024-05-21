@@ -1,0 +1,3 @@
+### Color White Smoke
+
+The following code demonstrates how to use the predefined [ColorWhiteSmoke](/api/color/#color-white-smoke) in SplashKit. It opens a window displaying the color in a filled circle.

@@ -1,0 +1,3 @@
+### Color Rosy Brown
+
+The following code demonstrates how to use the predefined [ColorRosyBrown](/api/color/#color-rosy-brown) in SplashKit. It opens a window displaying the color in a filled circle.

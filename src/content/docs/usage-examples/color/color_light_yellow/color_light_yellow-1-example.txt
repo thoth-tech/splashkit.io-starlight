@@ -1,0 +1,3 @@
+### Color Light Yellow
+
+The following code demonstrates how to use the predefined [ColorLightYellow](/api/color/#color-light-yellow) in SplashKit. It opens a window displaying the color in a filled circle.

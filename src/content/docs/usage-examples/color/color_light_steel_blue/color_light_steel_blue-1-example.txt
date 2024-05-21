@@ -1,0 +1,3 @@
+### Color Light Steel Blue
+
+The following code demonstrates how to use the predefined [ColorLightSteelBlue](/api/color/#color-light-steel-blue) in SplashKit. It opens a window displaying the color in a filled circle.

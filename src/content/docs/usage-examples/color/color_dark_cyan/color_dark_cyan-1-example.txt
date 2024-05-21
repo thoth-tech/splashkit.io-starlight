@@ -1,0 +1,3 @@
+### Color Dark Cyan
+
+The following code demonstrates how to use the predefined [ColorDarkCyan](/api/color/#color-dark-cyan) in SplashKit. It opens a window displaying the color in a filled circle.

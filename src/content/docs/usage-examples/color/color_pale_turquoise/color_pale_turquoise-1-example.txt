@@ -1,0 +1,3 @@
+### Color Pale Turquoise
+
+The following code demonstrates how to use the predefined [ColorPaleTurquoise](/api/color/#color-pale-turquoise) in SplashKit. It opens a window displaying the color in a filled circle.

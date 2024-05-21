@@ -1,0 +1,3 @@
+### Color Gainsboro
+
+The following code demonstrates how to use the predefined [ColorGainsboro](/api/color/#color-gainsboro) in SplashKit. It opens a window displaying the color in a filled circle.

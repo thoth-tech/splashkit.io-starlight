@@ -1,0 +1,3 @@
+### Color Light Goldenrod Yellow
+
+The following code demonstrates how to use the predefined [ColorLightGoldenrodYellow](/api/color/#color-light-goldenrod-yellow) in SplashKit. It opens a window displaying the color in a filled circle.

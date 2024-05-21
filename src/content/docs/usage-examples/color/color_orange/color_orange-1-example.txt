@@ -1,0 +1,3 @@
+### Color Orange
+
+The following code demonstrates how to use the predefined [ColorOrange](/api/color/#color-orange) in SplashKit. It opens a window displaying the color in a filled circle.

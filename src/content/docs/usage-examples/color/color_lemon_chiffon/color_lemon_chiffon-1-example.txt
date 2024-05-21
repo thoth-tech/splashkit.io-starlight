@@ -1,0 +1,3 @@
+### Color Lemon Chiffon
+
+The following code demonstrates how to use the predefined [ColorLemonChiffon](/api/color/#color-lemon-chiffon) in SplashKit. It opens a window displaying the color in a filled circle.

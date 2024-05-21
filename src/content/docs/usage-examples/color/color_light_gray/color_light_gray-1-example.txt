@@ -1,0 +1,3 @@
+### Color Light Gray
+
+The following code demonstrates how to use the predefined [ColorLightGray](/api/color/#color-light-gray) in SplashKit. It opens a window displaying the color in a filled circle.

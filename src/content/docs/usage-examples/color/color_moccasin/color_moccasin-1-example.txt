@@ -1,0 +1,3 @@
+### Color Moccasin
+
+The following code demonstrates how to use the predefined [ColorMoccasin](/api/color/#color-moccasin) in SplashKit. It opens a window displaying the color in a filled circle.

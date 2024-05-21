@@ -1,0 +1,3 @@
+### Color Coral
+
+The following code demonstrates how to use the predefined [ColorCoral](/api/color/#color-coral) in SplashKit. It opens a window displaying the color in a filled circle.

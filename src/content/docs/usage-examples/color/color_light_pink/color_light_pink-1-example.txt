@@ -1,0 +1,3 @@
+### Color Light Pink
+
+The following code demonstrates how to use the predefined [ColorLightPink](/api/color/#color-light-pink) in SplashKit. It opens a window displaying the color in a filled circle.

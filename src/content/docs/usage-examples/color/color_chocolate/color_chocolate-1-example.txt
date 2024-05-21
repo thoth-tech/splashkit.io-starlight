@@ -1,0 +1,3 @@
+### Color Chocolate
+
+The following code demonstrates how to use the predefined [ColorChocolate](/api/color/#color-chocolate) in SplashKit. It opens a window displaying the color in a filled circle.

@@ -1,0 +1,3 @@
+### Color Khaki
+
+The following code demonstrates how to use the predefined [ColorKhaki](/api/color/#color-khaki) in SplashKit. It opens a window displaying the color in a filled circle.

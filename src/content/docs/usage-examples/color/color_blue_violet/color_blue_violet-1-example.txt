@@ -1,0 +1,3 @@
+### Color Blue Violet
+
+The following code demonstrates how to use the predefined [ColorBlueViolet](/api/color/#color-blue-violet) in SplashKit. It opens a window displaying the color in a filled circle.

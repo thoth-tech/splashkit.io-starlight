@@ -1,0 +1,3 @@
+### Color Navy
+
+The following code demonstrates how to use the predefined [ColorNavy](/api/color/#color-navy) in SplashKit. It opens a window displaying the color in a filled circle.

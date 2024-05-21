@@ -1,0 +1,3 @@
+### Color Dim Gray
+
+The following code demonstrates how to use the predefined [ColorDimGray](/api/color/#color-dim-gray) in SplashKit. It opens a window displaying the color in a filled circle.

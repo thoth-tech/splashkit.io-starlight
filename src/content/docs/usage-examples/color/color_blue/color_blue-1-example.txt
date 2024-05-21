@@ -1,0 +1,3 @@
+### Color Blue
+
+The following code demonstrates how to use the predefined [ColorBlue](/api/color/#color-blue) in SplashKit. It opens a window displaying the color in a filled circle.

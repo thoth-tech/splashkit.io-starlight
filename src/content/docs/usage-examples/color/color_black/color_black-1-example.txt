@@ -1,0 +1,3 @@
+### Color Black
+
+The following code demonstrates how to use the predefined [ColorBlack](/api/color/#color-black) in SplashKit. It opens a window displaying the color in a filled circle.

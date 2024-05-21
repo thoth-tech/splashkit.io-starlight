@@ -1,0 +1,3 @@
+### Color Royal Blue
+
+The following code demonstrates how to use the predefined [ColorRoyalBlue](/api/color/#color-royal-blue) in SplashKit. It opens a window displaying the color in a filled circle.

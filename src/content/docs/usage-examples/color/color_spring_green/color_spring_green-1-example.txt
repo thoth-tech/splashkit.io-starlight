@@ -1,0 +1,3 @@
+### Color Spring Green
+
+The following code demonstrates how to use the predefined [ColorSpringGreen](/api/color/#color-spring-green) in SplashKit. It opens a window displaying the color in a filled circle.

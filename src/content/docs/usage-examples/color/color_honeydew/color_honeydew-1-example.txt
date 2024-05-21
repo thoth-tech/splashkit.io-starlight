@@ -1,0 +1,3 @@
+### Color Honeydew
+
+The following code demonstrates how to use the predefined [ColorHoneydew](/api/color/#color-honeydew) in SplashKit. It opens a window displaying the color in a filled circle.

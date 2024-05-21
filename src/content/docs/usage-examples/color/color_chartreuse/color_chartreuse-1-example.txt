@@ -1,0 +1,3 @@
+### Color Chartreuse
+
+The following code demonstrates how to use the predefined [ColorChartreuse](/api/color/#color-chartreuse) in SplashKit. It opens a window displaying the color in a filled circle.

@@ -1,0 +1,3 @@
+### Color Swinburne Red
+
+The following code demonstrates how to use the predefined [ColorSwinburneRed](/api/color/#color-swinburne-red) in SplashKit. It opens a window displaying the color in a filled circle.

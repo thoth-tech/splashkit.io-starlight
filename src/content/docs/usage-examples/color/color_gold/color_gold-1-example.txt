@@ -1,0 +1,3 @@
+### Color Gold
+
+The following code demonstrates how to use the predefined [ColorGold](/api/color/#color-gold) in SplashKit. It opens a window displaying the color in a filled circle.

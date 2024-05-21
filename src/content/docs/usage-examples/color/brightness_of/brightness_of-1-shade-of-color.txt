@@ -1,0 +1,3 @@
+### Brightness of a Shade of Color
+
+The following code demonstrates how to use the [Brightness Of](https://splashkit.io/api/color/#brightness-of) function to get the brightness component of a color. It also opens a window displaying the color in a filled circle.

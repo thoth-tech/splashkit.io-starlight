@@ -1,0 +1,3 @@
+### Color Medium Orchid
+
+The following code demonstrates how to use the predefined [ColorMediumOrchid](/api/color/#color-medium-orchid) in SplashKit. It opens a window displaying the color in a filled circle.

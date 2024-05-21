@@ -1,0 +1,3 @@
+### Color Light Sky Blue
+
+The following code demonstrates how to use the predefined [ColorLightSkyBlue](/api/color/#color-light-sky-blue) in SplashKit. It opens a window displaying the color in a filled circle.

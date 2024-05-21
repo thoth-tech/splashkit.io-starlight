@@ -1,0 +1,3 @@
+### Color Dark Slate Gray
+
+The following code demonstrates how to use the predefined [ColorDarkSlateGray](/api/color/#color-dark-slate-gray) in SplashKit. It opens a window displaying the color in a filled circle.
