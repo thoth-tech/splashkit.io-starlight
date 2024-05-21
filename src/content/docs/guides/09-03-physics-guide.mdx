@@ -1,0 +1,608 @@
+---
+title: Physics using Splashkit
+description: This article provide a quick overview of getting started with SplashKit. It includes how to create a window and do some basic drawing in order to create a small animation. This is a great place to start with SplashKit.
+category: Tutorials
+author: Aditya Parmar
+lastupdated: May 20 2024
+---
+
+## Splashkit Physics Emulation Guide
+
+## Introduction
+Splashkit is a powerful game development framework that allows you to create 2D games and simulations with realistic physics. By leveraging Splashkit's built-in physics engine, developers can create engaging and immersive experiences that mimic the behavior of real-world objects. In this guide, we will explore the fundamental principles of physics emulation and how to apply them using Splashkit.
+
+## Coordinate System and Axis Orientation
+One of the key considerations when working with physics in Splashkit is the coordinate system and axis orientation. Splashkit uses a coordinate system where the y-axis is reversed compared to the traditional Cartesian coordinate system. This means that the positive y-direction points downwards, while the positive x-direction points to the right. Developers must keep this in mind when calculating and applying physics-based forces and movements.
+    
+    ![](/images/articles/real-physics/axis.png)
+
+## Angle Roation
+Splashkit uses radians to represent angles, with 0 radians pointing to the right (positive x-axis) and increasing in the counter-clockwise direction. When working with angles in Splashkit, it's essential to convert between degrees and radians using the built-in functions `DegToRad` and `RadToDeg`.
+
+![](/images/articles/real-physics/angle.png)
+
+## Collisions and Rigid Body Dynamics
+Collisions are a fundamental aspect of physics-based simulations. In Splashkit, you can create and manage collisions between various objects, such as circles, rectangles, and polygons. To accurately simulate collisions, you need to consider the following factors:
+
+###  Collision Detection
+Splashkit provides built-in functions to detect collisions between objects. This can be done using techniques like bounding box checks or more advanced algorithms like the Separating Axis Theorem (SAT).
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+OpenWindow("Bouncing Balls", 800, 600);
+
+// Create the three balls
+Circle ball1 = new Circle
+{
+    Radius = 20,
+    Center = new Point2D
+    {
+        X = WindowWidth("Bouncing Balls") / 2,
+        Y = WindowHeight("Bouncing Balls") / 2
+    }
+};
+
+Circle ball2 = new Circle
+{
+    Radius = 20,
+    Center = new Point2D
+    {
+        X = WindowWidth("Bouncing Balls") / 4,
+        Y = WindowHeight("Bouncing Balls") / 4
+    }
+};
+
+Circle ball3 = new Circle
+{
+    Radius = 20,
+    Center = new Point2D
+    {
+        X = (WindowWidth("Bouncing Balls") * 3) / 4,
+        Y = (WindowHeight("Bouncing Balls") * 3) / 4
+    }
+};
+
+// Set initial speeds for the balls
+double ball1SpeedX = 5;
+double ball1SpeedY = 3;
+double ball2SpeedX = -7;
+double ball2SpeedY = 4;
+double ball3SpeedX = 6;
+double ball3SpeedY = -5;
+
+do
+{
+    // Update ball positions
+    ball1.Center.X += ball1SpeedX;
+    ball1.Center.Y += ball1SpeedY;
+    ball2.Center.X += ball2SpeedX;
+    ball2.Center.Y += ball2SpeedY;
+    ball3.Center.X += ball3SpeedX;
+    ball3.Center.Y += ball3SpeedY;
+
+    // Bounce off walls
+    if (ball1.Center.X - ball1.Radius < 0 || ball1.Center.X + ball1.Radius > WindowWidth("Bouncing Balls"))
+    {
+        ball1SpeedX = -ball1SpeedX;
+    }
+    if (ball1.Center.Y - ball1.Radius < 0 || ball1.Center.Y + ball1.Radius > WindowHeight("Bouncing Balls"))
+    {
+        ball1SpeedY = -ball1SpeedY;
+    }
+
+    if (ball2.Center.X - ball2.Radius < 0 || ball2.Center.X + ball2.Radius > WindowWidth("Bouncing Balls"))
+    {
+        ball2SpeedX = -ball2SpeedX;
+    }
+    if (ball2.Center.Y - ball2.Radius < 0 || ball2.Center.Y + ball2.Radius > WindowHeight("Bouncing Balls"))
+    {
+        ball2SpeedY = -ball2SpeedY;
+    }
+
+    if (ball3.Center.X - ball3.Radius < 0 || ball3.Center.X + ball3.Radius > WindowWidth("Bouncing Balls"))
+    {
+        ball3SpeedX = -ball3SpeedX;
+    }
+    if (ball3.Center.Y - ball3.Radius < 0 || ball3.Center.Y + ball3.Radius > WindowHeight("Bouncing Balls"))
+    {
+        ball3SpeedY = -ball3SpeedY;
+    }
+
+    // Clear the screen
+    ClearScreen();
+
+    // Draw the balls
+    DrawCircle(Color.Red, ball1);
+    DrawCircle(Color.Green, ball2);
+    DrawCircle(Color.Blue, ball3);
+
+    // Refresh the screen
+    RefreshScreen();
+
+    // Delay for a short time to control the animation speed
+    Delay(15);
+} while (!WindowCloseRequested("Bouncing Balls"));
+
+// Close the window when done
+CloseWindow("Bouncing Balls");
+```
+
+![](https://i.imgur.com/FKGE9iu.gif)
+
+
+### Collision Response
+
+When two objects collide, you need to determine how they should react. This involves calculating the resulting velocities, forces, and other physical properties based on the objects' masses, coefficients of restitution, and other relevant parameters.
+
+```csharp
+using System;
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+const int screenWidth = 800;
+const int screenHeight = 600;
+
+// Load the bitmaps for the balls locally
+LoadBitmap("RedBall", "red-ball.png");
+LoadBitmap("GreenBall", "green-ball.png");
+
+// Download the bitmaps for the balls from the internet 
+// DownloadBitmap("RedBall", "https://splashkit.io/resources/physics/real-physics/balls/red-ball.png", 443);
+// DownloadBitmap("GreenBall", "https://splashkit.io/resources/physics/real-physics/balls/green-ball.png", 443);
+
+// Open the game window
+OpenWindow("Mass Collision", screenWidth, screenHeight);
+
+// Prompt the user to enter the mass and speed of the balls
+Write("Enter mass of ball 1: ");
+double mass1 = Convert.ToDouble(ReadLine());
+
+Write("Enter mass of ball 2: ");
+double mass2 = Convert.ToDouble(ReadLine());
+
+Write("Enter speed of ball 1: ");
+double speed1 = Convert.ToDouble(ReadLine());
+
+Write("Enter speed of ball 2: ");
+double speed2 = Convert.ToDouble(ReadLine());
+
+WriteLine("Press Space to launch the balls");
+WriteLine("Press R to reset the game");
+
+// Create the sprites for the balls
+Sprite ball1 = CreateSprite("RedBall");
+Sprite ball2 = CreateSprite("GreenBall");
+
+// Set the mass of the balls
+SpriteSetMass(ball1, (float)mass1);
+SpriteSetMass(ball2, (float)mass2);
+
+// Set the initial velocities of the balls
+SpriteSetVelocity(ball1, new Vector2D() { X = (float)speed1, Y = 0 });
+SpriteSetVelocity(ball2, new Vector2D() { X = -(float)speed2, Y = 0 });
+
+// Set the initial positions of the balls
+SpriteSetPosition(ball1, new Point2D() { X = 100, Y = screenHeight / 2 });
+SpriteSetPosition(ball2, new Point2D() { X = screenWidth - 100, Y = screenHeight / 2 });
+
+bool launch = false;
+bool hasCollided = false;
+
+// Game loop
+while (!WindowCloseRequested("Mass Collision"))
+{
+    // Clear the screen
+    ClearScreen(ColorWhite());
+    ProcessEvents();
+
+    // Check if the space key is pressed to launch the balls
+    if (KeyTyped(KeyCode.SpaceKey))
+    {
+        launch = true;
+    }
+
+    // Check if the R key is pressed to reset the game
+    if (KeyTyped(KeyCode.RKey))
+    {
+        launch = false;
+        // Reset the positions and velocities of the balls
+        SpriteSetPosition(ball1, new Point2D() { X = 100, Y = screenHeight / 2 });
+        SpriteSetPosition(ball2, new Point2D() { X = screenWidth - 100, Y = screenHeight / 2 });
+        SpriteSetVelocity(ball1, new Vector2D() { X = (float)speed1, Y = 0 });
+        SpriteSetVelocity(ball2, new Vector2D() { X = -(float)speed2, Y = 0 });
+    }
+
+    // Check if the balls are launched
+    if (launch)
+    {
+        // Check if the balls collide
+        if (SpriteCollision(ball1, ball2))
+        {
+            WriteLine("Collision");
+            if (!hasCollided)
+            {
+                hasCollided = true;
+                // Calculate the new velocities of the balls after collision
+                double x1 = SpriteX(ball1);
+                double x2 = SpriteX(ball2);
+                double vx1 = SpriteVelocity(ball1).X;
+                double vx2 = SpriteVelocity(ball2).X;
+
+                double v1 = ((mass1 - mass2) * vx1 + 2 * mass2 * vx2) / (mass1 + mass2);
+                double v2 = ((mass2 - mass1) * vx2 + 2 * mass1 * vx1) / (mass1 + mass2);
+
+                // Set the new velocities of the balls
+                SpriteSetVelocity(ball1, new Vector2D() { X = (float)v1, Y = 0 });
+                SpriteSetVelocity(ball2, new Vector2D() { X = (float)v2, Y = 0 });
+
+                // Adjust the positions of the balls to avoid overlap
+                double overlap = (SpriteWidth(ball1) + SpriteWidth(ball2)) - Math.Abs(x1 - x2);
+                if (x1 < x2)
+                {
+                    SpriteSetX(ball1, (float)(SpriteX(ball1) - overlap / 2));
+                    SpriteSetX(ball2, (float)(SpriteX(ball2) + overlap / 2));
+                }
+                else
+                {
+                    SpriteSetX(ball1, (float)(SpriteX(ball1) + overlap / 2));
+                    SpriteSetX(ball2, (float)(SpriteX(ball2) - overlap / 2));
+                }
+            }
+
+        }
+
+        // Update the position of ball 1 if it is within the screen boundaries
+        if (SpriteX(ball1) > 0 && SpriteX(ball1) < (screenWidth - SpriteWidth(ball1)) && SpriteY(ball1) > 0 && SpriteY(ball1) < screenHeight)
+        {
+            UpdateSprite(ball1);
+        }
+        // Update the position of ball 2 if it is within the screen boundaries
+        if (SpriteX(ball2) > 0 && SpriteX(ball2) < (screenWidth - SpriteWidth(ball2)) && SpriteY(ball2) > 0 && SpriteY(ball2) < screenHeight)
+        {
+            UpdateSprite(ball2);
+        }
+    }
+
+    // Draw the text and sprites on the screen
+    DrawText("Ball 1", ColorBlack(), SpriteX(ball1) + 30, SpriteY(ball1) - 60);
+    DrawText("Mass: " + SpriteMass(ball1), ColorBlack(), SpriteX(ball1) + 30, SpriteY(ball1) - 40);
+    DrawText("Speed: " + SpriteVelocity(ball2).Y, ColorBlack(), SpriteX(ball1) + 30, SpriteY(ball1) - 20);
+    DrawSprite(ball1);
+    DrawText("Ball 2", ColorBlack(), SpriteX(ball2) - 30, SpriteY(ball2) - 60);
+    DrawText("Mass: " + SpriteMass(ball2), ColorBlack(), SpriteX(ball2) - 30, SpriteY(ball2) - 40);
+    DrawText("Speed: " + SpriteVelocity(ball2).X, ColorBlack(), SpriteX(ball2) - 30, SpriteY(ball2) - 20);
+    DrawSprite(ball2);
+
+    // Refresh the screen
+    RefreshScreen();
+}
+```
+   
+![](https://i.imgur.com/oMEQv5i.gif)
+
+
+---
+
+## Projectile Motion
+Projectile motion is another common physics-based simulation that can be implemented using Splashkit. To simulate projectile motion, you need to consider the following equations:
+
+1. **Horizontal Position**: The horizontal position of the projectile is given by the equation:
+   ```
+   x = x₀ + v₀ₓ * t
+   ```
+   where `x₀` is the initial horizontal position, `v₀ₓ` is the initial horizontal velocity, and `t` is the time.
+
+2. **Vertical Position**: The vertical position of the projectile is given by the equation:
+   ```
+   y = y₀ + v₀ᵧ * t + 0.5 * g * t²
+   ```
+   will be changed to 
+
+    ```
+    y = -y₀ + v₀ᵧ * t + 0.5 * g * t²
+    ```
+
+   where `y₀` is the initial vertical position, `v₀ᵧ` is the initial vertical velocity, `g` is the acceleration due to gravity, and `t` is the time.
+
+3. **Velocity and Angle**: The velocity and angle of the projectile can be calculated using the following equations:
+   ```
+   v = √(v₀ₓ² + v₀ᵧ²)
+   θ = atan2(v₀ᵧ, v₀ₓ)
+   ```
+   where `v` is the overall velocity and `θ` is the angle of the projectile.
+
+By incorporating these equations into your Splashkit-based simulations, you can create realistic projectile motion effects, such as the trajectory of a cannon ball, the path of a thrown object, or the motion of a bouncing ball.
+
+### Example
+    ```csharp
+using SplashKitSDK;
+using System;
+using System.Collections.Generic;
+using static SplashKitSDK.SplashKit;
+
+// Set up the window
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
+const int LAUNCH_PAD_X = 100;
+const int LAUNCH_PAD_Y = 500;
+OpenWindow("ProjectileMotion", WINDOW_WIDTH, WINDOW_HEIGHT);
+const string GAME_TIMER = "GameTimer";
+
+// Initialize the projectile
+double initialVelocity = 50; // m/s
+double launchAngle = 60;
+const double gravity = 9.8; // m/s^2
+double time = 0;
+double x = LAUNCH_PAD_X;
+double y = LAUNCH_PAD_Y;
+CreateTimer(GAME_TIMER);
+StartTimer(GAME_TIMER);
+
+// List of coordinates for multiple graphs
+List<List<Point2D>> coordinatesList = new List<List<Point2D>>();
+coordinatesList.Add(new List<Point2D>());
+
+// Game loop
+while (!WindowCloseRequested("ProjectileMotion"))
+{
+    // Clear the window
+    ClearScreen(ColorWhite());
+
+    // Process events
+    ProcessEvents();
+
+    // Draw line from launch pad to mouse position
+    Point2D mousePosition = MousePosition();
+    DrawLine(ColorBlack(), LAUNCH_PAD_X, LAUNCH_PAD_Y, mousePosition.X, mousePosition.Y);
+
+    // Calculate distance and angle from launch pad to mouse position
+    double tempDistance = PointPointDistance(mousePosition, new Point2D { X = LAUNCH_PAD_X, Y = LAUNCH_PAD_Y });
+    double newAngle = 180 - VectorAngle(new Vector2D { X = (float)(LAUNCH_PAD_X - mousePosition.X), Y = (float)(LAUNCH_PAD_Y - mousePosition.Y) });
+
+    // Display velocity and angle information
+    DrawText($"Velocity: {tempDistance/5} m/s", ColorBlack(), 10, 10);
+    DrawText($"Angle: {newAngle} degrees", ColorBlack(), 10, 30);
+
+    // Draw launch pad and update projectile parameters on left mouse click
+    if (MouseClicked(MouseButton.LeftButton))
+    {
+        Point2D temp = MousePosition();
+        double distance = PointPointDistance(temp, new Point2D { X = LAUNCH_PAD_X, Y = LAUNCH_PAD_Y });
+        initialVelocity = distance / 5;
+        launchAngle = 180 - VectorAngle(new Vector2D { X = (float)(LAUNCH_PAD_X - temp.X), Y = (float)(LAUNCH_PAD_Y - temp.Y) });
+
+        // Reset timer and time
+        ResetTimer(GAME_TIMER);
+        time = 0;
+
+        // Create a new list for coordinates
+        coordinatesList.Add(new List<Point2D>());
+    }
+
+    // Draw ground
+    FillRectangle(ColorGreen(), 0, LAUNCH_PAD_Y, WINDOW_WIDTH, LAUNCH_PAD_X);
+
+    // Calculate the projectile's position
+    x = LAUNCH_PAD_X + initialVelocity * Cosine((float)launchAngle) * time;
+    y = LAUNCH_PAD_Y + (-1 * initialVelocity * Sine((float)launchAngle) * time) + (0.5 * gravity * time * time);
+
+    // Update the time
+    time = TimerTicks(GAME_TIMER) / 1000.0;
+
+    // Draw the projectile
+    if (x >= 0 && x < WINDOW_WIDTH && y >= 0 && y < WINDOW_HEIGHT)
+    {
+        if (y < LAUNCH_PAD_Y)
+        {
+            FillCircle(RandomColor(), (float)x, (float)y, 5);
+
+            // Add current coordinates to the latest list in coordinatesList
+            if (coordinatesList.Count >= 0)
+            {
+                coordinatesList[coordinatesList.Count - 1].Add(new Point2D { X = x, Y = y });
+            }
+        }
+    }
+
+    // Draw the coordinate graphs
+    foreach (List<Point2D> coordinates in coordinatesList)
+    {
+        foreach (Point2D point in coordinates)
+        {
+            if (point.Y < LAUNCH_PAD_Y)
+            {
+                // Display velocity and angle information for each graph
+                DrawText("Velocity: " + initialVelocity + " m/s", ColorRed(), 20, 450);
+                DrawText("Angle: " + launchAngle + " degrees", ColorRed(), 20, 420);
+                DrawPixel(ColorRed(), (float)point.X, (float)point.Y);
+            }
+        }
+    }
+
+    // Update the window
+    RefreshScreen();
+}
+```
+
+![](https://i.imgur.com/tlbAs7R.gif)
+
+---
+
+## Advanced Physics Concepts    
+Similarly as above we can implement other physics concepts like simple harmonic motion, circular motion, etc. Splashkit provides a wide range of functions and utilities to simulate these physics concepts effectively. By combining these functions with the built-in physics engine, developers can create complex and realistic simulations that accurately model the behavior of real-world objects.
+Just like the above examples, you can implement these advanced physics concepts using Splashkit's physics engine and built-in functions. By leveraging Splashkit's powerful features, you can create engaging and immersive simulations that accurately model the behavior of real-world objects and phenomena. Keep in mind that you have to simplify the terms in x and y for position and dy and dx for velocity to make it work in Splashkit.
+
+For example:
+```csharp
+using SplashKitSDK;
+using System;
+using static SplashKitSDK.SplashKit;
+
+// Set up the window
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
+OpenWindow("SimpleHarmonicMotion", WINDOW_WIDTH, WINDOW_HEIGHT);
+
+// Initialize the parameters
+double amplitude = 100;
+double frequency = 1;
+double phase = 0;
+double time = 0;
+
+
+// Game loop
+while (!WindowCloseRequested("SimpleHarmonicMotion"))
+{
+    // Clear the window
+    ClearScreen(ColorWhite());
+
+    // Process events
+    ProcessEvents();
+
+    // Calculate the position of the object
+    double x = amplitude * Cosine((float)(2 * PI * frequency * time + phase)) + WINDOW_WIDTH / 2;
+    double y = WINDOW_HEIGHT / 2;
+
+    // Draw the object
+    FillCircle(ColorRed(), (float)x, (float)y, 10);
+
+    // Update the time
+    time += 0.01;
+
+    // Update the window
+    RefreshScreen();
+}
+```
+
+![](https://i.imgur.com/ypYkY9H.gif)
+
+---
+
+## Bonus
+### Draw any equation
+```csharp
+using System;
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+// code to draw any maths equation on the screen
+const int screenWidth = 800;
+const int screenHeight = 600;
+
+
+int[] EquationInput(int power)
+{
+    //returns array of coefficients of the equation
+    int[] coefficients = new int[power + 1];
+    for (int i = 0; i <= power; i++)
+    {
+        Write($"Enter the coefficient of x^{power - i}: ");
+        coefficients[i] = Convert.ToInt32(ReadLine());
+    }
+    return coefficients;
+}
+
+double CalculateEquation(int[] coefficients, double x)
+{
+    //returns the value of the equation at x
+    double result = 0;
+    for (int i = 0; i < coefficients.Length; i++)
+    {
+        result += coefficients[i] * Math.Pow(x, coefficients.Length - i - 1);
+    }
+    return result;
+}
+
+void printEquation(int[] coefficients, int power)
+{
+    //prints the equation on the screen
+    string equation = "";
+    for (int i = 0; i < power+1; i++)
+    {
+        if (coefficients[i] != 0)
+        {
+            if (coefficients[i] > 0 && i != 0)
+            {
+                equation += "+";
+            }
+            equation += coefficients[i];
+            if (power - i != 0)
+            {
+                equation += $"x^{power - i}";
+            }
+        }
+    }
+
+}
+void drawGrids()
+{
+    //draws the grids on the screen
+    for (int i = 0; i < screenWidth; i += 20)
+    {
+        DrawLine(ColorBlack(), i, 0, i, screenHeight, OptionLineWidth(1));
+    }
+    for (int i = 0; i < screenHeight; i += 20)
+    {
+        DrawLine(ColorBlack(), 0, i, screenWidth, i, OptionLineWidth(1));
+    }
+    // draw coordinate axes
+    DrawLine(ColorGreen(), 400, 0, 400, screenHeight, OptionLineWidth(2));
+    DrawLine(ColorGreen(), 0, 300, screenWidth, 300, OptionLineWidth(2));
+
+}
+Write("Enter power of the equation: (for x^n enter n)");
+int power = Convert.ToInt32(ReadLine());
+
+int[] coefficients = new int[power + 1];
+coefficients = EquationInput(power);
+WriteLine("Press Space to draw the equation");
+OpenWindow("Equation", screenWidth, screenHeight);
+
+List<Point2D> coordinates = new List<Point2D>();
+
+void GenerateGraph(int[] coefficients)
+{
+    //draws the equation on the screen
+    for (double i = -(100); i < (screenWidth)+100; i+=0.0001)
+    {
+        double y = CalculateEquation(coefficients, i - screenWidth/2);
+       // enter coordinates in the array, just enter those coordinates which are on the screen
+        if (y < screenHeight && y > 0)
+        {
+            // the 2d array
+            coordinates.Add(new Point2D { X = i, Y = screenHeight/2 - y });
+            
+        }
+    }
+}
+void DrawEquation(int[] coefficients) {
+    //draws the equation on the screen
+    GenerateGraph(coefficients);
+    for (int i = 0; i < coordinates.Count - 1; i++)
+    {
+        DrawPixel(ColorRed(), coordinates[i]);
+    }
+
+}
+bool spacePressed = false;
+while (!WindowCloseRequested("Equation"))
+{
+    ClearScreen(ColorWhite());
+    ProcessEvents();
+    drawGrids();
+    
+    if (KeyTyped(KeyCode.SpaceKey))
+    {
+        spacePressed = true;
+    }
+    if (spacePressed)
+    {
+        DrawEquation(coefficients);
+    }
+    RefreshScreen();
+}
+
+```
+
+![](https://i.imgur.com/dq1q2RG.png)
