@@ -1,3 +1,0 @@
-### key_typed() usage exaple
-
-The following code is an example of using [key typed](https://splashkit.io/api/input/#key-typed) to move a sprite in a game window to the right after right key is typed.
