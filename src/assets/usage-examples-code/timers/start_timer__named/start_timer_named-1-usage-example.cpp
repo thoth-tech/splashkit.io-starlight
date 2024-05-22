@@ -1,6 +1,8 @@
 #include <iostream>
 #include "splashkit.h"
 
+void start_timer(string name);
+
 int main()
 {
     timer myTimer = create_timer("MyTimer");
