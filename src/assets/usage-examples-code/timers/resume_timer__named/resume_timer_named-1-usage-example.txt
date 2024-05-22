@@ -1,0 +1,3 @@
+## Basic Usage of resume_timer_named
+
+This example demonstrates how to use the [resume_timer_named](/api/timers#resume_timer_named) function to resume the named timer in Splashkit.
