@@ -1,0 +1,3 @@
+### Creating a Color using HSB Values
+
+The following code demonstrates using [HSB Color](/api/color#hsb-color) to create a color from hue, saturation, and brightness values and print its RGB components.

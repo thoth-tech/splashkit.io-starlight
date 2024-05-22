@@ -1,0 +1,3 @@
+### Creating a Color from Integer RGB Values
+
+The following code demonstrates using [RGB Color](/api/color#rgb-color) to create a color from red, green, and blue components specified as integers and print its RGB components.

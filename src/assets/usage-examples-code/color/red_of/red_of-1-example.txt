@@ -1,0 +1,3 @@
+### Extracting the Red Component of a Color
+
+The following code demonstrates using [Red Of](/api/color#red-of) to extract the red component from a color.

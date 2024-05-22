@@ -1,0 +1,3 @@
+### Creating a Color from Integer RGBA Values
+
+The following code demonstrates using [RGBA Color](/api/color#rgba-color) to create a color from red, green, blue, and alpha components specified as integers and print its RGBA components.

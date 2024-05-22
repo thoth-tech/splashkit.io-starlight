@@ -1,0 +1,3 @@
+### Converting a String to a Color
+
+The following code demonstrates using [String To Color](/api/color#string-to-color) to convert a valid hex string representation of a color to a color object and print its RGB components.

@@ -1,0 +1,3 @@
+### Creating a Color from Double RGBA Values
+
+The following code demonstrates using [RGBA Color From Double](/api/color#rgba-color-from-double) to create a color from red, green, blue, and alpha components specified as doubles and print its RGBA components.

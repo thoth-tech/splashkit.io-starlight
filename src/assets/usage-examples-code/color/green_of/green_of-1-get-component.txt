@@ -1,0 +1,3 @@
+### Extracting the Green Component of a Color
+
+The following code demonstrates using [Green Of](/api/color#green-of) to extract the green component from a color.

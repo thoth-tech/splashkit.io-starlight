@@ -1,0 +1,3 @@
+### Generating a Random RGB Color with Alpha
+
+The following code demonstrates using [Random RGB Color](/api/color#random-rgb-color) to generate a random RGB color with a specified alpha value and print its RGBA components.

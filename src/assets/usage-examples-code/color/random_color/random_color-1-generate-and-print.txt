@@ -1,0 +1,3 @@
+### Generating a Random Color
+
+The following code demonstrates using [Random Color](/api/color#random-color) to generate a random color and print its RGB components.
