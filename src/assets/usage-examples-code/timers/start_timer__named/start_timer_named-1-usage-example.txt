@@ -1,0 +1,3 @@
+## Basic Usage of start_timer_named
+
+This example demonstrates how to use the [start_timer_named](/api/timers#start_timer_named) function to start a named timer in Splashkit. The timer will then start recording the time that has passed. You can check how long has past since the timer was started using the Timer Ticks function.
