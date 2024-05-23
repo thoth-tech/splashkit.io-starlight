@@ -1,6 +1,4 @@
-/**
- * Usage Example: Fill a scaled triangle with drawing options using SplashKit.
- **/
+
 
 #include "splashkit.h"
 

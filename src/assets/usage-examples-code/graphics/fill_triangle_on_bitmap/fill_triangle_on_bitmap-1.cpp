@@ -1,7 +1,3 @@
-/**
- * Usage Example: using function fill_triangle_on_bitmap with colour red
- **/
-
 #include "splashkit.h"
 
 int main()
@@ -9,8 +5,10 @@ int main()
     // Open a window titled "Fill Triangle On Bitmap Example" with dimensions 800x600
     open_window("Fill Triangle On Bitmap Example", 800, 600);
 
-    // Create a bitmap named "triangle_bitmap" with dimensions 800x600
-    bitmap my_bitmap = create_bitmap("triangle_bitmap", 800, 600);
+    ClearScreen(ColorWhite());
+
+    // Create a bitmap named "triangle_bitmap" with dimensions 500x500
+    bitmap my_bitmap = create_bitmap("triangle_bitmap", 500, 500);
 
     // Fill the triangle on the bitmap with red color
     fill_triangle_on_bitmap(my_bitmap, COLOR_RED, 100, 100, 200, 200, 300, 100);
