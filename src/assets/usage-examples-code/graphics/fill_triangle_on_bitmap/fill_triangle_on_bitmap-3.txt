@@ -1,0 +1,3 @@
+### Usage example for fill_triangle on bitmap
+
+The following code is an example of using 'fill_triangle' function to create a triangle on the bitmap filled with color red in the terminal.
