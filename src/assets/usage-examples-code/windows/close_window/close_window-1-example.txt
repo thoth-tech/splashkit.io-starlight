@@ -1,0 +1,3 @@
+### Closing a Window
+
+The following code demonstrates using [Close Window](/api/windows#close-window) to close a specified window.
