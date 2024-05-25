@@ -1,0 +1,3 @@
+### Clearing a Window with a Specific Color
+
+The following code demonstrates using [Clear Window](/api/windows#clear-window) to clear a window to a specified color.
