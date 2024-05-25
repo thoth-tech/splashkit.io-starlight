@@ -1,0 +1,6 @@
+This example demonstrates how to toggle the border of a window using the SplashKit library in both C# and C++. It opens a window titled "My Window", toggles its border off, waits for a short time, toggles the border back on, and then keeps the window open until manually closed. Note that this example does not rely on any external resources such as images.
+
+
+
+
+
