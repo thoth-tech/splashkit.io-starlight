@@ -1,0 +1,5 @@
+These examples illustrate how to use the window_height_named function to retrieve the height of a window with the specified name. The retrieved height is then printed to the console, and a window with the specified height is opened. The window remains open until you manually close it.
+
+
+
+
