@@ -1,0 +1,2 @@
+This example illustrates the usage of the window_has_border_named function from the SplashKit library. The function evaluates whether a window with the name "My Window" possesses a border. In the C# variant, the outcome is displayed on the console, whereas in the C++ version, it's printed through standard output. This functionality specifically focuses on determining whether the named window has a border, providing a tailored approach for window management.
+
