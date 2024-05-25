@@ -1,0 +1,6 @@
+This example demonstrates how to retrieve and print the width of a window using the SplashKit library in both C# and C++. It opens a window titled "My Window", retrieves its width, prints it to the console, and then keeps the window open until manually closed. Note that this example does not rely on any external resources such as images.
+
+
+
+
+
