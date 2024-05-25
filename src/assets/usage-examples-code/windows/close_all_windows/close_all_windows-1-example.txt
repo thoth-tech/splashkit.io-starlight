@@ -1,0 +1,3 @@
+### Closing All Windows with Delay
+
+The following code demonstrates using [Close All Windows](/api/windows#close-all-windows) to close all open windows after a 5-second delay.
