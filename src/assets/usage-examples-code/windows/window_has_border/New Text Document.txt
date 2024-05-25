@@ -1,0 +1,2 @@
+This example showcases the usage of the window_has_border function from the SplashKit library. The function assesses whether a window possesses a border. In both the C# and C++ versions, the outcome is displayed indicating whether the window has a border or not. This functionality offers a general approach for determining the presence of a border in any window, facilitating flexible window management within graphical applications.
+
