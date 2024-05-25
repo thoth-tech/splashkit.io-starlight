@@ -1,0 +1,3 @@
+### Closing a Window with a Specific Name
+
+The following code demonstrates using [Close Window](/api/windows#close-window) to close a window with a specified name.
