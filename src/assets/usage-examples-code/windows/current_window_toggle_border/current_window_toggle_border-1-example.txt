@@ -1,0 +1,3 @@
+### Toggling Window Border
+
+This example demonstrates how to use [CurrentWindowToggleBorder](/api/window#current-window-toggle-border) to toggle the border of the current window.
