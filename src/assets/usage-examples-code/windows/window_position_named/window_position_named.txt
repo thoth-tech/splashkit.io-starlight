@@ -1,0 +1,6 @@
+These examples illustrate the window_position_named function, which retrieves the position of a window specified by its name as a 2D point. They open a window titled "My Window," retrieve its position using the provided name, and display its coordinates, offering insight into its spatial location on the screen.
+
+
+
+
+
