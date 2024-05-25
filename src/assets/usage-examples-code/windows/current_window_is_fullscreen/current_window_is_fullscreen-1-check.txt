@@ -1,0 +1,3 @@
+### Checking if Current Window is Fullscreen
+
+The following code demonstrates how to use [CurrentWindowIsFullscreen](/api/window#current-window-is-fullscreen) to check if the current window is in fullscreen mode.
