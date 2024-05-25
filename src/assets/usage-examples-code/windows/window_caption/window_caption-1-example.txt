@@ -1,0 +1,2 @@
+The provided code demonstrates a basic usage example of the SplashKit library for creating a graphical window and rendering text. It opens a window titled "My Window" with dimensions 800x600 and continuously displays the text "Hello, SplashKit!" in black color on a white background until the user closes the window.
+
