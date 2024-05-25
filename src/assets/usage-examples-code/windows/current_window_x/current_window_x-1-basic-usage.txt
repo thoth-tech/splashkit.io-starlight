@@ -1,0 +1,3 @@
+### Basic Usage of current_window_x
+
+The following code demonstrates how to use the [current_window_x](/api/windows#current-window-x) function to get the x-coordinate of the current window's position.
