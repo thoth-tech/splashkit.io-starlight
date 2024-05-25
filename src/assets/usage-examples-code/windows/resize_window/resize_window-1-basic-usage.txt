@@ -1,0 +1,3 @@
+### Basic Usage of resize_window
+
+The following code demonstrates how to use the [resize_window](/api/windows#resize-window) function to resize a specified window to a given width and height.
