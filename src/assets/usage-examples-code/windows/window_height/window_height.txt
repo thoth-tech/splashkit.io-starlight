@@ -1,0 +1,6 @@
+These examples illustrate how to use the window_height function to retrieve the height of a window. The retrieved height is then printed to the console, and the window remains open until you manually close it. Let me know if you need further assistance!
+
+
+
+
+
