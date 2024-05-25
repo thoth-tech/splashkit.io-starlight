@@ -1,0 +1,1 @@
+These examples open a window titled "My Window", check if the window is fullscreen, print out the result, and then keep the window open until manually closed.
