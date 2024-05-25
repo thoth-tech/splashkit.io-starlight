@@ -1,0 +1,5 @@
+These examples demonstrate how to use the window_toggle_border function to toggle the border of a window on and off. It first opens a window with a border, draws something on it, toggles the border off after a short delay, toggles it back on after another delay, and finally keeps the window open until manually closed by the user.
+
+
+
+
