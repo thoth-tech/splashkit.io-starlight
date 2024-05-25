@@ -1,0 +1,3 @@
+### Retrieve Current Active Window
+
+The following code demonstrates how to use the [current_window](/api/windows#current-window) function to retrieve the current active window in a SplashKit application.
