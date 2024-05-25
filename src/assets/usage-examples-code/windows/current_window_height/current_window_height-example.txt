@@ -1,0 +1,3 @@
+### Finding the Height of the Current Window
+
+The following code demonstrates how to find the height of the current window using [CurrentWindowHeight](/api/window#current-window-height) in SplashKit.
