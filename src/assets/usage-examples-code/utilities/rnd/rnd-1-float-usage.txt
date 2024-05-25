@@ -1,0 +1,4 @@
+### Basic Usage of rnd (float)
+
+The following code demonstrates how to use the [rnd](/api/utilities#rnd) function to generate a random float between 0 and 1.
+ 
