@@ -1,0 +1,3 @@
+### Check if Current Window Has a Border
+
+The following code demonstrates how to use the [current_window_has_border](/api/windows#current-window-has-border) function to check if the current active window has a border in a SplashKit application.
