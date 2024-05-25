@@ -1,0 +1,1 @@
+These examples open a window titled "My Window", retrieve its position using the window_position function, and print out the window's coordinates. They provide insight into the window's location on the screen.
