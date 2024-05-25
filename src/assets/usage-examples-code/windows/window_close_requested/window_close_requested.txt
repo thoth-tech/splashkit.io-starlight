@@ -1,0 +1,1 @@
+This example demonstrates a basic usage of the window_close_requested function from the SplashKit library. It continuously renders the text "Hello, SplashKit!" on a window titled "My Window" until the user requests to close the window.
