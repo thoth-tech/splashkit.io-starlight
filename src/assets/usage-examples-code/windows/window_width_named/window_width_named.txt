@@ -1,0 +1,1 @@
+These examples directly use the screen_width() function in C++ and the SplashKit.ScreenWidth() method in C# to get the width of the window. They then print the width to the console. Finally, they wait for 2 seconds before closing the window.
