@@ -1,0 +1,1 @@
+These examples demonstrate how to use the window_has_focus function to determine whether a window named "My Window" has focus. In both examples, the result is printed to the console
