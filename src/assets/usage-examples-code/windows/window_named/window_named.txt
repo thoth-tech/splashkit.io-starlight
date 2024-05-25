@@ -1,0 +1,1 @@
+These examples demonstrate the window_named function, which retrieves a window object by its caption. They open a window with the caption "My Window," retrieve it using its name, and confirm if the retrieved window matches the created one.
