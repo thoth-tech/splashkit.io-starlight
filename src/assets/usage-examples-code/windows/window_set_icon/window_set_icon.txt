@@ -1,0 +1,6 @@
+These examples demonstrate how to use the window_set_icon function to set the icon for a window. They load an icon bitmap from a file, open a window titled "My Window," and set the loaded bitmap as the icon for the window. The window remains open until manually closed by the user.
+
+
+
+
+
