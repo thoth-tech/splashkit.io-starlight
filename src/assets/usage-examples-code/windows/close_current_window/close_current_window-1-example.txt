@@ -1,0 +1,3 @@
+### Closing the Current Window
+
+The following code demonstrates using [Close Current Window](/api/windows#close-current-window) to close the currently active window.
