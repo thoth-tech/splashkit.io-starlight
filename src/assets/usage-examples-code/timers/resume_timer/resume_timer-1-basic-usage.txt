@@ -1,1 +1,3 @@
-#draft
+## Basic Usage of resume_timer
+
+This example demonstrates how to use the [resume_timer](/api/timers#resume_timer) function that resumes a paused timer.
