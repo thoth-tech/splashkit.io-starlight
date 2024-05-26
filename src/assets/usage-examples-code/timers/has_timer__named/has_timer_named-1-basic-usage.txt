@@ -1,1 +1,3 @@
-#draft
+## Basic Usage of has_timer_named
+
+This example demonstrates how to use the [has_timer_named](/api/timers#has_timer_named) function to check if Splashkit has a timer with the indicated named. 
