@@ -34,6 +34,7 @@ export default defineConfig({
         "/src/styles/custom.css",
         "/src/styles/background.css",
         "/src/styles/cards.css",
+        "/src/styles/games.css",
       ],
       social: {
         github: "https://github.com/splashkit",
@@ -79,8 +80,7 @@ export default defineConfig({
 
     }),
 
-    solidJs(), sitemap()
-  ],
+    react(), sitemap()],
 
   // Process images with sharp: https://docs.astro.build/en/guides/assets/#using-sharp
   image: { service: squooshImageService() },

@@ -23,7 +23,12 @@ import { LinkCard, CardGrid } from "@astrojs/starlight/components";
 
 import Card from "../../components/Card.astro";
 
+
 import { ScriptComp } from "../../assets/ScriptComp";
+
+import GameCard from "../../components/react/GameCardSwiper/GameCard.jsx";
+
+import GameCard2 from "../../components/react/GameCardSwiper2/GameCard.jsx";
 
 #### To install SplashKit, copy and paste the following into your terminal:
 
@@ -69,6 +74,24 @@ bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-sc
 </CardGrid>
 
 <ScriptComp client:only />
+
+
+        
+
+<div class="game-header-container">
+        <h2 id = "games">Games</h2>
+        <button class="game-header-button" onclick="location.href='/games'">See all</button>
+  </div>
+
+<GameCard client:load />
+
+<div class="game-header-container">
+        <h2 id = "games2">Games</h2>
+        <button class="game-header-button" onclick="location.href='/games'">See all</button>
+  </div>
+
+<GameCard2 client:load />
+
 <footer>
 <center>
 
@@ -76,3 +99,5 @@ bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-sc
   all [our contributors](https://github.com/orgs/splashkit/people). Except as otherwise noted, SplashKit is licensed under [GPL](https://www.gnu.org/licenses/gpl-3.0.en.html#content).
 </center>
 </footer>
+
+
