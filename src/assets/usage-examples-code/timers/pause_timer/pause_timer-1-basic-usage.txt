@@ -1,1 +1,3 @@
-#draft
+## Basic Usage of pause_timer
+
+This example demonstrates how to use the [pause_timer](/api/timers#pause_timer) function to pause the timer, getting ticks from a paused timer will continue to return the same time in Splashkit.
