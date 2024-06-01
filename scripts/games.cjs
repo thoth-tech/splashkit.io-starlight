@@ -27,7 +27,7 @@ ${section.image ? `![Game Image for ${section.name}](${!section.image.startsWith
 
 
 Language - \`${section.language}\` \t
-Rating - \`${section.rating}\`
+Rating - \`${section.rating}/5\`
 
 ### Command
 \`\`\`${section.language}\n
