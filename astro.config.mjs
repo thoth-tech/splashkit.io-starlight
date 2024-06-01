@@ -80,7 +80,7 @@ export default defineConfig({
 
     }),
 
-    react(), sitemap()],
+     react(), sitemap()],
 
   // Process images with sharp: https://docs.astro.build/en/guides/assets/#using-sharp
   image: { service: squooshImageService() },

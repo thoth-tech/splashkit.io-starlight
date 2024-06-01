@@ -1,0 +1,427 @@
+---
+title: Raspberry
+description: Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.
+---
+
+:::tip[Raspberry]
+Splashkit allows you to read and write to the GPIO pins on the Raspberry Pi.
+:::
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+
+    ## 
+## Functions
+## 
+### [Has Gpio](#has-gpio)
+
+ 
+Checks if the system has GPIO capabilities.
+
+**Return Type**	 - `Boolean` 
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+bool has_gpio()
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static bool Raspberry.HasGpio();
+public static bool SplashKit.HasGpio();
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def has_gpio():
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+function HasGpio(): Boolean
+```
+  </TabItem>
+</Tabs>
+
+---
+### [Raspi Cleanup](#raspi-cleanup)
+
+ 
+This function should be called when you are finished using the GPIO library. It sets all pin modes to INPUT and values to LOW.
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+void raspi_cleanup()
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static void Raspberry.RaspiCleanup();
+public static void SplashKit.RaspiCleanup();
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def raspi_cleanup():
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+procedure RaspiCleanup()
+```
+  </TabItem>
+</Tabs>
+
+---
+### [Raspi Get Mode](#raspi-get-mode)
+
+ 
+This function retrieves the mode of the specified pin.
+
+**Parameters**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| pin | [`Pins`](/api/types/#pins) | The pin to get the mode for. |
+
+**Return Type**	 - [`Pin Modes`](/api/types/#pin-modes) 
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+pin_modes raspi_get_mode(pins pin)
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static PinModes Raspberry.RaspiGetMode(Pins pin);
+public static PinModes SplashKit.RaspiGetMode(Pins pin);
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def raspi_get_mode(pin):
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+function RaspiGetMode(pin: Pins): PinModes
+```
+  </TabItem>
+</Tabs>
+
+---
+### [Raspi Init](#raspi-init)
+
+ 
+This function initializes the GPIO library for use. It should be called before any other GPIO functions.
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+void raspi_init()
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static void Raspberry.RaspiInit();
+public static void SplashKit.RaspiInit();
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def raspi_init():
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+procedure RaspiInit()
+```
+  </TabItem>
+</Tabs>
+
+---
+### [Raspi Read](#raspi-read)
+
+ 
+This function reads the value from the specified pin.
+
+**Parameters**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| pin | [`Pins`](/api/types/#pins) | The pin to read the value from. |
+
+**Return Type**	 - [`Pin Values`](/api/types/#pin-values) 
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+pin_values raspi_read(pins pin)
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static PinValues Raspberry.RaspiRead(Pins pin);
+public static PinValues SplashKit.RaspiRead(Pins pin);
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def raspi_read(pin):
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+function RaspiRead(pin: Pins): PinValues
+```
+  </TabItem>
+</Tabs>
+
+---
+### [Raspi Set Mode](#raspi-set-mode)
+
+ 
+This function sets the mode of the specified pin to the specified mode.
+
+**Parameters**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| pin | [`Pins`](/api/types/#pins) | The pin to set the mode for. |
+| mode | [`Pin Modes`](/api/types/#pin-modes) | The mode to set for the pin. |
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+void raspi_set_mode(pins pin, pin_modes mode)
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static void Raspberry.RaspiSetMode(Pins pin, PinModes mode);
+public static void SplashKit.RaspiSetMode(Pins pin, PinModes mode);
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def raspi_set_mode(pin, mode):
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+procedure RaspiSetMode(pin: Pins; mode: PinModes)
+```
+  </TabItem>
+</Tabs>
+
+---
+### [Raspi Set Pull Up Down](#raspi-set-pull-up-down)
+
+ 
+This function sets the pull-up/down mode for the specified pin.
+
+**Parameters**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| pin | [`Pins`](/api/types/#pins) | The pin to set the pull up/down mode for. |
+| pud | [`Pull Up Down`](/api/types/#pull-up-down) | The pull up/down mode to set for the pin. |
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+void raspi_set_pull_up_down(pins pin, pull_up_down pud)
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static void Raspberry.RaspiSetPullUpDown(Pins pin, PullUpDown pud);
+public static void SplashKit.RaspiSetPullUpDown(Pins pin, PullUpDown pud);
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def raspi_set_pull_up_down(pin, pud):
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+procedure RaspiSetPullUpDown(pin: Pins; pud: PullUpDown)
+```
+  </TabItem>
+</Tabs>
+
+---
+### [Raspi Set Pwm Dutycycle](#raspi-set-pwm-dutycycle)
+
+ 
+This function sets the PWM duty cycle for the specified pin.
+
+**Parameters**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| pin | [`Pins`](/api/types/#pins) | The pin to set the PWM duty cycle for. |
+| dutycycle | `Integer` | The PWM duty cycle to set for the pin. |
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+void raspi_set_pwm_dutycycle(pins pin, int dutycycle)
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static void Raspberry.RaspiSetPwmDutycycle(Pins pin, int dutycycle);
+public static void SplashKit.RaspiSetPwmDutycycle(Pins pin, int dutycycle);
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def raspi_set_pwm_dutycycle(pin, dutycycle):
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+procedure RaspiSetPwmDutycycle(pin: Pins; dutycycle: Integer)
+```
+  </TabItem>
+</Tabs>
+
+---
+### [Raspi Set Pwm Frequency](#raspi-set-pwm-frequency)
+
+ 
+This function sets the PWM frequency for the specified pin.
+
+**Parameters**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| pin | [`Pins`](/api/types/#pins) | The pin to set the PWM frequency for. |
+| frequency | `Integer` | The PWM frequency to set for the pin. |
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+void raspi_set_pwm_frequency(pins pin, int frequency)
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static void Raspberry.RaspiSetPwmFrequency(Pins pin, int frequency);
+public static void SplashKit.RaspiSetPwmFrequency(Pins pin, int frequency);
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def raspi_set_pwm_frequency(pin, frequency):
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+procedure RaspiSetPwmFrequency(pin: Pins; frequency: Integer)
+```
+  </TabItem>
+</Tabs>
+
+---
+### [Raspi Set Pwm Range](#raspi-set-pwm-range)
+
+ 
+This function sets the PWM range for the specified pin.
+
+**Parameters**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| pin | [`Pins`](/api/types/#pins) | The pin to set the PWM range for. |
+| range | `Integer` | The PWM range to set for the pin. |
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+void raspi_set_pwm_range(pins pin, int range)
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static void Raspberry.RaspiSetPwmRange(Pins pin, int range);
+public static void SplashKit.RaspiSetPwmRange(Pins pin, int range);
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def raspi_set_pwm_range(pin, range):
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+procedure RaspiSetPwmRange(pin: Pins; range: Integer)
+```
+  </TabItem>
+</Tabs>
+
+---
+### [Raspi Write](#raspi-write)
+
+ 
+This function writes the specified value to the specified pin.
+
+**Parameters**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| pin | [`Pins`](/api/types/#pins) | The pin to write the value to. |
+| value | [`Pin Values`](/api/types/#pin-values) | The value to write to the pin. |
+
+**Signatures**
+
+<Tabs>
+  <TabItem label="C++">
+```cpp
+void raspi_write(pins pin, pin_values value)
+```
+  </TabItem>
+  <TabItem label="C#">
+```csharp
+public static void Raspberry.RaspiWrite(Pins pin, PinValues value);
+public static void SplashKit.RaspiWrite(Pins pin, PinValues value);
+```
+  </TabItem>
+  <TabItem label="Python">
+```python
+def raspi_write(pin, value):
+```
+  </TabItem>
+  <TabItem label="Pascal">
+```pascal
+procedure RaspiWrite(pin: Pins; value: PinValues)
+```
+  </TabItem>
+</Tabs>
+
+---

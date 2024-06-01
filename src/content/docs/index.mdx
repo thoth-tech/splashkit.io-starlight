@@ -24,7 +24,7 @@ import { LinkCard, CardGrid } from "@astrojs/starlight/components";
 import Card from "../../components/Card.astro";
 
 
-import { ScriptComp } from "../../assets/ScriptComp";
+import CardAnimation from "../../components/react/CardAnimation.jsx";
 
 import GameCard from "../../components/react/GameCardSwiper/GameCard.jsx";
 
@@ -73,7 +73,6 @@ bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-sc
   </Card>
 </CardGrid>
 
-<ScriptComp client:only />
 
 
         
@@ -93,6 +92,7 @@ bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-sc
 <GameCard2 client:load />
 
 <footer>
+<CardAnimation client:only="react" />
 <center>
 
   SplashKit is an open source project maintained by the [core team](https://github.com/orgs/splashkit/people) with the help of
