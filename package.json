@@ -3,12 +3,12 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "npm run generate-mdx && astro dev",
+    "dev": "SET CHECK_LINKS=false && npm run generate-mdx && astro dev",
     "start": "npm run generate-mdx && astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-mdx": "node ./scripts/components.cjs", 
+    "generate-mdx": "node ./scripts/components.cjs",
     "check-links": "SET CHECK_LINKS=true && npm run build && SET CHECK_LINKS=false"
   },
   "dependencies": {
