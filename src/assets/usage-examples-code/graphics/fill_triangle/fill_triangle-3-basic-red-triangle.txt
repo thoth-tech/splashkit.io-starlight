@@ -1,3 +1,0 @@
-### Usage example for fill_triangle
-
-The following code is an example of using 'fill_triangle' function to create a triangle filled with color red in the terminal.

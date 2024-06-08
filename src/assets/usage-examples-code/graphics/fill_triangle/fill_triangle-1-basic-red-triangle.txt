@@ -1,0 +1,3 @@
+### Simple Red Filled-in Triangle
+
+The following code shows an example of using [Fill Triangle](/api/graphics#fill-triangle-3) to create a simple red filled-in triangle in a Window.
