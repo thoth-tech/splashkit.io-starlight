@@ -1,5 +1,6 @@
 {
   "files.associations": {
     "*.mdx": "markdown"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }
