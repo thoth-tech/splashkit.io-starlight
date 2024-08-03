@@ -83,3 +83,4 @@ CSS files can be found under `src/styles/`. If you create a new directory or use
 Inside the `test` directory, you will find a NodeJS script that generates MDX pages required for component generation. Refer to the comments inside the script for detailed instructions on usage and customization.
 
 Make sure to follow these guidelines to maintain a well-organized and functional SplashKit website powered by the Starlight framework.
+
