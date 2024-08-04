@@ -16,15 +16,15 @@ GCC is essential for Windows users because it provides a powerful and reliable c
     pacman --disable-download-timeout -S mingw-w64-{x86_64,i686}-gcc mingw-w64-{i686,x86_64}-gdb
     ```
 
-    ![install-gpp-msys](/gifs/windows/install-gpp-msys.gif)
+    ![install-gpp-msys](../../../../../../public/gifs/windows/old/install-gpp-msys.gif)
 
 1. Run the compiler from either the **MSYS2 MinGW 64-bit** or **MSYS2 MinGW 32-bit** terminals
 
-    ![demo-compiler](/gifs/windows/demo-compiler.gif)
+    ![demo-compiler](../../../../../../public/gifs/windows/old/demo-compiler.gif)
 
 1. In Visual Studio Code you should install the following extensions:
 
 - C++ (search for `ms-vscode.cpptools`)
 - vscode-icons (search for `vscode-icons`)
 
-    ![extensions](/gifs/windows/extensions.gif)
+    ![extensions](../../../../../../public/gifs/windows/old/extensions.gif)
