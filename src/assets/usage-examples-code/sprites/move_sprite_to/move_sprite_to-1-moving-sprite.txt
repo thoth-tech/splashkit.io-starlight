@@ -1,0 +1,3 @@
+### Move_sprite_to() usage exaple
+
+The following code is an example of using [move sprite to](https://splashkit.io/api/sprites/#move-sprite-to) to move a sprite in a game window to the right after right key is pressed.
