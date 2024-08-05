@@ -1,0 +1,2180 @@
+---
+title: Input
+description: Input handles user interaction and events such as keypresses.
+---
+
+:::tip[Input]
+Input handles user interaction and events such as keypresses.
+:::
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+
+## Functions
+
+### [Process Events](#process-events)
+
+ProcessEvents allows SplashKit to react to user interactions. This procedure checks the current keyboard and mouse states and should be called once within your game loop to check user interaction.  Side Effects - Reads user interaction events - Updates keys down, text input, etc.
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void process_events()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void Input.ProcessEvents();
+public static void SplashKit.ProcessEvents();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def process_events():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure ProcessEvents()
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Quit Requested](#quit-requested)
+
+Checks to see if the user has asked for the application to quit. This value is updated by the [`Process Events`](/api/input/#process-events) routine. Also see `window_close_requested`.
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool quit_requested()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool Input.QuitRequested();
+public static bool SplashKit.QuitRequested();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def quit_requested():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function QuitRequested(): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Reset Quit](#reset-quit)
+
+Cancels a quit request, ensuring the quit requested will return false.
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void reset_quit()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void Input.ResetQuit();
+public static void SplashKit.ResetQuit();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def reset_quit():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure ResetQuit()
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Any Key Pressed](#any-key-pressed)
+
+Checks to see if any key has been pressed since the last time [`Process Events`](/api/input/#process-events) was called.
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool any_key_pressed()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.AnyKeyPressed();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def any_key_pressed():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function AnyKeyPressed(): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Deregister Callback On Key Down](#deregister-callback-on-key-down)
+
+Remove the registered callback from receiving events related to key down actions.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| callback | [`Key Callback`](/api/input/#key-callback) | The function to from from key down events |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void deregister_callback_on_key_down(key_callback *callback)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.DeregisterCallbackOnKeyDown(KeyCallback callback);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def deregister_callback_on_key_down(callback):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure DeregisterCallbackOnKeyDown(callback: KeyCallback)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Deregister Callback On Key Typed](#deregister-callback-on-key-typed)
+
+Remove the registered callback from receiving events related to key typed actions.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| callback | [`Key Callback`](/api/input/#key-callback) | The function to from from key typed events |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void deregister_callback_on_key_typed(key_callback *callback)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.DeregisterCallbackOnKeyTyped(KeyCallback callback);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def deregister_callback_on_key_typed(callback):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure DeregisterCallbackOnKeyTyped(callback: KeyCallback)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Deregister Callback On Key Up](#deregister-callback-on-key-up)
+
+Remove the registered callback from receiving events related to key up actions.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| callback | [`Key Callback`](/api/input/#key-callback) | The function to from from key up events |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void deregister_callback_on_key_up(key_callback *callback)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.DeregisterCallbackOnKeyUp(KeyCallback callback);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def deregister_callback_on_key_up(callback):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure DeregisterCallbackOnKeyUp(callback: KeyCallback)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Key Down](#key-down)
+
+Returns true when the key requested is being held down. This is updated as part of the [`Process Events`](/api/input/#process-events) call. Use the key codes from [`Key Code`](/api/input/#key-code) to specify the key to be checked.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| key | [`Key Code`](/api/input/#key-code) | The key to check if it is down |
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool key_down(key_code key)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.KeyDown(KeyCode key);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def key_down(key):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function KeyDown(key: KeyCode): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Key Name](#key-name)
+
+The [`Key Name`](/api/input/#key-name) function returns a string name for a given [`Key Code`](/api/input/#key-code). For example, `COMMA_KEY` returns the string 'Comma'. This function could be used to display more meaningful key names for configuring game controls, etc.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| key | [`Key Code`](/api/input/#key-code) | The key to get the name of |
+
+**Return Type:** `String`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+string key_name(key_code key)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static string SplashKit.KeyName(KeyCode key);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def key_name(key):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function KeyName(key: KeyCode): String
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Key Released](#key-released)
+
+Returns true if the specified key was released since the last time [`Process Events`](/api/input/#process-events) was called. This occurs only once for the key that is released and will not return true again until the key is pressed down and released again.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| key | [`Key Code`](/api/input/#key-code) | The key to check if it was released |
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool key_released(key_code key)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.KeyReleased(KeyCode key);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def key_released(key):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function KeyReleased(key: KeyCode): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Key Typed](#key-typed)
+
+Returns true when the key requested is just pressed down. This is updated as part of the [`Process Events`](/api/input/#process-events) call. Use the key codes from [`Key Code`](/api/input/#key-code) to specify the key to be checked. this will only occur once for that key that is pressed and will not return true again until the key is released and presssed down again
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| key | [`Key Code`](/api/input/#key-code) | The key to check if it was typed |
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool key_typed(key_code key)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.KeyTyped(KeyCode key);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def key_typed(key):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function KeyTyped(key: KeyCode): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Key Up](#key-up)
+
+Returns false when the key requested is being held down. This is updated as part of the [`Process Events`](/api/input/#process-events) call. Use the key codes from [`Key Code`](/api/input/#key-code) to specify the key to be checked.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| key | [`Key Code`](/api/input/#key-code) | The key to check if it is up |
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool key_up(key_code key)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.KeyUp(KeyCode key);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def key_up(key):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function KeyUp(key: KeyCode): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Register Callback On Key Down](#register-callback-on-key-down)
+
+Register the passed in callback function to receive notification of key down calls. This will be called in response to [`Process Events`](/api/input/#process-events), for each key that the user presses down.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| callback | [`Key Callback`](/api/input/#key-callback) | The function to be called when a key is first pressed |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void register_callback_on_key_down(key_callback *callback)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.RegisterCallbackOnKeyDown(KeyCallback callback);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def register_callback_on_key_down(callback):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure RegisterCallbackOnKeyDown(callback: KeyCallback)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Register Callback On Key Typed](#register-callback-on-key-typed)
+
+Register the passed in callback function to receive notification of key typed calls. This will be called in response to [`Process Events`](/api/input/#process-events), when the user initially presses a key down.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| callback | [`Key Callback`](/api/input/#key-callback) | The function to be called when a key is typed |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void register_callback_on_key_typed(key_callback *callback)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.RegisterCallbackOnKeyTyped(KeyCallback callback);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def register_callback_on_key_typed(callback):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure RegisterCallbackOnKeyTyped(callback: KeyCallback)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Register Callback On Key Up](#register-callback-on-key-up)
+
+Register the passed in callback function to receive notification of key up calls. This will be called in response to [`Process Events`](/api/input/#process-events), for each key that the user releases.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| callback | [`Key Callback`](/api/input/#key-callback) | The function to be called when a key is released |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void register_callback_on_key_up(key_callback *callback)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.RegisterCallbackOnKeyUp(KeyCallback callback);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def register_callback_on_key_up(callback):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure RegisterCallbackOnKeyUp(callback: KeyCallback)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Hide Mouse](#hide-mouse)
+
+Tells the mouse cursor to hide (no longer visible) if it is currently showing. Use `ShowMouse` to make the mouse cursor visible again.
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void hide_mouse()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.HideMouse();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def hide_mouse():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure HideMouse()
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Mouse Clicked](#mouse-clicked)
+
+Returns true if the specified button was clicked since the last time [`Process Events`](/api/input/#process-events) was called.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| button | [`Mouse Button`](/api/input/#mouse-button) | The mouse button to check |
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool mouse_clicked(mouse_button button)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.MouseClicked(MouseButton button);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def mouse_clicked(button):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function MouseClicked(button: MouseButton): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Mouse Down](#mouse-down)
+
+Returns `true` if the specified button is currently pressed down.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| button | [`Mouse Button`](/api/input/#mouse-button) | The mouse button to check |
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool mouse_down(mouse_button button)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.MouseDown(MouseButton button);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def mouse_down(button):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function MouseDown(button: MouseButton): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Mouse Movement](#mouse-movement)
+
+Returns the amount of accumulated mouse movement, since the last time [`Process Events`](/api/input/#process-events) was called, as a [`Vector 2d`](/api/types/#vector-2d).
+
+**Return Type:** [`Vector 2d`](/api/types/#vector-2d)
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+vector_2d mouse_movement()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static Vector2D SplashKit.MouseMovement();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def mouse_movement():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function MouseMovement(): Vector2D
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Mouse Position](#mouse-position)
+
+Returns the current window position of the mouse as a `Point2D`
+
+**Return Type:** [`Point 2d`](/api/types/#point-2d)
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+point_2d mouse_position()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static Point2D SplashKit.MousePosition();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def mouse_position():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function MousePosition(): Point2D
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Mouse Position Vector](#mouse-position-vector)
+
+Returns The current window position of the mouse as a `Vector`
+
+**Return Type:** [`Vector 2d`](/api/types/#vector-2d)
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+vector_2d mouse_position_vector()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static Vector2D SplashKit.MousePositionVector();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def mouse_position_vector():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function MousePositionVector(): Vector2D
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Mouse Shown](#mouse-shown)
+
+Returns `true` if the mouse is currently visible, `false` if not.
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool mouse_shown()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.MouseShown();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def mouse_shown():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function MouseShown(): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Mouse Up](#mouse-up)
+
+Returns `true` if the specified button is currently up.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| button | [`Mouse Button`](/api/input/#mouse-button) | The mouse button to check |
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool mouse_up(mouse_button button)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.MouseUp(MouseButton button);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def mouse_up(button):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function MouseUp(button: MouseButton): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Mouse Wheel Scroll](#mouse-wheel-scroll)
+
+Returns the amount the mouse wheel was scrolled since the last call to [`Process Events`](/api/input/#process-events). The result is a vector containing the x and y amounts scrolled. Scroll left generates a negative x, scroll right a positive x. Scroll backward is negative y, scroll forward positive y. Note that on MacOS the directions may be inverted by OS settings.
+
+**Return Type:** [`Vector 2d`](/api/types/#vector-2d)
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+vector_2d mouse_wheel_scroll()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static Vector2D SplashKit.MouseWheelScroll();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def mouse_wheel_scroll():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function MouseWheelScroll(): Vector2D
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Mouse X](#mouse-x)
+
+Returns the current x value of the mouse's position.
+
+**Return Type:** `Float`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+float mouse_x()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static float SplashKit.MouseX();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def mouse_x():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function MouseX(): Single
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Mouse Y](#mouse-y)
+
+Returns the current y value of the mouse's position.
+
+**Return Type:** `Float`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+float mouse_y()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static float SplashKit.MouseY();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def mouse_y():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function MouseY(): Single
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Move Mouse](#move-mouse)
+
+:::note
+
+This function is overloaded. The following versions exist:
+
+- [**Move Mouse** (x: double, y: double)](/api/input/#move-mouse-1)
+- [**Move Mouse** (point: point_2d)](/api/input/#move-mouse-2)
+
+:::
+
+#### [Move Mouse](#move-mouse-1)
+
+Moves the mouse cursor to the specified screen location.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| x | `Double` | The new x location of the mouse |
+| y | `Double` | The new y location of the mouse |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void move_mouse(double x, double y)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.MoveMouse(double x, double y);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def move_mouse(x, y):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure MoveMouse(x: Double; y: Double)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+#### [Move Mouse](#move-mouse-2)
+
+Moves the mouse cursor to the specified screen location.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| point | [`Point 2d`](/api/types/#point-2d) | The new location of the mouse |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void move_mouse(point_2d point)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.MoveMouse(Point2D point);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def move_mouse_to_point(point):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure MoveMouse(point: Point2D)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Show Mouse](#show-mouse)
+
+:::note
+
+This function is overloaded. The following versions exist:
+
+- [**Show Mouse** ()](/api/input/#show-mouse-1)
+- [**Show Mouse** (show: bool)](/api/input/#show-mouse-2)
+
+:::
+
+#### [Show Mouse](#show-mouse-1)
+
+Tells the mouse cursor to be visible if it was previously hidden with by a `HideMouse` or `SetMouseVisible`(False) call.
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void show_mouse()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.ShowMouse();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def show_mouse():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure ShowMouse()
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+#### [Show Mouse](#show-mouse-2)
+
+Used to explicitly set the mouse cursors visible state (if it is showing in the window or not) based on the show parameter.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| show | `Boolean` | When true the mouse is shown, when false it is hidden |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void show_mouse(bool show)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.ShowMouse(bool show);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def show_mouse_with_boolean(show):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure ShowMouse(show: Boolean)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Draw Collected Text](#draw-collected-text)
+
+Draw the text that the user is currently enterring on the current window.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| clr | [`Color`](/api/types/#color) | The color for the text |
+| fnt | [`Font`](/api/types/#font) | The font to use |
+| font_size | `Integer` | The size of the font |
+| opts | [`Drawing Options`](/api/types/#drawing-options) | Any drawing options |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void draw_collected_text(color clr, font fnt, int font_size, const drawing_options &opts)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.DrawCollectedText(Color clr, Font fnt, int fontSize, DrawingOptions opts);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def draw_collected_text(clr, fnt, font_size, opts):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure DrawCollectedText(clr: Color; fnt: Font; fontSize: Integer; const opts: DrawingOptions)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [End Reading Text](#end-reading-text)
+
+:::note
+
+This function is overloaded. The following versions exist:
+
+- [**End Reading Text** ()](/api/input/#end-reading-text-1)
+- [**End Reading Text** (wind: window)](/api/input/#end-reading-text-2)
+
+:::
+
+#### [End Reading Text](#end-reading-text-1)
+
+Ends reading text in for the current window.
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void end_reading_text()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.EndReadingText();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def end_reading_text():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure EndReadingText()
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+#### [End Reading Text](#end-reading-text-2)
+
+Ends reading text for the passed in window.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| wind | [`Window`](/api/windows/#window) | The window to end reading text |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void end_reading_text(window wind)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.EndReadingText(Window wind);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def end_reading_text_in_window(wind):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure EndReadingText(wind: Window)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Reading Text](#reading-text)
+
+:::note
+
+This function is overloaded. The following versions exist:
+
+- [**Reading Text** ()](/api/input/#reading-text-1)
+- [**Reading Text** (wind: window)](/api/input/#reading-text-2)
+
+:::
+
+#### [Reading Text](#reading-text-1)
+
+Returns true when the current window is reading text.
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool reading_text()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.ReadingText();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def reading_text():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function ReadingText(): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+#### [Reading Text](#reading-text-2)
+
+Returns true when the window is reading text.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| wind | [`Window`](/api/windows/#window) | The window to check |
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool reading_text(window wind)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.ReadingText(Window wind);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def reading_text_in_window(wind):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function ReadingText(wind: Window): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Start Reading Text](#start-reading-text)
+
+:::note
+
+This function is overloaded. The following versions exist:
+
+- [**Start Reading Text** (rect: rectangle)](/api/input/#start-reading-text-1)
+- [**Start Reading Text** (rect: rectangle, initial_text: string)](/api/input/#start-reading-text-2)
+- [**Start Reading Text** (wind: window, rect: rectangle)](/api/input/#start-reading-text-3)
+- [**Start Reading Text** (wind: window, rect: rectangle, initial_text: string)](/api/input/#start-reading-text-4)
+
+:::
+
+#### [Start Reading Text](#start-reading-text-1)
+
+Start reading text in the current window within the bounds of the supplied rectangle.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| rect | [`Rectangle`](/api/types/#rectangle) | The area where the text will be entered. |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void start_reading_text(rectangle rect)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.StartReadingText(Rectangle rect);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def start_reading_text(rect):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure StartReadingText(rect: Rectangle)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+#### [Start Reading Text](#start-reading-text-2)
+
+Start reading text in the current window within the bounds of the supplied rectangle. The text will start with an initial value.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| rect | [`Rectangle`](/api/types/#rectangle) | The area where the text will be entered. |
+| initial_text | `String` | The initial text, which may be edited by the user. |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void start_reading_text(rectangle rect, string initial_text)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.StartReadingText(Rectangle rect, string initialText);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def start_reading_text_with_initial_text(rect, initial_text):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure StartReadingText(rect: Rectangle; initialText: String)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+#### [Start Reading Text](#start-reading-text-3)
+
+Start reading text in the window within the bounds of the supplied rectangle.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| wind | [`Window`](/api/windows/#window) | The window where the text will be entered |
+| rect | [`Rectangle`](/api/types/#rectangle) | The area where the text will be entered. |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void start_reading_text(window wind, rectangle rect)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.StartReadingText(Window wind, Rectangle rect);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def start_reading_text_in_window(wind, rect):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure StartReadingText(wind: Window; rect: Rectangle)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+#### [Start Reading Text](#start-reading-text-4)
+
+Start reading text in the window within the bounds of the supplied rectangle. The text will start with an initial value.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| wind | [`Window`](/api/windows/#window) | The window where the text will be entered |
+| rect | [`Rectangle`](/api/types/#rectangle) | The area where the text will be entered. |
+| initial_text | `String` | The initial text, which may be edited by the user. |
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+void start_reading_text(window wind, rectangle rect, string initial_text)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static void SplashKit.StartReadingText(Window wind, Rectangle rect, string initialText);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def start_reading_text_in_window_with_initial_text(wind, rect, initial_text):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+procedure StartReadingText(wind: Window; rect: Rectangle; initialText: String)
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Text Entry Cancelled](#text-entry-cancelled)
+
+:::note
+
+This function is overloaded. The following versions exist:
+
+- [**Text Entry Cancelled** ()](/api/input/#text-entry-cancelled-1)
+- [**Text Entry Cancelled** (wind: window)](/api/input/#text-entry-cancelled-2)
+
+:::
+
+#### [Text Entry Cancelled](#text-entry-cancelled-1)
+
+Did the user press escape and cancel the enterring of text?
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool text_entry_cancelled()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.TextEntryCancelled();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def text_entry_cancelled():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function TextEntryCancelled(): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+#### [Text Entry Cancelled](#text-entry-cancelled-2)
+
+Did the user press escape and cancel the enterring of text?
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| wind | [`Window`](/api/windows/#window) | The window to check |
+
+**Return Type:** `Boolean`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+bool text_entry_cancelled(window wind)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static bool SplashKit.TextEntryCancelled(Window wind);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def text_entry_cancelled_in_window(wind):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function TextEntryCancelled(wind: Window): Boolean
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+### [Text Input](#text-input)
+
+:::note
+
+This function is overloaded. The following versions exist:
+
+- [**Text Input** ()](/api/input/#text-input-1)
+- [**Text Input** (wind: window)](/api/input/#text-input-2)
+
+:::
+
+#### [Text Input](#text-input-1)
+
+The text the user has currently enterred on the current window.
+
+**Return Type:** `String`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+string text_input()
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static string SplashKit.TextInput();
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def text_input():
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function TextInput(): String
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+#### [Text Input](#text-input-2)
+
+The text the user has currently enterred on the current window.
+
+**Parameters:**
+
+| Name   | Type                                               | Description                                                                        |
+| ------ | -------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| wind | [`Window`](/api/windows/#window) | The window to check |
+
+**Return Type:** `String`
+
+**Signatures:**
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+string text_input(window wind)
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+public static string SplashKit.TextInput(Window wind);
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+def text_input_in_window(wind):
+```
+
+  </TabItem>
+  <TabItem label="Pascal">
+
+```pascal
+function TextInput(wind: Window): String
+```
+
+  </TabItem>
+</Tabs>
+
+---
+
+## Types
+
+### [Key Callback](#key-callback)
+
+The [`Key Callback`](/api/input/#key-callback) is a function pointer used to register your code with SplashKit
+or keyboard related events. See [`Register Callback On Key Down`](/api/input/#register-callback-on-key-down),
+[`Register Callback On Key Up`](/api/input/#register-callback-on-key-up), and [`Register Callback On Key Typed`](/api/input/#register-callback-on-key-typed)
+
+---
+
+### [Key Code](#key-code)
+
+| Constant           | Value | Description                |
+| ------------------- | ----- | -------------------------- |
+| UNKNOWN_KEY | 0 | The unknown key |
+| BACKSPACE_KEY | 8 | The backspace key |
+| TAB_KEY | 9 | The tab key |
+| CLEAR_KEY | 12 | The clear key |
+| RETURN_KEY | 13 | The return key |
+| PAUSE_KEY | 19 | The pause key |
+| ESCAPE_KEY | 27 | The escape key |
+| SPACE_KEY | 32 | The space key |
+| EXCLAIM_KEY | 33 | The exclaim key |
+| DOUBLE_QUOTE_KEY | 34 | The double quote key |
+| HASH_KEY | 35 | The hash key |
+| DOLLAR_KEY | 36 | The dollar key |
+| AMPERSAND_KEY | 38 | The ampersand key |
+| QUOTE_KEY | 39 | The quote key |
+| LEFT_PAREN_KEY | 40 | The left paren key |
+| RIGHT_PAREN_KEY | 41 | The right paren key |
+| ASTERISK_KEY | 42 | The asterisk key |
+| PLUS_KEY | 43 | The plus key |
+| COMMA_KEY | 44 | The comma key |
+| MINUS_KEY | 45 | The minus key |
+| PERIOD_KEY | 46 | The period key |
+| SLASH_KEY | 47 | The slash key |
+| NUM_0_KEY | 48 | The num 0 key |
+| NUM_1_KEY | 49 | The num 1 key |
+| NUM_2_KEY | 50 | The num 2 key |
+| NUM_3_KEY | 51 | The num 3 key |
+| NUM_4_KEY | 52 | The num 4 key |
+| NUM_5_KEY | 53 | The num 5 key |
+| NUM_6_KEY | 54 | The num 6 key |
+| NUM_7_KEY | 55 | The num 7 key |
+| NUM_8_KEY | 56 | The num 8 key |
+| NUM_9_KEY | 57 | The num 9 key |
+| COLON_KEY | 58 | The colon key |
+| SEMI_COLON_KEY | 59 | The semi colon key |
+| LESS_KEY | 60 | The less key |
+| EQUALS_KEY | 61 | The equals key |
+| GREATER_KEY | 62 | The greater key |
+| QUESTION_KEY | 63 | The question key |
+| AT_KEY | 64 | The at key |
+| LEFT_BRACKET_KEY | 91 | The left bracket key |
+| BACKSLASH_KEY | 92 | The backslash (\) key |
+| RIGHT_BRACKET_KEY | 93 | The right bracket key |
+| CARET_KEY | 94 | The caret (^) key |
+| UNDERSCORE_KEY | 95 | The underscore (_) key |
+| BACKQUOTE_KEY | 96 | The backquote (`) key |
+| A_KEY | 97 | The a key |
+| B_KEY | 98 | The b key |
+| C_KEY | 99 | The c key |
+| D_KEY | 100 | The d key |
+| E_KEY | 101 | The e key |
+| F_KEY | 102 | The f key |
+| G_KEY | 103 | The g key |
+| H_KEY | 104 | The h key |
+| I_KEY | 105 | The i key |
+| J_KEY | 106 | The j key |
+| K_KEY | 107 | The k key |
+| L_KEY | 108 | The l key |
+| M_KEY | 109 | The m key |
+| N_KEY | 110 | The n key |
+| O_KEY | 111 | The o key |
+| P_KEY | 112 | The p key |
+| Q_KEY | 113 | The q key |
+| R_KEY | 114 | The r key |
+| S_KEY | 115 | The s key |
+| T_KEY | 116 | The t key |
+| U_KEY | 117 | The u key |
+| V_KEY | 118 | The v key |
+| W_KEY | 119 | The w key |
+| X_KEY | 120 | The x key |
+| Y_KEY | 121 | The y key |
+| Z_KEY | 122 | The z key |
+| DELETE_KEY | 127 | The delete key |
+| KEYPAD_0 | 256 | The keypad 0 key |
+| KEYPAD_1 | 257 | The keypad 1 key |
+| KEYPAD_2 | 258 | The keypad 2 key |
+| KEYPAD_3 | 259 | The keypad 3 key |
+| KEYPAD_4 | 260 | The keypad 4 key |
+| KEYPAD_5 | 261 | The keypad 5 key |
+| KEYPAD_6 | 262 | The keypad 6 key |
+| KEYPAD_7 | 263 | The keypad 7 key |
+| KEYPAD_8 | 264 | The keypad 8 key |
+| KEYPAD_9 | 265 | The keypad 9 key |
+| KEYPAD_PERIOD | 266 | The keypad period key |
+| KEYPAD_DIVIDE | 267 | The keypad divide key |
+| KEYPAD_MULTIPLY | 268 | The keypad multiply key |
+| KEYPAD_MINUS | 269 | The keypad minus key |
+| KEYPAD_PLUS | 270 | The keypad plus key |
+| KEYPAD_ENTER | 271 | The keypad enter key |
+| KEYPAD_EQUALS | 272 | The keypad equals key |
+| UP_KEY | 273 | The up key |
+| DOWN_KEY | 274 | The down key |
+| RIGHT_KEY | 275 | The right key |
+| LEFT_KEY | 276 | The left key |
+| INSERT_KEY | 277 | The insert key |
+| HOME_KEY | 278 | The home key |
+| END_KEY | 279 | The end key |
+| PAGE_UP_KEY | 280 | The page up key |
+| PAGE_DOWN_KEY | 281 | The page down key |
+| F1_KEY | 282 | The f1 key |
+| F2_KEY | 283 | The f2 key |
+| F3_KEY | 284 | The f3 key |
+| F4_KEY | 285 | The f4 key |
+| F5_KEY | 286 | The f5 key |
+| F6_KEY | 287 | The f6 key |
+| F7_KEY | 288 | The f7 key |
+| F8_KEY | 289 | The f8 key |
+| F9_KEY | 290 | The f9 key |
+| F10_KEY | 291 | The f10 key |
+| F11_KEY | 292 | The f11 key |
+| F12_KEY | 293 | The f12 key |
+| F13_KEY | 294 | The f13 key |
+| F14_KEY | 295 | The f14 key |
+| F15_KEY | 296 | The f15 key |
+| NUM_LOCK_KEY | 300 | The num lock key |
+| CAPS_LOCK_KEY | 301 | The caps lock key |
+| SCROLL_LOCK_KEY | 302 | The scroll lock key |
+| RIGHT_SHIFT_KEY | 303 | The right shift key |
+| LEFT_SHIFT_KEY | 304 | The left shift key |
+| RIGHT_CTRL_KEY | 305 | The right ctrl key |
+| LEFT_CTRL_KEY | 306 | The left ctrl key |
+| RIGHT_ALT_KEY | 307 | The right alt or option key |
+| LEFT_ALT_KEY | 308 | The left alt or option key |
+| LEFT_SUPER_KEY | 311 | The left super (windows or command) key |
+| RIGHT_SUPER_KEY | 312 | The right super (windows or command) key |
+| MODE_KEY | 313 | The mode key |
+| HELP_KEY | 315 | The help key |
+| SYS_REQ_KEY | 317 | The sys req key |
+| MENU_KEY | 319 | The menu key |
+| POWER_KEY | 320 | The power key |
+
+These are the key codes you can use to check details of keyboard actions.
+See [`Key Down`](/api/input/#key-down), [`Key Up`](/api/input/#key-up), [`Key Typed`](/api/input/#key-typed), and [`Key Released`](/api/input/#key-released) functions.
+You can get a string representation of these keys using [`Key Name`](/api/input/#key-name).
+
+---
+
+### [Mouse Button](#mouse-button)
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+  | Description             | Enum Value in Code         |
+  | ----------------------- | ---------------------------|
+  | No mouse button         | NO_BUTTON                  |
+  | The left mouse button   | LEFT_BUTTON                |
+  | The middle mouse button | MIDDLE_BUTTON              |
+  | The right mouse button  | RIGHT_BUTTON               |
+  | The x1 mouse button     | MOUSE_X1_BUTTON            |
+  | The x2 mouse button     | MOUSE_X2_BUTTON            |
+
+  </TabItem>
+  <TabItem label="C#">
+
+  | Description             | Enum Value in Code         |
+  | ----------------------- | ---------------------------|
+  | No mouse button         | MouseButton.NoButton       |
+  | The left mouse button   | MouseButton.LeftButton     |
+  | The middle mouse button | MouseButton.MiddleButton   |
+  | The right mouse button  | MouseButton.RightButton    |
+  | The x1 mouse button     | MouseButton.MouseX1Button  |
+  | The x2 mouse button     | MouseButton.MouseX2Button  |
+
+  </TabItem>
+  <TabItem label="Python">
+
+  | Description             | Enum Value in Code         |
+  | ----------------------- | ---------------------------|
+  | No mouse button         | MouseButton.no_button       |
+  | The left mouse button   | MouseButton.left_button     |
+  | The middle mouse button | MouseButton.middle_button   |
+  | The right mouse button  | MouseButton.right_button    |
+  | The x1 mouse button     | MouseButton.mouse_x1_button  |
+  | The x2 mouse button     | MouseButton.mouse_x2_button  |
+
+  </TabItem>
+</Tabs>
+
+
+A mouse can have many different types of buttons. Most people know
+about the simple Left and Right buttons, but there is also a Middle
+button (sometimes part of a scoll wheel), and possible side buttons.
+
+---
