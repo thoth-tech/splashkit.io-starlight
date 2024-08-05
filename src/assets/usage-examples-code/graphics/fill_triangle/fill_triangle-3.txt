@@ -1,0 +1,2 @@
+Fill_Triangle function Usage Example:
+The following code shows an example of using Fill_Triangle function to create a simple red color filled triangle.
