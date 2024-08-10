@@ -3,7 +3,7 @@ title: Getting Started With Servers
 description: This guide is an introduction to using web servers
 category: Guides
 author: Andrew Cain and Isaac Wallis
-lastupdated: Jul 14 2018
+lastupdated: Aug 10 2024
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -45,7 +45,7 @@ Save it as "index.html" in **Resources/server** and we are ready to start!
 
 To start listening for incoming connections, you need to call the [Start Web Server](/api/networking/#start-web-server) procedure. You can pass a **port** value (integer) to this to indicate which port to listen for connections. Each computer can support multiple concurrent connections, so each needs a unique address, so there can only be one program using a given port at one time. To help make this easier to navigate, there are standards for which port to use, and in general, web servers listen on port 80 for insecure (http) traffic, and port 443 for secure (https) traffic, while secure shell (ssh; remote terminal access) is port 22, for example. For local web servers, it’s standard to use port 8080.
 
-We need to pair the [Start Web Server](/api/networking/#start-web-server) with a call to the [Stop Web Server](/api/networking/#stop-web-server) procedure. This will wrap up any requests that have come in and will stop listening for any new requests. So once you are finished with the web server, you can stop it so that it does not take up system resources that you do not need. The following code shows a small program that starts and stops a web server.
+We need to pair the [Start Web Server](/api/networking/#start-web-server) with a call to the [Stop Web Server](/api/networking/#stop-web-server) procedure. This will wrap up any requests that have come in and will stop listening for any new requests. So once you are finished with the web server, you can stop it so that it does not take up system resources that you do not need. The following code shows a small program that starts and stops a web server. Add this code into the resources folder previously created.
 
 <Tabs syncKey="code-language">
   <TabItem label="C++">
@@ -119,7 +119,7 @@ The following code shows an appropriate `"Hello World"` web server program.
       write_line("About to start the server...");
 
       // Start a web server - defaults to listening to port 8080
-      web_server server = web_server();
+      web_server server = start_web_server();
 
       write_line("Waiting for a request - navigate to http://localhost:8080");
 
@@ -208,7 +208,7 @@ The follow code replaces the "Hello World" response with the details from the in
       write_line("About to start the server...");
 
       // Start a web server - defaults to listening to port 8080
-      web_server server = web_server();
+      web_server server = start_web_server();
 
       write_line("Waiting for a request - navigate to http://localhost:8080");
 
