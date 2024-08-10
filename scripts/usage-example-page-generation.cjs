@@ -9,12 +9,12 @@ const path = require('path');
 const languageLabelMappings = {
   cpp: "C++",
   csharp: "C#",
-  // python: "Python",
+  python: "Python",
   // pascal: "Pascal",
   // Add more mappings as needed
 };
 
-const languageOrder = ["cpp", "csharp"];//, "python", "pascal"];
+const languageOrder = ["cpp", "csharp", "python"];//, "pascal"];
 
 var name;
 
@@ -153,6 +153,12 @@ categories.forEach((categoryKey) => {
           let csharpFilePath = '/src/assets/usage-examples-code/' + categoryKey + "/" + functionKey + "/" + exampleTxtKey.replaceAll(".txt", ".cs");
           if (csharpFiles.length > 0) {
             mdxContent += `import ${importTitle}_csharp from '${csharpFilePath}?raw';\n`;
+          }
+          // Python
+          const pythonFiles = codeFiles.filter(file => file.endsWith('.py'));
+          let pythonFilePath = '/src/assets/usage-examples-code/' + categoryKey + "/" + functionKey + "/" + exampleTxtKey.replaceAll(".txt", ".py");
+          if (csharpFiles.length > 0) {
+            mdxContent += `import ${importTitle}_python from '${pythonFilePath}?raw';\n`;
           }
           // Add python and pascal
 
