@@ -97,11 +97,11 @@ free_response(get_data)
 json_response = json_from_string(response)
 
 # Output the response
-print("UserID => " + str(json_read_number_as_int(json_response, "userId")))
-print("ID     => " + str(json_read_number_as_int(json_response, "id")))
-print("Title  => " + json_read_string(json_response, "title"))
-print("Body   => " + json_read_string(json_response, "body"))
-print("================")
+write_line("UserID => " + str(json_read_number_as_int(json_response, "userId")))
+write_line("ID     => " + str(json_read_number_as_int(json_response, "id")))
+write_line("Title  => " + json_read_string(json_response, "title"))
+write_line("Body   => " + json_read_string(json_response, "body"))
+write_line("================")
 ```
 
   </TabItem>
@@ -176,7 +176,7 @@ free_response(get_data)
 
 # To access each JSON key value pair the string should be split to an vector<json>
 # objects for simplicity sake we output just the string here.
-print(response)
+write_line(response)
 
 ```
 
@@ -303,12 +303,12 @@ free_response(get_data)
 
 # Output the response
 json_response = json_from_string(response)
-print("Following resource has been created")
-print("UserID => " + str(json_read_number_as_int(json_response, "userId")))
-print("ID     => " + str(json_read_number_as_int(json_response, "id")))
-print("Title  => " + json_read_string(json_response, "title"))
-print("Body   => " + json_read_string(json_response, "body"))
-print("================")
+write_line("Following resource has been created")
+write_line("UserID => " + str(json_read_number_as_int(json_response, "userId")))
+write_line("ID     => " + str(json_read_number_as_int(json_response, "id")))
+write_line("Title  => " + json_read_string(json_response, "title"))
+write_line("Body   => " + json_read_string(json_response, "body"))
+write_line("================")
 ```
 
   </TabItem>
