@@ -236,8 +236,8 @@ int main()
     // Output the response
     json json_response = json_from_string(response);
     write_line("Following resource has been created");
-    write_line("UserID => " + to_string(json_read_number_as_int(json_response, "userId")));
-    write_line("ID     => " + to_string(json_read_number_as_int(json_response, "id")));
+    write_line("UserID => " + std::to_string(json_read_number_as_int(json_response, "userId")));
+    write_line("ID     => " + std::to_string(json_read_number_as_int(json_response, "id")));
     write_line("Title  => " + json_read_string(json_response, "title"));
     write_line("Body   => " + json_read_string(json_response, "body"));
     write_line("================");
