@@ -33,7 +33,7 @@ export default () => {
     fetchData();
   }, []);
 
-  const cardSlots = cards.map(({ name, description, image, video, src, language, rating }) => (
+  const cardSlots = cards.map(({ name, description, image }) => (
     <SwiperSlide key={name}>
       <div className="card gamecard">
         {image !== "" ? (

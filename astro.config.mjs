@@ -38,6 +38,7 @@ export default defineConfig({
         "/src/styles/background.css",
         "/src/styles/cards.css",
         "/src/styles/games.css",
+        "/src/styles/button-styles.css",
       ],
       social: {
         github: "https://github.com/splashkit",
@@ -98,6 +99,10 @@ export default defineConfig({
         {
           label: "Usage Examples",
           autogenerate: { directory: "usage-examples", collapsed: true },
+        },
+        {
+          label: "Games",
+          autogenerate: {directory: "games", collapsed: true},
         },
         {
           label: "Arcade Hackathon Project",
