@@ -1,0 +1,43 @@
+/* Import a cool font for the card titles */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.swiper-slide {
+  background-color: #1a1a1a; /* Dark background color */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
+  overflow: hidden; /* Hide any content that overflows the card */
+}
+
+.gamecard {
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out; /* Add a smooth transition for the hover effect */
+}
+
+.gamecard:hover {
+  transform: scale(1.05); /* Scale up the card on hover */
+}
+
+.gamecard img {
+  width: 100%;
+  height: 120px;
+  border-radius: 5px;
+  object-fit: fill;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow to the image */
+}
+
+.gamecard h3 {
+  font-family: 'Press Start 2P', cursive; /* Use the imported font */
+  font-size: 18px;
+  color: #ff6600; /* Bright orange color for the title */
+  text-shadow: 0 0 5px rgba(255, 102, 0, 0.5); /* Add a subtle glow effect */
+  margin-top: 10px;
+}
+
+.gamecard p {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #ccc; /* Light gray color for the description */
+  margin-top: 5px;
+}
