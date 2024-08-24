@@ -99,6 +99,7 @@ export default defineConfig({
         {
           label: "Games",
           autogenerate: {directory: "games", collapsed: true},
+          badge: "New",
         },
         // {
         //   label: "Arcade Hackathon Project",
