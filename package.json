@@ -4,7 +4,7 @@
   "version": "0.9",
   "scripts": {
     "dev": "npm run generate-mdx && npm run generate-usage-examples-pages && astro dev",
-    "start": "npm run generate-mdx &&  npm run generate-usage-examples-pages && astro dev",
+    "start": "npm run generate-mdx && npm run generate-usage-examples-pages && astro dev",
     "build": "npm run generate-mdx && npm run generate-usage-examples-pages && astro build",
     "preview": "astro preview",
     "astro": "astro",
