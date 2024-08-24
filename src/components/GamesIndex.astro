@@ -4,10 +4,14 @@ import { LinkCard, CardGrid } from "@astrojs/starlight/components";
 interface Frontmatter {
   title: string;
   description?: string;
+  featured?: boolean; // Add featured flag
 }
 
 let posts = await Astro.glob<Frontmatter>("../content/docs/games/*.mdx");
 posts = posts.filter((post) => !post.file.endsWith("index.mdx"));
+
+// Filter posts to include only those marked as featured
+posts = posts.filter((post) => post.frontmatter.featured !== false);
 
 function simplifyFilePath(filePath: string) {
   // Remove leading and trailing slashes

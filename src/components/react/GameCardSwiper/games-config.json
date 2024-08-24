@@ -2,58 +2,69 @@
     "games": [
       {
         "name": "2D Racer",
-        "description": "",
-        "image": ""
+        "description": "A simple game where a car needs to avoid obstructions on the road!",
+        "link": "2d-racer",
+        "featured": false
       },
       {
         "name": "Asteroids",
-        "description": "",
-        "image": ""
+        "description": "Fly around and survive an onslaught of rocks and bosses!",
+        "link": "asteroids",
+        "featured": true
       },
       {
         "name": "Below the Surface",
-        "description": "",
-        "image": ""
+        "description": "Repair the city's pipes and save Thoth from disaster in this thrilling platform adventure!",
+        "link": "below-the-surface",
+        "featured": true
       },
       {
         "name": "DX Ball Game",
-        "description": "",
-        "image": ""
+        "description": "Destroy bricks of a wall to proceed to the next level!",
+        "link": "dx-ball-game",
+        "featured": true
       },
       {
         "name": "Homemade Pong",
-        "description": "",
-        "image": ""
+        "description": "Challenge your reflexes in this fast-paced version of the classic arcade game, Pong!",
+        "link": "homemade-pong",
+        "featured": true
       },
       {
         "name": "Ping Pong",
-        "description": "",
-        "image": ""
+        "description": "Compete in fast-paced, air hockey-style action in a Ping Pong showdown!",
+        "link": "ping-pong",
+        "featured": true
       },
       {
         "name": "Runner Dash",
-        "description": "",
-        "image": ""
+        "description": "Navigate a dynamic grid to collect gems and avoid a relentless enemy!",
+        "link": "runner-dash",
+        "featured": false
       },
       {
         "name": "Sky Surge",
-        "description": "",
-        "image": ""
+        "description": "Navigate through challenges filled with waves of enemies, power-ups and intense battles!",
+        "link": "sky-surge",
+        "featured": true
       },
       {
         "name": "Venture Adventure",
-        "description": "",
-        "image": ""
+        "description": "Navigate puzzles, collect gems, and dodge giant ants in this box-pushing adventure!",
+        "link": "venture-adventure",
+        "featured": true
       },
       {
         "name": "Car Race",
-        "description": "",
-        "image": ""
+        "description": "Avoid collisions and obstacles while navigating at high speed!",
+        "link": "car-race",
+        "featured": false
       },
       {
         "name": "SplashKit Mario",
-        "description": "",
-        "image": ""
+        "description": "Jump, collect coins, and navigate portals in this SplashKit-powered Mario-inspired adventure!",
+        "link": "splashkit-mario",
+        "featured": false
       }
     ]
   }
