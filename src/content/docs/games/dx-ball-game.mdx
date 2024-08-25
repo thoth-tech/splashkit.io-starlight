@@ -7,7 +7,11 @@ sidebar:
   hidden: false
 ---
 
-![DX Ball Game Showcase](/gifs/games-showcase/dx-ball-game-showcase.gif)
+{/* Embedding dynamic JavaScript directly in MDX to generate game gif */}
+<img 
+  src={`/gifs/games-showcase/${frontmatter.title.toLowerCase().replace(/\s+/g, '-')}-showcase.gif`} 
+  alt={`${frontmatter.title} Showcase`} 
+/>
 
 ## Description
 
