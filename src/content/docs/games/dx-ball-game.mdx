@@ -1,6 +1,7 @@
 ---
 title: DX Ball Game
 description: Destroy bricks of a wall to proceed to the next level!
+download-link: "https://download-directory.github.io?url=https://github.com/thoth-tech/DXBallGame/tree/0c6cc44255427fe7e8503134ce2a9f42f8f3a480"
 featured: true
 sidebar:
   hidden: false
@@ -22,8 +23,7 @@ The brick breakout game is a modern reimagining of the classic arcade games "DX-
 <div class="centered-button-container">
   <button
     class="custom-button"
-    onclick="window.open('https://download-directory.github.io?url=https://github.com/thoth-tech/DXBallGame/tree/0c6cc44255427fe7e8503134ce2a9f42f8f3a480', '_blank')"
-  >
+    onclick={`window.open('${frontmatter['download-link']}', '_blank')`}>
     Download
   </button>
 </div>
