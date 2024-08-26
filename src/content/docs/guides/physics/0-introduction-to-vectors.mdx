@@ -8,7 +8,7 @@ lastupdated: 15 Aug 24
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 
-**{frontmatter.description}**  
+**{frontmatter.description}**
 
 Written by: {frontmatter.authors}  
 _Last updated: {frontmatter.lastupdated}_
@@ -52,6 +52,7 @@ One of the key considerations when working with physics in SplashKit is the coor
 Vectors are mathematical constructs used to represent quantities that have both magnitude and direction. Unlike scalars, which only have magnitude (like temperature or mass), vectors can describe more complex concepts like displacement, velocity, and force.
 
 2D vectors are represented in programming as pairs of values `(x, y)`. These values give rise to the two key propertise of vectors:
+
 - **Magnitude** - The length or size of the vector.
 - **Direction** - The orientation of the vector in space.
 
@@ -59,9 +60,9 @@ Vectors are mathematical constructs used to represent quantities that have both 
 
 Vectors are essential in many areas of programming, particularly in:
 
--   **Movement**: To represent the direction and speed of an object.
--   **Forces**: In physics simulations, vectors represent forces acting on objects.
--   **Graphics**: For drawing shapes, determining object positions, and performing transformations like scaling or rotating objects.
+- **Movement**: To represent the direction and speed of an object.
+- **Forces**: In physics simulations, vectors represent forces acting on objects.
+- **Graphics**: For drawing shapes, determining object positions, and performing transformations like scaling or rotating objects.
 
 ### Vector Usage in Programming
 
@@ -77,21 +78,42 @@ To visualise vectors, we will create a simple program using SplashKit to draw ve
 
 We will first need to declare and initialise a vector with some `x` and `y` values:
 
-```cpp
-vector_2d my_vector;
-my_vector.x = 200;
-my_vector.y = 100;
-```
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+    ```cpp 
+    vector_2d my_vector; 
+    my_vector.x = 200; 
+    my_vector.y = 100; 
+    ```
+  </TabItem>
+  <TabItem label="C#">
+    ```csharp 
+    Vector2D myVector = new Vector2D(); 
+    myVector.X = 200; 
+    myVector.Y = 100; 
+    ```
+  </TabItem>
+</Tabs>
 
 - **`vector_2d`** is a structure provided by SplashKit that holds two values, x and y, representing the vector's coordinates in 2D space.
 - **`my_vector`** is an instance of this structure.
 - **`my_vector.x`** and **`my_vector.y`** specify the vector's horizontal and vertical components, respectively. In this example, the vector points to a location that is 200 units to the right and 100 units up from the origin `(0, 0)`.
 
-In our code, we can call the `vector_to_string` function to convert the vector back in to a human-readable string format. 
+In our code, we can call the `vector_to_string` function to convert the vector back in to a human-readable string format.
 
-```cpp
-vector_to_string(my_vector);
-```
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+  ```cpp 
+  vector_to_string(my_vector); 
+  ```
+  </TabItem>
+
+  <TabItem label="C#">
+  ```csharp 
+  SplashKit.VectorToString(myVector) 
+  ```
+  </TabItem>
+</Tabs>
 
 Pulling this all together, we can visualise this vector on a Cartesian plane and view the output of the `vector_to_string` function on the screen.
 
@@ -99,10 +121,13 @@ Pulling this all together, we can visualise this vector on a Cartesian plane and
 
 - The vector is drawn on the grid from the origin `(0, 0)` to the point `(200, 100)` on the plane. The output of the `vector_to_string` function is seen in the top left of the screen with the `x` and `y` values.
 - The **direction** of the vector is represented by the angle that the line makes with the x-axis. This demonstrates how the vector is oriented in 2D space.
-- The **magnitude** of the vector is represented by the length of the red line. 
+- The **magnitude** of the vector is represented by the length of the red line.
 
-<details>
+<details class="custom-details">
 <summary>Use this code in your own IDE to play with the functions for yourself!</summary>
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
 
 ```cpp
 #include "splashkit.h"
@@ -169,36 +194,134 @@ int main()
 
         // Draw the vector_to_string output to the screen
         draw_text(vector_to_string(my_vector), COLOR_BLACK, 10, 10);
-        
+
         refresh_screen(60);
     }
 
     return 0;
 }
 ```
+
+</TabItem> 
+<TabItem label="C#">
+
+```csharp
+using System;
+using SplashKitSDK;
+
+// Constants
+const int GRID_SPACING = 50;
+
+// Function to draw the Cartesian grid
+void DrawCartesianGrid()
+{
+    int screenWidth = SplashKit.ScreenWidth();
+    int screenHeight = SplashKit.ScreenHeight();
+
+    // Draw vertical lines and labels
+    for (int x = 0; x < screenWidth; x += GRID_SPACING)
+    {
+        SplashKit.DrawLine(Color.LightGray, x, 0, x, screenHeight);
+        if (x != screenWidth / 2) // Avoid overlapping with the y-axis label
+        {
+            SplashKit.DrawText((x - screenWidth / 2).ToString(), Color.Black, x, screenHeight / 2 + 5);
+        }
+    }
+
+    // Draw horizontal lines and labels
+    for (int y = 0; y < screenHeight; y += GRID_SPACING)
+    {
+        SplashKit.DrawLine(Color.LightGray, 0, y, screenWidth, y);
+        if (y != screenHeight / 2) // Avoid overlapping with the x-axis label
+        {
+            SplashKit.DrawText((screenHeight / 2 - y).ToString(), Color.Black, screenWidth / 2 + 5, y);
+        }
+    }
+
+    // Draw x-axis and y-axis
+    SplashKit.DrawLine(Color.Black, 0, screenHeight / 2, screenWidth, screenHeight / 2); // x-axis
+    SplashKit.DrawLine(Color.Black, screenWidth / 2, 0, screenWidth / 2, screenHeight);   // y-axis
+
+    // Label the origin
+    SplashKit.DrawText("0", Color.Black, screenWidth / 2 + 5, screenHeight / 2 + 5);
+}
+
+// Main entry point using top-level statements
+var window = SplashKit.OpenWindow("Introduction to Vectors", 800, 600);
+
+// Define a vector
+Vector2D myVector = new Vector2D();
+myVector.X = 200;
+myVector.Y = 100;
+
+// Define the origin (center of the window)
+Point2D origin = new Point2D();
+origin.X = 400;
+origin.Y = 300;
+
+// Main loop
+while (!SplashKit.WindowCloseRequested("Introduction to Vectors"))
+{
+    SplashKit.ProcessEvents();
+    SplashKit.ClearScreen(Color.White);
+
+    // Draw Cartesian grid
+    DrawCartesianGrid();
+
+    // Draw the vector as a line from the center of the screen
+    SplashKit.DrawLine(Color.Red, origin.X, origin.Y, origin.X + myVector.X, origin.Y - myVector.Y);
+
+    // Draw the vector_to_string output to the screen
+    SplashKit.DrawText(SplashKit.VectorToString(myVector), Color.Black, 10, 10);
+
+    SplashKit.RefreshScreen(60);
+}
+```
+</TabItem> 
+</Tabs>
 </details>
 
+
 ### Creating Vectors from Points
+
 To create a vector from two specific points in 2D space, we use the `vector_point_to_point` function. This function computes a vector representing the direction and distance from one point to another.
 
 The `vector_point_to_point` function is useful because it calculates the vector that represents the direction and distance from one point to another. This functionality is particularly valuable in various applications:
+
 - **Character Movement**: In games, this function helps determine the direction and distance a character needs to move to reach a specific destination.
 - **Impact Calculations**: When detecting collisions or interactions between objects, you can use `vector_point_to_point` to compute the vector representing the direction of impact.
 - **Vector Addition/Subtraction**: You can use the resulting vector from `vector_point_to_point` to perform further vector operations, such as addition or subtraction, to achieve complex transformations.
 
 Let's see it in action. Suppose we have two points, `start` and `end_pt`. To compute the vector from `start` to `end_pt`, you can use:
 
-```cpp
-point_2d start = {-100, -150};
-point_2d end_pt = {100, 150};
+<Tabs syncKey="code-language">
+    <TabItem label="C++">
+    ```cpp
+    point_2d start = {-100, -150};
+    point_2d end_pt = {100, 150};
 
-vector_2d v = vector_point_to_point(start, end_pt);
-```
+    vector_2d v = vector_point_to_point(start, end_pt);
+    ```
+    </TabItem>
+    <TabItem label="C#">
+    ```csharp
+    Point2D start = new Point2D { X = -100, Y = -150 };
+    Point2D endPt = new Point2D { X = 100, Y = 150 };
+
+    Vector2D v = SplashKit.VectorPointToPoint(start, endPt);
+    ```
+    </TabItem>
+</Tabs>
+
+
 
 ![Vector Point to Point](./images/vector-point-to-point.png)
 
-<details>
+<details class="custom-details">
 <summary>Use this code in your own IDE to play with the functions for yourself!</summary>
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
 
 ```cpp
 #include "splashkit.h"
@@ -266,14 +389,93 @@ int main()
 
         // Draw the vector_to_string output to the screen
         draw_text("Vector: " + vector_to_string(v), COLOR_BLACK, 10, 10);
-        
+
         refresh_screen(60);
     }
 
     return 0;
 }
 ```
+</TabItem> 
+<TabItem label="C#">
+
+```csharp
+using SplashKitSDK;
+using System;
+
+public class Program
+{
+    private const int GRID_SPACING = 50;
+
+    public static void DrawCartesianGrid()
+    {
+        // Draw vertical lines and labels
+        for (int x = 0; x < SplashKit.ScreenWidth(); x += GRID_SPACING)
+        {
+            SplashKit.DrawLine(Color.LightGray, x, 0, x, SplashKit.ScreenHeight());
+            if (x != SplashKit.ScreenWidth() / 2) // Avoid overlapping with the y-axis label
+            {
+                SplashKit.DrawText((x - SplashKit.ScreenWidth() / 2).ToString(), Color.Black, x, SplashKit.ScreenHeight() / 2 + 5);
+            }
+        }
+
+        // Draw horizontal lines and labels
+        for (int y = 0; y < SplashKit.ScreenHeight(); y += GRID_SPACING)
+        {
+            SplashKit.DrawLine(Color.LightGray, 0, y, SplashKit.ScreenWidth(), y);
+            if (y != SplashKit.ScreenHeight() / 2) // Avoid overlapping with the x-axis label
+            {
+                SplashKit.DrawText((SplashKit.ScreenHeight() / 2 - y).ToString(), Color.Black, SplashKit.ScreenWidth() / 2 + 5, y);
+            }
+        }
+
+        // Draw x-axis and y-axis
+        SplashKit.DrawLine(Color.Black, 0, SplashKit.ScreenHeight() / 2, SplashKit.ScreenWidth(), SplashKit.ScreenHeight() / 2); // x-axis
+        SplashKit.DrawLine(Color.Black, SplashKit.ScreenWidth() / 2, 0, SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight());   // y-axis
+
+        // Label the origin
+        SplashKit.DrawText("0", Color.Black, SplashKit.ScreenWidth() / 2 + 5, SplashKit.ScreenHeight() / 2 + 5);
+    }
+
+    public static void Main()
+    {
+        SplashKit.OpenWindow("Vector Point to Point Example", 800, 600);
+
+        Point2D start = new Point2D { X = -100, Y = -150 };
+        Point2D endPt = new Point2D { X = 100, Y = 150 };
+
+        Vector2D v = SplashKit.VectorPointToPoint(start, endPt);
+
+        while (!SplashKit.WindowCloseRequested("Vector Point to Point Example"))
+        {
+            SplashKit.ProcessEvents();
+            SplashKit.ClearScreen(Color.White);
+
+            // Draw Cartesian grid
+            DrawCartesianGrid();
+
+            // Draw the vector as a line from start to end point
+            SplashKit.DrawLine(Color.Red, start.X + SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight() / 2 - start.Y,
+                               endPt.X + SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight() / 2 - endPt.Y);
+
+            // Draw labels for the start and end points
+            SplashKit.DrawText($"Start ({start.X}, {start.Y})", Color.Black,
+                               start.X + SplashKit.ScreenWidth() / 2 + 5, SplashKit.ScreenHeight() / 2 - start.Y + 5);
+            SplashKit.DrawText($"End ({endPt.X}, {endPt.Y})", Color.Black,
+                               endPt.X + SplashKit.ScreenWidth() / 2 + 5, SplashKit.ScreenHeight() / 2 - endPt.Y + 5);
+
+            // Draw the vector_to_string output to the screen
+            SplashKit.DrawText($"Vector: {SplashKit.VectorToString(v)}", Color.Black, 10, 10);
+
+            SplashKit.RefreshScreen(60);
+        }
+    }
+}
+```
+</TabItem> 
+</Tabs>
 </details>
 
 ### Conclusion
+
 Vectors are an exciting concept in programming that help us represent and manipulate quantities with both magnitude and direction. From positioning objects in 2D space to simulating movement and forces, understanding vectors helps us to create dynamic and interactive applications.

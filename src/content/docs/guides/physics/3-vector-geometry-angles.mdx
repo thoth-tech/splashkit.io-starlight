@@ -45,9 +45,11 @@ The `vector_angle` function determines the angle of a vector relative to the x-a
 
 ![Vector Angles](./images/vector-angles.PNG)
 
-<details>
+<details class="custom-details">
 <summary>Use this code in your own IDE to play with the functions for yourself!</summary>
 
+<Tabs syncKey="code-language">
+<TabItem label="C++">
 ```cpp
 #include "splashkit.h"
 
@@ -119,8 +121,84 @@ int main()
     return 0;
 }
 ```
-</details>
+</TabItem> 
+<TabItem label="C#">
+```csharp
+using System;
+using SplashKitSDK;
 
+// Define constants
+const int GRID_SPACING = 50;
+
+void DrawCartesianGrid()
+{
+    int screenWidth = SplashKit.ScreenWidth();
+    int screenHeight = SplashKit.ScreenHeight();
+    int centerX = screenWidth / 2;
+    int centerY = screenHeight / 2;
+
+    for (int x = 0; x < screenWidth; x += GRID_SPACING)
+    {
+        SplashKit.DrawLine(Color.LightGray, x, 0, x, screenHeight);
+        if (x != centerX)
+        {
+            SplashKit.DrawText((x - centerX).ToString(), Color.Black, x, centerY + 5);
+        }
+    }
+
+    for (int y = 0; y < screenHeight; y += GRID_SPACING)
+    {
+        SplashKit.DrawLine(Color.LightGray, 0, y, screenWidth, y);
+        if (y != centerY)
+        {
+            SplashKit.DrawText((centerY - y).ToString(), Color.Black, centerX + 5, y);
+        }
+    }
+
+    SplashKit.DrawLine(Color.Black, 0, centerY, screenWidth, centerY); // x-axis
+    SplashKit.DrawLine(Color.Black, centerX, 0, centerX, screenHeight); // y-axis
+    SplashKit.DrawText("0", Color.Black, centerX + 5, centerY + 5);
+}
+
+void DrawVectorWithAngle(Point2D start, Vector2D v, Color c, string label)
+{
+    Point2D end = new Point2D { X = start.X + v.X, Y = start.Y + v.Y }; // End point of the vector
+    SplashKit.DrawLine(
+        c,
+        start.X + SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight() / 2 - start.Y,
+        end.X + SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight() / 2 - end.Y
+    );
+
+    // Label the vector
+    SplashKit.DrawText(label, c, end.X + SplashKit.ScreenWidth() / 2 + 10, SplashKit.ScreenHeight() / 2 - end.Y);
+}
+
+// Create window
+SplashKit.OpenWindow("Vector Angle Example", 800, 600);
+
+// Example vector
+Vector2D myVector = new Vector2D() { X = 100, Y = 50 };
+
+while (!SplashKit.WindowCloseRequested("Vector Angle Example"))
+{
+    SplashKit.ProcessEvents();
+    SplashKit.ClearScreen(Color.White);
+
+    DrawCartesianGrid();
+
+    // Draw the vector on the Cartesian plane
+    DrawVectorWithAngle(new Point2D() { X = 0, Y = 0 }, myVector, Color.Blue, "Vector");
+
+    // Display the vector angle
+    double myVectorAngle = SplashKit.VectorAngle(myVector);
+    SplashKit.DrawText($"Angle: {myVectorAngle:F2} degrees", Color.Black, 10, 10);
+
+    SplashKit.RefreshScreen();
+}
+```
+</TabItem> 
+</Tabs>
+</details>
 
 Understanding the angle of a vector is crucial in various game development scenarios:
 
@@ -146,9 +224,11 @@ Consider the following diagram:
 - The dot product of Vector A and Vector C is zero, which means that they are perpendicular to one another.
 - The dot product of Vector A and Vector D is negative, which means that they are pointing in relatively different directions.
 
-<details>
+<details class="custom-details">
 <summary>Use this code in your own IDE to play with the functions for yourself!</summary>
 
+<Tabs syncKey="code-language">
+<TabItem label="C++">
 ```cpp
 #include "splashkit.h"
 using std::to_string;
@@ -199,7 +279,7 @@ int main()
     vector_2d vector_a = {100, 100};
     vector_2d vector_b = {100, 80};
     vector_2d vector_c = {100, -100};
-    vector_2d vector_d = {-100, -80};     
+    vector_2d vector_d = {-100, -80};
 
     // Starting point for vectors (origin)
     point_2d origin = {0, 0};
@@ -233,16 +313,122 @@ int main()
     return 0;
 }
 ```
+</TabItem> 
+<TabItem label="C#">
+```csharp
+using System;
+using SplashKitSDK;
+
+// Define constants
+const int GRID_SPACING = 50;
+
+// Function to draw the Cartesian grid
+void DrawCartesianGrid()
+{
+    int screenWidth = SplashKit.ScreenWidth();
+    int screenHeight = SplashKit.ScreenHeight();
+    int centerX = screenWidth / 2;
+    int centerY = screenHeight / 2;
+
+    for (int x = 0; x < screenWidth; x += GRID_SPACING)
+    {
+        SplashKit.DrawLine(Color.LightGray, x, 0, x, screenHeight);
+        if (x != centerX)
+        {
+            SplashKit.DrawText((x - centerX).ToString(), Color.Black, x, centerY + 5);
+        }
+    }
+
+    for (int y = 0; y < screenHeight; y += GRID_SPACING)
+    {
+        SplashKit.DrawLine(Color.LightGray, 0, y, screenWidth, y);
+        if (y != centerY)
+        {
+            SplashKit.DrawText((centerY - y).ToString(), Color.Black, centerX + 5, y);
+        }
+    }
+
+    SplashKit.DrawLine(Color.Black, 0, centerY, screenWidth, centerY); // x-axis
+    SplashKit.DrawLine(Color.Black, centerX, 0, centerX, screenHeight); // y-axis
+    SplashKit.DrawText("0", Color.Black, centerX + 5, centerY + 5);
+}
+
+// Function to draw a vector
+void DrawVector(Point2D start, Vector2D v, Color c, string label, int xOffset, int yOffset)
+{
+    Point2D end = new Point2D { X = start.X + v.X, Y = start.Y + v.Y };
+    SplashKit.DrawLine(
+        c,
+        start.X + SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight() / 2 - start.Y,
+        end.X + SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight() / 2 - end.Y
+    );
+    SplashKit.DrawText(label, c, end.X + SplashKit.ScreenWidth() / 2 + xOffset, SplashKit.ScreenHeight() / 2 - end.Y + yOffset);
+}
+
+// Create window
+SplashKit.OpenWindow("Vector Dot Product Example", 800, 600);
+
+// Define vectors
+Vector2D vectorA = new Vector2D() { X = 100, Y = 100 };
+Vector2D vectorB = new Vector2D() { X = 100, Y = 80 };
+Vector2D vectorC = new Vector2D() { X = 100, Y = -100 };
+Vector2D vectorD = new Vector2D() { X = -100, Y = -80 };
+
+// Starting point for vectors (origin)
+Point2D origin = new Point2D() { X = 0, Y = 0 };
+
+// Calculate the dot product
+double dotProductResultAB = SplashKit.DotProduct(vectorA, vectorB);
+double dotProductResultAC = SplashKit.DotProduct(vectorA, vectorC);
+double dotProductResultAD = SplashKit.DotProduct(vectorA, vectorD);
+
+while (!SplashKit.WindowCloseRequested("Vector Dot Product Example"))
+{
+    SplashKit.ProcessEvents();
+    SplashKit.ClearScreen(Color.White);
+    DrawCartesianGrid();
+
+    // Draw the vectors
+    DrawVector(origin, vectorA, Color.Red, "Vector A", 10, -10);
+    DrawVector(origin, vectorB, Color.Blue, "Vector B", 10, 10);
+    DrawVector(origin, vectorC, Color.DarkGreen, "Vector C", 10, 10);
+    DrawVector(origin, vectorD, Color.Orange, "Vector D", 10, 10);
+
+    // Display the dot product results
+    SplashKit.DrawText($"Dot Product (A-B): {dotProductResultAB}", Color.Black, 10, 10);
+    SplashKit.DrawText($"Dot Product (A-C): {dotProductResultAC}", Color.Black, 10, 30);
+    SplashKit.DrawText($"Dot Product (A-D): {dotProductResultAD}", Color.Black, 10, 50);
+
+    SplashKit.RefreshScreen();
+}
+```
+</TabItem> 
+</Tabs>
 </details>
 
 One scenario where this may be useful is to determine if two game objects are facing each other or moving in similar directions. For instance, you can use it to check if an enemy is facing the player by comparing their direction vectors:
 
-```cpp
-double dot = dot_product(player_direction, enemy_direction);
-if (dot > 0) {
-    // Objects are facing each other
-}
-```
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+  ```cpp 
+  double dot = dot_product(player_direction, enemy_direction);
+  if (dot > 0) 
+  {
+      // Objects are facing each other
+  }
+  ```
+  </TabItem>
+
+  <TabItem label="C#">
+  ```csharp 
+  double dot = DotProduct(playerDirection, enemyDirection);
+  if (dot > 0)
+  {
+	  // Objects are facing each other
+  }
+  ```
+  </TabItem>
+</Tabs>
 
 The dot product is used for other useful things such as determining the vector of a reflection, for example a ball bouncing off of a surface, however that is not within the scope of this tutorial. It is crucial to understand that using the dot product and calculating the angle between two vectors are both valuable techniques in vector mathematics, but they serve different purposes and have different advantages. 
 
@@ -263,9 +449,11 @@ Observe the following diagram:
 
 Note that the green line that connects the two vectors is 135 degrees from the x axis, and not the angle created between the two lines. 
 
-<details>
+<details class="custom-details">
 <summary>Use this code in your own IDE to play with the functions for yourself!</summary>
 
+<Tabs syncKey="code-language">
+<TabItem label="C++">
 ```cpp
 #include "splashkit.h"
 
@@ -338,6 +526,90 @@ int main()
     return 0;
 }
 ```
+</TabItem> 
+<TabItem label="C#">
+```csharp
+using System;
+using SplashKitSDK;
+
+// Define constants
+const int GRID_SPACING = 50;
+
+// Function to draw the Cartesian grid
+void DrawCartesianGrid()
+{
+    int screenWidth = SplashKit.ScreenWidth();
+    int screenHeight = SplashKit.ScreenHeight();
+    int centerX = screenWidth / 2;
+    int centerY = screenHeight / 2;
+
+    for (int x = 0; x < screenWidth; x += GRID_SPACING)
+    {
+        SplashKit.DrawLine(Color.LightGray, x, 0, x, screenHeight);
+        if (x != centerX)
+        {
+            SplashKit.DrawText((x - centerX).ToString(), Color.Black, x, centerY + 5);
+        }
+    }
+
+    for (int y = 0; y < screenHeight; y += GRID_SPACING)
+    {
+        SplashKit.DrawLine(Color.LightGray, 0, y, screenWidth, y);
+        if (y != centerY)
+        {
+            SplashKit.DrawText((centerY - y).ToString(), Color.Black, centerX + 5, y);
+        }
+    }
+
+    SplashKit.DrawLine(Color.Black, 0, centerY, screenWidth, centerY); // x-axis
+    SplashKit.DrawLine(Color.Black, centerX, 0, centerX, screenHeight); // y-axis
+    SplashKit.DrawText("0", Color.Black, centerX + 5, centerY + 5);
+}
+
+// Function to draw a vector
+void DrawVector(Point2D start, Vector2D v, Color c, string label)
+{
+    Point2D end = new Point2D { X = start.X + v.X, Y = start.Y + v.Y };
+    SplashKit.DrawLine(
+        c,
+        start.X + SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight() / 2 - start.Y,
+        end.X + SplashKit.ScreenWidth() / 2, SplashKit.ScreenHeight() / 2 - end.Y
+    );
+    SplashKit.DrawText(label, c, end.X + SplashKit.ScreenWidth() / 2 + 10, SplashKit.ScreenHeight() / 2 - end.Y);
+}
+
+// Create window
+SplashKit.OpenWindow("Angle Between Vectors Example", 800, 600);
+
+// Define vectors
+Vector2D vector1 = new Vector2D() { X = 200, Y = 100 }; // Example vector 1
+Vector2D vector2 = new Vector2D() { X = 100, Y = 200 }; // Example vector 2
+
+while (!SplashKit.WindowCloseRequested("Angle Between Vectors Example"))
+{
+    SplashKit.ProcessEvents();
+    SplashKit.ClearScreen(Color.White);
+    DrawCartesianGrid();
+
+    // Draw vectors
+    DrawVector(new Point2D(), vector1, Color.Blue, "Vector 1");
+    DrawVector(new Point2D(), vector2, Color.Red, "Vector 2");
+    DrawVector(
+        new Point2D { X = vector1.X, Y = vector1.Y },
+        SplashKit.VectorSubtract(vector2, vector1),
+        Color.Green,
+        ""
+    );
+
+    // Calculate and display the angle between vectors
+    double angle = SplashKit.AngleBetween(vector1, vector2);
+    SplashKit.DrawText($"Angle: {angle} degrees", Color.Black, 10, 10);
+
+    SplashKit.RefreshScreen();
+}
+```
+</TabItem> 
+</Tabs>
 </details>
 
 ### Conclusion

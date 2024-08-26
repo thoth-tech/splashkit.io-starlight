@@ -48,7 +48,7 @@ SplashKit offers the `vector_magnitude_sqared` function which produces a value c
 
 $$ \text{Magnitude Squared} = x^2 + y^2 $$
 
-When comparing the lengths of two vectors, you only need to compare their magnitude squared values. This eliminates teh need for square root calculations and speeds up the comparison process. In some performance-critical applications, calculating the magnitude squared value is often more computationally efficient than calculating the magnitude itself, due to it avoiding the computationally expensive square root operation. 
+When comparing the lengths of two vectors, you only need to compare their magnitude squared values. This eliminates the need for square root calculations and speeds up the comparison process. In some performance-critical applications, calculating the magnitude squared value is often more computationally efficient than calculating the magnitude itself, due to it avoiding the computationally expensive square root operation. 
 
 ### Vector Invert
 
@@ -59,12 +59,23 @@ In games or simulations, you might need to reverse the direction of movement or 
 ### Visualising Magnitudes
 The below diagram (and code) graphically represents two vectors and their respective inverse. 
 
-```cpp
-vector_2d my_vector_1;
-my_vector_1.x = 200;
-my_vector_1.y = 100;
-vector_2d inverted_my_vector_1 = vector_invert(my_vector_1);
-```
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+  ```cpp 
+  vector_2d my_vector_1;
+  my_vector_1.x = 200;
+  my_vector_1.y = 100;
+  vector_2d inverted_my_vector_1 = vector_invert(my_vector_1);
+  ```
+  </TabItem>
+
+  <TabItem label="C#">
+  ```csharp 
+  Vector2D myVector1 = new Vector2D() { X = 200, Y = 100 };
+  Vector2D invertedMyVector1 = SplashKit.VectorInvert(myVector1);
+  ```
+  </TabItem>
+</Tabs>
 
 **`Vector 1 (my_vector_1)`**:
 - This vector has coordinates (200, 100) and is drawn in red.
@@ -76,14 +87,17 @@ vector_2d inverted_my_vector_1 = vector_invert(my_vector_1);
 - Its inverse, with coordinates (300, -150), is drawn in violet.
 - Note how the `x` and `y` of the inverse is just the negative value of `my_vector_2`.
 
-```tip
+:::note
 The magnitudes of the inverted vectors are the same as the original vectors because magnitude is a measure of length, which is always positive. Negating the components of a vector does not change its length.
-```
+:::
 
 ![Vector Magnitudes](./images/vector-magnitudes.PNG)
 
-<details>
+<details class="custom-details">
 <summary>Use this code in your own IDE to play with the functions for yourself!</summary>
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
 
 ```cpp
 #include "splashkit.h"
@@ -178,9 +192,99 @@ int main()
     return 0;
 }
 ```
+</TabItem> 
+<TabItem label="C#">
+
+```csharp
+using System;
+using SplashKitSDK;
+
+const int GRID_SPACING = 50;
+
+// Function to draw the Cartesian grid
+void DrawCartesianGrid()
+{
+    int screenWidth = SplashKit.ScreenWidth();
+    int screenHeight = SplashKit.ScreenHeight();
+
+    // Draw vertical lines and labels
+    for (int x = 0; x < screenWidth; x += GRID_SPACING)
+    {
+        SplashKit.DrawLine(Color.LightGray, x, 0, x, screenHeight);
+        if (x != screenWidth / 2) // Avoid overlapping with the y-axis label
+        {
+            SplashKit.DrawText((x - screenWidth / 2).ToString(), Color.Black, x, screenHeight / 2 + 5);
+        }
+    }
+
+    // Draw horizontal lines and labels
+    for (int y = 0; y < screenHeight; y += GRID_SPACING)
+    {
+        SplashKit.DrawLine(Color.LightGray, 0, y, screenWidth, y);
+        if (y != screenHeight / 2) // Avoid overlapping with the x-axis label
+        {
+            SplashKit.DrawText((screenHeight / 2 - y).ToString(), Color.Black, screenWidth / 2 + 5, y);
+        }
+    }
+
+    // Draw x-axis and y-axis
+    SplashKit.DrawLine(Color.Black, 0, screenHeight / 2, screenWidth, screenHeight / 2); // x-axis
+    SplashKit.DrawLine(Color.Black, screenWidth / 2, 0, screenWidth / 2, screenHeight);  // y-axis
+
+    // Label the origin
+    SplashKit.DrawText("0", Color.Black, screenWidth / 2 + 5, screenHeight / 2 + 5);
+}
+
+// Main program
+Window window = SplashKit.OpenWindow("Vector Magnitudes", 800, 600);
+
+// Define vectors
+Vector2D myVector1 = new Vector2D() { X = 200, Y = 100 };
+Vector2D myVector2 = new Vector2D() { X = -300, Y = 150 };
+
+// Define the origin (center of the window)
+Point2D origin = new Point2D() { X = 400, Y = 300 };
+
+// Calculate magnitudes
+double myVector1Magnitude = SplashKit.VectorMagnitude(myVector1);
+double myVector2Magnitude = SplashKit.VectorMagnitude(myVector2);
+
+// Invert vectors
+Vector2D invertedMyVector1 = SplashKit.VectorInvert(myVector1);
+Vector2D invertedMyVector2 = SplashKit.VectorInvert(myVector2);
+
+// Main loop
+while (!SplashKit.WindowCloseRequested(window))
+{
+    SplashKit.ProcessEvents();
+    SplashKit.ClearScreen(Color.White);
+
+    // Draw Cartesian grid
+    DrawCartesianGrid();
+
+    // Draw the vectors as lines from the center of the screen
+    SplashKit.DrawLine(Color.Red, origin.X, origin.Y, origin.X + myVector1.X, origin.Y - myVector1.Y);
+    SplashKit.DrawLine(Color.Blue, origin.X, origin.Y, origin.X + invertedMyVector1.X, origin.Y - invertedMyVector1.Y);
+    SplashKit.DrawLine(Color.Green, origin.X, origin.Y, origin.X + myVector2.X, origin.Y - myVector2.Y);
+    SplashKit.DrawLine(Color.BlueViolet, origin.X, origin.Y, origin.X + invertedMyVector2.X, origin.Y - invertedMyVector2.Y);
+
+    // Display vector properties on the screen
+    SplashKit.DrawText("Vector 2 (G): " + SplashKit.VectorToString(myVector2), Color.Black, 10, 10);
+    SplashKit.DrawText("Inverted 2 (V): " + SplashKit.VectorToString(invertedMyVector2), Color.Black, 10, 30);
+    SplashKit.DrawText("Magnitude: " + myVector2Magnitude.ToString(), Color.Black, 10, 50);
+
+    SplashKit.DrawText("Vector 1 (R): " + SplashKit.VectorToString(myVector1), Color.Black, 10, 550);
+    SplashKit.DrawText("Inverted 1 (B): " + SplashKit.VectorToString(invertedMyVector1), Color.Black, 10, 570);
+    SplashKit.DrawText("Magnitude: " + myVector1Magnitude.ToString(), Color.Black, 10, 590);
+
+    SplashKit.RefreshScreen(60);
+}
+```
+</TabItem> 
+</Tabs>
 </details>
 
-### Why Not Use Magnitude Squared to Compare?
+### Why Not Use `Magnitude Squared` to Compare?
 While both have the same theoretical time complexity, the square root operation in the magnitude calculation is generally more computationally intensive than addition or multiplication. In practical terms, calculating the magnitude will typically take longer due to the square root operation.
 
 While magnitude squared is efficient for comparisons, it is less intuitive for humans to interpret compared to the actual magnitude of a vector. For displaying and understanding vector lengths in a graphical context, the actual magnitude is more meaningful and easier to comprehend.
