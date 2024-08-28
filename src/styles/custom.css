@@ -2,7 +2,6 @@
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Gaegu&display=swap");
 
-/* Dark mode colors. */
 :root {
   --splashkit-blue: #00A9E0;
   --purple-hsl: 255, 60%, 60%;
