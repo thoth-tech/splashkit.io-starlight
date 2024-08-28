@@ -1,9 +1,9 @@
 ---
-title: Using Mouse Inputs
-description: Introductory Mouse Input functionality guide
-category: Guides
-author: Various Authors
-lastupdated: July 2024
+Title: Using Mouse Inputs
+Description: Introductory Mouse Input Functionality Guide
+Category: Guides
+Author: Various Authors
+Lastupdated: August 2024
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -16,12 +16,12 @@ _Last updated: {frontmatter.lastupdated}_
 
 ## Mouse Button Functionality
 
-Here are some functions that are used to handle mouse button inputs. These functions all use SplashKit's [Mouse Button](/api/input/#mouse-button) data type for the argument and check if the specified button has been clicked, held down, or released.
+Here are some functions used to handle mouse button inputs with SplashKit. These functions utilize SplashKit's [Mouse Button](/api/input/#mouse-button) data type to determine if a specified button has been clicked, held down, or released.
+
 
 ### List of Mouse Button Enum Values
 
-[Mouse Button](/api/input/#mouse-button) is an enumeration used by SplashKit to read inputs from the mouse. Understanding how to handle mouse buttons is crucial for developers who want users to control their programs using the mouse.
-
+The [Mouse Button](/api/input/#mouse-button) enumeration in SplashKit is used to read inputs from the mouse, and mastering its use is essential for developers who want to enable mouse-based controls in their applications.
 <Tabs syncKey="code-language">
   <TabItem label="C++">
 
@@ -65,7 +65,7 @@ Here are some functions that are used to handle mouse button inputs. These funct
 
 [Mouse Clicked](/api/input/#mouse-clicked) is a boolean function that checks if the specified `Mouse Button` has been clicked since the last time [Process Events](/api/input/#process-events) was called.
 
-Here is a simple example using the left and right mouse buttons:
+Here is a simple example demonstrating how to use the left and right mouse buttons:
 
 <Tabs syncKey="code-language">
   <TabItem label="C++">
@@ -133,9 +133,9 @@ Here is a simple example using the left and right mouse buttons:
   ```
 
   </TabItem>
-  <TabItem label="python">
+  <TabItem label="Python">
   
-  ```python
+  ```Python
 from splashkit import *
 COLOR_RED = color_red()
 COLOR_YELLOW = color_yellow()
@@ -256,9 +256,9 @@ Here is a simple example using the left and right mouse buttons:
   ```
 
   </TabItem>
-  <TabItem label="python">
+  <TabItem label="Python">
   
-  ```python
+  ```Python
   from splashkit import *
 
 
@@ -374,9 +374,9 @@ Here is a simple example using the left mouse button:
   ```
 
   </TabItem>
-<TabItem label="python">
+<TabItem label="Python">
 
-```python
+```Python
 from splashkit import *
 
 
@@ -516,9 +516,9 @@ Here is an example using the left mouse button combined with horizontal movement
   ```
 
   </TabItem>
-  <TabItem label="python">
+  <TabItem label="Python">
 
-  ```python
+  ```Python
   from splashkit import *
 
 def main():
@@ -568,7 +568,7 @@ if __name__ == "__main__":
 
 [Mouse Wheel Scroll](/api/input/#mouse-wheel-scroll) returns the distance and direction of the mouse scroll since the last time `Process Events` was called. Like the previous function, this function returns the `Vector 2D` data type.
 
-Here is an example using vertical scrolling to change the hue of the screen colour:
+Here is an example using vertical scrolling to change the hue of the screen color:
 
 <Tabs syncKey="code-language">
   <TabItem label="C++">
@@ -646,9 +646,9 @@ Here is an example using vertical scrolling to change the hue of the screen colo
   ```
 
   </TabItem>
-  <TabItem label="python">
+  <TabItem label="Python">
   
-  ```python
+  ```Python
   from splashkit import *
 
 def main():
@@ -688,7 +688,7 @@ if __name__ == "__main__":
 
 ## Mouse Location Functionality
 
-Now that we have learned how to handle mouse inputs and movements, let's look at how to
+Having explored how to handle mouse inputs and movements, let's look at how to
 use the mouse's location in the window, which can be used in your program to make the experience more interactive. Combined with the mouse input functions, it can be used to spawn items where the player clicked or respond to the player clicking where an item is located.
 
 ### Mouse Position
@@ -747,9 +747,9 @@ Here is a simple example that draws a circle at the mouse position:
   ```
 
   </TabItem>
-  <TabItem label="python">
+  <TabItem label="Python">
   
-  ```python
+  ```Python
   from splashkit import *
 
 def main():
@@ -837,9 +837,9 @@ Here is a simple example that displays the mouse position vector as a line:
   ```
 
   </TabItem>
-  <TabItem label="python">
+  <TabItem label="Python">
   
-  ```python
+  ```Python
   from splashkit import *
 
 def main():
@@ -916,36 +916,36 @@ Here is an example using the left mouse button to drag a "curtain" across the sc
   <TabItem label="C#">
 
   ```csharp
-  using SplashKitSDK;
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+float x = 0;
 
-  float x = 0;
+OpenWindow("Mouse Location", 800, 600);
 
-  SplashKit.OpenWindow("Mouse Location", 800, 600);
+while (!WindowCloseRequested("Mouse Location"))
+{
+    // process user input events
+    ProcessEvents();
 
-  while (!SplashKit.WindowCloseRequested("Mouse Location"))
-  {
-      // process user input events
-      SplashKit.ProcessEvents();
+    if (MouseDown(MouseButton.LeftButton))
+    {
+        x = MouseX();
+    }
 
-      if (SplashKit.MouseDown(MouseButton.LeftButton))
-      {
-          x = SplashKit.MouseX();
-      }
+    ClearScreen(ColorWhite());
+    FillCircle(ColorBlue(), 400, 300, 100);
+    // draw purple "curtain" from left side of screen to x coordinate of mouse
+    FillRectangle(ColorPurple(), 0, 0, x, ScreenHeight());
+    RefreshScreen(60);
+}
 
-      SplashKit.ClearScreen(SplashKit.ColorWhite());
-      SplashKit.FillCircle(SplashKit.ColorBlue(), 400, 300, 100);
-      // draw purple "curtain" from left side of screen to x coordinate of mouse
-      SplashKit.FillRectangle(SplashKit.ColorPurple(), 0, 0, x, SplashKit.ScreenHeight());
-      SplashKit.RefreshScreen(60);
-  }
-
-  SplashKit.CloseAllWindows();
+CloseAllWindows();
   ```
 
   </TabItem>
-  <TabItem label="python">
+  <TabItem label="Python">
   
-  ```python
+  ```Python
   from splashkit import *
 
 def main():
@@ -1055,9 +1055,9 @@ Here is an example using the left mouse button to drag a "curtain/blind" down th
   ```
 
   </TabItem>
-  <TabItem label="python">
+  <TabItem label="Python">
   
-  ```python
+  ```Python
   from splashkit import *
 
 def main():
@@ -1189,9 +1189,9 @@ Here is a simple example where the mouse "disappears in a black hole":
   ```
 
   </TabItem>
-  <TabItem label="python">
+  <TabItem label="Python">
   
-  ```python
+  ```Python
   from splashkit import *
 
 def main():
@@ -1313,9 +1313,9 @@ Here is a simple example where the mouse is only visible in the "spot light":
   ```
 
   </TabItem>
-  <TabItem label="python">
+  <TabItem label="Python">
   
-  ```python
+  ```Python
   from splashkit import *
 
 def main():
