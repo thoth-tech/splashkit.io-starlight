@@ -91,8 +91,8 @@ This command creates sub-folders for each type of resource. One of these is name
   </TabItem>
 </Tabs>
 
-In this code example, we're first using [Json From File](/api/json/#json-from-file) to load a JSON object with the details from the `game_data.json` file.
-Then we are getting the value of the key that matches `gameTitle` using [Json Read String](/api/json/#json-read-string). We write this to the console and free the JSON object using [Free Json](/api/json/#free-json) as we exit. By freeing the JSON object we are deallocating any memory that has been assigned to it, preventing any memory-related errors such as a `Segmentation Fault`. We can build this program with the following command.
+In this code example, we first use [Json From File](/api/json/#json-from-file) to load a JSON object containing details from the `game_data.json` file.
+Next, we retrieve the value associated with the `gameTitle` key using [Json Read String](/api/json/#json-read-string)and output it to the console. Finally, we free the JSON object using [Free Json](/api/json/#free-json) before exiting the program. This deallocates any memory that was allocated to the JSON object, helping to prevent memory-related errors such as `Segmentation Fault`. We can build this program using the following command.
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
@@ -132,7 +132,7 @@ dotnet run
   
 </Tabs>
 
-When we run this program it should output the following to the console:
+When we run this program, it should display the following output in the console: 
 
 ```plaintext
 Game Title: My New Game
@@ -195,4 +195,4 @@ else
 </TabItem>
 </Tabs>
 
-We have now loaded up our JSON file and retrieved the value stored with the `gameTitle` key. In the next tutorial we explore further how we can retrieve values stored in a JSON object.
+We have successfully loaded our JSON file and retrieved the value associated with the `gameTitle` key. In the next tutorial, we'll delve deeper into retrieving other values stored within a JSON object.
