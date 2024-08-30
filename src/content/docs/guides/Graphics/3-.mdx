@@ -1,0 +1,207 @@
+---
+title: Graphics application program
+description: This article mainly describes the related functions of creating graphics applications based on SplashKit. We will discuss how to use the API in SplashKit to create graphics application tools.
+category: Guides
+author: Yuyang Yang
+lastupdated: Aug 24 2024
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+**{frontmatter.description}**  
+Written by: {frontmatter.author}  
+_Last updated: {frontmatter.lastupdated}_
+
+---
+
+Use SplashKit to build a graphics application that allows users to create, edit, and save graphics, such as flowcharts, UML diagrams, and more.
+
+
+## Graphics creation and Management
+
+
+In this section, we'll detail how to implement the shape creation and management functionality using design patterns and code examples.
+
+#### **Model Design**
+We start by designing a `ShapeModel` struct (or class) to represent various basic shapes. This model encapsulates attributes like position, size, color, and shape type. This design adheres to the **Object-Oriented Programming (OOP)** principle of **encapsulation**, where the properties and behaviors of a shape are bundled into a single entity.
+
+**Code Example:**
+```cpp
+struct ShapeModel
+{
+    double x, y;          // Shape's starting position
+    double width, height; // Shape's width and height
+    string color;         // Shape's color
+    double rotation;      // Shape's rotation angle
+    string type;          // Shape type (Rectangle, Circle, Triangle, etc.)
+};
+```
+The `ShapeModel` can represent various shapes like rectangles, triangles, etc. The `type` field is used to distinguish between different shapes, allowing the correct drawing function to be called during rendering.
+
+#### **Shape Creation**
+Users can select different shapes from a toolbar and drag them onto the canvas for drawing. We add logic in the code to handle this interaction.
+
+**Code Implementation:**
+```cpp
+if (mouse_clicked(LEFT_BUTTON))
+{
+    ShapeModel newShape;
+    newShape.x = mouse_x();   // Get the X coordinate of the mouse
+    newShape.y = mouse_y();   // Get the Y coordinate of the mouse
+    newShape.width = 100;     // Set default width
+    newShape.height = 100;    // Set default height
+    newShape.color = "Red";   // Set default color
+    newShape.type = "Rectangle";  // Set default type to Rectangle
+    shapes.push_back(newShape);   // Add the new shape to the shapes container
+}
+```
+In this example, a new rectangle (or other shape types) is created at the mouse's location when the left mouse button is clicked. This rectangle is then stored in the `shapes` container.
+
+#### **Shape Management and Rendering**
+Managing the rendering of shapes can be achieved by iterating over the shapes collection and calling the appropriate drawing function based on each shape's type. This enables the application to support multiple shape types.
+
+**Code Implementation:**
+```cpp
+for (const auto& shape : shapes)
+{
+    if (shape.type == "Rectangle")
+    {
+        fill_rectangle(COLOR_RED, shape.x, shape.y, shape.width, shape.height);
+    }
+    else if (shape.type == "Triangle")
+    {
+        fill_triangle(COLOR_RED, shape.x, shape.y, shape.x + shape.width, shape.y, shape.x + shape.width / 2, shape.y - shape.height);
+    }
+    // Add other shape types handling here
+}
+```
+This code snippet renders rectangles and triangles. By checking the `type` field, the correct drawing function is invoked, allowing multiple shape types to be rendered.
+
+In this implementation, we apply the **Factory Method Pattern** to create different shape objects based on user selection. The factory method returns an instance of a specific shape type, which is then stored in a collection. This design not only enhances code flexibility and extensibility but also simplifies shape management and rendering.
+
+With this structure, the program can easily be extended to support additional shape types like circles, lines, etc. You simply need to add logic to handle new shape types in the `ShapeModel` and modify the factory method accordingly.
+
+
+## Graphical operations 
+
+#### Design Pattern Used
+For this part, I employed the **Command Pattern** to handle shape selection and movement. This pattern encapsulates different actions (like selecting and moving shapes) into separate command objects, making the code more modular, easier to maintain, and expandable.
+
+#### Implementation Steps
+
+##### 1. **Detect Shape Selection**
+   - First, we need to identify which shape the user clicked on. This is done by checking if the mouse click position falls within the bounds of any existing shape.
+
+##### 2. **Dragging Shapes**
+   - Once a shape is selected, the user can drag it around by updating the `X` and `Y` coordinates of the shape to follow the mouse’s movement.
+
+##### 3. **Releasing Shapes**
+   - When the user releases the mouse button, the shape stops moving, completing the drag operation.
+
+##### Example Code
+
+```cpp
+#include "splashkit.h"
+#include <vector>
+
+struct ShapeModel
+{
+    double x, y;
+    double width, height;
+    string color;
+    double rotation;
+    string type;
+};
+
+// Function to detect if the mouse is over a shape
+ShapeModel* get_shape_at(vector<ShapeModel>& shapes, double x, double y)
+{
+    for (auto& shape : shapes)
+    {
+        if (shape.type == "Rectangle" && x >= shape.x && x <= (shape.x + shape.width) && y >= shape.y && y <= (shape.y + shape.height))
+        {
+            return &shape;
+        }
+    }
+    return nullptr;
+}
+
+int main()
+{
+    open_window("Drawing Test", 800, 600);
+    vector<ShapeModel> shapes;
+    ShapeModel* selected_shape = nullptr;
+    bool is_moving = false;
+
+    while (!window_close_requested("Drawing Test"))
+    {
+        process_events();
+
+        // Detect mouse click and start dragging a shape
+        if (mouse_down(LEFT_BUTTON) && !is_moving)
+        {
+            selected_shape = get_shape_at(shapes, mouse_x(), mouse_y());
+            if (selected_shape != nullptr)
+            {
+                is_moving = true;
+            }
+            else
+            {
+                // If no shape is selected, create a new one
+                ShapeModel newShape;
+                newShape.x = mouse_x();
+                newShape.y = mouse_y();
+                newShape.width = 100;
+                newShape.height = 100;
+                newShape.color = "Red";
+                newShape.type = "Rectangle";
+                shapes.push_back(newShape);
+            }
+        }
+
+        // Move the selected shape with the mouse
+        if (is_moving && selected_shape != nullptr)
+        {
+            selected_shape->x = mouse_x() - selected_shape->width / 2;
+            selected_shape->y = mouse_y() - selected_shape->height / 2;
+        }
+
+        // Stop dragging when the mouse button is released
+        if (mouse_up(LEFT_BUTTON))
+        {
+            is_moving = false;
+            selected_shape = nullptr;
+        }
+
+        clear_screen(COLOR_WHITE);
+
+        // Draw all shapes
+        for (const auto& shape : shapes)
+        {
+            if (shape.type == "Rectangle")
+            {
+                fill_rectangle(COLOR_RED, shape.x, shape.y, shape.width, shape.height);
+            }
+        }
+
+        refresh_screen(60);
+    }
+
+    return 0;
+}
+```
+
+
+- The `get_shape_at()` function is used to detect whether the mouse click is within a shape, allowing the program to identify which shape, if any, the user has selected.
+- The `is_moving` flag distinguishes between creating a new shape and dragging an existing one.
+- If the user clicks on an existing shape, it will be selected and moved along with the mouse. If the user clicks elsewhere, a new shape will be created.
+- When the mouse button is released, the dragging operation ends, and the shape remains in its new position.
+
+This approach enables the user to drag and reposition shapes freely, facilitating dynamic diagram creation on the canvas.
+
+
+## Wiring function 
+
+
+## Save and load the graphic layout
+
