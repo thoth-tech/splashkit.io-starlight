@@ -1,3 +1,3 @@
-### Draw_sprite() usage exaple
+### Draw_sprite() usage example
 
 The following code is an example of using [draw sprite](https://splashkit.io/api/sprites/#draw-sprite-1) to create a sprite of a 2d game character and draw it on a splashkit window.
