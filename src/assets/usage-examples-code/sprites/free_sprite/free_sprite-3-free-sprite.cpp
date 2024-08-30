@@ -1,42 +1,50 @@
-/**
- * Usage Example: freeing a sprite
- **/
-
 #include "splashkit.h"
 
 int main()
 {
-    // widow to draw the sprite on
+    // Window to draw the sprite on
     window start = open_window("create_sprite", 600, 600);
 
-    // bitmap for creating a sprite
+    // Bitmap for creating a sprite
     bitmap player = load_bitmap("playerBmp", "protSpriteSheet.png");
     bitmap_set_cell_details(player, 31, 32, 4, 3, 12);
 
-    // creating the player sprite
+    // Creating the player sprite
     sprite player_sprite = create_sprite(player);
 
-    // setting the co-ordinates in refrence to the window
+    // Setting the coordinates in reference to the window
     sprite_set_x(player_sprite, 300);
     sprite_set_y(player_sprite, 300);
 
-    // creating game loop
+    // Game loop
+    bool sprite_exists = true; // Track if the sprite exists
     while (!quit_requested())
     {
         process_events();
         clear_screen(COLOR_BLACK);
-        draw_sprite(player_sprite);
-        refresh_screen();
 
-        // if up key is typed, the sprite is removed
-        if (key_typed(UP_KEY))
+        if (sprite_exists)
         {
-            free_sprite(player_sprite);
+            draw_sprite(player_sprite);
+            update_sprite(player_sprite);
         }
 
-        update_sprite(player_sprite);
+        refresh_screen();
 
+        // If UP key is typed, the sprite is removed
+        if (sprite_exists && key_typed(UP_KEY))
+        {
+            free_sprite(player_sprite);
+            sprite_exists = false; // Set bool to false to stop drawing/updating
+        }
     }
 
+    // Cleanup
+    if (sprite_exists) 
+    {
+        free_sprite(player_sprite);
+    }
+    
+    close_window(start);
     return 0;
 }
