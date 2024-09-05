@@ -1,0 +1,3 @@
+### sprite_set_y() usage example
+
+The following code is an example of using sprite set y which sets the y position of a sprite on a splashkit window.
