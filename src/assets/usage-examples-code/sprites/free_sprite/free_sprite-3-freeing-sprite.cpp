@@ -46,5 +46,6 @@ int main()
     }
     
     close_window(start);
+    
     return 0;
 }
