@@ -18,15 +18,24 @@ Use SplashKit to build a graphics application that allows users to create, edit,
 
 
 ## Graphics creation and Management
-
-
 In this section, we'll detail how to implement the shape creation and management functionality using design patterns and code examples.
 
 #### **Model Design**
-We start by designing a `ShapeModel` struct (or class) to represent various basic shapes. This model encapsulates attributes like position, size, color, and shape type. This design adheres to the **Object-Oriented Programming (OOP)** principle of **encapsulation**, where the properties and behaviors of a shape are bundled into a single entity.
+We start by defining a ShapeModel structure to represent various basic shapes. This model holds attributes like position, size, color, and shape type.
+
+The `ShapeModel` can represent various shapes like rectangles, triangles, etc. The `type` field is used to distinguish between different shapes, allowing the correct drawing function to be called during rendering.
+
+#### **Shape Creation**
+The code simulates the user selecting a graphic and placing it on the canvas. When the user clicks on the canvas, the code creates a new graphic at the mouse position based on the preset shape type
+
+#### **Shape Management and Rendering**
+Managing the rendering of shapes can be achieved by iterating over the shapes collection and calling the appropriate drawing function based on each shape's type. This enables the application to support multiple shape types.
 
 **Code Example:**
 ```cpp
+#include "splashkit.h"
+#include <vector>
+
 struct ShapeModel
 {
     double x, y;          // Shape's starting position
@@ -35,57 +44,52 @@ struct ShapeModel
     double rotation;      // Shape's rotation angle
     string type;          // Shape type (Rectangle, Circle, Triangle, etc.)
 };
-```
-The `ShapeModel` can represent various shapes like rectangles, triangles, etc. The `type` field is used to distinguish between different shapes, allowing the correct drawing function to be called during rendering.
-
-#### **Shape Creation**
-Users can select different shapes from a toolbar and drag them onto the canvas for drawing. We add logic in the code to handle this interaction.
-
-**Code Implementation:**
-```cpp
-if (mouse_clicked(LEFT_BUTTON))
+int main()
 {
-    ShapeModel newShape;
-    newShape.x = mouse_x();   // Get the X coordinate of the mouse
-    newShape.y = mouse_y();   // Get the Y coordinate of the mouse
-    newShape.width = 100;     // Set default width
-    newShape.height = 100;    // Set default height
-    newShape.color = "Red";   // Set default color
-    newShape.type = "Rectangle";  // Set default type to Rectangle
-    shapes.push_back(newShape);   // Add the new shape to the shapes container
+    open_window("Drawing Test", 800, 600);
+    vector<ShapeModel> shapes;
+
+    while (!window_close_requested("Drawing Test"))
+    {
+        process_events();
+
+        if (mouse_clicked(LEFT_BUTTON))
+        {
+            ShapeModel newShape;
+            newShape.x = mouse_x();   // Get the X coordinate of the mouse
+            newShape.y = mouse_y();   // Get the Y coordinate of the mouse
+            newShape.width = 100;     // Set default width
+            newShape.height = 100;    // Set default height
+            newShape.color = "Red";   // Set default color
+            newShape.type = "Rectangle";  // Set default type to Rectangle
+            shapes.push_back(newShape);   // Add the new shape to the shapes container
+        }
+
+        clear_screen(COLOR_WHITE);
+
+        for (const auto& shape : shapes)
+        {
+            fill_rectangle(COLOR_RED, shape.x, shape.y, shape.width, shape.height);
+        }
+        // Add other shape types handling here
+        refresh_screen(60);
+    }
+
+    return 0;
 }
 ```
 In this example, a new rectangle (or other shape types) is created at the mouse's location when the left mouse button is clicked. This rectangle is then stored in the `shapes` container.
 
-#### **Shape Management and Rendering**
-Managing the rendering of shapes can be achieved by iterating over the shapes collection and calling the appropriate drawing function based on each shape's type. This enables the application to support multiple shape types.
-
-**Code Implementation:**
-```cpp
-for (const auto& shape : shapes)
-{
-    if (shape.type == "Rectangle")
-    {
-        fill_rectangle(COLOR_RED, shape.x, shape.y, shape.width, shape.height);
-    }
-    else if (shape.type == "Triangle")
-    {
-        fill_triangle(COLOR_RED, shape.x, shape.y, shape.x + shape.width, shape.y, shape.x + shape.width / 2, shape.y - shape.height);
-    }
-    // Add other shape types handling here
-}
-```
 This code snippet renders rectangles and triangles. By checking the `type` field, the correct drawing function is invoked, allowing multiple shape types to be rendered.
 
-In this implementation, we apply the **Factory Method Pattern** to create different shape objects based on user selection. The factory method returns an instance of a specific shape type, which is then stored in a collection. This design not only enhances code flexibility and extensibility but also simplifies shape management and rendering.
+In this implementation, we use a factory method to create different shape objects based on user input. This method generates a specific type of shape and stores it in a collection. This design enhances code flexibility and extensibility while simplifying shape management and rendering.
 
-With this structure, the program can easily be extended to support additional shape types like circles, lines, etc. You simply need to add logic to handle new shape types in the `ShapeModel` and modify the factory method accordingly.
-
+With this structure, the program can easily be extended to support additional shape types, such as circles and lines. Simply add logic to handle the new shape types and modify the creation method accordingly.
 
 ## Graphical operations 
 
 #### Design Pattern Used
-For this part, I employed the **Command Pattern** to handle shape selection and movement. This pattern encapsulates different actions (like selecting and moving shapes) into separate command objects, making the code more modular, easier to maintain, and expandable.
+In this part, logic is applied to handle shape selection and movement. This approach breaks down different operations (like selecting and moving shapes) into separate steps, making the code more modular, easier to maintain, and expandable.
 
 #### Implementation Steps
 
