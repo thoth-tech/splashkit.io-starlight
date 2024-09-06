@@ -2,14 +2,17 @@
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/css?family=Gaegu&display=swap");
 
+/* Dark mode colors. */
 :root {
   --splashkit-blue: #00A9E0;
   --purple-hsl: 255, 60%, 60%;
   --overlay-blurple: hsla(var(--purple-hsl), 0.2);
 }
 
+/* Light mode colors. */
 :root[data-theme='light'] {
-  --sl-color-accent: #00A9E0;
+/*   --sl-color-accent: #00A9E0; */
+  --sl-color-accent: #3D50f5;
 }
 
 [data-has-hero] .page {
@@ -47,8 +50,8 @@ iframe[id="stackblitz-iframe"] {
   transition: background-color ease-in-out 0.25s, color 0.3s ease;
   position: relative;
   overflow: hidden;
-  background-color: white;
-  color: black;
+/*   background-color: white;
+  color: black; */
   cursor: pointer;
 }
 
@@ -104,6 +107,7 @@ iframe[id="stackblitz-iframe"] {
   -webkit-text-fill-color: transparent;
 }
 
+/* centre all images/gifs */
 img {
   display: block;
   margin: auto;
