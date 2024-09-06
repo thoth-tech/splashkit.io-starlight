@@ -73,7 +73,8 @@ This command creates sub-folders for each type of resource. One of these is name
 
   </TabItem>
   
-  <TabItem label="C#">
+  <Tabs syncKey="csharp-style">
+  <TabItem label="Top-level Statements">
 
   ```csharp
   using SplashKitSDK;
@@ -89,6 +90,45 @@ This command creates sub-folders for each type of resource. One of these is name
   ```
 
   </TabItem>
+
+  <TabItem label="Object-Oriented">
+  ```csharp
+  using SplashKitSDK;
+  using static SplashKitSDK.SplashKit;
+
+  public class GameDataHandler
+  {
+      private Json _gameData;
+
+      public GameDataHandler(string filePath)
+      {
+          _gameData = JsonFromFile(filePath);
+      }
+
+      public string GetGameTitle()
+      {
+          return JsonReadString(_gameData, "gameTitle");
+      }
+
+      public void FreeGameData()
+      {
+          FreeJson(_gameData);
+      }
+  }
+
+  public class Program
+  {
+      public static void Main()
+      {
+          GameDataHandler gameDataHandler = new GameDataHandler("game_data.json");
+
+          string gameTitle = gameDataHandler.GetGameTitle();
+          WriteLine("Game Title: " + gameTitle);
+
+          gameDataHandler.FreeGameData();
+      }
+  }
+</TabItem>
 </Tabs>
 
 In this code example, we're first using [Json From File](/api/json/#json-from-file) to load a JSON object with the details from the `game_data.json` file.
