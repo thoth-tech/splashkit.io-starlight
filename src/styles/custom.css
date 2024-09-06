@@ -223,6 +223,15 @@ code {
   box-shadow: var(--sl-shadow-md);
 }
 
+.color-box {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid lightgray;
+  margin-left: 20px;
+}
+
 /* Applied a blue drop-shadow effect to hero images, enhancing their visibility and focus. */
 .hero img {
   transition: transform 0.3s ease, filter 0.3s ease;
