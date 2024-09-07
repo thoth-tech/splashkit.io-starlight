@@ -2,7 +2,7 @@ from splashkit import *
 
 write_line("Hello! Welcome to the IP to decimal converter.")
 
-# Prompt the user for an IP input in dotted decimal format (e.g., 192.168.1.2)
+# Prompt the user for an IP input in dotted decimal format (e.g., 127.0.0.1)
 write_line("Please enter an IPv4 address in dotted decimal format (e.g., 127.0.0.1):")
 
 # Read the input from the user
