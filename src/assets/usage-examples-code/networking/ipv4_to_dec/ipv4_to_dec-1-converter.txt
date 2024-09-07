@@ -1,3 +1,3 @@
 ### IPv4 To Decimal
 
-The following code shows examples of using [Write Line](/api/networking/#ipv4-to-dec) to convert an IP address into decimal form.
+The following code shows examples of using [IPv4 to Dec](/api/networking/#ipv4-to-dec) to convert an IP address into decimal form.
