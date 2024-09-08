@@ -1,0 +1,212 @@
+---
+title: Dynamic Camera Control
+description: Explore zooming into a bitmap and following a moving character with the camera.
+author: Sharvani Kandala
+lastupdated: 06 Sep 2024
+category: Guides
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+**{frontmatter.description}**  
+Written by: {frontmatter.author}  
+_Last updated: {frontmatter.lastupdated}_
+
+---
+
+This tutorial shows how to use the camera in SplashKit to create interactive, dynamic game experiences. We'll focus on zooming into specific areas and making the camera follow a moving object, allowing you to create more immersive applications.
+
+## Camera Movements and Zooming
+
+The camera in SplashKit enables navigation through a game world larger than the visible window. By adjusting the camera’s position, you can control the part of the world that the player sees. This tutorial explores using camera functions to move the camera and adjust the positions as required.
+
+## SplashKit Functions Used in This Tutorial
+
+- [MoveCameraBy](https://splashkit.io/api/camera/#move-camera-by-2)
+- [SetCameraPosition](https://splashkit.io/api/camera/#set-camera-position)
+- [CameraPosition](https://splashkit.io/api/camera/#camera-position)
+- [OptionDefaults](https://splashkit.io/api/graphics/#option-defaults)
+- [OptionScaleBmp](https://splashkit.io/api/graphics/#option-scale-bmp)
+- [DrawBitmap](https://splashkit.io/api/graphics/#draw-bitmap-4)
+
+## Example 1: Zooming into a Colored Grid
+
+This example demonstrates how to implement a zoom effect on a preloaded bitmap of a colored grid. When the user clicks on an area of the grid, the camera zooms into the clicked section. The zoomed-in area fills the screen, and pressing the ESC key resets the view to show the entire grid again.
+
+<Tabs syncKey="code-language">
+<TabItem label="C#">
+
+  ```csharp
+  using SplashKitSDK;
+  using static SplashKitSDK.SplashKit;
+
+  // Zoom scale factor
+  const int zoomScale = 5;
+
+  // Initial camera position at (0,0)
+  Point2D cameraPosition = new Point2D { X = 0, Y = 0 };
+  int boxSize = 100;
+  bool zoomedIn = false;
+
+  // Open window with specified dimensions
+  OpenWindow("Camera Zooming Example", 500, 550);
+
+  // Load bitmap for the grid of colors
+  LoadBitmap("color-grid", "color-grid.png");
+
+  while (!WindowCloseRequested("Camera Zooming Example"))
+  {
+      ProcessEvents();
+      // Zoom In
+    if (MouseClicked(MouseButton.LeftButton) && !zoomedIn)
+    {
+        int clickedBoxX = (int)MouseX() / boxSize;
+        int clickedBoxY = (int)MouseY() / boxSize;
+
+        
+
+        // Update the camera position to center on the clicked box
+        cameraPosition.X = (clickedBoxX * boxSize - boxSize * 2) * zoomScale;
+        cameraPosition.Y = (clickedBoxY * boxSize - boxSize * 2) * zoomScale;
+
+        SetCameraPosition(cameraPosition);
+
+        zoomedIn = true;
+    }
+
+    // If Escape key is pressed, return to the full grid view
+    if (KeyTyped(KeyCode.EscapeKey) && zoomedIn)
+    {
+        cameraPosition.X = 0;
+        cameraPosition.Y = 0;
+        
+        SetCameraPosition(cameraPosition);
+
+        zoomedIn = false;
+    }
+
+    // Draw a 5x5 grid of different colored boxes 
+    ClearScreen();
+    if (!zoomedIn)
+    {
+        DrawBitmap("color-grid", 0, 0, OptionDefaults());
+    }
+    else
+    {
+        DrawBitmap("color-grid", 0, 0, OptionScaleBmp(zoomScale, zoomScale));
+    }
+    FillRectangle(ColorLightGray(), 0, 500, ScreenWidth(), 50, OptionToScreen());
+    DrawText("Click a box to zoom in. Press ESC to return to grid", ColorBlack(), 10, ScreenHeight() - 30, OptionToScreen());
+    RefreshScreen();
+
+  }
+
+  // Close the window when finished
+  CloseAllWindows();
+```
+
+</TabItem>
+</Tabs>
+
+## Example 2: Movement of Camera Position
+
+This example demonstrates a camera system that follows a red circle (representing a character) against an underwater-themed bitmap background. When the user clicks anywhere on the window, the target position for the character is set based on the click location. The character then moves smoothly towards this target position.
+
+<Tabs syncKey="code-language">
+<TabItem label="C#">
+
+  ```csharp
+  using SplashKitSDK;
+  using static SplashKitSDK.SplashKit;
+
+  // Open a window
+  OpenWindow("Camera Movement Example", 800, 600);
+
+  // Load a 5x5 colored grid bitmap
+  Bitmap grid = LoadBitmap("grid", "color-grid-5000.png");
+
+  // Speed of camera movement
+  const double speed = 2.0;
+
+  // Target position where the camera will move towards
+  Point2D target = new Point2D { X = 0, Y = 0 };
+
+  // Main game loop
+  while (!WindowCloseRequested("Camera Movement Example"))
+  {
+     ProcessEvents();
+
+     // Update target position based on mouse click
+     if (MouseClicked(MouseButton.LeftButton))
+     {
+         target.X = MouseX() + CameraX();
+         target.Y = MouseY() + CameraY();
+     }
+
+     // Get current camera position
+     double cameraX = CameraX();
+     double cameraY = CameraY();
+
+     // Move camera towards the target position
+     if (target.X > cameraX)
+     {
+         if (target.X - cameraX < speed)
+         {
+             SetCameraPosition(new Point2D { X = target.X, Y = cameraY });
+         }
+         else
+         {
+             MoveCameraBy(speed, 0);
+         }
+     }
+     else if (target.X < cameraX)
+     {
+         if (cameraX - target.X < speed)
+         {
+             SetCameraPosition(new Point2D { X = target.X, Y = cameraY });
+         }
+         else
+         {
+             MoveCameraBy(-speed, 0);
+         }
+     }
+
+     if (target.Y > cameraY)
+     {
+         if (target.Y - cameraY < speed)
+         {
+             SetCameraPosition(new Point2D { X = cameraX, Y = target.Y });
+         }
+         else
+         {
+             MoveCameraBy(0, speed);
+         }
+     }
+     else if (target.Y < cameraY)
+     {
+         if (cameraY - target.Y < speed)
+         {
+             SetCameraPosition(new Point2D { X = cameraX, Y = target.Y });
+         }
+         else
+         {
+             MoveCameraBy(0, -speed);
+         }
+     }
+
+     // Draw and refresh
+     ClearScreen(ColorBlack());
+     DrawBitmap(grid, -CameraX(), -CameraY());
+     RefreshScreen(60);
+}
+
+CloseAllWindows();
+
+```
+
+</TabItem>
+</Tabs>
+
+## Conclusion
+
+This tutorial covered the basics of dynamic camera control in SplashKit using SetCameraPosition and MoveCameraBy functions. These examples showed how to zoom into specific areas and how to make the camera follow a moving object, both of which are key techniques for creating more interactive and immersive games. You can now apply these concepts to your own projects, enhancing the way your games interact with the camera and the player.
