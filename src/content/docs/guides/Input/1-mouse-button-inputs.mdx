@@ -16,7 +16,7 @@ _Last updated: {frontmatter.lastupdated}_
 
 ## Mouse Button Functionality
 
-Here are some functions that are used to handle mouse button inputs. These functions all use SplashKit's [Mouse Button](/api/input/#mouse-button) data type for the argument and check if the specified button has been clicked, held down, or released.
+Here are some functions that are used to handle mouse button inputs. All these functions use SplashKit's [Mouse Button](/api/input/#mouse-button) data type for the argument and check if the specified button has been clicked, held down, or released.
 
 ### List of Mouse Button Enum Values
 
@@ -931,7 +931,7 @@ int main()
 
 ```csharp
 using SplashKitSDK;
-
+using static SplashKitSDK.SplashKit;
 float x = 0;
 
 OpenWindow("Mouse Location", 800, 600);
