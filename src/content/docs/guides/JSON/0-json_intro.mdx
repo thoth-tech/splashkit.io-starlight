@@ -89,6 +89,30 @@ This command creates sub-folders for each type of resource. One of these is name
   ```
 
   </TabItem>
+  <TabItem label="Python">
+
+```python
+from splashkit import *
+
+def main():
+    
+    game_data = json_from_file("game_data.json")
+    game_title = json_read_string(game_data, "gameTitle")
+    
+    if not game_title:
+        print("Error retrieving gameTitle.")
+    else:
+        print("Game Title:", game_title)
+    
+     free_json(game_data)
+   
+
+if __name__ == "__main__":
+    main()
+    ```
+
+   </TabItem>
+
 </Tabs>
 
 In this code example, we're first using [Json From File](/api/json/#json-from-file) to load a JSON object with the details from the `game_data.json` file.
@@ -126,6 +150,13 @@ And run it with:
 
 ```shell
 dotnet run
+```
+
+</TabItem>
+ <TabItem label="Python">
+
+```shell
+skm python3 program.py
 ```
 
 </TabItem>
@@ -192,6 +223,26 @@ else
   FreeJson(gameData);
 ```
 
+</TabItem>
+<TabItem label="Python">
+
+  ```python
+ from splashkit import *
+
+def main():
+    
+    game_data = json_from_file("game_data.json")
+     if json_has_key(game_data, "gameTitle"):
+     
+        game_title = json_read_string(game_data, "gameTitle")
+        print("Game Title:", game_title)
+    else:
+        print('Key "gameTitle" not found.')
+   free_json(game_data)
+
+if __name__ == "__main__":
+    main()
+```
 </TabItem>
 </Tabs>
 
