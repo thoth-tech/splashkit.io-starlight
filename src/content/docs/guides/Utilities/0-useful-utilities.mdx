@@ -374,7 +374,7 @@ SplashKit's [Is Integer](/api/utilities/#is-integer) and [Is Number](/api/utilit
   */
   int read_integer(string prompt)
   {
-    string buffer;
+    string line;
 
     //Continue requesting user input until a valid whole number is entered.
     while (1)
@@ -382,15 +382,15 @@ SplashKit's [Is Integer](/api/utilities/#is-integer) and [Is Number](/api/utilit
       //Prompt the user with the message
       write(prompt);
       //Read the user input as a string.
-      buffer = read_line();
+      line = read_line();
       //If the user input is a valid whole number, leave the loop.
-      if ( is_integer(buffer) )
+      if ( is_integer(line) )
         break;
       //If the user input was not a valid whole number, ask them to enter a whole number.
       write_line("Please enter a valid whole number.");
     }
     //Convert the user input to an integer before returning it.
-    return convert_to_integer(buffer);
+    return convert_to_integer(line);
   }
 
   int main()
@@ -463,9 +463,9 @@ SplashKit's [Is Integer](/api/utilities/#is-integer) and [Is Number](/api/utilit
           line = read_line()
 
       # Convert the user input to an integer before returning it.
-      return convert_to_integer(buffer)
+      return convert_to_integer(line)
 
-  // Start of "main" code
+  # Start of "main" code
   height = read_integer("Enter your height in centimetres: ")
 
   write("You are ")
