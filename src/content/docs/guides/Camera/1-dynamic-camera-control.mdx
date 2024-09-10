@@ -1,6 +1,6 @@
 ---
 title: Dynamic Camera Control
-description: Explore zooming into a bitmap and following a moving character with the camera.
+description: Explore zooming into a bitmap and camera movements with mouse clicks
 author: Sharvani Kandala
 lastupdated: 06 Sep 2024
 category: Guides
@@ -14,7 +14,7 @@ _Last updated: {frontmatter.lastupdated}_
 
 ---
 
-This tutorial shows how to use the camera in SplashKit to create interactive, dynamic game experiences. We'll focus on zooming into specific areas and making the camera follow a moving object, allowing you to create more immersive applications.
+This tutorial shows how to use the camera in SplashKit to create interactive, dynamic game experiences. We'll focus on zooming into specific areas and making the camera follow a moving bitmap as per user clicks, allowing you to create more immersive applications.
 
 ## Camera Movements and Zooming
 
@@ -106,102 +106,228 @@ This example demonstrates how to implement a zoom effect on a preloaded bitmap o
 ```
 
 </TabItem>
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+
+// Zoom scale factor
+const int ZOOM_SCALE = 5;
+
+// Initial camera position at (0,0)
+point_2d camera_pos = { 0, 0 };
+const int BOX_SIZE = 100;
+bool zoomed_in = false;
+
+int main()
+{
+    // Open window with specified dimensions
+    open_window("Camera Zooming Example", 500, 550);
+
+    // Load bitmap for the grid of colors
+    load_bitmap("color_grid", "color-grid.png");
+
+    while (!window_close_requested("Camera Zooming Example"))
+    {
+        process_events();
+
+        // Zoom In
+        if (mouse_clicked(mouse_button(LEFT_BUTTON)) && !zoomed_in)
+        {
+            int clicked_box_x = (int)(mouse_x()) / BOX_SIZE;
+            int clicked_box_y = (int)(mouse_y()) / BOX_SIZE;
+
+            // Update the camera position to center on the clicked box
+            camera_pos.x = (clicked_box_x * BOX_SIZE - BOX_SIZE * 2) * ZOOM_SCALE;
+            camera_pos.y = (clicked_box_y * BOX_SIZE - BOX_SIZE * 2) * ZOOM_SCALE;
+
+            // Update the camera position
+            set_camera_position(camera_pos);
+
+            zoomed_in = true;
+        }
+
+        // If Escape key is pressed, return to the full grid view
+        if (key_typed(key_code(ESCAPE_KEY)) && zoomed_in)
+        {
+            camera_pos.x = 0;
+            camera_pos.y = 0;
+
+            // Reset the camera position
+            set_camera_position(camera_pos);
+
+            zoomed_in = false;
+        }
+
+        // Draw a 5x5 grid of different colored boxes
+        clear_screen();
+        if (!zoomed_in)
+        {
+            draw_bitmap("color_grid", 0, 0, option_defaults());
+        }
+        else
+        {
+            draw_bitmap("color_grid", 0, 0, option_scale_bmp(ZOOM_SCALE, ZOOM_SCALE));
+        }
+        fill_rectangle(color_light_gray(), 0, 500, screen_width(), 50, option_to_screen());
+        draw_text("Click a box to zoom in. Press ESC to return to grid", color_black(), 10, screen_height() - 30, option_to_screen());
+        refresh_screen();
+    }
+
+    // Close the window when finished
+    close_all_windows();
+
+    return 0;
+}
+```
+
+</TabItem>
 </Tabs>
 
-## Example 2: Movement of Camera Position
+## Example 2: Camera Movement and Scrolling
 
-This example demonstrates a camera system that follows a red circle (representing a character) against an underwater-themed bitmap background. When the user clicks anywhere on the window, the target position for the character is set based on the click location. The character then moves smoothly towards this target position.
+This example illustrates a dynamic camera system that follows the target position within a large bitmap grid. The camera initially centers on the bitmap's middle. When the user clicks within the window, the camera’s target position updates to the mouse click location, causing the camera to move smoothly towards this new position. Additionally, scrolling with the mouse wheel allows for manual camera adjustments. The bitmap is drawn in the window, and the camera movement is continuously updated based on user input.
 
 <Tabs syncKey="code-language">
 <TabItem label="C#">
 
-  ```csharp
-  using SplashKitSDK;
-  using static SplashKitSDK.SplashKit;
-
-  // Open a window
-  OpenWindow("Camera Movement Example", 800, 600);
-
-  // Load a 5x5 colored grid bitmap
-  Bitmap grid = LoadBitmap("grid", "color-grid-5000.png");
-
-  // Speed of camera movement
-  const double speed = 2.0;
-
-  // Target position where the camera will move towards
-  Point2D target = new Point2D { X = 0, Y = 0 };
-
-  // Main game loop
-  while (!WindowCloseRequested("Camera Movement Example"))
-  {
-     ProcessEvents();
-
-     // Update target position based on mouse click
-     if (MouseClicked(MouseButton.LeftButton))
-     {
-         target.X = MouseX() + CameraX();
-         target.Y = MouseY() + CameraY();
-     }
-
-     // Get current camera position
-     double cameraX = CameraX();
-     double cameraY = CameraY();
-
-     // Move camera towards the target position
-     if (target.X > cameraX)
-     {
-         if (target.X - cameraX < speed)
-         {
-             SetCameraPosition(new Point2D { X = target.X, Y = cameraY });
-         }
-         else
-         {
-             MoveCameraBy(speed, 0);
-         }
-     }
-     else if (target.X < cameraX)
-     {
-         if (cameraX - target.X < speed)
-         {
-             SetCameraPosition(new Point2D { X = target.X, Y = cameraY });
-         }
-         else
-         {
-             MoveCameraBy(-speed, 0);
-         }
-     }
-
-     if (target.Y > cameraY)
-     {
-         if (target.Y - cameraY < speed)
-         {
-             SetCameraPosition(new Point2D { X = cameraX, Y = target.Y });
-         }
-         else
-         {
-             MoveCameraBy(0, speed);
-         }
-     }
-     else if (target.Y < cameraY)
-     {
-         if (cameraY - target.Y < speed)
-         {
-             SetCameraPosition(new Point2D { X = cameraX, Y = target.Y });
-         }
-         else
-         {
-             MoveCameraBy(0, -speed);
-         }
-     }
-
-     // Draw and refresh
-     ClearScreen(ColorBlack());
-     DrawBitmap(grid, -CameraX(), -CameraY());
-     RefreshScreen(60);
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+    
+// Speed of camera movement
+const int SPEED = 4;
+    
+// Open a window
+OpenWindow("Camera Movement Example", 800, 600);
+    
+// Load a 5x5 colored grid bitmap
+Bitmap grid = LoadBitmap("grid", "color-grid-5000.png");
+    
+// Set the initial camera position to center the bitmap
+SetCameraPosition(PointAt(BitmapWidth(grid) / 2 - ScreenCenter().X, BitmapHeight(grid) / 2 - ScreenCenter().Y));
+    
+// Target position where the camera will move towards
+Point2D target = PointAt(BitmapWidth(grid) / 2, BitmapHeight(grid) / 2);
+    
+// Main game loop
+while (!WindowCloseRequested("Camera Movement Example"))
+{
+    ProcessEvents();
+    
+    // Set target Camera position to be centered on Mouse Position
+    if (MouseClicked(MouseButton.LeftButton))
+    {
+        target = ToWorld(MousePosition());
+    }
+    
+    // Move camera to center target position on screen
+    if (CameraX() < target.X - ScreenWidth() / 2)
+    {
+        MoveCameraBy(SPEED, 0);
+    }
+    if (CameraX() + ScreenWidth() > target.X + ScreenWidth() / 2)
+    {
+        MoveCameraBy(-SPEED, 0);
+    }
+    if (CameraY() < target.Y - ScreenHeight() / 2)
+    {
+        MoveCameraBy(0, SPEED);
+    }
+    if (CameraY() + ScreenHeight() > target.Y + ScreenHeight() / 2)
+    {
+        MoveCameraBy(0, -SPEED);
+    }
+    
+    // Allow scroll movement
+    if (MouseWheelScroll().X < 0 || MouseWheelScroll().X > 0 || MouseWheelScroll().Y < 0 || MouseWheelScroll().Y > 0)
+    {
+        MoveCameraBy(SPEED * MouseWheelScroll().X, 0);
+        MoveCameraBy(0, SPEED * -MouseWheelScroll().Y);
+        target = ScreenCenter();
+    }
+    
+    // Draw Bitmap
+    ClearScreen(ColorBlack());
+    DrawBitmap(grid, 0, 0);
+    RefreshScreen(60);
 }
-
+    
 CloseAllWindows();
+```
 
+</TabItem>
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+
+// Speed of camera movement
+const int SPEED = 4;
+
+int main()
+{
+    // Open a window
+    open_window("Camera Movement Example", 800, 600);
+
+    // Load a 5x5 colored grid bitmap
+    bitmap grid = load_bitmap("grid", "color-grid-5000.png");
+
+    // Set the initial camera position to center the bitmap
+    set_camera_position(
+        point_at(bitmap_width(grid) / 2 - screen_center().x, 
+                bitmap_height(grid) / 2 - screen_center().y)
+    );
+
+    // Target position where the camera will move towards
+    point_2d target = point_at(bitmap_width(grid) / 2, bitmap_height(grid) / 2);
+
+    // Main game loop
+    while (!window_close_requested("Camera Movement Example"))
+    {
+        process_events();
+
+        // Set target Camera position to be centered on Mouse Position
+        if (mouse_clicked(LEFT_BUTTON))
+        {
+            target = to_world(mouse_position());
+        }
+
+        // Move camera to center target position on screen
+        if (camera_x() < target.x - screen_width() / 2)
+        {
+            move_camera_by(SPEED, 0);
+        }
+        if (camera_x() + screen_width() > target.x + screen_width() / 2)
+        {
+            move_camera_by(-SPEED, 0);
+        }
+        if (camera_y() < target.y - screen_height() / 2)
+        {
+            move_camera_by(0, SPEED);
+        }
+        if (camera_y() + screen_height() > target.y + screen_height() / 2)
+        {
+            move_camera_by(0, -SPEED);
+        }
+
+        // Allow scroll movement
+        if (mouse_wheel_scroll().x < 0 || mouse_wheel_scroll().x > 0 || mouse_wheel_scroll().y < 0 || mouse_wheel_scroll().y > 0 )
+        {
+            move_camera_by(SPEED * mouse_wheel_scroll().x, 0);
+            move_camera_by(0, SPEED * -mouse_wheel_scroll().y);
+            target = screen_center();
+        }
+
+        // Draw Bitmap
+        clear_screen(color_black());
+        draw_bitmap(grid, 0, 0);
+        refresh_screen(60);
+    }
+
+    close_all_windows();
+    return 0;
+}
 ```
 
 </TabItem>
@@ -209,4 +335,4 @@ CloseAllWindows();
 
 ## Conclusion
 
-This tutorial covered the basics of dynamic camera control in SplashKit using SetCameraPosition and MoveCameraBy functions. These examples showed how to zoom into specific areas and how to make the camera follow a moving object, both of which are key techniques for creating more interactive and immersive games. You can now apply these concepts to your own projects, enhancing the way your games interact with the camera and the player.
+This tutorial covered the basics of dynamic camera control in SplashKit using SetCameraPosition and MoveCameraBy functions. These examples showed how to zoom into specific areas and how to make the camera movements with mouse clicks and mouse wheel scrolls, both of which are key techniques for creating more interactive and immersive games. You can now apply these concepts to your own projects, enhancing the way your games interact with the camera and the player.
