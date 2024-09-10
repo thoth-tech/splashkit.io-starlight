@@ -103,7 +103,9 @@ int main()
 ```
 
 </TabItem>
-<TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
 
 ```csharp
 using SplashKitSDK;
@@ -134,6 +136,67 @@ CloseAllWindows();
 ```
 
 </TabItem>
+<TabItem label="Object-Oriented">
+```csharp
+using SplashKitSDK;
+
+namespace MouseInputs
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            
+            MouseInputApp app = new MouseInputApp();
+            app.Run();
+        }
+    }
+
+    public class MouseInputApp
+    {
+        private Window _window;  
+
+        public MouseInputApp()
+        {
+            
+            _window = SplashKit.OpenWindow("Mouse Inputs", 800, 600);
+        }
+
+        public void Run()
+        {
+            
+            while (!SplashKit.WindowCloseRequested(_window))
+            {
+                SplashKit.ProcessEvents();  
+
+                
+                HandleMouseInput();
+
+                
+                SplashKit.RefreshScreen(60);
+            }
+
+            
+            SplashKit.CloseAllWindows();
+        }
+
+        private void HandleMouseInput()
+        {
+            
+            if (SplashKit.MouseClicked(MouseButton.LeftButton))
+            {
+                SplashKit.ClearScreen(SplashKit.ColorRed());
+            }
+            
+            else if (SplashKit.MouseClicked(MouseButton.RightButton))
+            {
+                SplashKit.ClearScreen(SplashKit.ColorYellow());
+            }
+        }
+    }
+}
+</TabItem>
+</Tabs>
 <TabItem label="Python">
   
 ```python
