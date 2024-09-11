@@ -2,7 +2,7 @@
 title: SplashKit Camera
 description: See how the camera works, and how to draw to the different coordinate systems in your program.
 author: Andrew Cain
-lastupdated: 16 Aug 2018
+lastupdated: September 2024
 category: Guides
 ---
 
@@ -146,6 +146,8 @@ The following program code demonstrates the use of some of these camera operatio
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
   ```csharp
   using SplashKitSDK;
@@ -226,6 +228,106 @@ The following program code demonstrates the use of some of these camera operatio
   CloseAllWindows();
   ```
 
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+public class Game
+{
+    private Window _window;
+    private double _playerX, _playerY;
+    private double _cameraX, _cameraY;
+    private const int ScreenWidth = 800;
+    private const int ScreenHeight = 800;
+    private const int ScreenBorder = 100;
+    private const double PlayerSpeed = 3;
+
+    public Game()
+    {
+        _window = SplashKit.OpenWindow("Camera Test", ScreenWidth, ScreenHeight);
+        _playerX = ScreenWidth / 2;
+        _playerY = ScreenHeight / 2;
+        _cameraX = 0;
+        _cameraY = 0;
+    }
+
+    public void Run()
+    {
+        while (!_window.CloseRequested)
+        {
+            SplashKit.ProcessEvents();
+            HandleInput();
+            UpdateCameraPosition();
+            Draw();
+            SplashKit.RefreshScreen(60);
+        }
+        
+        SplashKit.CloseAllWindows();
+    }
+
+    private void HandleInput()
+    {
+        if (SplashKit.KeyDown(KeyCode.LeftKey))
+            _playerX -= PlayerSpeed;
+        if (SplashKit.KeyDown(KeyCode.RightKey))
+            _playerX += PlayerSpeed;
+        if (SplashKit.KeyDown(KeyCode.DownKey))
+            _playerY += PlayerSpeed;
+        if (SplashKit.KeyDown(KeyCode.UpKey))
+            _playerY -= PlayerSpeed;
+    }
+
+    private void UpdateCameraPosition()
+    {
+        double leftEdge = _cameraX + ScreenBorder;
+        double rightEdge = leftEdge + ScreenWidth - 2 * ScreenBorder;
+        double topEdge = _cameraY + ScreenBorder;
+        double bottomEdge = topEdge + ScreenHeight - 2 * ScreenBorder;
+
+        if (_playerY < topEdge)
+        {
+            _cameraY += topEdge - _playerY;
+        }
+        else if (_playerY > bottomEdge)
+        {
+            _cameraY += bottomEdge - _playerY;
+        }
+
+        if (_playerX < leftEdge)
+        {
+            _cameraX += leftEdge - _playerX;
+        }
+        else if (_playerX > rightEdge)
+        {
+            _cameraX += rightEdge - _playerX;
+        }
+    }
+
+    private void Draw()
+{
+    _window.Clear(Color.Black);
+
+    // Adjust drawing coordinates based on camera position
+    _window.FillRectangle(Color.Gray, 0 - _cameraX, 0 - _cameraY, ScreenWidth, 50);
+    _window.DrawText("HUD", Color.White, 10 - _cameraX, 10 - _cameraY);
+    _window.DrawText($"Camera Position:{_cameraX:0.00000}:{_cameraY:0.00000}", Color.White, 10 - _cameraX, 30 - _cameraY);
+
+    _window.FillCircle(Color.Yellow, _playerX - _cameraX, _playerY - _cameraY, 20);
+    _window.FillRectangle(Color.White, 400 - _cameraX, 200 - _cameraY, 10, 10);
+}
+    public static void Main()
+    {
+        Game game = new Game();
+        game.Run();
+    }
+}
+
+```
+
+</TabItem>
+</Tabs>
 </TabItem>
 <TabItem label="Python">
 
