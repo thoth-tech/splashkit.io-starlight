@@ -14,7 +14,7 @@ _Last updated: {frontmatter.lastupdated}_
 
 ---
 
-Build a graphics application using SplashKit, and in this article, you'll learn how to manage and manipulate graphics. This article explains graphic creation, moving, resizing, and joining functions.
+Build a graphics application using SplashKit, and in this article you'll learn how to manage graphics. This article will provide an explanation of the graphics creation, movement, resizing, and wiring functions
 
 
 ## Graphics creation and Management
@@ -124,38 +124,51 @@ struct ShapeModel
 // Function to detect if the mouse is over a shape
 ShapeModel* get_shape_at(vector<ShapeModel>& shapes, double x, double y)
 {
+    // Loop through all shapes to check if the mouse is within any shape
     for (auto& shape : shapes)
     {
+        // Check if the mouse is within the bounds of a rectangle
         if (shape.type == "Rectangle" && x >= shape.x && x <= (shape.x + shape.width) && y >= shape.y && y <= (shape.y + shape.height))
         {
             return &shape;
         }
     }
-    return nullptr;
+    return nullptr; // Return null if no shape is selected
 }
 
 int main()
 {
     open_window("Drawing Test", 800, 600);
-    vector<ShapeModel> shapes;
-    ShapeModel* selected_shape = nullptr;
-    bool is_moving = false;
+    vector<ShapeModel> shapes; // Vector to store all shapes
+    ShapeModel* selected_shape = nullptr; // Pointer to hold the selected shape
+    bool is_moving = false; // Flag to indicate if a shape is being moved
+    bool is_resizing = false; // Flag to indicate if a shape is being resized
 
     while (!window_close_requested("Drawing Test"))
     {
-        process_events();
+        process_events(); // Process all events
 
-        // Detect mouse click and start dragging a shape
-        if (mouse_down(LEFT_BUTTON) && !is_moving)
+        // Check if the left mouse button is clicked to start dragging a shape
+        if (mouse_down(LEFT_BUTTON) && !is_moving && !is_resizing)
         {
+            // Try to select a shape at the mouse position
             selected_shape = get_shape_at(shapes, mouse_x(), mouse_y());
             if (selected_shape != nullptr)
             {
-                is_moving = true;
+                // If space key is pressed, enter resizing mode
+                if (key_down(SPACE_KEY))
+                {
+                    is_resizing = true;
+                }
+                else
+                {
+                    // Otherwise, enter moving mode
+                    is_moving = true;
+                }
             }
             else
             {
-                // If no shape is selected, create a new one
+                // If no shape is selected, create a new rectangle at the mouse position
                 ShapeModel newShape;
                 newShape.x = mouse_x();
                 newShape.y = mouse_y();
@@ -163,40 +176,49 @@ int main()
                 newShape.height = 100;
                 newShape.color = "Red";
                 newShape.type = "Rectangle";
-                shapes.push_back(newShape);
+                shapes.push_back(newShape); // Add the new shape to the vector
             }
         }
 
-        // Move the selected shape with the mouse
+        // Move the selected shape to follow the mouse
         if (is_moving && selected_shape != nullptr)
         {
             selected_shape->x = mouse_x() - selected_shape->width / 2;
             selected_shape->y = mouse_y() - selected_shape->height / 2;
         }
 
-        // Stop dragging when the mouse button is released
+        // Resize the selected shape based on the mouse position
+        if (is_resizing && selected_shape != nullptr)
+        {
+            selected_shape->width = mouse_x() - selected_shape->x;
+            selected_shape->height = mouse_y() - selected_shape->y;
+        }
+
+        // Stop moving or resizing when the mouse button is released
         if (mouse_up(LEFT_BUTTON))
         {
             is_moving = false;
-            selected_shape = nullptr;
+            is_resizing = false;
+            selected_shape = nullptr; // Deselect the shape
         }
 
-        clear_screen(COLOR_WHITE);
+        clear_screen(COLOR_WHITE); // Clear the screen with white background
 
         // Draw all shapes
         for (const auto& shape : shapes)
         {
             if (shape.type == "Rectangle")
             {
-                fill_rectangle(COLOR_RED, shape.x, shape.y, shape.width, shape.height);
+                fill_rectangle(COLOR_RED, shape.x, shape.y, shape.width, shape.height); // Draw the rectangle
             }
         }
 
-        refresh_screen(60);
+        refresh_screen(60); // Refresh the screen at 60 FPS
     }
 
     return 0;
 }
+
 ```
 
 
