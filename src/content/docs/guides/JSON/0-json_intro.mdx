@@ -95,15 +95,15 @@ This command creates sub-folders for each type of resource. One of these is name
   <TabItem label="Object-Oriented">
 
   ```csharp
-  using SplashKitSDK;
+using SplashKitSDK;
 
 namespace GameDataManagement
 {
-    public class GameDataHandler
+    public class Program
     {
         private Json _gameData;
 
-        public GameDataHandler(string filePath)
+        public Program(string filePath)
         {
             _gameData = SplashKit.JsonFromFile(filePath);
         }
@@ -117,18 +117,15 @@ namespace GameDataManagement
         {
             SplashKit.FreeJson(_gameData);
         }
-    }
 
-    public class Program
-    {
         public static void Main()
         {
-            GameDataHandler gameDataHandler = new GameDataHandler("game_data.json");
+            Program program = new Program("game_data.json");
 
-            string gameTitle = gameDataHandler.GetGameTitle();
+            string gameTitle = program.GetGameTitle();
             SplashKit.WriteLine("Game Title: " + gameTitle);
 
-            gameDataHandler.FreeGameData();
+            program.FreeGameData();
         }
     }
 }
