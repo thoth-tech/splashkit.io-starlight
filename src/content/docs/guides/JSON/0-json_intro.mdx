@@ -96,40 +96,51 @@ This command creates sub-folders for each type of resource. One of these is name
 
   ```csharp
   using SplashKitSDK;
-  using static SplashKitSDK.SplashKit;
 
-  public class GameDataHandler
+  namespace GameDataManagement
   {
-      private Json _gameData;
-
-      public GameDataHandler(string filePath)
+      public class GameDataHandler
       {
-          _gameData = JsonFromFile(filePath);
+          private Json _gameData;
+
+          public GameDataHandler(string filePath)
+          {
+              _gameData = SplashKit.JsonFromFile(filePath);
+          }
+
+          public string GetGameTitle()
+          {
+              if (SplashKit.JsonHasKey(_gameData, "gameTitle"))
+              {
+                  return SplashKit.JsonReadString(_gameData, "gameTitle");
+              }
+              else
+              {
+                  return "Key \"gameTitle\" not found.";
+              }
+          }
+  
+          public void FreeGameData()
+          {
+              SplashKit.FreeJson(_gameData);
+          }
       }
 
-      public string GetGameTitle()
+      public class Program
       {
-          return JsonReadString(_gameData, "gameTitle");
-      }
+          public static void Main()
+          {
+              GameDataHandler gameDataHandler = new GameDataHandler("game_data.json");
 
-      public void FreeGameData()
-      {
-          FreeJson(_gameData);
+              string gameTitle = gameDataHandler.GetGameTitle();
+              SplashKit.WriteLine("Game Title: " + gameTitle);
+
+              gameDataHandler.FreeGameData();
+          }
       }
   }
 
-  public class Program
-  {
-      public static void Main()
-      {
-          GameDataHandler gameDataHandler = new GameDataHandler("game_data.json");
 
-          string gameTitle = gameDataHandler.GetGameTitle();
-          WriteLine("Game Title: " + gameTitle);
-
-          gameDataHandler.FreeGameData();
-      }
-  }
   ```
 </TabItem>
 </Tabs>
@@ -244,45 +255,44 @@ else
 
 ```csharp
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
-public class GameDataHandler
+namespace GameDataManagement
 {
-    private Json _gameData;
-
-    public GameDataHandler(string filePath)
+    public class Program
     {
-        _gameData = JsonFromFile(filePath);
-    }
+        private Json _gameData;
 
-    public string GetGameTitle()
-    {
-        if (JsonHasKey(_gameData, "gameTitle"))
+        public Program(string filePath)
         {
-            return JsonReadString(_gameData, "gameTitle");
+            _gameData = SplashKit.JsonFromFile(filePath);
         }
-        else
+
+        public string GetGameTitle()
         {
-            return "Key \"gameTitle\" not found.";
+            if (SplashKit.JsonHasKey(_gameData, "gameTitle"))
+            {
+                return SplashKit.JsonReadString(_gameData, "gameTitle");
+            }
+            else
+            {
+                return "Key \"gameTitle\" not found.";
+            }
         }
-    }
 
-    public void FreeGameData()
-    {
-        FreeJson(_gameData);
-    }
-}
+        public void FreeGameData()
+        {
+            SplashKit.FreeJson(_gameData);
+        }
 
-public class Program
-{
-    public static void Main()
-    {
-        GameDataHandler gameDataHandler = new GameDataHandler("game_data.json");
+        public static void Main()
+        {
+            Program gameDataHandler = new Program("game_data.json");
 
-        string gameTitleMessage = gameDataHandler.GetGameTitle();
-        WriteLine(gameTitleMessage);
+            string gameTitleMessage = gameDataHandler.GetGameTitle();
+            SplashKit.WriteLine(gameTitleMessage);
 
-        gameDataHandler.FreeGameData();
+            gameDataHandler.FreeGameData();
+        }
     }
 }
 
