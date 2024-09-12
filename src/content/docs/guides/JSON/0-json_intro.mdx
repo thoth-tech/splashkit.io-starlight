@@ -101,31 +101,22 @@ namespace GameDataManagement
 {
     public class Program
     {
-        private Json _gameData;
-
-        public Program(string filePath)
-        {
-            _gameData = SplashKit.JsonFromFile(filePath);
-        }
-
-        public string GetGameTitle()
-        {
-            return SplashKit.JsonReadString(_gameData, "gameTitle");
-        }
-
-        public void FreeGameData()
-        {
-            SplashKit.FreeJson(_gameData);
-        }
-
         public static void Main()
         {
-            Program program = new Program("game_data.json");
+            // Define the file path
+            string filePath = "game_data.json";
 
-            string gameTitle = program.GetGameTitle();
+            // Load JSON data from file
+            Json gameData = SplashKit.JsonFromFile(filePath);
+
+            // Read game title from JSON
+            string gameTitle = SplashKit.JsonReadString(gameData, "gameTitle");
+
+            // Output the game title to the terminal
             SplashKit.WriteLine("Game Title: " + gameTitle);
 
-            program.FreeGameData();
+            // Free the JSON data
+            SplashKit.FreeJson(gameData);
         }
     }
 }
@@ -249,38 +240,27 @@ namespace GameDataManagement
 {
     public class Program
     {
-        private Json _gameData;
-
-        public Program(string filePath)
+        public static void Main()
         {
-            _gameData = SplashKit.JsonFromFile(filePath);
-        }
+            // Define the file path
+            string filePath = "game_data.json";
 
-        public string GetGameTitle()
-        {
-            if (SplashKit.JsonHasKey(_gameData, "gameTitle"))
+            // Load JSON data from file
+            Json gameData = SplashKit.JsonFromFile(filePath);
+
+            // Check if the JSON data contains the "gameTitle" key and read it
+            if (SplashKit.JsonHasKey(gameData, "gameTitle"))
             {
-                return SplashKit.JsonReadString(_gameData, "gameTitle");
+                string gameTitle = SplashKit.JsonReadString(gameData, "gameTitle");
+                SplashKit.WriteLine("Game Title: " + gameTitle);
             }
             else
             {
-                return "Key \"gameTitle\" not found.";
+                SplashKit.WriteLine("Key \"gameTitle\" not found.");
             }
-        }
 
-        public void FreeGameData()
-        {
-            SplashKit.FreeJson(_gameData);
-        }
-
-        public static void Main()
-        {
-            Program gameDataHandler = new Program("game_data.json");
-
-            string gameTitleMessage = gameDataHandler.GetGameTitle();
-            SplashKit.WriteLine(gameTitleMessage);
-
-            gameDataHandler.FreeGameData();
+            // Free the JSON data
+            SplashKit.FreeJson(gameData);
         }
     }
 }
