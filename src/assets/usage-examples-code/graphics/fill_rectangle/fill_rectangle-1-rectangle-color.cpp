@@ -5,7 +5,7 @@ int main()
     open_window("Fill rectangle", 800, 600);
     clear_screen();
     
-    fill_rectangle(COLOR_BLUE, 200, 200, 200, 200);
+    fill_rectangle(COLOR_BLUE, 200, 200, 200, 100);
     refresh_screen(60);
     delay(4000);
 

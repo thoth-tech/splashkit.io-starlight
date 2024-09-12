@@ -3,7 +3,7 @@ using static SplashKitSDK.SplashKit;
 OpenWindow("Fill Rectangle", 800, 600);
 ClearScreen();
 
-FillRectangle(ColorBlue(), 200, 200, 200, 200);
+FillRectangle(ColorBlue(), 200, 200, 200, 100);
 RefreshScreen(60);
 Delay(4000);
 
