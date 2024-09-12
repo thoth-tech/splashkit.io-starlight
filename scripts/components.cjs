@@ -88,7 +88,6 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
 
 
 
-    
     // Please select an option: "animations, audio, camera, color, database, geometry, graphics, input, json, networking, physics, resource_bundles, resources, social, sprites, terminal, timers, types, utilities, windows"
     for (const categoryKey in jsonData) {
       const category = jsonData[categoryKey];
