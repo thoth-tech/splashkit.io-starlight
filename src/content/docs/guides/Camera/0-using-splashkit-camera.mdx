@@ -232,97 +232,61 @@ The following program code demonstrates the use of some of these camera operatio
 <TabItem label="Object-Oriented">
 
 ```csharp
+
 using SplashKitSDK;
 
-public class Game
+namespace CameraGame
 {
-    private Window _window;
-    private double _playerX, _playerY;
-    private double _cameraX, _cameraY;
-    private const int ScreenWidth = 800;
-    private const int ScreenHeight = 800;
-    private const int ScreenBorder = 100;
-    private const double PlayerSpeed = 3;
-
-    public Game()
+    public class Program
     {
-        _window = SplashKit.OpenWindow("Camera Test", ScreenWidth, ScreenHeight);
-        _playerX = ScreenWidth / 2;
-        _playerY = ScreenHeight / 2;
-        _cameraX = 0;
-        _cameraY = 0;
-    }
-
-    public void Run()
-    {
-        while (!_window.CloseRequested)
+        public static void Main()
         {
-            SplashKit.ProcessEvents();
-            HandleInput();
-            UpdateCameraPosition();
-            Draw();
-            SplashKit.RefreshScreen(60);
+            const int ScreenWidth = 800;
+            const int ScreenHeight = 800;
+            const int ScreenBorder = 100;
+            const double PlayerSpeed = 3;
+
+            Window window = SplashKit.OpenWindow("Camera Test", ScreenWidth, ScreenHeight);
+            double playerX = ScreenWidth / 2;
+            double playerY = ScreenHeight / 2;
+            double cameraX = 0;
+            double cameraY = 0;
+
+            while (!window.CloseRequested)
+            {
+                // Handle input
+                if (SplashKit.KeyDown(KeyCode.LeftKey)) playerX -= PlayerSpeed;
+                if (SplashKit.KeyDown(KeyCode.RightKey)) playerX += PlayerSpeed;
+                if (SplashKit.KeyDown(KeyCode.DownKey)) playerY += PlayerSpeed;
+                if (SplashKit.KeyDown(KeyCode.UpKey)) playerY -= PlayerSpeed;
+
+                // Update camera position
+                double leftEdge = cameraX + ScreenBorder;
+                double rightEdge = leftEdge + ScreenWidth - 2 * ScreenBorder;
+                double topEdge = cameraY + ScreenBorder;
+                double bottomEdge = topEdge + ScreenHeight - 2 * ScreenBorder;
+
+                if (playerY < topEdge) cameraY += topEdge - playerY;
+                else if (playerY > bottomEdge) cameraY += bottomEdge - playerY;
+
+                if (playerX < leftEdge) cameraX += leftEdge - playerX;
+                else if (playerX > rightEdge) cameraX += rightEdge - playerX;
+
+                // Draw everything
+                window.Clear(Color.Black);
+                window.FillRectangle(Color.Gray, 0 - cameraX, 0 - cameraY, ScreenWidth, 50);
+                window.DrawText("HUD", Color.White, 10 - cameraX, 10 - cameraY);
+                window.DrawText($"Camera Position: {cameraX:0.00000}:{cameraY:0.00000}", Color.White, 10 - cameraX, 30 - cameraY);
+                window.FillCircle(Color.Yellow, playerX - cameraX, playerY - cameraY, 20);
+                window.FillRectangle(Color.White, 400 - cameraX, 200 - cameraY, 10, 10);
+                SplashKit.RefreshScreen(60);
+            }
+
+            SplashKit.CloseAllWindows();
         }
-        
-        SplashKit.CloseAllWindows();
-    }
-
-    private void HandleInput()
-    {
-        if (SplashKit.KeyDown(KeyCode.LeftKey))
-            _playerX -= PlayerSpeed;
-        if (SplashKit.KeyDown(KeyCode.RightKey))
-            _playerX += PlayerSpeed;
-        if (SplashKit.KeyDown(KeyCode.DownKey))
-            _playerY += PlayerSpeed;
-        if (SplashKit.KeyDown(KeyCode.UpKey))
-            _playerY -= PlayerSpeed;
-    }
-
-    private void UpdateCameraPosition()
-    {
-        double leftEdge = _cameraX + ScreenBorder;
-        double rightEdge = leftEdge + ScreenWidth - 2 * ScreenBorder;
-        double topEdge = _cameraY + ScreenBorder;
-        double bottomEdge = topEdge + ScreenHeight - 2 * ScreenBorder;
-
-        if (_playerY < topEdge)
-        {
-            _cameraY += topEdge - _playerY;
-        }
-        else if (_playerY > bottomEdge)
-        {
-            _cameraY += bottomEdge - _playerY;
-        }
-
-        if (_playerX < leftEdge)
-        {
-            _cameraX += leftEdge - _playerX;
-        }
-        else if (_playerX > rightEdge)
-        {
-            _cameraX += rightEdge - _playerX;
-        }
-    }
-
-    private void Draw()
-{
-    _window.Clear(Color.Black);
-
-    // Adjust drawing coordinates based on camera position
-    _window.FillRectangle(Color.Gray, 0 - _cameraX, 0 - _cameraY, ScreenWidth, 50);
-    _window.DrawText("HUD", Color.White, 10 - _cameraX, 10 - _cameraY);
-    _window.DrawText($"Camera Position:{_cameraX:0.00000}:{_cameraY:0.00000}", Color.White, 10 - _cameraX, 30 - _cameraY);
-
-    _window.FillCircle(Color.Yellow, _playerX - _cameraX, _playerY - _cameraY, 20);
-    _window.FillRectangle(Color.White, 400 - _cameraX, 200 - _cameraY, 10, 10);
-}
-    public static void Main()
-    {
-        Game game = new Game();
-        game.Run();
     }
 }
+
 
 ```
 
