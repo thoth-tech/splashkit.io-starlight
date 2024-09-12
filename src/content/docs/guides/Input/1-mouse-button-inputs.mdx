@@ -142,56 +142,35 @@ CloseAllWindows();
 ```csharp
 using SplashKitSDK;
 
-namespace MouseInputs
+namespace MouseInputsApp
 {
     public class Program
     {
         public static void Main()
         {
-            MouseInputApp app = new MouseInputApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Inputs", 800, 600);
 
-    public class MouseInputApp
-    {
-        private Window _window;  
-
-        public MouseInputApp()
-        {
-             _window = SplashKit.OpenWindow("Mouse Inputs", 800, 600);
-        }
-
-        public void Run()
-        {
-            
-            while (!SplashKit.WindowCloseRequested(_window))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ProcessEvents();  
+                SplashKit.ProcessEvents();
 
-                HandleMouseInput();
+                if (SplashKit.MouseClicked(MouseButton.LeftButton))
+                {
+                    SplashKit.ClearScreen(SplashKit.ColorRed());
+                }
+                else if (SplashKit.MouseClicked(MouseButton.RightButton))
+                {
+                    SplashKit.ClearScreen(SplashKit.ColorYellow());
+                }
 
                 SplashKit.RefreshScreen(60);
             }
 
-            
             SplashKit.CloseAllWindows();
-        }
-
-        private void HandleMouseInput()
-        {
-            
-            if (SplashKit.MouseClicked(MouseButton.LeftButton))
-            {
-                SplashKit.ClearScreen(SplashKit.ColorRed());
-            }
-             else if (SplashKit.MouseClicked(MouseButton.RightButton))
-            {
-                SplashKit.ClearScreen(SplashKit.ColorYellow());
-            }
         }
     }
 }
+
 ```
 </TabItem>
 </Tabs>
@@ -339,52 +318,33 @@ namespace MouseInputs
     {
         public static void Main()
         {
-            
-            MouseInputApp app = new MouseInputApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Inputs", 800, 600);
 
-    public class MouseInputApp
-    {
-        private Window _window;  
-
-        public MouseInputApp()
-        {
-         _window = SplashKit.OpenWindow("Mouse Inputs", 800, 600);
-        }
-
-        public void Run()
-        {
-            while (!SplashKit.WindowCloseRequested(_window))
-             {
-                SplashKit.ProcessEvents();  
-
-                HandleMouseInput();
-
-               SplashKit.RefreshScreen(60);
-            }
-SplashKit.CloseAllWindows();
-        }
-
-        private void HandleMouseInput()
-        {
-        
-            if (SplashKit.MouseDown(MouseButton.LeftButton))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ClearScreen(SplashKit.ColorRed());
+                SplashKit.ProcessEvents();
+
+                if (SplashKit.MouseDown(MouseButton.LeftButton))
+                {
+                    SplashKit.ClearScreen(SplashKit.ColorRed());
+                }
+                else if (SplashKit.MouseDown(MouseButton.RightButton))
+                {
+                    SplashKit.ClearScreen(SplashKit.ColorYellow());
+                }
+                else
+                {
+                    SplashKit.ClearScreen(SplashKit.ColorWhite());
+                }
+
+                SplashKit.RefreshScreen(60);
             }
-            else if (SplashKit.MouseDown(MouseButton.RightButton))
-            {
-                SplashKit.ClearScreen(SplashKit.ColorYellow());
-            }
-            else
-            {
-                SplashKit.ClearScreen(SplashKit.ColorWhite());
-            }
+
+            SplashKit.CloseAllWindows();
         }
     }
 }
+
 ```
 
 </TabItem>
@@ -524,50 +484,29 @@ namespace MouseInputs
     {
         public static void Main()
         {
-            MouseInputApp app = new MouseInputApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Inputs", 800, 600);
 
-    public class MouseInputApp
-    {
-        private Window _window;  
-
-        public MouseInputApp()
-        {
-           _window = SplashKit.OpenWindow("Mouse Inputs", 800, 600);
-        }
-
-        public void Run()
-        {
-            
-            while (!SplashKit.WindowCloseRequested(_window))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ProcessEvents();  
+                SplashKit.ProcessEvents();
 
-                HandleMouseInput();
+                if (SplashKit.MouseUp(MouseButton.LeftButton))
+                {
+                    SplashKit.ClearScreen(SplashKit.ColorRed());
+                }
+                else
+                {
+                    SplashKit.ClearScreen(SplashKit.ColorWhite());
+                }
 
                 SplashKit.RefreshScreen(60);
             }
 
-            
             SplashKit.CloseAllWindows();
-        }
-      private void HandleMouseInput()
-        {
-            
-            if (SplashKit.MouseUp(MouseButton.LeftButton))
-            {
-                SplashKit.ClearScreen(SplashKit.ColorRed());
-            }
-            
-            else
-            {
-                SplashKit.ClearScreen(SplashKit.ColorWhite());
-            }
         }
     }
 }
+
 ```
 
 </TabItem>
@@ -731,57 +670,37 @@ namespace MouseMovementApp
     {
         public static void Main()
         {
-            MouseMovementApp app = new MouseMovementApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Movement", 800, 600);
+            double hue = 0.8;
+            double saturation = 0.8;
+            double brightness = 0.8;
 
-    public class MouseMovementApp
-    {
-        private Window _window; 
-        private double _hue = 0.8; 
-        private double _saturation = 0.8; 
-        private double _brightness = 0.8; 
-        private Vector2D _movement; 
-        public MouseMovementApp()
-        {
-             _window = SplashKit.OpenWindow("Mouse Movement", 800, 600);
-        }
-
-        public void Run()
-        {
-            
-            while (!SplashKit.WindowCloseRequested(_window))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ProcessEvents();  
-                _movement = SplashKit.MouseMovement(); 
-                
-                HandleMouseInput();
-                SplashKit.ClearScreen(SplashKit.HSBColor(_hue, _saturation, _brightness));
-                
-                SplashKit.RefreshScreen(60); 
+                SplashKit.ProcessEvents();
+
+                Vector2D movement = SplashKit.MouseMovement();
+
+                if (SplashKit.MouseDown(MouseButton.LeftButton))
+                {
+                    hue += movement.X / SplashKit.ScreenWidth();
+                }
+
+                if (SplashKit.MouseDown(MouseButton.RightButton))
+                {
+                    saturation += movement.Y / SplashKit.ScreenHeight();
+                }
+
+                SplashKit.ClearScreen(SplashKit.HSBColor(hue, saturation, brightness));
+
+                SplashKit.RefreshScreen(60);
             }
 
-           
             SplashKit.CloseAllWindows();
-        }
-
-        private void HandleMouseInput()
-        {
-            
-            if (SplashKit.MouseDown(MouseButton.LeftButton))
-            {
-                _hue += _movement.X / SplashKit.ScreenWidth();
-            }
-
-            
-            if (SplashKit.MouseDown(MouseButton.RightButton))
-            {
-                _saturation += _movement.Y / SplashKit.ScreenHeight();
-            }
         }
     }
 }
+
 ```
 
 </TabItem>
@@ -933,46 +852,28 @@ namespace MouseScrollingApp
     {
         public static void Main()
         {
-            MouseScrollApp app = new MouseScrollApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Scrolling", 800, 600);
+            double hue = 0.6;
+            double saturation = 0.6;
+            double brightness = 0.6;
 
-    public class MouseScrollApp
-    {
-        private Window _window; 
-        private double _hue = 0.6; 
-        private double _saturation = 0.6; 
-        private double _brightness = 0.6; 
-        private Vector2D _scroll; 
-
-        public MouseScrollApp()
-        {
-            _window = SplashKit.OpenWindow("Mouse Scrolling", 800, 600);
-        }
-
-        public void Run()
-        {
-            
-            while (!SplashKit.WindowCloseRequested(_window))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ProcessEvents();  
-                _scroll = SplashKit.MouseWheelScroll(); 
-                
-                HandleMouseScroll();
-                
-                SplashKit.ClearScreen(SplashKit.HSBColor(_hue, _saturation, _brightness));
-                SplashKit.RefreshScreen(60); 
-            }
-          SplashKit.CloseAllWindows();
-        }
+                SplashKit.ProcessEvents();
 
-        private void HandleMouseScroll()
-        {
-           _hue += _scroll.Y / 100.0;
+                Vector2D scroll = SplashKit.MouseWheelScroll();
+
+                hue += scroll.Y / 100.0;
+
+                SplashKit.ClearScreen(SplashKit.HSBColor(hue, saturation, brightness));
+                SplashKit.RefreshScreen(60);
+            }
+
+            SplashKit.CloseAllWindows();
         }
     }
 }
+
 ```
 
 </TabItem>
@@ -1095,42 +996,25 @@ namespace MouseLocationApp
     {
         public static void Main()
         {
-            MouseLocationApp app = new MouseLocationApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Location", 800, 600);
 
-    public class MouseLocationApp
-    {
-        private Window _window;  
-
-        public MouseLocationApp()
-        {
-           _window = SplashKit.OpenWindow("Mouse Location", 800, 600);
-        }
-
-        public void Run()
-        {
-             while (!SplashKit.WindowCloseRequested(_window))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ProcessEvents();  
+                SplashKit.ProcessEvents();
 
-                HandleMousePosition();
+                SplashKit.ClearScreen(SplashKit.ColorWhite());
+
+                Point2D mousePosition = SplashKit.MousePosition();
+                SplashKit.FillCircle(SplashKit.ColorLightBlue(), mousePosition.X, mousePosition.Y, 20);
 
                 SplashKit.RefreshScreen(60);
             }
 
             SplashKit.CloseAllWindows();
         }
-
-        private void HandleMousePosition()
-        {
-            SplashKit.ClearScreen(SplashKit.ColorWhite());
-
-            SplashKit.FillCircle(SplashKit.ColorLightBlue(), SplashKit.CircleAt(SplashKit.MousePosition(), 20));
-        }
     }
 }
+
 ```
 
 </TabItem>
@@ -1243,42 +1127,22 @@ namespace MouseLocationApp
     {
         public static void Main()
         {
-            MouseLocationApp app = new MouseLocationApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Location", 800, 600);
 
-    public class MouseLocationApp
-    {
-        private Window _window;  
-
-        public MouseLocationApp()
-        {
-             _window = SplashKit.OpenWindow("Mouse Location", 800, 600);
-        }
-
-        public void Run()
-        {
-            while (!SplashKit.WindowCloseRequested(_window))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ProcessEvents();  
+                SplashKit.ProcessEvents();
 
-                HandleMousePosition();
-
+                SplashKit.ClearScreen(SplashKit.ColorWhite());
+                SplashKit.DrawLine(SplashKit.ColorBlue(), SplashKit.LineFrom(SplashKit.MousePositionVector()));
                 SplashKit.RefreshScreen(60);
             }
 
             SplashKit.CloseAllWindows();
         }
-
-        private void HandleMousePosition()
-        {
-            SplashKit.ClearScreen(SplashKit.ColorWhite());
-
-            SplashKit.DrawLine(SplashKit.ColorBlue(), SplashKit.LineFrom(SplashKit.MousePositionVector()));
-        }
     }
 }
+
 ```
 
 </TabItem>
@@ -1406,49 +1270,29 @@ namespace MouseLocationApp
     {
         public static void Main()
         {
-            MouseCurtainApp app = new MouseCurtainApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Location", 800, 600);
+            float x = 0;
 
-    public class MouseCurtainApp
-    {
-        private Window _window; 
-        private float _x = 0; 
-
-        public MouseCurtainApp()
-        {
-             _window = SplashKit.OpenWindow("Mouse Location", 800, 600);
-        }
-
-        public void Run()
-        {
-            while (!SplashKit.WindowCloseRequested(_window))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ProcessEvents(); 
+                SplashKit.ProcessEvents();
 
                 if (SplashKit.MouseDown(MouseButton.LeftButton))
                 {
-                    _x = SplashKit.MouseX();
+                    x = SplashKit.MouseX();
                 }
 
-                DrawScene();
-
+                SplashKit.ClearScreen(SplashKit.ColorWhite());
+                SplashKit.FillCircle(SplashKit.ColorBlue(), 400, 300, 100);
+                SplashKit.FillRectangle(SplashKit.ColorPurple(), 0, 0, x, SplashKit.ScreenHeight());
                 SplashKit.RefreshScreen(60);
             }
-              SplashKit.CloseAllWindows();
-        }
 
-        private void DrawScene()
-        {
-             SplashKit.ClearScreen(SplashKit.ColorWhite());
-
-            SplashKit.FillCircle(SplashKit.ColorBlue(), 400, 300, 100);
-
-             SplashKit.FillRectangle(SplashKit.ColorPurple(), 0, 0, _x, SplashKit.ScreenHeight());
+            SplashKit.CloseAllWindows();
         }
     }
 }
+
 ```
 
 </TabItem>
@@ -1581,51 +1425,29 @@ namespace MouseLocationApp
     {
         public static void Main()
         {
-            MouseCurtainApp app = new MouseCurtainApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Location", 800, 600);
+            float y = 0;
 
-    public class MouseCurtainApp
-    {
-        private Window _window; 
-        private float _y = 0; 
-
-        public MouseCurtainApp()
-        {
-            _window = SplashKit.OpenWindow("Mouse Location", 800, 600);
-        }
-
-        public void Run()
-        {
-          while (!SplashKit.WindowCloseRequested(_window))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ProcessEvents(); 
+                SplashKit.ProcessEvents();
 
                 if (SplashKit.MouseDown(MouseButton.LeftButton))
                 {
-                    _y = SplashKit.MouseY();
+                    y = SplashKit.MouseY();
                 }
 
-                 DrawScene();
-
+                SplashKit.ClearScreen(SplashKit.ColorWhite());
+                SplashKit.FillCircle(SplashKit.ColorBlue(), 400, 300, 100);
+                SplashKit.FillRectangle(SplashKit.ColorPurple(), 0, 0, SplashKit.ScreenWidth(), y);
                 SplashKit.RefreshScreen(60);
             }
 
-           SplashKit.CloseAllWindows();
-        }
-
-        private void DrawScene()
-        {
-            
-            SplashKit.ClearScreen(SplashKit.ColorWhite());
-
-            SplashKit.FillCircle(SplashKit.ColorBlue(), 400, 300, 100);
-
-            SplashKit.FillRectangle(SplashKit.ColorPurple(), 0, 0, SplashKit.ScreenWidth(), _y);
+            SplashKit.CloseAllWindows();
         }
     }
 }
+
 ```
 
 </TabItem>
@@ -1779,63 +1601,32 @@ namespace MouseVisibilityApp
     {
         public static void Main()
         {
-             MouseVisibilityApp app = new MouseVisibilityApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Visibility", 800, 600);
+            Circle blackHole = SplashKit.CircleAt(SplashKit.ScreenCenter(), 50);
 
-    public class MouseVisibilityApp
-    {
-        private Window _window; 
-        private Circle _blackHole; 
-
-        public MouseVisibilityApp()
-        {
-            _window = SplashKit.OpenWindow("Mouse Visibility", 800, 600);
-
-           _blackHole = SplashKit.CircleAt(SplashKit.ScreenCenter(), 50);
-        }
-
-        public void Run()
-        {
-            
-            while (!SplashKit.WindowCloseRequested(_window))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ProcessEvents(); 
+                SplashKit.ProcessEvents();
 
-                UpdateMouseVisibility();
+                if (SplashKit.PointInCircle(SplashKit.MousePosition(), blackHole))
+                {
+                    SplashKit.HideMouse();
+                }
+                else
+                {
+                    SplashKit.ShowMouse();
+                }
 
-                DrawScene();
-
+                SplashKit.ClearScreen(SplashKit.ColorWhite());
+                SplashKit.FillCircle(SplashKit.ColorBlack(), blackHole);
                 SplashKit.RefreshScreen(60);
             }
 
-             SplashKit.CloseAllWindows();
-        }
-
-        private void UpdateMouseVisibility()
-        {
-            
-            if (SplashKit.PointInCircle(SplashKit.MousePosition(), _blackHole))
-            {
-                SplashKit.HideMouse();
-            }
-            
-            else
-            {
-                SplashKit.ShowMouse();
-            }
-        }
-
-        private void DrawScene()
-        {
-            SplashKit.ClearScreen(SplashKit.ColorWhite());
-
-            SplashKit.FillCircle(SplashKit.ColorBlack(), _blackHole);
-
+            SplashKit.CloseAllWindows();
         }
     }
 }
+
 ```
 
 </TabItem>
@@ -1978,53 +1769,26 @@ namespace SpotlightApp
     {
         public static void Main()
         {
-            SpotlightApp app = new SpotlightApp();
-            app.Run();
-        }
-    }
+            Window window = SplashKit.OpenWindow("Mouse Visibility", 800, 600);
+            Circle spotLight = SplashKit.CircleAt(SplashKit.ScreenCenter(), 100);
 
-    public class SpotlightApp
-    {
-        private Window _window; 
-        private Circle _spotLight; 
-        public SpotlightApp()
-        {
-           _window = SplashKit.OpenWindow("Mouse Visibility", 800, 600);
-
-           _spotLight = SplashKit.CircleAt(SplashKit.ScreenCenter(), 100);
-        }
-
-        public void Run()
-        {
-             while (!SplashKit.WindowCloseRequested(_window))
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.ProcessEvents(); 
+                SplashKit.ProcessEvents();
 
-                 UpdateMouseVisibility();
+                bool isMouseInSpotLight = SplashKit.PointInCircle(SplashKit.MousePosition(), spotLight);
+                SplashKit.ShowMouse(isMouseInSpotLight);
 
-                DrawScene();
-
-               SplashKit.RefreshScreen(60);
+                SplashKit.ClearScreen(SplashKit.ColorBlack());
+                SplashKit.FillCircle(SplashKit.ColorWhite(), spotLight);
+                SplashKit.RefreshScreen(60);
             }
 
-          SplashKit.CloseAllWindows();
-        }
-
-        private void UpdateMouseVisibility()
-        {
-            
-            bool isMouseInSpotLight = SplashKit.PointInCircle(SplashKit.MousePosition(), _spotLight);
-            SplashKit.ShowMouse(isMouseInSpotLight);
-        }
-
-        private void DrawScene()
-        {
-           SplashKit.ClearScreen(SplashKit.ColorBlack());
-
-           SplashKit.FillCircle(SplashKit.ColorWhite(), _spotLight);
+            SplashKit.CloseAllWindows();
         }
     }
 }
+
 ```
 
 </TabItem>
