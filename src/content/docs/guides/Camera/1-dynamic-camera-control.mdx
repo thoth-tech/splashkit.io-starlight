@@ -184,7 +184,7 @@ int main()
 </TabItem>
 </Tabs>
 
-### Understanding the code
+### Understanding the code for zooming
 
 Let’s break this code into smaller sections and analyze each part.
 
@@ -537,6 +537,238 @@ int main()
 
 </TabItem>
 </Tabs>
+
+### Understanding the code for movement
+
+Let’s break this code into smaller sections and analyze each part.
+
+#### Opening the Window and Loading the Bitmap
+
+We start by defining the speed of the camera movement, opening the window, and loading the bitmap that represents the game world. We then position the camera at the center of the bitmap.
+
+<Tabs syncKey="code-language">
+<TabItem label="C#">
+
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+    
+// Speed of camera movement
+const int SPEED = 4;
+    
+// Open a window
+OpenWindow("Camera Movement Example", 800, 600);
+    
+// Load a 5x5 colored grid bitmap
+Bitmap grid = LoadBitmap("grid", "color-grid-5000.png");
+    
+// Set the initial camera position to center the bitmap
+SetCameraPosition(PointAt(BitmapWidth(grid) / 2 - ScreenCenter().X, BitmapHeight(grid) / 2 - ScreenCenter().Y));
+    
+
+```
+
+</TabItem>
+
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+
+// Speed of camera movement
+const int SPEED = 4;
+
+int main()
+{
+    // Open a window
+    open_window("Camera Movement Example", 800, 600);
+
+    // Load a 5x5 colored grid bitmap
+    bitmap grid = load_bitmap("grid", "color-grid-5000.png");
+
+    // Set the initial camera position to center the bitmap
+    set_camera_position(
+        point_at(bitmap_width(grid) / 2 - screen_center().x, 
+                bitmap_height(grid) / 2 - screen_center().y)
+    );
+}
+
+```
+
+</TabItem>
+</Tabs>
+
+In this part, the [OpenWindow](https://splashkit.io/api/windows/#open-window) function creates an 800x600 window, and the [LoadBitmap](https://splashkit.io/api/graphics/#load-bitmap) function loads a large 5x5 grid bitmap. The [SetCameraPosition](https://splashkit.io/api/camera/#set-camera-position) function centers the camera on the middle of the bitmap by adjusting the camera's position based on the bitmap's width and height.
+
+#### Defining the Target Position for Camera Movement
+
+Next, we define a target position (target) where the camera will move when the user clicks inside the window.
+
+<Tabs syncKey="code language">
+<TabItem label= "C#">
+
+```csharp
+
+// Target position where the camera will move towards
+Point2D target = PointAt(BitmapWidth(grid) / 2, BitmapHeight(grid) / 2);
+
+```
+
+</TabItem>
+
+<TabItem label= "C++">
+
+```cpp
+// Target position where the camera will move towards
+point_2d target = point_at(bitmap_width(grid) / 2, bitmap_height(grid) / 2);
+```
+
+</TabItem>
+</Tabs>
+
+Here, we set the initial target to the center of the bitmap, which the camera will follow when the user interacts with the game world.
+
+#### Updating the Camera Target on Mouse Click
+
+In the main game loop, we listen for user inputs. If the left mouse button is clicked, the target position is updated to the mouse click’s world position.
+
+<Tabs syncKey="code language">
+<TabItem label="C#">
+
+```csharp
+// Main game loop
+while (!WindowCloseRequested("Camera Movement Example"))
+{
+    ProcessEvents();
+    
+    // Set target Camera position to be centered on Mouse Position
+    if (MouseClicked(MouseButton.LeftButton))
+    {
+        target = ToWorld(MousePosition());
+    }
+}
+```
+
+</TabItem>
+<TabItem label="C++">
+
+```cpp
+// Main game loop
+while (!window_close_requested("Camera Movement Example"))
+{
+    process_events();
+
+    // Set target Camera position to be centered on Mouse Position
+    if (mouse_clicked(LEFT_BUTTON))
+    {
+        target = to_world(mouse_position());
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+The [MouseClicked](https://splashkit.io/api/input/#mouse-clicked) function detects when the left mouse button is clicked. When clicked, "to_world(mouse_position())" converts the mouse's screen position to a position in the game world. This updates the target to the mouse's clicked location.
+
+#### Smooth Camera Movement Toward the Target
+
+Next, the camera moves smoothly toward the target by adjusting its position horizontally and vertically until the target is centered on the screen.
+
+<Tabs syncKey="code language">
+<TabItem label="C#">
+
+```csharp
+
+// Move camera to center target position on screen
+if (CameraX() < target.X - ScreenWidth() / 2)
+{
+    MoveCameraBy(SPEED, 0);
+}
+if (CameraX() + ScreenWidth() > target.X + ScreenWidth() / 2)
+{
+    MoveCameraBy(-SPEED, 0);
+}
+if (CameraY() < target.Y - ScreenHeight() / 2)
+{
+    MoveCameraBy(0, SPEED);
+}
+if (CameraY() + ScreenHeight() > target.Y + ScreenHeight() / 2)
+{
+    MoveCameraBy(0, -SPEED);
+}
+    
+
+```
+
+</TabItem>
+<TabItem label="C++">
+
+```cpp
+// Move camera to center target position on screen
+if (camera_x() < target.x - screen_width() / 2)
+{
+    move_camera_by(SPEED, 0);
+}
+if (camera_x() + screen_width() > target.x + screen_width() / 2)
+{
+    move_camera_by(-SPEED, 0);
+}
+if (camera_y() < target.y - screen_height() / 2)
+{
+    move_camera_by(0, SPEED);
+}
+if (camera_y() + screen_height() > target.y + screen_height() / 2)
+{
+    move_camera_by(0, -SPEED);
+}
+```
+
+</TabItem>
+</Tabs>
+
+This section checks if the camera's current position ([CameraX](https://splashkit.io/api/camera/#camera-x) and [CameraY](https://splashkit.io/api/camera/#camera-y)) is not centered on the target. The [Screen Width](https://splashkit.io/api/graphics/#screen-width) and [Screen Height](https://splashkit.io/api/graphics/#screen-height) functions are used to calculate half the screen's dimensions to ensure the target is centered. If the camera is off-center relative to the target, [MoveCameraBy](https://splashkit.io/api/camera/#move-camera-by-2) moves the camera incrementally at the defined SPEED to adjust the position. This ensures that the target remains within the center of the visible screen.
+
+#### Handling Camera Movement with Mouse Scroll
+
+We also allow the camera to move manually by using the mouse wheel. Scrolling the mouse wheel in any direction will move the camera in small steps.
+
+<Tabs syncKey="code language">
+<TabItem label = "C#">
+
+```csharp
+
+// Allow scroll movement
+if (MouseWheelScroll().X < 0 || MouseWheelScroll().X > 0 || MouseWheelScroll().Y < 0 || MouseWheelScroll().Y > 0)
+{
+    MoveCameraBy(SPEED * MouseWheelScroll().X, 0);
+    MoveCameraBy(0, SPEED * -MouseWheelScroll().Y);
+    target = ScreenCenter();
+}
+    
+```
+
+</TabItem>
+<TabItem label="C++">
+
+```cpp
+// Allow scroll movement
+if (mouse_wheel_scroll().x < 0 || mouse_wheel_scroll().x > 0 || mouse_wheel_scroll().y < 0 || mouse_wheel_scroll().y > 0)
+{
+    move_camera_by(SPEED * mouse_wheel_scroll().x, 0);
+    move_camera_by(0, SPEED * -mouse_wheel_scroll().y);
+    target = screen_center();
+}
+```
+
+</TabItem>
+</Tabs>
+
+This section detects scrolling through the [Mouse Wheel Scroll](https://splashkit.io/api/input/#mouse-wheel-scroll) function. If the user scrolls in any direction, the camera moves horizontally or vertically based on the scroll input. The target is reset to the center of the screen after scrolling.
+
+#### Draw the Bitmap and Refreshing the Screen
+
+We have already discussed how to draw the bitmap and refresh the screen in the "Zooming into a Colored Grid" example above. The process remains the same here, where we clear the screen, draw the bitmap, and refresh the display to reflect any changes.
 
 ## Conclusion
 
