@@ -108,3 +108,47 @@
   text-decoration: none; /* Remove underline from links */
   color: inherit; /* Inherit text color from the parent */
 }
+
+/* Default swiper settings (for desktop) */
+.mySwiper {
+  height: 340px;
+  padding: 0 50px;
+}
+
+/* For tablets */
+@media (max-width: 1024px) {
+  .mySwiper {
+    height: 300px;
+    padding: 0 30px;
+  }
+  .swiper-slide {
+    width: auto; /* Adjust width to fit the container */
+  }
+  .gamecard img {
+    height: 100px;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .mySwiper {
+    height: 250px;
+    padding: 0 20px;
+  }
+  .swiper-slide {
+    width: auto; /* Adjust width to fit the container */
+    padding: 0 10px; /* Add padding between cards */
+  }
+  .gamecard {
+    padding: 5px;
+  }
+  .gamecard img {
+    height: 80px; /* Adjust image height for smaller screens */
+  }
+  .gamecard h3 {
+    font-size: 12px;
+  }
+  .gamecard p {
+    font-size: 12px;
+  }
+}
