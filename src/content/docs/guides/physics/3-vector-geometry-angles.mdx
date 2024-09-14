@@ -3,7 +3,7 @@ title: Vector Angles
 description: A guide to understanding vector angles using SplashKit functions, including dot product, vector angle, and angle between vectors.
 category: Guides
 author: Shaun Ratcliff
-lastupdated: 15 Aug 2024
+lastupdated: 14 Sep 24
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -21,9 +21,9 @@ Understanding vector angles is crucial for creating dynamic and engaging gamepla
 
 ## SplashKit Vector Functions Used in This Tutorial:
 
-1. [Vector Angle](https://splashkit.io/api/physics/#vector-angle)
-2. [Dot Product](https://splashkit.io/api/physics/#dot-product)
-3. [Angle Between](https://splashkit.io/api/physics/#angle-between) 
+1. [Vector Angle](/api/physics/#vector-angle)
+2. [Dot Product](/api/physics/#dot-product)
+3. [Angle Between](/api/physics/#angle-between) 
 
 ## Contents
 
@@ -43,6 +43,20 @@ Vector angles also play a significant role in various fields of physics, where t
 
 The `vector_angle` function determines the angle of a vector relative to the x-axis. This angle is essential for understanding the direction of a vector in a two-dimensional space. 
 
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+  ```cpp 
+    double my_vector_angle = vector_angle(my_vector);
+  ```
+  </TabItem>
+
+  <TabItem label="C#">
+  ```csharp 
+  double myVectorAngle = SplashKit.VectorAngle(myVector);
+  ```
+  </TabItem>
+</Tabs>
+
 ![Vector Angles](./images/vector-angles.PNG)
 
 <details class="custom-details">
@@ -50,7 +64,7 @@ The `vector_angle` function determines the angle of a vector relative to the x-a
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
-```cpp
+```cpp {61}
 #include "splashkit.h"
 
 using std::to_string;
@@ -123,7 +137,7 @@ int main()
 ```
 </TabItem> 
 <TabItem label="C#">
-```csharp
+```csharp {67}
 using System;
 using SplashKitSDK;
 
@@ -216,6 +230,26 @@ Mathematically, the dot product of two vectors $ A = (A_x, A_y)$ and $ B = (B_x,
 
 $$ \mathbf{A} \cdot \mathbf{B} = A_x \times B_x + A_y \times B_y $$
 
+We can use SplashKit's `dot_product` function to do these calculations for us.
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+  ```cpp 
+  double dot_product_result_ab = dot_product(vector_a, vector_b);
+  double dot_product_result_ac = dot_product(vector_a, vector_c);
+  double dot_product_result_ad = dot_product(vector_a, vector_d);
+  ```
+  </TabItem>
+
+  <TabItem label="C#">
+  ```csharp 
+  double dotProductResultAB = SplashKit.DotProduct(vectorA, vectorB);
+  double dotProductResultAC = SplashKit.DotProduct(vectorA, vectorC);
+  double dotProductResultAD = SplashKit.DotProduct(vectorA, vectorD);
+  ```
+  </TabItem>
+</Tabs>
+
 Consider the following diagram:
 
 ![Vector Dot Product](./images/vector-dot-product.PNG)
@@ -229,7 +263,7 @@ Consider the following diagram:
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
-```cpp
+```cpp {55-58}
 #include "splashkit.h"
 using std::to_string;
 
@@ -315,7 +349,7 @@ int main()
 ```
 </TabItem> 
 <TabItem label="C#">
-```csharp
+```csharp {62-65}
 using System;
 using SplashKitSDK;
 
@@ -443,6 +477,20 @@ The `angle_between` function in SplashKit calculates the angle between two vecto
 
 To visualise the angle between two vectors, imagine an angle formed by placing a line from the end of the first vector to the end of the second vector. The angle between these vectors represents how much one vector needs to rotate to align with the other. This is helpful in applications where precise directional adjustments or relative orientations are necessary.
 
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+  ```cpp 
+  double angle = angle_between(vector1, vector2);
+  ```
+  </TabItem>
+
+  <TabItem label="C#">
+  ```csharp 
+  double angle = SplashKit.AngleBetween(vector1, vector2);
+  ```
+  </TabItem>
+</Tabs>
+
 Observe the following diagram:
 
 ![Angle Between Vectors](./images/angle-between-vectors.png)
@@ -454,7 +502,7 @@ Note that the green line that connects the two vectors is 135 degrees from the x
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
-```cpp
+```cpp {62}
 #include "splashkit.h"
 
 using std::to_string;
@@ -528,7 +576,7 @@ int main()
 ```
 </TabItem> 
 <TabItem label="C#">
-```csharp
+```csharp {74}
 using System;
 using SplashKitSDK;
 

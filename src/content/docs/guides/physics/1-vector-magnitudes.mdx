@@ -3,7 +3,7 @@ title: Vector Magnitudes
 description: Understanding vector magnitudes, squared magnitudes, and inversions is essential for various programming applications, from game mechanics to physics simulations. This tutorial explores these concepts using SplashKit functions to enhance your programming toolkit.
 category: Guides
 author: Shaun Ratcliff
-lastupdated: 02 Aug 2024
+lastupdated: 14 Sep 24
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -21,9 +21,9 @@ Vectors are used in programming to represent quantities that involve direction a
 
 ## SplashKit Vector Functions Used in This Tutorial:
 
-1. [Vector Magnitude](https://splashkit.io/api/physics/#vector-magnitude)
-2. [Vector Magnitude Squared](https://splashkit.io/api/physics/#vector-magnitude-sqared)
-3. [Vector Invert](https://splashkit.io/api/physics/#vector-invert) 
+1. [Vector Magnitude](/api/physics/#vector-magnitude)
+2. [Vector Magnitude Squared](/api/physics/#vector-magnitude-sqared)
+3. [Vector Invert](/api/physics/#vector-invert) 
 
 ## Contents
 
@@ -99,7 +99,7 @@ The magnitudes of the inverted vectors are the same as the original vectors beca
 <Tabs syncKey="code-language">
   <TabItem label="C++">
 
-```cpp
+```cpp {41-48, 55-61}
 #include "splashkit.h"
 
 using std::to_string;
@@ -195,7 +195,7 @@ int main()
 </TabItem> 
 <TabItem label="C#">
 
-```csharp
+```csharp {43-45, 50-56}
 using System;
 using SplashKitSDK;
 

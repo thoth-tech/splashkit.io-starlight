@@ -3,7 +3,7 @@ title: Vector Arithmetic
 description: This tutorial covers essential vector arithmetic operations, including addition, subtraction, and multiplication, using SplashKit functions. These operations are fundamental for tasks such as calculating movement, force, and direction in game development and physics simulations.
 category: Guides
 author: Shaun Ratcliff
-lastupdated: 15 Aug 2024
+lastupdated: 14 Sep 24
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -21,9 +21,9 @@ Vector arithmetic involves the addition, subtraction, and multiplication of vect
 
 ## SplashKit Vector Functions Used in This Tutorial:
 
-1. [Vector Add](https://splashkit.io/api/physics/#vector-add)
-2. [Vector Subtract](https://splashkit.io/api/physics/#vector-subtract)
-3. [Vector Multiply](https://splashkit.io/api/physics/#vector-multiply) 
+1. [Vector Add](/api/physics/#vector-add)
+2. [Vector Subtract](/api/physics/#vector-subtract)
+3. [Vector Multiply](/api/physics/#vector-multiply) 
 
 ## Contents
 
@@ -73,7 +73,7 @@ In this example, `v1` and `v2` are added together to produce a new vector `resul
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
-```cpp
+```cpp {41-51}
 #include "splashkit.h"
 
 using std::to_string;
@@ -158,7 +158,7 @@ int main()
 ```
 </TabItem> 
 <TabItem label="C#">
-```csharp
+```csharp {41-46}
 using System;
 using SplashKitSDK;
 
@@ -271,7 +271,7 @@ In this example, `v2` is subtracted from `v1` to produce a new vector `result` w
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
-```cpp
+```cpp {41-51}
 #include "splashkit.h"
 
 using std::to_string;
@@ -356,7 +356,7 @@ int main()
 ```
 </TabItem> 
 <TabItem label="C#">
-```csharp
+```csharp {41-46}
 using System;
 using SplashKitSDK;
 
@@ -480,7 +480,7 @@ Let's visualise this!
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
-```cpp
+```cpp {55-61}
 #include "splashkit.h"
 
 using std::to_string;
@@ -595,7 +595,7 @@ int main()
 ```
 </TabItem> 
 <TabItem label="C#">
-```csharp
+```csharp {56-62}
 using System;
 using SplashKitSDK;
 
@@ -758,7 +758,7 @@ Using the `vector_subtract` function from SplashKit, the `required_vector` is ca
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
-```cpp
+```cpp {57-63}
 #include "splashkit.h"
 #include "string"
 
@@ -851,7 +851,7 @@ int main()
 ```
 </TabItem> 
 <TabItem label="C#">
-```csharp
+```csharp {66-72}
 using System;
 using SplashKitSDK;
 
@@ -1003,7 +1003,7 @@ In a space game, if you want to double the speed of your spaceship by activating
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
-```cpp
+```cpp {58-67}
 #include "splashkit.h"
 
 using std::to_string;
@@ -1102,7 +1102,7 @@ int main()
 ```
 </TabItem> 
 <TabItem label="C#">
-```csharp
+```csharp {68-77}
 using System;
 using SplashKitSDK;
 

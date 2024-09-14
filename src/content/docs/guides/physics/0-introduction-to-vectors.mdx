@@ -3,7 +3,7 @@ title: Introduction to Vectors
 description: Vectors are a fundamental tool in game development, enabling precise control over movement, collision, and physics. Understanding vectors unlocks the ability to create dynamic and realistic game experiences. SplashKit excels in handling vector operations, offering intuitive functions and robust support for 2D game mechanics.
 category: Guides
 authors: Aditya Parma, Shaun Ratcliff
-lastupdated: 15 Aug 24
+lastupdated: 14 Sep 24
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -21,8 +21,8 @@ In programming, vectors are used to represent quantities that have both magnitud
 
 ## SplashKit Vector Functions Used in This Tutorial
 
-1. [Vector To String](https://splashkit.io/api/physics/#vector-to-string)
-2. [Vector Point to Point](https://splashkit.io/api/physics/#vector-point-to-point)
+1. [Vector To String](/api/physics/#vector-to-string)
+2. [Vector Point to Point](/api/physics/#vector-point-to-point)
 
 ## Contents
 
@@ -129,7 +129,7 @@ Pulling this all together, we can visualise this vector on a Cartesian plane and
 <Tabs syncKey="code-language">
   <TabItem label="C++">
 
-```cpp
+```cpp {43-44, 64}
 #include "splashkit.h"
 
 using std::to_string;
@@ -205,7 +205,7 @@ int main()
 </TabItem> 
 <TabItem label="C#">
 
-```csharp
+```csharp {46-47, 67}
 using System;
 using SplashKitSDK;
 
@@ -323,7 +323,7 @@ Let's see it in action. Suppose we have two points, `start` and `end_pt`. To com
 <Tabs syncKey="code-language">
   <TabItem label="C++">
 
-```cpp
+```cpp {41-44}
 #include "splashkit.h"
 
 using std::to_string;
@@ -399,7 +399,7 @@ int main()
 </TabItem> 
 <TabItem label="C#">
 
-```csharp
+```csharp {42-45}
 using SplashKitSDK;
 using System;
 
