@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Autoplay,
   Navigation,
@@ -18,16 +18,15 @@ import configData from "./games-config.json";
 
 export default () => {
   const [cards, setCards] = useState([]);
+  const swiperRef = useRef(null); // Reference to Swiper instance
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = configData.games;
-        // Filter games to include only those marked as featured
         const featuredCards = data
-          .filter(game => game.featured)  // Filter based on the featured flag
-          .sort((a, b) => a.name.localeCompare(b.name));  // Sort alphabetically by name
-        console.log(featuredCards);
+          .filter(game => game.featured)
+          .sort((a, b) => a.name.localeCompare(b.name));
         setCards(featuredCards);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -35,6 +34,20 @@ export default () => {
     };
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (swiperRef.current) {
+        swiperRef.current.update(); // Trigger Swiper update on resize
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   const cardSlots = cards.map(({ name, description, link }) => (
@@ -63,10 +76,26 @@ export default () => {
         loop={true}
         pagination={{ clickable: true }}
         navigation={true}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper; // Store the swiper instance
+        }}
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         className="mySwiper"
-        slidesPerView={3}
         spaceBetween={35}
+        breakpoints={{
+          1200: {
+            slidesPerView: 3, // Show 3 slides for large desktops
+            spaceBetween: 30, 
+          },
+          1024: {
+            slidesPerView: 2, // Show 2 slides for tablets
+            spaceBetween: 20, 
+          },
+          768: {
+            slidesPerView: 1, // Show 1 slide for mobile screens
+            spaceBetween: 10, 
+          },
+        }}
       >
         {cardSlots}
       </Swiper>
