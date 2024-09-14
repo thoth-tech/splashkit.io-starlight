@@ -3,15 +3,16 @@
   "type": "module",
   "version": "0.9",
   "scripts": {
-    "dev": "npm run generate-mdx && npm run generate-usage-examples-pages && npm run generate-groups && astro dev",
-    "start": "npm run generate-mdx && npm run generate-usage-examples-pages && npm run generate-groups && astro dev",
-    "build": "npm run generate-mdx && npm run generate-usage-examples-pages && npm run generate-groups && astro build",
+    "dev": "npm run generate-mdx && npm run generate-usage-examples-pages && npm run generate-groups && npm run feature-games && astro dev",
+    "start": "npm run generate-mdx && npm run generate-usage-examples-pages && npm run generate-groups && npm run feature-games && astro dev",
+    "build": "npm run generate-mdx && npm run generate-usage-examples-pages && npm run generate-groups && npm run feature-games && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "generate-mdx": "node ./scripts/components.cjs",
     "generate-usage-examples-pages": "node ./scripts/usage-example-page-generation.cjs",
     "check-links": "SET CHECK_LINKS=true && npm run build && SET CHECK_LINKS=false",
-    "generate-groups": "node ./scripts/generate-groups.cjs"
+    "generate-groups": "node ./scripts/generate-groups.cjs",
+    "feature-games": "node ./scripts/feature-games.cjs"
   },
   "dependencies": {
     "@astrojs/netlify": "^5.4.0",
@@ -30,6 +31,7 @@
     "dotenv": "16.4.5",
     "front-matter": "4.0.2",
     "fs": "0.0.2",
+    "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
     "kleur": "4.1.5",
     "path": "0.12.7",
