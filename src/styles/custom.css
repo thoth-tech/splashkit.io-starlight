@@ -275,6 +275,7 @@ code {
   border-radius: 0.6rem;
   box-shadow: var(--sl-shadow-md);
 }
+
 /* Light Mode Colors for .custom-details */
 .custom-details {
   --custom-details-border: #3498db; /* Vibrant blue border */
@@ -387,4 +388,14 @@ code {
 
 [data-theme="dark"] .custom-details summary:hover::before {
   color: var(--icon-hover-color); /* Use the defined hover icon color */
+}
+=======
+
+.color-box {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid lightgray;
+  margin-left: 20px;
 }
