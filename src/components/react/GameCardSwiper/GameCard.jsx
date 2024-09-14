@@ -18,7 +18,7 @@ import configData from "./games-config.json";
 
 export default () => {
   const [cards, setCards] = useState([]);
-  const swiperRef = useRef(null); // Reference to Swiper instance
+  const swiperRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,18 +82,24 @@ export default () => {
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         className="mySwiper"
         spaceBetween={35}
+        slidesPerView={3} // Default for larger screens
+        watchOverflow={true} // Make sure Swiper adjusts for fewer slides
         breakpoints={{
           1200: {
             slidesPerView: 3, // Show 3 slides for large desktops
-            spaceBetween: 30, 
+            spaceBetween: 30,
           },
           1024: {
             slidesPerView: 2, // Show 2 slides for tablets
-            spaceBetween: 20, 
+            spaceBetween: 30,
           },
           768: {
             slidesPerView: 1, // Show 1 slide for mobile screens
-            spaceBetween: 10, 
+            spaceBetween: 20,
+          },
+          480: {
+            slidesPerView: 1, // Shrink only when the screen is very small
+            spaceBetween: 10,
           },
         }}
       >
