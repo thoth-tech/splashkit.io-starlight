@@ -20,6 +20,8 @@ Build a graphics application using SplashKit, and in this article you'll learn h
 ## Graphics creation and Management
 In this section, we'll detail how to implement the shape creation and management functionality using design patterns and code examples.
 
+In graphic creation and management, the `factory` method design pattern is used. The factory method allows different types of graphic objects to be dynamically generated based on user input. This pattern makes the code more flexible and extensible, while simplifying the management and rendering of graphics. By encapsulating the creation logic of a graph in a factory method, we can more easily support new graph types by simply adding the corresponding creation logic.
+
 #### **Model Design**
 We start by defining a ShapeModel structure to represent various basic shapes. This model holds attributes like position, size, color, and shape type.
 
@@ -90,6 +92,8 @@ With this structure, the program can easily be extended to support additional sh
 
 #### Design Pattern Used
 In this section, we'll discuss how to handle the selection and movement of shapes. The code is designed to allow users to select shapes, move them around the canvas, and resize them. This approach makes the code more modular, easier to maintain, and extend.
+
+In graphical operations, the `policy mode` is used to handle shape selection, dragging, and resizing. Policy mode allows us to select different action policies at run time, such as dragging or resizing. This approach makes the code more modular and easier to maintain and extend. By encapsulating different operation policies in separate classes or functions, we can more easily implement and manage different graphical operations.
 
 #### Implementation Steps
 
@@ -233,6 +237,8 @@ This approach allows users to dynamically drag, reposition, and resize shapes, f
 ## Wiring function 
 
 In this tutorial, we will learn how to add connection lines between drawn shapes, enabling users to visually link two shapes by drawing a line between them. Follow these steps to implement this feature.
+
+In this feature, we use the `state mode` to handle the connections between shapes. State mode allows us to perform different operations in different states, such as connection mode and normal mode. By encapsulating the connection state in a state class or function, we can manage the connection process more clearly and easily switch states when needed.
 
 #### 1. **Define the Shape Model**
 We first define a basic shape structure `ShapeModel`, which contains properties such as `x`, `y` coordinates, `width`, `height`, color, and type.
