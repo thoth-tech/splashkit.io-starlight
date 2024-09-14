@@ -2,8 +2,8 @@
 title: Reading JSON Data in SplashKit
 description: After understanding the basics of JSON in SplashKit, this part of the tutorial focuses on how to read and parse JSON data. Reading JSON data is essential for game development tasks such as loading game settings, level configurations, or player data.
 category: Guides
-author: Jonathan Tynan
-lastupdated: May 11 2024
+author: Jonathan Tynan and Yuyang Yang
+lastupdated: Mep 14 2024
 sidebar:
   label: "Reading JSON Data"
 ---
@@ -85,7 +85,8 @@ for(int i = 0; i < num_levels; i++)
 </TabItem>
 
 <TabItem label="C#">
-
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 ```csharp
 
 using SplashKitSDK;
@@ -107,7 +108,43 @@ for (int i = 0; i < numLevels; i++)
 ```
 
 </TabItem>
+<TabItem label="Object-Oriented">
+```csharp
+using SplashKitSDK;
+using System.Collections.Generic;
+
+namespace GameDataManagement
+{
+    public class Program
+    {
+        public static void Main()
+        {
+ 
+            string filePath = "game_data.json";
+
+            Json gameData = SplashKit.JsonFromFile(filePath);
+
+            List<string> levels = new List<string>();
+
+            SplashKit.JsonReadArray(gameData, "levels", ref levels);
+
+            int numLevels = levels.Count;
+ 
+            for (int i = 0; i < numLevels; i++)
+            {
+                SplashKit.WriteLine($"Got level: {levels[i]}");
+            }
+
+            SplashKit.FreeJson(gameData);
+        }
+    }
+}
+```
+</TabItem>
 </Tabs>
+</TabItem>
+</Tabs>
+
 
 Running this prints the following to the terminal:
 
