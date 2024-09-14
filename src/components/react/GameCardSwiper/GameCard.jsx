@@ -14,8 +14,6 @@ import "swiper/css/scrollbar";
 import "swiper/css/effect-fade";
 import "./swiperstyles.css";
 
-import configData from "./games-config.json";
-
 export default () => {
   const [cards, setCards] = useState([]);
   const swiperRef = useRef(null); // Reference to Swiper instance
@@ -23,9 +21,17 @@ export default () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = configData.games;
-        const featuredCards = data
-          .filter(game => game.featured)
+        // Add a cache-busting query string using the current timestamp
+        const response = await fetch(
+          `/src/components/react/GameCardSwiper/games-config.json?cache-bust=${new Date().getTime()}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const configData = await response.json();
+        console.log("Fetched games data:", configData); // Log the fetched data
+        const featuredCards = configData.games
+          .filter((game) => game.featured)
           .sort((a, b) => a.name.localeCompare(b.name));
         setCards(featuredCards);
       } catch (error) {
@@ -52,7 +58,7 @@ export default () => {
 
   const cardSlots = cards.map(({ name, description, link }) => (
     <SwiperSlide key={name}>
-      <a href={`games/${link}`} className="card-link"> 
+      <a href={`games/${link}`} className="card-link">
         <div className="card gamecard">
           <img
             src={`/gifs/games-showcase/${link}-showcase.gif`}
@@ -73,7 +79,7 @@ export default () => {
           crossFade: true,
         }}
         grabCursor={true}
-        loop={true}  // Enable loop to fix disappearing cards
+        loop={true} // Enable loop to fix disappearing cards
         pagination={{ clickable: true }}
         navigation={true}
         onSwiper={(swiper) => {
@@ -85,15 +91,15 @@ export default () => {
         breakpoints={{
           1200: {
             slidesPerView: 3, // Show 3 slides for large desktops
-            spaceBetween: 30, 
+            spaceBetween: 30,
           },
           1024: {
             slidesPerView: 2, // Show 2 slides for tablets
-            spaceBetween: 20, 
+            spaceBetween: 20,
           },
           768: {
             slidesPerView: 1, // Show 1 slide for mobile screens
-            spaceBetween: 10, 
+            spaceBetween: 10,
           },
         }}
       >

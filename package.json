@@ -12,7 +12,8 @@
     "generate-usage-examples-pages": "node ./scripts/usage-example-page-generation.cjs",
     "generate-game": "node ./scripts/games.cjs",
     "check-links": "SET CHECK_LINKS=true && npm run build && SET CHECK_LINKS=false",
-    "generate-groups": "node ./scripts/generate-groups.cjs"
+    "generate-groups": "node ./scripts/generate-groups.cjs",
+    "feature-games": "node ./scripts/feature-games.cjs"
   },
   "dependencies": {
     "@astrojs/netlify": "^5.4.0",
@@ -31,6 +32,7 @@
     "dotenv": "16.4.5",
     "front-matter": "4.0.2",
     "fs": "0.0.2",
+    "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",
     "kleur": "4.1.5",
     "path": "0.12.7",
