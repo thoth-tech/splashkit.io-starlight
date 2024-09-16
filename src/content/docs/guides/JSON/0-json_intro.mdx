@@ -103,19 +103,14 @@ namespace GameDataManagement
     {
         public static void Main()
         {
-            // Define the file path
             string filePath = "game_data.json";
 
-            // Load JSON data from file
             Json gameData = SplashKit.JsonFromFile(filePath);
 
-            // Read game title from JSON
             string gameTitle = SplashKit.JsonReadString(gameData, "gameTitle");
 
-            // Output the game title to the terminal
             SplashKit.WriteLine("Game Title: " + gameTitle);
 
-            // Free the JSON data
             SplashKit.FreeJson(gameData);
         }
     }
@@ -242,13 +237,10 @@ namespace GameDataManagement
     {
         public static void Main()
         {
-            // Define the file path
             string filePath = "game_data.json";
 
-            // Load JSON data from file
             Json gameData = SplashKit.JsonFromFile(filePath);
 
-            // Check if the JSON data contains the "gameTitle" key and read it
             if (SplashKit.JsonHasKey(gameData, "gameTitle"))
             {
                 string gameTitle = SplashKit.JsonReadString(gameData, "gameTitle");
@@ -259,7 +251,6 @@ namespace GameDataManagement
                 SplashKit.WriteLine("Key \"gameTitle\" not found.");
             }
 
-            // Free the JSON data
             SplashKit.FreeJson(gameData);
         }
     }
