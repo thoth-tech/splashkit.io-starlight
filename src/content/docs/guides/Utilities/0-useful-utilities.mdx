@@ -362,7 +362,7 @@ SplashKit's [Is Integer](/api/utilities/#is-integer) and [Is Number](/api/utilit
 <TabItem label="C++">
 
   ```cpp
-  #include "splashkit.h"
+#include "splashkit.h"
 #include <string>
 
 using namespace std;
@@ -375,13 +375,11 @@ using namespace std;
 int read_integer(string prompt)
 {
 
-    string line;
-
     // Prompt the user with the message
     write(prompt);
 
     // Read the user input as a string.
-    line = read_line();
+    string line = read_line();
 
     // Check if user input is a valid whole number, loop until it is.
     while (!is_integer(line))
