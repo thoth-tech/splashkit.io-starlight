@@ -2,32 +2,33 @@
 :root[data-theme="light"] body {
     width: 100%;
     height: 100%;
-    background: linear-gradient(270deg, #f1cdb3, #c1a4a4, #c6dbe7, #d0c8bd);
+    background: linear-gradient(270deg, #fff9f4, #f5feff);
     background-size: 800% 800%;
-    animation: gradient 16s ease infinite;
+    animation: gradient 10s ease infinite;
     height: 100vh;
 }
-
+ 
 :root[data-theme="dark"] body {
     width: 100%;
     height: 100%;
-    background: linear-gradient(270deg, #1c1c1c, #242020, #111010, #2e2e2e);
+    background: linear-gradient(270deg, #2c2118, #222e31);
     background-size: 800% 800%;
-    animation: gradient 16s ease infinite;
+    animation: gradient 10s ease infinite;
     height: 100vh;
 }
 /* Created a dark theme gradient background, with subtle transitions to enhance visual appeal. */
-
+ 
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
     }
-
+ 
     50% {
         background-position: 100% 50%;
     }
-
+ 
     100% {
         background-position: 0% 50%;
     }
 }
+ 
