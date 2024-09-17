@@ -260,15 +260,21 @@ namespace CameraGame
                 if (SplashKit.KeyDown(KeyCode.DownKey)) playerY += PlayerSpeed;
                 if (SplashKit.KeyDown(KeyCode.UpKey)) playerY -= PlayerSpeed;
 
-                // Update camera position
+               // Test edge of screen boundaries to adjust the camera
                 double leftEdge = cameraX + ScreenBorder;
                 double rightEdge = leftEdge + ScreenWidth - 2 * ScreenBorder;
                 double topEdge = cameraY + ScreenBorder;
                 double bottomEdge = topEdge + ScreenHeight - 2 * ScreenBorder;
 
+                 // Test if the player is outside the area and move the camera
+                 // the player will appear to stay still and everything else
+                 // will appear to move :)
+
+                // Test top/bottom of screen
                 if (playerY < topEdge) cameraY += topEdge - playerY;
                 else if (playerY > bottomEdge) cameraY += bottomEdge - playerY;
 
+                // Test left/right of screen
                 if (playerX < leftEdge) cameraX += leftEdge - playerX;
                 else if (playerX > rightEdge) cameraX += rightEdge - playerX;
 
