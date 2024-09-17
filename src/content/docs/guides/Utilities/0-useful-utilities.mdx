@@ -363,38 +363,41 @@ SplashKit's [Is Integer](/api/utilities/#is-integer) and [Is Number](/api/utilit
 
   ```cpp
   #include "splashkit.h"
-  #include <string>
+#include <string>
 
-  using namespace std;
+using namespace std;
 
-  /**
-  * Reads input from a user, only allowing whole numbers.
-  * @prompt string     - The string to display to the user.
-  * @return int
-  */
-  int read_integer(string prompt)
-  {
+/**
+ * Reads input from a user, only allowing whole numbers.
+ * @prompt string     - The string to display to the user.
+ * @return int
+ */
+int read_integer(string prompt)
+{
+
     string line;
 
-    //Continue requesting user input until a valid whole number is entered.
-    while (1)
-    {
-      //Prompt the user with the message
-      write(prompt);
-      //Read the user input as a string.
-      line = read_line();
-      //If the user input is a valid whole number, leave the loop.
-      if ( is_integer(line) )
-        break;
-      //If the user input was not a valid whole number, ask them to enter a whole number.
-      write_line("Please enter a valid whole number.");
-    }
-    //Convert the user input to an integer before returning it.
-    return convert_to_integer(line);
-  }
+    // Prompt the user with the message
+    write(prompt);
 
-  int main()
-  {
+    // Read the user input as a string.
+    line = read_line();
+
+    // Check if user input is a valid whole number, loop until it is.
+    while (!is_integer(line))
+    {
+        write_line("Please enter a whole number.");
+
+        write(prompt);
+        line = read_line();
+    }
+
+    // Convert the user input to an integer before returning it.
+    return convert_to_integer(line);
+}
+
+int main()
+{
     int height;
 
     height = read_integer("Enter your height in centimetres: ");
@@ -403,7 +406,7 @@ SplashKit's [Is Integer](/api/utilities/#is-integer) and [Is Number](/api/utilit
     write_line("CM tall!");
 
     return 0;
-  }
+}
   ```
 
 </TabItem>
