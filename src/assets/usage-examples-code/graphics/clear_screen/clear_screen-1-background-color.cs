@@ -1,6 +1,6 @@
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("House Drawing", 800, 600);
+OpenWindow("Back Ground", 800, 600);
 
 ClearScreen(ColorBlue());
 RefreshScreen(60);
