@@ -14,7 +14,9 @@
   --purple-hsl: 255, 85%, 65%;
   --sl-hue-accent: 350;
   --sl-color-accent: #3D50f5;
-  --table-head-color: hsla(187, 99%, 38%, 0.35);
+  --table-head-color: rgb(244, 245, 247);
+  /* --table-head-color: hsla(187, 99%, 38%, 0.35); light splashkit blue*/
+  /* --table-head-color: rgb(245, 166, 35);   splashkit orange */
   /*--table-head-color: rgb(1, 172, 194);     splashkit blue*/
   /* --table-head-color: rgb(201, 231, 240);	  light blue */
   /*--table-head-color: rgb(255, 167, 126);   light orange*/
