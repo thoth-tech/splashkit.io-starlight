@@ -59,7 +59,7 @@ Let's see how we can create a simple button. We'll start in an empty project, an
 
     # ... we'll put our interface code here!...
 
-    # refresh the sscreen, then wait 5 seconds
+    # refresh the screen, then wait 5 seconds
     refresh_screen()
     delay(5000)
 
@@ -109,7 +109,7 @@ Let's see how we can create a simple button. We'll start in an empty project, an
     # draw the interface!
     draw_interface()
 
-    # refresh the sscreen, then wait 5 seconds
+    # refresh the screen, then wait 5 seconds
     refresh_screen()
     delay(5000)
     ```
@@ -169,7 +169,7 @@ Let's see how we can create a simple button. We'll start in an empty project, an
     # open a window
     open_window("My Interface!", 800, 600)
 
-    while (not quit_requested):
+    while (not quit_requested()):
         process_events()
         
         clear_screen_to_white()
@@ -400,7 +400,6 @@ while (not quit_requested()):
     draw_interface()
 
     refresh_screen()
-
 
 # program ends, and the window closes
 ```
