@@ -4,7 +4,7 @@
 /* Swiper container */
 .mySwiper {
   background: transparent;
-  height: 340px;
+  height: 340px; /* Keep the full height */
   width: 100%;
   overflow: hidden;
   position: relative;
@@ -45,7 +45,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100%; /* Ensure slides take full height */
   max-width: 300px; /* Ensure cards stay the same size up to a point */
   flex-shrink: 0; /* Prevent cards from shrinking below their intended size */
   min-width: 300px; /* Ensure that at least one card is always visible */
