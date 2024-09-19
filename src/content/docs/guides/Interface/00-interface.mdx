@@ -3,7 +3,7 @@ title: Getting Started Creating User Interfaces
 description: This article will help you get started creating interfaces in SplashKit. In this one we'll see how to create and use basic elements, like buttons and sliders. In later the next ones, we'll move on to advanced layouting, and finally we'll see how we can style the interface to match our project.
 category: Tutorials
 author: Sean Boettger
-lastupdated: April 29 2024
+lastupdated: September 19 2024
 ---
 
 **{frontmatter.description}**
@@ -24,7 +24,7 @@ Let's see how we can create a simple button. We'll start in an empty project, an
     4. and finally _delayed_ for 5 seconds (so the program doesn't end immediately)
 
     Make sure to have a look at the code, and see where we'll put our interface code!
-    <Tabs>
+    <Tabs syncKey="code-language">
     <TabItem label="C++">
 
       ```cpp
@@ -48,6 +48,25 @@ Let's see how we can create a simple button. We'll start in an empty project, an
       ```
 
     </TabItem>
+    <TabItem label="Python">
+
+    ```python
+    from splashkit import *
+
+    # open a window and clear it to white
+    open_window("My Interface!", 800, 600)
+    clear_screen_to_white()
+
+    # ... we'll put our interface code here!...
+
+    # refresh the sscreen, then wait 5 seconds
+    refresh_screen()
+    delay(5000)
+
+    # program ends, and the window closes
+    ```
+
+    </TabItem>
     </Tabs>
 
 2. Now let's show a button! This can be done with the [Button](/api/interface/#button) function, which takes some text to show on the button, and also a position and size so it knows where to show up.
@@ -57,7 +76,7 @@ Let's see how we can create a simple button. We'll start in an empty project, an
 3. We also need to _draw_ the interface - we can do this with [Draw Interface](/api/interface/#draw-interface)
 
     Making those changes, we get the following inside `main`:
-    <Tabs>
+    <Tabs syncKey="code-language">
     <TabItem label="C++">
 
     ```cpp ins={5-9}
@@ -74,6 +93,25 @@ Let's see how we can create a simple button. We'll start in an empty project, an
         // refresh the screen, then wait 5 seconds
         refresh_screen();
         delay(5000);
+    ```
+
+    </TabItem>
+    <TabItem label="Python">
+
+    ```python ins={5-9}
+    # open a window and clear it to white
+    open_window("My Interface!", 800, 600)
+    clear_screen_to_white()
+
+    # show button
+    button_at_position("My Button!", rectangle_from(300, 260, 200, 24))
+
+    # draw the interface!
+    draw_interface()
+
+    # refresh the sscreen, then wait 5 seconds
+    refresh_screen()
+    delay(5000)
     ```
 
     </TabItem>
@@ -100,7 +138,7 @@ Let's see how we can create a simple button. We'll start in an empty project, an
    SplashKit will try to give helpful messages when things aren't quite right, so make sure to pay attention to them!
 
     Putting this all together, we get this inside `main`:
-    <Tabs>
+    <Tabs syncKey="code-language">
     <TabItem label="C++">
 
       ```cpp ins={4-6, 15}
@@ -123,6 +161,27 @@ Let's see how we can create a simple button. We'll start in an empty project, an
           // program ends, and the window closes
           return 0;
       ```
+
+    </TabItem>
+    <TabItem label="Python">
+
+    ```python ins={4-5}
+    # open a window
+    open_window("My Interface!", 800, 600)
+
+    while (not quit_requested):
+        process_events()
+        
+        clear_screen_to_white()
+
+        button_at_position("My Button!", rectangle_from(300, 260, 200, 24))
+
+        draw_interface()
+
+        refresh_screen()
+
+    # program ends, and the window closes
+    ```
 
     </TabItem>
     </Tabs>
@@ -160,7 +219,7 @@ Let's try it out:
 
 We should also give the button some more descriptive text inside it, like "Write To Terminal!"
 
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp ins="Write To Terminal!" ins="if (" ins=/24\\)\\)(\\))/ ins={2-4}
@@ -169,6 +228,14 @@ We should also give the button some more descriptive text inside it, like "Write
               write_line("The button was clicked!");
           }
   ```
+
+</TabItem>
+<TabItem label="Python">
+
+```python ins="Write To Terminal!" ins="if " ins=":" ins={2}
+    if button_at_position("Write To Terminal!", rectangle_from(300, 260, 200, 24)):
+        write_line("The button was clicked!")
+```
 
 </TabItem>
 </Tabs>
@@ -183,7 +250,7 @@ Now when we click on the button, our text gets printed in the terminal! You can 
 Now let's try out some more interesting elements - let's add a text box, so we can customize the message written to the terminal!
 
 1. First let's start by adding a variable to store the user's text in - make sure to do this _outside_ the main loop, or else the user's text will be forgotten each iteration!
-    <Tabs>
+    <Tabs syncKey="code-language">
     <TabItem label="C++">
 
       ```cpp ins={3}
@@ -197,6 +264,18 @@ Now let's try out some more interesting elements - let's add a text box, so we c
       ```
 
     </TabItem>
+    <TabItem label="Python">
+
+    ```python ins={3}
+    open_window("My Interface!", 800, 600)
+
+    user_message = "Default message!"
+
+    while (not quit_requested()):
+        process_events()
+    ```
+
+    </TabItem>
     </Tabs>
 
 2. Now let's add the text box. We can use the [Text Box](/api/interface/#text-box) function, which takes a string - the current text, and a position - where to draw it.
@@ -208,7 +287,7 @@ Now let's try out some more interesting elements - let's add a text box, so we c
     Finally, we can use this variable in our [Write Line](/api/terminal/#write-line), to write the user's text to the console.
 
     Remember - this all needs to go inside the main `while` loop. Otherwise the text box will only exist for a split second before vanishing - we need to keep it alive!
-    <Tabs>
+    <Tabs syncKey="code-language">
     <TabItem label="C++">
 
       ```cpp ins={1} ins="write_line(user_message);"
@@ -219,6 +298,16 @@ Now let's try out some more interesting elements - let's add a text box, so we c
                   write_line(user_message);
               }
       ```
+
+    </TabItem>
+    <TabItem label="Python">
+
+    ```python ins={1} ins="write_line(user_message)"
+        user_message = text_box_at_position(user_message, rectangle_from(300, 220, 200, 24))
+        
+        if button_at_position("Write To Terminal!", rectangle_from(300, 260, 200, 24)):
+            write_line(user_message)
+    ```
 
     </TabItem>
     </Tabs>
@@ -239,7 +328,7 @@ Now let's try out some more interesting elements - let's add a text box, so we c
     ![A button and a text box. When the button is clicked, the contents of the text box is printed in the terminal.](/gifs/guides/interface/text_box_to_terminal.gif)
 
 Here's the complete code up until this point:
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp
@@ -282,6 +371,42 @@ Here's the complete code up until this point:
   ```
 
 </TabItem>
+<TabItem label="Python">
+
+```python
+from splashkit import *
+
+# open a window
+open_window("My Interface!", 800, 600)
+
+# define variables
+user_message = "Default message!"
+
+# main loop
+while (not quit_requested()):
+    # get user events
+    process_events()
+    
+    # clear screen
+    clear_screen_to_white()
+
+    # interface
+    user_message = text_box_at_position(user_message, rectangle_from(300, 220, 200, 24))
+    
+    if button_at_position("Write To Terminal!", rectangle_from(300, 260, 200, 24)):
+        write_line(user_message)
+
+    # finally draw interface, then refresh screen
+    draw_interface()
+
+    refresh_screen()
+
+
+# program ends, and the window closes
+```
+
+</TabItem>
+
 </Tabs>
 
 ## Practice Activity
@@ -294,7 +419,7 @@ Let's try adding one more element - this time we can try adding a slider! For fu
 
 <details>
 <summary>Here is _one_ way to do write this, but don't peek until you've tried it yourself!</summary>
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp ins={3} ins={22} ins=/(width), 2/  ins="400 - width/2"
@@ -329,6 +454,36 @@ Let's try adding one more element - this time we can try adding a slider! For fu
   ```
 
 </TabItem>
+<TabItem label="Python">
+
+```python ins={2, 19} ins=/(width), 2/  ins="400 - width/2"
+# define variables
+user_message = "Default message!"
+width = 200
+
+# main loop
+while (not quit_requested()):
+    # get user events
+    process_events()
+    
+    # clear screen
+    clear_screen_to_white()
+
+    # interface
+    user_message = text_box_at_position(user_message, rectangle_from(400 - width/2, 220, width, 24))
+    
+    if button_at_position("Write To Terminal!", rectangle_from(400 - width/2, 260, width, 24)):
+        write_line(user_message)
+
+    width = slider_at_position(width, 10, 400, rectangle_from(300, 300, 200, 24))
+    
+    # finally draw interface, then refresh screen
+    draw_interface()
+
+    refresh_screen()
+```
+
+</TabItem>
 </Tabs>
 </details>
 
@@ -340,7 +495,7 @@ Hopefully now you understand how easy it is to make a dynamic interface in Splas
 
 ![A button, text box, and slider. Adjusting the value of the slider changes the width of the other controls.](/gifs/guides/interface/slider.gif)
 
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp
@@ -384,6 +539,43 @@ Hopefully now you understand how easy it is to make a dynamic interface in Splas
       return 0;
   }
   ```
+
+</TabItem>
+<TabItem label="Python">
+
+```python
+from splashkit import *
+
+# open a window
+open_window("My Interface!", 800, 600)
+
+# define variables
+user_message = "Default message!"
+width = 200
+
+# main loop
+while (not quit_requested()):
+    # get user events
+    process_events()
+    
+    # clear screen
+    clear_screen_to_white()
+
+    # interface
+    user_message = text_box_at_position(user_message, rectangle_from(400 - width/2, 220, width, 24))
+    
+    if button_at_position("Write To Terminal!", rectangle_from(400 - width/2, 260, width, 24)):
+        write_line(user_message)
+
+    width = slider_at_position(width, 10, 400, rectangle_from(300, 300, 200, 24))
+    
+    # finally draw interface, then refresh screen
+    draw_interface()
+
+    refresh_screen()
+
+# program ends, and the window closes
+```
 
 </TabItem>
 </Tabs>
