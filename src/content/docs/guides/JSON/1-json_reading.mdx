@@ -50,11 +50,26 @@ bool isFullScreen = json_read_bool(game_data, "fullScreenMode");
 
 <TabItem label="C#">
 
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
 ```csharp
 string title = JsonReadString(gameData, "gameTitle");
 int numPlayers = JsonReadNumberAsInt(gameData, "numPlayers");
 bool isFullScreen = JsonReadBool(gameData, "fullScreenMode");
 ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+string title = SplashKit.JsonReadString(gameData, "gameTitle");
+int numPlayers = SplashKit.JsonReadNumberAsInt(gameData, "numPlayers");
+bool isFullScreen = SplashKit.JsonReadBool(gameData, "fullScreenMode");
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 </Tabs>
@@ -85,8 +100,10 @@ for(int i = 0; i < num_levels; i++)
 </TabItem>
 
 <TabItem label="C#">
+
 <Tabs syncKey="csharp-style">
 <TabItem label="Top-level Statements">
+
 ```csharp
 
 using SplashKitSDK;
@@ -109,12 +126,13 @@ for (int i = 0; i < numLevels; i++)
 
 </TabItem>
 <TabItem label="Object-Oriented">
+
 ```csharp
 
 using SplashKitSDK;
 using System.Collections.Generic;
 
-namespace GameDataManagement
+namespace ReadingJsonData
 {
     public class Program
     {
@@ -140,11 +158,12 @@ namespace GameDataManagement
     }
 }
 ```
-</TabItem>
-</Tabs>
+
 </TabItem>
 </Tabs>
 
+</TabItem>
+</Tabs>
 
 Running this prints the following to the terminal:
 
@@ -171,11 +190,26 @@ int height = json_read_number_as_int(game_screen_size, "height");
 
 <TabItem label="C#">
 
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
 ```csharp
 Json gameScreenSize = JsonReadObject(gamedata, "screenSize");
 int width = JsonReadNumberAsInt(gameScreenSize, "width");
 int height = JsonReadNumberAsInt(gameScreenSize, "height");
 ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+Json gameScreenSize = SplashKit.JsonReadObject(gamedata, "screenSize");
+int width = SplashKit.JsonReadNumberAsInt(gameScreenSize, "width");
+int height = SplashKit.JsonReadNumberAsInt(gameScreenSize, "height");
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 </Tabs>
