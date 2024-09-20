@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   Navigation,
   Pagination,
@@ -15,53 +15,29 @@ import "./swiperstyles.css";
 
 export default () => {
   const [cards, setCards] = useState([]); // Cards state
-  const swiperRef = useRef(null); // Reference to Swiper instance
 
   // Fetch the games data
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Use an absolute path from the public folder
         const response = await fetch(
-          `src/components/react/GameCardSwiper/games-config.json?cache-bust=${new Date().getTime()}`
+          `/games-config.json?cache-bust=${new Date().getTime()}`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const configData = await response.json();
-        console.log("Fetched games data:", configData);
-
         const featuredCards = configData.games
           .filter((game) => game.featured)
           .sort((a, b) => a.name.localeCompare(b.name));
-
         setCards(featuredCards);
-
-        if (swiperRef.current) {
-          swiperRef.current.update(); // Force Swiper to update after cards are loaded
-          swiperRef.current.slideToLoop(0); // Start loop from the first slide
-        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (swiperRef.current) {
-        swiperRef.current.update(); // Trigger Swiper update on resize
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  }, []); // Run only once when the component mounts
 
   const cardSlots = cards.map(({ name, description, link }) => (
     <SwiperSlide key={name}>
@@ -84,31 +60,25 @@ export default () => {
         <Swiper
           effect={"fade"}
           fadeEffect={{ crossFade: true }}
-          grabCursor={true}
-          loop={cards.length > 1} // Enable loop only if there are more than 1 slide
-          slidesPerView={cards.length < 3 ? cards.length : 3} // Adjust slidesPerView based on number of cards
+          grabCursor={false}
+          loop={true}
           pagination={{ clickable: true }}
           navigation={true}
           observer={true}
           observeParents={true}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper; // Store Swiper instance
-          }}
+          virtual={false}
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           className="mySwiper"
-          spaceBetween={35}
+          spaceBetween={30}
           breakpoints={{
             1200: {
-              slidesPerView: cards.length < 3 ? cards.length : 3, // Handle dynamically
-              spaceBetween: 30,
+              slidesPerView: Math.min(cards.length, 3), // Dynamically limit slides
             },
             1024: {
-              slidesPerView: cards.length < 2 ? cards.length : 2, // Handle dynamically
-              spaceBetween: 20,
+              slidesPerView: Math.min(cards.length, 2),
             },
             768: {
-              slidesPerView: 1, // On smaller screens, show 1 card
-              spaceBetween: 10,
+              slidesPerView: 1,
             },
           }}
         >

@@ -4,20 +4,19 @@
 /* Swiper container */
 .mySwiper {
   background: transparent;
-  height: 340px; /* Keep the full height */
+  height: 340px;
   width: 100%;
   overflow: hidden;
   position: relative;
-  box-shadow: none;
-  padding: 0 50px;
+  padding: 0 60px; /* Padding to make space for buttons on both sides */
 }
 
 /* Swiper navigation buttons */
 .swiper-button-next,
 .swiper-button-prev {
   color: #ff6600;
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   z-index: 10;
   top: 50%;
   transform: translateY(-50%);
@@ -26,14 +25,16 @@
   align-items: center;
   justify-content: center;
   font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 5px;
 }
 
 .swiper-button-next {
-  right: 10px;
+  right: 10px; /* Place it inside the Swiper, near the right edge */
 }
 
 .swiper-button-prev {
-  left: 10px;
+  left: 10px; /* Place it inside the Swiper, near the left edge */
 }
 
 /* Swiper slide */
@@ -46,9 +47,7 @@
   justify-content: center;
   align-items: center;
   height: 100%; /* Ensure slides take full height */
-  max-width: 300px; /* Ensure cards stay the same size up to a point */
-  flex-shrink: 0; /* Prevent cards from shrinking below their intended size */
-  min-width: 300px; /* Ensure that at least one card is always visible */
+  width: 100%; /* Let swiper control the width */
 }
 
 /* Padding from border to internal content */
@@ -95,13 +94,15 @@
 
 /* Style for active (middle) slide */
 .swiper-slide {
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  /* Removed transitions for testing */
+  /* transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; */
 }
 
-/* Style for center slide */
+/* Removed scaling effect for center slide */
 .swiper-slide-next {
-  transform: scale(1.1);
-  z-index: 5;
+  /* Temporarily removed */
+  /* transform: scale(1.1); */
+  /* z-index: 5; */
 }
 
 /* Removes hyperlink look on card */
@@ -115,11 +116,10 @@
 @media (max-width: 1024px) {
   .mySwiper {
     height: 300px;
-    padding: 0 30px;
+    padding: 0; /* Adjusted padding */
   }
   .swiper-slide {
-    max-width: 300px; /* Keep the same card size as desktop */
-    min-width: 300px; /* Ensure 2 cards remain full size */
+    width: 100%; /* Let swiper control the width */
   }
   .gamecard img {
     height: 100px;
@@ -130,11 +130,10 @@
 @media (max-width: 768px) {
   .mySwiper {
     height: 250px;
-    padding: 0 20px;
+    padding: 0; /* Removed padding */
   }
   .swiper-slide {
-    max-width: 300px; /* Keep the same card size as desktop */
-    min-width: 300px; /* Ensure 1 card remains full size */
+    width: 100%; /* Let swiper control the width */
     padding: 0 10px;
   }
   .gamecard {
@@ -154,7 +153,6 @@
 /* Only shrink card size for very small screens */
 @media (max-width: 480px) {
   .swiper-slide {
-    max-width: 250px; /* Allow the card to shrink slightly */
-    min-width: 200px; /* Shrink only when necessary */
+    width: 100%; /* Allow the card to shrink slightly */
   }
 }
