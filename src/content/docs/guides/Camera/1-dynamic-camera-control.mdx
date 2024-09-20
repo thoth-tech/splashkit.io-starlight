@@ -398,7 +398,7 @@ RefreshScreen();
 
 </Tabs>
 
-In this part, we use [Draw Bitmap](https://splashkit.io/api/graphics/#draw-bitmap) to display the grid and apply zooming. The [Option Scale Bmp](https://splashkit.io/api/graphics/#option-scale-bmp) function scales the bitmap based on the zoom factor, and we display a message in the bottom of the window to guide the user. After drawing the bitmap, we refresh the screen using [Refresh Screen](https://splashkit.io/api/graphics/#refresh-screen).
+In this code, the [Draw Bitmap](https://splashkit.io/api/graphics/#draw-bitmap) function displays the grid with optional zooming, using [Option Defaults](https://splashkit.io/api/graphics/#option-defaults) for default settings. The [Option Scale Bmp](https://splashkit.io/api/graphics/#option-scale-bmp) function scales the bitmap based on the zoom factor. The [Option To Screen](https://splashkit.io/api/graphics/#option-to-screen) function is used to ensure that additional elements like rectangles and text are drawn with the correct positioning and transformations based on the current screen settings. After drawing the bitmap, we refresh the screen using [Refresh Screen](https://splashkit.io/api/graphics/#refresh-screen).
 
 ## Camera Movement and Scrolling
 
