@@ -53,7 +53,7 @@ We recommend you first familiarise yourself with the [Resolving Collisions Using
 
 ---
 
-### Finding the Closest Point on a Wall for Collision Detection
+## Finding the Closest Point on a Wall for Collision Detection
 
 When detecting collisions between a ball and a wall in a 2D game, we need to determine whether the ball has collided with the wall. While we've used the radii to represent the sizes of the objects, for collision detection purposes, we treat them as points to simplify the calculations.
 
@@ -102,7 +102,7 @@ return {start.x + line_vector.x * t, start.y + line_vector.y * t};
 
 By following this method, we can accurately determine the point on a wall that is closest to a ball, making it easier to detect and resolve collisions in this environment.
 
-### Detecting Ball and Wall Overlap
+## Detecting Ball and Wall Overlap
 
 When determining if a ball has collided with a wall, we need to calculate the distance between the ball’s centre and the closest point on the wall. The aim is to check if the distance between the ball's centre and the wall is less than or equal to the sum of their radii. If so, a collision is detected. We can work this out procedurally:
 
@@ -131,7 +131,7 @@ return distance_squared <= radius_sum * radius_sum;   // True if overlapping
 
 This method works by treating the problem as a basic geometric distance check. It first finds the closest point on the wall to the ball, and then checks if the distance between that point and the ball’s centre is within the radius of the ball plus the wall’s thickness. By squaring both sides, we avoid the computational overhead of calculating the square root, making the code more efficient.
 
-### Resolving Ball and Wall Collision
+## Resolving Ball and Wall Collision
 
 Once a collision between a ball and a wall is detected, the next step is to resolve it. This process involves adjusting the position of the ball to prevent further penetration into the wall and modifying the ball's velocity to simulate a realistic collision response, including bounce and energy loss.
 
@@ -192,7 +192,7 @@ This approach works by:
 - Reversing the velocity in the direction of the collision normal to simulate the bounce.
 - Reducing the ball’s velocity slightly to simulate energy loss, which prevents the ball from gaining infinite energy through collisions.
 
-### Introducing Gravity to the Environment
+## Introducing Gravity to the Environment
 
 In a 2D game or physics simulation, gravity is an essential force that simulates the natural pull of objects towards the ground. By applying a constant downward acceleration, we can create realistic motion where objects fall, speed up as they descend, and eventually reach a terminal velocity due to air resistance or other forces.
 
@@ -245,7 +245,7 @@ Key Points:
 - **Position Update**: Each frame, the ball’s position is updated based on its velocity, allowing it to move across the screen.
 :::
 
-### Observing Gravity in Action with Wall Collisions
+## Observing Gravity in Action with Wall Collisions
 
 Now that we’ve implemented both gravity and wall collision detection, it’s time to see these mechanics in action. As the balls fall under the influence of gravity, you will notice how they accelerate towards the bottom of the screen. The walls in this simulation provide obstacles, causing the balls to bounce off them, adding an extra layer of complexity to their motion.
 
@@ -782,6 +782,6 @@ int main()
 ```
 </details>
 
-### Conclusion
+## Conclusion
 
 In this tutorial, you’ve learned how to implement realistic 2D physics in SplashKit by combining gravity and wall collision detection. These core mechanics form the basis for creating dynamic and engaging gameplay, where objects behave as if they exist in a real physical space. Understanding how to detect and resolve collisions allows you to model interactions between objects, while gravity adds an essential layer of realism by simulating the force that pulls objects downward. You can use these principles to build more advanced game elements, such as platforms, projectiles, and even full-fledged simulations. Continue experimenting with how you tune collision behavior, damping, and other forces to make your games more interactive and fun.
