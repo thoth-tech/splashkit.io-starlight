@@ -24,7 +24,8 @@ Let's see how we can create a simple button. We'll start in an empty project, an
     4. and finally _delayed_ for 5 seconds (so the program doesn't end immediately)
 
     Make sure to have a look at the code, and see where we'll put our interface code!
-    <Tabs>
+
+    <Tabs syncKey="code-language">
     <TabItem label="C++">
 
       ```cpp
@@ -48,6 +49,63 @@ Let's see how we can create a simple button. We'll start in an empty project, an
       ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+     ```csharp
+        using static SplashKitSDK.SplashKit;
+
+        // Open a window with the specified title, width, and height
+        OpenWindow("My Interface!", 800, 600);
+
+        // Clear the screen to white
+        ClearScreen(ColorWhite());
+
+        // ...we'll put our interface code here...
+
+        // Refresh the screen, then wait for 5 seconds
+        RefreshScreen();
+        Delay(5000);
+
+        // Close all open windows
+        CloseAllWindows();
+     ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+     ```csharp
+        using SplashKitSDK;
+
+        namespace CreatingUserInterfaces
+        {
+            public class Program
+            {
+                public static void Main()
+                {
+                    // Open a window with the specified title, width, and height
+                    Window window = new Window("My Interface!", 800, 600);
+
+                    // Clear the screen to white
+                    SplashKit.ClearScreen(Color.White);
+
+                    // ...we'll put our interface code here...
+
+                    // Refresh the screen, then wait for 5 seconds
+                    SplashKit.RefreshScreen();
+                    SplashKit.Delay(5000);
+
+                    // Close all open windows
+                    SplashKit.CloseAllWindows();
+                }
+            }
+        }
+     ```
+    </TabItem>
+    </Tabs>
+    </TabItem>
     </Tabs>
 
 2. Now let's show a button! This can be done with the [Button](/api/interface/#button) function, which takes some text to show on the button, and also a position and size so it knows where to show up.
@@ -57,10 +115,10 @@ Let's see how we can create a simple button. We'll start in an empty project, an
 3. We also need to _draw_ the interface - we can do this with [Draw Interface](/api/interface/#draw-interface)
 
     Making those changes, we get the following inside `main`:
-    <Tabs>
+    <Tabs syncKey="code-language">
     <TabItem label="C++">
 
-    ```cpp ins={5-9}
+     ```cpp ins={5-9}
         // open a window and clear it to white
         open_window("My Interface!", 800, 600);
         clear_screen(COLOR_WHITE);
@@ -74,10 +132,54 @@ Let's see how we can create a simple button. We'll start in an empty project, an
         // refresh the screen, then wait 5 seconds
         refresh_screen();
         delay(5000);
-    ```
+     ```
+    </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+     ```csharp
+        // Open a window and clear it to white
+        OpenWindow("My Interface!", 800, 600);
+        ClearScreen(ColorWhite());
+
+        // Show a button
+        Button("My Button!", RectangleFrom(300, 260, 200, 24));
+
+        // Draw the interface
+        DrawInterface();
+
+        // Refresh the screen, then wait for 5 seconds
+        RefreshScreen();
+        Delay(5000);
+     ```
 
     </TabItem>
+    <TabItem label="Object-Oriented">
+
+     ```csharp
+        // Open a window with the specified title, width, and height
+        Window window = new Window("My Interface!", 800, 600);
+
+        // Clear the screen to white
+        SplashKit.ClearScreen(Color.White);
+
+        // Show a button
+        SplashKit.Button("My Button!", SplashKit.RectangleFrom(300, 260, 200, 24));
+
+        // Draw the interface
+        SplashKit.DrawInterface();
+
+        // Refresh the screen, then wait for 5 seconds
+        SplashKit.RefreshScreen();
+        SplashKit.Delay(5000);
+     ```
+    </TabItem>
     </Tabs>
+    </TabItem>
+    </Tabs>
+
 
     Which if you run, will show you this!
 
@@ -100,7 +202,7 @@ Let's see how we can create a simple button. We'll start in an empty project, an
    SplashKit will try to give helpful messages when things aren't quite right, so make sure to pay attention to them!
 
     Putting this all together, we get this inside `main`:
-    <Tabs>
+    <Tabs syncKey="code-language">
     <TabItem label="C++">
 
       ```cpp ins={4-6, 15}
@@ -125,6 +227,72 @@ Let's see how we can create a simple button. We'll start in an empty project, an
       ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+     ```csharp
+        // Open a window
+        OpenWindow("My Interface!", 800, 600);
+
+        // Main loop
+        while (!QuitRequested())
+        {
+            // Process events
+            ProcessEvents();
+
+            // Clear the screen to white
+            ClearScreen(ColorWhite());
+
+            // Show a button
+            Button("My Button!", RectangleFrom(300, 260, 200, 24));
+
+            // Draw the interface
+            DrawInterface();
+
+            // Refresh the screen
+            RefreshScreen();
+        }
+
+        // Close all open windows
+        CloseAllWindows();
+     ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+     ```csharp
+        // Open a window with the specified title, width, and height
+        Window window = new Window("My Interface!", 800, 600);
+
+        // Main loop
+        while (!SplashKit.QuitRequested())
+        {
+            // Process events
+            SplashKit.ProcessEvents();
+
+            // Clear the screen to white
+            SplashKit.ClearScreen(Color.White);
+
+            // Show a button
+            SplashKit.Button("My Button!", SplashKit.RectangleFrom(300, 260, 200, 24));
+
+            // Draw the interface
+            SplashKit.DrawInterface();
+
+            // Refresh the screen
+            SplashKit.RefreshScreen();
+        }
+
+        // Close all open windows
+        SplashKit.CloseAllWindows();
+     ```
+    </TabItem>
+    
+    </Tabs>
+    </TabItem>
+
     </Tabs>
 
     And we can now click the button!
@@ -160,16 +328,40 @@ Let's try it out:
 
 We should also give the button some more descriptive text inside it, like "Write To Terminal!"
 
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp ins="Write To Terminal!" ins="if (" ins=/24\\)\\)(\\))/ ins={2-4}
-          if (button("Write To Terminal!", rectangle_from(300, 260, 200, 24)))
-          {
-              write_line("The button was clicked!");
-          }
+        if (button("Write To Terminal!", rectangle_from(300, 260, 200, 24)))
+        {
+          write_line("The button was clicked!");
+        }
   ```
 
+</TabItem>
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+ ```csharp
+        if (Button("Write To Terminal!", RectangleFrom(300, 260, 200, 24)))
+        {
+            WriteLine("The button was clicked!");
+        }
+ ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+ ```csharp
+        if (SplashKit.Button("Write To Terminal!", SplashKit.RectangleFrom(300, 260, 200, 24)))
+        {
+            SplashKit.WriteLine("The button was clicked!");
+        }
+ ```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>
 
@@ -183,10 +375,10 @@ Now when we click on the button, our text gets printed in the terminal! You can 
 Now let's try out some more interesting elements - let's add a text box, so we can customize the message written to the terminal!
 
 1. First let's start by adding a variable to store the user's text in - make sure to do this _outside_ the main loop, or else the user's text will be forgotten each iteration!
-    <Tabs>
+    <Tabs syncKey="code-language">
     <TabItem label="C++">
 
-      ```cpp ins={3}
+     ```cpp ins={3}
           open_window("My Interface!", 800, 600);
 
           string user_message = "Default message!";
@@ -194,8 +386,43 @@ Now let's try out some more interesting elements - let's add a text box, so we c
           while (!quit_requested())
           {
               process_events();
-      ```
+     ```
 
+    </TabItem>
+     
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+     ```csharp
+        // Open a window
+        OpenWindow("My Interface!", 800, 600);
+
+        string userMessage = "Default message!";
+
+        // Main loop
+        while (!QuitRequested())
+        {
+            ProcessEvents();
+     ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+     ```csharp
+        // Open a window
+        Window window = new Window("My Interface!", 800, 600);
+
+        string userMessage = "Default message!";
+
+        // Main loop
+        while (!SplashKit.QuitRequested())
+        {
+            SplashKit.ProcessEvents();
+     ```
+    </TabItem>
+    </Tabs>
     </TabItem>
     </Tabs>
 
@@ -208,18 +435,50 @@ Now let's try out some more interesting elements - let's add a text box, so we c
     Finally, we can use this variable in our [Write Line](/api/terminal/#write-line), to write the user's text to the console.
 
     Remember - this all needs to go inside the main `while` loop. Otherwise the text box will only exist for a split second before vanishing - we need to keep it alive!
-    <Tabs>
+    <Tabs syncKey="code-language">
     <TabItem label="C++">
 
       ```cpp ins={1} ins="write_line(user_message);"
-              user_message = text_box(user_message, rectangle_from(300, 220, 200, 24));
+             user_message = text_box(user_message, rectangle_from(300, 220, 200, 24));
 
-              if (button("Write To Terminal!", rectangle_from(300, 260, 200, 24)))
-              {
-                  write_line(user_message);
-              }
+             if (button("Write To Terminal!", rectangle_from(300, 260, 200, 24)))
+             {
+                write_line(user_message);
+             }
       ```
 
+    </TabItem>
+
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+      ```csharp
+            // Update the user message from the text box
+            userMessage = TextBox(userMessage, RectangleFrom(300, 220, 200, 24));
+
+            // Check if the button is clicked
+            if (Button("Write To Terminal!", RectangleFrom(300, 260, 200, 24)))
+            {
+                WriteLine(userMessage);
+            }
+      ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+      ```csharp
+            userMessage = SplashKit.TextBox(userMessage, SplashKit.RectangleFrom(300, 220, 200, 24));
+
+            // Check if the button is clicked
+            if (SplashKit.Button("Write To Terminal!", SplashKit.RectangleFrom(300, 260, 200, 24)))
+            {
+                SplashKit.WriteLine(userMessage);
+            }
+      ```
+    </TabItem>
+    </Tabs>
     </TabItem>
     </Tabs>
 
@@ -239,7 +498,7 @@ Now let's try out some more interesting elements - let's add a text box, so we c
     ![A button and a text box. When the button is clicked, the contents of the text box is printed in the terminal.](/gifs/guides/interface/text_box_to_terminal.gif)
 
 Here's the complete code up until this point:
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp
@@ -282,6 +541,95 @@ Here's the complete code up until this point:
   ```
 
 </TabItem>
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+ ```csharp
+ using static SplashKitSDK.SplashKit;
+
+    // Open a window
+    OpenWindow("My Interface!", 800, 600);
+
+    // Define variables
+    string userMessage = "Default message!";
+
+    // Main loop
+    while (!QuitRequested())
+    {
+        // Get user events
+        ProcessEvents();
+
+        // Clear screen
+        ClearScreen(ColorWhite());
+
+        // Interface!
+        userMessage = TextBox(userMessage, RectangleFrom(300, 220, 200, 24));
+
+        if (Button("Write To Terminal!", RectangleFrom(300, 260, 200, 24)))
+        {
+            WriteLine(userMessage);
+        }
+
+        // Draw interface, then refresh screen
+        DrawInterface();
+        RefreshScreen();
+    }
+    // Close all open windows
+    CloseAllWindows();
+ ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+ ```csharp
+ using SplashKitSDK;
+
+ namespace CreatingUserInterfaces
+ {
+     public class Program
+     {
+         public static void Main()
+         {
+             // Open a window
+             Window window = new Window("My Interface!", 800, 600);
+
+             // Define variables
+             string userMessage = "Default message!";
+
+             // Main loop
+             while (!SplashKit.QuitRequested())
+             {
+                 // Get user events
+                 SplashKit.ProcessEvents();
+
+                 // Clear screen
+                 SplashKit.ClearScreen(Color.White);
+
+                 // Interface!
+                 userMessage = SplashKit.TextBox(userMessage, SplashKit.RectangleFrom(300, 220, 200, 24));
+
+                 if (SplashKit.Button("Write To Terminal!", SplashKit.RectangleFrom(300, 260, 200, 24)))
+                 {
+                     SplashKit.WriteLine(userMessage);
+                 }
+
+                 // Draw interface, then refresh screen
+                 SplashKit.DrawInterface();
+                 SplashKit.RefreshScreen();
+             }
+
+             // Close all open windows
+             SplashKit.CloseAllWindows();
+         }
+     }
+  }
+ ```
+
+</TabItem>
+</Tabs>
+</TabItem>
 </Tabs>
 
 ## Practice Activity
@@ -294,7 +642,7 @@ Let's try adding one more element - this time we can try adding a slider! For fu
 
 <details>
 <summary>Here is _one_ way to do write this, but don't peek until you've tried it yourself!</summary>
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp ins={3} ins={22} ins=/(width), 2/  ins="400 - width/2"
@@ -329,6 +677,78 @@ Let's try adding one more element - this time we can try adding a slider! For fu
   ```
 
 </TabItem>
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+   ```csharp
+        // Define variables
+        string userMessage = "Default message!";
+        float width = 200;
+
+        // Main loop
+        while (!QuitRequested())
+        {
+            // Get user events
+            ProcessEvents();
+
+            // Clear screen
+            ClearScreen(ColorWhite());
+
+            // Interface!
+            userMessage = TextBox(userMessage, RectangleFrom(400 - width / 2, 220, width, 24));
+
+            if (Button("Write To Terminal!", RectangleFrom(400 - width / 2, 260, width, 24)))
+            {
+                WriteLine(userMessage);
+            }
+
+            width = Slider(width, 10, 400, RectangleFrom(300, 300, 200, 24));
+
+            // Draw interface, then refresh screen
+            DrawInterface();
+            RefreshScreen();
+        }  
+   ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+   ```csharp
+        // Define variables
+        string userMessage = "Default message!";
+        float width = 200;
+
+        // Main loop
+        while (!SplashKit.QuitRequested())
+        {
+            // Get user events
+            SplashKit.ProcessEvents();
+
+            // Clear screen
+            SplashKit.ClearScreen(Color.White);
+
+            // Interface!
+            userMessage = SplashKit.TextBox(userMessage, SplashKit.RectangleFrom(400 - width / 2, 220, width, 24));
+
+            if (SplashKit.Button("Write To Terminal!", SplashKit.RectangleFrom(400 - width / 2, 260, width, 24)))
+            {
+                SplashKit.WriteLine(userMessage);
+            }
+
+            width = SplashKit.Slider(width, 10, 400, SplashKit.RectangleFrom(300, 300, 200, 24));
+
+            // Draw interface, then refresh screen
+            SplashKit.DrawInterface();
+            SplashKit.RefreshScreen();
+        }
+   ```
+
+</TabItem>
+</Tabs>
+</TabItem>
+
 </Tabs>
 </details>
 
@@ -340,7 +760,7 @@ Hopefully now you understand how easy it is to make a dynamic interface in Splas
 
 ![A button, text box, and slider. Adjusting the value of the slider changes the width of the other controls.](/gifs/guides/interface/slider.gif)
 
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp
@@ -385,5 +805,101 @@ Hopefully now you understand how easy it is to make a dynamic interface in Splas
   }
   ```
 
+</TabItem>
+
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+ ```csharp
+ using static SplashKitSDK.SplashKit;
+
+    // Open a window
+    OpenWindow("My Interface!", 800, 600);
+
+    // Define variables
+    string userMessage = "Default message!";
+    float width = 200;
+
+    // Main loop
+    while (!QuitRequested())
+    {
+        // Get user events
+        ProcessEvents();
+
+        // Clear screen
+        ClearScreen(ColorWhite());
+
+        // Interface!
+        userMessage = TextBox(userMessage, RectangleFrom(400 - width / 2, 220, width, 24));
+
+        if (Button("Write To Terminal!", RectangleFrom(400 - width / 2, 260, width, 24)))
+        {
+            WriteLine(userMessage);
+        }
+
+        width = Slider(width, 10, 400, RectangleFrom(300, 300, 200, 24));
+
+        // Draw interface, then refresh screen
+        DrawInterface();
+        RefreshScreen();
+    }
+
+    // Close all open windows
+    CloseAllWindows();
+ ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+ ```csharp
+ using SplashKitSDK;
+
+ namespace CreatingUserInterfaces
+ {
+     public class Program
+     {
+         public static void Main()
+         {
+             // Open a window
+             Window window = new Window("My Interface!", 800, 600);
+
+             // Define variables
+             string userMessage = "Default message!";
+             float width = 200;
+
+             // Main loop
+             while (!SplashKit.QuitRequested())
+             {
+                 // Get user events
+                 SplashKit.ProcessEvents();
+
+                 // Clear screen
+                 SplashKit.ClearScreen(Color.White);
+
+                 // Interface!
+                 userMessage = SplashKit.TextBox(userMessage, SplashKit.RectangleFrom(400 - width / 2, 220, width, 24));
+
+                 if (SplashKit.Button("Write To Terminal!", SplashKit.RectangleFrom(400 - width / 2, 260, width, 24)))
+                 {
+                     SplashKit.WriteLine(userMessage);
+                 }
+
+                 width = SplashKit.Slider(width, 10, 400, SplashKit.RectangleFrom(300, 300, 200, 24));
+
+                 // Draw interface, then refresh screen
+                 SplashKit.DrawInterface();
+                 SplashKit.RefreshScreen();
+             }
+
+             // Close all open windows
+             SplashKit.CloseAllWindows();
+         }
+     }
+ }
+ ```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>

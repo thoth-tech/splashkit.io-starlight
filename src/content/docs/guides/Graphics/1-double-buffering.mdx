@@ -41,3 +41,77 @@ So when drawing you need to keep two things in mind:
 
 1. Anything you draw will not appear unit you have refreshed the screen
 2. Newer drawing operations will draw over the current canvas, on top of anything that was already there
+
+## Example Code
+
+<Tabs syncKey="code-language">
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+```csharp
+    using static SplashKitSDK.SplashKit;
+
+    // Open a window with the specified title, width, and height
+    OpenWindow("Double Buffering", 800, 600);
+
+    do
+    {
+        // Clear the screen with a specific color
+        ClearScreen(ColorWhite());
+
+        // Drawing on the offscreen buffer
+        FillRectangle(ColorRed(), 100, 100, 200, 150);
+
+        // Refresh the screen to show the drawing
+        RefreshScreen(60); 
+
+        // Process events to handle window close requests
+        ProcessEvents();
+
+    } while (!WindowCloseRequested("Double Buffering"));
+
+    CloseAllWindows(); // Close all open windows
+```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+    using SplashKitSDK;
+
+    namespace DoubleBuffering
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+            Window window = SplashKit.OpenWindow("Double Buffering", 800, 600);
+
+            do
+            {
+                // Clear the screen with a specific color
+                SplashKit.ClearScreen(Color.White);
+
+                // Drawing on the offscreen buffer
+                SplashKit.FillRectangle(Color.Red, 100, 100, 200, 150);
+
+                // Refresh the screen to show the drawing
+                SplashKit.RefreshScreen(60); 
+
+                // Process events to handle window close requests
+                SplashKit.ProcessEvents();
+
+            } while (!SplashKit.WindowCloseRequested("Double Buffering"));
+
+            SplashKit.CloseAllWindows();  
+            }
+        }
+    }
+```
+
+</TabItem>
+</Tabs>
+</TabItem>
+</Tabs>

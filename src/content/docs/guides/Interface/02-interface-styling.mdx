@@ -19,7 +19,7 @@ In this article we'll see how we can customize the _style_ of our interfaces, to
 
 SplashKit comes with a few preset styles that make it easy to start customizing the interface. To use them, just call [Set Interface Style](/api/interface/#set-interface-style) with the style you want - any elements created after this will use the new style! Here's an example:
 
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp ins={8}
@@ -51,6 +51,78 @@ SplashKit comes with a few preset styles that make it easy to start customizing 
 
   ```
 
+</TabItem>
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+ ```csharp
+ using SplashKitSDK;
+ using static SplashKitSDK.SplashKit;
+
+    // Open a window
+    OpenWindow("My Interface!", 800, 600);
+
+    // Set the interface style
+    SetInterfaceStyle(InterfaceStyle.ShadedLightStyle);
+
+    while (!QuitRequested())
+    {
+        ProcessEvents();
+
+        ClearScreen(ColorWhite());
+
+        Button("My Button!", RectangleFrom(300, 260, 200, 24));
+
+        DrawInterface();
+
+        RefreshScreen();
+    }
+
+    // Close all open windows
+    CloseAllWindows();
+ ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace StylingUserInterfaces
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            // Open a window
+            Window window = new Window("My Interface!", 800, 600);
+
+            // Set the interface style
+            SplashKit.SetInterfaceStyle(InterfaceStyle.ShadedLightStyle);
+
+            while (!SplashKit.QuitRequested())
+            {
+                SplashKit.ProcessEvents();
+
+                SplashKit.ClearScreen(Color.White);
+
+                SplashKit.Button("My Button!", SplashKit.RectangleFrom(300, 260, 200, 24));
+
+                SplashKit.DrawInterface();
+
+                SplashKit.RefreshScreen();
+            }
+
+            // Close all open windows
+            SplashKit.CloseAllWindows();
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>
 
@@ -162,7 +234,7 @@ By default, the interface will try and use a font available in your system. You 
 - [Set Interface Font](/api/interface/#set-interface-font), lets you change the current font, loaded with [Load Font](/api/graphics/#load-font)
 - [Set Interface Font Size](/api/interface/#set-interface-font-size), lets you change the current font size
 
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp
@@ -171,6 +243,35 @@ By default, the interface will try and use a font available in your system. You 
       set_interface_font_size(12);
   ```
 
+</TabItem>
+
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+ ```csharp
+    // Load the font
+    Font myFont = LoadFont("Custom Font", "arial.ttf");
+
+    // Set the interface font and font size
+    SetInterfaceFont(myFont);
+    SetInterfaceFontSize(12);
+ ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+ ```csharp
+    // Load the font
+    Font myFont = SplashKit.LoadFont("Custom Font", "arial.ttf");
+
+    // Set the interface font and font size
+    SplashKit.SetInterfaceFont(myFont);
+    SplashKit.SetInterfaceFontSize(12);
+ ```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>
 
