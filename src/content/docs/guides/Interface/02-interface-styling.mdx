@@ -3,7 +3,7 @@ title: Styling User Interfaces
 description: This article will explain how we can style our SplashKit interfaces to match our projects.
 category: Tutorials
 author: Sean Boettger
-lastupdated: May 17 2024
+lastupdated: September 20 2024
 ---
 
 **{frontmatter.description}**
@@ -19,7 +19,7 @@ In this article we'll see how we can customize the _style_ of our interfaces, to
 
 SplashKit comes with a few preset styles that make it easy to start customizing the interface. To use them, just call [Set Interface Style](/api/interface/#set-interface-style) with the style you want - any elements created after this will use the new style! Here's an example:
 
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp ins={8}
@@ -50,6 +50,31 @@ SplashKit comes with a few preset styles that make it easy to start customizing 
   }
 
   ```
+
+</TabItem>
+<TabItem label="Python">
+
+```python ins={6}
+from splashkit import *
+
+# open a window
+open_window("My Interface!", 800, 600)
+
+set_interface_style(InterfaceStyle.shaded_light_style)
+
+while (not quit_requested()):
+    process_events()
+
+    clear_screen_to_white()
+
+    button_at_position("My Button!", rectangle_from(300, 260, 200, 24))
+    
+    draw_interface()
+
+    refresh_screen()
+
+# program ends, and the window closes
+```
 
 </TabItem>
 </Tabs>
@@ -162,7 +187,7 @@ By default, the interface will try and use a font available in your system. You 
 - [Set Interface Font](/api/interface/#set-interface-font), lets you change the current font, loaded with [Load Font](/api/graphics/#load-font)
 - [Set Interface Font Size](/api/interface/#set-interface-font-size), lets you change the current font size
 
-<Tabs>
+<Tabs syncKey="code-language">
 <TabItem label="C++">
 
   ```cpp
@@ -170,6 +195,15 @@ By default, the interface will try and use a font available in your system. You 
       set_interface_font(myFont);
       set_interface_font_size(12);
   ```
+
+</TabItem>
+<TabItem label="Python">
+
+```python
+my_font = load_font("Custom Font", "arial.ttf")
+set_interface_font(my_font)
+set_interface_font_size(12)
+```
 
 </TabItem>
 </Tabs>
