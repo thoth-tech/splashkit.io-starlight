@@ -2,8 +2,8 @@
 title: Writing JSON Data in SplashKit
 description: Having covered how to read JSON data in SplashKit, this part of the tutorial focuses on creating and writing data to JSON files. This functionality is crucial for features like saving game settings or player progress and information.
 category: Guides
-author: Jonathan Tynan
-lastupdated: May 11 2024
+author: Jonathan Tynan and Yuyang Yang
+lastupdated: Sep 20 2024
 sidebar:
   label: "Writing JSON Data"
 ---
@@ -33,6 +33,8 @@ json_set_number(new_game_data, "numPlayers", 1);
 </TabItem>
 
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 Json newGameData = CreateJson();
@@ -41,6 +43,17 @@ JsonSetBool(newGameData, "fullScreenMode", false);
 JsonSetNumber(newGameData, "numPlayers", 1);
 ```
 
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+Json newGameData = SplashKit.CreateJson();
+SplashKit.JsonSetString(newGameData, "gameTitle", "My New Game");
+SplashKit.JsonSetBool(newGameData, "fullScreenMode", false);
+SplashKit.JsonSetNumber(newGameData, "numPlayers", 1);
+```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>
 
@@ -62,10 +75,11 @@ json_set_array(new_game_data, "levels", levels_array);
 </TabItem>
 
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 List<string> levelsArray = new List<string>
-
 {
     "level1",
     "level2",
@@ -75,6 +89,23 @@ List<string> levelsArray = new List<string>
 JsonSetArray(newGameData, "levels", levelsArray);
 ```
 
+</TabItem>
+
+<TabItem label="Object-Oriented">
+
+```csharp
+List<string> levelsArray = new List<string>
+{
+    "level1",
+    "level2",
+    "level3"
+};
+
+SplashKit.JsonSetArray(newGameData, "levels", levelsArray);
+
+```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>
 
@@ -95,6 +126,8 @@ json_set_object(new_game_data, "screenSize", screen_size_data);
 </TabItem>
 
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 Json screenSizeData = CreateJson();
@@ -104,6 +137,18 @@ JsonSetNumber(screenSizeData, "height", 600);
 JsonSetObject(newGameData, "screenSize", screenSizeData);
 ```
 
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+Json screenSizeData = SplashKit.CreateJson();
+SplashKit.JsonSetNumber(screenSizeData, "width", 800);
+SplashKit.JsonSetNumber(screenSizeData, "height", 600);
+
+SplashKit.JsonSetObject(newGameData, "screenSize", screenSizeData);
+```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>
 
@@ -123,12 +168,22 @@ json_to_file(new_game_data, "new_game_data.json");
 </TabItem>
 
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 JsonToFile(newGameData, "new_game_data.json");
 
 ```
 
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+SplashKit.JsonToFile(newGameData, "new_game_data.json");
+```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>
 
@@ -172,6 +227,8 @@ int main()
 </TabItem>
 
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 using SplashKitSDK;
@@ -206,7 +263,52 @@ FreeJson(screenSizeData);
 ```
 
 </TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+using System.Collections.Generic;
+
+namespace WritingJsonData
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            Json newGameData = SplashKit.CreateJson();
+
+            SplashKit.JsonSetString(newGameData, "gameTitle", "My New Game");
+            SplashKit.JsonSetBool(newGameData, "fullScreenMode", false);
+            SplashKit.JsonSetNumber(newGameData, "numPlayers", 1);
+
+            Json screenSizeData = SplashKit.CreateJson();
+            SplashKit.JsonSetNumber(screenSizeData, "width", 800);
+            SplashKit.JsonSetNumber(screenSizeData, "height", 600);
+
+            SplashKit.JsonSetObject(newGameData, "screenSize", screenSizeData);
+
+            List<string> levelsArray = new List<string>
+            {
+                "level1",
+                "level2",
+                "level3"
+            };
+
+            SplashKit.JsonSetArray(newGameData, "levels", levelsArray);
+
+            SplashKit.JsonToFile(newGameData, "new_game_data.json");
+
+            SplashKit.FreeJson(newGameData);
+            SplashKit.FreeJson(screenSizeData);
+        }
+    }
+}
+```
+</TabItem>
 </Tabs>
+</TabItem>
+</Tabs>
+
 
 Running this program results in a file named `new_game_data.json` being written to the `Resources/json/` folder. Open this up and you'll see something very similar or identical to the example JSON file we've been using previously. It should look something like this:
 
@@ -251,6 +353,8 @@ json_set_object(player_data, "stats", stats_data);
 </TabItem>
 
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 Json playerData = CreateJson();
@@ -264,6 +368,22 @@ JsonSetNumber(statsData, "strength", 75);
 JsonSetObject(playerData, "stats", statsData);
 ```
 
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+Json playerData = SplashKit.CreateJson();
+SplashKit.JsonSetString(playerData, "name", "Hero");
+
+Json statsData = SplashKit.CreateJson();
+SplashKit.JsonSetNumber(statsData, "health", 100);
+SplashKit.JsonSetNumber(statsData, "mana", 50);
+SplashKit.JsonSetNumber(statsData, "strength", 75);
+
+SplashKit.JsonSetObject(playerData, "stats", statsData);
+```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>
 
@@ -282,6 +402,8 @@ json_to_file(existing_data, "modified_game_data.json");
 </TabItem>
 
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 Json existingData = JsonFromFile("new_game_data.json");
@@ -289,6 +411,16 @@ JsonSetObject(existingData, "character", playerData);
 JsonToFile(existingData, "modified_game_data.json");
 ```
 
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+Json existingData = SplashKit.JsonFromFile("new_game_data.json");
+SplashKit.JsonSetObject(existingData, "character", playerData);
+SplashKit.JsonToFile(existingData, "modified_game_data.json");
+```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>
 
@@ -338,6 +470,8 @@ int hp = json_read_number_as_int(stats, "health");
 </TabItem>
 
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 // Load our JSON
@@ -350,6 +484,21 @@ Json stats = JsonReadObject(character, "stats");
 int hp = JsonReadNumberAsInt(stats, "health");
 ```
 
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+// Load our JSON
+Json modifiedGameData = SplashKit.JsonFromFile("modified_game_data.json");
+// Retrieve Character JSON object from the file.
+Json character = SplashKit.JsonReadObject(modifiedGameData, "character");
+// Retrieve the Stats JSON object from the Character JSON
+Json stats = SplashKit.JsonReadObject(character, "stats");
+// Retrieve the value of health from the stats JSON object
+int hp = SplashKit.JsonReadNumberAsInt(stats, "health");
+```
+</TabItem>
+</Tabs>
 </TabItem>
 </Tabs>
 
