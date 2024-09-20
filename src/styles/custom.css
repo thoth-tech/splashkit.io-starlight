@@ -6,7 +6,7 @@
 :root {
   --purple-hsl: 255, 60%, 60%;
   --overlay-blurple: hsla(var(--purple-hsl), 0.2);
-  --table-head-color: rgb(35, 38, 47);
+  /* --table-head-color: rgb(35, 38, 47); */
 }
 
 /* Light mode colors. */
@@ -14,7 +14,9 @@
   --purple-hsl: 255, 85%, 65%;
   --sl-hue-accent: 350;
   --sl-color-accent: #3D50f5;
-  --table-head-color: rgb(244, 245, 247);
+
+  /* Potential colours to use when the site can toggle the theme in the future */
+  /* --table-head-color: rgb(244, 245, 247); */
   /* --table-head-color: hsla(187, 99%, 38%, 0.35); light splashkit blue*/
   /* --table-head-color: rgb(245, 166, 35);   splashkit orange */
   /*--table-head-color: rgb(1, 172, 194);     splashkit blue*/
@@ -247,10 +249,18 @@ a.decent:hover {
 .sl-markdown-content table {
   border-radius: 0.5rem;
   box-shadow: var(--sl-shadow-md);
-  border: 1px solid var(--sl-color-gray-6);
+  border: 1px solid var(--sl-color-gray-5);
   width: max-content;
   max-width: 100%;
   text-align: left;
+}
+
+.sl-markdown-content table th {
+  border-right: 1px solid var(--sl-color-gray-5);
+}
+
+.sl-markdown-content table td {
+  border-right: 1px solid var(--sl-color-gray-5);
 }
 
 .sl-markdown-content table td:first-child,
@@ -268,9 +278,8 @@ a.decent:hover {
 .sl-markdown-content table tr:first-child th {
   border-top: none;
   text-align: left;
-  background-color: var(--table-head-color);
+  background-color: var(--sl-color-gray-6);
   /* color: white; */
-
 }
 
 .sl-markdown-content table tr:last-child td {
