@@ -3,7 +3,7 @@ const path = require('path');
 const matter = require('gray-matter');
 
 const gamesDir = path.join(__dirname, '../src/content/docs/games');
-const outputFile = path.join(__dirname, '../src/components/react/GameCardSwiper/games-config.json'); // Updated path
+const outputFile = path.join(__dirname, '../public/games-config.json');
 
 // Function to generate JSON config
 function generateGamesConfig() {
