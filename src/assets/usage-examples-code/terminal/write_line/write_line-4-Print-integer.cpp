@@ -12,7 +12,7 @@ int main()
 
     // Example 2: Print Multi-digit integer
     write_line(12345);
-    write_line(953221313);
+    write_line(953221311);
     write_line(-165746);
 
     // Example 3: Print integer after calculation
