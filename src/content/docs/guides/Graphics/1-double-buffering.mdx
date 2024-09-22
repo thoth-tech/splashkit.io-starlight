@@ -6,6 +6,8 @@ author: Various Authors
 lastupdated: May 30 2018
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
 **{frontmatter.description}**  
 Written by: {frontmatter.author}  
 _Last updated: {frontmatter.lastupdated}_
@@ -51,64 +53,64 @@ So when drawing you need to keep two things in mind:
 <TabItem label="Top-level Statements">
 
 ```csharp
-    using static SplashKitSDK.SplashKit;
+using static SplashKitSDK.SplashKit;
 
-    // Open a window with the specified title, width, and height
-    OpenWindow("Double Buffering", 800, 600);
+// Open a window with the specified title, width, and height
+OpenWindow("Double Buffering", 800, 600);
 
-    do
-    {
-        // Clear the screen with a specific color
-        ClearScreen(ColorWhite());
+do
+{
+    // Clear the screen with a specific color
+    ClearScreen(ColorWhite());
 
-        // Drawing on the offscreen buffer
-        FillRectangle(ColorRed(), 100, 100, 200, 150);
+    // Drawing on the offscreen buffer
+    FillRectangle(ColorRed(), 100, 100, 200, 150);
 
-        // Refresh the screen to show the drawing
-        RefreshScreen(60); 
+    // Refresh the screen to show the drawing
+    RefreshScreen(60); 
 
-        // Process events to handle window close requests
-        ProcessEvents();
+    // Process events to handle window close requests
+    ProcessEvents();
 
-    } while (!WindowCloseRequested("Double Buffering"));
+} while (!WindowCloseRequested("Double Buffering"));
 
-    CloseAllWindows(); // Close all open windows
+CloseAllWindows(); // Close all open windows
 ```
 
 </TabItem>
 <TabItem label="Object-Oriented">
 
 ```csharp
-    using SplashKitSDK;
+using SplashKitSDK;
 
-    namespace DoubleBuffering
+namespace DoubleBuffering
+{
+    public class Program
     {
-        public class Program
+        public static void Main()
         {
-            public static void Main()
-            {
-            Window window = SplashKit.OpenWindow("Double Buffering", 800, 600);
+        Window window = SplashKit.OpenWindow("Double Buffering", 800, 600);
 
-            do
-            {
-                // Clear the screen with a specific color
-                SplashKit.ClearScreen(Color.White);
+        do
+        {
+            // Clear the screen with a specific color
+            SplashKit.ClearScreen(Color.White);
 
-                // Drawing on the offscreen buffer
-                SplashKit.FillRectangle(Color.Red, 100, 100, 200, 150);
+            // Drawing on the offscreen buffer
+            SplashKit.FillRectangle(Color.Red, 100, 100, 200, 150);
 
-                // Refresh the screen to show the drawing
-                SplashKit.RefreshScreen(60); 
+            // Refresh the screen to show the drawing
+            SplashKit.RefreshScreen(60); 
 
-                // Process events to handle window close requests
-                SplashKit.ProcessEvents();
+            // Process events to handle window close requests
+            SplashKit.ProcessEvents();
 
-            } while (!SplashKit.WindowCloseRequested("Double Buffering"));
+        } while (!SplashKit.WindowCloseRequested("Double Buffering"));
 
-            SplashKit.CloseAllWindows();  
-            }
+        SplashKit.CloseAllWindows();  
         }
     }
+}
 ```
 
 </TabItem>
