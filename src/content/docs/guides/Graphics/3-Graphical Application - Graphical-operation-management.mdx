@@ -69,15 +69,70 @@ Managing the rendering of shapes can be achieved by iterating over the shapes co
 ```cpp
 clear_screen(COLOR_WHITE);
 
-for (const auto& shape : shapes)
+for (int i = 0; i < shapes.size(); i++)
 {
-    fill_rectangle(COLOR_RED, shape.x, shape.y, shape.width, shape.height);
+    fill_rectangle(COLOR_RED, shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height);
 }
 
 refresh_screen(60);
 ```
 </TabItem>
 </Tabs>
+
+###  Complete code example
+<Tabs syncKey="code-language">
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+#include <vector>
+
+struct ShapeModel
+{
+    double x, y;
+    double width, height;
+    string color;
+    double rotation;
+    string type;
+};
+
+int main()
+{
+    open_window("Drawing Test", 800, 600);
+    vector<ShapeModel> shapes;
+
+    while (!window_close_requested("Drawing Test"))
+    {
+        process_events();
+
+        if (mouse_clicked(LEFT_BUTTON))
+        {
+            ShapeModel newShape;
+            newShape.x = mouse_x();
+            newShape.y = mouse_y();
+            newShape.width = 100;
+            newShape.height = 100;
+            newShape.color = "Red";
+            newShape.type = "Rectangle";
+            shapes.push_back(newShape);
+        }
+
+        clear_screen(COLOR_WHITE);
+
+        for (int i = 0; i < shapes.size(); i++)
+        {
+            fill_rectangle(COLOR_RED, shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height);
+        }
+
+        refresh_screen(60);
+    }
+
+    return 0;
+}
+```
+</TabItem>
+</Tabs>
+
 
 ## Graphical operations 
 In this section, we’ll discuss how to handle the selection and movement of shapes. The code is designed to allow users to select shapes, move them around the canvas, and resize them. This approach makes the code more modular, easier to maintain, and extend.
@@ -91,14 +146,14 @@ In this section, we’ll discuss how to handle the selection and movement of sha
 ```cpp
 ShapeModel* get_shape_at(vector<ShapeModel>& shapes, double x, double y)
 {
-    for (auto& shape : shapes)
+    for (int i = 0; i < shapes.size(); i++)
     {
-        if (shape.type == "Rectangle" && x >= shape.x && x <= (shape.x + shape.width) && y >= shape.y && y <= (shape.y + shape.height))
+        if (shapes[i].type == "Rectangle" && x >= shapes[i].x && x <= (shapes[i].x + shapes[i].width) && y >= shapes[i].y && y <= (shapes[i].y + shapes[i].height))
         {
-            return &shape;
+            return &shapes[i];
         }
     }
-    return nullptr; // Return null if no shape is selected
+    return nullptr; 
 }
 ```
 </TabItem>
@@ -138,9 +193,117 @@ if (is_resizing && selected_shape != nullptr)
 </TabItem>
 </Tabs>
 
-### **Release pattern**
+### **Final Shape Position**
  When the user releases the mouse button, the dragging or resizing operation stops, and the shape's final position or size is confirmed.
 
+###  Complete code example
+<Tabs syncKey="code-language">
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+#include <vector>
+
+struct ShapeModel
+{
+    double x, y;
+    double width, height;
+    string color;
+    double rotation;
+    string type;
+};
+
+ShapeModel *get_shape_at(vector<ShapeModel> &shapes, double x, double y)
+{
+    for (int i = 0; i < shapes.size(); i++)
+    {
+        if (shapes[i].type == "Rectangle" && x >= shapes[i].x && x <= (shapes[i].x + shapes[i].width) && y >= shapes[i].y && y <= (shapes[i].y + shapes[i].height))
+        {
+            return &shapes[i];
+        }
+    }
+    return nullptr;
+}
+
+int main()
+{
+    open_window("Drawing Test", 800, 600);
+    vector<ShapeModel> shapes;
+    ShapeModel *selected_shape = nullptr;
+    bool is_moving = false;
+    bool is_resizing = false;
+
+    while (!window_close_requested("Drawing Test"))
+    {
+        process_events();
+
+        if (!is_moving && !is_resizing)
+        {
+            if (mouse_down(LEFT_BUTTON))
+            {
+                selected_shape = get_shape_at(shapes, mouse_x(), mouse_y());
+                if (selected_shape != nullptr)
+                {
+                    if (key_down(SPACE_KEY))
+                    {
+                        is_resizing = true;
+                    }
+                    else
+                    {
+                        is_moving = true;
+                    }
+                }
+                else
+                {
+                    ShapeModel newShape;
+                    newShape.x = mouse_x();
+                    newShape.y = mouse_y();
+                    newShape.width = 100;
+                    newShape.height = 100;
+                    newShape.color = "Red";
+                    newShape.type = "Rectangle";
+                    shapes.push_back(newShape);
+                }
+            }
+        }
+
+        if (is_moving && selected_shape != nullptr)
+        {
+            selected_shape->x = mouse_x() - selected_shape->width / 2;
+            selected_shape->y = mouse_y() - selected_shape->height / 2;
+        }
+
+        if (is_resizing && selected_shape != nullptr)
+        {
+            selected_shape->width = mouse_x() - selected_shape->x;
+            selected_shape->height = mouse_y() - selected_shape->y;
+        }
+
+        if (mouse_up(LEFT_BUTTON))
+        {
+            is_moving = false;
+            is_resizing = false;
+            selected_shape = nullptr;
+        }
+
+        clear_screen(COLOR_WHITE);
+
+        for (int i = 0; i < shapes.size(); i++)
+        {
+            if (shapes[i].type == "Rectangle")
+            {
+                fill_rectangle(COLOR_RED, shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height);
+            }
+        }
+
+        refresh_screen(60);
+    }
+
+    return 0;
+}
+```
+</TabItem>
+</Tabs>
 
 ## Wiring function 
 
@@ -221,7 +384,9 @@ After successfully drawing a connection, the program exits connection mode and a
 
 This implementation creates an intuitive and interactive way for users to connect shapes, simulating links between objects.
 
-##  Complete code example
+###  Complete code example
+<Tabs syncKey="code-language">
+<TabItem label="C++">
 
 ```cpp
 #include "splashkit.h"
@@ -238,17 +403,17 @@ struct ShapeModel
 
 struct Connection
 {
-    ShapeModel* start;
-    ShapeModel* end;
+    ShapeModel *start;
+    ShapeModel *end;
 };
 
-ShapeModel* get_shape_at(vector<ShapeModel>& shapes, double x, double y)
+ShapeModel *get_shape_at(vector<ShapeModel> &shapes, double x, double y)
 {
-    for (auto& shape : shapes)
+    for (int i = 0; i < shapes.size(); i++)
     {
-        if (shape.type == "Rectangle" && x >= shape.x && x <= (shape.x + shape.width) && y >= shape.y && y <= (shape.y + shape.height))
+        if (shapes[i].type == "Rectangle" && x >= shapes[i].x && x <= (shapes[i].x + shapes[i].width) && y >= shapes[i].y && y <= (shapes[i].y + shapes[i].height))
         {
-            return &shape;
+            return &shapes[i];
         }
     }
     return nullptr;
@@ -259,8 +424,8 @@ int main()
     open_window("Drawing Test", 800, 600);
     vector<ShapeModel> shapes;
     vector<Connection> connections;
-    ShapeModel* selected_shape = nullptr;
-    ShapeModel* connection_start = nullptr;
+    ShapeModel *selected_shape = nullptr;
+    ShapeModel *connection_start = nullptr;
     bool is_moving = false;
     bool is_resizing = false;
     bool is_connecting = false;
@@ -285,10 +450,11 @@ int main()
                 }
                 else
                 {
-                    ShapeModel* connection_end = get_shape_at(shapes, mouse_x(), mouse_y());
+                    ShapeModel *connection_end = get_shape_at(shapes, mouse_x(), mouse_y());
                     if (connection_end != nullptr && connection_end != connection_start)
                     {
-                        connections.push_back({ connection_start, connection_end });
+                        Connection connection = {connection_start, connection_end};
+                        connections.push_back(connection);
                         is_connecting = false;
                         connection_start = nullptr;
                     }
@@ -302,7 +468,7 @@ int main()
                 selected_shape = get_shape_at(shapes, mouse_x(), mouse_y());
                 if (selected_shape != nullptr)
                 {
-                    if (key_down(SPACE_KEY))  
+                    if (key_down(SPACE_KEY))
                     {
                         is_resizing = true;
                     }
@@ -346,24 +512,22 @@ int main()
 
         clear_screen(COLOR_WHITE);
 
-        for (const auto& shape : shapes)
+        for (int i = 0; i < shapes.size(); i++)
         {
-            if (shape.type == "Rectangle")
+            if (shapes[i].type == "Rectangle")
             {
-                fill_rectangle(COLOR_RED, shape.x, shape.y, shape.width, shape.height);
+                fill_rectangle(COLOR_RED, shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height);
             }
         }
 
         if (is_connecting && connection_start != nullptr)
         {
-            draw_line(COLOR_BLACK, connection_start->x + connection_start->width / 2, connection_start->y + connection_start->height / 2,
-                         mouse_x(), mouse_y());
+            draw_line(COLOR_BLACK, connection_start->x + connection_start->width / 2, connection_start->y + connection_start->height / 2, mouse_x(), mouse_y());
         }
 
-        for (const auto& conn : connections)
+        for (int i = 0; i < connections.size(); i++)
         {
-            draw_line(COLOR_RED, conn.start->x + conn.start->width / 2, conn.start->y + conn.start->height / 2,
-                         conn.end->x + conn.end->width / 2, conn.end->y + conn.end->height / 2);
+            draw_line(COLOR_RED, connections[i].start->x + connections[i].start->width / 2, connections[i].start->y + connections[i].start->height / 2, connections[i].end->x + connections[i].end->width / 2, connections[i].end->y + connections[i].end->height / 2);
         }
 
         refresh_screen(60);
@@ -371,8 +535,8 @@ int main()
 
     return 0;
 }
-
 ```
-
+</TabItem>
+</Tabs>
 
 
