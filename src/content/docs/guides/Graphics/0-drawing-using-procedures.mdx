@@ -25,81 +25,44 @@ In SplashKit you can open a Window to draw on and interact with. To open the win
 Lets get this started by opening a new Window, and using SplashKit to delay us for a few seconds. Give the following code a try:
 
 <Tabs syncKey="code-language">
-<TabItem label="C++">
+ <TabItem label="C++">
 
-  ```cpp
-  #include "splashkit.h"
+```cpp
+#include "splashkit.h"
 
-  int main()
-  {
-      open_window("Window Title... to change", 800, 600);
-      delay(5000);
-      close_all_windows();
-      return 0;
-  }
-  ```
+int main()
+{
+    open_window("Window Title... to change", 800, 600);
+    delay(5000);
+    close_all_windows();
+    return 0;
+}
+```
 
 </TabItem>
 <TabItem label="C#">
 
-<Tabs syncKey="csharp-style">
-<TabItem label="Top-level Statements">
+```csharp
+using static SplashKitSDK.SplashKit;
 
-  ```csharp
-    using static SplashKitSDK.SplashKit;
-
-      // Open a window with the specified title, width, and height
-      OpenWindow("Window Title... to change ", 800, 600);
-
-      // Delay for 5 seconds
-      Delay(5000);
-
-      // Close all open windows
-      CloseAllWindows();
-  ```
-
-</TabItem>
-<TabItem label="Object-Oriented">
-
-  ```csharp
-    using SplashKitSDK;
-
-    namespace DrawingUsingProcedures
-    {
-        public class Program
-        {
-            public static void Main()
-            {
-                // Open a window with the specified title, width, and height
-                Window window = SplashKit.OpenWindow("Window Title... to change", 800, 600);
-
-                // Delay for 5 seconds
-                SplashKit.Delay(5000);
-
-                // Close all open windows
-                SplashKit.CloseAllWindows();
-            }
-        }
-    }
-  ```
-
-</TabItem>
-</Tabs>
+OpenWindow("Window Title... to change", 800, 600);
+Delay(5000);
+CloseAllWindows();
+```
 
 </TabItem>
 <TabItem label="Python">
 
-  ```python
-  from splashkit import *
+```python
+from splashkit import *
 
-  open_window("Window Title... to change", 800, 600)
-  delay(5000)
-  close_all_windows()
-  ```
+open_window("Window Title... to change", 800, 600)
+delay(5000)
+close_all_windows()
+```
 
 </TabItem>
 </Tabs>
-
 
 Compile and run the program from the terminal.
 
@@ -128,7 +91,6 @@ Compile and run the program from the terminal.
 </TabItem>
 </Tabs>
 
-
 You should see the window open, and the program delay for 5 seconds.
 
 Now change the window title to "Shapes by " and your name. For example, `"Shapes by Andrew"`.
@@ -142,103 +104,59 @@ Adjust the code so that it now draws the house shown above.
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  ```cpp
-  #include "splashkit.h"
+```cpp
+#include "splashkit.h"
 
-  int main()
-  {
-      open_window("Shapes by ...", 800, 600);
+int main()
+{
+    open_window("Shapes by ...", 800, 600);
 
-      clear_screen(COLOR_WHITE);
-      fill_ellipse(COLOR_BRIGHT_GREEN, 0, 400, 800, 400);
-      fill_rectangle(COLOR_GRAY, 300, 300, 200, 200);
-      fill_triangle(COLOR_RED, 250, 300, 400, 150, 550, 300);
-      refresh_screen();
-      delay(5000);
-      close_all_windows();
-      return 0;
-  }
-  ```
+    clear_screen(COLOR_WHITE);
+    fill_ellipse(COLOR_BRIGHT_GREEN, 0, 400, 800, 400);
+    fill_rectangle(COLOR_GRAY, 300, 300, 200, 200);
+    fill_triangle(COLOR_RED, 250, 300, 400, 150, 550, 300);
+    refresh_screen();
+    delay(5000);
+    close_all_windows();
+    return 0;
+}
+```
 
 </TabItem>
 <TabItem label="C#">
 
-<Tabs syncKey="csharp-style">
-<TabItem label="Top-level Statements">
+```csharp
+using static SplashKitSDK.SplashKit;
 
-  ```csharp
-  using static SplashKitSDK.SplashKit;
+OpenWindow("Shapes by ...", 800, 600);
 
-    // Open a window with the specified title, width, and height
-    OpenWindow("Shapes by ...", 800, 600);
+ClearScreen(ColorWhite());
+FillEllipse(ColorBrightGreen(), 0, 400, 800, 400);
+FillRectangle(ColorGray(), 300, 300, 200, 200);
+FillTriangle(ColorRed(), 250, 300, 400, 150, 550, 300);
+RefreshScreen();
+Delay(5000);
 
-    // Draw on the window
-    ClearScreen(ColorWhite());
-    FillEllipse(ColorBrightGreen(), 0, 400, 800, 400);
-    FillRectangle(ColorGray(), 300, 300, 200, 200);
-    FillTriangle(ColorRed(), 250, 300, 400, 150, 550, 300);
-    RefreshScreen();
-
-    // Delay for 5 seconds to view the drawing
-    Delay(5000);
-
-    // Close all open windows
-    CloseAllWindows();
-  ```
-
-</TabItem>
-<TabItem label="Object-Oriented">
-
-  ```csharp
-  using SplashKitSDK;
-
-  namespace DrawingUsingProcedures
-  {
-      public class Program
-      {
-          public static void Main()
-          {
-              // Create a new window with the specified title, width, and height
-              Window window = SplashKit.OpenWindow("Shapes by ...", 800, 600);
-
-              // Clear the window and set the background color
-              window.Clear(Color.White);
-
-              // Draw shapes on the window
-              window.FillEllipse(Color.BrightGreen, 0, 400, 800, 400);
-              window.FillRectangle(Color.Gray, 300, 300, 200, 200);
-              window.FillTriangle(Color.Red, 250, 300, 400, 150, 550, 300);
-              window.Refresh();
-
-              // Delay for 5 seconds to view the drawing
-              SplashKit.Delay(5000);
-
-              // Close all open windows
-              SplashKit.CloseAllWindows();
-          }
-      }
-  }
-  ```
-</TabItem>
-</Tabs>
+CloseAllWindows();
+```
 
 </TabItem>
 <TabItem label="Python">
 
-  ```python
-  from splashkit import *
+```python
+from splashkit import *
 
-  open_window("Shapes by ...", 800, 600)
+open_window("Shapes by ...", 800, 600)
 
-  clear_screen(color_white())
-  fill_ellipse(color_bright_green(), 0, 400, 800, 400)
-  fill_rectangle(color_gray(), 300, 300, 200, 200)
-  fill_triangle(color_red(), 250, 300, 400, 150, 550, 300)
-  refresh_screen()
-  delay(5000)
+clear_screen(color_white())
+fill_ellipse(color_bright_green(), 0, 400, 800, 400)
+fill_rectangle(color_gray(), 300, 300, 200, 200)
+fill_triangle(color_red(), 250, 300, 400, 150, 550, 300)
+refresh_screen()
+delay(5000)
 
-  close_all_windows()
-  ```
+close_all_windows()
+```
 
 </TabItem>
 </Tabs>
