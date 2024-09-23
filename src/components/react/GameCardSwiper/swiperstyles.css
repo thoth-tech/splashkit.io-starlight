@@ -44,20 +44,21 @@
   box-shadow: none;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Center the card inside the slide */
   align-items: center;
   height: 100%; /* Ensure slides take full height */
   width: 100%; /* Let swiper control the width */
 }
 
-/* Padding from border to internal content */
+/* Gamecard styling */
 .gamecard {
   position: relative;
   padding: 10px;
   text-align: center;
-  transition: transform 0.3s ease-in-out;
-  max-width: 100%;
+  transition: transform 0.3s ease-in-out, height 0.3s ease-in-out, width 0.3s ease-in-out;
+  max-width: 300px; /* Set a max width for each card */
   height: auto;
+  margin: 0 auto; /* Center the cards when there are fewer than the max slides */
 }
 
 .gamecard:hover {
@@ -105,8 +106,8 @@
     height: 300px;
     padding: 0; /* Adjusted padding */
   }
-  .swiper-slide {
-    width: 100%; /* Let swiper control the width */
+  .gamecard {
+    max-width: 280px; /* Adjust max width for tablets */
   }
   .gamecard img {
     height: 100px;
@@ -124,6 +125,7 @@
     padding: 0 10px;
   }
   .gamecard {
+    max-width: 250px; /* Adjust max width for mobile */
     padding: 5px;
   }
   .gamecard img {
@@ -141,5 +143,8 @@
 @media (max-width: 480px) {
   .swiper-slide {
     width: 100%; /* Allow the card to shrink slightly */
+  }
+  .gamecard {
+    max-width: 220px; /* Further restrict max width for very small screens */
   }
 }

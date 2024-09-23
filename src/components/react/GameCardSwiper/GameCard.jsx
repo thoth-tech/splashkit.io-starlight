@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-} from "swiper/modules";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -71,14 +66,17 @@ export default () => {
           className="mySwiper"
           spaceBetween={30}
           breakpoints={{
-            1200: {
-              slidesPerView: Math.min(cards.length, 3), // Dynamically limit slides
-            },
-            1024: {
-              slidesPerView: Math.min(cards.length, 2),
+            992: {
+              slidesPerView: Math.min(cards.length, 3), // Max 3 slides for large screens
+              spaceBetween: 30,
             },
             768: {
-              slidesPerView: 1,
+              slidesPerView: Math.min(cards.length, 2), // Max 2 slides for medium screens
+              spaceBetween: 30,
+            },
+            576: {
+              slidesPerView: 1, // 1 slide for mobile devices
+              spaceBetween: 10,
             },
           }}
         >
