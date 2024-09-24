@@ -1,7 +1,3 @@
-/**
- * Usage Example: creating a sprite
- **/
-
 #include "splashkit.h"
 
 int main()

@@ -1,32 +1,30 @@
-/*
-    usage example: creating a sprite
-*/
-
-using System;
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit; 
 
-// window to draw the sprite on
-Window start = SplashKit.OpenWindow("create_sprite", 600, 600);
+// Open a window to draw the sprite on
+Window start = OpenWindow("create_sprite", 600, 600);
 
-// bitmap for creating a sprite
-Bitmap player = SplashKit.LoadBitmap("playerBmp", "protSpriteSheet.png");
+// Load the bitmap for creating a sprite
+Bitmap player = LoadBitmap("playerBmp", "protSpriteSheet.png");
 player.SetCellDetails(31, 32, 4, 3, 12);
 
-// creating the player sprite
-Sprite playerSprite = SplashKit.CreateSprite(player);
+// Create the player sprite
+Sprite playerSprite = CreateSprite(player);
 
-// setting the coordinates in reference to the window
+// Set the sprite coordinates in reference to the window
 playerSprite.X = 300;
 playerSprite.Y = 300;
 
-// clearing the screen
-SplashKit.ClearScreen(Color.Black);
+// Clear the screen
+ClearScreen(Color.Black);
 
-// drawing the sprite
-SplashKit.DrawSprite(playerSprite);
+// Draw the sprite
+DrawSprite(playerSprite);
 
-SplashKit.RefreshScreen();
-SplashKit.Delay(10000);
+// Refresh the screen and delay to keep the window open
+RefreshScreen();
+Delay(10000);
 
+// Close the window
 start.Close();
 
