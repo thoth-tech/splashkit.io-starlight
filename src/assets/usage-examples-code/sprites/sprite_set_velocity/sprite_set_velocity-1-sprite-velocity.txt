@@ -1,0 +1,9 @@
+### setting sprite velocity
+
+The following code is an example of using [Sprite Set Velocity](https://splashkit.io/api/sprites/#sprite-set-velocity) which sets the velocity (speed and direction) of a sprite on a window.
+
+:::note
+
+To test this example code you can download these [**Resources**](/resources/usage-examples/sprites/spriteSetVelocity_BasicSpriteResources.zip).
+
+:::

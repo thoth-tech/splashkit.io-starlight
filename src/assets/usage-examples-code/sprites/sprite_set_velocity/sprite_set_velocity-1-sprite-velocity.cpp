@@ -6,7 +6,7 @@ int main()
     window start = open_window("sprite-set-velocity", 600, 600);
 
     // Bitmap for creating a sprite
-    bitmap player = load_bitmap("playerBmp", "protSpriteSheet-R.png");
+    bitmap player = load_bitmap("player_bitmap", "player-run.png");
 
     // Creating the player sprite
     sprite player_sprite = create_sprite(player);
