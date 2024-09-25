@@ -94,18 +94,18 @@ namespace DoubleBuffering
         do
         {
             // Clear the screen with a specific color
-            SplashKit.ClearScreen(Color.White);
+            window.Clear(Color.White);
 
             // Drawing on the offscreen buffer
             SplashKit.FillRectangle(Color.Red, 100, 100, 200, 150);
 
             // Refresh the screen to show the drawing
-            SplashKit.RefreshScreen(60); 
+            window.Refresh(60); 
 
             // Process events to handle window close requests
             SplashKit.ProcessEvents();
 
-        } while (!SplashKit.WindowCloseRequested("Double Buffering"));
+        } while (!window.CloseRequested("Double Buffering"));
 
         SplashKit.CloseAllWindows();  
         }
