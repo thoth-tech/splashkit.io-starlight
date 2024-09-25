@@ -63,69 +63,69 @@ Remember that SplashKit uses an immediate mode GUI paradigm. This means we need 
 <Tabs syncKey="csharp-style">
 <TabItem label="Top-level Statements">
 
- ```csharp
-    using static SplashKitSDK.SplashKit;
+```csharp
+using static SplashKitSDK.SplashKit;
 
-    // Open a window
-    OpenWindow("My Interface!", 800, 600);
+// Open a window
+OpenWindow("My Interface!", 800, 600);
 
-    // Main loop
-    while (!QuitRequested())
-    {
-        // Get user events
-        ProcessEvents();
+// Main loop
+while (!QuitRequested())
+{
+    // Get user events
+    ProcessEvents();
 
-        // Clear screen
-        ClearScreen(ColorWhite());
+    // Clear screen
+    ClearScreen(ColorWhite());
 
-        // ...we'll put our interface code here...!
+    // ...we'll put our interface code here...!
 
-        // Draw interface, then refresh screen
-        DrawInterface();
-        RefreshScreen();
-    }
+    // Draw interface, then refresh screen
+    DrawInterface();
+    RefreshScreen();
+}
 
-    // Close all open windows
-    CloseAllWindows();
- ```
+// Close all open windows
+CloseAllWindows();
+```
 
 </TabItem>
 <TabItem label="Object-Oriented">
 
- ```csharp
-    using SplashKitSDK;
+```csharp
+using SplashKitSDK;
 
-    namespace LayoutUserInterfaces
+namespace LayoutUserInterfaces
+{
+    public class Program
     {
-        public class Program
+        public static void Main()
         {
-            public static void Main()
+            // Open a window
+            Window window = new Window("My Interface!", 800, 600);
+
+            // Main loop
+            while (!window.CloseRequested)
             {
-                // Open a window
-                Window window = new Window("My Interface!", 800, 600);
+                // Get user events
+                SplashKit.ProcessEvents();
 
-                // Main loop
-                while (!SplashKit.QuitRequested())
-                {
-                    // Get user events
-                    SplashKit.ProcessEvents();
+                // Clear screen
+                window.Clear(Color.White);
 
-                    // Clear screen
-                    SplashKit.ClearScreen(Color.White);
+                // ...we'll put our interface code here...!
 
-                    // ...we'll put our interface code here...!
-
-                    // Draw interface, then refresh screen
-                    SplashKit.DrawInterface();
-                    SplashKit.RefreshScreen();
-                }
-
-                // Close all open windows
-                SplashKit.CloseAllWindows();
+                // Draw interface, then refresh screen
+                SplashKit.DrawInterface();
+                window.Refresh();
             }
+
+            // Close all open windows
+            SplashKit.CloseAllWindows();
         }
     }
- ```
+}
+```
 
 </TabItem>
 </Tabs>
@@ -162,29 +162,30 @@ One **really important** thing to note here is that [Start Panel](/api/interface
 <Tabs syncKey="csharp-style">
 <TabItem label="Top-level Statements">
 
- ```csharp
-    // Start the panel and check if it's open/visible
-    if (StartPanel("My panel", RectangleFrom(50, 50, 200, 100)))
-    {
-        // ...here we'll create all the UI elements, inside the braces { ... }
+```csharp
+// Start the panel and check if it's open/visible
+if (StartPanel("My panel", RectangleFrom(50, 50, 200, 100)))
+{
+// ...here we'll create all the UI elements, inside the braces { ... }
 
-        // End the panel
-        EndPanel("My panel");
-    }
- ```
+// End the panel
+EndPanel("My panel");
+}
+```
 
 </TabItem>
 <TabItem label="Object-Oriented">
 
- ```csharp
-    if (SplashKit.StartPanel("My panel", SplashKit.RectangleFrom(50, 50, 200, 100)))
-    {
-        // ...here we'll create all the UI elements, inside the braces { ... }
+```csharp
+if (SplashKit.StartPanel("My panel", SplashKit.RectangleFrom(50, 50, 200, 100)))
+{
+    // ...here we'll create all the UI elements, inside the braces { ... }
 
-        // End the panel
-        SplashKit.EndPanel("My panel");
-    }
- ```
+    // End the panel
+    SplashKit.EndPanel("My panel");
+}
+```
+
 </TabItem>
 </Tabs>
 </TabItem>
@@ -274,101 +275,101 @@ Here's the full code recreating what we had last tutorial, while creating a pane
 <Tabs syncKey="csharp-style">
 <TabItem label="Top-level Statements">
 
- ```csharp
-    using static SplashKitSDK.SplashKit;
+```csharp
+using static SplashKitSDK.SplashKit;
 
-    // Open a window
-    OpenWindow("My Interface!", 800, 600);
+// Open a window
+OpenWindow("My Interface!", 800, 600);
 
-    // Setup a variable to store the user's string
-    string userMessage = "Default message";
+// Setup a variable to store the user's string
+string userMessage = "Default message";
 
-    // Main loop
-    while (!QuitRequested())
+// Main loop
+while (!QuitRequested())
+{
+    // Get user events
+    ProcessEvents();
+
+    // Clear screen
+    ClearScreen(ColorWhite());
+
+    // Start the panel
+    if (StartPanel("My panel", RectangleFrom(50, 50, 200, 100)))
     {
-        // Get user events
-        ProcessEvents();
-
-        // Clear screen
-        ClearScreen(ColorWhite());
-
-        // Start the panel
-        if (StartPanel("My panel", RectangleFrom(50, 50, 200, 100)))
+        // Create the elements
+        if (Button("Write To Terminal!"))
         {
-            // Create the elements
-            if (Button("Write To Terminal!"))
-            {
-                WriteLine(userMessage);
-            }
-
-            userMessage = TextBox(userMessage);
-
-            // End the panel
-            EndPanel("My panel");
+            WriteLine(userMessage);
         }
 
-        // Draw interface, then refresh screen
-        DrawInterface();
-        RefreshScreen();
+        userMessage = TextBox(userMessage);
+
+        // End the panel
+        EndPanel("My panel");
     }
 
-    // Close all open windows
-    CloseAllWindows();
- ```
+    // Draw interface, then refresh screen
+    DrawInterface();
+    RefreshScreen();
+}
+
+// Close all open windows
+CloseAllWindows();
+```
 
 </TabItem>
 <TabItem label="Object-Oriented">
 
- ```csharp
-    using SplashKitSDK;
+```csharp
+using SplashKitSDK;
 
-    namespace LayoutUserInterfaces
+namespace LayoutUserInterfaces
+{
+    public class Program
     {
-        public class Program
+        public static void Main()
         {
-            public static void Main()
+            // Open a window
+            Window window = new Window("My Interface!", 800, 600);
+
+            // Setup a variable to store the user's string
+            string userMessage = "Default message";
+
+            // Main loop
+            while (!window.CloseRequested)
             {
-                // Open a window
-                Window window = new Window("My Interface!", 800, 600);
+                // Get user events
+                SplashKit.ProcessEvents();
 
-                // Setup a variable to store the user's string
-                string userMessage = "Default message";
+                // Clear screen
+                window.Clear(Color.White);
 
-                // Main loop
-                while (!SplashKit.QuitRequested())
+                // Start the panel
+                if (SplashKit.StartPanel("My panel", SplashKit.RectangleFrom(50, 50, 200, 100)))
                 {
-                    // Get user events
-                    SplashKit.ProcessEvents();
-
-                    // Clear screen
-                    SplashKit.ClearScreen(Color.White);
-
-                    // Start the panel
-                    if (SplashKit.StartPanel("My panel", SplashKit.RectangleFrom(50, 50, 200, 100)))
+                    // Create the elements
+                    if (SplashKit.Button("Write To Terminal!"))
                     {
-                        // Create the elements
-                        if (SplashKit.Button("Write To Terminal!"))
-                        {
-                            SplashKit.WriteLine(userMessage);
-                        }
-
-                        userMessage = SplashKit.TextBox(userMessage);
-
-                        // End the panel
-                        SplashKit.EndPanel("My panel");
+                        SplashKit.WriteLine(userMessage);
                     }
 
-                    // Draw interface, then refresh screen
-                    SplashKit.DrawInterface();
-                    SplashKit.RefreshScreen();
+                    userMessage = SplashKit.TextBox(userMessage);
+
+                    // End the panel
+                    SplashKit.EndPanel("My panel");
                 }
 
-                // Close all open windows
-                SplashKit.CloseAllWindows();
+                // Draw interface, then refresh screen
+                SplashKit.DrawInterface();
+                window.Refresh();
             }
+
+            // Close all open windows
+            SplashKit.CloseAllWindows();
         }
     }
- ```
+}
+```
 
 </TabItem>
 </Tabs>
@@ -428,24 +429,25 @@ Headers are really easy to add - we can use the [Header](/api/interface/#header)
 <Tabs syncKey="csharp-style">
 <TabItem label="Top-level Statements">
 
- ```csharp
-    // Check for header and get user input
-    if (Header("Edit Message!"))
-    {
-        userMessage = TextBox(userMessage);
-    }
- ```
+```csharp
+// Check for header and get user input
+if (Header("Edit Message!"))
+{
+    userMessage = TextBox(userMessage);
+}
+```
 
 </TabItem>
 <TabItem label="Object-Oriented">
 
- ```csharp
-    // Check for header and get user input
-    if (SplashKit.Header("Edit Message!"))
-    {
-        userMessage = SplashKit.TextBox(userMessage);
-    }
- ```
+```csharp
+// Check for header and get user input
+if (SplashKit.Header("Edit Message!"))
+{
+    userMessage = SplashKit.TextBox(userMessage);
+}
+```
+
 </TabItem>
 </Tabs>
 </TabItem>
@@ -483,38 +485,38 @@ Here's a code example - an inset is started, and six buttons are created inside 
 <Tabs syncKey="csharp-style">
 <TabItem label="Top-level Statements">
 
- ```csharp
-    // Display text outside the inset area
-    Paragraph("This text is outside the inset area!");
+```csharp
+// Display text outside the inset area
+Paragraph("This text is outside the inset area!");
 
-    // Start inset area
-    StartInset("Inset area", 60);
-        if (Button("Button 1!")) WriteLine("Button 1 clicked!");
-        if (Button("Button 2!")) WriteLine("Button 2 clicked!");
-        if (Button("Button 3!")) WriteLine("Button 3 clicked!");
-        if (Button("Button 4!")) WriteLine("Button 4 clicked!");
-        if (Button("Button 5!")) WriteLine("Button 5 clicked!");
-        if (Button("Button 6!")) WriteLine("Button 6 clicked!");
-    EndInset("Inset area");
- ```
+// Start inset area
+StartInset("Inset area", 60);
+    if (Button("Button 1!")) WriteLine("Button 1 clicked!");
+    if (Button("Button 2!")) WriteLine("Button 2 clicked!");
+    if (Button("Button 3!")) WriteLine("Button 3 clicked!");
+    if (Button("Button 4!")) WriteLine("Button 4 clicked!");
+    if (Button("Button 5!")) WriteLine("Button 5 clicked!");
+    if (Button("Button 6!")) WriteLine("Button 6 clicked!");
+EndInset("Inset area");
+```
 
 </TabItem>
 <TabItem label="Object-Oriented">
 
- ```csharp
-    // Display text outside the inset area
-    SplashKit.Paragraph("This text is outside the inset area!");
+```csharp
+// Display text outside the inset area
+SplashKit.Paragraph("This text is outside the inset area!");
 
-    // Start inset area
-    SplashKit.StartInset("Inset area", 60);
-        if (SplashKit.Button("Button 1!")) SplashKit.WriteLine("Button 1 clicked!");
-        if (SplashKit.Button("Button 2!")) SplashKit.WriteLine("Button 2 clicked!");
-        if (SplashKit.Button("Button 3!")) SplashKit.WriteLine("Button 3 clicked!");
-        if (SplashKit.Button("Button 4!")) SplashKit.WriteLine("Button 4 clicked!");
-        if (SplashKit.Button("Button 5!")) SplashKit.WriteLine("Button 5 clicked!");
-        if (SplashKit.Button("Button 6!")) SplashKit.WriteLine("Button 6 clicked!");
-    SplashKit.EndInset("Inset area");
- ```
+// Start inset area
+SplashKit.StartInset("Inset area", 60);
+    if (SplashKit.Button("Button 1!")) SplashKit.WriteLine("Button 1 clicked!");
+    if (SplashKit.Button("Button 2!")) SplashKit.WriteLine("Button 2 clicked!");
+    if (SplashKit.Button("Button 3!")) SplashKit.WriteLine("Button 3 clicked!");
+    if (SplashKit.Button("Button 4!")) SplashKit.WriteLine("Button 4 clicked!");
+    if (SplashKit.Button("Button 5!")) SplashKit.WriteLine("Button 5 clicked!");
+    if (SplashKit.Button("Button 6!")) SplashKit.WriteLine("Button 6 clicked!");
+SplashKit.EndInset("Inset area");
+```
 
 </TabItem>
 </Tabs>
@@ -563,62 +565,63 @@ Here's a code example - various _nested_ tree nodes are started and ended with, 
 <Tabs syncKey="csharp-style">
 <TabItem label="Top-level Statements">
 
- ```csharp
-    // Start first tree node
-    if (StartTreeNode("Some buttons!"))
+```csharp
+// Start first tree node
+if (StartTreeNode("Some buttons!"))
+{
+    if (Button("Button 1!")) WriteLine("Button 1 clicked!");
+    if (Button("Button 2!")) WriteLine("Button 2 clicked!");
+    if (Button("Button 3!")) WriteLine("Button 3 clicked!");
+    EndTreeNode("Some buttons!");
+}
+
+// Start second tree node
+if (StartTreeNode("Some more buttons!"))
+{
+    if (Button("Button 4!")) WriteLine("Button 4 clicked!");
+    if (Button("Button 5!")) WriteLine("Button 5 clicked!");
+
+    // Start nested tree node
+    if (StartTreeNode("Buttons in buttons!!"))
     {
-        if (Button("Button 1!")) WriteLine("Button 1 clicked!");
-        if (Button("Button 2!")) WriteLine("Button 2 clicked!");
-        if (Button("Button 3!")) WriteLine("Button 3 clicked!");
-        EndTreeNode("Some buttons!");
+        if (Button("Button 6!")) WriteLine("Button 6 clicked!");
+        EndTreeNode("Buttons in buttons!!");
     }
 
-    // Start second tree node
-    if (StartTreeNode("Some more buttons!"))
-    {
-        if (Button("Button 4!")) WriteLine("Button 4 clicked!");
-        if (Button("Button 5!")) WriteLine("Button 5 clicked!");
-
-        // Start nested tree node
-        if (StartTreeNode("Buttons in buttons!!"))
-        {
-            if (Button("Button 6!")) WriteLine("Button 6 clicked!");
-            EndTreeNode("Buttons in buttons!!");
-        }
-
-        EndTreeNode("Some more buttons!");
-    }
- ```
+    EndTreeNode("Some more buttons!");
+}
+```
 
 </TabItem>
 <TabItem label="Object-Oriented">
 
- ```csharp
-    // Start first tree node
-    if (SplashKit.StartTreeNode("Some buttons!"))
+```csharp
+// Start first tree node
+if (SplashKit.StartTreeNode("Some buttons!"))
+{
+    if (SplashKit.Button("Button 1!")) SplashKit.WriteLine("Button 1 clicked!");
+    if (SplashKit.Button("Button 2!")) SplashKit.WriteLine("Button 2 clicked!");
+    if (SplashKit.Button("Button 3!")) SplashKit.WriteLine("Button 3 clicked!");
+    SplashKit.EndTreeNode("Some buttons!");
+}
+
+// Start second tree node
+if (SplashKit.StartTreeNode("Some more buttons!"))
+{
+    if (SplashKit.Button("Button 4!")) SplashKit.WriteLine("Button 4 clicked!");
+    if (SplashKit.Button("Button 5!")) SplashKit.WriteLine("Button 5 clicked!");
+
+    // Start nested tree node
+    if (SplashKit.StartTreeNode("Buttons in buttons!!"))
     {
-        if (SplashKit.Button("Button 1!")) SplashKit.WriteLine("Button 1 clicked!");
-        if (SplashKit.Button("Button 2!")) SplashKit.WriteLine("Button 2 clicked!");
-        if (SplashKit.Button("Button 3!")) SplashKit.WriteLine("Button 3 clicked!");
-        SplashKit.EndTreeNode("Some buttons!");
+        if (SplashKit.Button("Button 6!")) SplashKit.WriteLine("Button 6 clicked!");
+        SplashKit.EndTreeNode("Buttons in buttons!!");
     }
 
-    // Start second tree node
-    if (SplashKit.StartTreeNode("Some more buttons!"))
-    {
-        if (SplashKit.Button("Button 4!")) SplashKit.WriteLine("Button 4 clicked!");
-        if (SplashKit.Button("Button 5!")) SplashKit.WriteLine("Button 5 clicked!");
+    SplashKit.EndTreeNode("Some more buttons!");
+}
+```
 
-        // Start nested tree node
-        if (SplashKit.StartTreeNode("Buttons in buttons!!"))
-        {
-            if (SplashKit.Button("Button 6!")) SplashKit.WriteLine("Button 6 clicked!");
-            SplashKit.EndTreeNode("Buttons in buttons!!");
-        }
-
-        SplashKit.EndTreeNode("Some more buttons!");
-    }
- ```
 </TabItem>
 </Tabs>
 </TabItem>
@@ -691,44 +694,44 @@ Here's an example, where we create six buttons - three on each row, with the top
 <Tabs syncKey="csharp-style">
 <TabItem label="Top-level Statements">
 
- ```csharp
-    // Start custom layout
-    StartCustomLayout();
-    SplitIntoColumns(3);
-        SetLayoutHeight(64);
-        if (Button("Button 1!")) WriteLine("Button 1 clicked!");
-        if (Button("Button 2!")) WriteLine("Button 2 clicked!");
-        if (Button("Button 3!")) WriteLine("Button 3 clicked!");
+```csharp
+// Start custom layout
+StartCustomLayout();
+SplitIntoColumns(3);
+    SetLayoutHeight(64);
+    if (Button("Button 1!")) WriteLine("Button 1 clicked!");
+    if (Button("Button 2!")) WriteLine("Button 2 clicked!");
+    if (Button("Button 3!")) WriteLine("Button 3 clicked!");
 
-        // Reset layout height to default
-        SetLayoutHeight(0);
-        if (Button("Button 4!")) WriteLine("Button 4 clicked!");
-        if (Button("Button 5!")) WriteLine("Button 5 clicked!");
-        if (Button("Button 6!")) WriteLine("Button 6 clicked!");
-    // Reset layout
-    ResetLayout();
- ```
+    // Reset layout height to default
+    SetLayoutHeight(0);
+    if (Button("Button 4!")) WriteLine("Button 4 clicked!");
+    if (Button("Button 5!")) WriteLine("Button 5 clicked!");
+    if (Button("Button 6!")) WriteLine("Button 6 clicked!");
+// Reset layout
+ResetLayout();
+```
 
 </TabItem>
 <TabItem label="Object-Oriented">
 
- ```csharp
-    // Start custom layout
-    SplashKit.StartCustomLayout();
-    SplashKit.SplitIntoColumns(3);
-        SplashKit.SetLayoutHeight(64);
-        if (SplashKit.Button("Button 1!")) SplashKit.WriteLine("Button 1 clicked!");
-        if (SplashKit.Button("Button 2!")) SplashKit.WriteLine("Button 2 clicked!");
-        if (SplashKit.Button("Button 3!")) SplashKit.WriteLine("Button 3 clicked!");
+```csharp
+// Start custom layout
+SplashKit.StartCustomLayout();
+SplashKit.SplitIntoColumns(3);
+    SplashKit.SetLayoutHeight(64);
+    if (SplashKit.Button("Button 1!")) SplashKit.WriteLine("Button 1 clicked!");
+    if (SplashKit.Button("Button 2!")) SplashKit.WriteLine("Button 2 clicked!");
+    if (SplashKit.Button("Button 3!")) SplashKit.WriteLine("Button 3 clicked!");
 
-        // Reset layout height to default
-        SplashKit.SetLayoutHeight(0);
-        if (SplashKit.Button("Button 4!")) SplashKit.WriteLine("Button 4 clicked!");
-        if (SplashKit.Button("Button 5!")) SplashKit.WriteLine("Button 5 clicked!");
-        if (SplashKit.Button("Button 6!")) SplashKit.WriteLine("Button 6 clicked!");
-    // Reset layout
-    SplashKit.ResetLayout();
- ```
+    // Reset layout height to default
+    SplashKit.SetLayoutHeight(0);
+    if (SplashKit.Button("Button 4!")) SplashKit.WriteLine("Button 4 clicked!");
+    if (SplashKit.Button("Button 5!")) SplashKit.WriteLine("Button 5 clicked!");
+    if (SplashKit.Button("Button 6!")) SplashKit.WriteLine("Button 6 clicked!");
+// Reset layout
+SplashKit.ResetLayout();
+```
 
 </TabItem>
 </Tabs>
@@ -774,50 +777,51 @@ Here's an example:
 <Tabs syncKey="csharp-style">
 <TabItem label="Top-level Statements">
 
- ```csharp
-    // Start custom layout
-    StartCustomLayout();
-    SplitIntoColumns(2);
-        // Enter first column
-        EnterColumn();
-            SetLayoutHeight(64);
-            if (Button("Button 1!")) WriteLine("Button 1 clicked!");
-            if (Button("Button 2!")) WriteLine("Button 2 clicked!");
-        LeaveColumn();
-        // Enter second column
-        EnterColumn();
-            SetLayoutHeight(0); // Reset to default
-            if (Button("Button 4!")) WriteLine("Button 4 clicked!");
-            if (Button("Button 5!")) WriteLine("Button 5 clicked!");
-            if (Button("Button 6!")) WriteLine("Button 6 clicked!");
-        LeaveColumn();
-    // Reset layout
-    ResetLayout();
- ```
+```csharp
+// Start custom layout
+StartCustomLayout();
+SplitIntoColumns(2);
+    // Enter first column
+    EnterColumn();
+        SetLayoutHeight(64);
+        if (Button("Button 1!")) WriteLine("Button 1 clicked!");
+        if (Button("Button 2!")) WriteLine("Button 2 clicked!");
+    LeaveColumn();
+    // Enter second column
+    EnterColumn();
+        SetLayoutHeight(0); // Reset to default
+        if (Button("Button 4!")) WriteLine("Button 4 clicked!");
+        if (Button("Button 5!")) WriteLine("Button 5 clicked!");
+        if (Button("Button 6!")) WriteLine("Button 6 clicked!");
+    LeaveColumn();
+// Reset layout
+ResetLayout();
+```
 
 </TabItem>
 <TabItem label="Object-Oriented">
 
- ```csharp
-    // Start custom layout
-    SplashKit.StartCustomLayout();
-    SplashKit.SplitIntoColumns(2);
-        // Enter first column
-        SplashKit.EnterColumn();
-            SplashKit.SetLayoutHeight(64);
-            if (SplashKit.Button("Button 1!")) SplashKit.WriteLine("Button 1 clicked!");
-            if (SplashKit.Button("Button 2!")) SplashKit.WriteLine("Button 2 clicked!");
-        SplashKit.LeaveColumn();
-        // Enter second column
-        SplashKit.EnterColumn();
-            SplashKit.SetLayoutHeight(0); // Reset to default
-            if (SplashKit.Button("Button 4!")) SplashKit.WriteLine("Button 4 clicked!");
-            if (SplashKit.Button("Button 5!")) SplashKit.WriteLine("Button 5 clicked!");
-            if (SplashKit.Button("Button 6!")) SplashKit.WriteLine("Button 6 clicked!");
-        SplashKit.LeaveColumn();
-    // Reset layout
-    SplashKit.ResetLayout();
- ```
+```csharp
+// Start custom layout
+SplashKit.StartCustomLayout();
+SplashKit.SplitIntoColumns(2);
+    // Enter first column
+    SplashKit.EnterColumn();
+        SplashKit.SetLayoutHeight(64);
+        if (SplashKit.Button("Button 1!")) SplashKit.WriteLine("Button 1 clicked!");
+        if (SplashKit.Button("Button 2!")) SplashKit.WriteLine("Button 2 clicked!");
+    SplashKit.LeaveColumn();
+    // Enter second column
+    SplashKit.EnterColumn();
+        SplashKit.SetLayoutHeight(0); // Reset to default
+        if (SplashKit.Button("Button 4!")) SplashKit.WriteLine("Button 4 clicked!");
+        if (SplashKit.Button("Button 5!")) SplashKit.WriteLine("Button 5 clicked!");
+        if (SplashKit.Button("Button 6!")) SplashKit.WriteLine("Button 6 clicked!");
+    SplashKit.LeaveColumn();
+// Reset layout
+SplashKit.ResetLayout();
+```
+
 </TabItem>
 </Tabs>
 </TabItem>
