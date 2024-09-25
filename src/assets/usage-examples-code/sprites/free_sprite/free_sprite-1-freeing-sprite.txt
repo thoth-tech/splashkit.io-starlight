@@ -1,6 +1,6 @@
 ### Free a sprite
 
-The following code is an example of using [free sprite](https://splashkit.io/api/sprites/#free-sprite) to free a sprite when up key is typed.
+The following code is an example of using [Free Sprite](https://splashkit.io/api/sprites/#free-sprite) to free a sprite when up key is typed.
 
 :::note
 
