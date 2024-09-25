@@ -22,34 +22,34 @@ SplashKit comes with a few preset styles that make it easy to start customizing 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-```cpp ins={8}
-#include "splashkit.h"
+  ```cpp ins={8}
+  # include "splashkit.h"
 
-int main()
-{
-    // open a window
-    open_window("My Interface!", 800, 600);
+  int main()
+  {
+      // open a window
+      open_window("My Interface!", 800, 600);
 
-    set_interface_style(SHADED_LIGHT_STYLE);
+      set_interface_style(SHADED_LIGHT_STYLE);
 
-    while (!quit_requested())
-    {
-        process_events();
+      while (!quit_requested())
+      {
+          process_events();
 
-        clear_screen(COLOR_WHITE);
+          clear_screen(COLOR_WHITE);
 
-        button("My Button!", rectangle_from(300, 260, 200, 24));
+          button("My Button!", rectangle_from(300, 260, 200, 24));
 
-        draw_interface();
+          draw_interface();
 
-        refresh_screen();
-    }
+          refresh_screen();
+      }
 
-    // program ends, and the window closes
-    return 0;
-}
+      // program ends, and the window closes
+      return 0;
+  }
 
-```
+  ```
 
 </TabItem>
 <TabItem label="C#">
@@ -237,11 +237,11 @@ By default, the interface will try and use a font available in your system. You 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-```cpp
-font myFont = load_font("Custom Font", "arial.ttf");
-set_interface_font(myFont);
-set_interface_font_size(12);
-```
+  ```cpp
+      font myFont = load_font("Custom Font", "arial.ttf");
+      set_interface_font(myFont);
+      set_interface_font_size(12);
+  ```
 
 </TabItem>
 
