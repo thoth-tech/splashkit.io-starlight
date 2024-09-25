@@ -1,4 +1,3 @@
-
 #include "splashkit.h"
 
 int main()
@@ -7,7 +6,7 @@ int main()
     window start = open_window("sprite_set_x", 600, 600);
 
     // bitmap for creating a sprite
-    bitmap player = load_bitmap("playerBmp", "protSpriteSheet-R.png");
+    bitmap player = load_bitmap("player_bitmap", "player-run.png");
 
     // creating the player sprite
     sprite player_sprite = create_sprite(player);

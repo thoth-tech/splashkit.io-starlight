@@ -1,3 +1,0 @@
-### sprite_set_x() usage example
-
-The following code is an example of using sprite set x which sets the x position of a sprite on a splashkit window.
