@@ -5,7 +5,7 @@ using static SplashKitSDK.SplashKit;
 Window start = OpenWindow("create_sprite", 600, 600);
 
 // Load the bitmap for creating a sprite
-Bitmap player = LoadBitmap("playerBmp", "protSpriteSheet.png");
+Bitmap player = LoadBitmap("player_bitmap", "player.png");
 player.SetCellDetails(31, 32, 4, 3, 12);
 
 // Create the player sprite

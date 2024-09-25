@@ -6,7 +6,7 @@ int main()
     window start = open_window("create_sprite", 600, 600);
 
     // bitmap for creating a sprite
-    bitmap player = load_bitmap("playerBmp", "protSpriteSheet.png");
+    bitmap player = load_bitmap("player_bitmap", "player.png");
     bitmap_set_cell_details(player, 31, 32, 4, 3, 12);
 
     // creating the player sprite
