@@ -1,0 +1,9 @@
+### setting sprite position
+
+The following code is an example of using [Sprite Set Position](https://splashkit.io/api/sprites/#sprite-set-position) which sets the new x and y position of a sprite on a splashkit window.
+
+:::note
+
+To test this example code you can download these [**Resources**](/resources/usage-examples/sprites/spriteSetPosition_BasicSpriteResources.zip).
+
+:::
