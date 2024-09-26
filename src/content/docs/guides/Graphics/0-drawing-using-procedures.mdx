@@ -71,7 +71,7 @@ namespace DrawingUsingProcedures
         public static void Main()
         {
             // Open a window with the specified title, width, and height
-            Window window = SplashKit.OpenWindow("Window Title... to change", 800, 600);
+            WWindow window = new Window("Shapes by ...", 800, 600);
 
             // Delay for 5 seconds
             SplashKit.Delay(5000);
@@ -199,7 +199,7 @@ namespace DrawingUsingProcedures
         public static void Main()
         {
             // Create a new window with the specified title, width, and height
-            Window window = SplashKit.OpenWindow("Shapes by ...", 800, 600);
+            Window window = new Window("Shapes by ...", 800, 600);
 
             // Clear the window and set the background color
             window.Clear(Color.White);
