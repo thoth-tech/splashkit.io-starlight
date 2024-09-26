@@ -567,28 +567,28 @@ Here's a code example - various _nested_ tree nodes are started and ended with, 
 
 ```csharp
 // Start first tree node
-if (StartTreeNode("Some buttons!"))
+if (StartTreenode("Some buttons!"))
 {
     if (Button("Button 1!")) WriteLine("Button 1 clicked!");
     if (Button("Button 2!")) WriteLine("Button 2 clicked!");
     if (Button("Button 3!")) WriteLine("Button 3 clicked!");
-    EndTreeNode("Some buttons!");
+    EndTreenode("Some buttons!");
 }
 
 // Start second tree node
-if (StartTreeNode("Some more buttons!"))
+if (StartTreenode("Some more buttons!"))
 {
     if (Button("Button 4!")) WriteLine("Button 4 clicked!");
     if (Button("Button 5!")) WriteLine("Button 5 clicked!");
 
     // Start nested tree node
-    if (StartTreeNode("Buttons in buttons!!"))
+    if (StartTreenode("Buttons in buttons!!"))
     {
         if (Button("Button 6!")) WriteLine("Button 6 clicked!");
-        EndTreeNode("Buttons in buttons!!");
+        EndTreenode("Buttons in buttons!!");
     }
 
-    EndTreeNode("Some more buttons!");
+    EndTreenode("Some more buttons!");
 }
 ```
 
@@ -597,28 +597,28 @@ if (StartTreeNode("Some more buttons!"))
 
 ```csharp
 // Start first tree node
-if (SplashKit.StartTreeNode("Some buttons!"))
+if (SplashKit.StartTreenode("Some buttons!"))
 {
     if (SplashKit.Button("Button 1!")) SplashKit.WriteLine("Button 1 clicked!");
     if (SplashKit.Button("Button 2!")) SplashKit.WriteLine("Button 2 clicked!");
     if (SplashKit.Button("Button 3!")) SplashKit.WriteLine("Button 3 clicked!");
-    SplashKit.EndTreeNode("Some buttons!");
+    SplashKit.EndTreenode("Some buttons!");
 }
 
 // Start second tree node
-if (SplashKit.StartTreeNode("Some more buttons!"))
+if (SplashKit.StartTreenode("Some more buttons!"))
 {
     if (SplashKit.Button("Button 4!")) SplashKit.WriteLine("Button 4 clicked!");
     if (SplashKit.Button("Button 5!")) SplashKit.WriteLine("Button 5 clicked!");
 
     // Start nested tree node
-    if (SplashKit.StartTreeNode("Buttons in buttons!!"))
+    if (SplashKit.StartTreenode("Buttons in buttons!!"))
     {
         if (SplashKit.Button("Button 6!")) SplashKit.WriteLine("Button 6 clicked!");
-        SplashKit.EndTreeNode("Buttons in buttons!!");
+        SplashKit.EndTreenode("Buttons in buttons!!");
     }
 
-    SplashKit.EndTreeNode("Some more buttons!");
+    SplashKit.EndTreenode("Some more buttons!");
 }
 ```
 
