@@ -1,0 +1,3 @@
+### Is Number
+
+The following code shows examples of checking if the given number is a Number [Is Number](/api/terminal#is_number-1).
