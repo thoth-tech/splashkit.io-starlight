@@ -54,47 +54,43 @@ This command creates sub-folders for each type of resource. One of these is name
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  ```cpp
-  #include "splashkit.h"
-  int main()
-  {
-      json game_data;
-      game_data = json_from_file("game_data.json");
-      string game_title = json_read_string(game_data, "gameTitle");
+```cpp
+#include "splashkit.h"
+int main()
+{
+    json game_data = json_from_file("game_data.json");
+    string game_title = json_read_string(game_data, "gameTitle");
 
-      write("Game Title: ");
-      write_line(game_title);
+    write_line("Game Title: " + game_title);
 
-      free_json(game_data);
+    free_json(game_data);
 
-      return 0;
-  }
-  ```
+    return 0;
+}
+```
 
-  </TabItem>
-  
-  <TabItem label="C#">
+</TabItem>
+<TabItem label="C#">
 
-  <Tabs syncKey="csharp-style">
-  <TabItem label="Top-level Statements">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
-  ```csharp
-  using SplashKitSDK;
-  using static SplashKitSDK.SplashKit;
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-  Json gameData = JsonFromFile("game_data.json");
+Json gameData = JsonFromFile("game_data.json");
+string gameTitle = JsonReadString(gameData, "gameTitle");
 
-  string gameTitle = JsonReadString(gameData, "gameTitle");
+WriteLine("Game Title: " + gameTitle);
 
-  WriteLine("Game Title: " + gameTitle);
+FreeJson(gameData);
+```
 
-  FreeJson(gameData);
-  ```
+</TabItem>
+<TabItem label="Object-Oriented">
 
-  </TabItem>
-  <TabItem label="Object-Oriented">
-
-  ```csharp
+```csharp
 using SplashKitSDK;
 
 namespace GameDataManagement
@@ -103,10 +99,7 @@ namespace GameDataManagement
     {
         public static void Main()
         {
-            string filePath = "game_data.json";
-
-            Json gameData = SplashKit.JsonFromFile(filePath);
-
+            Json gameData = SplashKit.JsonFromFile(game_data.json);
             string gameTitle = SplashKit.JsonReadString(gameData, "gameTitle");
 
             SplashKit.WriteLine("Game Title: " + gameTitle);
@@ -115,10 +108,11 @@ namespace GameDataManagement
         }
     }
 }
+```
 
-  ```
 </TabItem>
 </Tabs>
+
 </TabItem>
 </Tabs>
 
@@ -152,7 +146,6 @@ And run it with:
 ```
 
 </TabItem>
-
 <TabItem label="C#">
 
 ```shell
@@ -160,7 +153,6 @@ dotnet run
 ```
 
 </TabItem>
-  
 </Tabs>
 
 When we run this program it should output the following to the console:
@@ -180,8 +172,7 @@ But what if we didn't have a `gameTitle` key in our JSON? Well, error messages w
 #include "splashkit.h"
 int main()
 {
-    json game_data;
-    game_data = json_from_file("game_data.json");
+    json game_data = json_from_file("game_data.json");
 
     if(json_has_key(game_data, "gameTitle"))
     {
@@ -201,7 +192,6 @@ int main()
 ```
 
 </TabItem>
-
 <TabItem label="C#">
 
 <Tabs syncKey="csharp-style">
@@ -211,7 +201,7 @@ int main()
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Json gameData =JsonFromFile("game_data.json");
+Json gameData = JsonFromFile("game_data.json");
 
 if (JsonHasKey(gameData, "gameTitle"))
 {
@@ -223,8 +213,9 @@ else
     WriteLine("Key \"gameTitle\" not found.");
 }
 
-  FreeJson(gameData);
+FreeJson(gameData);
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -237,9 +228,7 @@ namespace GameDataManagement
     {
         public static void Main()
         {
-            string filePath = "game_data.json";
-
-            Json gameData = SplashKit.JsonFromFile(filePath);
+            Json gameData = SplashKit.JsonFromFile("game_data.json");
 
             if (SplashKit.JsonHasKey(gameData, "gameTitle"))
             {
@@ -255,11 +244,11 @@ namespace GameDataManagement
         }
     }
 }
-
 ```
 
 </TabItem>
 </Tabs>
+
 </TabItem>
 </Tabs>
 
