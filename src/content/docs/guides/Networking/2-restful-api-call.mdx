@@ -64,6 +64,8 @@ int main()
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 using SplashKitSDK;
@@ -81,6 +83,38 @@ SplashKit.WriteLine("Title  => " + SplashKit.JsonReadString(jsonResponse, "title
 SplashKit.WriteLine("Body   => " + SplashKit.JsonReadString(jsonResponse, "body"));
 SplashKit.WriteLine("================");
 ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace RESTfulAPIApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            // Get a single JSON web resource
+            HttpResponse getData = SplashKit.HttpGet("https://jsonplaceholder.typicode.com/posts/1", 443);
+            string response = SplashKit.HttpResponseToString(getData);
+            SplashKit.FreeResponse(getData);
+
+            // Output the response
+            Json jsonResponse = SplashKit.JsonFromString(response);
+            SplashKit.WriteLine("UserID => " + SplashKit.JsonReadNumberAsInt(jsonResponse, "userId"));
+            SplashKit.WriteLine("ID     => " + SplashKit.JsonReadNumberAsInt(jsonResponse, "id"));
+            SplashKit.WriteLine("Title  => " + SplashKit.JsonReadString(jsonResponse, "title"));
+            SplashKit.WriteLine("Body   => " + SplashKit.JsonReadString(jsonResponse, "body"));
+            SplashKit.WriteLine("================");
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem label="Python">
@@ -149,6 +183,8 @@ int main()
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 using SplashKitSDK;
@@ -162,6 +198,34 @@ SplashKit.FreeResponse(getData);
 // objects for simplicity sake we output just the string here.
 SplashKit.WriteLine(response);
 ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace RESTfulAPIApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            // Get a list of a JSON web resource
+            HttpResponse getData = SplashKit.HttpGet("https://jsonplaceholder.typicode.com/posts/", 443);
+            string response = SplashKit.HttpResponseToString(getData);
+            SplashKit.FreeResponse(getData);
+
+            // To access each JSON key value pair the string should be split to an vector<json>
+            // objects for simplicity sake we output just the string here.
+            SplashKit.WriteLine(response);
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem label="Python">
@@ -248,6 +312,8 @@ int main()
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 using SplashKitSDK;
@@ -279,6 +345,52 @@ SplashKit.WriteLine("Title  => " + SplashKit.JsonReadString(jsonResponse, "title
 SplashKit.WriteLine("Body   => " + SplashKit.JsonReadString(jsonResponse, "body"));
 SplashKit.WriteLine("================");
 ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace RESTfulAPIApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            // Create a JSON Web resource
+            // Create the JSON body for the http post call
+            Json body = SplashKit.CreateJson();
+            SplashKit.JsonSetString(body, "title", "foo");
+            SplashKit.JsonSetString(body, "body", "test entry");
+            SplashKit.JsonSetNumber(body, "userId", 1);
+
+            // Create the headers for the HTTP POST call
+            List<string> headers = new List<string>
+            {
+            "Content-type: application/json; charset=UTF-8"
+            };
+
+            // Send the request
+            HttpResponse getData = SplashKit.HttpPost("https://jsonplaceholder.typicode.com/posts", 443, SplashKit.JsonToString(body), headers);
+            string response = SplashKit.HttpResponseToString(getData);
+            SplashKit.FreeResponse(getData);
+
+            // Output the response
+            Json jsonResponse = SplashKit.JsonFromString(response);
+            SplashKit.WriteLine("Following resource has been created");
+            SplashKit.WriteLine("UserID => " + SplashKit.JsonReadNumberAsInt(jsonResponse, "userId"));
+            SplashKit.WriteLine("ID     => " + SplashKit.JsonReadNumberAsInt(jsonResponse, "id"));
+            SplashKit.WriteLine("Title  => " + SplashKit.JsonReadString(jsonResponse, "title"));
+            SplashKit.WriteLine("Body   => " + SplashKit.JsonReadString(jsonResponse, "body"));
+            SplashKit.WriteLine("================");
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem label="Python">
