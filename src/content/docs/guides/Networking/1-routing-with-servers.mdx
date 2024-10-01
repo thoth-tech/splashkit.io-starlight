@@ -55,8 +55,10 @@ Start with this code, which we built in the introduction guide
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
-  ```csharp
+```csharp
   using SplashKitSDK;
 
   SplashKit.WriteLine("About to start the server...");
@@ -77,6 +79,43 @@ Start with this code, which we built in the introduction guide
 
   SplashKit.ReadLine(); // Pause to keep the console window open
   ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace WebServerApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            SplashKit.WriteLine("About to start the server...");
+
+            // Start a web server - defaults to listening to port 8080
+            WebServer server = SplashKit.StartWebServer();
+
+            SplashKit.WriteLine("Waiting for a request - navigate to http://localhost:8080");
+
+            // Wait and get the first request that comes in
+            HttpRequest request = SplashKit.NextWebRequest(server);
+
+            // Send back the index.html file
+            SplashKit.SendHtmlFileResponse(request, "index.html");
+
+            // For now, we are done, so let's shutdown
+            SplashKit.StopWebServer(server);
+
+            SplashKit.ReadLine(); // Pause to keep the console window open
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem label="Python">
@@ -168,6 +207,8 @@ The following code shows the use of an if statement to serve some login text or 
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
   ```csharp
 using SplashKitSDK;
@@ -199,6 +240,51 @@ SplashKit.WriteLine("About to stop the server...");
 SplashKit.StopWebServer(server);
 
   ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace WebServerApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            SplashKit.WriteLine("About to start the server...");
+
+            WebServer server = SplashKit.StartWebServer();
+            HttpRequest request;
+
+            SplashKit.WriteLine("Waiting for a request - navigate to http://localhost:8080");
+
+            // Get the next request that the server has
+            request = SplashKit.NextWebRequest(server);
+
+            SplashKit.WriteLine("I got a request for " + SplashKit.RequestURI(request));
+
+            if (SplashKit.IsGetRequestFor(request, "/login") || SplashKit.IsGetRequestFor(request, "/login.html"))
+            {
+            // Serve page for login path
+            SplashKit.SendResponse(request, "login page");
+            }
+            else
+            {
+            // If no specified path is requested, serve index.html to the user
+            SplashKit.SendHtmlFileResponse(request, "index.html");
+            }
+
+            SplashKit.WriteLine("About to stop the server...");
+            SplashKit.StopWebServer(server);
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem label="Python">
@@ -312,6 +398,8 @@ The following code illustrates the use of the concepts covered so far. You can n
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
   ```csharp
   using SplashKitSDK;
@@ -368,6 +456,79 @@ The following code illustrates the use of the concepts covered so far. You can n
   SplashKit.WriteLine("About to stop the server...");
   SplashKit.StopWebServer(server);
   ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+
+using SplashKitSDK;
+
+namespace WebServerApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            SplashKit.WriteLine("About to start the server...");
+
+            WebServer server = SplashKit.StartWebServer();
+            HttpRequest request;
+
+            SplashKit.WriteLine("Waiting for a request - navigate to http://localhost:8080");
+            SplashKit.WriteLine("To end - navigate to http://localhost:8080/quit");
+
+            // Get the next request that the server has
+            request = SplashKit.NextWebRequest(server);
+
+            while (!SplashKit.IsGetRequestFor(request, "/quit"))
+            {
+                SplashKit.WriteLine("I got a request for " + SplashKit.RequestURI(request));
+
+                if (SplashKit.IsGetRequestFor(request, "/login") || SplashKit.IsGetRequestFor(request, "/login.html"))
+                {
+                    // Serve page for login path, e.g.
+                    // SendHtmlFileResponse(request, "login.html");
+
+                    SplashKit.SendResponse(request, "login page");
+                }
+                else if (SplashKit.IsGetRequestFor(request, "/contact") || SplashKit.IsGetRequestFor(request, "/contact.html"))
+                {
+                    // Serve page for contact path, e.g.
+                    // SendHtmlFileResponse(request, "contact.html");
+
+                    SplashKit.SendResponse(request, "contact page");
+                }
+                else if (SplashKit.IsGetRequestFor(request, "/about") || SplashKit.IsGetRequestFor(request, "/about.html"))
+                {
+                    // Serve page for about path, e.g.
+                    // SendHtmlFileResponse(request, "about.html");
+
+                    SplashKit.SendResponse(request, "about page");
+                }
+                else
+                {
+                    // If no specified path is requested, serve index.html to the user
+                    SplashKit.SendHtmlFileResponse(request, "index.html");
+                }
+
+                SplashKit.WriteLine("Waiting for a request - navigate to http://localhost:8080");
+                SplashKit.WriteLine("To end - navigate to http://localhost:8080/quit");
+
+                // Get the next request that the server has
+                request = SplashKit.NextWebRequest(server);
+            }
+
+            SplashKit.WriteLine("About to stop the server...");
+            SplashKit.StopWebServer(server);
+        }
+    }
+}
+
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem label="Python">
