@@ -3,7 +3,7 @@ title: Getting Started With Servers
 description: This guide is an introduction to using web servers
 category: Guides
 author: Andrew Cain and Isaac Wallis
-lastupdated: Jul 14 2018
+lastupdated: Aug 10 2024
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -48,7 +48,7 @@ To start listening for incoming connections, you need to call the [Start Web Ser
 We need to pair the [Start Web Server](/api/networking/#start-web-server) with a call to the [Stop Web Server](/api/networking/#stop-web-server) procedure. This will wrap up any requests that have come in and will stop listening for any new requests. So once you are finished with the web server, you can stop it so that it does not take up system resources that you do not need. The following code shows a small program that starts and stops a web server.
 
 <Tabs syncKey="code-language">
-  <TabItem label="C++">
+<TabItem label="C++">
 
   ```cpp
   #include "splashkit.h"
@@ -67,8 +67,8 @@ We need to pair the [Start Web Server](/api/networking/#start-web-server) with a
   }
   ```
 
-  </TabItem>
-  <TabItem label="C#">
+</TabItem>
+<TabItem label="C#">
 
   ```csharp
   using SplashKitSDK;
@@ -82,8 +82,8 @@ We need to pair the [Start Web Server](/api/networking/#start-web-server) with a
   SplashKit.StopWebServer(server);
   ```
 
-  </TabItem>
-  <TabItem label="Python">
+</TabItem>
+<TabItem label="Python">
 
   ```python
   from splashkit import *
@@ -91,13 +91,13 @@ We need to pair the [Start Web Server](/api/networking/#start-web-server) with a
   write_line("About to start the server...")
 
   # Start a web server - defaults to listening to port 8080
-  server = start_web_server()
+  server = start_web_server_with_default_port()
 
   # For now we are done... so lets shutdown...
   stop_web_server(server)
   ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 ## Step 3: Responding to a request
@@ -109,7 +109,7 @@ To send a response, you can use the [Send Response](/api/networking/#send-respon
 The following code shows an appropriate `"Hello World"` web server program.
 
 <Tabs syncKey="code-language">
-  <TabItem label="C++">
+<TabItem label="C++">
 
   ```cpp
   #include "splashkit.h"
@@ -119,7 +119,7 @@ The following code shows an appropriate `"Hello World"` web server program.
       write_line("About to start the server...");
 
       // Start a web server - defaults to listening to port 8080
-      web_server server = web_server();
+      web_server server = start_web_server();
 
       write_line("Waiting for a request - navigate to http://localhost:8080");
 
@@ -136,8 +136,8 @@ The following code shows an appropriate `"Hello World"` web server program.
   }
   ```
 
-  </TabItem>
-  <TabItem label="C#">
+</TabItem>
+<TabItem label="C#">
 
   ```csharp
   using SplashKitSDK;
@@ -161,8 +161,8 @@ The following code shows an appropriate `"Hello World"` web server program.
   SplashKit.ReadLine(); // Pause to keep the console window open
   ```
 
-  </TabItem>
-  <TabItem label="Python">
+</TabItem>
+<TabItem label="Python">
 
   ```python
   from splashkit import *
@@ -186,7 +186,7 @@ The following code shows an appropriate `"Hello World"` web server program.
   read_line() # Pause to keep the console window open
   ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 Compile and run your program. Notice that when you run the program nothing seems to happen... The program is waiting for a request! To create a request navigate to [http://localhost:8080](http://localhost:8080) see you should see the response. When you switch back your program will have ended. Trying to make another request will no longer work, as there isn't any program listening for requests on port 8080.
@@ -198,7 +198,7 @@ Often you will want to be able to respond with the contents of a file. To help m
 The follow code replaces the "Hello World" response with the details from the index.html file we created.
 
 <Tabs syncKey="code-language">
-  <TabItem label="C++">
+<TabItem label="C++">
 
   ```cpp
   #include "splashkit.h"
@@ -208,7 +208,7 @@ The follow code replaces the "Hello World" response with the details from the in
       write_line("About to start the server...");
 
       // Start a web server - defaults to listening to port 8080
-      web_server server = web_server();
+      web_server server = start_web_server();
 
       write_line("Waiting for a request - navigate to http://localhost:8080");
 
@@ -225,8 +225,8 @@ The follow code replaces the "Hello World" response with the details from the in
   }
   ```
 
-  </TabItem>
-  <TabItem label="C#">
+</TabItem>
+<TabItem label="C#">
 
   ```csharp
   using SplashKitSDK;
@@ -250,8 +250,8 @@ The follow code replaces the "Hello World" response with the details from the in
   SplashKit.ReadLine(); // Pause to keep the console window open
   ```
 
-  </TabItem>
-  <TabItem label="Python">
+</TabItem>
+<TabItem label="Python">
 
   ```python
   from splashkit import *
@@ -275,7 +275,7 @@ The follow code replaces the "Hello World" response with the details from the in
   read_line() # Pause to keep the console window open
   ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 ## Next Step

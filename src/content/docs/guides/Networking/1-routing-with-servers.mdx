@@ -3,7 +3,7 @@ title: Routing With Servers
 description: This guide is an intruduction to delivering different content based on route requested
 category: Guides
 author: Isaac Wallis
-lastupdated: Aug 10 2018
+lastupdated: Aug 10 2024
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -25,7 +25,7 @@ Routing is an important part of the web server's job. This is how you get differ
 Start with this code, which we built in the introduction guide
 
 <Tabs syncKey="code-language">
-  <TabItem label="C++">
+<TabItem label="C++">
 
   ```cpp
   #include "splashkit.h"
@@ -35,7 +35,7 @@ Start with this code, which we built in the introduction guide
       write_line("About to start the server...");
 
       // Start a web server - defaults to listening to port 8080
-      web_server server = web_server();
+      web_server server = start_web_server();
 
       write_line("Waiting for a request - navigate to http://localhost:8080");
 
@@ -53,8 +53,8 @@ Start with this code, which we built in the introduction guide
 
   ```
 
-  </TabItem>
-  <TabItem label="C#">
+</TabItem>
+<TabItem label="C#">
 
   ```csharp
   using SplashKitSDK;
@@ -78,8 +78,8 @@ Start with this code, which we built in the introduction guide
   SplashKit.ReadLine(); // Pause to keep the console window open
   ```
 
-  </TabItem>
-  <TabItem label="Python">
+</TabItem>
+<TabItem label="Python">
 
   ```python
   from splashkit import *
@@ -103,7 +103,7 @@ Start with this code, which we built in the introduction guide
   read_line() # Pause to keep the console window open
   ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 This has the following information we need:
@@ -127,7 +127,7 @@ Checking to see if a request has been made for a certain path is really easy! Sp
 The following code shows the use of an if statement to serve some login text or the index page, depending on what the browser requested.
 
 <Tabs syncKey="code-language">
-  <TabItem label="C++">
+<TabItem label="C++">
 
   ```cpp
   #include "splashkit.h"
@@ -166,49 +166,42 @@ The following code shows the use of an if statement to serve some login text or 
   }
   ```
 
-  </TabItem>
-  <TabItem label="C#">
+</TabItem>
+<TabItem label="C#">
 
   ```csharp
-  using SplashKitSDK;
+using SplashKitSDK;
 
-  class Program
-  {
-      static void Main()
-      {
-          SplashKit.WriteLine("About to start the server...");
+SplashKit.WriteLine("About to start the server...");
 
-          WebServer server = SplashKit.StartWebServer();
-          HttpRequest request;
+WebServer server = SplashKit.StartWebServer();
+HttpRequest request;
 
-          SplashKit.WriteLine("Waiting for a request - navigate to http://localhost:8080");
+SplashKit.WriteLine("Waiting for a request - navigate to http://localhost:8080");
 
-          // Get the next request that the server has
-          request = SplashKit.NextWebRequest(server);
+// Get the next request that the server has
+request = SplashKit.NextWebRequest(server);
 
-          SplashKit.WriteLine("I got a request for " + SplashKit.RequestURI(request));
+SplashKit.WriteLine("I got a request for " + SplashKit.RequestURI(request));
 
-          if (SplashKit.IsGetRequestFor(request, "/login") || SplashKit.IsGetRequestFor(request, "/login.html"))
-          {
-              // Serve page for login path, e.g.
-              // SplashKit.SendHtmlFileResponse(request, "login.html");
+if (SplashKit.IsGetRequestFor(request, "/login") || SplashKit.IsGetRequestFor(request, "/login.html"))
+{
+    // Serve page for login path
+    SplashKit.SendResponse(request, "login page");
+}
+else
+{
+    // If no specified path is requested, serve index.html to the user
+    SplashKit.SendHtmlFileResponse(request, "index.html");
+}
 
-              SplashKit.SendResponse(request, "login page");
-          }
-          else
-          {
-              // If no specified path is requested, serve index.html to the user
-              SplashKit.SendHtmlFileResponse(request, "index.html");
-          }
+SplashKit.WriteLine("About to stop the server...");
+SplashKit.StopWebServer(server);
 
-          SplashKit.WriteLine("About to stop the server...");
-          SplashKit.StopWebServer(server);
-      }
-  }
   ```
 
-  </TabItem>
-  <TabItem label="Python">
+</TabItem>
+<TabItem label="Python">
 
   ```python
   from splashkit import *
@@ -238,7 +231,7 @@ The following code shows the use of an if statement to serve some login text or 
   stop_web_server(server)
   ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 ## Handling Multiple Requests
@@ -254,7 +247,7 @@ You can then add a special route that will stop the server.
 The following code illustrates the use of the concepts covered so far. You can now make multiple requests in your browser, and you can navidate to [http://localhost:8080/quit](http://localhost:8080/quit) to get the web server to stop.
 
 <Tabs syncKey="code-language">
-  <TabItem label="C++">
+<TabItem label="C++">
 
   ```cpp
   #include "splashkit.h"
@@ -317,8 +310,8 @@ The following code illustrates the use of the concepts covered so far. You can n
   }
   ```
 
-  </TabItem>
-  <TabItem label="C#">
+</TabItem>
+<TabItem label="C#">
 
   ```csharp
   using SplashKitSDK;
@@ -376,8 +369,8 @@ The following code illustrates the use of the concepts covered so far. You can n
   SplashKit.StopWebServer(server);
   ```
 
-  </TabItem>
-  <TabItem label="Python">
+</TabItem>
+<TabItem label="Python">
 
   ```python
   from splashkit import *
@@ -427,7 +420,7 @@ The following code illustrates the use of the concepts covered so far. You can n
   stop_web_server(server)
   ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 The html for your web page would be:
