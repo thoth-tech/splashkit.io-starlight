@@ -3,7 +3,7 @@ title: Getting Started With Servers
 description: This guide is an introduction to using web servers
 category: Guides
 author: Andrew Cain and Isaac Wallis
-lastupdated: Aug 10 2024
+lastupdated: Oct 1 2024
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -69,19 +69,47 @@ We need to pair the [Start Web Server](/api/networking/#start-web-server) with a
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
-  ```csharp
-  using SplashKitSDK;
+```csharp
+using SplashKitSDK;
 
-  Console.WriteLine("About to start the server...");
+Console.WriteLine("About to start the server...");
 
-  // Start a web server - defaults to listening to port 8080
-  WebServer server = SplashKit.StartWebServer();
+// Start a web server - defaults to listening to port 8080
+WebServer server = SplashKit.StartWebServer();
 
-  // For now, we are done... so let's shutdown...
-  SplashKit.StopWebServer(server);
+// For now, we are done... so let's shutdown...
+SplashKit.StopWebServer(server);
   ```
 
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace WebServerApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            SplashKit.WriteLine("About to start the server...");
+
+            // Start the web server (defaults to listening to port 8080)
+            WebServer server = SplashKit.StartWebServer();
+
+            // Stop the web server
+            SplashKit.StopWebServer(server);
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>
 </TabItem>
 <TabItem label="Python">
 
@@ -138,6 +166,8 @@ The following code shows an appropriate `"Hello World"` web server program.
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
   ```csharp
   using SplashKitSDK;
@@ -160,6 +190,45 @@ The following code shows an appropriate `"Hello World"` web server program.
 
   SplashKit.ReadLine(); // Pause to keep the console window open
   ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+
+using SplashKitSDK;
+
+namespace WebServerApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            SplashKit.WriteLine("About to start the server...");
+
+            // Start a web server - defaults to listening to port 8080
+            WebServer server = SplashKit.StartWebServer();
+
+            SplashKit.WriteLine("Waiting for a request - navigate to http://localhost:8080");
+
+            // Wait and get the first request that comes in
+            HttpRequest request = SplashKit.NextWebRequest(server);
+
+            // Send back the index.html file
+            SplashKit.SendResponse(request, "Hello World");
+
+            // For now, we are done, so let's shutdown
+            SplashKit.StopWebServer(server);
+
+            SplashKit.ReadLine(); // Pause to keep the console window open
+        }
+    }
+}
+
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem label="Python">
@@ -227,6 +296,8 @@ The follow code replaces the "Hello World" response with the details from the in
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
   ```csharp
   using SplashKitSDK;
@@ -249,6 +320,44 @@ The follow code replaces the "Hello World" response with the details from the in
 
   SplashKit.ReadLine(); // Pause to keep the console window open
   ```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+
+using SplashKitSDK;
+
+namespace WebServerApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            SplashKit.WriteLine("About to start the server...");
+
+            // Start a web server - defaults to listening to port 8080
+            WebServer server = SplashKit.StartWebServer();
+
+            SplashKit.WriteLine("Waiting for a request - navigate to http://localhost:8080");
+
+            // Wait and get the first request that comes in
+            HttpRequest request = SplashKit.NextWebRequest(server);
+
+            // Send back the index.html file
+            SplashKit.SendHtmlFileResponse(request, "index.html");
+
+            // For now, we are done, so let's shutdown
+            SplashKit.StopWebServer(server);
+
+            SplashKit.ReadLine(); // Pause to keep the console window open
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem label="Python">
