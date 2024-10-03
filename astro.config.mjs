@@ -4,6 +4,8 @@ import solidJs from "@astrojs/solid-js";
 import react from "@astrojs/react";
 import starlightLinksValidator from 'starlight-links-validator';
 import sitemap from "@astrojs/sitemap";
+import remarkMath from 'remark-math';
+import rehypeMathjax from 'rehype-mathjax'
 
 // https://astro.build/config
 export default defineConfig({
@@ -87,6 +89,7 @@ export default defineConfig({
             { label: "Interface", autogenerate: { directory: "guides/Interface", collapsed: false } },
             { label: "Json", autogenerate: { directory: "guides/JSON", collapsed: false } },
             { label: "Networking", autogenerate: { directory: "guides/Networking", collapsed: false } },
+            { label: "Physics", badge: 'New', autogenerate: { directory: "guides/physics", collapsed: false } },
             { label: "Raspberry GPIO", autogenerate: { directory: "guides/Raspberry-GPIO", collapsed: false } },
             { label: "Resource Bundles", autogenerate: { directory: "guides/Resource-Bundles", collapsed: false } },
             { label: "Sprites", autogenerate: { directory: "guides/Sprites", collapsed: false } },
@@ -113,6 +116,12 @@ export default defineConfig({
   image: { service: squooshImageService() },
   server: {
     host: true,
-    port: 4322
-  }
+    port: 4321
+  },
+
+  // Render mathematical equations using remark-math and rehype-mathjax
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeMathjax],
+  },
 });
