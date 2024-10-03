@@ -1,0 +1,60 @@
+---
+title: Ping Pong
+description: Compete in fast-paced, air hockey-style action in a Ping Pong showdown!
+download-link: "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/Pingpong"
+featured: true
+sidebar:
+  hidden: false
+---
+
+{/* Embedding dynamic JavaScript directly in MDX to generate game gif */}
+<img 
+  src={`/gifs/games-showcase/${frontmatter.title.toLowerCase().replace(/\s+/g, '-')}-showcase.gif`} 
+  alt={`${frontmatter.title} Showcase`} 
+/>
+
+## Description
+
+Ping Pong is a fast-paced, C++-based game developed using the Splashkit SDK, inspired by the rules of Air Hockey. Designed for an HD screen resolution of 1280x720, it pits two players against each other in a competitive match where the cursor moves horizontally.
+
+The game features a football-themed background and includes boundary obstacles, a centrally-spawning ball with random angles and speeds, and player assets designed as cursors or blocks. Key functionalities include collision detection, scoring, and in-game physics to ensure a dynamic and engaging gameplay experience.
+
+Extensive testing and debugging were conducted to refine the game, resulting in a polished final design with enhanced visual appeal through Canva backgrounds. Enjoy a classic arcade experience with modern design in Ping Pong!
+
+## Installation
+
+1. Download the game files.
+2. Navigate to the folder.
+3. Execute `skm clang++ program.cpp ball.cpp game.cpp obstacle.cpp player.cpp -o output` through the MSYS2 terminal.
+4. Enter the command `./output` to play!
+
+<div class="centered-button-container">
+  <button
+    class="custom-button"
+    onclick={`window.open('${frontmatter['download-link']}', '_blank')`}>
+    Download
+  </button>
+</div>
+
+## Gameplay
+
+Dive into the action with Ping Pong, where you and a friend can compete head-to-head in a fast-paced game inspired by Air Hockey. Use your paddle to hit the ball and score points by getting it past your opponent's side. Player 1 moves their paddle using the WASD keys, while Player 2 uses the arrow keys. The game features dynamic ball movement with random angles and speeds, and boundary obstacles to add to the challenge. With smooth controls and engaging physics, every match is an exciting test of skill and reflexes.
+
+| Player     | **Player 1** | **Player 2** |
+| ---------- | ------------ | ------------ |
+| Move Up    | W            | Up Arrow     |
+| Move Down  | S            | Down Arrow   |
+| Move Left  | A            | Left Arrow   |
+| Move Right | D            | Right Arrow  |
+
+## Developers
+
+- [PrathammGupta](https://github.com/PrathammGupta)
+
+Last updated: 16 May 24
+
+<div class="centered-button-container">
+  <button class="custom-button" onclick="location.href='/games'">
+    Back to Games Index
+  </button>
+</div>

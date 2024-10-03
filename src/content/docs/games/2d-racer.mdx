@@ -1,0 +1,53 @@
+---
+title: 2D Racer
+description: A simple game where a car needs to avoid obstructions on the road!
+download-link: "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/2dRacer"
+featured: true
+sidebar:
+  hidden: false
+---
+
+{/* Embedding dynamic JavaScript directly in MDX to generate game gif */}
+<img 
+  src={`/gifs/games-showcase/${frontmatter.title.toLowerCase().replace(/\s+/g, '-')}-showcase.gif`} 
+  alt={`${frontmatter.title} Showcase`} 
+/>
+
+## Description
+
+2D Racer is a 2D game in which a car is controlled by a controller capable of moving in left-right directions. The car will move on the road and will be obstructed by vehicles that players must overtake.
+
+## Installation
+
+1. Download the game files.
+2. Navigate to the folder.
+3. Execute `dotnet run` through the MSYS2 terminal.
+
+<div class="centered-button-container">
+  <button
+    class="custom-button"
+    onclick={`window.open('${frontmatter['download-link']}', '_blank')`}>
+    Download
+  </button>
+</div>
+
+## Gameplay
+
+In Solo mode, players control their car with the joystick, navigating left and right to avoid slower vehicles. Colliding with obstacles reduces lives, and the game ends when all lives are lost. Accelerating boosts speed, but without it, the car drifts downward. At max speed, the car cannot navigate past screen edges.
+
+In Cooperative mode, two players work together, facing the same obstacles. Each player's life count decreases with collisions, and the game ends if either player loses all their lives.
+
+The game ends when all lives are lost due to collisions with obstacles. Players win by successfully navigating all obstacles within the target time.
+
+## Developers
+- [DaGoblin](https://github.com/DaGoblin) 
+
+Last updated: 16 Oct 23
+
+<div class="centered-button-container">
+  <button
+    class="custom-button"
+    onclick="location.href='/games'">
+    Back to Games Index
+  </button>
+</div>

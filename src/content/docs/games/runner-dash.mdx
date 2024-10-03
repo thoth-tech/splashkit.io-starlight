@@ -1,0 +1,58 @@
+---
+title: Runner Dash
+description: Navigate a dynamic grid using an arcade machine's joystick to collect gems and avoid a relentless enemy!
+download-link: "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/Runner_Dash"
+featured: true
+sidebar:
+  hidden: false
+---
+
+{/* Embedding dynamic JavaScript directly in MDX to generate game gif */}
+<img 
+  src={`/gifs/games-showcase/${frontmatter.title.toLowerCase().replace(/\s+/g, '-')}-showcase.gif`} 
+  alt={`${frontmatter.title} Showcase`} 
+/>
+
+## Description
+
+Runner Dash is an engaging arcade game originally created as a terminal game in C#. The game was revamped using C++ and SplashKit to bring it to life with vibrant graphics suitable for arcade machines.
+
+The game transforms a simple terminal-based experience into a visually appealing arcade game, demonstrating the power of SplashKit in enhancing game development. Players navigate a grid, collecting gems and avoiding an advancing enemy, with the challenge intensifying as the game progresses. Designed to run on Raspberry Pi, Runner Dash highlights the integration of SplashKit for creating a compelling arcade game experience from a foundational codebase.
+
+## Installation
+
+1. Download the game files.
+2. Navigate to the folder.
+3. Execute `dotnet run` through the MSYS2 terminal.
+
+<div class="centered-button-container">
+  <button
+    class="custom-button"
+    onclick={`window.open('${frontmatter['download-link']}', '_blank')`}>
+    Download
+  </button>
+</div>
+
+## Gameplay
+
+In Runner Dash, players navigate a dynamic grid using an arcade machine's joystick to collect gems and avoid a relentless enemy. The goal is to gather as many gems as possible while dodging the enemy that chases you whenever you move. Each collected gem is replaced by a new gem appearing at a random location on the screen. The game continues endlessly, with the only way to lose being a collision with the enemy. 
+
+## Developers
+
+- [AnotherNewName](https://github.com/AnotherNewName)
+- [DaGoblin](https://github.com/DaGoblin)
+- [RileyOussoren](https://github.com/RileyOussoren)
+- [Tanish-22](https://github.com/Tanish-22)
+- [swanos](https://github.com/swanos)
+- [Norman-Harty](https://github.com/Norman-Harty)
+- [Himanshu-Himan](https://github.com/Himanshu-Himan)
+
+Last updated: 13 Dec 23
+
+<div class="centered-button-container">
+  <button
+    class="custom-button"
+    onclick="location.href='/games'">
+    Back to Games Index
+  </button>
+</div>

@@ -1,0 +1,61 @@
+---
+title: DX Ball Game
+description: Destroy bricks of a wall to proceed to the next level!
+download-link: "https://download-directory.github.io?url=https://github.com/thoth-tech/DXBallGame/tree/0c6cc44255427fe7e8503134ce2a9f42f8f3a480"
+featured: true
+sidebar:
+  hidden: false
+---
+
+{/* Embedding dynamic JavaScript directly in MDX to generate game gif */}
+<img 
+  src={`/gifs/games-showcase/${frontmatter.title.toLowerCase().replace(/\s+/g, '-')}-showcase.gif`} 
+  alt={`${frontmatter.title} Showcase`} 
+/>
+
+## Description
+
+The brick breakout game is a modern reimagining of the classic arcade games "DX-Ball" and "Breakout," developed using C++ and the SplashKit SDK to showcase the framework's capabilities. Players control a paddle to bounce a ball and break bricks on the screen, advancing through four levels of increasing difficulty. Each level introduces new challenges, such as single collision bricks, dual collision bricks, and hidden bricks that become visible upon contact. The game features power-ups, like multiple balls and score multipliers, to enhance gameplay, while collision detection and physics-based ball movement create an engaging and dynamic experience. The project is designed to help future developers understand game development fundamentals and to explore SplashKit's versatility on various platforms, including Raspberry Pi and arcade machines.
+
+## Installation
+
+1. Download the game files.
+2. Navigate to the folder.
+3. Execute `skm g++ program.cpp -o game` through the MSYS2 terminal.
+4. Enter the command `./game` to play!
+
+<div class="centered-button-container">
+  <button
+    class="custom-button"
+    onclick={`window.open('${frontmatter['download-link']}', '_blank')`}>
+    Download
+  </button>
+</div>
+
+## Gameplay
+
+The game is a clone of the classic arcade games "DX-Ball" and "Breakout," where the player controls a paddle at the bottom of the screen to prevent a bouncing ball from falling out of bounds. The main objective is to break all the bricks on the screen by directing the ball towards them. The player advances through four levels, each introducing new brick types and increasing difficulty. These bricks vary in strength, requiring multiple hits to break or appearing as hidden until struck by the ball. The game incorporates power-ups like multiple balls and score multipliers to aid the player, adding strategic depth to the gameplay. As the player progresses, they must use their skills to clear each level, leveraging the unique properties of different bricks and power-ups to achieve the highest score possible.
+
+| **Key**     | **Action**                                |
+| ----------- | ----------------------------------------- |
+| `Left`      | Move the paddle to the left.              |
+| `Right`     | Move the paddle to the right.             |
+| `1`         | Start the game.                           |
+| `2`         | Restart the game after winning or losing. |
+| `Left Ctrl` | Start level                               |
+
+## Developers
+
+- [DaGoblin](https://github.com/DaGoblin)
+- [Norman-Harty](https://github.com/Norman-Harty)
+- [swanos](https://github.com/swanos)
+- [Tanish-22](https://github.com/Tanish-22)
+- [Hallzy-H](https://github.com/Hallzy-H)
+
+Last updated: 15 Nov 23
+
+<div class="centered-button-container">
+  <button class="custom-button" onclick="location.href='/games'">
+    Back to Games Index
+  </button>
+</div>

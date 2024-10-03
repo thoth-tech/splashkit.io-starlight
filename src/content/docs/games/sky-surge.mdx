@@ -1,0 +1,58 @@
+---
+title: Sky Surge
+description: Navigate through challenges filled with waves of enemies, power-ups and intense battles!
+download-link: "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/SkySurge"
+featured: true
+sidebar:
+  hidden: false
+---
+
+{/* Embedding dynamic JavaScript directly in MDX to generate game gif */}
+<img 
+  src={`/gifs/games-showcase/${frontmatter.title.toLowerCase().replace(/\s+/g, '-')}-showcase.gif`} 
+  alt={`${frontmatter.title} Showcase`} 
+/>
+
+## Description
+
+Sky Surge is a top-down shooter which draws inspiration from classics such as Strikers 1945. In this game players take control of a powerful aircraft, navigating through challenging levels filled with waves of enemies, power-ups and intense boss battles. This twists conventional shooters through the incorporation of a unique mechanic which causes the player to grow in size and shoot in a larger radius, raising not only the stakes but increasing the sense of accomplishment for players through progression.
+
+## Installation
+
+1. Download the game files.
+2. Navigate to the folder.
+3. Execute `dotnet run` through the MSYS2 terminal.
+
+<div class="centered-button-container">
+  <button
+    class="custom-button"
+    onclick={`window.open('${frontmatter['download-link']}', '_blank')`}>
+    Download
+  </button>
+</div>
+
+## Gameplay
+
+In Sky Surge, players pilot a powerful aircraft in a top-down shooter experience reminiscent of classics like Strikers 1945. Navigate through challenging levels packed with enemy waves, power-ups, and intense boss battles. A unique mechanic sets this game apart, allowing your aircraft to grow in size and shoot in a larger radius as you progress. This feature not only intensifies the action but also amplifies the sense of accomplishment as you advance through the game.
+
+| Action       | Player 1 |
+|--------------|----------|
+| Move Up      | W        |
+| Move Down    | S        |
+| Move Left    | A        |
+| Move Right   | D        |
+| Shoot        | Space    |
+
+## Developers
+
+- [ayanmasood](https://github.com/ayanmasood)
+
+Last updated: 16 May 24
+
+<div class="centered-button-container">
+  <button
+    class="custom-button"
+    onclick="location.href='/games'">
+    Back to Games Index
+  </button>
+</div>
