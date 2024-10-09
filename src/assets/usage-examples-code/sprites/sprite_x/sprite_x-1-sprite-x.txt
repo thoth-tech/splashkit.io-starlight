@@ -1,0 +1,9 @@
+### Getting Sprite x-coordinate
+
+The following code is an example of using [Sprite X](https://splashkit.io/api/sprites/#sprite-x) which retrieves the x-coordinate of a Sprite on a SplashKit window.
+
+:::note
+
+To test this example code you can download these [**Resources**](/resources/usage-examples/sprites/spriteX_BasicSpriteResources.zip).
+
+:::
