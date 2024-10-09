@@ -99,7 +99,7 @@ namespace GameDataManagement
     {
         public static void Main()
         {
-            Json gameData = SplashKit.JsonFromFile(game_data.json);
+            Json gameData = SplashKit.JsonFromFile("game_data.json");
             string gameTitle = SplashKit.JsonReadString(gameData, "gameTitle");
 
             SplashKit.WriteLine("Game Title: " + gameTitle);
@@ -113,8 +113,8 @@ namespace GameDataManagement
 </TabItem>
 </Tabs>
 
-  </TabItem>
-  <TabItem label="Python">
+</TabItem>
+<TabItem label="Python">
 
 ```python
 from splashkit import *
@@ -132,10 +132,9 @@ def main():
 
 if __name__ == "__main__":
     main()
-    ```
+```
 
-   </TabItem>
-
+</TabItem>
 </Tabs>
 
 In this code example, we're first using [Json From File](/api/json/#json-from-file) to load a JSON object with the details from the `game_data.json` file.
