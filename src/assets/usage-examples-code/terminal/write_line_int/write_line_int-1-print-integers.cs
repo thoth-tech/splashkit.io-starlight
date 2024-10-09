@@ -8,7 +8,7 @@ WriteLine(-1);
 WriteLine(-2);
 WriteLine(-3);
 
-// Example 2: Print Multi-digit integer
+// Example 2: Print multi-digit integer
 WriteLine(12345);
 WriteLine(953221312);
 WriteLine(-165746);

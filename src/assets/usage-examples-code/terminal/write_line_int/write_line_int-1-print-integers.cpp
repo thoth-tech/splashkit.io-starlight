@@ -10,7 +10,7 @@ int main()
     write_line(-2);
     write_line(-3);
 
-    // Example 2: Print Multi-digit integer
+    // Example 2: Print multi-digit integer
     write_line(12345);
     write_line(953221311);
     write_line(-165746);
