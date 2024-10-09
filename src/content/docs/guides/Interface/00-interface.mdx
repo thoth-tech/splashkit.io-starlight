@@ -435,10 +435,10 @@ We should also give the button some more descriptive text inside it, like "Write
 <TabItem label="C++">
 
 ```cpp ins="Write To Terminal!" ins="if (" ins=/24\\)\\)(\\))/ ins={2-4}
-if (button("Write To Terminal!", rectangle_from(300, 260, 200, 24)))
-{
-    write_line("The button was clicked!");
-}
+    if (button("Write To Terminal!", rectangle_from(300, 260, 200, 24)))
+    {
+        write_line("The button was clicked!");
+    }
 ```
 
 </TabItem>
@@ -458,10 +458,10 @@ if (Button("Write To Terminal!", RectangleFrom(300, 260, 200, 24)))
 <TabItem label="Object-Oriented">
 
 ```csharp ins="Write To Terminal!" ins="if (" ins=/24\\)\\)(\\))/ ins={2-4}
-if (SplashKit.Button("Write To Terminal!", SplashKit.RectangleFrom(300, 260, 200, 24)))
-{
-    SplashKit.WriteLine("The button was clicked!");
-}
+            if (SplashKit.Button("Write To Terminal!", SplashKit.RectangleFrom(300, 260, 200, 24)))
+            {
+                SplashKit.WriteLine("The button was clicked!");
+            }
 ```
 
 </TabItem>
@@ -497,10 +497,10 @@ Now let's try out some more interesting elements - let's add a text box, so we c
 
         string user_message = "Default message!";
 
-          while (!quit_requested())
-          {
-              process_events();
-      ```
+        while (!quit_requested())
+        {
+            process_events();
+    ```
 
     </TabItem>
     <TabItem label="C#">
@@ -565,11 +565,11 @@ Now let's try out some more interesting elements - let's add a text box, so we c
     ```cpp ins={1} ins="write_line(user_message);"
             user_message = text_box(user_message, rectangle_from(300, 220, 200, 24));
 
-              if (button("Write To Terminal!", rectangle_from(300, 260, 200, 24)))
-              {
-                  write_line(user_message);
-              }
-      ```
+            if (button("Write To Terminal!", rectangle_from(300, 260, 200, 24)))
+            {
+                write_line(user_message);
+            }
+    ```
 
     </TabItem>
     <TabItem label="C#">
