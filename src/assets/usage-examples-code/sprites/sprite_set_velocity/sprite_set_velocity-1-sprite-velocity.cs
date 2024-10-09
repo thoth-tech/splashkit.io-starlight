@@ -1,36 +1,27 @@
-using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
+using SplashKitSDK;
 
-// Open a window to draw the sprite on
-Window start = OpenWindow("spriteSetVelocity", 600, 600);
+OpenWindow("spriteSetVelocity", 600, 600);
 
-// Load bitmap for creating a sprite
-Bitmap player = LoadBitmap("playerBmp", "player-run.png");
-
-// Create the player sprite
-Sprite playerSprite = CreateSprite(player);
-
-// Set the coordinates in reference to the window
+LoadBitmap("player", "player-run.png");
+Sprite playerSprite = CreateSprite(BitmapNamed("player"));
 SpriteSetX(playerSprite, 300);
 SpriteSetY(playerSprite, 300);
 
 // Create vector for sprite's velocity
-Vector2D vel = new Vector2D();
-vel.X = 0.01;
-vel.Y = 0;
+Vector2D vel = VectorTo(0.01,0);
 
-// Game loop
-while (!WindowCloseRequested(start))
+while (!QuitRequested())
 {
     ProcessEvents();
-    ClearScreen(Color.Black);
 
-    // Set sprite velocity
+    // Set sprite velocity and update sprite
     SpriteSetVelocity(playerSprite, vel);
-    DrawSprite(playerSprite);
     UpdateSprite(playerSprite);
 
+    ClearScreen(ColorBlack());
+    DrawSprite(playerSprite);
     RefreshScreen();
 }
 
-CloseWindow(start);
+CloseAllWindows();

@@ -2,37 +2,30 @@
 
 int main()
 {
-    // Window to draw the sprite on
-    window start = open_window("sprite-set-velocity", 600, 600);
+    open_window("sprite-set-velocity", 600, 600);
 
-    // Bitmap for creating a sprite
-    bitmap player = load_bitmap("player_bitmap", "player-run.png");
-
-    // Creating the player sprite
-    sprite player_sprite = create_sprite(player);
-
-    // Setting the coordinates in reference to the window
+    load_bitmap("player", "player-run.png");
+    sprite player_sprite = create_sprite(bitmap_named("player"));
     sprite_set_x(player_sprite, 300);
     sprite_set_y(player_sprite, 300);
 
-    // set sprite's velocity using as a vector 2d object
+    // Create vector for sprite's velocity
     vector_2d vel = vector_to(0.01,0);
     
-
-    // Game loop
     while (!quit_requested())
     {
         process_events();
-        clear_screen(COLOR_BLACK);
-        // setting sprite velocity
-        sprite_set_velocity(player_sprite, vel);
-        draw_sprite(player_sprite);
-        update_sprite(player_sprite);
-        refresh_screen();
 
+        // Set sprite velocity and update sprite
+        sprite_set_velocity(player_sprite, vel);
+        update_sprite(player_sprite);
+
+        clear_screen(COLOR_BLACK);
+        draw_sprite(player_sprite);
+        refresh_screen();
     }
     
-    close_window(start);
-    
+    close_all_windows();
+
     return 0;
 }
