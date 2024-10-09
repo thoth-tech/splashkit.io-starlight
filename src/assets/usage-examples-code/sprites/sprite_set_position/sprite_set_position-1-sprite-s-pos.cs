@@ -1,34 +1,27 @@
-using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
+using SplashKitSDK;
 
-// Window to draw the sprite on
-Window start = new Window("spriteSetPosition", 600, 600);
+OpenWindow("sprite_set_position", 600, 600);
 
-// Bitmap for creating a sprite
-Bitmap player = new Bitmap("playerBmp", "player-run.png");
-
-// Creating the player sprite
-Sprite playerSprite = new Sprite(player);
-
-// Setting the x and y coordinates in reference to the window
+LoadBitmap("player", "player-run.png");
+Sprite playerSprite = CreateSprite(BitmapNamed("player"));
 SpriteSetX(playerSprite, 200);
 SpriteSetY(playerSprite, 300);
 
-ClearScreen(Color.Black);
+ClearScreen(ColorBlack());
 playerSprite.Draw();
 RefreshScreen();
-Delay(4000);
+Delay(2000);
 
-// Point2D object which stores the new coordinates
+// Create Point2D object which stores the new coordinates
 Point2D pos = PointAt(450, 300);
 
-// Set the new sprite position using SpriteSetPosition and the Point2D object
+// Set the new sprite position
 SpriteSetPosition(playerSprite, pos);
 
-ClearScreen(Color.Black);
-playerSprite.Draw();
+ClearScreen(ColorBlack());
+DrawSprite(playerSprite);
 RefreshScreen();
-Delay(10000);
+Delay(5000);
 
-// Closing the window
-start.Close();
+CloseAllWindows();
