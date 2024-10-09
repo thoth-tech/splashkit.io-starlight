@@ -9,7 +9,7 @@ SpriteSetX(playerSprite, 200);
 SpriteSetY(playerSprite, 300);
 
 ClearScreen(ColorBlack());
-playerSprite.Draw();
+DrawSprite(playerSprite);
 RefreshScreen();
 Delay(2000);
 
