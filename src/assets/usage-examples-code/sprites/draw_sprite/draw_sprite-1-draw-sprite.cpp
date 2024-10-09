@@ -2,28 +2,21 @@
 
 int main()
 {
-    // window to draw the sprite on
     window start = open_window("draw_sprite", 600, 600);
 
-    // bitmap for creating a sprite
-    bitmap player = load_bitmap("player_bitmap", "player.png");
-    bitmap_set_cell_details(player, 31, 32, 4, 3, 12);
-
-    // creating the player sprite
-    sprite player_sprite = create_sprite(player);
-
-    // setting the co-ordinates in refrence to the window
+    load_bitmap("player", "player.png");
+    sprite player_sprite = create_sprite(bitmap_named("player"));
     sprite_set_x(player_sprite, 300);
     sprite_set_y(player_sprite, 300);
 
-    // clearing the screen
     clear_screen(COLOR_BLACK);
 
-    //drawing the sprite
+    // Draw the sprite
     draw_sprite(player_sprite);
 
     refresh_screen();
-    delay(10000);
+    delay(5000);
+    close_all_windows();
 
     return 0;
 }
