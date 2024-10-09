@@ -1,7 +1,7 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Window gameWindow = new Window("sprite_x", 600, 600);
+Window gameWindow = new Window("spriteX", 600, 600);
 
 Bitmap playerBitmap = LoadBitmap("player", "player-run.png");
 Sprite playerSprite = CreateSprite(playerBitmap);
