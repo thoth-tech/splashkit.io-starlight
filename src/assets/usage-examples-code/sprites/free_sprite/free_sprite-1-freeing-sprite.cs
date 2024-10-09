@@ -1,34 +1,25 @@
-using System;
-using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
+using SplashKitSDK;
 
-// Window to draw the sprite on
-Window start = OpenWindow("createSprite", 600, 600);
+OpenWindow("free_sprite", 600, 600);
 
-// Bitmap for creating a sprite
-Bitmap player = LoadBitmap("playerBitmap", "player.png");
-player.SetCellDetails(31, 32, 4, 3, 12); // Set cell details
+LoadBitmap("player", "player.png");
+Sprite playerSprite = CreateSprite(BitmapNamed("player"));
+SpriteSetX(playerSprite, 300);
+SpriteSetY(playerSprite, 300);
 
-// Creating the player sprite
-Sprite playerSprite = CreateSprite(player);
-
-// Setting the coordinates in reference to the window
-playerSprite.X = 300;
-playerSprite.Y = 300;
-
-// Game loop
 bool spriteExists = true; // Track if the sprite exists
+
 while (!QuitRequested())
 {
     ProcessEvents();
-    ClearScreen(Color.Black);
 
+    ClearScreen(Color.Black);
     if (spriteExists)
     {
         DrawSprite(playerSprite);
         UpdateSprite(playerSprite);
     }
-
     RefreshScreen();
 
     // If UP key is typed, the sprite is removed
@@ -39,10 +30,10 @@ while (!QuitRequested())
     }
 }
 
-// Cleanup
+// Clean up
 if (spriteExists)
 {
     FreeSprite(playerSprite);
 }
 
-start.Close();
+CloseAllWindows();
