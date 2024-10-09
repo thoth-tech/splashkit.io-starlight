@@ -5,9 +5,6 @@
 int main()
 {
     open_window("Blue Background", 800, 600);
-    clear_screen();
-    refresh_screen(60);
-    delay(1000);
     
     clear_screen(COLOR_BLUE);
     refresh_screen(60);

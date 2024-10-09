@@ -1,3 +1,3 @@
 ### Background Color
 
-The following code shows examples of using [Clear Screen](/api/graphics#clear-screen) to show how to change the background color to blue.
+The following code shows an example of using [Clear Screen](/api/graphics#clear-screen-2) to change the background color to blue.
