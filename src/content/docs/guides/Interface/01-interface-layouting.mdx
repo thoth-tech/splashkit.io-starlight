@@ -775,20 +775,24 @@ if (SplashKit.StartTreenode("Some more buttons!"))
 
 ```python
 if start_treenode("Some buttons!"):
-    if (button("Button 1!")): write_line("Button 1 clicked!")
-    if (button("Button 2!")): write_line("Button 2 clicked!")
-    if (button("Button 3!")): write_line("Button 3 clicked!")
+    if (button("Button 1!")):
+        write_line("Button 1 clicked!")
+    if (button("Button 2!")):
+        write_line("Button 2 clicked!")
+    if (button("Button 3!")):
+        write_line("Button 3 clicked!")
     end_treenode("Some buttons!")
         
 if start_treenode("Some more buttons!"):
-    if (button("Button 4!")): write_line("Button 4 clicked!")
-    if (button("Button 5!")): write_line("Button 5 clicked!")
+    if (button("Button 4!")):
+        write_line("Button 4 clicked!")
+    if (button("Button 5!")):
+        write_line("Button 5 clicked!")
     
     if start_treenode("Buttons in buttons!!"):
-        if (button("Button 6!")): write_line("Button 6 clicked!")
-
+        if (button("Button 6!")):
+            write_line("Button 6 clicked!")
         end_treenode("Buttons in buttons!!")
-    
     end_treenode("Some more buttons!")
 ```
 
@@ -970,22 +974,34 @@ Here's an example:
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  ```cpp
-  start_custom_layout();
-  split_into_columns(2);
-      enter_column();
-          set_layout_height(64);
-          if (button("Button 1!")) write_line("Button 1 clicked!");
-          if (button("Button 2!")) write_line("Button 2 clicked!");
-      leave_column();
-      enter_column();
-          set_layout_height(0); // 0 resets to default
-          if (button("Button 4!")) write_line("Button 4 clicked!");
-          if (button("Button 5!")) write_line("Button 5 clicked!");
-          if (button("Button 6!")) write_line("Button 6 clicked!");
-      leave_column();
-  reset_layout();
-  ```
+```cpp
+start_custom_layout();
+split_into_columns(2);
+
+enter_column();
+set_layout_height(64);
+
+if (button("Button 1!"))
+    write_line("Button 1 clicked!");
+if (button("Button 2!"))
+    write_line("Button 2 clicked!");
+
+leave_column();
+
+enter_column();
+set_layout_height(0); // 0 resets to default
+
+if (button("Button 4!"))
+    write_line("Button 4 clicked!");
+if (button("Button 5!"))
+    write_line("Button 5 clicked!");
+if (button("Button 6!"))
+    write_line("Button 6 clicked!");
+
+leave_column();
+
+reset_layout();
+```
 
 </TabItem>
 <TabItem label="C#">
