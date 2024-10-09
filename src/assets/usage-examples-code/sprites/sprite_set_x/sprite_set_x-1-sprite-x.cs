@@ -10,7 +10,7 @@ Sprite playerSprite = CreateSprite(BitmapNamed("player"));
 SpriteSetX(playerSprite, 300);
 
 ClearScreen(ColorBlack());
-playerSprite.Draw();
+DrawSprite(playerSprite);
 RefreshScreen();
 Delay(5000);
 
