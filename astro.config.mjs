@@ -88,7 +88,7 @@ export default defineConfig({
             { label: "Physics", badge: 'New', autogenerate: { directory: "guides/physics", collapsed: false } },
             { label: "Raspberry GPIO", autogenerate: { directory: "guides/Raspberry-GPIO", collapsed: false } },
             { label: "Resource Bundles", autogenerate: { directory: "guides/Resource-Bundles", collapsed: false } },
-            { label: "Sprites", autogenerate: { directory: "guides/Sprites", collapsed: false } },
+            // { label: "Sprites", autogenerate: { directory: "guides/Sprites", collapsed: false } },
             { label: "Utilities", autogenerate: { directory: "guides/Utilities", collapsed: false } },
           ]
           // autogenerate: { directory: "guides", collapsed: true },
