@@ -25,7 +25,7 @@ int main()
     }
     
     // Save and free the bitmap
-    save_bitmap(planet, "red_planet");
+    save_bitmap(planet, "draw_circle_on_bitmap-1-red-planet");
     free_bitmap(planet);
     
     return 0;

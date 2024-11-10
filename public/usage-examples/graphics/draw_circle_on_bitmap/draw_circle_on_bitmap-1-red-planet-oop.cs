@@ -29,7 +29,7 @@ namespace DrawCircleOnBitmap
             }
             
             // Save and free the bitmap
-            planet.SaveBitmap("red_planet");
+            planet.SaveBitmap("draw_circle_on_bitmap-1-red-planet");
             planet.FreeBitmap();
         }
     }
