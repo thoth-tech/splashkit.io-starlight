@@ -2,8 +2,7 @@
 dist/
 # generated types
 .astro/
-package-lock.json
-package.json
+
 # dependencies
 node_modules/
 
