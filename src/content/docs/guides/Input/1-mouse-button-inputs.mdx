@@ -25,38 +25,38 @@ Here are some functions that are used to handle mouse button inputs. These funct
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  | Description             | Enum Value in Code         |
-  | ----------------------- | ---------------------------|
-  | No mouse button         | NO_BUTTON                  |
-  | The left mouse button   | LEFT_BUTTON                |
-  | The middle mouse button | MIDDLE_BUTTON              |
-  | The right mouse button  | RIGHT_BUTTON               |
-  | The x1 mouse button     | MOUSE_X1_BUTTON            |
-  | The x2 mouse button     | MOUSE_X2_BUTTON            |
+| Description             | Enum Value in Code |
+| ----------------------- | ------------------ |
+| No mouse button         | NO_BUTTON          |
+| The left mouse button   | LEFT_BUTTON        |
+| The middle mouse button | MIDDLE_BUTTON      |
+| The right mouse button  | RIGHT_BUTTON       |
+| The x1 mouse button     | MOUSE_X1_BUTTON    |
+| The x2 mouse button     | MOUSE_X2_BUTTON    |
 
 </TabItem>
 <TabItem label="C#">
 
-  | Description             | Enum Value in Code         |
-  | ----------------------- | ---------------------------|
-  | No mouse button         | MouseButton.NoButton       |
-  | The left mouse button   | MouseButton.LeftButton     |
-  | The middle mouse button | MouseButton.MiddleButton   |
-  | The right mouse button  | MouseButton.RightButton    |
-  | The x1 mouse button     | MouseButton.MouseX1Button  |
-  | The x2 mouse button     | MouseButton.MouseX2Button  |
+| Description             | Enum Value in Code        |
+| ----------------------- | ------------------------- |
+| No mouse button         | MouseButton.NoButton      |
+| The left mouse button   | MouseButton.LeftButton    |
+| The middle mouse button | MouseButton.MiddleButton  |
+| The right mouse button  | MouseButton.RightButton   |
+| The x1 mouse button     | MouseButton.MouseX1Button |
+| The x2 mouse button     | MouseButton.MouseX2Button |
 
 </TabItem>
 <TabItem label="Python">
 
-  | Description             | Enum Value in Code         |
-  | ----------------------- | ---------------------------|
-  | No mouse button         | MouseButton.no_button       |
-  | The left mouse button   | MouseButton.left_button     |
-  | The middle mouse button | MouseButton.middle_button   |
-  | The right mouse button  | MouseButton.right_button    |
-  | The x1 mouse button     | MouseButton.mouse_x1_button  |
-  | The x2 mouse button     | MouseButton.mouse_x2_button  |
+| Description             | Enum Value in Code          |
+| ----------------------- | --------------------------- |
+| No mouse button         | MouseButton.no_button       |
+| The left mouse button   | MouseButton.left_button     |
+| The middle mouse button | MouseButton.middle_button   |
+| The right mouse button  | MouseButton.right_button    |
+| The x1 mouse button     | MouseButton.mouse_x1_button |
+| The x2 mouse button     | MouseButton.mouse_x2_button |
 
 </TabItem>
 </Tabs>
@@ -185,13 +185,13 @@ from splashkit import *
 
 COLOR_RED = color_red()
 COLOR_YELLOW = color_yellow()
-COLOR_WHITE = color_white()  
+COLOR_WHITE = color_white()
 
 def main():
-    
+
     win = open_window("Mouse Inputs", 800, 600)
-    
-    current_color = COLOR_WHITE  
+
+    current_color = COLOR_WHITE
 
     # Main loop
     while not window_close_requested(win):
@@ -200,25 +200,25 @@ def main():
 
         # Check mouse click status and change screen color
         if mouse_clicked(MouseButton.left_button):
-            
+
             current_color = COLOR_RED  # Change color to red
         elif mouse_clicked(MouseButton.right_button):
-            
+
             current_color = COLOR_YELLOW  # Change color to yellow
 
         # Clear screen with the current color
         clear_screen(current_color)
-        
-        
+
+
         refresh_window(win)
-    
-    
+
+
     close_window(win)
 
 if __name__ == "__main__":
     main()
 ```
-  
+
 </TabItem>
 </Tabs>
 
@@ -356,44 +356,44 @@ namespace MouseInputs
 ```python
 from splashkit import *
 
-
 COLOR_RED = color_red()
 COLOR_YELLOW = color_yellow()
 COLOR_WHITE = color_white()
 
 def main():
-   
-    window = open_window("Mouse Inputs", 800, 600)
-    
-    current_color = COLOR_WHITE  
 
-    
+    window = open_window("Mouse Inputs", 800, 600)
+
+    current_color = COLOR_WHITE
+
+
     while not window_close_requested(window):
         # Process user input events
         process_events()
 
         # Check mouse button status and change screen color
         if mouse_down(MouseButton.left_button):
-            
+
             current_color = COLOR_RED  # Change color to red
         elif mouse_down(MouseButton.right_button):
-            
+
             current_color = COLOR_YELLOW  # Change color to yellow
         else:
             current_color = COLOR_WHITE  # Default color if no mouse button is held down
 
-        
+
         clear_screen(current_color)
-        
-        
+
+
         refresh_window(window)
-    
+
     # Close the window
     close_window(window)
 
-if __name__ == "__main__":
-    main()
-```
+if **name** == "**main**":
+main()
+
+````
 
 </TabItem>
 </Tabs>
@@ -437,7 +437,7 @@ int main()
 
     return 0;
 }
-```
+````
 
 </TabItem>
 <TabItem label="C#">
@@ -524,7 +524,7 @@ COLOR_RED = color_red()
 COLOR_WHITE = color_white()
 
 def main():
-    
+
     window = open_window("Mouse Inputs", 800, 600)
 
     while not window_close_requested(window):
@@ -538,10 +538,10 @@ def main():
         else:
             clear_screen(COLOR_WHITE)
 
-        
+
         refresh_window(window)
 
-   
+
     close_window(window)
 
 if __name__ == "__main__":
@@ -715,16 +715,16 @@ namespace MouseMovement
 from splashkit import *
 
 def main():
-   
+
     hue = 0.8
     saturation = 0.8
     brightness = 0.8
 
-    
+
     window = open_window("Mouse Movement", 800, 600)
 
     while not window_close_requested(window):
-        
+
         process_events()
 
         # Get the mouse movement
@@ -734,7 +734,7 @@ def main():
         if mouse_down(MouseButton.left_button):
             # Adjust hue based on horizontal mouse movement
             hue = (hue + movement.x / window_width(window)) % 1.0
-        
+
         if mouse_down(MouseButton.right_button):
             # Adjust saturation based on vertical mouse movement
             saturation = min(max(saturation + movement.y / window_height(window), 0.0), 1.0)
@@ -744,11 +744,11 @@ def main():
 
         # Clear the screen with the new color
         clear_screen(color)
-        
-        
+
+
         refresh_window(window)
 
-    
+
     close_window(window)
 
 if __name__ == "__main__":
@@ -889,12 +889,12 @@ namespace MouseScrolling
 from splashkit import *
 
 def main():
-    
+
     hue = 0.6
     saturation = 0.6
     brightness = 0.6
 
-    
+
     window = open_window("Mouse Scrolling", 800, 600)
 
     while not window_close_requested(window):
@@ -914,12 +914,13 @@ def main():
         clear_screen(hsb_color(hue, saturation, brightness))
         refresh_window(window)
 
-   
+
     close_window(window)
 
-if __name__ == "__main__":
-    main()
-```
+if **name** == "**main**":
+main()
+
+````
 
 </TabItem>
 </Tabs>
@@ -960,7 +961,7 @@ int main()
 
     return 0;
 }
-```
+````
 
 </TabItem>
 <TabItem label="C#">
@@ -1031,7 +1032,7 @@ namespace MouseLocation
 from splashkit import *
 
 def main():
-    
+
     window = open_window("Mouse Location", 800, 600)
 
     while not window_close_requested(window):
@@ -1040,22 +1041,23 @@ def main():
 
         # Clear the screen with white color
         clear_screen(color_white())
-        
+
         # Get the current mouse position
         mouse_pos = mouse_position()
 
         # Draw a blue circle at the current mouse position
         fill_circle(color_light_blue(), mouse_pos.x, mouse_pos.y, 20)
-        
-        
+
+
         refresh_window(window)
 
-    
+
     close_window(window)
 
-if __name__ == "__main__":
-    main()
-```
+if **name** == "**main**":
+main()
+
+````
 
 </TabItem>
 </Tabs>
@@ -1091,7 +1093,7 @@ int main()
 
     return 0;
 }
-```
+````
 
 </TabItem>
 <TabItem label="C#">
@@ -1159,7 +1161,7 @@ namespace MouseLocation
 from splashkit import *
 
 def main():
-    
+
     window = open_window("Mouse Location", 800, 600)
 
     while not window_close_requested(window):
@@ -1174,16 +1176,17 @@ def main():
 
         # Draw a line from the top-left corner to the current mouse position
         draw_line(color_blue(), 0, 0, mouse_pos.x, mouse_pos.y)
-        
-        
+
+
         refresh_window(window)
 
-    
+
     close_window(window)
 
-if __name__ == "__main__":
-    main()
-```
+if **name** == "**main**":
+main()
+
+````
 
 </TabItem>
 </Tabs>
@@ -1227,7 +1230,7 @@ int main()
 
     return 0;
 }
-```
+````
 
 </TabItem>
 <TabItem label="C#">
@@ -1310,7 +1313,7 @@ namespace MouseLocation
 from splashkit import *
 
 def main():
-    x = 0
+x = 0
 
     window = open_window("Mouse Location", 800, 600)
 
@@ -1324,22 +1327,23 @@ def main():
 
         # Clear the screen with white color
         clear_screen(color_white())
-        
+
         # Draw a blue circle at the center of the screen
         fill_circle(color_blue(), 400, 300, 100)
-        
+
         # Draw a purple "curtain" from the left side of the screen to the x-coordinate of the mouse
         fill_rectangle(color_purple(), 0, 0, x, window_height(window))
-        
-        
+
+
         refresh_window(window)
 
-    
+
     close_window(window)
 
-if __name__ == "__main__":
-    main()
-```
+if **name** == "**main**":
+main()
+
+````
 
 </TabItem>
 </Tabs>
@@ -1383,7 +1387,7 @@ int main()
 
     return 0;
 }
-```
+````
 
 </TabItem>
 <TabItem label="C#">
@@ -1466,8 +1470,8 @@ namespace MouseLocation
 from splashkit import *
 
 def main():
-    y = 0
-   
+y = 0
+
     window = open_window("Mouse Location", 800, 600)
 
     while not window_close_requested(window):
@@ -1479,10 +1483,10 @@ def main():
 
         # Clear the screen with white color
         clear_screen(color_white())
-        
+
         # Draw a blue circle at the center of the screen
         fill_circle(color_blue(), 400, 300, 100)
-        
+
         # Draw a purple "curtain" from the top of the screen to the y-coordinate of the mouse
         fill_rectangle(color_purple(), 0, 0, window_width(window), y)
 
@@ -1490,9 +1494,10 @@ def main():
 
     close_window(window)
 
-if __name__ == "__main__":
-    main()
-```
+if **name** == "**main**":
+main()
+
+````
 
 </TabItem>
 </Tabs>
@@ -1550,7 +1555,7 @@ int main()
 
     return 0;
 }
-```
+````
 
 </TabItem>
 <TabItem label="C#">
@@ -1645,7 +1650,7 @@ namespace MouseVisibility
 from splashkit import *
 
 def main():
-   
+
     black_hole_radius = 50
     window_width, window_height = 800, 600
     window = open_window("Mouse Visibility", window_width, window_height)
@@ -1655,24 +1660,24 @@ def main():
     while not window_close_requested(window):
         # Process user input events
         process_events()
-        
+
         # Get the current mouse position
         mouse_pos = mouse_position()
-        
+
         # Calculate distance from the mouse to the black hole center
         dx = mouse_pos.x - black_hole_center.x
         dy = mouse_pos.y - black_hole_center.y
         distance = (dx ** 2 + dy ** 2) ** 0.5
-        
+
         # Hide or show the mouse based on distance
         if distance <= black_hole_radius:
             hide_mouse()
         else:
             show_mouse()
-        
+
         # Clear the screen with white color
         clear_screen(color_white())
-        
+
         # Draw the black hole as a circle
         fill_circle(color_black(), black_hole_center.x, black_hole_center.y, black_hole_radius)
 
@@ -1680,9 +1685,10 @@ def main():
 
     close_all_windows()
 
-if __name__ == "__main__":
-    main()
-```
+if **name** == "**main**":
+main()
+
+````
 
 </TabItem>
 </Tabs>
@@ -1727,7 +1733,7 @@ int main()
 
     return 0;
 }
-```
+````
 
 </TabItem>
 <TabItem label="C#">
@@ -1808,7 +1814,7 @@ namespace MouseVisibility
 from splashkit import *
 
 def main():
-    
+
     spotlight_radius = 100
     window_width, window_height = 800, 600
     window = open_window("Mouse Visibility in Spotlight", window_width, window_height)
@@ -1820,15 +1826,15 @@ def main():
     while not window_close_requested(window):
         # Process user input events
         process_events()
-        
+
         # Get the current mouse position
         mouse_pos = mouse_position()
-        
+
         # Calculate distance from the mouse to the spotlight center
         dx = mouse_pos.x - spotlight_center.x
         dy = mouse_pos.y - spotlight_center.y
         distance = (dx ** 2 + dy ** 2) ** 0.5
-        
+
         # Determine whether to show or hide the mouse
         if distance <= spotlight_radius:
             if not mouse_visible:
@@ -1838,10 +1844,10 @@ def main():
             if mouse_visible:
                 hide_mouse()  # Hide the mouse
                 mouse_visible = False
-        
+
         # Clear the screen with black color
         clear_screen(color_black())
-        
+
         # Draw the spotlight as a circle
         fill_circle(color_white(), spotlight_center.x, spotlight_center.y, spotlight_radius)
 
@@ -1849,9 +1855,11 @@ def main():
 
     close_all_windows()
 
-if __name__ == "__main__":
-    main()
+if **name** == "**main**":
+main()
+
 ```
 
 </TabItem>
 </Tabs>
+```

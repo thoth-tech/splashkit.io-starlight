@@ -1,20 +1,26 @@
 using static SplashKitSDK.SplashKit;
 
-// Create a bitmap for the map
-Bitmap bitmap = CreateBitmap("map", 400, 300);
+// Create a Window and bitmap for the map
+var window = OpenWindow("Window", 400, 300);
+var bitmap = CreateBitmap("map", 400, 300);
 
-// Fill background with light beige for map background
+// Fill background with white
 ClearBitmap(bitmap, ColorWhite());
 
-// Draw the route line in white
-DrawLineOnBitmap(bitmap, ColorGreen(), 
+// Draw the route line and points
+DrawLineOnBitmap(bitmap, ColorGreen(),
                 100, 80,    // Starting point (x1, y1)
                 300, 220);  // End point (x2, y2)
-
-// Add points at start and end
 FillCircleOnBitmap(bitmap, ColorRed(), 100, 80, 5);    // Start point
 FillCircleOnBitmap(bitmap, ColorRed(), 300, 220, 5);   // End point
 
-// Save and free the bitmap
-SaveBitmap(bitmap, "map_route");
+while (!window.CloseRequested)
+{
+    ProcessEvents();
+    // Draw the bitmap to the current window
+    DrawBitmap(bitmap, 0, 0);
+    // Refresh the window
+    RefreshScreen();
+}
+
 FreeBitmap(bitmap);
