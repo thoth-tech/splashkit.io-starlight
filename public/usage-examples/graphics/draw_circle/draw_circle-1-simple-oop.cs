@@ -8,20 +8,20 @@ namespace DrawCircles {
 
             ClearScreen();
 
-            // Define the center of the circles
+            // Define the center point for all circles
             Point2D center = new Point2D { X = 400, Y = 300 };
 
-            // Create 4 circles with different radii
+            // Create four circles with different radius
             Circle circle1 = new Circle { Center = center, Radius = 50 };
             Circle circle2 = new Circle { Center = center, Radius = 100 };
             Circle circle3 = new Circle { Center = center, Radius = 150 };
             Circle circle4 = new Circle { Center = center, Radius = 200 };
 
-            // Draw circles
-            circle1.Draw(ColorRed());
-            circle2.Draw(ColorBlue());
-            circle3.Draw(ColorOrange());
-            circle4.Draw(ColorGreen());
+            // Draw the circles with different colors
+            DrawCircle(ColorRed(), circle1);
+            DrawCircle(ColorBlue(), circle2);
+            DrawCircle(ColorOrange(), circle3);
+            DrawCircle(ColorGreen(), circle4);
 
             RefreshScreen();
 
