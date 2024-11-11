@@ -1,4 +1,5 @@
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
 namespace DrawCircleOnBitmap
 {
@@ -8,29 +9,29 @@ namespace DrawCircleOnBitmap
         {
             // Create a bitmap to draw on
             Bitmap planet = new Bitmap("planet", 400, 400);
-            
+
             // Fill background with dark color
-            planet.ClearBitmap(Color.Black);
-            
+            planet.Clear(Color.Black);
+
             // Create color
             Color red = Color.Red;
-            
+
             // Draw the main planet circle
-            planet.FillCircleOnBitmap(Color.RGBAColor(180, 0, 0, 255), 200, 200, 150);
-            planet.DrawCircleOnBitmap(red, 200, 200, 150);
-            
+            planet.FillCircle(Color.RGBAColor(180, 0, 0, 255), 200, 200, 150);
+            planet.DrawCircle(red, 200, 200, 150);
+
             // Add some surface details with smaller circles
-            for(int i = 0; i < 15; i++)
+            for (int i = 0; i < 15; i++)
             {
-                double x = Rnd(100, 300)  // Random between 100 and 300
-                double y = Rnd(100, 300)   // Random between 100 and 300
-                double size = Rnd(10, 30)  // Random between 10 and 30
-                planet.DrawCircleOnBitmap(red, x, y, size);
+                double x = Rnd(100, 300);  // Random between 100 and 300
+                double y = Rnd(100, 300);   // Random between 100 and 300
+                double size = Rnd(10, 30);  // Random between 10 and 30
+                planet.DrawCircle(red, x, y, size);
             }
-            
+
             // Save and free the bitmap
-            planet.SaveBitmap("draw_circle_on_bitmap-1-red-planet");
-            planet.FreeBitmap();
+            SaveBitmap(planet, "draw_circle_on_bitmap-1-red-planet");
+            planet.Free();
         }
     }
 }
