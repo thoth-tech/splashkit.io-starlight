@@ -1,7 +1,7 @@
 from splashkit import *
 
 #Create Window
-start = open_window("draw_line_on_window", 600, 600)
+start = open_window("draw line on window", 600, 600)
 clear_screen(color_black())
 
 

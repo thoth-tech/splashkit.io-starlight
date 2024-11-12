@@ -3,7 +3,7 @@
 int main()
 {
     // Create Window
-    window start = open_window("draw_line_on_window", 600, 600);
+    window start = open_window("draw line on window", 600, 600);
     clear_screen(COLOR_BLACK);
 
 

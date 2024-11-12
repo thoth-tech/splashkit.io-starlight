@@ -3,7 +3,7 @@ using static SplashKitSDK.SplashKit;
 
 
 // Create Window
-Window start = OpenWindow("draw_line_on_window", 600, 600);
+Window start = OpenWindow("draw line on window", 600, 600);
 ClearScreen(ColorBlack());
 
 

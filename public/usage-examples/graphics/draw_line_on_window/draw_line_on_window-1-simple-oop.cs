@@ -7,7 +7,7 @@ namespace draw_line_on_window
         public static void Main()
         {
             // Create Window
-            Window start = new Window("draw_line_on_window", 600, 600);
+            Window start = new Window("draw line on window", 600, 600);
             SplashKit.ClearScreen(SplashKit.ColorBlack());
 
 
