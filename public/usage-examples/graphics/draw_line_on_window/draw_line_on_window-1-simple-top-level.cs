@@ -2,7 +2,7 @@ using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 
-// Create wubdow
+// Create Window
 Window start = OpenWindow("draw_line_on_window", 600, 600);
 ClearScreen(ColorBlack());
 
