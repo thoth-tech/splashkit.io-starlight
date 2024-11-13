@@ -1,0 +1,256 @@
+[33mcommit 9ef14859751ea5b08af2855b4f56c2a661a4ee00[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: EthanRin <sovanpanhaarinn@gmail.com>
+Date:   Tue Nov 12 21:29:27 2024 +1100
+
+    Usage-example-update-for=Fill-Ellipse
+
+[33mcommit 571f3b1def2d61fabdd6e60ce24aaabb479dac0c[m
+Author: EthanRin <sovanpanhaarinn@gmail.com>
+Date:   Tue Nov 12 18:43:05 2024 +1100
+
+    file-name-fixes
+
+[33mcommit b4b896913652d06385a4f34ff0c97b883cd0bad9[m
+Author: EthanRin <sovanpanhaarinn@gmail.com>
+Date:   Tue Nov 12 18:28:56 2024 +1100
+
+    usage-examples-fill-circle
+
+[33mcommit 9a561c9fbf3df39c7675bbf65121f59cc0ebe0e0[m[33m ([m[1;31mupstream/usage-examples[m[33m, [m[1;31mupstream/tutorial-improvements[m[33m, [m[1;31mupstream/main[m[33m, [m[1;32musage-examples-blue-circle[m[33m)[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Wed Nov 6 01:41:56 2024 +0000
+
+    Update build task to single task
+
+[33mcommit 8d157efca63969240b1a47abf20f02cbf12c46dd[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Nov 4 03:15:01 2024 +0000
+
+    Add highlight box for function name in usage example code.
+
+[33mcommit c6f750f0b78d0084c9471fdb2dc7dd1bd9c07d39[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 28 15:55:49 2024 +0000
+
+    Minor path typo fix
+
+[33mcommit b0b6436463b0918aae989edf1f2a399dd28ee1cf[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 28 15:50:32 2024 +0000
+
+    Remove Hackathon folder from sidebar
+
+[33mcommit f605c0a6e3c56052439154dec5ced59300b6fc68[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 28 15:46:56 2024 +0000
+
+    Update usage example script to: include python, be dynamic with C# code tabs, include testing command output and use single folder in public/usage-examples-files. And update contributing file
+
+[33mcommit 2e063b766c00edf30cdf873961d6caa6139e9a91[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 28 08:19:27 2024 +0000
+
+    Add Usage example button on landing page and index page
+
+[33mcommit 3a1368cf16e0c7cec255402a6f6514df45957750[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 28 07:47:38 2024 +0000
+
+    Remove excess variables and general tidy up
+
+[33mcommit 557aa207c0b447fbb2a9453a53f55c39e357ecd6[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 28 07:20:17 2024 +0000
+
+    Update action button icons on landing page ready for usage example button being added
+
+[33mcommit d0af69fbd42cdbd50129f5626df9dafad730771a[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 28 07:19:03 2024 +0000
+
+    Simplify action link button styling on landing page
+
+[33mcommit a4ecc6945cd13105088c02077c8ed097b49b81f4[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 28 06:52:28 2024 +0000
+
+    Simplify link card styling
+
+[33mcommit da148e5ccbf38d40852d53c089139082a7cdefaa[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 28 06:18:11 2024 +0000
+
+    Update build task to remove automatic building
+
+[33mcommit d38e004b347b41183ac823f4a2c6270ed9f4f637[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 21 08:07:12 2024 +0000
+
+    Simplify glow border styling for buttons and link cards
+
+[33mcommit 43f25fd392e9727eae133aefb2defdd3b7b423f0[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 21 07:36:26 2024 +0000
+
+    Remove Sprites folder from sidebar
+
+[33mcommit 8bb40022637af36d7206a9e8d642072941797945[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 21 07:35:37 2024 +0000
+
+    Remove extra using-splashkit guides
+
+[33mcommit 7243096202d7b1f32bbf69a7891a9fc27da2db8f[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Mon Oct 21 07:35:03 2024 +0000
+
+    Add in guides index page changes that were accidentally removed
+
+[33mcommit 066f1b1196f8cd31a4e3c6ef59ba13c1ad4086f3[m
+Author: Olivia McKeon <ordmckeon@gmail.com>
+Date:   Mon Oct 21 16:31:42 2024 +1100
+
+    Add pull request template
+
+[33mcommit cbc658c1482994c00f3d9e7912f55a8288a79d66[m
+Merge: b358dd2 f7d1fa2
+Author: Andrew Cain <macite@gmail.com>
+Date:   Fri Oct 18 20:52:44 2024 +1100
+
+    Merge pull request #19 from thoth-tech/website-styling
+    
+    Website styling updates (Thoth Tech T2 2024)
+
+[33mcommit b358dd2c9f87711cf826d5c7db00f0095d8d8847[m
+Merge: 6f36aef 1dd8bed
+Author: Andrew Cain <macite@gmail.com>
+Date:   Fri Oct 18 20:52:14 2024 +1100
+
+    Merge pull request #18 from thoth-tech/usage-example-contributions
+    
+    Added usage examples (Thoth Tech T2 2024)
+
+[33mcommit 6f36aef7ed9a24d72bca34c1af7fbb84ff11e525[m
+Merge: 8044716 1adf02e
+Author: Andrew Cain <macite@gmail.com>
+Date:   Fri Oct 18 20:50:26 2024 +1100
+
+    Merge pull request #17 from thoth-tech/tutorial-guide-improvements
+    
+    Improved Tutorial Guides (Thoth Tech T2 2024)
+
+[33mcommit f7d1fa25a2c5ebf3dff628063b420e1921ca44ae[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Fri Oct 11 11:22:23 2024 +0000
+
+    Update hero action button styling to match link cards, fix updated starlight dependency issues, and remove action button gradient animation
+
+[33mcommit 20afbe78be36afdc9fd6e11860d27a3174cd0c80[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Fri Oct 11 10:01:07 2024 +0000
+
+    Improve styling of hero component on front page
+
+[33mcommit 2582f01719a74e7f6fd9d0c3d53ce2e99686a2e7[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Fri Oct 11 07:41:47 2024 +0000
+
+    Remove shadow behind logo for now
+
+[33mcommit 22170bb6325e281309d4f62dd4a3e4e2fbe5beeb[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Fri Sep 20 11:05:29 2024 +0000
+
+    Fix OS icons and remove from install step pages
+
+[33mcommit 02feead988f90b5703adfc5a6963f63568c3d61e[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Thu Sep 19 11:54:22 2024 +0000
+
+    Reduce link card shadow by 5px
+
+[33mcommit 871d820149e408da71a3e2f05b3daa1a9af5d9d0[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Thu Sep 19 04:28:26 2024 +0000
+
+    Fix index pages tip names
+
+[33mcommit e186077bb3a4deadb7e3036e9d6c080996b79aaf[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Thu Sep 19 04:28:01 2024 +0000
+
+    Remove background animation
+
+[33mcommit 5e79267e6223d7db7493c36a2feeb36ec426ad02[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Thu Sep 19 04:27:51 2024 +0000
+
+    Reduce animations in card styling - only link cards change on hover.
+
+[33mcommit 095d72f3fe3656721e22a0ab52b5852b529bd1a4[m
+Author: Sana Noureen <s223425024@deakin.edu.au>
+Date:   Thu Sep 19 06:28:19 2024 +1000
+
+    Minor changes in styling
+
+[33mcommit 2b4e242de8726e5aec30920c96753ac062cb6f2b[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Tue Sep 17 21:28:19 2024 +1000
+
+    Fix link card border issue in deploy preview
+
+[33mcommit 4523be7b4b3859ad1c72ba440009b4140cd361f8[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Tue Sep 17 21:17:09 2024 +1000
+
+    Minor card styling improvements to increase contrast
+
+[33mcommit 78875e6e0556d3026696a8b9e74a581108433f8c[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Tue Sep 17 16:13:28 2024 +1000
+
+    Added link card styling for index pages
+
+[33mcommit 63505dcc52b492a1380cfd28a771e4e3179f2ff3[m
+Author: Sana Noureen <s223425024@deakin.edu.au>
+Date:   Wed Aug 28 19:00:00 2024 +1000
+
+    Updated the website's styling
+    
+    Minor update to revert button and SplashKit title colours
+    
+    Updated the website's styling
+    
+    Minor update to revert button and SplashKit title colours
+    
+    Updated the website's styling
+    
+    Minor update to revert button and SplashKit title colours
+    
+    Add in upstream changes to resolve merge conflicts
+    
+    Minor Background changes
+    
+    Revert removing gradient overlay
+
+[33mcommit d82771062bfac84b80b861f29b9810f2e9c49843[m
+Author: oliverexell-bruce <oliverxl@icloud.com>
+Date:   Tue Sep 17 13:02:07 2024 +1000
+
+    Update tables css
+    
+    - Fix table margins
+    - Add table heading colours
+    
+    Update table lightmode colour to a light grey
+    
+    Minor table heading background and border colour improvements.
+
+[33mcommit 1adf02ee3f99563aa43946a3d4ce388d46f52080[m
+Author: omckeon <ordmckeon@gmail.com>
+Date:   Fri Oct 11 03:15:35 2024 +0000
+
+    Update guides frontmatter info
+
+[33mcommit f5601bf90303da1fe729b9ad6cf4515a47e72d97[m
+Aut
