@@ -6,7 +6,7 @@ int main()
 
     clear_screen();
 
-    // Define the center of the circles
+    // Define the center point of circles
     point_2d center = {400, 300};
 
     // Create 4 circles with different radii
@@ -15,7 +15,7 @@ int main()
     circle c3 = {center, 150};
     circle c4 = {center, 200};
 
-    // Draw the circles
+    // Draw the circles with different colors
     draw_circle(COLOR_RED, c1);
     draw_circle(COLOR_BLUE, c2);
     draw_circle(COLOR_ORANGE, c3);
