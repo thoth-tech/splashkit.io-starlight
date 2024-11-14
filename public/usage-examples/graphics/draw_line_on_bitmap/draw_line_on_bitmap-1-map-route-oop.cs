@@ -10,10 +10,10 @@ namespace DrawLineOnBitmap
             Window window = new Window("Window", 400, 300);
             Bitmap bitmap = new Bitmap("map", 400, 300);
 
-            // Fill background with white for map background
+            // Fill background with white
             SplashKit.ClearBitmap(bitmap, Color.White);
 
-            // Draw the route line and start and end points
+            // Draw the route line and points
             SplashKit.DrawLineOnBitmap(bitmap, Color.Green,
                           100, 80,    // Starting point (x1, y1)
                           300, 220);  // End point (x2, y2)
@@ -23,7 +23,7 @@ namespace DrawLineOnBitmap
             while (!window.CloseRequested)
             {
                 SplashKit.ProcessEvents();
-                // Draw the bitmap to the window
+                // Draw the bitmap to the current window
                 window.DrawBitmap(bitmap, 0, 0);
                 // Refresh the window
                 SplashKit.RefreshScreen();
