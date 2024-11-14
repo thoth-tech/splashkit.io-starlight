@@ -7,7 +7,7 @@ int main()
     clear_screen(COLOR_BLACK);
 
 
-    // Draw line - param (Color, x1, y1, x2, y2)
+    // Draw line param (Color, x1, y1, x2, y2)
     draw_line(COLOR_YELLOW, 0,0,600,600);
     draw_line(COLOR_GREEN, 0,150,600,450);
     draw_line(COLOR_TEAL, 0,300,600,300);
