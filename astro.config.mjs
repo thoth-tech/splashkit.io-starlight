@@ -4,6 +4,7 @@ import solidJs from "@astrojs/solid-js";
 import react from "@astrojs/react";
 import starlightLinksValidator from 'starlight-links-validator';
 import sitemap from "@astrojs/sitemap";
+import partytown from '@astrojs/partytown';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,6 +16,26 @@ export default defineConfig({
     starlight({
       title: "SplashKit",
       description: 'SplashKit is a cross-platform game engine for C, C++ and Objective-C. It provides a simple API for 2D game development.',
+      head: [
+        // Google Analytics script tag
+        {
+          tag: 'script',
+          attrs: {
+            async: true,
+            src: 'https://www.googletagmanager.com/gtag/js?id=G-1HKE1PH6ZM',
+          },
+        },
+        // Google Analytics inline configuration
+        {
+          tag: 'script',
+          children: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-1HKE1PH6ZM');
+          `,
+        },
+      ],
       plugins: [
         starlightLinksValidator({
           errorOnRelativeLinks: true,
