@@ -30,7 +30,7 @@ namespace Program
 
             // Output the result
             SplashKit.WriteLine("Calculating interest...");
-            Delay(1000);
+            SplashKit.Delay(1000);
 
             SplashKit.WriteLine($"For a principal of ${principal} at an interest rate of {rate}% over {time} years:");
             SplashKit.WriteLine($"The simple interest is: ${interest}");
