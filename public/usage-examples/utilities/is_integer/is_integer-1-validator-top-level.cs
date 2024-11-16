@@ -1,36 +1,26 @@
-﻿using SplashKitSDK;
+﻿using static SplashKitSDK.SplashKit;
 
-namespace Program
+WriteLine("Welcome to the Integer Validation Checker!");
+
+bool validInput = false;
+
+// Loop until the user enters a valid integer
+while (!validInput)
 {
-    public class Program
+    WriteLine("Please enter a valid integer:");
+    string input = ReadLine();
+
+    // Check if the input is a valid integer
+    if (IsInteger(input))
     {
-        public static void Main()
-        {
-            SplashKit.WriteLine("Welcome to the Integer Validation Checker!");
-
-            bool validInput = false;
-
-            // Loop until the user enters a valid integer
-            while (!validInput)
-            {
-                SplashKit.WriteLine("Please enter a valid integer:");
-                string input = SplashKit.ReadLine();
-
-                // Check if the input is a valid integer
-                if (SplashKit.IsInteger(input))
-                {
-                    int number = SplashKit.ConvertToInteger(input);  // Convert input to integer
-                    SplashKit.WriteLine($"Great! You've entered a valid integer: {number}");
-                    validInput = true;  // Exit loop on valid input
-                }
-                else
-                {
-                    SplashKit.WriteLine("Oops! That's not a valid integer. Please try again.");
-                }
-            }
-
-            SplashKit.WriteLine("Thank you for using the Integer Validation Checker!");
-
-        }
+        int number = ConvertToInteger(input);  // Convert input to integer
+        WriteLine($"Great! You've entered a valid integer: {number}");
+        validInput = true;  // Exit loop on valid input
+    }
+    else
+    {
+        WriteLine("Oops! That's not a valid integer. Please try again.");
     }
 }
+
+WriteLine("Thank you for using the Integer Validation Checker!");
