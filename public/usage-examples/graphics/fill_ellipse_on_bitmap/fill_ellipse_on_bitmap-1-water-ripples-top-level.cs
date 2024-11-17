@@ -2,14 +2,14 @@ using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 // Create a window and bitmap for the water surface
-var window = OpenWindow("Window", 400, 300);
-var bitmap = CreateBitmap("water", 400, 300);
+Window window = OpenWindow("Window", 400, 300);
+Bitmap bitmap = CreateBitmap("water", 400, 300);
 
 // Fill background with light blue
 ClearBitmap(bitmap, RGBAColor(200, 230, 255, 255));
 
 // Create different blue tones for ripples (from most opaque to most transparent)
-var rippleColors = new Color[] {
+Color[] rippleColors = {
     RGBAColor(100, 150, 255, 100),
     RGBAColor(120, 170, 255, 80),
     RGBAColor(140, 190, 255, 60),
