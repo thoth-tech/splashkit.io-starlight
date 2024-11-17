@@ -2,8 +2,8 @@ using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 // Create a window and bitmap for the window
-var window = OpenWindow("Window", 400, 300);
-var bitmap = CreateBitmap("window", 400, 300);
+Window window = OpenWindow("Window", 400, 300);
+Bitmap bitmap = CreateBitmap("window", 400, 300);
 
 // Fill background with light color
 ClearBitmap(bitmap, ColorWhite());
