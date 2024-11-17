@@ -1,0 +1,3 @@
+#### Draw Rectangle on a Window
+
+The following code shows an example of using [Draw Rectangle On Window](/api/graphics#draw_rectangle_on_window) to draw rectangle on a window.
