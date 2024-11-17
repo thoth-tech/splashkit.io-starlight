@@ -1,8 +1,9 @@
+using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 // Create a Window and bitmap for the map
-var window = OpenWindow("Window", 400, 300);
-var bitmap = CreateBitmap("map", 400, 300);
+Window window = OpenWindow("Window", 400, 300);
+Bitmap bitmap = CreateBitmap("map", 400, 300);
 
 // Fill background with white
 ClearBitmap(bitmap, ColorWhite());
