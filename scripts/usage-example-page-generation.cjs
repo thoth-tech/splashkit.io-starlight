@@ -125,6 +125,29 @@ function getFunctionLink(jsonData, groupNameToCheck, uniqueNameToCheck) {
   return functionLink;
 }
 
+// Clean directory function to remove all files except those in the exclusions list
+// Resolves the issue of usage example mdx files being left behind when changing branches causing failures in builds
+const path = require('path');
+
+function cleanDirectory(directory, exclusions) {
+  const files = fs.readdirSync(directory, { withFileTypes: true });
+  files.forEach(file => {
+    const fullPath = path.join(directory, file.name);
+    if (file.isDirectory()) {
+      cleanDirectory(fullPath, exclusions);  // Recursively clean directories
+    } else if (!exclusions.includes(file.name)) {
+      fs.unlinkSync(fullPath);  // Delete file if not in exclusions
+      console.log(`Deleted: ${fullPath}`);
+    }
+  });
+}
+
+const directoryToClean = 'src/content/docs/usage-examples';
+const filesToKeep = ['index.mdx', 'CONTRIBUTING.mdx'];
+
+cleanDirectory(directoryToClean, filesToKeep);
+console.log('Directory cleaned, excluded specific files.');
+
 // ===============================================================================
 // Start of Main Script
 // ===============================================================================
