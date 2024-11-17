@@ -1,23 +1,24 @@
+using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 // Create a window and bitmap to draw on
-var window = OpenWindow("Cube", 800, 600);
-var bitmap = CreateBitmap("cube", 800, 600);
+Window window = OpenWindow("Cube", 800, 600);
+Bitmap bitmap = CreateBitmap("cube", 800, 600);
 
 // Fill background with light color
 ClearBitmap(bitmap, ColorWhite());
 
 // Define the color for the cube
-var cubeColor = ColorBlue();
+Color cubeColor = ColorBlue();
 
 // Define the coordinates of the front and back faces of the cube
-var frontFace = QuadFrom(
+Quad frontFace = QuadFrom(
     300, 200,    // Top-left
     500, 200,    // Top-right
     300, 400,    // Bottom-left
     500, 400     // Bottom-right
 );
 
-var backFace = QuadFrom(
+Quad backFace = QuadFrom(
     350, 150,    // Top-left
     550, 150,    // Top-right
     350, 350,    // Bottom-left
