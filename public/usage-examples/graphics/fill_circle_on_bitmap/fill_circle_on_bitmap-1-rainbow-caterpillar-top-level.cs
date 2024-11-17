@@ -2,14 +2,14 @@ using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 // Create a window and bitmap for our caterpillar
-var window = OpenWindow("Window", 400, 200);
-var bitmap = CreateBitmap("caterpillar", 400, 200);
+Window window = OpenWindow("Window", 400, 200);
+Bitmap bitmap = CreateBitmap("caterpillar", 400, 200);
 
 // Fill background with light color
 ClearBitmap(bitmap, ColorWhite());
 
 // Create rainbow colors array
-var colors = new Color[] { ColorRed(), ColorOrange(), ColorYellow(),
+Color[] colors = { ColorRed(), ColorOrange(), ColorYellow(),
                           ColorGreen(), ColorBlue(), ColorViolet() };
 
 // Draw circles for caterpillar segments with alternating y positions
