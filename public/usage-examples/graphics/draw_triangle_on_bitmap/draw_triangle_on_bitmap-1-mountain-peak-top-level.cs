@@ -1,14 +1,15 @@
+using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 // Create a window and bitmap for the mountain scene
-var window = OpenWindow("Window", 400, 300);
-var bitmap = CreateBitmap("mountain", 400, 300);
+Window window = OpenWindow("Window", 400, 300);
+Bitmap bitmap = CreateBitmap("mountain", 400, 300);
 
 // Fill background with light blue color
 ClearBitmap(bitmap, ColorLightBlue());
 
 // Draw right peak (smallest)
-DrawTriangleOnBitmap(bitmap, ColorGray(), 
+DrawTriangleOnBitmap(bitmap, ColorGray(),
                      175, 250,   // Left base
                      275, 175,   // Peak
                      375, 250);  // Right base
