@@ -1,13 +1,14 @@
 using static SplashKitSDK.SplashKit;
+using SplashKitSDK;
 
 // Create a Window and bitmap for the map
-var window = OpenWindow("Window", 400, 400);
-var bitmap = CreateBitmap("planet", 400, 400);
+Window window = OpenWindow("Window", 400, 400);
+Bitmap bitmap = CreateBitmap("planet", 400, 400);
 
 // Fill background with dark color
 ClearBitmap(bitmap, ColorBlack());
 // Create color
-var red = ColorRed();
+Color red = ColorRed();
 
 // Draw the main planet circle
 FillCircleOnBitmap(bitmap, RGBAColor(180, 0, 0, 255), 200, 200, 150);
