@@ -30,6 +30,6 @@ for i in range(0, 360):
     delay(10)
 
 # Free the bitmap resource
-free_all_bitmap()
+free_all_bitmaps()
 # Close all windows
 close_all_windows()
