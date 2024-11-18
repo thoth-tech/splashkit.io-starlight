@@ -2,6 +2,11 @@
 
 const fs = require("fs");
 const kleur = require("kleur");
+const path = require('path');
+
+// For cleaning files from usage-examples folder
+const directoryToClean = 'src/content/docs/usage-examples';
+const filesToKeep = ['index.mdx', 'CONTRIBUTING.mdx'];
 
 // Define language label mappings
 const languageLabelMappings = {
@@ -127,8 +132,6 @@ function getFunctionLink(jsonData, groupNameToCheck, uniqueNameToCheck) {
 
 // Clean directory function to remove all files except those in the exclusions list
 // Resolves the issue of usage example mdx files being left behind when changing branches causing failures in builds
-const path = require('path');
-
 function cleanDirectory(directory, exclusions) {
   const files = fs.readdirSync(directory, { withFileTypes: true });
   files.forEach(file => {
@@ -137,22 +140,19 @@ function cleanDirectory(directory, exclusions) {
       cleanDirectory(fullPath, exclusions);  // Recursively clean directories
     } else if (!exclusions.includes(file.name)) {
       fs.unlinkSync(fullPath);  // Delete file if not in exclusions
-      console.log(`Deleted: ${fullPath}`);
+      console.log(kleur.red(`Deleted:`) + ` ${fullPath}`);
     }
   });
 }
 
-const directoryToClean = 'src/content/docs/usage-examples';
-const filesToKeep = ['index.mdx', 'CONTRIBUTING.mdx'];
-
+console.log('Cleaning up directory for Usage examples pages...\n');
 cleanDirectory(directoryToClean, filesToKeep);
-console.log('Directory cleaned, excluded specific files.');
 
 // ===============================================================================
 // Start of Main Script
 // ===============================================================================
 
-console.log("Generating MDX files for Usage Examples pages...\n");
+console.log("\nGenerating MDX files for Usage Examples pages...\n");
 
 let name;
 let success = true;
