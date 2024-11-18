@@ -1,0 +1,3 @@
+### Convert between upper and lower case
+
+The following code shows examples of using [to uppercase](/api/utilities/#to-uppercase) to convert a string between upper and lowercase for each word.
