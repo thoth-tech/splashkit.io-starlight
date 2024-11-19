@@ -1,0 +1,3 @@
+#### Random Bitmap Point
+
+The following code shows examples of using [Random Bitmap Point](/api/geometry#random-bitmap-point) to show how to select a random point on a bit, in this case to draw a random quad shape.
