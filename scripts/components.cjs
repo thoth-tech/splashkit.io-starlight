@@ -63,7 +63,7 @@ function getAllFiles(dir, allFilesList = []) {
 
 function getAllFinishedExamples() {
   var apiJsonData;
-  try{
+  try {
     var apiData = fs.readFileSync(`${__dirname}/api.json`);
     apiJsonData = JSON.parse(apiData);
   } catch (error) {
@@ -71,25 +71,24 @@ function getAllFinishedExamples() {
   }
 
   const categories = []
-  for (const categoryKey in apiJsonData){
-    if (categoryKey != "types"){
+  for (const categoryKey in apiJsonData) {
+    if (categoryKey != "types") {
       categories.push(categoryKey);
     }
   }
 
-  const allExamples = []; 
+  const allExamples = [];
 
   categories.forEach((categoryKey) => {
     //let categoryFilePath = './public/usage-examples/' + categoryKey;
     const categoryFilePath = path.join(path.dirname(__dirname), "public", "usage-examples", categoryKey);
     const categoryFiles = getAllFiles(categoryFilePath);
-    
+
     // Filter for .txt files
     const txtFiles = categoryFiles.filter(file => file.endsWith('.txt'));
-    
+
     // Extract the portion before the first '-'
-    if (txtFiles.length > 0)
-    {
+    if (txtFiles.length > 0) {
       txtFiles.forEach((file) => {
         const filename = file.split('-')[0];
         allExamples.push(filename);
@@ -161,12 +160,12 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
 
     const jsonColors = getColorData();
     const usageExamples = getAllFinishedExamples();
-    console.log(usageExamples);
+    // console.log(usageExamples);
 
     // Please select an option: "animations, audio, camera, color, database, geometry, graphics, input, json, networking, physics, resource_bundles, resources, social, sprites, terminal, timers, types, utilities, windows"
     for (const categoryKey in jsonData) {
       const category = jsonData[categoryKey];
-      console.log(categoryKey);
+      // console.log(categoryKey);
       let input = categoryKey;
       const categoryFunctions = category.functions;
       let mdxContent = "";
@@ -193,7 +192,7 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
           mdxContent += `:::\n`
         }
       }
-      mdxContent += `\nimport { Tabs, TabItem } from "@astrojs/starlight/components";\nimport { LinkCard, CardGrid } from "@astrojs/starlight/components";\n`;
+      mdxContent += `\nimport { Tabs, TabItem } from "@astrojs/starlight/components";\nimport { LinkCard, CardGrid } from "@astrojs/starlight/components";\nimport { LinkButton } from '@astrojs/starlight/components';\n`;
       if (guidesAvailable[categoryKey]) {
         mdxContent += "\n## \n";
         mdxContent += `## ${name} Guides\n`;
@@ -228,15 +227,10 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
           const formattedLink = formattedFunctionName.toLowerCase().replace(/\s+/g, "-");
-        
+
           const formattedGroupLink = `${formattedLink}`;
           mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink})\n\n`;
-          usageExamples.forEach((example) => {
-            if (functionName == example){
-              formattedUsageLink = functionName.replace(/_/g, "-");
-              mdxContent += `\n***[Usage Example Availabe](/usage-examples/${categoryKey}/#${formattedUsageLink})***\n`
-            }
-          }) 
+
           mdxContent += ":::note\n\n";
           mdxContent += "This function is overloaded. The following versions exist:\n\n";
 
@@ -303,14 +297,6 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
           }
           else {
             mdxContent += `${formattedName}`;
-            usageExamples.forEach((example) => {
-              if (!isOverloaded){
-                if (functionName == example){
-                  formattedUsageLink = functionName.replace(/_/g, "-");
-                  mdxContent += `\n***[Usage Example Availabe](/usage-examples/${categoryKey}/#${formattedUsageLink})***\n`
-                }
-              }
-            }) 
           }
 
           mdxContent += "\n\n";
@@ -371,6 +357,15 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
             mdxContent += "**Return Type:** " + typeMappings[func.return.type] + "\n\n";
           }
 
+          let linked = false;
+          usageExamples.forEach((example) => {
+            if (func.unique_global_name == example && !linked) {
+              formattedUsageLink = func.unique_global_name.replace(/_/g, "-");
+              mdxContent += `**Usage:**\n`
+              mdxContent += `<LinkButton href="/usage-examples/${categoryKey}/#${formattedUsageLink}" variant="secondary">\nSee Example Code\n</LinkButton>\n\n`
+              linked = true;
+            }
+          });
 
           mdxContent += "**Signatures:**\n\n";
           mdxContent += "<Tabs syncKey=\"code-language\">\n";
