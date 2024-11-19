@@ -423,42 +423,40 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
             // If it's an enum, add a table for its constants
             if (type.constants) {
               mdxContent += "<Tabs syncKey=\"code-language\">\n";
-
+            
               // Build constantsData from type.constants so that they remain the same in all tabs
               const constantsData = {};
               Object.keys(type.constants).forEach((constantName) => {
                 const constant = type.constants[constantName];
                 constantsData[constantName] = {
-                  description: constant.description.replace(/\n/g, '') || "No description", // If description is undefined, display "No description"
-                  value: constant.number !== undefined ? constant.number : "" // If number is undefined, display an empty string
+                  description: constant.description.replace(/\n/g, '') || "No description" // If description is undefined, display "No description"
                 };
               });
-
+            
               // Iterate over each language
               languageOrder.forEach(lang => {
                 if (type.signatures[lang]) {
                   const signature = Array.isArray(type.signatures[lang]) ? type.signatures[lang].join("\n") : type.signatures[lang];
                   const enumValues = extractEnumValues(signature, lang);
-
-                  // Build the mapping so that each constant has its own name, but the value / description remains the same
+            
+                  // Build the mapping so that each constant has its own name, but the description remains the same
                   const formattedNames = {};
                   const cppNames = Object.keys(type.constants);
                   cppNames.forEach((cppName, index) => {
                     formattedNames[cppName] = enumValues[index] || cppName;
                   });
-
+            
                   mdxContent += `  <TabItem label="${languageLabelMappings[lang] || lang}">\n`;
-                  mdxContent += "| Constant | Value | Description |\n";
-                  mdxContent += "| --------- | ----- | ----------- |\n";
-
-                  // For each constant in constantsData (which is the same for all languages)
+                  mdxContent += "| Constant | Description |\n";
+                  mdxContent += "| --------- | ----------- |\n";
+            
+                  // Keep the description the same for all constants using the constantsData object
                   Object.keys(constantsData).forEach((cppName) => {
                     const formattedName = formattedNames[cppName] || cppName;
                     const data = constantsData[cppName];
-                    const displayValue = data.value !== "" ? data.value : "";
-                    mdxContent += `| ${formattedName} | ${displayValue} | ${data.description} |\n`;
+                    mdxContent += `| ${formattedName} | ${data.description} |\n`;
                   });
-
+            
                   mdxContent += "  </TabItem>\n";
                 }
               });
