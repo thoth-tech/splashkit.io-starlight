@@ -1,0 +1,3 @@
+#### Random Screen Point
+
+The following code shows examples of using [Random Screen Point](/api/geometry#random-screen-point-1) to show how to select a random point on the screen, in this case for a sprite location.
