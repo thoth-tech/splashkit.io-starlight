@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace FillCircleOnBitmap
+namespace RandomScreenPoint
 {
     public class Program
     {
