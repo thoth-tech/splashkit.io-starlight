@@ -8,7 +8,6 @@ namespace FillCircleOnBitmap
         {
            //Create Window
             SplashKit.OpenWindow("draw sprite random", 600, 600);
-            SplashKit.ClearScreen(SplashKit.ColorWhiteSmoke());
 
             SplashKit.LoadBitmap("food", "food.png");
             Sprite FoodSprite = SplashKit.CreateSprite(SplashKit.BitmapNamed("food"));

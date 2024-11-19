@@ -3,7 +3,6 @@ using static SplashKitSDK.SplashKit;
 
 //Create Window
 OpenWindow("draw sprite random", 600, 600);
-ClearScreen(ColorWhiteSmoke());
 
 LoadBitmap("food", "food.png");
 Sprite FoodSprite = CreateSprite(BitmapNamed("food"));

@@ -6,8 +6,7 @@ int main()
 
     //Create Window
     open_window("draw sprite random", 600, 600);
-    clear_screen(color_white_smoke());
-
+    
     load_bitmap("food", "food.png");
     sprite food_sprite = create_sprite(bitmap_named("food"));
 

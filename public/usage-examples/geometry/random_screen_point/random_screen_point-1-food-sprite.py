@@ -2,7 +2,6 @@ from splashkit import *
 
 #Create Window
 open_window("draw sprite random", 600, 600)
-clear_screen(color_white_smoke())
 
 load_bitmap("food", "food.png")
 food_sprite = create_sprite(bitmap_named("food"))
