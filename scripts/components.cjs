@@ -49,10 +49,10 @@ function getAllFiles(dir, allFilesList = []) {
     const files = fs.readdirSync(dir);
     files.map(file => {
       const name = dir + '/' + file;
-      if (fs.statSync(name).isDirectory()) { // check if subdirectory is present
-        getAllFiles(name, allFilesList);     // do recursive execution for subdirectory
+      if (fs.statSync(name).isDirectory()) { 
+        getAllFiles(name, allFilesList);
       } else {
-        allFilesList.push(file);             // push filename into the array
+        allFilesList.push(file);      
       }
     })
   } catch (err) {
@@ -63,6 +63,8 @@ function getAllFiles(dir, allFilesList = []) {
 
 function getAllFinishedExamples() {
   var apiJsonData;
+  const allExamples = new Set();
+
   try{
     var apiData = fs.readFileSync(`${__dirname}/api.json`);
     apiJsonData = JSON.parse(apiData);
@@ -77,27 +79,24 @@ function getAllFinishedExamples() {
     }
   }
 
-  const allExamples = []; 
-
   categories.forEach((categoryKey) => {
-    //let categoryFilePath = './public/usage-examples/' + categoryKey;
     const categoryFilePath = path.join(path.dirname(__dirname), "public", "usage-examples", categoryKey);
     const categoryFiles = getAllFiles(categoryFilePath);
-    
-    // Filter for .txt files
     const txtFiles = categoryFiles.filter(file => file.endsWith('.txt'));
     
-    // Extract the portion before the first '-'
-    if (txtFiles.length > 0)
-    {
+    if (txtFiles.length > 0){
       txtFiles.forEach((file) => {
-        const filename = file.split('-')[0];
-        allExamples.push(filename);
-      });
+        const fileName = file.split("-")[0];
+        const fileContent = fs.readFileSync(path.join(path.dirname(__dirname), "public", "usage-examples", categoryKey, fileName, file), 'utf8');
+
+        const regex = /#([\w-]+)/g;
+        const matches = [...fileContent.matchAll(regex)].map(match => match[0]);
+        matches.forEach(match => allExamples.add(match));
+      })
     }
   });
 
-  return allExamples;
+  return [...allExamples];
 }
 
 function Mappings(jsonData) {
@@ -231,12 +230,6 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
         
           const formattedGroupLink = `${formattedLink}`;
           mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink})\n\n`;
-          usageExamples.forEach((example) => {
-            if (functionName == example){
-              formattedUsageLink = functionName.replace(/_/g, "-");
-              mdxContent += `\n***[Usage Example Availabe](/usage-examples/${categoryKey}/#${formattedUsageLink})***\n`
-            }
-          }) 
           mdxContent += ":::note\n\n";
           mdxContent += "This function is overloaded. The following versions exist:\n\n";
 
@@ -305,10 +298,19 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
             mdxContent += `${formattedName}`;
             usageExamples.forEach((example) => {
               if (!isOverloaded){
-                if (functionName == example){
+                if (`#${formattedLink}` == example){
                   formattedUsageLink = functionName.replace(/_/g, "-");
                   mdxContent += `\n***[Usage Example Availabe](/usage-examples/${categoryKey}/#${formattedUsageLink})***\n`
                 }
+              } else if (isOverloaded){
+                const regex =  /\(#([^)]+)\)/;
+                const match = formattedName.match(regex);
+                const extractedLink = `#${match[1]}`;
+                if (extractedLink == example){
+                  formattedUsageLink = functionName.replace(/_/g, "-");
+                  mdxContent += `\n***[Usage Example Availabe](/usage-examples/${categoryKey}/#${formattedUsageLink})***\n`
+                }
+                
               }
             }) 
           }
