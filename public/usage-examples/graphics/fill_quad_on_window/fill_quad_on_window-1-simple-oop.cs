@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace WriteLineInt
+namespace FillQuadOnWindow
 {
     public class Program
     {
