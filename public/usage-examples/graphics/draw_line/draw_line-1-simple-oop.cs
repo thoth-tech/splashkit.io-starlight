@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace draw_line_on_window
+namespace DrawLine
 {
     public class Program
     {
