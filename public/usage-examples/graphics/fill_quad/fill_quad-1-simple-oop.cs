@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace WriteLineInt
+namespace FillQuad
 {
     public class Program
     {
