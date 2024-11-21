@@ -1,0 +1,9 @@
+### Getting Sprite y-coordinate
+
+The following code is an example of using [Sprite Y](https://splashkit.io/api/sprites/#sprite-y) which retrieves the y-coordinate of a Sprite on a SplashKit window.
+
+:::note
+
+To test this example code you can download these [**Resources**](/resources/usage-examples/sprites/spriteY_BasicSpriteResources.zip).
+
+:::
