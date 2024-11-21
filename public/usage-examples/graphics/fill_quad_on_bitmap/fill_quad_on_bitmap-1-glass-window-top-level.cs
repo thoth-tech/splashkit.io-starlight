@@ -5,7 +5,7 @@ using SplashKitSDK;
 Window window = OpenWindow("Window", 400, 300);
 Bitmap bitmap = CreateBitmap("window", 400, 300);
 
-// Fill background with light color
+// Fill background with white
 ClearBitmap(bitmap, ColorWhite());
 
 // Create color
