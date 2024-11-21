@@ -1,0 +1,3 @@
+#### Draw Triangle
+
+The following code shows examples of using [Draw Triangle](/api/graphics/#draw-triangle-1) to show how to draw random triangles.
