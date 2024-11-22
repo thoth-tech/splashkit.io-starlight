@@ -1,3 +1,4 @@
-#### Simple
+#### Basic Blue Rectangle
 
-The following code shows examples of using [/api/graphics/#fill-rectangle-on-window-1](/api/graphics/#) to show how to fill a rectangle on a specified window.
+The following code shows examples of using [Fill Rectangle On Window Record](/api/graphics#fill-rectangle-on-window-1) to show how to fill a rectangle on a specified window.
+
