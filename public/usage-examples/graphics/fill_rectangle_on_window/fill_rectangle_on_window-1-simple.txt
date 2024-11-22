@@ -1,0 +1,3 @@
+#### Simple
+
+The following code shows examples of using [/api/graphics/#fill-rectangle-on-window-3](/api/graphics/#) to show how to fill a rectangle on a specified window.
