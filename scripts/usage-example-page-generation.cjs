@@ -448,8 +448,90 @@ categories.forEach((categoryKey) => {
             }
           }
 
-          mdxContent += `![${exampleKey} example](${outputFilePath})\n`
-          mdxContent += "\n---\n";
+			mdxContent += `![${exampleKey} example](${outputFilePath})\n`
+	
+			// Add the toggle button and iframe
+			mdxContent += `
+			<div style="text-align: center; margin-top: 1rem;">
+			<button
+				id="${functionKey}_sko_button"
+				class="sko-button"
+				style="margin-top: 1rem;"
+				onclick='
+				try {
+					const iframeContainer = document.getElementById("${functionKey}_iframe_container");
+					const button = document.getElementById("${functionKey}_sko_button");
+					const iframe = iframeContainer.querySelector("iframe");
+			
+					if (!iframeContainer || !button || !iframe) {
+						console.error("Error: Missing iframe container, button, or iframe for ${functionKey}");
+						return;
+					}
+			
+					// Toggle iframe visibility
+					if (iframeContainer.style.display === "none" || iframeContainer.style.display === "") {
+						iframeContainer.style.display = "flex";
+						button.innerHTML = "Hide SKO";
+			
+						// Log the constructed filepath
+						const categoryFilePath = "/usage-examples";
+						const categoryKey = "${categoryKey}";
+						const functionKey = "${functionKey}";
+						const exampleKey = "${exampleKey}";
+						const filePath = \`\${categoryFilePath}/\${categoryKey}/\${functionKey}/\${exampleKey}.cpp\`;
+			
+						console.log("Generated File Path:", filePath);
+			
+						// Fetch the contents of the C++ file
+						fetch(filePath)
+							.then(response => {
+								if (!response.ok) {
+									throw new Error("Failed to fetch C++ file: " + filePath);
+								}
+								return response.text();
+							})
+							.then(codeData => {
+								console.log("Code Data Loaded:", codeData);
+			
+								// Post message with code content to SKO iframe
+								iframe.contentWindow.postMessage({
+									eventType: "InitializeProjectFromOutsideWorld",
+									files: [{ path: "/code/main.cpp", data: codeData }]
+								}, "*");
+								console.log("Code sent to SKO iframe:", codeData);
+							})
+							.catch(error => {
+								console.error("Error reading file:", error);
+							});
+					} else {
+						iframeContainer.style.display = "none";
+						button.innerHTML = "Try it in SKO";
+						console.log("Iframe hidden for ${functionKey}");
+					}
+				} catch (error) {
+					console.error("An error occurred in the SKO button logic:", error);
+				}
+				'
+			>
+				Try it in SKO
+			</button>
+			</div>
+			
+			<div
+				id="${functionKey}_iframe_container"
+				style="margin: 0; display: none; width: 100%; height: 90vh;"
+			>
+				<iframe
+					id="${functionKey}_sko_iframe"
+					src="https://thoth-tech.github.io/SplashkitOnline/?useMinifiedInterface=on&language=C++"
+					style="width: 100%; height: 100%; border: 1px solid #ccc; border-radius: 8px;"
+				></iframe>
+			</div>
+			`;
+			
+				
+      mdxContent += "\n---\n";
+
         });
       }
       functionIndex++;

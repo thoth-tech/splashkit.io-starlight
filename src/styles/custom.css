@@ -248,3 +248,20 @@ code {
   border: 1px solid lightgray;
   margin-left: 20px;
 }
+
+.sko-button {
+  padding: 1rem 1.5rem; /* Adjusted padding for better proportions */
+  border: 3px solid transparent; /* Ensures clean border */
+  position: relative; /* Keeps the button content in place */
+  overflow: hidden; /* Handles any child element overflow */
+  cursor: pointer; /* Makes it clear the button is clickable */
+  background-color: var(--sk-logo-blue); /* SplashKit's brand color */
+  color: black; /* Text color */
+  border-radius: 9999px; /* Fully rounded edges for the stadium shape */
+  text-align: center; /* Ensures the text is centered */
+}
+
+.sko-button:hover {
+  border: 3px solid var(--sl-color-white);
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
