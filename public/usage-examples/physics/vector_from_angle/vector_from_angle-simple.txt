@@ -1,0 +1,5 @@
+#### Create a Vector from a Specified Angle
+
+Returns a vector that points from the supplied angle and distance. 
+
+Uses the [vector_from_angle](/api/physics/#vector-from-angle) function.

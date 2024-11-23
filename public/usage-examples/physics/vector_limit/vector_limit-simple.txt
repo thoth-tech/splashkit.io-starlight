@@ -1,0 +1,5 @@
+#### Scaling Vectors
+
+Create a scaled vector that ensures the new vector points in the same direction as the original vector, but has a magnitude that is limited to a specified length. 
+
+Uses the [vector_limit](/api/physics/#vector-limit) function.

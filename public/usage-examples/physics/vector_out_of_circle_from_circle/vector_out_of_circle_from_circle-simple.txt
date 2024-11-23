@@ -1,0 +1,5 @@
+#### Create a Vector Out of One Circle from Another Circle
+
+Returns a vector to back one circle out of another, assuming the first circle was moving at a specified velocity. 
+
+Uses the [vector_out_of_circle_from_circle](/api/physics/#vector-out-of-circle-from-circle) function.
