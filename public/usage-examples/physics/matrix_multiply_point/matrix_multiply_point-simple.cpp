@@ -16,18 +16,21 @@ int main()
     my_matrix_1.elements[2][1] = 6;
     my_matrix_1.elements[2][2] = 0;
 
-    // Define the vector
-    vector_2d my_vector_1;
-    my_vector_1.x = 200;
-    my_vector_1.y = 100;
+    // Define the point
+    point_2d my_point_1 = {200, 100};
 
-    // Multiply the matrix by the vector
-    vector_2d my_matrix_1_multiplied_by_vector = matrix_multiply(my_matrix_1, my_vector_1);
+    // Multiply the matrix by the point
+    point_2d result_point = matrix_multiply(my_matrix_1, my_point_1);
 
-    // Print the matrix and vectors
+    // Print the matrix and points
+    write_line("Matrix:");
     write_line(matrix_to_string(my_matrix_1));
-    write_line(vector_to_string(my_vector_1));
-    write_line(vector_to_string(my_matrix_1_multiplied_by_vector));
+
+    write_line("Original Point:");
+    write_line(point_to_string(my_point_1));
+
+    write_line("Transformed Point:");
+    write_line(point_to_string(result_point));
 
     return 0;
 }

@@ -1,5 +1,5 @@
 #### Matrix Inverse
 
-Calculate the inverse of a matrix. 
+Calculate and apply the inverse of a transformation matrix. The matrix_inverse function is used to transform a point back to its original position, showing the effect of reversing a scaling operation.
 
 Uses the [matrix_inverse](/api/physics/#matrix-inverse) function.

@@ -1,23 +1,30 @@
 using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
-// Define and populate the matrix
-Matrix2D myMatrix1 = new Matrix2D();
-myMatrix1.Elements[0, 0] = 1;
-myMatrix1.Elements[0, 1] = 2;
-myMatrix1.Elements[0, 2] = 3;
+// Define a transformation matrix (scaling)
+Matrix2D scalingMatrix = ScaleMatrix(2.0);
 
-myMatrix1.Elements[1, 0] = 0;
-myMatrix1.Elements[1, 1] = 1;
-myMatrix1.Elements[1, 2] = 4;
+// Print the scaling matrix
+WriteLine("Scaling Matrix:");
+WriteLine(MatrixToString(scalingMatrix));
 
-myMatrix1.Elements[2, 0] = 5;
-myMatrix1.Elements[2, 1] = 6;
-myMatrix1.Elements[2, 2] = 0;
+// Calculate the inverse of the scaling matrix
+Matrix2D inverseMatrix = MatrixInverse(scalingMatrix);
 
-// Calculate the inverse matrix
-Matrix2D myMatrix1Inverse = MatrixInverse(myMatrix1);
+// Print the inverse matrix
+WriteLine("Inverse Matrix:");
+WriteLine(MatrixToString(inverseMatrix));
 
-// Print the original and inverse matrices
-WriteLine(MatrixToString(myMatrix1));
-WriteLine(MatrixToString(myMatrix1Inverse));
+// Define a point
+Point2D originalPoint = new Point2D { X = 100, Y = 100 };
+WriteLine($"Original Point: {PointToString(originalPoint)}");
+
+// Transform the point
+Point2D transformedPoint = MatrixMultiply(scalingMatrix, originalPoint);
+WriteLine($"Transformed Point: {PointToString(transformedPoint)}");
+
+// Apply the inverse transformation to recover the original point
+Point2D recoveredPoint = MatrixMultiply(inverseMatrix, transformedPoint);
+WriteLine($"Recovered Point: {PointToString(recoveredPoint)}");
+
+CloseAllWindows();

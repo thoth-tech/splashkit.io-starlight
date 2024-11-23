@@ -1,36 +1,44 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-namespace MatrixMultiplicationDemo
+namespace MatrixVectorTransformDemo
 {
     public class Program
     {
         public static void Main()
         {
-            // Define and populate the first matrix
-            Matrix2D myMatrix1 = new Matrix2D();
-            myMatrix1.Elements[0, 0] = 1;
-            myMatrix1.Elements[0, 1] = 2;
-            myMatrix1.Elements[0, 2] = 3;
+            // Define and populate the matrix
+            Matrix2D myMatrix1 = new Matrix2D
+            {
+                Elements = new double[3, 3]
+                {
+                    { 1, 2, 3 },
+                    { 0, 1, 4 },
+                    { 5, 6, 0 }
+                }
+            };
 
-            myMatrix1.Elements[1, 0] = 0;
-            myMatrix1.Elements[1, 1] = 1;
-            myMatrix1.Elements[1, 2] = 4;
-
-            myMatrix1.Elements[2, 0] = 5;
-            myMatrix1.Elements[2, 1] = 6;
-            myMatrix1.Elements[2, 2] = 0;
-
-            // Define the second matrix as an identity matrix
-            Matrix2D myMatrix2 = IdentityMatrix();
-
-            // Multiply the two matrices
-            Matrix2D resultMatrix = MatrixMultiply(myMatrix1, myMatrix2);
-
-            // Print the matrices
+            // Print the matrix
+            WriteLine("Matrix:");
             WriteLine(MatrixToString(myMatrix1));
-            WriteLine(MatrixToString(myMatrix2));
-            WriteLine(MatrixToString(resultMatrix));
+
+            // Define the vector
+            Vector2D myVector1 = new Vector2D
+            {
+                X = 200,
+                Y = 100
+            };
+
+            // Print the vector
+            WriteLine("Original Vector:");
+            WriteLine(VectorToString(myVector1));
+
+            // Multiply the matrix by the vector
+            Vector2D resultVector = MatrixMultiply(myMatrix1, myVector1);
+
+            // Print the resulting vector
+            WriteLine("Transformed Vector:");
+            WriteLine(VectorToString(resultVector));
         }
     }
 }

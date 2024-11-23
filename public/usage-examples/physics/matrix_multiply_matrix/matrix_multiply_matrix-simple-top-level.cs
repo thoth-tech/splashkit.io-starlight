@@ -1,27 +1,37 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-// Define and populate the matrix
-Matrix2D myMatrix1 = new Matrix2D();
-myMatrix1.Elements[0, 0] = 1;
-myMatrix1.Elements[0, 1] = 2;
-myMatrix1.Elements[0, 2] = 3;
+// Define and populate the first matrix
+Matrix2D myMatrix1 = new Matrix2D
+{
+    Elements = new double[3, 3]
+    {
+        { 1, 2, 3 },
+        { 0, 1, 4 },
+        { 5, 6, 0 }
+    }
+};
 
-myMatrix1.Elements[1, 0] = 0;
-myMatrix1.Elements[1, 1] = 1;
-myMatrix1.Elements[1, 2] = 4;
+// Define and populate the second matrix
+Matrix2D myMatrix2 = new Matrix2D
+{
+    Elements = new double[3, 3]
+    {
+        { 7, 8, 9 },
+        { 1, 0, 2 },
+        { 3, 4, 5 }
+    }
+};
 
-myMatrix1.Elements[2, 0] = 5;
-myMatrix1.Elements[2, 1] = 6;
-myMatrix1.Elements[2, 2] = 0;
+// Multiply the two matrices
+Matrix2D resultMatrix = MatrixMultiply(myMatrix1, myMatrix2);
 
-// Define the point
-Point2D myPoint1 = new Point2D() { X = 200, Y = 100 };
-
-// Multiply the matrix by the point
-Point2D resultPoint = MatrixMultiply(myMatrix1, myPoint1);
-
-// Print the matrix and points
+// Print the original matrices and the result
+WriteLine("Matrix 1:");
 WriteLine(MatrixToString(myMatrix1));
-WriteLine(PointToString(myPoint1));
-WriteLine(PointToString(resultPoint));
+
+WriteLine("Matrix 2:");
+WriteLine(MatrixToString(myMatrix2));
+
+WriteLine("Resulting Matrix (Matrix 1 x Matrix 2):");
+WriteLine(MatrixToString(resultMatrix));

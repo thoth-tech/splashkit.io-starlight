@@ -2,38 +2,34 @@ using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 // Open the window
-OpenWindow("Apply Matrix", 300, 300);
+OpenWindow("Apply Matrix to Triangle", 300, 300);
 
 // Clear the screen
-ClearScreen(Color.White);
+ClearScreen(ColorWhite());
 
 // Define the triangle points
 Triangle testTriangle1 = new Triangle();
-Point2D top = new Point2D() { X = 150, Y = 150 };
-Point2D left = new Point2D() { X = 130, Y = 170 };
-Point2D right = new Point2D() { X = 170, Y = 170 };
+testTriangle1.Points = new Point2D[3];
+testTriangle1.Points[0] = new Point2D() { X = 150, Y = 150 };
+testTriangle1.Points[1] = new Point2D() { X = 80, Y = 220 };
+testTriangle1.Points[2] = new Point2D() { X = 220, Y = 220 };
 
-testTriangle1.Points[0] = top;
-testTriangle1.Points[1] = left;
-testTriangle1.Points[2] = right;
-
-// Create and populate the matrix
-Matrix2D myMatrix1 = new Matrix2D();
-for (int i = 0; i < 3; i++)
-    for (int j = 0; j < 3; j++)
-        myMatrix1.Elements[i, j] = 0.5;
+// Define the transformation matrix (scaling + translation)
+Matrix2D scalingMatrix = ScaleMatrix(0.5);
+Matrix2D translationMatrix = TranslationMatrix(-25, 50);
+Matrix2D combinedMatrix = MatrixMultiply(scalingMatrix, translationMatrix);
 
 // Draw the initial triangle
-DrawTriangle(Color.Black, testTriangle1);
+FillTriangle(ColorBlack(), testTriangle1);
 WriteLine("Triangle points before matrix application:");
 foreach (Point2D point in testTriangle1.Points)
     WriteLine(PointToString(point));
 
 // Apply the matrix to the triangle
-ApplyMatrix(myMatrix1, testTriangle1);
+ApplyMatrix(combinedMatrix, ref testTriangle1);
 
 // Draw the transformed triangle
-DrawTriangle(Color.Red, testTriangle1);
+FillTriangle(ColorRed(), testTriangle1);
 WriteLine("Triangle points after matrix application:");
 foreach (Point2D point in testTriangle1.Points)
     WriteLine(PointToString(point));

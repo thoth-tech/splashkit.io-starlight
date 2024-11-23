@@ -1,20 +1,29 @@
 using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
-namespace TranslationMatrixDemo
+namespace TranslationVectorExample
 {
     public class Program
     {
         public static void Main()
         {
             // Define the translation vector
-            Vector2D matrixTranslation = new Vector2D() { X = 200, Y = 100 };
+            Point2D matrixTranslation = new Point2D() { X = 200, Y = 100 };
 
             // Create a translation matrix using the translation vector
             Matrix2D myMatrix1 = TranslationMatrix(matrixTranslation);
 
             // Print the translation matrix to the console
+            WriteLine("Translation Matrix:");
             WriteLine(MatrixToString(myMatrix1));
+
+            // Define an original point
+            Point2D originalPoint = new Point2D() { X = 50, Y = 50 };
+            WriteLine("Original Point: " + PointToString(originalPoint));
+
+            // Apply the translation matrix to the point
+            Point2D translatedPoint = MatrixMultiply(myMatrix1, originalPoint);
+            WriteLine("Translated Point (after applying translation matrix): " + PointToString(translatedPoint));
         }
     }
 }

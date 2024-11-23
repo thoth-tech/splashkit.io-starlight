@@ -1,5 +1,5 @@
-#### Multiplying Matrices
+#### Mutliplying Vectors by Matrices
 
-Multiply two matrices and returns the result as a new matrix. Use this to combine the effects to two matrix transformations.
+Multiply a given vector by a matrix and return a new vector. This can be done to apply scaling, rotation and translation effects. 
 
-Uses the [matrix_multiply](/api/physics/#matrix-multiply-2) function.
+Uses the [matrix_multiply](/api/physics/#matrix-multiply-3) function.
