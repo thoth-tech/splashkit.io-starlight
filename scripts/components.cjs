@@ -1,4 +1,5 @@
 // Script to generate .mdx file in a specific format to adapt to Starlight from JSON data.
+
 // Author: @XQuestCode and @omckeon
 const fs = require("fs");
 const kleur = require("kleur");
@@ -134,7 +135,6 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
     const jsonColors = getColorData();
     let guidesJson = getJsonData();
     let guidesCategories = getApiCategories(guidesJson);
-    console.log(guidesCategories);
 
 
     // Please select an option: "animations, audio, camera, color, database, geometry, graphics, input, json, networking, physics, resource_bundles, resources, social, sprites, terminal, timers, types, utilities, windows"
@@ -166,7 +166,7 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
           mdxContent += `:::\n`
         }
       }
-      mdxContent += `\nimport { Tabs, TabItem } from "@astrojs/starlight/components";\nimport { LinkCard, CardGrid } from "@astrojs/starlight/components";\nimport { LinkButton } from '@astrojs/starlight/components';\n`;
+      mdxContent += `\nimport { Tabs, TabItem } from "@astrojs/starlight/components";\nimport { LinkCard, CardGrid } from "@astrojs/starlight/components";\nimport { LinkButton } from '@astrojs/starlight/components';\nimport Accordion from './src/components/Accordion.astro'\n`;
       if (guidesAvailable[categoryKey]) {
         mdxContent += "\n## \n";
         mdxContent += `## ${name} Guides\n`;
@@ -330,22 +330,27 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
             mdxContent += "**Return Type:** " + typeMappings[func.return.type] + "\n\n";
           }
 
-          let linked = false;
+          let allGuides = [];
           guidesCategories.forEach((category) => {
             const guideKey = category.guide;
             guideKey.forEach((guide) => {
               guide.functions.forEach((used) => {
                 if (func.unique_global_name == used){
-                  if (!linked){
-                    mdxContent += `**Guides:**\n`
-                    linked = true;
-                  }
+                  allGuides.push({
+                    name: guide.name,
+                    url: guide.url
+                  });
                   //mdxContent += `\n [${guide.name}](${guide.url}) \n\n`;
-                  mdxContent += `<LinkButton href="${guide.url}" variant="minimal">\n${guide.name}\n</LinkButton>\n\n`
+                  //mdxContent += `<LinkButton href="${guide.url}" variant="minimal">\n${guide.name}\n</LinkButton>\n\n`
                 }
               })
             })
           })
+
+          if (allGuides.length > 0){
+            mdxContent += "**Guides:**\n\n"
+            mdxContent += `<Accordion title="See how it's used in Guides" uniqueFuncName={${JSON.stringify(func.unique_global_name)}} content={${JSON.stringify(allGuides)}}></Accordion>\n`
+          }
 
 
           mdxContent += "**Signatures:**\n\n";

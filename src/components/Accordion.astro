@@ -1,0 +1,90 @@
+---
+const { title, content, uniqueFuncName } = Astro.props;
+
+type Guide = {
+    name: string,
+    url: string,
+};
+
+let uniqueContent = uniqueFuncName + "-content";
+const typedContent: Guide[] = content;
+---
+
+
+<accordion-component class="accordion" data-button={uniqueFuncName} data-content={uniqueContent}>
+    <button id={uniqueFuncName}
+    class="accordionButton"  >
+    {title}
+    </button>
+    <div id={uniqueContent} class="accordionContent" style="display: none;">
+        <ul class="accordionContentList">
+            {typedContent.map((guide) => (
+                <li>
+                    <a href={guide.url} target="_blank">{guide.name}</a>
+                </li>
+            ))}
+        </ul>
+    </div>
+</accordion-component>
+
+<script>
+    class Accordion extends HTMLElement {
+        connectedCallback() {
+            const buttonID = this.dataset.button;
+            const contentID = this.dataset.content;
+            console.log(buttonID, contentID);
+            var button;
+            if (buttonID != null) button = document.getElementById(buttonID);
+            if (button != null)
+            {
+                button.onclick = function() {
+                    console.log('clicked')
+                    var accordionContent;
+                    if (contentID != null) accordionContent = document.getElementById(contentID)
+                    if (accordionContent != null) {
+                        if (accordionContent.style.display !== 'none'){
+                        accordionContent.style.display = 'none';
+                    } else {
+                        accordionContent.style.display = 'block';
+                    }
+                    }
+                }
+            }
+        }
+    }
+
+    customElements.define('accordion-component', Accordion);
+</script>
+
+<style>
+    .accordion {
+        margin-bottom: 10px;
+    }
+    .accordionButton {
+        padding: 0.5rem 1.25rem;
+        border: 2px solid transparent;
+        border-radius: 50px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        background-color: var(--sk-logo-orange);
+        color: black;
+    }
+    .sl-link-button.minimal:hover {
+        border: 2px solid var(--sl-color-white);
+    }
+    .accordionContent {
+        padding: 10px;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-top: 5px;
+    }
+    .accordionContentList {
+        list-style-type: none;
+    }
+    .accordionContentList a{
+        font-size:medium;
+        font-weight: 600;
+    }
+  </style>
