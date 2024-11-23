@@ -91,6 +91,34 @@ function getColorRGBValues(colorName, jsonData) {
   return rgbValues;
 }
 
+function getJsonData() {
+  var jsonFile;
+  var jsonData;
+  try {
+    jsonFile = fs.readFileSync(`${__dirname}/guides.json`);
+  } catch (err) {
+    console.error(kleur.red("Error reading JSON file:"), err);
+    return;
+  }
+  try {
+    jsonData = JSON.parse(jsonFile);
+  } catch (error) {
+    console.error(kleur.red("Error parsing JSON:"), error);
+    return;
+  }
+  return jsonData;
+}
+
+function getApiCategories(jsonData) {
+  const apiCategories = [];
+  for (const categoryKey in jsonData) {
+    if (categoryKey != "types") {
+      apiCategories.push(jsonData[categoryKey]);
+    }
+  }
+  return apiCategories;
+}
+
 fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
   if (err) {
     console.error(kleur.red("Error reading JSON file:"), err);
@@ -104,6 +132,9 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
     console.log(`Generating MDX files for components`);
 
     const jsonColors = getColorData();
+    let guidesJson = getJsonData();
+    let guidesCategories = getApiCategories(guidesJson);
+    console.log(guidesCategories);
 
 
     // Please select an option: "animations, audio, camera, color, database, geometry, graphics, input, json, networking, physics, resource_bundles, resources, social, sprites, terminal, timers, types, utilities, windows"
@@ -135,7 +166,7 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
           mdxContent += `:::\n`
         }
       }
-      mdxContent += `\nimport { Tabs, TabItem } from "@astrojs/starlight/components";\nimport { LinkCard, CardGrid } from "@astrojs/starlight/components";\n`;
+      mdxContent += `\nimport { Tabs, TabItem } from "@astrojs/starlight/components";\nimport { LinkCard, CardGrid } from "@astrojs/starlight/components";\nimport { LinkButton } from '@astrojs/starlight/components';\n`;
       if (guidesAvailable[categoryKey]) {
         mdxContent += "\n## \n";
         mdxContent += `## ${name} Guides\n`;
@@ -298,6 +329,23 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
           else if (func.return.type != 'void') {
             mdxContent += "**Return Type:** " + typeMappings[func.return.type] + "\n\n";
           }
+
+          let linked = false;
+          guidesCategories.forEach((category) => {
+            const guideKey = category.guide;
+            guideKey.forEach((guide) => {
+              guide.functions.forEach((used) => {
+                if (func.unique_global_name == used){
+                  if (!linked){
+                    mdxContent += `**Guides:**\n`
+                    linked = true;
+                  }
+                  //mdxContent += `\n [${guide.name}](${guide.url}) \n\n`;
+                  mdxContent += `<LinkButton href="${guide.url}" variant="minimal">\n${guide.name}\n</LinkButton>\n\n`
+                }
+              })
+            })
+          })
 
 
           mdxContent += "**Signatures:**\n\n";
