@@ -1,0 +1,5 @@
+#### Print a Vector to Terminal
+
+Get the text description of a passed in vector.
+
+Uses the [vector_to_string](/api/physics/#vector-to-string) function.

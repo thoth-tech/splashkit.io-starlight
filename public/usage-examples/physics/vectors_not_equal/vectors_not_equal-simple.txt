@@ -1,0 +1,5 @@
+#### Determine if Vectors are Not Equal
+
+Determine if two vectors are not the same. 
+
+Uses the [vectors_not_equal](/api/physics/#vectors-not-equal) function.

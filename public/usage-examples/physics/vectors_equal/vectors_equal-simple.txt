@@ -1,0 +1,5 @@
+#### Determine if Vectors are Equal
+
+Determine if vectors are indeed equal.
+
+Uses the [vectors_equal](/api/physics/#vectors-equal) function.

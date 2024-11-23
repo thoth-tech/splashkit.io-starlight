@@ -1,0 +1,6 @@
+#### Vector Subtraction
+
+Subtracts the a vector from another and returns the result as new vector.
+
+Description
+Uses the [vector_subtract](/api/physics/#vector-subtract) function.

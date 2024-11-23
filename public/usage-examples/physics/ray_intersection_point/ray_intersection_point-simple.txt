@@ -1,0 +1,5 @@
+#### Casting Rays at Lines
+
+Cast a ray in a heading and returns true if it intersects with a line
+
+Uses the [ray_intersection_point](/api/physics/#ray-intersection-point) function.
