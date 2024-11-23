@@ -43,11 +43,11 @@ namespace VectorVisualisationDemo
             WriteLine("Vector 5: " + VectorToString(myVector5));
 
             // Draw lines
-            DrawLine(ColorBlue, line1);
-            DrawLine(ColorRed, line2);
-            DrawLine(ColorBlack, line3);
-            DrawLine(ColorPurple, line4);
-            DrawLine(ColorOrange, line5);
+            DrawLine(ColorBlue(), line1);
+            DrawLine(ColorRed(), line2);
+            DrawLine(ColorBlack(), line3);
+            DrawLine(ColorPurple(), line4);
+            DrawLine(ColorOrange(), line5);
 
             // Refresh the screen
             RefreshScreen();

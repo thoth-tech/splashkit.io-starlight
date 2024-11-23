@@ -22,11 +22,11 @@ WriteLine("Vector 4: " + VectorToString(myVector4));
 WriteLine("Vector 5: " + VectorToString(myVector5));
 
 // Draw lines representing the vectors
-DrawLine(ColorBlue, LineFrom(myVector1));
-DrawLine(ColorRed, LineFrom(myVector2));
-DrawLine(ColorBlack, LineFrom(myVector3));
-DrawLine(ColorPurple, LineFrom(myVector4));
-DrawLine(ColorOrange, LineFrom(myVector5));
+DrawLine(ColorBlue(), LineFrom(myVector1));
+DrawLine(ColorRed(), LineFrom(myVector2));
+DrawLine(ColorBlack(), LineFrom(myVector3));
+DrawLine(ColorPurple(), LineFrom(myVector4));
+DrawLine(ColorOrange(), LineFrom(myVector5));
 
 // Refresh the screen
 RefreshScreen();

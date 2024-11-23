@@ -11,7 +11,7 @@ my_vector_4 = vector_from_angle(60, 250)
 my_vector_5 = vector_from_angle(75, 250)
 
 # Clear the screen
-clear_screen()
+clear_screen(color_white())
 
 # Output the vector details
 write_line("Vector 1: " + vector_to_string(my_vector_1))
@@ -21,11 +21,11 @@ write_line("Vector 4: " + vector_to_string(my_vector_4))
 write_line("Vector 5: " + vector_to_string(my_vector_5))
 
 # Draw lines representing the vectors
-draw_line(color_blue(), line_from(my_vector_1))
-draw_line(color_red(), line_from(my_vector_2))
-draw_line(color_black(), line_from(my_vector_3))
-draw_line(color_purple(), line_from(my_vector_4))
-draw_line(color_orange(), line_from(my_vector_5))
+draw_line_record(color_blue(), line_from_vector(my_vector_1))
+draw_line_record(color_red(), line_from_vector(my_vector_2))
+draw_line_record(color_black(), line_from_vector(my_vector_3))
+draw_line_record(color_purple(), line_from_vector(my_vector_4))
+draw_line_record(color_orange(), line_from_vector(my_vector_5))
 
 # Refresh the screen
 refresh_screen()

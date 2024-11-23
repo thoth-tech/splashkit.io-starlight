@@ -27,14 +27,14 @@ namespace VectorVisualisationDemo
             ClearScreen();
 
             // Draw rectangles
-            FillRectangle(ColorRed, testRectangle1);
-            FillRectangle(ColorBlue, testRectangle2);
-            FillRectangle(ColorPurple, testRectangle3);
+            FillRectangle(ColorRed(), testRectangle1);
+            FillRectangle(ColorBlue(), testRectangle2);
+            FillRectangle(ColorPurple(), testRectangle3);
 
             // Draw lines representing vectors
-            DrawLine(ColorBlack, LineFrom(myVector1));
-            DrawLine(ColorOrange, LineFrom(myVector2));
-            DrawLine(ColorBrown, LineFrom(myVector3));
+            DrawLine(ColorBlack(), LineFrom(myVector1));
+            DrawLine(ColorOrange(), LineFrom(myVector2));
+            DrawLine(ColorBrown(), LineFrom(myVector3));
 
             // Refresh the screen
             RefreshScreen();

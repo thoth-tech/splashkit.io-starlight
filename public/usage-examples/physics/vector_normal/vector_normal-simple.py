@@ -1,8 +1,13 @@
 from splashkit import *
 
 # Define vectors
-my_vector_1 = Vector2D(200, 100)
-my_vector_2 = Vector2D(0, 0)
+my_vector_1 = Vector2D()
+my_vector_1.x = 200
+my_vector_1.y = 100
+
+my_vector_2 = Vector2D()
+my_vector_2.x = 0
+my_vector_2.y = 0
 
 # Calculate normals
 my_vector_1_normal = vector_normal(my_vector_1)

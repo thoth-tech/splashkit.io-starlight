@@ -27,11 +27,11 @@ namespace VectorVisualisationDemo
 
             // Clear the screen and draw shapes
             ClearScreen();
-            FillRectangle(ColorBlack, outerRectangle);
-            FillCircle(ColorYellow, innerCircle);
+            FillRectangle(ColorBlack(), outerRectangle);
+            FillCircle(ColorYellow(), innerCircle);
 
             // Draw the escape vector line
-            DrawLine(ColorRed, vectorLine);
+            DrawLine(ColorRed(), vectorLine);
 
             // Refresh the screen
             RefreshScreen();

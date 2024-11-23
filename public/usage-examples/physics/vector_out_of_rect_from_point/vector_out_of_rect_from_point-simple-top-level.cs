@@ -21,11 +21,11 @@ Line vectorLine = LineFrom(escapePoint, escape);
 
 // Clear the screen and draw shapes
 ClearScreen();
-FillRectangle(ColorBlack, outerRectangle);
-FillCircle(ColorYellow, CircleAt(escapePoint, 3));
+FillRectangle(ColorBlack(), outerRectangle);
+FillCircle(ColorYellow(), CircleAt(escapePoint, 3));
 
 // Draw the escape vector line
-DrawLine(ColorRed, vectorLine);
+DrawLine(ColorRed(), vectorLine);
 
 // Refresh the screen
 RefreshScreen();
