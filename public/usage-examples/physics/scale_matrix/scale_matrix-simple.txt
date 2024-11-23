@@ -1,0 +1,5 @@
+#### Create Scaling Matrix using Doubles
+
+Create a matrix that can be used to scale 2d points by a given value.
+
+Uses the [scale_matrix](/api/physics/#scale-matrix-3) function.

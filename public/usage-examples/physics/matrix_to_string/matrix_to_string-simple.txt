@@ -1,0 +1,5 @@
+#### Print Matrix to Terminal
+
+Print a string representation of a matrix to the terminal.
+
+Uses the [matrix_to_string](/api/physics/#matrix-to-string) function.

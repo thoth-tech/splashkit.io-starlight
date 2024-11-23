@@ -1,0 +1,5 @@
+#### Mutliplying Vectors by Matrices
+
+Multiply a given vector by a matrix and return a new vector. This can be done to apply scaling, rotation and translation effects. 
+
+Uses the [matrix_multiply](/api/physics/#matrix-multiply-3) function.

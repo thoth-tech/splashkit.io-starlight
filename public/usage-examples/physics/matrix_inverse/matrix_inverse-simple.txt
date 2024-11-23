@@ -1,0 +1,5 @@
+#### Matrix Inverse
+
+Calculate the inverse of a matrix. 
+
+Uses the [matrix_inverse](/api/physics/#matrix-inverse) function.

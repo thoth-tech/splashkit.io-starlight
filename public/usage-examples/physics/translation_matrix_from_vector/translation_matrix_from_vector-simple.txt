@@ -1,0 +1,5 @@
+#### Translate 2D Points by using Vectors
+
+Create a translation matrix used to translate 2d points by the distance in the provided vector.
+
+Uses the [translation_matrix](/api/physics/#translation-matrix-2) function.

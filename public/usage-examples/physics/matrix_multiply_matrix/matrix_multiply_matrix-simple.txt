@@ -1,0 +1,5 @@
+#### Multiplying Matrices
+
+Multiply two matrices and returns the result as a new matrix. Use this to combine the effects to two matrix transformations.
+
+Uses the [matrix_multiply](/api/physics/#matrix-multiply-2) function.

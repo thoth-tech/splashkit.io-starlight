@@ -1,0 +1,5 @@
+#### Translate 2D Points by Specified Coordinates
+
+Create a translationa matrix that can be used to translate 2d points, moving them by along the x and y axes by the values provided.
+
+Uses the [translation_matrix](/api/physics/#translation-matrix-3) function.

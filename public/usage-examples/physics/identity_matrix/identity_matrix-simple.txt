@@ -1,0 +1,5 @@
+#### Identity Matrices
+
+Create an identity matrix. When a matrix or vector is multiplied by the identity matrix the result is the original matrix or vector.
+
+Uses the [identity_matrix](/api/physics/#identity-matrix) function.
