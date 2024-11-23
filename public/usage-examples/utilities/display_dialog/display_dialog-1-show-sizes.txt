@@ -1,0 +1,3 @@
+### Display Dialog Boxes
+
+The following code shows an example of using [display dialog](/api/utilities/#display-dialog) to show 3 different dialog boxes, each with the font size increasing to show how they can be used to display different sizes of text or messages.
