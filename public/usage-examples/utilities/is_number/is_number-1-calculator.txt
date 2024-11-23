@@ -1,0 +1,3 @@
+### Number Calculator
+
+The following code shows examples of using [is number](/api/utilities/#is-number) function to perform addition and subtraction operations. It includes input validation to ensure that the entered values are numbers.

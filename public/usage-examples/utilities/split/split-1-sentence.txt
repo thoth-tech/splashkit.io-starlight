@@ -1,0 +1,3 @@
+### Split a Sentence
+
+The following code shows an example of using [split](/api/utilities/#split), which asks the user to enter a sentence, then the delimiter to split the sentence by. The code then splits the sentence and displays the result.
