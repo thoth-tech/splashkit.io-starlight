@@ -13,4 +13,4 @@ double vectorDotProduct = DotProduct(myVector1, myVector2);
 // Output vector details and the dot product
 WriteLine(VectorToString(myVector1));
 WriteLine(VectorToString(myVector2));
-WriteLine(vectorDotProduct);
+WriteLine($"Dot Product of Vectors: {vectorDotProduct}");

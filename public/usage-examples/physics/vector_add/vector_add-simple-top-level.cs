@@ -1,5 +1,5 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
 // Define the first vector
 Vector2D myVector1 = new Vector2D() { X = 200, Y = 100 };
@@ -11,6 +11,6 @@ Vector2D myVector2 = new Vector2D() { X = -300, Y = 150 };
 Vector2D myVector3 = VectorAdd(myVector1, myVector2);
 
 // Output vector details and the result
-WriteLine(VectorToString(myVector1));
-WriteLine(VectorToString(myVector2));
-WriteLine(VectorToString(myVector3));
+WriteLine("Vector 1: " + VectorToString(myVector1));
+WriteLine("Vector 2: " + VectorToString(myVector2));
+WriteLine("Vector 1 + 2: " + VectorToString(myVector3));

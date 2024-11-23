@@ -14,8 +14,8 @@ namespace VectorAngleDemo
             double myVector1Angle = VectorAngle(myVector1);
 
             // Output the results
-            WriteLine(VectorToString(myVector1));
-            WriteLine(myVector1Angle);
+            WriteLine("Vector 1: " + VectorToString(myVector1));
+            WriteLine("Vector Angle: " + myVector1Angle);
         }
     }
 }

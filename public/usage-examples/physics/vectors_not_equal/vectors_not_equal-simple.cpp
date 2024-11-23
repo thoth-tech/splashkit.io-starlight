@@ -17,6 +17,11 @@ int main()
     my_vector_3.x = 200;
     my_vector_3.y = 100;
 
+    // Print the vectors
+    write_line("Vector 1: " + vector_to_string(my_vector_1));
+    write_line("Vector 2: " + vector_to_string(my_vector_2));
+    write_line("Vector 3: " + vector_to_string(my_vector_3));
+
     // Check if vectors are equal
     if (vectors_not_equal(my_vector_1, my_vector_2))
         write_line("Vectors 1 and 2 are not equal.");

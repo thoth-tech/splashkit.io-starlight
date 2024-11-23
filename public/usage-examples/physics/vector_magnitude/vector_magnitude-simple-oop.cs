@@ -15,7 +15,7 @@ namespace VectorOperations
 
             // Output the vector and its magnitude
             WriteLine(VectorToString(myVector1));
-            WriteLine(myVector1Magnitude.ToString());
+            WriteLine("Vector Magnitude: " + myVector1Magnitude.ToString());
         }
     }
 }

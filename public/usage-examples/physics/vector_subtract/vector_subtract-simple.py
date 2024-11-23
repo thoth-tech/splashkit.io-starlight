@@ -11,7 +11,9 @@ my_vector_2.x = -300
 my_vector_2.y = 150
 
 # Subtract the vectors
-my_vector_3 = vector_subtract(my_vector_1, my_vector_2)
+result_vector = vector_subtract(my_vector_1, my_vector_2)
 
-# Output the result of the subtraction
-write_line(vector_to_string(my_vector_3))
+# Output the original vectors and the result
+write_line("First Vector: " + vector_to_string(my_vector_1))
+write_line("Second Vector: " + vector_to_string(my_vector_2))
+write_line("Result of Subtraction (Vector 1 - Vector 2): " + vector_to_string(result_vector))

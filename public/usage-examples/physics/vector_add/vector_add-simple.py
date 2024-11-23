@@ -14,6 +14,6 @@ my_vector_2.y = 150
 my_vector_3 = vector_add(my_vector_1, my_vector_2)
 
 # Output vector details and the result
-write_line(vector_to_string(my_vector_1))
-write_line(vector_to_string(my_vector_2))
-write_line(vector_to_string(my_vector_3))
+write_line("Vector 1: " + vector_to_string(my_vector_1))
+write_line("Vector 2: " + vector_to_string(my_vector_2))
+write_line("Vector 1 + 2: " + vector_to_string(my_vector_3))

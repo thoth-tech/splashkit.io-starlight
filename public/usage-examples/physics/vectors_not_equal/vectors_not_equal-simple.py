@@ -15,12 +15,23 @@ my_vector_3 = Vector2D()
 my_vector_3.x = 200
 my_vector_3.y = 100
 
-# Check if vectors are not equal
-check_1_2 = vectors_not_equal(my_vector_1, my_vector_2)
-check_1_3 = vectors_not_equal(my_vector_1, my_vector_3)
-check_2_3 = vectors_not_equal(my_vector_2, my_vector_3)
+# Print the vectors
+write_line("Vector 1: " + vector_to_string(my_vector_1))
+write_line("Vector 2: " + vector_to_string(my_vector_2))
+write_line("Vector 3: " + vector_to_string(my_vector_3))
 
-# Output the results
-write_line(check_1_2)
-write_line(check_1_3)
-write_line(check_2_3)
+# Check if vectors are not equal
+if vectors_not_equal(my_vector_1, my_vector_2):
+    write_line("Vectors 1 and 2 are not equal.")
+else:
+    write_line("Vectors 1 and 2 are equal.")
+
+if vectors_not_equal(my_vector_1, my_vector_3):
+    write_line("Vectors 1 and 3 are not equal.")
+else:
+    write_line("Vectors 1 and 3 are equal.")
+
+if vectors_not_equal(my_vector_2, my_vector_3):
+    write_line("Vectors 2 and 3 are not equal.")
+else:
+    write_line("Vectors 2 and 3 are equal.")

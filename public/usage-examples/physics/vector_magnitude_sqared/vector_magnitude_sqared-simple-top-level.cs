@@ -9,4 +9,4 @@ double myVector1MagnitudeSquared = VectorMagnitudeSqared(myVector1);
 
 // Output the vector and its squared magnitude
 WriteLine(VectorToString(myVector1));
-WriteLine(myVector1MagnitudeSquared.ToString());
+WriteLine("Vector Magnitude Squared: " + myVector1MagnitudeSquared.ToString());

@@ -1,7 +1,7 @@
 using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
-namespace VectorDotProductDemo
+namespace DotProductExample
 {
     public class Program
     {
@@ -19,7 +19,7 @@ namespace VectorDotProductDemo
             // Output vector details and the dot product
             WriteLine(VectorToString(myVector1));
             WriteLine(VectorToString(myVector2));
-            WriteLine(vectorDotProduct);
+            WriteLine($"Dot Product of Vectors: {vectorDotProduct}");
         }
     }
 }

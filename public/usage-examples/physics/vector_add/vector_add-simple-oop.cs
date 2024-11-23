@@ -1,5 +1,5 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
 namespace VectorAdditionDemo
 {
@@ -17,9 +17,9 @@ namespace VectorAdditionDemo
             Vector2D myVector3 = VectorAdd(myVector1, myVector2);
 
             // Output vector details and the result
-            WriteLine(VectorToString(myVector1));
-            WriteLine(VectorToString(myVector2));
-            WriteLine(VectorToString(myVector3));
+            WriteLine("Vector 1: " + VectorToString(myVector1));
+            WriteLine("Vector 2: " + VectorToString(myVector2));
+            WriteLine("Vector 1 + 2: " + VectorToString(myVector3));
         }
     }
 }

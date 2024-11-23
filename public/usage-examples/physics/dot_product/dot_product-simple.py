@@ -16,4 +16,4 @@ vector_dot_product = dot_product(my_vector_1, my_vector_2)
 # Output vector details and the dot product
 write_line(vector_to_string(my_vector_1))
 write_line(vector_to_string(my_vector_2))
-write_line(vector_dot_product)
+write_line(f"Dot Product of Vectors: {vector_dot_product}")

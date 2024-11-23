@@ -21,9 +21,9 @@ Vector2D myVector2 = VectorFromAngle(10, 200);
 ClearScreen();
 
 // Draw the rectangle and the vectors
-FillRectangle(ColorBlack, testRectangle1);
-DrawLine(ColorRed, LineFrom(myVector1));
-DrawLine(ColorBlue, LineFrom(myVector2));
+FillRectangle(ColorBlack(), testRectangle1);
+DrawLine(ColorRed(), LineFrom(myVector1));
+DrawLine(ColorBlue(), LineFrom(myVector2));
 
 // Check if vectors are inside the rectangle
 if (VectorInRect(myVector1, testRectangle1))
