@@ -16,9 +16,18 @@ int main()
     bool check_zero_1 = is_zero_vector(my_vector_1);
     bool check_zero_2 = is_zero_vector(my_vector_2);
 
-    // Output the results
-    write_line(check_zero_1);
-    write_line(check_zero_2);
+    // Output the results with descriptive messages
+    write_line("Checking if my_vector_1 is a zero vector:");
+    if (check_zero_1)
+        write_line("my_vector_1 is a zero vector.");
+    else
+        write_line("my_vector_1 is not a zero vector.");
+
+    write_line("Checking if my_vector_2 is a zero vector:");
+    if (check_zero_2)
+        write_line("my_vector_2 is a zero vector.");
+    else
+        write_line("my_vector_2 is not a zero vector.");
 
     return 0;
 }

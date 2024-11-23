@@ -1,5 +1,7 @@
 #include "splashkit.h"
 
+using std::to_string;
+
 int main()
 {
     // Define the first vector
@@ -18,7 +20,7 @@ int main()
     // Output vector details and the dot product
     write_line(vector_to_string(my_vector_1));
     write_line(vector_to_string(my_vector_2));
-    write_line(vector_dot_product);
+    write_line("Dot Product of Vectors: " + to_string(vector_dot_product));
 
     return 0;
 }
