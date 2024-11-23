@@ -1,0 +1,5 @@
+#### Detect Sprite Collisions with Rectangles
+
+Tests if a sprite is drawn within a given rectangle
+
+Uses the [sprite_rectangle_collision](/api/physics/#sprite-rectangle-collision) function.
