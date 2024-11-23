@@ -34,7 +34,14 @@ draw_bitmap(file_bmp, file_bmp_loc.x, file_bmp_loc.y)
 draw_bitmap(bug_bmp, bug_bmp_loc.x, bug_bmp_loc.y)
 
 # Check for collisions
-if sprite_bitmap_collision(sk_sprite, file_bmp, 20, file_bmp_loc.x, file_bmp_loc.y):
+if sprite_bitmap_collision_with_cell(sk_sprite, file_bmp, 20, file_bmp_loc.x, file_bmp_loc.y):
     write_line("SplashKit got a new file!")
 
-if sprite_bitmap_collision(sk_sprite, file_bmp, 200, bug_bmp_loc.x, b
+if sprite_bitmap_collision_with_cell(sk_sprite, file_bmp, 200, bug_bmp_loc.x, bug_bmp_loc.y):
+    write_line("SplashKit has bugs!")
+
+# Refresh the screen and delay before closing
+refresh_screen()
+delay(4000)
+
+close_all_windows()

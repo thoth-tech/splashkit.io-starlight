@@ -30,8 +30,8 @@ test_rectangle_2.height = 20
 # Clear the screen and draw elements
 clear_screen(color_white())
 draw_sprite(sk_sprite)
-fill_rectangle(color_black(), test_rectangle_1)
-fill_rectangle(color_red(), test_rectangle_2)
+fill_rectangle_record(color_black(), test_rectangle_1)
+fill_rectangle_record(color_red(), test_rectangle_2)
 
 # Check for collisions
 if sprite_rectangle_collision(sk_sprite, test_rectangle_1):

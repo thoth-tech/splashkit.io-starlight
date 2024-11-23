@@ -28,8 +28,8 @@ sprite_set_position(sk_sprite, sk_sprite_loc)
 # Clear the screen and draw elements
 clear_screen(color_white())
 draw_sprite(sk_sprite)
-fill_circle(color_black(), circle_at(collision_loc_1, 2))
-fill_circle(color_red(), circle_at(collision_loc_2, 2))
+fill_circle_record(color_black(), circle_at(collision_loc_1, 2))
+fill_circle_record(color_red(), circle_at(collision_loc_2, 2))
 
 # Check for collisions
 if sprite_point_collision(sk_sprite, collision_loc_1):
