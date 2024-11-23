@@ -1,5 +1,5 @@
 #### Cursor and Center Distance 
 
-The following code shows an example of using [Point Point Distance](/api/geometry/#point-point-distance-1) to calculate the distance between the center of a window and the user's mouse cursor, printing out the value in the terminal.
+The following code shows an example of using [Point Point Distance](/api/geometry/#point-point-distance) to calculate the distance between the center of a window and the user's mouse cursor, printing out the value in the terminal.
 
  
