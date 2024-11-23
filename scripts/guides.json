@@ -1,0 +1,67 @@
+{
+    "animations": {
+        "guide": [
+            {
+                "name": "Using Animations in SplashKit",
+                "functions": [
+                    "load_resource_bundle",
+                    "animation_script_named",
+                    "bitmap_named",
+                    "create_animation_from_script_named",
+                    "option_with_animation",
+                    "process_events",
+                    "draw_bitmap_with_options",
+                    "draw_text_no_font_no_size",
+                    "animation_name",
+                    "update_animation",
+                    "key_typed",
+                    "key_down",
+                    "assign_animation"
+                ],
+                "url": "/guides/animations/0-using-animations/"
+            }
+        ]
+    },
+    "graphics": {
+        "guide": [
+            {
+                "name": "Drawing using Procedures",
+                "functions": [
+                    "open_window",
+                    "clear_screen",
+                    "fill_ellipse",
+                    "fill_rectangle",
+                    "fill_triangle",
+                    "refresh_screen",
+                    "delay"
+                ],
+                "url": "/guides/graphics/0-drawing-using-procedures/"
+            },
+            {
+                "name": "Understanding Double Buffering",
+                "functions": [],
+                "url": "/guides/graphics/1-double-buffering/"
+            }
+        ]
+    },
+    "interface": { 
+        "guide": [
+            {
+                "name": "Getting Started Creating User Interfaces",
+                "functions": [
+                    "open_window",
+                    "process_events",
+                    "clear_screen_to_white",
+                    "text_box_at_position",
+                    "button_at_position",
+                    "write_line",
+                    "slider_at_position",
+                    "draw_interface",
+                    "refresh_screen"
+                ],
+                "url": "/guides/interface/00-interface/"
+            }
+        ]
+    }
+    
+}
