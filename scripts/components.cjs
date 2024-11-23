@@ -166,7 +166,7 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
           mdxContent += `:::\n`
         }
       }
-      mdxContent += `\nimport { Tabs, TabItem } from "@astrojs/starlight/components";\nimport { LinkCard, CardGrid } from "@astrojs/starlight/components";\nimport { LinkButton } from '@astrojs/starlight/components';\nimport Accordion from './src/components/Accordion.astro'\n`;
+      mdxContent += `\nimport { Tabs, TabItem } from "@astrojs/starlight/components";\nimport { LinkCard, CardGrid } from "@astrojs/starlight/components";\nimport { LinkButton } from '@astrojs/starlight/components';\nimport Accordion from '../../../components/Accordion.astro'\n`;
       if (guidesAvailable[categoryKey]) {
         mdxContent += "\n## \n";
         mdxContent += `## ${name} Guides\n`;
