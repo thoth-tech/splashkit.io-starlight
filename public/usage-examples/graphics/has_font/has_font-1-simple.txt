@@ -1,6 +1,6 @@
 #### Has Font Example
 
-The following code shows examples of using [Has Font](/api/graphics#has-font-1) to show how double buffering works.
+The following code shows examples of using [Has Font](/api/graphics#has-font-1) to check if a font exists in the program.
 
 :::note
 To test this example code you can download these [**Resources**](/usage-examples/graphics/has_font/HasFont_BasicHasFontResources.zip).
