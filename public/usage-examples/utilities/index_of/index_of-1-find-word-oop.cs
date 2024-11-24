@@ -6,9 +6,11 @@ namespace Program
     {
         public static void Main()
         {
+            // Get sentence input from the user
             SplashKit.WriteLine("Enter a sentence:");
             string sentence = SplashKit.ReadLine();
 
+            // Get the word to search for
             SplashKit.WriteLine("Enter the word to search for:");
             string word = SplashKit.ReadLine();
 

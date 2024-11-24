@@ -1,8 +1,10 @@
 ﻿using static SplashKitSDK.SplashKit;
 
+// Get sentence input from the user
 WriteLine("Enter a sentence:");
 string sentence = ReadLine();
 
+// Get the word to search for
 WriteLine("Enter the word to search for:");
 string word = ReadLine();
 

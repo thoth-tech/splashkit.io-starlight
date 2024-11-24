@@ -1,8 +1,10 @@
 from splashkit import *
 
+# Get sentence input from the user
 write_line("Enter a sentence:")
 sentence = read_line()
 
+# Get the word to search for
 write_line("Enter the word to search for:")
 word = read_line()
 
