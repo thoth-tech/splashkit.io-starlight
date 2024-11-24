@@ -17,17 +17,17 @@ while not quit_requested():
     clear_screen(color_green())
     fill_rectangle_record(color_white(), boundary)
 
-    # Check if mouse is in the boundary
+    # Check if moust is in the boundary
     while not point_in_rectangle(mouse_point,boundary):
 
         #flash screen red and blue if mouse has escaped boundary
-        clear_screen(color_red())
+        clear_screen(color_dark_red())
         fill_rectangle_record(color_white(), boundary)
         draw_text_no_font_no_size("JAILBREAK",color_black(),250.0,400.0)
-        refresh_screen_with_target_fps(10)
-        clear_screen(color_blue())
+        refresh_screen_with_target_fps(2)
+        clear_screen(color_royal_blue())
         fill_rectangle_record(color_white(), boundary)
-        refresh_screen_with_target_fps(10)
+        refresh_screen_with_target_fps(2)
         mouse_point = mouse_position()
         
         process_events()

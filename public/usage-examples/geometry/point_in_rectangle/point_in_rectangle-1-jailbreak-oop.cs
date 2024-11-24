@@ -22,18 +22,18 @@ namespace PointInRectangle
                 SplashKit.ClearScreen(SplashKit.ColorGreen());
                 SplashKit.FillRectangle(SplashKit.ColorWhite(), boundary);
 
-                // Check if mouse is in the boundary
+                // Check if moust is in the boundary
                 while(!SplashKit.PointInRectangle(mouse_point,boundary))
                 {
 
                     //flash screen red and blue if mouse has escaped boundary
-                    SplashKit.ClearScreen(SplashKit.ColorRed());
+                    SplashKit.ClearScreen(SplashKit.ColorDarkRed());
                     SplashKit.FillRectangle(SplashKit.ColorWhite(), boundary);
                     SplashKit.DrawText("JAILBREAK",SplashKit.ColorBlack(),250.0,400.0);
-                    SplashKit.RefreshScreen(10);
-                    SplashKit.ClearScreen(SplashKit.ColorBlue());
+                    SplashKit.RefreshScreen(2);
+                    SplashKit.ClearScreen(SplashKit.ColorRoyalBlue());
                     SplashKit.FillRectangle(SplashKit.ColorWhite(), boundary);
-                    SplashKit.RefreshScreen(10);
+                    SplashKit.RefreshScreen(2);
                     mouse_point = SplashKit.MousePosition();
                     
                     SplashKit.ProcessEvents();

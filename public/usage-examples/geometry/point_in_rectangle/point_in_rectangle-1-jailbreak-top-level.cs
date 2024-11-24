@@ -18,18 +18,18 @@ while(!QuitRequested())
     ClearScreen(ColorGreen());
     FillRectangle(ColorWhite(), boundary);
 
-    // Check if mouse is in the boundary
+    // Check if moust is in the boundary
     while(!PointInRectangle(mouse_point,boundary))
     {
 
         //flash screen red and blue if mouse has escaped boundary
-        ClearScreen(ColorRed());
+        ClearScreen(ColorDarkRed());
         FillRectangle(ColorWhite(), boundary);
         DrawText("JAILBREAK",ColorBlack(),250.0,400.0);
-        RefreshScreen(10);
-        ClearScreen(ColorBlue());
+        RefreshScreen(2);
+        ClearScreen(ColorRoyalBlue());
         FillRectangle(ColorWhite(), boundary);
-        RefreshScreen(10);
+        RefreshScreen(2);
         mouse_point = MousePosition();
         
         ProcessEvents();

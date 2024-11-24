@@ -19,18 +19,18 @@ int main()
         clear_screen(color_green());
         fill_rectangle(color_white(), boundary);
 
-        // Check if mouse is in the boundary
+        // Check if moust is in the boundary
         while(!point_in_rectangle(mouse_point,boundary))
         {
 
             //flash screen red and blue if mouse has escaped boundary
-            clear_screen(color_red());
+            clear_screen(color_dark_red());
             fill_rectangle(color_white(), boundary);
             draw_text("JAILBREAK",COLOR_BLACK,250.0,400.0);
-            refresh_screen(10);
-            clear_screen(color_blue());
+            refresh_screen(2);
+            clear_screen(color_royal_blue());
             fill_rectangle(color_white(), boundary);
-            refresh_screen(10);
+            refresh_screen(2);
             mouse_point = mouse_position();
             
             process_events();
