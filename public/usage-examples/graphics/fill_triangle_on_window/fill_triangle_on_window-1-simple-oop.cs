@@ -8,11 +8,8 @@ namespace Program
     {
       Window myWindow = SplashKit.OpenWindow("Fill Triangle On Window", 800, 600);
 
-      // Define a triangle to draw
-      Triangle tri = SplashKit.TriangleFrom(300, 250, 500, 250, 400, 350);
-
       // Fill triangle on the window and refresh
-      SplashKit.FillTriangleOnWindow(myWindow, SplashKit.ColorBlue(), tri);
+      SplashKit.FillTriangleOnWindow(myWindow, SplashKit.ColorBlue(), 300, 250, 500, 250, 400, 350);
       SplashKit.RefreshWindow(myWindow);
 
       SplashKit.Delay(3000);
