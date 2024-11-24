@@ -1,0 +1,3 @@
+### Summing Double Values
+
+The following code shows an example of using [write line](/api/terminal/#write-line-3) to do a few maths operations on pi and e, and then use write line double to display the results to the terminal.
