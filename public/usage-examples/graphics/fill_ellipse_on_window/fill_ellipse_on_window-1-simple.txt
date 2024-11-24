@@ -1,0 +1,3 @@
+#### Draw Snowman On Window
+
+The following code shows examples of using [Fill Ellipse On Window](/api/graphics#fill-ellipse-on-window-3) to show how to draw a snowman on a specific window.
