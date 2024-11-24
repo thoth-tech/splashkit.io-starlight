@@ -1,0 +1,3 @@
+### Write char art
+
+The following code shows an example of using [write](/api/terminal/#write-1) to write a series of char characters to the terminal.
