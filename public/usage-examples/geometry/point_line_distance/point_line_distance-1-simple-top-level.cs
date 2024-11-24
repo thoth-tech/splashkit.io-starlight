@@ -41,7 +41,9 @@ while (!QuitRequested())
 
      // If distance is 3 or more 
     if (distance >= 3)
-    {   // Break loop 
+    {  
+        WriteLine("Game Over");
+         // Break loop 
         break;
     }
 }

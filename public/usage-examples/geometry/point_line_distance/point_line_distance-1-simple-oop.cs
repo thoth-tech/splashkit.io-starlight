@@ -47,7 +47,9 @@ namespace PointLineDistance
 
                 // If distance is 3 or more 
                 if (distance >= 3)
-                {   // Break loop 
+                {   
+                     SplashKit.WriteLine("Game Over");
+                    // Break loop 
                     break;
                 }
             }

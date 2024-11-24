@@ -40,6 +40,7 @@ while not quit_requested():
 
     # If distance is 3 or more 
     if distance >= 3:
+        write_line("Game Over")
         # Break loop 
         break 
 
