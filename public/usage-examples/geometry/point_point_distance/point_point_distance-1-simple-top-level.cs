@@ -22,6 +22,7 @@ while(!QuitRequested())
 
     // Print distance to terminal 
     WriteLine(PointPointDistance(center, mouse));
+    Delay(300);
 }
 
 // Close all opened windows

@@ -23,6 +23,7 @@ int main()
         
         // Print distance to terminal 
         write_line(point_point_distance(center, mouse));
+        delay(300);
     }
 
     // Close all opened windows

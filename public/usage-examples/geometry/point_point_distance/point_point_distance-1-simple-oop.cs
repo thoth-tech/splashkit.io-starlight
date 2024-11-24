@@ -27,6 +27,7 @@ namespace PointPointDistance
 
                 // Print distance to terminal 
                 SplashKit.WriteLine(SplashKit.PointPointDistance(center, mouse));
+                SplashKit.Delay(300);
             }
             
             // Close all opened windows

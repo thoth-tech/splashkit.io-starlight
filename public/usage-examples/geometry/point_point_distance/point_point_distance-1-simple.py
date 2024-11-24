@@ -20,6 +20,7 @@ while not quit_requested():
 
     # Print distance to terminal 
     write_line_double(point_point_distance(center, mouse))
+    delay(300)
     
 # Close all opened windows
 close_all_windows()
