@@ -9,10 +9,10 @@ clear_screen(color_white())
 # Text to display
 text = "Text Height!"
 
-# Calculate the text width with Normal font '0' and size 16
+# Calculate the text height with Normal font '0' and size 16
 text_width = text_width(text, 0, 16)
 
-# Calculate the x and y position to make the text in the centre of the window
+# Calculate the y position to make the text in the centre of the window
 x_position = (800 - text_width) // 2
 y_position = 600 // 2
 

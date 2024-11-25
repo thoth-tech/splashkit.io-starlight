@@ -12,7 +12,7 @@ int main()
     //Calculate the text height with size = 16
     int textHeight = text_height(text, "my_font", 16);
 
-    //Calculate the x and y position to make the text align it vertically in the window
+    //Calculate the y position to make the text align it vertically in the window
     int x_position = 200;
     int y_position = (600-textHeight)/2;
     
