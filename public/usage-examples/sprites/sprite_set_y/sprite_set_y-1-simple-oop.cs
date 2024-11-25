@@ -7,11 +7,11 @@ namespace Program
         public static void Main()
         {
          
-<<<<<<< Updated upstream
+
             Window myWindow = SplashKit.OpenWindow("sprite_set_y", 600, 600);
-=======
+
             SplashKit.OpenWindow("sprite_set_y", 600, 600);
->>>>>>> Stashed changes
+
             
             Bitmap playerBitmap = SplashKit.LoadBitmap("player", "player-run.png");
             
@@ -23,11 +23,11 @@ namespace Program
             SplashKit.DrawSprite(playerSprite);
             SplashKit.RefreshScreen();
             SplashKit.Delay(5000);
-<<<<<<< Updated upstream
-            SplashKit.CloseWindow(myWindow);
-=======
+
+
+
             SplashKit.CloseAllWindows();
->>>>>>> Stashed changes
+
     }
   }
 }
