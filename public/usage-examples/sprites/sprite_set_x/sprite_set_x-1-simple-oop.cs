@@ -21,7 +21,7 @@ namespace Program
             SplashKit.DrawSprite(playerSprite);
             SplashKit.RefreshScreen();
             SplashKit.Delay(5000);
-            SplashKit.CloseWindow(myWindow);
+            SplashKit.CloseAllWindows();
     }
   }
 }
