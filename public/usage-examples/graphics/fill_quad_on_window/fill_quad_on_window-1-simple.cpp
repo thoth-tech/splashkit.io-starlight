@@ -13,7 +13,6 @@ int main()
     window window2 = open_window("Fill Quad On Window 2", 600, 600);
     clear_screen(COLOR_WHITE);
 
-    
     fill_quad_on_window(window1, COLOR_BLACK, q1);
     fill_quad_on_window(window1, COLOR_GREEN, q2);
     fill_quad_on_window(window2, COLOR_RED, q3);

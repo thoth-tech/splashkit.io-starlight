@@ -18,13 +18,11 @@ namespace FillQuadOnWindow
             Window window2 = SplashKit.OpenWindow("Fill Quad On Window 2", 600, 600);
             SplashKit.ClearScreen(SplashKit.ColorWhite());
 
-
             SplashKit.FillQuadOnWindow(window1, SplashKit.ColorBlack(), q1);
             SplashKit.FillQuadOnWindow(window1, SplashKit.ColorGreen(), q2);
             SplashKit.FillQuadOnWindow(window2, SplashKit.ColorRed(), q3);
             SplashKit.FillQuadOnWindow(window2, SplashKit.ColorBlue(), q4);
             
-
             SplashKit.RefreshScreen();
             SplashKit.Delay(5000);
             SplashKit.CloseAllWindows();

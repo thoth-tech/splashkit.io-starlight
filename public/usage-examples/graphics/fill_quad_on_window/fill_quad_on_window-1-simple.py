@@ -7,11 +7,9 @@ q3 = quad_from(200,400,300,300,300,600,400,400)
 q4 = quad_from(200,390,290,300,0,300,200,210)
 
 # Create Window
-
 window1 = open_window("Fill Quad", 600, 600)
 window2 = open_window("Fill Quad", 600, 600)
 clear_screen(color_white())
-
 
 fill_quad_on_window(window1, color_black(), q1)
 fill_quad_on_window(window1, color_green(), q2)
