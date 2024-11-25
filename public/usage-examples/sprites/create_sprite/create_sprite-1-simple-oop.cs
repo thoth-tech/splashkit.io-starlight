@@ -6,7 +6,7 @@ namespace Program
     {
         public static void Main()
         {
-            Window myWindow = SplashKit.OpenWindow("Create Sprite", 800, 600);
+            SplashKit.OpenWindow("Create Sprite", 800, 600);
 
             Bitmap playerBitmap = SplashKit.LoadBitmap("player", "player.png");
 
@@ -20,7 +20,7 @@ namespace Program
             SplashKit.DrawSprite(playerSprite);
             SplashKit.RefreshWindow(myWindow);
             SplashKit.Delay(3000);
-            SplashKit.CloseWindow(myWindow);
+            SplashKit.CloseAllWindows();
         }
     }
 }
