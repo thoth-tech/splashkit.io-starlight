@@ -1,11 +1,9 @@
 from splashkit import *
 
-my_window = open_window("Simple Red Triangle", 800, 600)
+open_window("Fill triangle", 800, 600)
 
-tria = triangle_from(100, 100, 200, 200, 300, 100)
+fill_triangle(color_red(), 100, 100, 200, 200, 300, 100)
+refresh_screen()
 
-fill_triangle(my_window, color_blue(), tria)
-refresh_window(my_window)
-
-delay(3000)
-close_window(my_window)
+delay(5000)
+close_all_windows()
