@@ -1,7 +1,6 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-  
 //Create Window
 OpenWindow("random bitmap point", 600, 600);
 Bitmap bmp = new Bitmap("random quads",600,600);
@@ -22,4 +21,3 @@ DrawBitmap(bmp, 0,0);
 RefreshScreen();
 Delay(5000);
 CloseAllWindows();
-

@@ -2,8 +2,6 @@
 
 int main()
 {
-    
-
     //Create Window
     open_window("random bitmap point", 600, 600);
     bitmap bmp = create_bitmap("random quads",600,600);

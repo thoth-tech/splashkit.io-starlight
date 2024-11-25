@@ -13,7 +13,8 @@ namespace RandomBitmapPoint
             // create quad using random points on bitmap
             Quad q = SplashKit.QuadFrom(
                 SplashKit.RandomBitmapPoint(bmp),
-                SplashKit.RandomBitmapPoint(bmp),SplashKit.RandomBitmapPoint(bmp),
+                SplashKit.RandomBitmapPoint(bmp),
+                SplashKit.RandomBitmapPoint(bmp),
                 SplashKit.RandomBitmapPoint(bmp));
             SplashKit.DrawQuadOnBitmap(bmp, Color.Black, q);
 
