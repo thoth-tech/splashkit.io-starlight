@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace TextWidth
+namespace TextHeight
 {
     public class Program
     {
@@ -14,13 +14,13 @@ namespace TextWidth
             // Load font
             SplashKit.LoadFont("my_font", "arial.ttf");
             // Calculate the text width, 0 for normal font, and 16 is the font size
-            int textWidth = SplashKit.TextWidth(text, "my_font", 16);
+            int textHeight = SplashKit.TextHeight(text, "my_font", 16);
 
-            // Calculate the x and y position to make the text in the center of the window
-            int xPosition = (800 - textWidth) / 2;
-            int yPosition = 600 / 2;
+            //Calculate the x and y position to make the text align it vertically in the window
+            int xPosition = 200;
+            int yPosition = (600-textHeight) / 2;
 
-            // Display the text in the center of the window
+            // Display the text align it vertically in the window
             SplashKit.DrawText(text, Color.Black, xPosition, yPosition);
 
             SplashKit.RefreshScreen();

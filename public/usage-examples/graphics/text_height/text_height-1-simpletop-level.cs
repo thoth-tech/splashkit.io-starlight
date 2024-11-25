@@ -11,13 +11,13 @@ string text = "Text Width!";
 LoadFont("my_font", "arial.ttf");
 
 //Calculate the text width with size = 16
-int textWidth = TextWidth(text, "my_font", 16);
+int textHeight = TextHeight(text, "my_font", 16);
 
-//Calculate the x and y position to make the text in the centre of the window
-int xPosition = (800 - textWidth) / 2;
-int yPosition = 600 / 2;
+//Calculate the x and y position to make the text align it vertically in the window
+int xPosition = 200;
+int yPosition = (600 - textHeight) / 2;
 
-// Display the text in the centre of the window
+// Display the text align it vertically in the window
 DrawText(text, Color.Black, xPosition, yPosition);
 
 RefreshScreen();

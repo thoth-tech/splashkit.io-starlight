@@ -1,0 +1,3 @@
+#### Align Text Vertically
+
+The following code shows examples of using [Text Height](/api/graphics/#text-height) to show how to find the width of the text and align it vertically.
