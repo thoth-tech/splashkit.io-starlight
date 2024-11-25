@@ -1,7 +1,7 @@
 from splashkit import *
 
 
-my_window = open_window("sprite_set_y", 600, 600)
+open_window("sprite_set_y", 600, 600)
 
 player_bitmap = load_bitmap("player", "player-run.png")
 
@@ -14,4 +14,4 @@ clear_screen(color_black())
 draw_sprite(player_sprite)
 refresh_screen()
 delay(5000)
-close_window(my_window)
+close_window()
