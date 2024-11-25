@@ -6,10 +6,10 @@ namespace TextHeight
     {
         public static void Main()
         {           
-            SplashKit.OpenWindow("Text Width", 800, 600);
+            SplashKit.OpenWindow("Text Height", 800, 600);
             SplashKit.ClearScreen();
 
-            string text = "Text Width!";
+            string text = "Text Height!";
 
             // Load font
             SplashKit.LoadFont("my_font", "arial.ttf");

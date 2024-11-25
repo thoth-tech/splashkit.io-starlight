@@ -1,13 +1,13 @@
 from splashkit import *
 
 # Open a window
-open_window("Text Width", 800, 600)
+open_window("Text Height", 800, 600)
 
 # Clear the screen to a black background
 clear_screen(color_white())
 
 # Text to display
-text = "Text Width!"
+text = "Text Height!"
 
 # Calculate the text width with Normal font '0' and size 16
 text_width = text_width(text, 0, 16)

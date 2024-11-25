@@ -1,11 +1,11 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Text Width", 800, 600);
+OpenWindow("Text Height", 800, 600);
 
 ClearScreen();
 
-string text = "Text Width!";
+string text = "Text Height!";
 
 // Load a font
 LoadFont("my_font", "arial.ttf");

@@ -2,13 +2,13 @@
 
 int main()
 {
-    open_window("Text Width", 800, 600);
+    open_window("Text Height", 800, 600);
     clear_screen();
 
     // Load a font
     load_font("my_font", "arial.ttf");
 
-    string text = "Text Width!";
+    string text = "Text Height!";
     //Calculate the text height with size = 16
     int textHeight = text_height(text, "my_font", 16);
 
