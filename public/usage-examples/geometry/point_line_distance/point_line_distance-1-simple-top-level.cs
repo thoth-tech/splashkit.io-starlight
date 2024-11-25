@@ -49,4 +49,5 @@ while (!QuitRequested())
 }
 
 // Close all opened windows 
+FreeFont(font1);
 CloseAllWindows();

@@ -51,5 +51,6 @@ int main()
     }
 
     // Close all opened windows 
+    free_font(font1);
     close_all_windows();  
 }

@@ -45,4 +45,5 @@ while not quit_requested():
         break 
 
 # Close all opened windows 
+free_font(font1)
 close_all_windows()

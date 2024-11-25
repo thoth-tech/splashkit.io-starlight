@@ -55,6 +55,7 @@ namespace PointLineDistance
             }
 
             // Close all opened windows 
+            SplashKit.FreeFont(font1);
             SplashKit.CloseAllWindows();
         } 
     }
