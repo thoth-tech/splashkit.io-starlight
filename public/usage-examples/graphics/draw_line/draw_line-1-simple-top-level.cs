@@ -1,11 +1,9 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-
 // Create Window
 OpenWindow("Draw Line", 600, 600);
 ClearScreen(ColorBlack());
-
 
 // Draw line param (Color, x1, y1, x2, y2)
 DrawLine(ColorYellow(), 0,0,600,600);

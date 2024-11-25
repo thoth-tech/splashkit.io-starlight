@@ -10,7 +10,6 @@ namespace DrawLine
             SplashKit.OpenWindow("Draw Line", 600, 600);
             SplashKit.ClearScreen(SplashKit.ColorBlack());
 
-
             // Draw line param (Color, x1, y1, x2, y2)
             SplashKit.DrawLine(SplashKit.ColorYellow(), 0,0,600,600);
             SplashKit.DrawLine(SplashKit.ColorGreen(), 0,150,600,450);
