@@ -7,7 +7,7 @@ namespace Program
         public static void Main()
         {
          
-            Window myWindow = SplashKit.OpenWindow("sprite_set_x", 600, 600);
+            SplashKit.OpenWindow("sprite_set_x", 600, 600);
 
             
             Bitmap playerBitmap = SplashKit.LoadBitmap("player", "player-run.png");
