@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace MatrixDemo
@@ -8,10 +7,10 @@ namespace MatrixDemo
         public static void Main()
         {
             // Create an identity matrix
-            Matrix2D myMatrix1 = IdentityMatrix();
+            Matrix2D myMatrix1 = SplashKit.IdentityMatrix();
 
             // Print the matrix to the console
-            WriteLine(MatrixToString(myMatrix1));
+            SplashKit.WriteLine(SplashKit.MatrixToString(myMatrix1));
         }
     }
 }

@@ -1,5 +1,4 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
 namespace MatrixPointMultiplicationDemo
 {
@@ -22,17 +21,17 @@ namespace MatrixPointMultiplicationDemo
             Point2D myPoint1 = new Point2D { X = 200, Y = 100 };
 
             // Multiply the matrix by the point
-            Point2D resultPoint = MatrixMultiply(myMatrix1, myPoint1);
+            Point2D resultPoint = SplashKit.MatrixMultiply(myMatrix1, myPoint1);
 
             // Print the matrix and points
-            WriteLine("Matrix:");
-            WriteLine(MatrixToString(myMatrix1));
+            SplashKit.WriteLine("Matrix:");
+            SplashKit.WriteLine(SplashKit.MatrixToString(myMatrix1));
 
-            WriteLine("Original Point:");
-            WriteLine(PointToString(myPoint1));
+            SplashKit.WriteLine("Original Point:");
+            SplashKit.WriteLine(SplashKit.PointToString(myPoint1));
 
-            WriteLine("Transformed Point:");
-            WriteLine(PointToString(resultPoint));
+            SplashKit.WriteLine("Transformed Point:");
+            SplashKit.WriteLine(SplashKit.PointToString(resultPoint));
         }
     }
 }

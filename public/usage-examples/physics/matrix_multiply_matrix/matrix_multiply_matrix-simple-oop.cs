@@ -1,5 +1,4 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
 namespace MatrixMultiplicationDemo
 {
@@ -30,17 +29,17 @@ namespace MatrixMultiplicationDemo
             };
 
             // Multiply the two matrices
-            Matrix2D resultMatrix = MatrixMultiply(myMatrix1, myMatrix2);
+            Matrix2D resultMatrix = SplashKit.MatrixMultiply(myMatrix1, myMatrix2);
 
             // Print the original matrices and the result
-            WriteLine("Matrix 1:");
-            WriteLine(MatrixToString(myMatrix1));
+            SplashKit.WriteLine("Matrix 1:");
+            SplashKit.WriteLine(SplashKit.MatrixToString(myMatrix1));
 
-            WriteLine("Matrix 2:");
-            WriteLine(MatrixToString(myMatrix2));
+            SplashKit.WriteLine("Matrix 2:");
+            SplashKit.WriteLine(SplashKit.MatrixToString(myMatrix2));
 
-            WriteLine("Resulting Matrix (Matrix 1 x Matrix 2):");
-            WriteLine(MatrixToString(resultMatrix));
+            SplashKit.WriteLine("Resulting Matrix (Matrix 1 x Matrix 2):");
+            SplashKit.WriteLine(SplashKit.MatrixToString(resultMatrix));
         }
     }
 }

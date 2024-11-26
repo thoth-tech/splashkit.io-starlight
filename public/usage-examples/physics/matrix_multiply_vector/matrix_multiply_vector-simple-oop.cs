@@ -1,5 +1,4 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
 namespace MatrixVectorTransformDemo
 {
@@ -19,8 +18,8 @@ namespace MatrixVectorTransformDemo
             };
 
             // Print the matrix
-            WriteLine("Matrix:");
-            WriteLine(MatrixToString(myMatrix1));
+            SplashKit.WriteLine("Matrix:");
+            SplashKit.WriteLine(SplashKit.MatrixToString(myMatrix1));
 
             // Define the vector
             Vector2D myVector1 = new Vector2D
@@ -30,15 +29,15 @@ namespace MatrixVectorTransformDemo
             };
 
             // Print the vector
-            WriteLine("Original Vector:");
-            WriteLine(VectorToString(myVector1));
+            SplashKit.WriteLine("Original Vector:");
+            SplashKit.WriteLine(SplashKit.VectorToString(myVector1));
 
             // Multiply the matrix by the vector
-            Vector2D resultVector = MatrixMultiply(myMatrix1, myVector1);
+            Vector2D resultVector = SplashKit.MatrixMultiply(myMatrix1, myVector1);
 
             // Print the resulting vector
-            WriteLine("Transformed Vector:");
-            WriteLine(VectorToString(resultVector));
+            SplashKit.WriteLine("Transformed Vector:");
+            SplashKit.WriteLine(SplashKit.VectorToString(resultVector));
         }
     }
 }

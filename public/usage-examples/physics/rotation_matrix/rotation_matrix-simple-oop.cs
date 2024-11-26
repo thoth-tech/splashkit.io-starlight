@@ -1,5 +1,4 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
 namespace RotationMatrixDemo
 {
@@ -8,21 +7,21 @@ namespace RotationMatrixDemo
         public static void Main()
         {
             // Create a rotation matrix for 45 degrees
-            Matrix2D rotationMatrix45 = RotationMatrix(45);
+            Matrix2D rotationMatrix45 = SplashKit.RotationMatrix(45);
 
             // Print the rotation matrix to the console
-            WriteLine("Rotation Matrix (45 degrees):");
-            WriteLine(MatrixToString(rotationMatrix45));
+            SplashKit.WriteLine("Rotation Matrix (45 degrees):");
+            SplashKit.WriteLine(SplashKit.MatrixToString(rotationMatrix45));
 
             // Define a point
             Point2D originalPoint = new Point2D() { X = 1, Y = 0 }; // A point on the x-axis
-            WriteLine("Original Point:");
-            WriteLine(PointToString(originalPoint));
+            SplashKit.WriteLine("Original Point:");
+            SplashKit.WriteLine(SplashKit.PointToString(originalPoint));
 
             // Apply the rotation matrix to the point
-            Point2D rotatedPoint = MatrixMultiply(rotationMatrix45, originalPoint);
-            WriteLine("Rotated Point (after 45-degree rotation):");
-            WriteLine(PointToString(rotatedPoint));
+            Point2D rotatedPoint = SplashKit.MatrixMultiply(rotationMatrix45, originalPoint);
+            SplashKit.WriteLine("Rotated Point (after 45-degree rotation):");
+            SplashKit.WriteLine(SplashKit.PointToString(rotatedPoint));
         }
     }
 }

@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace TransformationMatrixVisualization
@@ -8,8 +7,8 @@ namespace TransformationMatrixVisualization
         public static void Main()
         {
             // Open a window for visualization
-            OpenWindow("Transformation Matrix Visualization", 400, 400);
-            ClearScreen(ColorWhite());
+            SplashKit.OpenWindow("Transformation Matrix Visualization", 400, 400);
+            SplashKit.ClearScreen(SplashKit.ColorWhite());
 
             // Define the scaling factors
             Point2D matrixScale = new Point2D() { X = 1.5, Y = 1.2 };
@@ -21,7 +20,7 @@ namespace TransformationMatrixVisualization
             double rotation = 45;
 
             // Create a matrix combining scaling, rotation, and translation
-            Matrix2D transformationMatrix = ScaleRotateTranslateMatrix(matrixScale, rotation, matrixTranslation);
+            Matrix2D transformationMatrix = SplashKit.ScaleRotateTranslateMatrix(matrixScale, rotation, matrixTranslation);
 
             // Define the original triangle points (centered and larger)
             Triangle originalTriangle = new Triangle()
@@ -35,29 +34,29 @@ namespace TransformationMatrixVisualization
             };
 
             // Draw the original triangle
-            FillTriangle(ColorBlue(), originalTriangle);
-            WriteLine("Original (Blue) Triangle Points:");
+            SplashKit.FillTriangle(SplashKit.ColorBlue(), originalTriangle);
+            SplashKit.WriteLine("Original (Blue) Triangle Points:");
             foreach (var point in originalTriangle.Points)
             {
-                WriteLine(PointToString(point));
+                SplashKit.WriteLine(SplashKit.PointToString(point));
             }
 
             // Transform the triangle using the transformation matrix
-            ApplyMatrix(transformationMatrix, ref originalTriangle);
+            SplashKit.ApplyMatrix(transformationMatrix, ref originalTriangle);
 
             // Draw the transformed triangle
-            FillTriangle(ColorRed(), originalTriangle);
-            WriteLine("Transformed (Red) Triangle Points:");
+            SplashKit.FillTriangle(SplashKit.ColorRed(), originalTriangle);
+            SplashKit.WriteLine("Transformed (Red) Triangle Points:");
             foreach (var point in originalTriangle.Points)
             {
-                WriteLine(PointToString(point));
+                SplashKit.WriteLine(SplashKit.PointToString(point));
             }
 
             // Refresh the screen
-            RefreshScreen();
-            Delay(5000);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(5000);
 
-            CloseAllWindows();
+            SplashKit.CloseAllWindows();
         }
     }
 }

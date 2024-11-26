@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace ApplyMatrixDemo
@@ -8,10 +7,10 @@ namespace ApplyMatrixDemo
         public static void Main()
         {
             // Open the window
-            OpenWindow("Apply Matrix", 400, 400);
+            SplashKit.OpenWindow("Apply Matrix", 400, 400);
 
             // Clear the screen
-            ClearScreen(ColorWhite());
+            SplashKit.ClearScreen(SplashKit.ColorWhite());
 
             // Define the quad points
             Quad testRectangle1 = new Quad();
@@ -22,31 +21,31 @@ namespace ApplyMatrixDemo
             testRectangle1.Points[3] = new Point2D() { X = 250, Y = 250 };
 
             // Define the transformation matrix (scaling + translation)
-            Matrix2D scalingMatrix = ScaleMatrix(0.5);
-            Matrix2D translationMatrix = TranslationMatrix(50, 50);
-            Matrix2D combinedMatrix = MatrixMultiply(scalingMatrix, translationMatrix);
+            Matrix2D scalingMatrix = SplashKit.ScaleMatrix(0.5);
+            Matrix2D translationMatrix = SplashKit.TranslationMatrix(50, 50);
+            Matrix2D combinedMatrix = SplashKit.MatrixMultiply(scalingMatrix, translationMatrix);
 
             // Draw the initial quad
-            FillQuad(ColorBlack(), testRectangle1);
-            WriteLine("Quad points before matrix application:");
+            SplashKit.FillQuad(SplashKit.ColorBlack(), testRectangle1);
+            SplashKit.WriteLine("Quad points before matrix application:");
             for (int i = 0; i < 4; i++)
-                WriteLine(PointToString(testRectangle1.Points[i]));
+                SplashKit.WriteLine(SplashKit.PointToString(testRectangle1.Points[i]));
 
             // Apply the matrix to the quad
-            ApplyMatrix(combinedMatrix, ref testRectangle1);
+            SplashKit.ApplyMatrix(combinedMatrix, ref testRectangle1);
 
             // Draw the transformed quad
-            FillQuad(ColorRed(), testRectangle1);
-            WriteLine("Quad points after matrix application:");
+            SplashKit.FillQuad(SplashKit.ColorRed(), testRectangle1);
+            SplashKit.WriteLine("Quad points after matrix application:");
             for (int i = 0; i < 4; i++)
-                WriteLine(PointToString(testRectangle1.Points[i]));
+                SplashKit.WriteLine(SplashKit.PointToString(testRectangle1.Points[i]));
 
             // Refresh the screen and wait
-            RefreshScreen();
-            Delay(4000);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(4000);
 
             // Close all windows
-            CloseAllWindows();
+            SplashKit.CloseAllWindows();
         }
     }
 }

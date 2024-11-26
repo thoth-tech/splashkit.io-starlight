@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace ApplyMatrixToTriangle
@@ -8,10 +7,10 @@ namespace ApplyMatrixToTriangle
         public static void Main()
         {
             // Open the window
-            OpenWindow("Apply Matrix to Triangle", 300, 300);
+            SplashKit.OpenWindow("Apply Matrix to Triangle", 300, 300);
 
             // Clear the screen
-            ClearScreen(ColorWhite());
+            SplashKit.ClearScreen(SplashKit.ColorWhite());
 
             // Define the triangle points
             Triangle testTriangle1 = new Triangle();
@@ -21,31 +20,31 @@ namespace ApplyMatrixToTriangle
             testTriangle1.Points[2] = new Point2D() { X = 220, Y = 220 };
 
             // Define the transformation matrix (scaling + translation)
-            Matrix2D scalingMatrix = ScaleMatrix(0.5);
-            Matrix2D translationMatrix = TranslationMatrix(-25, 50);
-            Matrix2D combinedMatrix = MatrixMultiply(scalingMatrix, translationMatrix);
+            Matrix2D scalingMatrix = SplashKit.ScaleMatrix(0.5);
+            Matrix2D translationMatrix = SplashKit.TranslationMatrix(-25, 50);
+            Matrix2D combinedMatrix = SplashKit.MatrixMultiply(scalingMatrix, translationMatrix);
 
             // Draw the initial triangle
-            FillTriangle(ColorBlack(), testTriangle1);
-            WriteLine("Triangle points before matrix application:");
+            SplashKit.FillTriangle(SplashKit.ColorBlack(), testTriangle1);
+            SplashKit.WriteLine("Triangle points before matrix application:");
             foreach (Point2D point in testTriangle1.Points)
-                WriteLine(PointToString(point));
+                SplashKit.WriteLine(SplashKit.PointToString(point));
 
             // Apply the matrix to the triangle
-            ApplyMatrix(combinedMatrix, ref testTriangle1);
+            SplashKit.ApplyMatrix(combinedMatrix, ref testTriangle1);
 
             // Draw the transformed triangle
-            FillTriangle(ColorRed(), testTriangle1);
-            WriteLine("Triangle points after matrix application:");
+            SplashKit.FillTriangle(SplashKit.ColorRed(), testTriangle1);
+            SplashKit.WriteLine("Triangle points after matrix application:");
             foreach (Point2D point in testTriangle1.Points)
-                WriteLine(PointToString(point));
+                SplashKit.WriteLine(SplashKit.PointToString(point));
 
             // Refresh the screen and wait
-            RefreshScreen();
-            Delay(4000);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(4000);
 
             // Close all windows
-            CloseAllWindows();
+            SplashKit.CloseAllWindows();
         }
     }
 }

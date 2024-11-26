@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace MatrixInverseDemo
@@ -7,35 +6,35 @@ namespace MatrixInverseDemo
     {
         public static void Main()
         {
-            OpenWindow("Matrix Inverse", 400, 300);
+            SplashKit.OpenWindow("Matrix Inverse", 400, 300);
 
             // Define a transformation matrix (scaling)
-            Matrix2D scalingMatrix = ScaleMatrix(2.0);
+            Matrix2D scalingMatrix = SplashKit.ScaleMatrix(2.0);
 
             // Print the scaling matrix
-            WriteLine("Scaling Matrix:");
-            WriteLine(MatrixToString(scalingMatrix));
+            SplashKit.WriteLine("Scaling Matrix:");
+            SplashKit.WriteLine(SplashKit.MatrixToString(scalingMatrix));
 
             // Calculate the inverse of the scaling matrix
-            Matrix2D inverseMatrix = MatrixInverse(scalingMatrix);
+            Matrix2D inverseMatrix = SplashKit.MatrixInverse(scalingMatrix);
 
             // Print the inverse matrix
-            WriteLine("Inverse Matrix:");
-            WriteLine(MatrixToString(inverseMatrix));
+            SplashKit.WriteLine("Inverse Matrix:");
+            SplashKit.WriteLine(SplashKit.MatrixToString(inverseMatrix));
 
             // Define a point
             Point2D originalPoint = new Point2D { X = 100, Y = 100 };
-            WriteLine($"Original Point: {PointToString(originalPoint)}");
+            SplashKit.WriteLine($"Original Point: {SplashKit.PointToString(originalPoint)}");
 
             // Transform the point
-            Point2D transformedPoint = MatrixMultiply(scalingMatrix, originalPoint);
-            WriteLine($"Transformed Point: {PointToString(transformedPoint)}");
+            Point2D transformedPoint = SplashKit.MatrixMultiply(scalingMatrix, originalPoint);
+            SplashKit.WriteLine($"Transformed Point: {SplashKit.PointToString(transformedPoint)}");
 
             // Apply the inverse transformation to recover the original point
-            Point2D recoveredPoint = MatrixMultiply(inverseMatrix, transformedPoint);
-            WriteLine($"Recovered Point: {PointToString(recoveredPoint)}");
+            Point2D recoveredPoint = SplashKit.MatrixMultiply(inverseMatrix, transformedPoint);
+            SplashKit.WriteLine($"Recovered Point: {SplashKit.PointToString(recoveredPoint)}");
 
-            CloseAllWindows();
+            SplashKit.CloseAllWindows();
         }
     }
 }
