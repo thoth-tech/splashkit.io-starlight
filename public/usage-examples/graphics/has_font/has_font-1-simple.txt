@@ -1,0 +1,3 @@
+#### Check font
+
+The following code shows examples of using [Has Font](/api/graphics/#has-font) to show how check if the font exit or not.
