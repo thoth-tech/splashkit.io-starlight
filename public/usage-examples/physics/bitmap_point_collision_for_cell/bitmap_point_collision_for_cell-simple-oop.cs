@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace BitmapCollisionsDemo
@@ -8,10 +7,10 @@ namespace BitmapCollisionsDemo
         public static void Main()
         {
             // Open the window
-            OpenWindow("Bitmap Collisions", 315, 330);
+            SplashKit.OpenWindow("Bitmap Collisions", 315, 330);
 
             // Load the bitmap
-            Bitmap skBmp = LoadBitmap("skbox", "skbox.png");
+            Bitmap skBmp = SplashKit.LoadBitmap("skbox", "skbox.png");
 
             // Set the bitmap and dot locations using Point2D
             Point2D skBmpLoc = new Point2D() { X = 50, Y = 50 };
@@ -19,28 +18,28 @@ namespace BitmapCollisionsDemo
             Point2D redDotLoc = new Point2D() { X = 200, Y = 150 };
 
             // Clear the screen and draw the bitmap and dots
-            ClearScreen(Color.White);
-            DrawBitmap(skBmp, skBmpLoc.X, skBmpLoc.Y);
-            FillCircle(Color.Black, CircleAt(blackDotLoc, 2));
-            FillCircle(Color.Red, CircleAt(redDotLoc, 2));
+            SplashKit.ClearScreen(Color.White);
+            SplashKit.DrawBitmap(skBmp, skBmpLoc.X, skBmpLoc.Y);
+            SplashKit.FillCircle(Color.Black, SplashKit.CircleAt(blackDotLoc, 2));
+            SplashKit.FillCircle(Color.Red, SplashKit.CircleAt(redDotLoc, 2));
 
             // Check for collisions
-            if (BitmapPointCollision(skBmp, 50, 50, 50, 20, 20))
+            if (SplashKit.BitmapPointCollision(skBmp, 50, 50, 50, 20, 20))
             {
-                WriteLine("Black Dot Collision");
+                SplashKit.WriteLine("Black Dot Collision");
             }
 
-            if (BitmapPointCollision(skBmp, 50, 50, 50, 200, 200))
+            if (SplashKit.BitmapPointCollision(skBmp, 50, 50, 50, 200, 200))
             {
-                WriteLine("Red Dot Collision!");
+                SplashKit.WriteLine("Red Dot Collision!");
             }
 
             // Refresh the screen and wait
-            RefreshScreen();
-            Delay(4000);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(4000);
 
             // Close all windows
-            CloseAllWindows();
+            SplashKit.CloseAllWindows();
         }
     }
 }

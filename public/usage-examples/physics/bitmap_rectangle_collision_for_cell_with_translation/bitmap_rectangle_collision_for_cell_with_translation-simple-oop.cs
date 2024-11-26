@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace BitmapCollisionsDemo
@@ -8,14 +7,14 @@ namespace BitmapCollisionsDemo
         public static void Main()
         {
             // Open the window
-            OpenWindow("Bitmap Collisions", 315, 330);
+            SplashKit.OpenWindow("Bitmap Collisions", 315, 330);
 
             // Load the bitmap and set its location
-            Bitmap skBmp = LoadBitmap("skbox", "skbox.png");
+            Bitmap skBmp = SplashKit.LoadBitmap("skbox", "skbox.png");
             Point2D bmpLoc = new Point2D() { X = 50, Y = 50 };
 
             // Create a translation matrix for the bitmap
-            Matrix2D bmpMatrix = TranslationMatrix(bmpLoc);
+            Matrix2D bmpMatrix = SplashKit.TranslationMatrix(bmpLoc);
 
             // Define the rectangles
             Rectangle blackRectangle = new Rectangle()
@@ -35,28 +34,28 @@ namespace BitmapCollisionsDemo
             };
 
             // Clear the screen and draw the elements
-            ClearScreen(RGBColor(67, 80, 175));
-            DrawBitmap(skBmp, bmpLoc.X, bmpLoc.Y);
-            FillRectangle(Color.Black, blackRectangle);
-            FillRectangle(Color.Red, redRectangle);
+            SplashKit.ClearScreen(SplashKit.RGBColor(67, 80, 175));
+            SplashKit.DrawBitmap(skBmp, bmpLoc.X, bmpLoc.Y);
+            SplashKit.FillRectangle(Color.Black, blackRectangle);
+            SplashKit.FillRectangle(Color.Red, redRectangle);
 
             // Check for collisions
-            if (BitmapRectangleCollision(skBmp, 50, bmpMatrix, blackRectangle))
+            if (SplashKit.BitmapRectangleCollision(skBmp, 50, bmpMatrix, blackRectangle))
             {
-                WriteLine("Black Rectangle Collision!");
+                SplashKit.WriteLine("Black Rectangle Collision!");
             }
 
-            if (BitmapRectangleCollision(skBmp, 50, bmpMatrix, redRectangle))
+            if (SplashKit.BitmapRectangleCollision(skBmp, 50, bmpMatrix, redRectangle))
             {
-                WriteLine("Red Rectangle Collision!");
+                SplashKit.WriteLine("Red Rectangle Collision!");
             }
 
             // Refresh the screen and wait
-            RefreshScreen();
-            Delay(4000);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(4000);
 
             // Close all windows
-            CloseAllWindows();
+            SplashKit.CloseAllWindows();
         }
     }
 }

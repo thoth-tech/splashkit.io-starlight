@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace BitmapCollisionsDemo
@@ -8,12 +7,12 @@ namespace BitmapCollisionsDemo
         public static void Main()
         {
             // Open the window
-            OpenWindow("Bitmap Collisions", 315, 330);
+            SplashKit.OpenWindow("Bitmap Collisions", 315, 330);
 
             // Load the bitmaps
-            Bitmap skBmp = LoadBitmap("skbox", "skbox.png");
-            Bitmap fileBmp = LoadBitmap("file", "file_image.png");
-            Bitmap bugBmp = LoadBitmap("bug", "bug_image.png");
+            Bitmap skBmp = SplashKit.LoadBitmap("skbox", "skbox.png");
+            Bitmap fileBmp = SplashKit.LoadBitmap("file", "file_image.png");
+            Bitmap bugBmp = SplashKit.LoadBitmap("bug", "bug_image.png");
 
             // Set the bitmap locations using Point2D
             Point2D skBmpLoc = new Point2D() { X = 50, Y = 50 };
@@ -21,28 +20,28 @@ namespace BitmapCollisionsDemo
             Point2D bugBmpLoc = new Point2D() { X = 200, Y = 150 };
 
             // Clear the screen and draw the bitmaps
-            ClearScreen(Color.White);
-            DrawBitmap(skBmp, skBmpLoc.X, skBmpLoc.Y);
-            DrawBitmap(fileBmp, fileBmpLoc.X, fileBmpLoc.Y);
-            DrawBitmap(bugBmp, bugBmpLoc.X, bugBmpLoc.Y);
+            SplashKit.ClearScreen(Color.White);
+            SplashKit.DrawBitmap(skBmp, skBmpLoc.X, skBmpLoc.Y);
+            SplashKit.DrawBitmap(fileBmp, fileBmpLoc.X, fileBmpLoc.Y);
+            SplashKit.DrawBitmap(bugBmp, bugBmpLoc.X, bugBmpLoc.Y);
 
             // Check for collisions
-            if (BitmapCollision(skBmp, 50, 50, 50, fileBmp, 20, 20, 20))
+            if (SplashKit.BitmapCollision(skBmp, 50, 50, 50, fileBmp, 20, 20, 20))
             {
-                WriteLine("SplashKit got a new file!");
+                SplashKit.WriteLine("SplashKit got a new file!");
             }
 
-            if (BitmapCollision(skBmp, 50, 50, 50, bugBmp, 200, 200, 150))
+            if (SplashKit.BitmapCollision(skBmp, 50, 50, 50, bugBmp, 200, 200, 150))
             {
-                WriteLine("SplashKit has bugs!");
+                SplashKit.WriteLine("SplashKit has bugs!");
             }
 
             // Refresh the screen and wait
-            RefreshScreen();
-            Delay(4000);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(4000);
 
             // Close all windows
-            CloseAllWindows();
+            SplashKit.CloseAllWindows();
         }
     }
 }

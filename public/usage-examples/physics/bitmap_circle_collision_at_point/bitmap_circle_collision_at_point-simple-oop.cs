@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace BitmapCollisionsApp
@@ -7,9 +6,9 @@ namespace BitmapCollisionsApp
     {
         public static void Main()
         {
-            OpenWindow("Bitmap Collisions", 315, 330);
+            SplashKit.OpenWindow("Bitmap Collisions", 315, 330);
 
-            Bitmap skBmp = LoadBitmap("skbox", "skbox.png");
+            Bitmap skBmp = SplashKit.LoadBitmap("skbox", "skbox.png");
             Point2D bmpLoc = new Point2D() { X = 50, Y = 50 };
 
             Circle blackCircle = new Circle()
@@ -24,24 +23,24 @@ namespace BitmapCollisionsApp
                 Radius = 20
             };
 
-            ClearScreen(RGBColor(67, 80, 175));
-            DrawBitmap(skBmp, bmpLoc.X, bmpLoc.Y);
-            DrawCircle(ColorBlack(), blackCircle);
-            DrawCircle(ColorRed(), redCircle);
+            SplashKit.ClearScreen(SplashKit.RGBColor(67, 80, 175));
+            SplashKit.DrawBitmap(skBmp, bmpLoc.X, bmpLoc.Y);
+            SplashKit.DrawCircle(SplashKit.ColorBlack(), blackCircle);
+            SplashKit.DrawCircle(SplashKit.ColorRed(), redCircle);
 
-            if (BitmapCircleCollision(skBmp, bmpLoc, blackCircle))
+            if (SplashKit.BitmapCircleCollision(skBmp, bmpLoc, blackCircle))
             {
-                WriteLine("Black Circle Collision!");
+                SplashKit.WriteLine("Black Circle Collision!");
             }
 
-            if (BitmapCircleCollision(skBmp, bmpLoc, redCircle))
+            if (SplashKit.BitmapCircleCollision(skBmp, bmpLoc, redCircle))
             {
-                WriteLine("Red Circle Collision!");
+                SplashKit.WriteLine("Red Circle Collision!");
             }
 
-            RefreshScreen();
-            Delay(4000);
-            CloseAllWindows();
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(4000);
+            SplashKit.CloseAllWindows();
         }
     }
 }
