@@ -1,5 +1,5 @@
-#### Multiplying Matrices
+#### Multiplying Points by Matrices
 
-Multiply two matrices and returns the result as a new matrix. Use this to combine the effects to two matrix transformations.
+Multiplies a point by a matrix and returns the result as another point. Used to apply scaling, rotation or translation effects.
 
-Uses the [matrix_multiply](/api/physics/#matrix-multiply-2) function.
+Uses the [matrix_multiply](/api/physics/#matrix-multiply-1) function.

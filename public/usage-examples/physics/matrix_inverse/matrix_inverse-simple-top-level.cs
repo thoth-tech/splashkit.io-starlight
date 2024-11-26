@@ -26,5 +26,3 @@ WriteLine($"Transformed Point: {PointToString(transformedPoint)}");
 // Apply the inverse transformation to recover the original point
 Point2D recoveredPoint = MatrixMultiply(inverseMatrix, transformedPoint);
 WriteLine($"Recovered Point: {PointToString(recoveredPoint)}");
-
-CloseAllWindows();

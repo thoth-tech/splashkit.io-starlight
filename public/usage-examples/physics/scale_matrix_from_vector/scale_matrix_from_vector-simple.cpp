@@ -10,7 +10,7 @@ int main()
     // Create a scaling matrix using the scale factors
     matrix_2d scaling_matrix = scale_matrix(matrix_scale);
 
-    // Print the scaling matrix
+    // Print the scaling matrix to the console
     write_line("Scaling Matrix:");
     write_line(matrix_to_string(scaling_matrix));
 

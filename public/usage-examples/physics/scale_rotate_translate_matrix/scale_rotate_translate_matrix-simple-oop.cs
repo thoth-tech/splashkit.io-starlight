@@ -10,7 +10,8 @@ namespace TransformationMatrixVisualization
             SplashKit.OpenWindow("Transformation Matrix Visualization", 400, 400);
             SplashKit.ClearScreen(SplashKit.ColorWhite());
 
-            // Define the scaling factors
+            // Scale width by 1.5
+            // Scale height by 1.2
             Point2D matrixScale = new Point2D() { X = 1.5, Y = 1.2 };
 
             // Define the translation (shift by a small amount)

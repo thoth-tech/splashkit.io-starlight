@@ -21,15 +21,18 @@ rotation = 45
 transformation_matrix = scale_rotate_translate_matrix(matrix_scale, rotation, matrix_translation)
 
 # Define the original triangle points (centered and larger)
+# Top point
 original_triangle = Triangle()
 original_triangle.points[0] = Point2D()
 original_triangle.points[0].x = 200
 original_triangle.points[0].y = 150
 
+# Bottom left point
 original_triangle.points[1] = Point2D()
 original_triangle.points[1].x = 150
 original_triangle.points[1].y = 250
 
+# Bottom right point
 original_triangle.points[2] = Point2D()
 original_triangle.points[2].x = 250
 original_triangle.points[2].y = 250

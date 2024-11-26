@@ -6,8 +6,6 @@ namespace MatrixInverseDemo
     {
         public static void Main()
         {
-            SplashKit.OpenWindow("Matrix Inverse", 400, 300);
-
             // Define a transformation matrix (scaling)
             Matrix2D scalingMatrix = SplashKit.ScaleMatrix(2.0);
 
@@ -33,8 +31,6 @@ namespace MatrixInverseDemo
             // Apply the inverse transformation to recover the original point
             Point2D recoveredPoint = SplashKit.MatrixMultiply(inverseMatrix, transformedPoint);
             SplashKit.WriteLine($"Recovered Point: {SplashKit.PointToString(recoveredPoint)}");
-
-            SplashKit.CloseAllWindows();
         }
     }
 }

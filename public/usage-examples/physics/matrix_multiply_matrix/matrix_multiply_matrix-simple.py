@@ -27,7 +27,7 @@ my_matrix_2.elements[8] = 5
 # Multiply the two matrices
 result_matrix = matrix_multiply_matrix(my_matrix_1, my_matrix_2)
 
-# Print the matrices and result
+# Print the original matrices and the result
 write_line("Matrix 1:")
 write_line(matrix_to_string(my_matrix_1))
 
