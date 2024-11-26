@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace VectorVisualisationDemo
@@ -8,38 +7,38 @@ namespace VectorVisualisationDemo
         public static void Main()
         {
             // Open the window
-            OpenWindow("Vector Visualisations", 300, 300);
+            SplashKit.OpenWindow("Vector Visualisations", 300, 300);
 
             // Create vectors from angles
-            Vector2D myVector1 = VectorFromAngle(15, 250);
-            Vector2D myVector2 = VectorFromAngle(30, 250);
-            Vector2D myVector3 = VectorFromAngle(45, 250);
-            Vector2D myVector4 = VectorFromAngle(60, 250);
-            Vector2D myVector5 = VectorFromAngle(75, 250);
+            Vector2D myVector1 = SplashKit.VectorFromAngle(15, 250);
+            Vector2D myVector2 = SplashKit.VectorFromAngle(30, 250);
+            Vector2D myVector3 = SplashKit.VectorFromAngle(45, 250);
+            Vector2D myVector4 = SplashKit.VectorFromAngle(60, 250);
+            Vector2D myVector5 = SplashKit.VectorFromAngle(75, 250);
 
             // Clear the screen
-            ClearScreen();
+            SplashKit.ClearScreen();
 
             // Output the vector details
-            WriteLine("Vector 1: " + VectorToString(myVector1));
-            WriteLine("Vector 2: " + VectorToString(myVector2));
-            WriteLine("Vector 3: " + VectorToString(myVector3));
-            WriteLine("Vector 4: " + VectorToString(myVector4));
-            WriteLine("Vector 5: " + VectorToString(myVector5));
+            SplashKit.WriteLine("Vector 1: " + SplashKit.VectorToString(myVector1));
+            SplashKit.WriteLine("Vector 2: " + SplashKit.VectorToString(myVector2));
+            SplashKit.WriteLine("Vector 3: " + SplashKit.VectorToString(myVector3));
+            SplashKit.WriteLine("Vector 4: " + SplashKit.VectorToString(myVector4));
+            SplashKit.WriteLine("Vector 5: " + SplashKit.VectorToString(myVector5));
 
             // Draw lines representing the vectors
-            DrawLine(ColorBlue(), LineFrom(myVector1));
-            DrawLine(ColorRed(), LineFrom(myVector2));
-            DrawLine(ColorBlack(), LineFrom(myVector3));
-            DrawLine(ColorPurple(), LineFrom(myVector4));
-            DrawLine(ColorOrange(), LineFrom(myVector5));
+            SplashKit.DrawLine(SplashKit.ColorBlue(), SplashKit.LineFrom(myVector1));
+            SplashKit.DrawLine(SplashKit.ColorRed(), SplashKit.LineFrom(myVector2));
+            SplashKit.DrawLine(SplashKit.ColorBlack(), SplashKit.LineFrom(myVector3));
+            SplashKit.DrawLine(SplashKit.ColorPurple(), SplashKit.LineFrom(myVector4));
+            SplashKit.DrawLine(SplashKit.ColorOrange(), SplashKit.LineFrom(myVector5));
 
             // Refresh the screen
-            RefreshScreen();
+            SplashKit.RefreshScreen();
 
             // Wait and close the window
-            Delay(4000);
-            CloseAllWindows();
+            SplashKit.Delay(4000);
+            SplashKit.CloseAllWindows();
         }
     }
 }

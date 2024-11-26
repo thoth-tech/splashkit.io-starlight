@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace VectorVisualisationDemo
@@ -8,7 +7,7 @@ namespace VectorVisualisationDemo
         public static void Main()
         {
             // Open the window
-            OpenWindow("Vector Visualisations", 300, 300);
+            SplashKit.OpenWindow("Vector Visualisations", 300, 300);
 
             // Define the outer circle
             Circle outerCircle = new Circle
@@ -22,25 +21,25 @@ namespace VectorVisualisationDemo
 
             // Define the velocity vector
             Vector2D velocity = new Vector2D { X = 10, Y = 10 };
-            Vector2D escape = VectorOutOfCircleFromPoint(innerPoint, outerCircle, velocity);
+            Vector2D escape = SplashKit.VectorOutOfCircleFromPoint(innerPoint, outerCircle, velocity);
 
             // Create line representing the escape vector
-            Line vectorLine = LineFrom(innerPoint, escape);
+            Line vectorLine = SplashKit.LineFrom(innerPoint, escape);
 
             // Clear the screen and draw shapes
-            ClearScreen(ColorWhite());
-            FillCircle(ColorBlack(), outerCircle);
-            FillCircle(ColorYellow(), CircleAt(innerPoint, 3));
+            SplashKit.ClearScreen(SplashKit.ColorWhite());
+            SplashKit.FillCircle(SplashKit.ColorBlack(), outerCircle);
+            SplashKit.FillCircle(SplashKit.ColorYellow(), SplashKit.CircleAt(innerPoint, 3));
 
             // Draw the escape vector line
-            DrawLine(ColorRed(), vectorLine);
+            SplashKit.DrawLine(SplashKit.ColorRed(), vectorLine);
 
             // Refresh the screen
-            RefreshScreen();
+            SplashKit.RefreshScreen();
 
             // Wait and close the window
-            Delay(4000);
-            CloseAllWindows();
+            SplashKit.Delay(4000);
+            SplashKit.CloseAllWindows();
         }
     }
 }

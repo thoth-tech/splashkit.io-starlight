@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace VectorPointToPointDemo
@@ -12,10 +11,10 @@ namespace VectorPointToPointDemo
             Point2D endPoint = new Point2D() { X = -300, Y = 150 };
 
             // Calculate the vector from start point to end point
-            Vector2D myVector1 = VectorPointToPoint(startPoint, endPoint);
+            Vector2D myVector1 = SplashKit.VectorPointToPoint(startPoint, endPoint);
 
             // Output the vector
-            WriteLine(VectorToString(myVector1));
+            SplashKit.WriteLine(SplashKit.VectorToString(myVector1));
         }
     }
 }

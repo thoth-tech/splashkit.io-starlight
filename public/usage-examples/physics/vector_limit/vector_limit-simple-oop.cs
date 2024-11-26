@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace VectorOperations
@@ -11,11 +10,11 @@ namespace VectorOperations
             Vector2D myVector1 = new Vector2D { X = 200, Y = 100 };
 
             // Limit the vector magnitude to 10
-            Vector2D myVector1Limited = VectorLimit(myVector1, 10);
+            Vector2D myVector1Limited = SplashKit.VectorLimit(myVector1, 10);
 
             // Output the original and limited vectors
-            WriteLine(VectorToString(myVector1));
-            WriteLine(VectorToString(myVector1Limited));
+            SplashKit.WriteLine(SplashKit.VectorToString(myVector1));
+            SplashKit.WriteLine(SplashKit.VectorToString(myVector1Limited));
         }
     }
 }

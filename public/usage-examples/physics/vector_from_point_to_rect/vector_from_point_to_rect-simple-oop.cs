@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace VectorVisualisationDemo
@@ -8,7 +7,7 @@ namespace VectorVisualisationDemo
         public static void Main()
         {
             // Open the window
-            OpenWindow("Vector Visualisations", 300, 300);
+            SplashKit.OpenWindow("Vector Visualisations", 300, 300);
 
             // Define rectangles
             Rectangle testRectangle1 = new Rectangle() { X = 50, Y = 200, Width = 50, Height = 50 };
@@ -19,29 +18,29 @@ namespace VectorVisualisationDemo
             Point2D origin = new Point2D() { X = 0, Y = 0 };
 
             // Create vectors from origin to rectangles
-            Vector2D myVector1 = VectorFromPointToRect(origin, testRectangle1);
-            Vector2D myVector2 = VectorFromPointToRect(origin, testRectangle2);
-            Vector2D myVector3 = VectorFromPointToRect(origin, testRectangle3);
+            Vector2D myVector1 = SplashKit.VectorFromPointToRect(origin, testRectangle1);
+            Vector2D myVector2 = SplashKit.VectorFromPointToRect(origin, testRectangle2);
+            Vector2D myVector3 = SplashKit.VectorFromPointToRect(origin, testRectangle3);
 
             // Clear the screen
-            ClearScreen();
+            SplashKit.ClearScreen();
 
             // Draw rectangles
-            FillRectangle(ColorRed(), testRectangle1);
-            FillRectangle(ColorBlue(), testRectangle2);
-            FillRectangle(ColorPurple(), testRectangle3);
+            SplashKit.FillRectangle(SplashKit.ColorRed(), testRectangle1);
+            SplashKit.FillRectangle(SplashKit.ColorBlue(), testRectangle2);
+            SplashKit.FillRectangle(SplashKit.ColorPurple(), testRectangle3);
 
             // Draw lines representing vectors
-            DrawLine(ColorBlack(), LineFrom(myVector1));
-            DrawLine(ColorOrange(), LineFrom(myVector2));
-            DrawLine(ColorBrown(), LineFrom(myVector3));
+            SplashKit.DrawLine(SplashKit.ColorBlack(), SplashKit.LineFrom(myVector1));
+            SplashKit.DrawLine(SplashKit.ColorOrange(), SplashKit.LineFrom(myVector2));
+            SplashKit.DrawLine(SplashKit.ColorBrown(), SplashKit.LineFrom(myVector3));
 
             // Refresh the screen
-            RefreshScreen();
+            SplashKit.RefreshScreen();
 
             // Wait and close the window
-            Delay(4000);
-            CloseAllWindows();
+            SplashKit.Delay(4000);
+            SplashKit.CloseAllWindows();
         }
     }
 }
