@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace VectorVisualisations
@@ -8,7 +7,7 @@ namespace VectorVisualisations
         public static void Main()
         {
             // Open a window for visualisation
-            OpenWindow("Vector Visualisations", 300, 300);
+            SplashKit.OpenWindow("Vector Visualisations", 300, 300);
 
             // Define the rectangle
             Rectangle testRectangle1 = new Rectangle()
@@ -20,29 +19,29 @@ namespace VectorVisualisations
             };
 
             // Define two vectors using angles and magnitudes
-            Vector2D myVector1 = VectorFromAngle(45, 200);
-            Vector2D myVector2 = VectorFromAngle(10, 200);
+            Vector2D myVector1 = SplashKit.VectorFromAngle(45, 200);
+            Vector2D myVector2 = SplashKit.VectorFromAngle(10, 200);
 
             // Clear the screen
-            ClearScreen();
+            SplashKit.ClearScreen();
 
             // Draw the rectangle and the vectors
-            FillRectangle(ColorBlack(), testRectangle1);
-            DrawLine(ColorRed(), LineFrom(myVector1));
-            DrawLine(ColorBlue(), LineFrom(myVector2));
+            SplashKit.FillRectangle(SplashKit.ColorBlack(), testRectangle1);
+            SplashKit.DrawLine(SplashKit.ColorRed(), SplashKit.LineFrom(myVector1));
+            SplashKit.DrawLine(SplashKit.ColorBlue(), SplashKit.LineFrom(myVector2));
 
             // Check if vectors are inside the rectangle
-            if (VectorInRect(myVector1, testRectangle1))
-                WriteLine("Red vector in rectangle!");
-            if (VectorInRect(myVector2, testRectangle1))
-                WriteLine("Blue vector in rectangle!");
+            if (SplashKit.VectorInRect(myVector1, testRectangle1))
+                SplashKit.WriteLine("Red vector in rectangle!");
+            if (SplashKit.VectorInRect(myVector2, testRectangle1))
+                SplashKit.WriteLine("Blue vector in rectangle!");
 
             // Refresh the screen and wait
-            RefreshScreen();
-            Delay(4000);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(4000);
 
             // Close all windows
-            CloseAllWindows();
+            SplashKit.CloseAllWindows();
         }
     }
 }

@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace VectorAngleDemo
@@ -14,12 +13,12 @@ namespace VectorAngleDemo
             Vector2D myVector2 = new Vector2D() { X = -300, Y = 150 };
 
             // Calculate the angle between the two vectors
-            double vectorAngle = AngleBetween(myVector1, myVector2);
+            double vectorAngle = SplashKit.AngleBetween(myVector1, myVector2);
 
             // Output the vectors and the angle
-            WriteLine(VectorToString(myVector1));
-            WriteLine(VectorToString(myVector2));
-            WriteLine(vectorAngle.ToString());
+            SplashKit.WriteLine(SplashKit.VectorToString(myVector1));
+            SplashKit.WriteLine(SplashKit.VectorToString(myVector2));
+            SplashKit.WriteLine(vectorAngle.ToString());
         }
     }
 }

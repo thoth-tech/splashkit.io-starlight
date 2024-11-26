@@ -1,5 +1,4 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
 namespace VectorComparisonDemo
 {
@@ -17,25 +16,25 @@ namespace VectorComparisonDemo
             Vector2D myVector3 = new Vector2D() { X = 200, Y = 100 };
 
             // Print the vectors
-            WriteLine("Vector 1: " + VectorToString(myVector1));
-            WriteLine("Vector 2: " + VectorToString(myVector2));
-            WriteLine("Vector 3: " + VectorToString(myVector3));
+            SplashKit.WriteLine("Vector 1: " + SplashKit.VectorToString(myVector1));
+            SplashKit.WriteLine("Vector 2: " + SplashKit.VectorToString(myVector2));
+            SplashKit.WriteLine("Vector 3: " + SplashKit.VectorToString(myVector3));
 
             // Check if vectors are not equal
-            if (VectorsNotEqual(myVector1, myVector2))
-                WriteLine("Vectors 1 and 2 are not equal.");
+            if (SplashKit.VectorsNotEqual(myVector1, myVector2))
+                SplashKit.WriteLine("Vectors 1 and 2 are not equal.");
             else
-                WriteLine("Vectors 1 and 2 are equal.");
+                SplashKit.WriteLine("Vectors 1 and 2 are equal.");
 
-            if (VectorsNotEqual(myVector1, myVector3))
-                WriteLine("Vectors 1 and 3 are not equal.");
+            if (SplashKit.VectorsNotEqual(myVector1, myVector3))
+                SplashKit.WriteLine("Vectors 1 and 3 are not equal.");
             else
-                WriteLine("Vectors 1 and 3 are equal.");
+                SplashKit.WriteLine("Vectors 1 and 3 are equal.");
 
-            if (VectorsNotEqual(myVector2, myVector3))
-                WriteLine("Vectors 2 and 3 are not equal.");
+            if (SplashKit.VectorsNotEqual(myVector2, myVector3))
+                SplashKit.WriteLine("Vectors 2 and 3 are not equal.");
             else
-                WriteLine("Vectors 2 and 3 are equal.");
+                SplashKit.WriteLine("Vectors 2 and 3 are equal.");
         }
     }
 }

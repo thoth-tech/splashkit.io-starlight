@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace DotProductExample
@@ -14,12 +13,12 @@ namespace DotProductExample
             Vector2D myVector2 = new Vector2D() { X = -300, Y = 150 };
 
             // Calculate the dot product
-            double vectorDotProduct = DotProduct(myVector1, myVector2);
+            double vectorDotProduct = SplashKit.DotProduct(myVector1, myVector2);
 
             // Output vector details and the dot product
-            WriteLine(VectorToString(myVector1));
-            WriteLine(VectorToString(myVector2));
-            WriteLine($"Dot Product of Vectors: {vectorDotProduct}");
+            SplashKit.WriteLine(SplashKit.VectorToString(myVector1));
+            SplashKit.WriteLine(SplashKit.VectorToString(myVector2));
+            SplashKit.WriteLine($"Dot Product of Vectors: {vectorDotProduct}");
         }
     }
 }

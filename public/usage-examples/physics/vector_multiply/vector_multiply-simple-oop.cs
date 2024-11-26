@@ -1,5 +1,4 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
 namespace VectorScalingDemo
 {
@@ -12,12 +11,12 @@ namespace VectorScalingDemo
             double vectorScale = 5;
 
             // Multiply the vector by a scalar value
-            WriteLine("Multiply Vector by: " + vectorScale);
-            Vector2D myVector1Multiplied = VectorMultiply(myVector1, vectorScale);
+            SplashKit.WriteLine("Multiply Vector by: " + vectorScale);
+            Vector2D myVector1Multiplied = SplashKit.VectorMultiply(myVector1, vectorScale);
 
             // Output the original and multiplied vectors
-            WriteLine("Original Vector: " + VectorToString(myVector1));
-            WriteLine("Vector multiplied by scaling value: " + VectorToString(myVector1Multiplied));
+            SplashKit.WriteLine("Original Vector: " + SplashKit.VectorToString(myVector1));
+            SplashKit.WriteLine("Vector multiplied by scaling value: " + SplashKit.VectorToString(myVector1Multiplied));
         }
     }
 }

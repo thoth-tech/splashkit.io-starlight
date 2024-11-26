@@ -1,5 +1,4 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
 namespace VectorDetailsDemo
 {
@@ -11,10 +10,10 @@ namespace VectorDetailsDemo
             Vector2D myVector = new Vector2D() { X = 200, Y = 100 };
 
             // Output the details of the vector
-            WriteLine("Vector Details:");
-            WriteLine("X: " + myVector.X);
-            WriteLine("Y: " + myVector.Y);
-            WriteLine("Vector as String: " + VectorToString(myVector));
+            SplashKit.WriteLine("Vector Details:");
+            SplashKit.WriteLine("X: " + myVector.X);
+            SplashKit.WriteLine("Y: " + myVector.Y);
+            SplashKit.WriteLine("Vector as String: " + SplashKit.VectorToString(myVector));
         }
     }
 }

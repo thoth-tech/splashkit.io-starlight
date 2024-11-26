@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace VectorAngleDemo
@@ -11,11 +10,11 @@ namespace VectorAngleDemo
             Vector2D myVector1 = new Vector2D() { X = 200, Y = 100 };
 
             // Calculate the angle of the vector
-            double myVector1Angle = VectorAngle(myVector1);
+            double myVector1Angle = SplashKit.VectorAngle(myVector1);
 
             // Output the results
-            WriteLine("Vector 1: " + VectorToString(myVector1));
-            WriteLine("Vector Angle: " + myVector1Angle);
+            SplashKit.WriteLine("Vector 1: " + SplashKit.VectorToString(myVector1));
+            SplashKit.WriteLine("Vector Angle: " + myVector1Angle);
         }
     }
 }
