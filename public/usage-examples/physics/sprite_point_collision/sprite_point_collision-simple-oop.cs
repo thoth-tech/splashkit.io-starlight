@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace SpritePointCollisionDemo
@@ -8,13 +7,13 @@ namespace SpritePointCollisionDemo
         public static void Main()
         {
             // Open a new window
-            OpenWindow("Bitmap Collisions", 315, 330);
+            SplashKit.OpenWindow("Bitmap Collisions", 315, 330);
 
             // Load the bitmap
-            Bitmap skBmp = LoadBitmap("skbox", "skbox.png");
+            Bitmap skBmp = SplashKit.LoadBitmap("skbox", "skbox.png");
 
             // Create a sprite using the bitmap
-            Sprite skSprite = CreateSprite(skBmp);
+            Sprite skSprite = SplashKit.CreateSprite(skBmp);
 
             // Define sprite and collision point positions
             Point2D skSpriteLoc = new Point2D() { X = 50, Y = 50 };
@@ -22,25 +21,25 @@ namespace SpritePointCollisionDemo
             Point2D collisionLoc2 = new Point2D() { X = 200, Y = 150 };
 
             // Set sprite position
-            SpriteSetPosition(skSprite, skSpriteLoc);
+            SplashKit.SpriteSetPosition(skSprite, skSpriteLoc);
 
             // Clear the screen and draw elements
-            ClearScreen(ColorWhite());
-            DrawSprite(skSprite);
-            FillCircle(ColorBlack(), CircleAt(collisionLoc1, 2));
-            FillCircle(ColorRed(), CircleAt(collisionLoc2, 2));
+            SplashKit.ClearScreen(SplashKit.ColorWhite());
+            SplashKit.DrawSprite(skSprite);
+            SplashKit.FillCircle(SplashKit.ColorBlack(), SplashKit.CircleAt(collisionLoc1, 2));
+            SplashKit.FillCircle(SplashKit.ColorRed(), SplashKit.CircleAt(collisionLoc2, 2));
 
             // Check for collisions
-            if (SpritePointCollision(skSprite, collisionLoc1))
-                WriteLine("Black Dot Collision");
-            if (SpritePointCollision(skSprite, collisionLoc2))
-                WriteLine("Red Dot Collision");
+            if (SplashKit.SpritePointCollision(skSprite, collisionLoc1))
+                SplashKit.WriteLine("Black Dot Collision");
+            if (SplashKit.SpritePointCollision(skSprite, collisionLoc2))
+                SplashKit.WriteLine("Red Dot Collision");
 
             // Refresh the screen and delay before closing
-            RefreshScreen();
-            Delay(4000);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(4000);
 
-            CloseAllWindows();
+            SplashKit.CloseAllWindows();
         }
     }
 }

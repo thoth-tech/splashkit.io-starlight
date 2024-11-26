@@ -1,4 +1,3 @@
-using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 namespace SpriteBitmapCollisionDemo
@@ -8,15 +7,15 @@ namespace SpriteBitmapCollisionDemo
         public static void Main()
         {
             // Open a new window
-            OpenWindow("Bitmap Collisions", 315, 330);
+            SplashKit.OpenWindow("Bitmap Collisions", 315, 330);
 
             // Load the bitmaps
-            Bitmap skBmp = LoadBitmap("skbox", "skbox.png");
-            Bitmap fileBmp = LoadBitmap("file", "file_image.png");
-            Bitmap bugBmp = LoadBitmap("bug", "bug_image.png");
+            Bitmap skBmp = SplashKit.LoadBitmap("skbox", "skbox.png");
+            Bitmap fileBmp = SplashKit.LoadBitmap("file", "file_image.png");
+            Bitmap bugBmp = SplashKit.LoadBitmap("bug", "bug_image.png");
 
             // Create a sprite using the bitmap
-            Sprite skSprite = CreateSprite(skBmp);
+            Sprite skSprite = SplashKit.CreateSprite(skBmp);
 
             // Define positions
             Point2D skSpriteLoc = new Point2D() { X = 50, Y = 50 };
@@ -24,26 +23,26 @@ namespace SpriteBitmapCollisionDemo
             Point2D bugBmpLoc = new Point2D() { X = 200, Y = 150 };
 
             // Set sprite position
-            SpriteSetPosition(skSprite, skSpriteLoc);
+            SplashKit.SpriteSetPosition(skSprite, skSpriteLoc);
 
             // Clear the screen and draw all elements
-            ClearScreen(ColorWhite());
-            DrawSprite(skSprite);
-            DrawBitmap(fileBmp, fileBmpLoc.X, fileBmpLoc.Y);
-            DrawBitmap(bugBmp, bugBmpLoc.X, bugBmpLoc.Y);
+            SplashKit.ClearScreen(SplashKit.ColorWhite());
+            SplashKit.DrawSprite(skSprite);
+            SplashKit.DrawBitmap(fileBmp, fileBmpLoc.X, fileBmpLoc.Y);
+            SplashKit.DrawBitmap(bugBmp, bugBmpLoc.X, bugBmpLoc.Y);
 
             // Check for collisions
-            if (SpriteBitmapCollision(skSprite, fileBmp, fileBmpLoc.X, fileBmpLoc.Y))
-                WriteLine("SplashKit got a new file!");
+            if (SplashKit.SpriteBitmapCollision(skSprite, fileBmp, fileBmpLoc.X, fileBmpLoc.Y))
+                SplashKit.WriteLine("SplashKit got a new file!");
 
-            if (SpriteBitmapCollision(skSprite, bugBmp, bugBmpLoc.X, bugBmpLoc.Y))
-                WriteLine("SplashKit has bugs!");
+            if (SplashKit.SpriteBitmapCollision(skSprite, bugBmp, bugBmpLoc.X, bugBmpLoc.Y))
+                SplashKit.WriteLine("SplashKit has bugs!");
 
             // Refresh the screen and delay before closing
-            RefreshScreen();
-            Delay(4000);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(4000);
 
-            CloseAllWindows();
+            SplashKit.CloseAllWindows();
         }
     }
 }
