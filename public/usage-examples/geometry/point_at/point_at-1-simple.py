@@ -1,6 +1,6 @@
 from splashkit import *
 
-open_window("Point Point Angle", 800, 600)
+open_window("Point At", 800, 600)
 clear_screen(color_white())
 
 # Create a red circle at the point
