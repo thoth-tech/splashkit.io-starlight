@@ -1,3 +1,0 @@
-#### Create Point
-
-The following code shows examples of using [Point At](/api/geometry/#point-at) to show how to create a point at a specific location and display it as a small circle.
