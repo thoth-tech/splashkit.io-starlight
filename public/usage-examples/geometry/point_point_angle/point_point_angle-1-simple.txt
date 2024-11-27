@@ -1,3 +1,0 @@
-#### Calculate angle
-
-The following code shows examples of using [Point Point Angle](/api/geometry/#point-point-angle) to show how to calculate angle between original point and mouse.
