@@ -1,11 +1,7 @@
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+    
 
-namespace DrawRectangleOnBitmap
-{
-    public class Program
-    {
-        public static void Main()
-        {
             // Create a window and a bitmap
             Window window = new Window("Rectangle on Bitmap", 400, 400);
             Bitmap bitmap = new Bitmap("bricks", 400, 400);
@@ -26,24 +22,24 @@ namespace DrawRectangleOnBitmap
             // Draw additional abstract rectangles on the bitmap
             for (int i = 0; i < 15; i++)
             {
-                double x = SplashKit.Rnd(50, 350);  // Random X position
-                double y = SplashKit.Rnd(50, 350);  // Random Y position
-                double width = SplashKit.Rnd(20, 50); // Random width
-                double height = SplashKit.Rnd(20, 50); // Random height
-                Color randomColor = SplashKit.RandomRGBColor(255); // Random color
+                double x = Rnd(50, 350);  // Random X position
+                double y = Rnd(50, 350);  // Random Y position
+                double width = Rnd(20, 50); // Random width
+                double height = Rnd(20, 50); // Random height
+                Color randomColor = RandomRGBColor(255); // Random color
                 bitmap.DrawRectangle(randomColor, x, y, width, height);
             }
 
             // Main loop to display the bitmap
             while (!window.CloseRequested)
             {
-                SplashKit.ProcessEvents();
+                ProcessEvents();
                 window.DrawBitmap(bitmap, 0, 0);
-                SplashKit.RefreshScreen();
+                RefreshScreen();
             }
 
             // Free resources
             bitmap.Free();
-        }
-    }
-}
+        
+    
+
