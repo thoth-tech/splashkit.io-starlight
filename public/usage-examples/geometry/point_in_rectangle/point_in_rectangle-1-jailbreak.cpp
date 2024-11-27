@@ -13,16 +13,15 @@ int main()
 
     while(!quit_requested())
     {
-        
+        process_events();
         // get mouse position and draw boundary to screen
         mouse_point = mouse_position();
         clear_screen(color_green());
         fill_rectangle(color_white(), boundary);
 
-        // Check if moust is in the boundary
-        while(!point_in_rectangle(mouse_point,boundary))
+        // Check if mouse is in the boundary
+        if (!point_in_rectangle(mouse_point,boundary))
         {
-
             //flash screen red and blue if mouse has escaped boundary
             clear_screen(color_dark_red());
             fill_rectangle(color_white(), boundary);
@@ -31,17 +30,10 @@ int main()
             clear_screen(color_royal_blue());
             fill_rectangle(color_white(), boundary);
             refresh_screen(2);
-            mouse_point = mouse_position();
-            
-            process_events();
-            if(quit_requested()){break;}
         }
         
-        process_events();
         refresh_screen();
     }
-    
-
 
     return 0;
 }

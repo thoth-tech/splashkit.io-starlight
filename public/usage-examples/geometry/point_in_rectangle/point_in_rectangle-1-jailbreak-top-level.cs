@@ -12,16 +12,15 @@ OpenWindow("point in Rectangle", 600, 600);
 
 while(!QuitRequested())
 {
-    
+    ProcessEvents();
     // get mouse position and draw boundary to screen
     mouse_point = MousePosition();
     ClearScreen(ColorGreen());
     FillRectangle(ColorWhite(), boundary);
 
-    // Check if moust is in the boundary
-    while(!PointInRectangle(mouse_point,boundary))
+    // Check if mouse is in the boundary
+    if(!PointInRectangle(mouse_point,boundary))
     {
-
         //flash screen red and blue if mouse has escaped boundary
         ClearScreen(ColorDarkRed());
         FillRectangle(ColorWhite(), boundary);
@@ -30,13 +29,7 @@ while(!QuitRequested())
         ClearScreen(ColorRoyalBlue());
         FillRectangle(ColorWhite(), boundary);
         RefreshScreen(2);
-        mouse_point = MousePosition();
-        
-        ProcessEvents();
-        if(QuitRequested()){break;}
     }
-    
-    ProcessEvents();
     RefreshScreen();
 }
 

@@ -15,17 +15,16 @@ namespace PointInRectangle
 
 
             while(!SplashKit.QuitRequested())
-            {
-                
+            {   
+                SplashKit.ProcessEvents();
                 // get mouse position and draw boundary to screen
                 mouse_point = SplashKit.MousePosition();
                 SplashKit.ClearScreen(SplashKit.ColorGreen());
                 SplashKit.FillRectangle(SplashKit.ColorWhite(), boundary);
 
-                // Check if moust is in the boundary
-                while(!SplashKit.PointInRectangle(mouse_point,boundary))
+                // Check if mouse is in the boundary
+                if(!SplashKit.PointInRectangle(mouse_point,boundary))
                 {
-
                     //flash screen red and blue if mouse has escaped boundary
                     SplashKit.ClearScreen(SplashKit.ColorDarkRed());
                     SplashKit.FillRectangle(SplashKit.ColorWhite(), boundary);
@@ -34,13 +33,8 @@ namespace PointInRectangle
                     SplashKit.ClearScreen(SplashKit.ColorRoyalBlue());
                     SplashKit.FillRectangle(SplashKit.ColorWhite(), boundary);
                     SplashKit.RefreshScreen(2);
-                    mouse_point = SplashKit.MousePosition();
-                    
-                    SplashKit.ProcessEvents();
-                    if(SplashKit.QuitRequested()){break;}
+            
                 }
-                
-                SplashKit.ProcessEvents();
                 SplashKit.RefreshScreen();
             }
         }
