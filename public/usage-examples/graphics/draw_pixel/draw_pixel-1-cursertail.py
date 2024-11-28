@@ -28,7 +28,7 @@ while not quit_requested():
     process_events()
     refresh_screen_with_target_fps(60)
     
-
+close_all_windows()
 
 
 

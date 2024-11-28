@@ -36,6 +36,7 @@ namespace DrawPixel
                 SplashKit.ProcessEvents();
                 SplashKit.RefreshScreen(60);
             }
+            SplashKit.CloseAllWindows();
         }
     }
 }
