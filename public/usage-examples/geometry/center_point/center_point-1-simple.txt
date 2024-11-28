@@ -1,0 +1,2 @@
+#### Find center point for a circle
+The following code shows examples of using [Center Point](/api/geometry/#center-point) to show how to find the center point for circles.
