@@ -24,6 +24,6 @@ int main()
         process_events();
         refresh_screen();
     }
-
+    close_all_windows();
     return 0;
 }

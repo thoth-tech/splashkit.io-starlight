@@ -24,3 +24,4 @@ while(!QuitRequested())
     ProcessEvents();
     RefreshScreen();
 }
+CloseAllWindows();

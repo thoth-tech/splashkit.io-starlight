@@ -29,6 +29,7 @@ namespace PointToString
                 SplashKit.ProcessEvents();
                 SplashKit.RefreshScreen();
             }
+            SplashKit.CloseAllWindows();
         }
     }
 }
