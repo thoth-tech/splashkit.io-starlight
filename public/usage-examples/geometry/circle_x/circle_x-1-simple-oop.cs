@@ -1,29 +1,29 @@
 using SplashKitSDK;
 
-namespace CircleY
+namespace CircleX
 {
     public class Program
     {
         public static void Main()
         {
-        SplashKit.OpenWindow("Circle Y", 800, 600);
+        SplashKit.OpenWindow("Circle X", 800, 600);
         SplashKit.ClearScreen();
 
         Random random = new Random();
         // Set position for the circle
-        double x_position = 400;
-        //Give random  y_position value bewteen 200 - 400
-        double y_position = random.Next(200) + 200;
+        //Give random  x_position value bewteen 200 - 600
+        double x_position = random.Next(400) + 200;
+        double y_position = 300;
 
         // Create A circle name "A"
         Circle A = SplashKit.CircleAt(x_position, y_position, 200);
-        // Find the y position of the circle
-        double circleY = SplashKit.CircleY(A);
+        // Find the x position of the circle
+        double circleX = SplashKit.CircleX(A);
 
         //Draw the Circle
-        SplashKit.DrawCircle(Color.Red, x_position, circleY, 200);
+        SplashKit.DrawCircle(Color.Red, circleX, y_position, 200);
     
-        string text = "Circle Y: " + circleY.ToString();
+        string text = "Circle X: " + circleX.ToString();
         // Print result on window
         SplashKit.DrawText(text, Color.Black, "NORMAL_FONT", 20, 100, 100);
 

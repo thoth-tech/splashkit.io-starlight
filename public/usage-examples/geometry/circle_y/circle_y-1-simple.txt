@@ -1,3 +1,0 @@
-#### Find Circle y position
-
-The following code shows examples of using [Circle Y](/api/geometry/#circle-y) to show how to find the y position for the circle.
