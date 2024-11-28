@@ -120,6 +120,8 @@ function getApiCategories(jsonData) {
   return apiCategories;
 }
 
+const readGuides = require('./api-guides-generation.cjs');
+
 fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
   if (err) {
     console.error(kleur.red("Error reading JSON file:"), err);
@@ -131,6 +133,23 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
     const jsonData = JSON.parse(data);
     Mappings(jsonData);
     console.log(`Generating MDX files for components`);
+
+    const guidesDir = './src/components/guides'; // Base directory for guides
+    const outputFile = path.join(__dirname, 'guides.json')
+
+    try {
+      console.log(kleur.green('Reading guides folder...'));
+      const guidesContent = readGuides(guidesDir);
+
+      try {
+        console.log(kleur.green('Writing output to file...'));
+        fs.writeFileSync(outputFile, JSON.stringify(guidesContent, null, 4));
+      } catch (err) {
+        console.log(kleur.red('Error writing output files: ', err));
+      }
+    } catch (error) {
+      console.log(kleur.red('Error processing guides files: ', error));
+    }
 
     const jsonColors = getColorData();
     let guidesJson = getJsonData();
@@ -332,24 +351,31 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
 
           let allGuides = [];
           guidesCategories.forEach((category) => {
-            const guideKey = category.guide;
-            guideKey.forEach((guide) => {
+            category.forEach((guide) => {
               guide.functions.forEach((used) => {
                 if (func.unique_global_name == used){
                   allGuides.push({
                     name: guide.name,
                     url: guide.url
                   });
-                  //mdxContent += `\n [${guide.name}](${guide.url}) \n\n`;
-                  //mdxContent += `<LinkButton href="${guide.url}" variant="minimal">\n${guide.name}\n</LinkButton>\n\n`
                 }
               })
             })
           })
 
+
           if (allGuides.length > 0){
+            const listContent = allGuides
+            .map((guide) => `\n**[${guide.name}](${guide.url})**\n\t`)
+
             mdxContent += "**Guides:**\n\n"
-            mdxContent += `<Accordion title="See how it's used in Guides" uniqueFuncName={${JSON.stringify(func.unique_global_name)}} content={${JSON.stringify(allGuides)}}></Accordion>\n`
+            mdxContent += `<Accordion title="See how it's used in Guides" uniqueID={${JSON.stringify(func.unique_global_name)}}>${listContent}</Accordion>\n\n`
+
+
+            
+            // allGuides.forEach((guide) => {
+            //   mdxContent += `- **[${guide.name}](${guide.url})**\n`
+            // }) 
           }
 
 
