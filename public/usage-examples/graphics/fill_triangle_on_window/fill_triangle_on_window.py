@@ -1,9 +1,24 @@
 from splashkit import *
+import random
 
-open_window("Abstract Mosaic", 800, 600)
-for x in range(8):
-    for y in range(6):
-        fill_triangle(random_color(), x * 100, y * 100, x * 100 + 50, y * 100 + 50, x * 100 + 100, y * 100)
+open_window("Draw Triangle", 800, 600)
+clear_screen(color_white())
+
+for i in range(50):
+
+    x1 = random.randint(0,800)
+    y1 = random.randint(0,600)
+    x2 = random.randint(0,800)
+    y2 = random.randint(0,600)
+    x3 = random.randint(0,800)
+    y3 = random.randint(0,600)
+
+    random_color = rgb_color(
+        random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)   
+    )
+
+    fill_triangle(random_color, x1, y1, x2, y2, x3, y3)
+
 refresh_screen()
-delay(5000)
+delay(4000)
 close_all_windows()

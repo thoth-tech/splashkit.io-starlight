@@ -1,16 +1,29 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Window myWindow = OpenWindow("Abstract Mosaic", 800, 600);
-for (int x = 0; x < 8; x++)
-        {
-            for (int y = 0; y < 6; y++)
-            {
-                FillTriangle(RandomColor(), x * 100, y * 100, x * 100 + 50, y * 100 + 50, x * 100 + 100, y * 100);
-            }
-        }
+OpenWindow("Fill Triangle", 800, 600);
+ClearScreen();
+
+Random random = new Random();
+for (int i = 0; i < 10; i++)
+    {
+    int x1 = random.Next(800);
+    int y1 = random.Next(600);
+    int x2 = random.Next(800);
+    int y2 = random.Next(600);
+    int x3 = random.Next(800);
+    int y3 = random.Next(600);
+
+    Color randomColor = RGBColor(
+        random.Next(255), random.Next(255), random.Next(255)  
+    );
+
+    FillTriangle(randomColor, x1, y1, x2, y2, x3, y3);
+    }
+
 RefreshScreen();
-Delay(5000);
+Delay(4000);
 CloseAllWindows();
+
     
 
