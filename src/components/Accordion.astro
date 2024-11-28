@@ -1,29 +1,17 @@
 ---
-const { title, content, uniqueFuncName } = Astro.props;
+const { title, uniqueID } = Astro.props;
 
-type Guide = {
-    name: string,
-    url: string,
-};
-
-let uniqueContent = uniqueFuncName + "-content";
-const typedContent: Guide[] = content;
+let uniqueContent = uniqueID + "-content";
 ---
 
 
-<accordion-component class="accordion" data-button={uniqueFuncName} data-content={uniqueContent}>
-    <button id={uniqueFuncName}
+<accordion-component class="accordion" data-button={uniqueID} data-content={uniqueContent}>
+    <button id={uniqueID}
     class="accordionButton"  >
     {title}
     </button>
     <div id={uniqueContent} class="accordionContent" style="display: none;">
-        <ul class="accordionContentList">
-            {typedContent.map((guide) => (
-                <li>
-                    <a href={guide.url} target="_blank">{guide.name}</a>
-                </li>
-            ))}
-        </ul>
+        <slot />
     </div>
 </accordion-component>
 
@@ -57,9 +45,6 @@ const typedContent: Guide[] = content;
 </script>
 
 <style>
-    .accordion {
-        margin-bottom: 10px;
-    }
     .accordionButton {
         padding: 0.5rem 1.25rem;
         border: 2px solid transparent;
@@ -87,4 +72,4 @@ const typedContent: Guide[] = content;
         font-size:medium;
         font-weight: 600;
     }
-  </style>
+</style>
