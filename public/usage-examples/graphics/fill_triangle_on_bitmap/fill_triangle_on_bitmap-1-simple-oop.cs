@@ -9,7 +9,7 @@ namespace Program
             //Open a Window
             SplashKit.OpenWindow("Happy Hat", 618, 618);
 
-            //Load the bitmaps for sad and smiling emojis
+            //Load the bitmaps for sad and smiling emojis (https://openmoji.org/library/#group=smileys-emotion)
             Bitmap sadEmoji = SplashKit.LoadBitmap("sad_emoji", "sad_emoji.png");
             Bitmap smilingEmoji = SplashKit.LoadBitmap("smiling_emoji", "smiling_emoji.png");
 

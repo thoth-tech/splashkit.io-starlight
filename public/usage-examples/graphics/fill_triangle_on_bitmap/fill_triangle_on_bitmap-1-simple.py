@@ -3,7 +3,7 @@ from splashkit import *
 # Open a window
 open_window("Happy Hat", 618, 618)
 
-# Load the bitmaps for sad and smiling emojis
+# Load the bitmaps for sad and smiling emojis (https://openmoji.org/library/#group=smileys-emotion)
 sad_emoji = load_bitmap("sad_emoji", "sad_emoji.png")
 smiling_emoji = load_bitmap("smiling_emoji", "smiling_emoji.png")
 
