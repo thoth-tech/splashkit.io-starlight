@@ -134,7 +134,7 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
     Mappings(jsonData);
     console.log(`Generating MDX files for components`);
 
-    const guidesDir = './src/components/guides'; // Base directory for guides
+    const guidesDir = path.join(__dirname, 'guides'); // Base directory for guides
     const outputFile = path.join(__dirname, 'guides.json')
 
     try {
@@ -365,17 +365,16 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
 
 
           if (allGuides.length > 0){
-            const listContent = allGuides
-            .map((guide) => `\n**[${guide.name}](${guide.url})**\n\t`)
-
             mdxContent += "**Guides:**\n\n"
-            mdxContent += `<Accordion title="See how it's used in Guides" uniqueID={${JSON.stringify(func.unique_global_name)}}>${listContent}</Accordion>\n\n`
-
-
+            mdxContent += `<Accordion title="See Implemenations in Guides" uniqueID={${JSON.stringify(func.unique_global_name)}}>\n\n`
             
-            // allGuides.forEach((guide) => {
-            //   mdxContent += `- **[${guide.name}](${guide.url})**\n`
-            // }) 
+            mdxContent += `<ul>`
+              allGuides.forEach((guide) => {
+                mdxContent += `<li> [${guide.name}](${guide.url}) </li>`
+              })
+            mdxContent += `</ul>\n\n` 
+
+            mdxContent += `</Accordion>\n`
           }
 
 
