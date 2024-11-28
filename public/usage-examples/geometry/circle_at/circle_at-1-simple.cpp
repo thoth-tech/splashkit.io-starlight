@@ -2,23 +2,21 @@
 
 int main()
 {
-    open_window("Circle X", 800, 600);
+    open_window("Circle At", 800, 600);
     clear_screen();
 
     //Set position for the circle
-    //Give random  x_position value bewteen 200 - 600
     double x_position = rand() % 400 + 200;
+    //Give random  x_position value bewteen 200 - 400
     double y_position = 300;
 
     //Create a circle at the position (x_position, y_position)
     circle A = circle_at(x_position, y_position, 200);
-    // Find the x position of the circle
-    double circleX = circle_x(A);
 
     //Draw the Circle
-    draw_circle(COLOR_RED, circleX, y_position, 200);
+    draw_circle(COLOR_RED, x_position, y_position, 200);
     
-    string text = "Circle X: " + std::to_string(circleX);
+    string text = "Circle At: (400,300), Radius: 200";
     //Print result on window
     draw_text(text, COLOR_BLACK, 0, 20, 100, 100);
     

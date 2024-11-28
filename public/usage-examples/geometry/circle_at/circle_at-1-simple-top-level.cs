@@ -1,24 +1,20 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Circle X", 800, 600);
+OpenWindow("Circle At", 800, 600);
 ClearScreen();
 
-Random random = new Random();
 // Set position for the circle
-//Give random  x_position value bewteen 200 - 600
-double x_position = random.Next(400) + 200;
+double x_position = 400;
 double y_position = 300;
 
 // Create A circle name "A"
 Circle A = CircleAt(x_position, y_position, 200);
-// Find the x position of the circle
-double circleX = CircleX(A);
 
 //Draw the Circle
-DrawCircle(Color.Red, circleX, y_position, 200);
+DrawCircle(Color.Red, x_position, y_position, 200);
     
-string text = "Circle X: " + circleX.ToString();
+string text = "Circle At: (400,300), Radius: 200";
 // Print result on window
 DrawText(text, Color.Black, "NORMAL_FONT", 20, 100, 100);
 

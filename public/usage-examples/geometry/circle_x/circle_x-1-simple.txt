@@ -1,3 +1,0 @@
-#### Find Circle x position
-
-The following code shows examples of using [Circle X](/api/geometry/#circle-x) to show how to find the x position for the circle.
