@@ -1,3 +1,3 @@
 #### draw Rectangle on bitmap
 
-The following code shows examples of using [draw Rectangle on bitmap](/api/graphics#draw_rectangle_on_bitmap) to show how to use the function draw rectangle differnce colors on a bitmap of a brick wall to represent bricks.
+The following code shows examples of using [draw Rectangle on bitmap](/api/graphics#draw_rectangle_on_bitmap) to show how to use the function draw rectangle differnce colors on a abstract painting.
