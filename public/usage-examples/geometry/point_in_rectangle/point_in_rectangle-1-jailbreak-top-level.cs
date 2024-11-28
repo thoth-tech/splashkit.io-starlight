@@ -32,6 +32,7 @@ while(!QuitRequested())
     }
     RefreshScreen();
 }
+CloseAllWindows();
 
 
 

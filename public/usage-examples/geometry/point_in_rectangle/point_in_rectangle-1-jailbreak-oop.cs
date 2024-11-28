@@ -37,6 +37,7 @@ namespace PointInRectangle
                 }
                 SplashKit.RefreshScreen();
             }
+            SplashKit.CloseAllWindows();
         }
     }
 

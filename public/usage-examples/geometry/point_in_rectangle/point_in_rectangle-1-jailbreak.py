@@ -29,4 +29,4 @@ while not quit_requested():
 
     refresh_screen()
     
-    
+close_all_windows()
