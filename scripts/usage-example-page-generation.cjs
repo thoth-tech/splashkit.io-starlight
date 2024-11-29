@@ -450,86 +450,126 @@ categories.forEach((categoryKey) => {
 
 			mdxContent += `![${exampleKey} example](${outputFilePath})\n`
 	
-			// Add the toggle button and iframe
-			mdxContent += `
-			<div style="text-align: center; margin-top: 1rem;">
-			<button
-				id="${functionKey}_sko_button"
-				class="sko-button"
-				style="margin-top: 1rem;"
-				onclick='
-				try {
-					const iframeContainer = document.getElementById("${functionKey}_iframe_container");
-					const button = document.getElementById("${functionKey}_sko_button");
-					const iframe = iframeContainer.querySelector("iframe");
-			
-					if (!iframeContainer || !button || !iframe) {
-						console.error("Error: Missing iframe container, button, or iframe for ${functionKey}");
-						return;
-					}
-			
-					// Toggle iframe visibility
-					if (iframeContainer.style.display === "none" || iframeContainer.style.display === "") {
-						iframeContainer.style.display = "flex";
-						button.innerHTML = "Hide SKO";
-			
-						// Log the constructed filepath
-						const categoryFilePath = "/usage-examples";
-						const categoryKey = "${categoryKey}";
-						const functionKey = "${functionKey}";
-						const exampleKey = "${exampleKey}";
-						const filePath = \`\${categoryFilePath}/\${categoryKey}/\${functionKey}/\${exampleKey}.cpp\`;
-			
-						console.log("Generated File Path:", filePath);
-			
-						// Fetch the contents of the C++ file
-						fetch(filePath)
-							.then(response => {
-								if (!response.ok) {
-									throw new Error("Failed to fetch C++ file: " + filePath);
-								}
-								return response.text();
-							})
-							.then(codeData => {
-								console.log("Code Data Loaded:", codeData);
-			
-								// Post message with code content to SKO iframe
-								iframe.contentWindow.postMessage({
-									eventType: "InitializeProjectFromOutsideWorld",
-									files: [{ path: "/code/main.cpp", data: codeData }]
-								}, "*");
-								console.log("Code sent to SKO iframe:", codeData);
-							})
-							.catch(error => {
-								console.error("Error reading file:", error);
-							});
-					} else {
-						iframeContainer.style.display = "none";
-						button.innerHTML = "Try it in SKO";
-						console.log("Iframe hidden for ${functionKey}");
-					}
-				} catch (error) {
-					console.error("An error occurred in the SKO button logic:", error);
-				}
-				'
-			>
-				Try it in SKO
-			</button>
-			</div>
-			
-			<div
-				id="${functionKey}_iframe_container"
-				style="margin: 0; display: none; width: 100%; height: 90vh;"
-			>
-				<iframe
-					id="${functionKey}_sko_iframe"
-					src="https://thoth-tech.github.io/SplashkitOnline/?useMinifiedInterface=on&language=C++"
-					style="width: 100%; height: 100%; border: 1px solid #ccc; border-radius: 8px;"
-				></iframe>
-			</div>
-			`;
-			
-				
+			// Add the toggle button and iframe logic (to be injected into MDX)
+      mdxContent += `
+      <div style="text-align: center; margin-top: 1rem;">
+        <button
+          id="${functionKey}_sko_button"
+          class="sko-button"
+          style="margin-top: 1rem;"
+          onclick="
+            try {
+              // Check if the iframe container already exists
+              let globalIframeContainer = document.getElementById('sko_iframe_global_container');
+              let globalIframe = document.getElementById('sko_iframe_global');
+      
+              // If the iframe container does not exist, create it
+              if (!globalIframeContainer) {
+                // Create the container for the iframe
+                globalIframeContainer = document.createElement('div');
+                globalIframeContainer.id = 'sko_iframe_global_container';
+                globalIframeContainer.style.position = 'fixed';
+                globalIframeContainer.style.top = '50%';
+                globalIframeContainer.style.left = '50%';
+                globalIframeContainer.style.transform = 'translate(-50%, -50%)'; // Center the iframe initially
+                globalIframeContainer.style.width = '75vw'; // Set the width of the iframe container
+                globalIframeContainer.style.height = '75vh'; // Set the height of the iframe container
+                globalIframeContainer.style.zIndex = '9999'; // Ensure the iframe appears above other content
+                globalIframeContainer.style.border = '1px solid #ccc'; // Add a border for clarity
+                globalIframeContainer.style.borderRadius = '8px'; // Smooth corners for aesthetics
+                globalIframeContainer.style.backgroundColor = '#fff'; // Background color for the iframe container
+                document.body.appendChild(globalIframeContainer); // Add the container to the page
+      
+                // Create a draggable bar at the top of the iframe container
+                const dragBar = document.createElement('div');
+                dragBar.style.width = '100%'; // Full width of the container
+                dragBar.style.height = '30px'; // Fixed height for the bar
+                dragBar.style.backgroundColor = '#333'; // Dark background for visibility
+                dragBar.style.color = '#fff'; // White text for contrast
+                dragBar.style.display = 'flex'; // Flexbox for button alignment
+                dragBar.style.justifyContent = 'space-between'; // Align content in the bar
+                dragBar.style.alignItems = 'center'; // Vertically center content
+                dragBar.style.padding = '0 10px'; // Padding for spacing
+                dragBar.style.cursor = 'move'; // Indicate draggable functionality
+                dragBar.textContent = 'Drag to move'; // Text instruction for the user
+                globalIframeContainer.appendChild(dragBar); // Add the drag bar to the container
+      
+                // Add a close button to the drag bar
+                const closeButton = document.createElement('button');
+                closeButton.textContent = 'X'; // Close button text
+                closeButton.style.backgroundColor = '#e74c3c'; // Red background to indicate closing functionality
+                closeButton.style.color = '#fff'; // White text for contrast
+                closeButton.style.border = 'none'; // Remove default button borders
+                closeButton.style.borderRadius = '4px'; // Smooth corners for aesthetics
+                closeButton.style.cursor = 'pointer'; // Pointer cursor for clarity
+                closeButton.onclick = function() {
+                  globalIframeContainer.remove(); // Remove the iframe container when clicked
+                };
+                dragBar.appendChild(closeButton); // Add the close button to the drag bar
+      
+                // Create the iframe element for displaying the SKO page
+                globalIframe = document.createElement('iframe');
+                globalIframe.id = 'sko_iframe_global';
+                globalIframe.src = 'https://thoth-tech.github.io/SplashkitOnline/?useMinifiedInterface=on&language=C++'; // Source URL for the iframe content
+                globalIframe.style.width = '100%'; // Full width of the container
+                globalIframe.style.height = 'calc(100% - 30px)'; // Adjust height to account for the drag bar
+                globalIframe.style.border = 'none'; // Remove default iframe border
+                globalIframeContainer.appendChild(globalIframe); // Add the iframe to the container
+      
+                // Enable drag functionality for the container using the drag bar
+                let offsetX = 0, offsetY = 0, isDragging = false;
+                dragBar.addEventListener('mousedown', function(event) {
+                  isDragging = true; // Set the dragging flag
+                  offsetX = event.clientX - globalIframeContainer.getBoundingClientRect().left; // Calculate initial X offset
+                  offsetY = event.clientY - globalIframeContainer.getBoundingClientRect().top; // Calculate initial Y offset
+                  document.addEventListener('mousemove', onMouseMove); // Add mousemove event listener
+                  document.addEventListener('mouseup', onMouseUp); // Add mouseup event listener
+                });
+      
+                // Handle mouse movement while dragging
+                function onMouseMove(event) {
+                  if (isDragging) {
+                    globalIframeContainer.style.left = event.clientX - offsetX + 'px'; // Update X position
+                    globalIframeContainer.style.top = event.clientY - offsetY + 'px'; // Update Y position
+                    globalIframeContainer.style.transform = 'translate(0, 0)'; // Disable centering during drag
+                  }
+                }
+      
+                // Stop dragging when the mouse button is released
+                function onMouseUp() {
+                  isDragging = false; // Reset the dragging flag
+                  document.removeEventListener('mousemove', onMouseMove); // Remove mousemove listener
+                  document.removeEventListener('mouseup', onMouseUp); // Remove mouseup listener
+                }
+              }
+      
+              // Show the iframe container and load the code example
+              globalIframeContainer.style.display = 'block';
+              const filePath = '/usage-examples/${categoryKey}/${functionKey}/${exampleKey}.cpp'; // Path to the code file
+              fetch(filePath) // Fetch the code file
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Failed to fetch C++ file: ' + filePath); // Handle fetch errors
+                  }
+                  return response.text();
+                })
+                .then(codeData => {
+                  globalIframe.contentWindow.postMessage({
+                    eventType: 'InitializeProjectFromOutsideWorld',
+                    files: [{ path: '/code/main.cpp', data: codeData }] // Send the code to the iframe
+                  }, '*');
+                })
+                .catch(error => console.error('Error reading file:', error)); // Log any errors
+            } catch (error) {
+              console.error('An error occurred in the SKO button logic:', error); // Log any unexpected errors
+            }
+          "
+        >
+          Try it in SKO
+        </button>
+      </div>
+      `;         
+
       mdxContent += "\n---\n";
 
         });
