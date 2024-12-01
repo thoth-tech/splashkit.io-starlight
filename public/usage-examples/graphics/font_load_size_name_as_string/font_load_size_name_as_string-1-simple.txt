@@ -1,0 +1,8 @@
+#### Font Sizes (String name)
+
+The following is a simple program that loads a font size using [Load Font Size](/api/graphics/#font-load-size) then prompts the user to enter a number, the program then checks if the input is the size. The appropriate message is shown.
+
+:::note
+To test this example code you can download these [**Resources**](/usage-examples/graphics/font_load_size/FontLoadSizeResources.zip).
+::: 
+ 
