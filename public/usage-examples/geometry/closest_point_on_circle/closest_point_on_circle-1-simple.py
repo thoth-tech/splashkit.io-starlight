@@ -26,8 +26,9 @@ point.y = y
 # Get closest point to the point on circle 
 close_point = closest_point_on_circle(point, circle)
 
-# Draw circle to indicate point
+# Draw circle to indicate points
 fill_circle_on_window(wnd, color_red(), close_point.x, close_point.y, 5)
+fill_circle_on_window(wnd, color_blue(), point.x, point.y, 5)
 
 refresh_screen()
 

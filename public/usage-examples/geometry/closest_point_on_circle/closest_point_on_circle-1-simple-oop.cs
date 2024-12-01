@@ -28,8 +28,9 @@ namespace ClosestPoint
             // Get closest point to the point on circle
             Point2D close_point = SplashKit.ClosestPointOnCircle(point, circle);
 
-            // Draw circle to indicate point
+            // Draw circle to indicate points
             SplashKit.FillCircleOnWindow(wnd, Color.Red, close_point.X, close_point.Y, 5);
+            SplashKit.FillCircleOnWindow(wnd, Color.Blue, point.X, point.Y, 5);
 
             SplashKit.RefreshScreen();
 

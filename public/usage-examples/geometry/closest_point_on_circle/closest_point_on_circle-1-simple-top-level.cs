@@ -23,8 +23,9 @@ Point2D point = new Point2D() {X = x, Y = y};
 // Get closest point to the point on circle
 Point2D close_point = ClosestPointOnCircle(point, circle);
 
-// Draw circle to indicate point
+// Draw circle to indicate points
 FillCircleOnWindow(wnd, ColorRed(), close_point.X, close_point.Y, 5);
+FillCircleOnWindow(wnd, ColorBlue(), point.X, point.Y, 5);
 
 RefreshScreen();
 
