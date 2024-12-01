@@ -14,6 +14,7 @@ Sprite skSprite = CreateSprite(skBmp);
 Point2D skSpriteLoc = new Point2D() { X = 50, Y = 50 };
 SpriteSetPosition(skSprite, skSpriteLoc);
 
+// Define the rectangles
 Rectangle testRectangle1 = new Rectangle() { X = 20, Y = 20, Width = 20, Height = 20 };
 Rectangle testRectangle2 = new Rectangle() { X = 150, Y = 200, Width = 20, Height = 20 };
 

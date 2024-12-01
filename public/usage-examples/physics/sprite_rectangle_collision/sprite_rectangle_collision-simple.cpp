@@ -15,16 +15,15 @@ int main()
     point_2d sk_sprite_loc = {50, 50};
     sprite_set_position(sk_sprite, sk_sprite_loc);
 
-    rectangle test_rectangle_1;
-    rectangle test_rectangle_2;
-
     // Define the first rectangle
+    rectangle test_rectangle_1;
     test_rectangle_1.x = 20;
     test_rectangle_1.y = 20;
     test_rectangle_1.width = 20;
     test_rectangle_1.height = 20;
 
     // Define the second rectangle
+    rectangle test_rectangle_2;
     test_rectangle_2.x = 150;
     test_rectangle_2.y = 200;
     test_rectangle_2.width = 20;

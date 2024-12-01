@@ -19,6 +19,7 @@ namespace SpriteRectangleCollisionDemo
             Point2D skSpriteLoc = new Point2D() { X = 50, Y = 50 };
             SplashKit.SpriteSetPosition(skSprite, skSpriteLoc);
 
+            // Define the rectangles
             Rectangle testRectangle1 = new Rectangle() { X = 20, Y = 20, Width = 20, Height = 20 };
             Rectangle testRectangle2 = new Rectangle() { X = 150, Y = 200, Width = 20, Height = 20 };
 
@@ -29,9 +30,9 @@ namespace SpriteRectangleCollisionDemo
             SplashKit.FillRectangle(SplashKit.ColorRed(), testRectangle2);
 
             // Check for collisions
-            if (SpriteRectangleCollision(skSprite, testRectangle1))
+            if (SplashKit.SpriteRectangleCollision(skSprite, testRectangle1))
                 SplashKit.WriteLine("Black Rectangle Collision");
-            if (SpriteRectangleCollision(skSprite, testRectangle2))
+            if (SplashKit.SpriteRectangleCollision(skSprite, testRectangle2))
                 SplashKit.WriteLine("Red Rectangle Collision");
 
             // Refresh the screen and delay before closing
