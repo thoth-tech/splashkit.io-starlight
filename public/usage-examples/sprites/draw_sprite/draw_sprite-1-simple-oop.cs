@@ -1,7 +1,6 @@
-
 using SplashKitSDK;
 
-namespace draw_sprite
+namespace DrawSpriteExample
 {
     public class Program
     {

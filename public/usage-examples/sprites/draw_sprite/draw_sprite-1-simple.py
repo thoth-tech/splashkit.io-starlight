@@ -9,7 +9,7 @@ sprite_set_y(player_sprite, 300)
 
 clear_screen(color_black())
 
-#Draw the sprite
+# Draw the sprite
 draw_sprite(player_sprite)
 
 refresh_screen()
