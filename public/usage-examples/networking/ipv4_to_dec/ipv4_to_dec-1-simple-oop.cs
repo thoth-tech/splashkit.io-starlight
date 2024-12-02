@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace Program
+namespace Ipv4ToDecExample
 {
     public class Program
     {
