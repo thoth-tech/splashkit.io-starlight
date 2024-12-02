@@ -13,8 +13,10 @@ function readGuides(dir) {
         var jsonFiles;
         try {
             const stats = fs.statSync(folderPath);
+            //checking if the path is a directory
             if (stats.isDirectory()){
                 const files = fs.readdirSync(folderPath)
+                //filtering for JSON files
                 jsonFiles = files.filter(file => path.extname(file).toLowerCase() === '.json');
                 
                 if (jsonFiles.length > 0)
