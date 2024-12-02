@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace Program
+namespace FillCircleExample
 {
     public class Program
     {
@@ -9,7 +9,7 @@ namespace Program
             SplashKit.OpenWindow("Fill Circle", 800, 600);
 
             SplashKit.ClearScreen();
-            SplashKit.FillCircle(SplashKit.ColorBlue(), 300, 300, 200);
+            SplashKit.FillCircle(Color.Blue, 300, 300, 200);
             SplashKit.RefreshScreen();
 
             SplashKit.Delay(4000);
