@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace Program
+namespace FillTriangleOnBitmapExample
 {
     public class Program
     {
@@ -14,16 +14,17 @@ namespace Program
             Bitmap smilingEmoji = SplashKit.LoadBitmap("smiling_emoji", "smiling_emoji.png");
 
             // Draw the sad emoji and add a hat
-            SplashKit.ClearScreen(SplashKit.ColorBlack());
+            SplashKit.ClearScreen(Color.Black);
             SplashKit.DrawBitmap(sadEmoji, 0, 0);
             SplashKit.RefreshScreen();
             SplashKit.Delay(1000);
 
             // Draw a triangle hat on the smiling emoji
-            SplashKit.FillTriangleOnBitmap(smilingEmoji, SplashKit.ColorRed(), 100, 200, 309, 20, 520, 200);
+            // SplashKit.FillTriangleOnBitmap(smilingEmoji, Color.Red, 100, 200, 309, 20, 520, 200);
+            smilingEmoji.FillTriangle(Color.Red, 100, 200, 309, 20, 520, 200);
             
             // Clear Screen and switch to smiling emoji
-            SplashKit.ClearScreen(SplashKit.ColorBlack());
+            SplashKit.ClearScreen(Color.Black);
             SplashKit.DrawBitmap(smilingEmoji, 0, 0);
             SplashKit.RefreshScreen();
             SplashKit.Delay(1000);
@@ -31,7 +32,7 @@ namespace Program
             // Spin the smiling emoji with the hat
             for (int i = 0; i < 360; i++)
             {
-                SplashKit.ClearScreen(SplashKit.ColorBlack());
+                SplashKit.ClearScreen(Color.Black);
                 SplashKit.DrawBitmap(smilingEmoji, 0, 0, SplashKit.OptionRotateBmp(i));
                 SplashKit.RefreshScreen();
                 SplashKit.Delay(10);
