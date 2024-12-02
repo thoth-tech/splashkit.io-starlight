@@ -1,5 +1,5 @@
 ---
-const { title, uniqueID, className } = Astro.props;
+const { title, uniqueID, customButton, customContent } = Astro.props;
 
 let uniqueContent = uniqueID + "-content";
 ---
@@ -7,10 +7,10 @@ let uniqueContent = uniqueID + "-content";
 
 <accordion-component class="accordion" data-button={uniqueID} data-content={uniqueContent}>
     <button id={uniqueID}
-    class="accordionButton" >
+    class={customButton || "accordionButton"}  >
     {title}
     </button>
-    <div id={uniqueContent} class="accordionContent" style="display: none;">
+    <div id={uniqueContent} class={customContent || "accordionContent"} style="display: none;">
         <slot />
     </div>
 </accordion-component>

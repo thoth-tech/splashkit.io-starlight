@@ -1,0 +1,25 @@
+---
+import StarLightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import Accordion from '../components/Accordion.astro';
+---
+
+<html lang="en">
+<head>
+  <title>Accordion</title>
+  <meta name="Accordion Test" content="Accordion" />
+</head>
+<body>
+  <header>
+    <h1>Accordion</h1>
+  </header>
+
+  <main>
+    <StarLightPage frontmatter={{title: 'Accordion', tableOfContents: false}}>
+      <Accordion title="Accordion Button" uniqueID="accordion" customButton="accordionButton2">Custom Content Wow</Accordion>
+    </StarLightPage>
+  </main>
+
+  <footer>
+  </footer>
+</body>
+</html>
