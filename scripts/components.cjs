@@ -366,7 +366,7 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
 
           if (allGuides.length > 0){
             mdxContent += "**Guides:**\n\n"
-            mdxContent += `<Accordion title="See Implemenations in Guides" uniqueID={${JSON.stringify(func.unique_global_name)}}>\n\n`
+            mdxContent += `<Accordion title="See Implemenations in Guides" uniqueID={${JSON.stringify(func.unique_global_name)}} customButton="guidesAccordion">\n\n`
             
             mdxContent += `<ul>`
               allGuides.forEach((guide) => {
