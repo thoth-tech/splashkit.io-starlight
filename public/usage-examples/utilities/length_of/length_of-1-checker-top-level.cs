@@ -6,6 +6,6 @@ string[] texts = { "SplashKit", "Hello", "12345", "A quick brown fox leaps high"
 // Loop through each string and print its length
 foreach (string text in texts)
 {
-int length = LengthOf(text);  // Get the length of the string
-WriteLine($"The length of '{text}' is: {length} characters.");
+    int length = LengthOf(text);  // Get the length of the string
+    WriteLine($"The length of '{text}' is: {length} characters.");
 }
