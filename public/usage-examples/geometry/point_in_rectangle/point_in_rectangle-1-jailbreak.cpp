@@ -2,38 +2,36 @@
 
 int main()
 {
-
-    //Variable declarations
+    // Variable declarations
     point_2d mouse_point;
-    rectangle boundary = rectangle_from(150,150,300,100);
-    
+    rectangle boundary = rectangle_from(150, 150, 300, 100);
 
-    open_window("point in rectangle", 600, 600);
+    open_window("Cursor Jail", 600, 600);
 
-
-    while(!quit_requested())
+    while (!quit_requested())
     {
         process_events();
-        // get mouse position and draw boundary to screen
+        // Get mouse position and draw boundary to screen
         mouse_point = mouse_position();
         clear_screen(color_green());
         fill_rectangle(color_white(), boundary);
 
         // Check if mouse is in the boundary
-        if (!point_in_rectangle(mouse_point,boundary))
+        if (!point_in_rectangle(mouse_point, boundary))
         {
-            //flash screen red and blue if mouse has escaped boundary
+            // Flash screen red and blue if mouse has escaped boundary
             clear_screen(color_dark_red());
             fill_rectangle(color_white(), boundary);
-            draw_text("JAILBREAK",COLOR_BLACK,250.0,400.0);
+            draw_text("JAILBREAK", COLOR_BLACK, 250.0, 400.0);
             refresh_screen(2);
             clear_screen(color_royal_blue());
             fill_rectangle(color_white(), boundary);
             refresh_screen(2);
         }
-        
+
         refresh_screen();
     }
+
     close_all_windows();
     return 0;
 }
