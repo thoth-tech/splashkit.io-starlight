@@ -125,6 +125,23 @@ function getFunctionLink(jsonData, groupNameToCheck, uniqueNameToCheck) {
   return functionLink;
 }
 
+function findZipFileInTxt(folderPath) {
+  const txtFiles = fs.readdirSync(folderPath).filter(file => file.endsWith('.txt'));
+  for (const txtFile of txtFiles) {
+    const txtFilePath = `${folderPath}/${txtFile}`;
+    const fileContent = fs.readFileSync(txtFilePath, 'utf-8');
+
+    // Regex to match a .zip path or URL
+    const zipRegex = /\/[^\s]*\.zip/g;
+    const match = fileContent.match(zipRegex);
+
+    if (match && match.length > 0) {
+      return match[0]; // Return the first match
+    }
+  }
+  return null;
+}
+
 // ===============================================================================
 // Start of Main Script
 // ===============================================================================
@@ -448,8 +465,189 @@ categories.forEach((categoryKey) => {
             }
           }
 
-          mdxContent += `![${exampleKey} example](${outputFilePath})\n`
-          mdxContent += "\n---\n";
+			mdxContent += `![${exampleKey} example](${outputFilePath})\n`
+
+      // Find the .zip file path for the folder
+      const zipFilePath = findZipFileInTxt(`${categoryFilePath}/${functionKey}`);
+
+			// Add the toggle button and iframe logic
+			mdxContent += `
+			<div style="text-align: center; margin-top: 1rem;">
+			  <button
+				id="${functionKey}_sko_button"
+				class="sko-button"
+				style="margin-top: 1rem;"
+				onclick="
+				  (function() {
+					try {
+					  // Check the screen size and restrict functionality for small screens
+					  const screenWidth = window.innerWidth;
+					  if (screenWidth < 768) {
+						alert('This feature is not available on screens of this size.');
+						return;
+					  }
+
+					  // Declare variables for the iframe container, iframe element, message queue, and readiness flag
+					  let globalIframeContainer = document.getElementById('sko_iframe_global_container');
+					  let globalIframe = document.getElementById('sko_iframe_global');
+					  const messageQueue = []; // Queue for storing messages while iframe is not ready
+					  let isIframeReady = false; // Tracks whether iframe is ready to receive messages
+
+					  // Create and initialize the iframe if it doesn't exist
+					  if (!globalIframeContainer) {
+						// Create a container for the iframe
+						globalIframeContainer = document.createElement('div');
+						globalIframeContainer.id = 'sko_iframe_global_container';
+						globalIframeContainer.style.position = 'fixed';
+						globalIframeContainer.style.top = '50%';
+						globalIframeContainer.style.left = '50%';
+						globalIframeContainer.style.transform = 'translate(-50%, -50%)';
+						globalIframeContainer.style.width = '75vw';
+						globalIframeContainer.style.height = '75vh';
+						globalIframeContainer.style.border = '1px solid #ccc';
+						globalIframeContainer.style.borderRadius = '8px';
+						globalIframeContainer.style.backgroundColor = '#fff';
+						globalIframeContainer.style.zIndex = '9999';
+						document.body.appendChild(globalIframeContainer);
+
+						// Add a draggable bar for moving the iframe container
+						const dragBar = document.createElement('div');
+						dragBar.style.width = '100%';
+						dragBar.style.height = '30px';
+						dragBar.style.backgroundColor = '#333';
+						dragBar.style.color = '#fff';
+						dragBar.style.display = 'flex';
+						dragBar.style.justifyContent = 'space-between';
+						dragBar.style.alignItems = 'center';
+						dragBar.style.padding = '0 10px';
+						dragBar.style.cursor = 'move';
+						dragBar.textContent = 'Drag to move';
+						globalIframeContainer.appendChild(dragBar);
+
+						// Add a close button to the drag bar
+						const closeButton = document.createElement('button');
+						closeButton.textContent = 'X';
+						closeButton.style.backgroundColor = '#e74c3c';
+						closeButton.style.color = '#fff';
+						closeButton.style.border = 'none';
+						closeButton.style.cursor = 'pointer';
+						closeButton.onclick = function () {
+						  globalIframeContainer.style.display = 'none';
+						};
+						dragBar.appendChild(closeButton);
+
+						// Create the iframe element
+						globalIframe = document.createElement('iframe');
+						globalIframe.id = 'sko_iframe_global';
+						globalIframe.src = 'https://thoth-tech.github.io/SplashkitOnline/?language=C++';
+						globalIframe.style.width = '100%';
+						globalIframe.style.height = 'calc(100% - 30px)';
+						globalIframe.style.border = 'none';
+						globalIframeContainer.appendChild(globalIframe);
+
+						// Add functionality to make the container draggable
+						let offsetX = 0, offsetY = 0, isDragging = false;
+						dragBar.addEventListener('mousedown', function (event) {
+						  isDragging = true;
+						  offsetX = event.clientX - globalIframeContainer.getBoundingClientRect().left;
+						  offsetY = event.clientY - globalIframeContainer.getBoundingClientRect().top;
+						  document.addEventListener('mousemove', onMouseMove);
+						  document.addEventListener('mouseup', onMouseUp);
+						});
+
+						// Function to handle mouse movement for dragging
+						function onMouseMove(event) {
+						  if (isDragging) {
+							const viewportWidth = window.innerWidth;
+							const viewportHeight = window.innerHeight;
+							const containerRect = globalIframeContainer.getBoundingClientRect();
+							let newLeft = event.clientX - offsetX;
+							let newTop = event.clientY - offsetY;
+							newLeft = Math.max(0, Math.min(newLeft, viewportWidth - containerRect.width));
+							newTop = Math.max(0, Math.min(newTop, viewportHeight - containerRect.height));
+							globalIframeContainer.style.left = newLeft + 'px';
+							globalIframeContainer.style.top = newTop + 'px';
+							globalIframeContainer.style.transform = 'translate(0, 0)';
+						  }
+						}
+
+						// Function to stop dragging
+						function onMouseUp() {
+						  isDragging = false;
+						  document.removeEventListener('mousemove', onMouseMove);
+						  document.removeEventListener('mouseup', onMouseUp);
+						}
+					  }
+
+					  // Ensure the iframe container is visible
+					  globalIframeContainer.style.display = 'block';
+
+					  // Listen for a message indicating that the iframe is ready
+					  window.addEventListener('message', function(event) {
+						if (event.data.type === 'SplashKitOnlineListening') {
+						  console.log('Iframe is ready to receive messages.');
+						  isIframeReady = true;
+
+						  // Send all queued messages to the iframe
+						  while (messageQueue.length > 0) {
+							const message = messageQueue.shift();
+							globalIframe.contentWindow.postMessage(message, '*');
+						  }
+						}
+					  });
+
+					  // Function to send a message to the iframe, queuing if it's not ready
+					  const sendMessageToIframe = (message) => {
+						if (isIframeReady) {
+						  globalIframe.contentWindow.postMessage(message, '*');
+						} else {
+						  console.log('Iframe not ready, queuing message.');
+						  messageQueue.push(message);
+						}
+					  };
+
+					  // Paths to the C++ code and ZIP file
+					  const filePath = '/usage-examples/${categoryKey}/${functionKey}/${exampleKey}.cpp';
+					  const zipPath = '${zipFilePath}';
+
+					  // Fetch the C++ code and ZIP file and send them to the iframe
+					  fetch(filePath)
+						.then(response => {
+						  if (!response.ok) throw new Error('Failed to fetch C++ file.');
+						  return response.text();
+						})
+						.then(async codeData => {
+						  let zipBlob = null;
+						  try {
+							const zipResponse = await fetch(zipPath);
+							if (zipResponse.ok) zipBlob = await zipResponse.blob();
+						  } catch (e) {
+							console.warn('ZIP file fetch failed:', zipPath);
+						  }
+
+						  // Prepare the initialization message
+						  const message = {
+							eventType: 'InitializeProjectFromOutsideWorld',
+							files: [{ path: '/code/main.cpp', data: codeData }],
+							zips: zipBlob ? [{ data: zipBlob }] : []
+						  };
+
+						  // Send the message to the iframe
+						  sendMessageToIframe(message);
+						})
+						.catch(err => console.error('Error fetching resources:', err));
+					} catch (error) {
+					  console.error('Error initializing iframe:', error);
+					}
+				  })();
+				"
+			  >
+				Try it in SKO
+			  </button>
+			</div>`;
+
+      mdxContent += "\n---\n";
+
         });
       }
       functionIndex++;
