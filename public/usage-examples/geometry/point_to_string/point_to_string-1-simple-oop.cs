@@ -1,6 +1,5 @@
 using SplashKitSDK;
 
-
 namespace PointToString
 {
     public class Program
@@ -8,28 +7,29 @@ namespace PointToString
         public static void Main()
         {
             // Variable Declaration
-            string click = "Mouse clicked at ";
-            string mouse_pos = "";
+            string ClickMessage = "Mouse clicked at ";
+            string MousePositionText = "";
 
             // Open Window
-            SplashKit.OpenWindow("point to string", 600, 600);
-            SplashKit.ClearScreen(SplashKit.ColorGhostWhite());
+            Window WindowInstance = new Window("Mouse Clicked Location", 600, 600);
+            WindowInstance.Clear(Color.GhostWhite);
 
-            while(!SplashKit.QuitRequested())
+            while (!SplashKit.QuitRequested())
             {
-                // check for mouse click
-                if(SplashKit.MouseClicked(MouseButton.LeftButton))
+                // Check for mouse click
+                if (SplashKit.MouseClicked(MouseButton.LeftButton))
                 { 
-                    mouse_pos = SplashKit.PointToString(SplashKit.MousePosition());
-                    SplashKit.ClearScreen(SplashKit.ColorGhostWhite());
+                    MousePositionText = SplashKit.PointToString(SplashKit.MousePosition());
+                    WindowInstance.Clear(Color.GhostWhite);
                 }
 
                 // Print mouse position to screen
-                SplashKit.DrawText(click + mouse_pos,SplashKit.ColorBlack(),100,300);
+                WindowInstance.DrawText(ClickMessage + MousePositionText, Color.Black, 100, 300);
                 SplashKit.ProcessEvents();
-                SplashKit.RefreshScreen();
+                WindowInstance.Refresh();
             }
-            SplashKit.CloseAllWindows();
+
+            WindowInstance.Close();
         }
     }
 }
