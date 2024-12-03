@@ -6,26 +6,26 @@ namespace RandomBitmapPoint
     {
         public static void Main()
         {   
-            //Create Window
-            SplashKit.OpenWindow("random bitmap point", 600, 600);
-            Bitmap bmp = new Bitmap("random quads",600,600);
+            // Create Window
+            Window Window = new Window("Random Quad Shape", 600, 600);
+            Bitmap Bmp = new Bitmap("Random Quads", 600, 600);
 
-            // create quad using random points on bitmap
-            Quad q = SplashKit.QuadFrom(
-                SplashKit.RandomBitmapPoint(bmp),
-                SplashKit.RandomBitmapPoint(bmp),
-                SplashKit.RandomBitmapPoint(bmp),
-                SplashKit.RandomBitmapPoint(bmp));
-            SplashKit.DrawQuadOnBitmap(bmp, Color.Black, q);
+            // Create quad using random points on bitmap
+            Quad Q = SplashKit.QuadFrom(
+                SplashKit.RandomBitmapPoint(Bmp),
+                SplashKit.RandomBitmapPoint(Bmp),
+                SplashKit.RandomBitmapPoint(Bmp),
+                SplashKit.RandomBitmapPoint(Bmp));
+            Bmp.DrawQuad(Color.Black, Q);
 
-            SplashKit.ClearScreen(Color.WhiteSmoke);
+            Window.Clear(Color.WhiteSmoke);
 
-            //Draw the bitmap
-            SplashKit.DrawBitmap(bmp, 0,0);
+            // Draw the bitmap
+            Window.DrawBitmap(Bmp, 0, 0);
 
-            SplashKit.RefreshScreen();
+            Window.Refresh();
             SplashKit.Delay(5000);
-            SplashKit.CloseAllWindows();
+            Window.Close();
         }
     }
 }

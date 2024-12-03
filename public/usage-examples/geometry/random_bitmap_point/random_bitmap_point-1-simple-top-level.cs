@@ -1,22 +1,22 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-//Create Window
-OpenWindow("random bitmap point", 600, 600);
-Bitmap bmp = new Bitmap("random quads",600,600);
+// Create Window
+OpenWindow("Random Quad Shape", 600, 600);
+Bitmap Bmp = new Bitmap("Random Quads", 600, 600);
 
-// create quad using random points on bitmap
-Quad q = QuadFrom(
-    RandomBitmapPoint(bmp),
-    RandomBitmapPoint(bmp),
-    RandomBitmapPoint(bmp),
-    RandomBitmapPoint(bmp));
-DrawQuadOnBitmap(bmp, Color.Black, q);
+// Create quad using random points on bitmap
+Quad Q = QuadFrom(
+    RandomBitmapPoint(Bmp),
+    RandomBitmapPoint(Bmp),
+    RandomBitmapPoint(Bmp),
+    RandomBitmapPoint(Bmp));
+DrawQuadOnBitmap(Bmp, Color.Black, Q);
 
 ClearScreen(Color.WhiteSmoke);
 
-//Draw the bitmap
-DrawBitmap(bmp, 0,0);
+// Draw the bitmap
+DrawBitmap(Bmp, 0, 0);
 
 RefreshScreen();
 Delay(5000);
