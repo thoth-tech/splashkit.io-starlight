@@ -1,62 +1,61 @@
 using SplashKitSDK;
 
-
 namespace SamePoint
 {
     public class Program
     {
         public static void Main()
         {
-            //  Variable Declerations
-            Point2D point_1 = SplashKit.PointAt(50,75);
-            Point2D point_2;
-            string guess;
-            List<string> coords;
-            double guess_x;
-            double guess_y;
-
+            // Variable Declarations
+            Point2D Point1 = SplashKit.PointAt(50, 75);
+            Point2D Point2;
+            string GuessInput;
+            List<string> Coords;
+            double GuessX;
+            double GuessY;
+            bool Guess = false;
 
             SplashKit.WriteLine("Guess the coordinate inside (100,100) ");
 
-
-            while (true)
+            while (!Guess)
             {
                 // Get user input
                 SplashKit.Write("Enter your coordinates as x,y: ");
-                guess = SplashKit.ReadLine();
-                coords = SplashKit.Split(guess,',');
-                guess_x = SplashKit.ConvertToDouble(coords[0]);
-                guess_y = SplashKit.ConvertToDouble(coords[1]);
+                GuessInput = SplashKit.ReadLine();
+                Coords = SplashKit.Split(GuessInput, ',');
 
-                // convert input 
-                point_2 = SplashKit.PointAt(guess_x,guess_y);
-                
-                //clues
-                if (point_1.X > guess_x) 
-                    SplashKit.WriteLine("x is to low");
-                else if (point_1.X < guess_x) 
-                    SplashKit.WriteLine("x is to high");
-                else 
+                // Convert input
+                GuessX = SplashKit.ConvertToDouble(Coords[0]);
+                GuessY = SplashKit.ConvertToDouble(Coords[1]);
+                Point2.X = GuessX;
+                Point2.Y = GuessY;
+
+                // Clues
+                if (Point1.X > GuessX)
+                    SplashKit.WriteLine("x is too low");
+                else if (Point1.X < GuessX)
+                    SplashKit.WriteLine("x is too high");
+                else
                     SplashKit.WriteLine("x is correct !!!");
-                
-                if (point_1.Y > guess_y) 
-                    SplashKit.WriteLine("y is to low");
-                else if (point_1.Y < guess_y) 
-                    SplashKit.WriteLine("y is to high");
-                else 
+
+                if (Point1.Y > GuessY)
+                    SplashKit.WriteLine("y is too low");
+                else if (Point1.Y < GuessY)
+                    SplashKit.WriteLine("y is too high");
+                else
                     SplashKit.WriteLine("y is correct !!!");
 
-                // Point Comparison 
-                if(!SplashKit.SamePoint(point_1,point_2))
+                // Point Comparison
+                Guess = SplashKit.SamePoint(Point1, Point2);
+                if (!Guess)
                 {
                     SplashKit.WriteLine("Try Again!");
-                } 
-                else 
+                }
+                else
                 {
                     SplashKit.WriteLine("You Win!");
-                    break;
                 }
             }
-        }       
+        }
     }
 }
