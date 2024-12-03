@@ -14,9 +14,9 @@ write_line_int(953221311)
 write_line_int(-165746)
 
 # Example 3: Print integer after calculation
-a = 222-111
+a = 222 - 111
 b = 10 * 12
-c = 100 / 5
+c = int(100 / 5)
 write_line_int(a - b)
 write_line_int(b)
-write_line_int(int(c))
+write_line_int(c)

@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace WriteLineInt
+namespace WriteLineIntExample
 {
     public class Program
     {
@@ -20,7 +20,7 @@ namespace WriteLineInt
             SplashKit.WriteLine(-165746);
 
             // Example 3: Print integer after calculation
-            int a = 222-111;
+            int a = 222 - 111;
             int b = 10 * 12;
             int c = 100 / 5;
 
