@@ -1,56 +1,52 @@
-#include "splashkit.h"
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-int main()
+// Variable Declarations
+Point2D Point1 = PointAt(50, 75);
+Point2D Point2;
+string GuessInput;
+List<string> Coords;
+double GuessX;
+double GuessY;
+bool Guess = false;
+
+WriteLine("Guess the coordinate inside (100,100) ");
+
+while (!Guess)
 {
-    //  Variable declarations
-    point_2d point_1 = point_at(50, 75);
-    point_2d point_2;
-    string guess_input;
-    vector<string> coords;
-    double guess_x;
-    double guess_y;
-    bool guess = false;
+    // Get user input
+    Write("Enter your coordinates as x,y: ");
+    GuessInput = ReadLine();
+    Coords = Split(GuessInput, ',');
 
-    write_line("Guess the coordinate inside (100,100)");
+    // Convert input
+    GuessX = ConvertToDouble(Coords[0]);
+    GuessY = ConvertToDouble(Coords[1]);
+    Point2 = PointAt(GuessX, GuessY);
 
-    while (!guess)
+    // Clues
+    if (Point1.X > GuessX)
+        WriteLine("x is too low");
+    else if (Point1.X < GuessX)
+        WriteLine("x is too high");
+    else
+        WriteLine("x is correct !!!");
+
+    if (Point1.Y > GuessY)
+        WriteLine("y is too low");
+    else if (Point1.Y < GuessY)
+        WriteLine("y is too high");
+    else
+        WriteLine("y is correct !!!");
+
+    // Point Comparison
+    Guess = SamePoint(Point1, Point2);
+    if (!Guess)
     {
-        // Get user input
-        write("Enter your coordinates as x,y: ");
-        guess_input = read_line();
-        coords = split(guess_input, ',');
-
-        // Convert input 
-        guess_x = convert_to_double(coords[0]);
-        guess_y = convert_to_double(coords[1]);
-        point_2 = point_at(guess_x, guess_y);
-
-        // Clues
-        if (point_1.x > guess_x)
-            write_line("x is too low");
-        else if (point_1.x < guess_x)
-            write_line("x is too high");
-        else
-            write_line("x is correct !!!");
-
-        if (point_1.y > guess_y)
-            write_line("y is too low");
-        else if (point_1.y < guess_y)
-            write_line("y is too high");
-        else
-            write_line("y is correct !!!");
-
-        // Point comparison 
-        guess = same_point(point_1, point_2);
-        if (!guess)
-        {
-            write_line("Try Again!");
-        }
-        else
-        {
-            write_line("You Win!");
-        }
+        WriteLine("Try Again!");
     }
-
-    return 0;
+    else
+    {
+        WriteLine("You Win!");
+    }
 }
