@@ -1,30 +1,30 @@
 using SplashKitSDK;
 
-namespace draw_line_on_window
+namespace DrawLineOnWindow
 {
     public class Program
     {
         public static void Main()
         {
             // Create Window
-            Window start = new Window("draw line on window", 600, 600);
-            SplashKit.ClearScreen(SplashKit.ColorBlack());
+            Window window = new Window("Colourful Starburst", 600, 600);
+            window.Clear(Color.Black);
 
 
-            // Draw line on window - param (Window, Color, x1, y1, x2, y2)
-            SplashKit.DrawLineOnWindow(start, SplashKit.ColorYellow(), 0,0,600,600);
-            SplashKit.DrawLineOnWindow(start, SplashKit.ColorGreen(), 0,150,600,450);
-            SplashKit.DrawLineOnWindow(start, SplashKit.ColorTeal(), 0,300,600,300);
-            SplashKit.DrawLineOnWindow(start, SplashKit.ColorBlue(), 0,450,600,150);
-            SplashKit.DrawLineOnWindow(start, SplashKit.ColorViolet(), 0,600,600,0);
-            SplashKit.DrawLineOnWindow(start, SplashKit.ColorPurple(), 150,0,450,600);
-            SplashKit.DrawLineOnWindow(start, SplashKit.ColorPink(), 300,0,300,600);
-            SplashKit.DrawLineOnWindow(start, SplashKit.ColorRed(), 450,0,150,600);      
-            SplashKit.DrawLineOnWindow(start, SplashKit.ColorOrange(), 600,0,0,600);
+            // Draws starburst pattern with changing colours to window
+            window.DrawLine(Color.Yellow, 0, 0, 600, 600);
+            window.DrawLine(Color.Green, 0, 150, 600, 450);
+            window.DrawLine(Color.Teal, 0, 300, 600, 300);
+            window.DrawLine(Color.Blue, 0, 450, 600, 150);
+            window.DrawLine(Color.Violet, 0, 600, 600, 0);
+            window.DrawLine(Color.Purple, 150, 0, 450, 600);
+            window.DrawLine(Color.Pink, 300, 0, 300, 600);
+            window.DrawLine(Color.Red, 450, 0, 150, 600);      
+            window.DrawLine(Color.Orange, 600, 0, 0, 600);
 
-            SplashKit.RefreshScreen();
+            window.Refresh();
             SplashKit.Delay(5000);
-            SplashKit.CloseAllWindows();
+            window.Close();
         }
     }
 }
