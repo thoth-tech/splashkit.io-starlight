@@ -6,37 +6,37 @@ namespace DrawPixel
     {
         public static void Main()
         {
-            // declare variables
-            const int trail_length = 50;
-            Point2D mousePoint;
-            Point2D[] mouse_history = new Point2D[trail_length];
-            Color[] Colorlist = {SplashKit.ColorBlue(),SplashKit.ColorRed(),SplashKit.ColorGreen(),SplashKit.ColorYellow(),SplashKit.ColorPink()};
+            // Declare variables
+            const int TrailLength = 50;
+            Point2D MousePoint;
+            Point2D[] MouseHistory = new Point2D[TrailLength];
+            Color[] ColorList = { Color.Blue, Color.Red, Color.Green, Color.Yellow, Color.Pink };
 
+            Window window = new Window("Cursor Trail", 600, 600);
 
-            SplashKit.OpenWindow("draw pixel", 600, 600);
-
-
-            while(!SplashKit.QuitRequested())
+            while (!SplashKit.QuitRequested())
             {
+                MousePoint = SplashKit.MousePosition();
+                window.Clear(Color.Black);
+                // Set mouse position history
+                for (int i = 0; i < TrailLength - 1; i++)
+                {
+                    // Shuffle forward
+                    MouseHistory[i] = MouseHistory[i + 1];
+                }
 
-                mousePoint = SplashKit.MousePosition();
-                SplashKit.ClearScreen(SplashKit.ColorBlack());
-                // set mouse position history 
-                for(int i = 0; i < trail_length - 1; i++)
+                MouseHistory[TrailLength - 1] = MousePoint;
+
+                // Draw mouse trail
+                for (int i = 0; i < TrailLength; i++)
                 {
-                    // shuffle forward
-                    mouse_history[i] = mouse_history[i + 1];
+                    SplashKit.DrawPixel(ColorList[i % 5], MouseHistory[i]);
                 }
-                mouse_history[trail_length - 1] = mousePoint;
-                // draw mouse trail
-                for(int i = 0; i < trail_length; i++)
-                {
-                    SplashKit.DrawPixel(Colorlist[i%5],mouse_history[i]);
-                }
+
                 SplashKit.ProcessEvents();
-                SplashKit.RefreshScreen(60);
+                window.Refresh(60);
             }
-            SplashKit.CloseAllWindows();
+            window.Close();
         }
     }
 }
