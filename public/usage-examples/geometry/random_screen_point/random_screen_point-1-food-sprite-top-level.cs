@@ -1,19 +1,18 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-//Create Window
-OpenWindow("draw sprite random", 600, 600);
+// Create Window
+OpenWindow("Food Generator", 600, 600);
 
-LoadBitmap("food", "food.png");
-Sprite FoodSprite = CreateSprite(BitmapNamed("food"));
+LoadBitmap("Food", "food.png");
+Sprite FoodSprite = CreateSprite(BitmapNamed("Food"));
 
-//set random food location
+// Set random food location
 SpriteSetPosition(FoodSprite, RandomScreenPoint());
-
 
 ClearScreen(ColorBlack());
 
-//Draw the sprite
+// Draw the sprite
 DrawSprite(FoodSprite);
 
 RefreshScreen();

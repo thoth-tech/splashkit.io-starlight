@@ -6,24 +6,23 @@ namespace RandomScreenPoint
     {
         public static void Main()
         {
-           //Create Window
-            SplashKit.OpenWindow("draw sprite random", 600, 600);
+            // Create Window
+            Window Window = new Window("Food Generator", 600, 600);
 
-            SplashKit.LoadBitmap("food", "food.png");
-            Sprite FoodSprite = SplashKit.CreateSprite(SplashKit.BitmapNamed("food"));
+            Bitmap Food = new Bitmap("Food", "food.png");
+            Sprite FoodSprite = SplashKit.CreateSprite(Food);
 
-            //set random food location
-            SplashKit.SpriteSetPosition(FoodSprite, SplashKit.RandomScreenPoint());
+            // Set random food location
+            FoodSprite.Position = SplashKit.RandomScreenPoint();
 
+            Window.Clear(Color.Black);
 
-            SplashKit.ClearScreen(SplashKit.ColorBlack());
-
-            //Draw the sprite
+            // Draw the sprite
             SplashKit.DrawSprite(FoodSprite);
 
-            SplashKit.RefreshScreen();
+            Window.Refresh();
             SplashKit.Delay(5000);
-            SplashKit.CloseAllWindows();
+            Window.Close();
         }
     }
 }

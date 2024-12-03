@@ -1,6 +1,6 @@
 #### Random Screen Point
 
-The following code shows examples of using [Random Screen Point](/api/geometry#random-screen-point) to show how to select a random point on the screen, in this case for a sprite location.
+The following code shows examples of using [Random Screen Point](/api/geometry#random-screen-point) to show how to select a random point on the screen, this example demonstrates how you could spawn a sprite in a random place for snake game as an example
 
 :::note
 To test this example code you can download these [**Resources**](/usage-examples/geometry/random_screen_point/randomScreenPoint_BasicSpriteResources.zip).
