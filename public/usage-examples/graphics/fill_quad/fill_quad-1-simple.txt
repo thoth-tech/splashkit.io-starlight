@@ -1,3 +1,3 @@
 #### Fill Quad
 
-The following code shows examples of using [Fill Quad](/api/graphics#fill-quad-1) to show how to draw and fill a 4 sided shape.
+The following code shows examples of using [Fill Quad](/api/graphics#fill-quad-1) to show how to draw and fill a 4 sided shape. This example shows a coloured in version of Draw Quad usage example.

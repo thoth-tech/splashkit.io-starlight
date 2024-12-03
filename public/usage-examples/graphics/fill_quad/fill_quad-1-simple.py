@@ -1,17 +1,14 @@
 from splashkit import *
 
 # Initialise quads with x1,y1,...,x4,y4
-q1 = quad_from(400,200,300,300,300,0,200,200)
-q2 = quad_from(400,210,310, 300,600,300,400,390)
-q3 = quad_from(200,400,300, 300,300,600,400,400)
-q4 = quad_from(200,390,290, 300,0,300,200,210)
-
+q1 = quad_from(400, 200, 300, 300, 300, 0, 200, 200)
+q2 = quad_from(400, 210, 310, 300, 600, 300, 400, 390)
+q3 = quad_from(200, 400, 300, 300, 300, 600, 400, 400)
+q4 = quad_from(200, 390, 290, 300, 0, 300, 200, 210)
 
 # Create Window
-
-open_window("Fill Quad", 600, 600)
+open_window("Coloured Star", 600, 600)
 clear_screen(color_white())
-
 
 fill_quad(color_black(), q1)
 fill_quad(color_green(), q2)
