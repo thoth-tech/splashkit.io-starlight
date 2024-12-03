@@ -9,49 +9,42 @@ string convert_to_string(double x)
 
 int main()
 {
-
-    //Variable Declartions
+    // Variable Declarations
     double bar_x = 100;
-    line slider = line_from(100,300,500,300);
-    line bar = line_from(bar_x,310,bar_x,290);
+    line slider = line_from(100, 300, 500, 300);
+    line bar = line_from(bar_x, 310, bar_x, 290);
     double percent = 0;
-    string volume = "Volume: ";
-
+    std::string volume = "Volume: ";
 
     // Create window and draw initial lines
-    open_window("point on line",600,600);
+    open_window("Volume Slider", 600, 600);
     clear_screen(color_white());
 
-    draw_line(color_black(),slider);
-    draw_line(color_black(),bar);
-    draw_text(volume + convert_to_string(percent),color_black(),200,450);
+    draw_line(color_black(), slider);
+    draw_line(color_black(), bar);
+    draw_text(volume + convert_to_string(percent), color_black(), 200, 450);
     refresh_screen();
 
-    while (! quit_requested())
+    while (!quit_requested())
     {
-        
         process_events();
 
         // Check if user is holding click on the bar line
-        while (mouse_down(LEFT_BUTTON) & point_on_line(mouse_position(),bar))
+        while (mouse_down(LEFT_BUTTON) && point_on_line(mouse_position(), bar))
         {
-
             clear_screen(color_white());
             bar_x = mouse_position().x; // sets bar_x value to mouse x value
             percent = ((bar_x - 100) / (500 - 100)) * 100; // convert bar_x position to percent value
-            bar = line_from(bar_x,310,bar_x,290);
+            bar = line_from(bar_x, 310, bar_x, 290);
             
             // redraw lines and volume text
-            draw_line(color_black(),bar);
-            draw_line(color_black(),slider);
-            draw_text(volume + convert_to_string(percent),color_black(),200,450);
+            draw_line(color_black(), bar);
+            draw_line(color_black(), slider);
+            draw_text(volume + convert_to_string(percent), color_black(), 200, 450);
             refresh_screen();
             process_events();
-
         }
-
-        
     }
-    
+    close_all_windows();
     return 0;
 }

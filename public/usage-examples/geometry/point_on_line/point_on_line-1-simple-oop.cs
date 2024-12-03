@@ -6,34 +6,29 @@ namespace PointOnLine
     {
         public static void Main()
         {
-            //Variable Declartions
-            
-            Line ln = SplashKit.LineFrom(100,300,500,300);
-
+            // Variable Declarations
+            Line line = SplashKit.LineFrom(100, 300, 500, 300);
 
             // Create window
-            SplashKit.OpenWindow("point on line",600,600);
+            Window window = new Window("Select Point", 600, 600);
 
-            while (! SplashKit.QuitRequested())
+            while (!SplashKit.QuitRequested())
             {
-                //Display line
-                SplashKit.ClearScreen(SplashKit.ColorWhite());
-                SplashKit.DrawLine(SplashKit.ColorBlack(),ln);
+                // Display line
+                window.Clear(Color.White);
+                window.DrawLine(Color.Black, line);
                 
-                //Draw text if curser is on line
-                if(SplashKit.PointOnLine(SplashKit.MousePosition(),ln))
+                // Draw text if cursor is on line
+                if (SplashKit.PointOnLine(SplashKit.MousePosition(), line))
                 {
-                    SplashKit.DrawText("Point on line" + SplashKit.PointToString(SplashKit.MousePosition()),SplashKit.ColorBlack(),200,450);
+                    window.DrawText("Point on line: " + SplashKit.PointToString(SplashKit.MousePosition()), Color.Black, 200, 450);
                 }
-                
-                
-                SplashKit.RefreshScreen();
-                SplashKit.ProcessEvents();
 
-               
-            
-    
-            }   
+                window.Refresh();
+                SplashKit.ProcessEvents();
+            }
+
+            window.Close();
         }
     }
 }

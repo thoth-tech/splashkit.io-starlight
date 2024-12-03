@@ -6,48 +6,43 @@ namespace PointOnLine
     {
         public static void Main()
         {
-            //Variable Declartions
-            double bar_x = 100;
-            Line slider = SplashKit.LineFrom(100,300,500,300);
-            Line bar = SplashKit.LineFrom(bar_x,310,bar_x,290);
+            // Variable Declarations
+            double barX = 100;
+            Line slider = SplashKit.LineFrom(100, 300, 500, 300);
+            Line bar = SplashKit.LineFrom(barX, 310, barX, 290);
             double percent = 0;
             string volume = "Volume: ";
 
-
             // Create window and draw initial Lines
-            SplashKit.OpenWindow("point on Line",600,600);
-            SplashKit.ClearScreen(SplashKit.ColorWhite());
+            Window window = new Window("Volume Slider", 600, 600);
+            window.Clear(Color.White);
 
-            SplashKit.DrawLine(SplashKit.ColorBlack(),slider);
-            SplashKit.DrawLine(SplashKit.ColorBlack(),bar);
-            SplashKit.DrawText(volume + percent.ToString(),SplashKit.ColorBlack(),200,450);
-            SplashKit.RefreshScreen();
+            window.DrawLine(Color.Black, slider);
+            window.DrawLine(Color.Black, bar);
+            window.DrawText(volume + percent.ToString(), Color.Black, 200, 450);
+            window.Refresh();
 
-            while (! SplashKit.QuitRequested())
+            while (!SplashKit.QuitRequested())
             {
-                
                 SplashKit.ProcessEvents();
 
                 // Check if user is holding click on the bar Line
-                while (SplashKit.MouseDown(MouseButton.LeftButton) & SplashKit.PointOnLine(SplashKit.MousePosition(),bar))
+                while (SplashKit.MouseDown(MouseButton.LeftButton) && SplashKit.PointOnLine(SplashKit.MousePosition(), bar))
                 {
+                    window.Clear(Color.White);
+                    barX = SplashKit.MousePosition().X; // sets barX value to mouse X value
+                    percent = ((barX - 100) / (500 - 100)) * 100; // convert barX position to percent value
+                    bar = SplashKit.LineFrom(barX, 310, barX, 290);
 
-                    SplashKit.ClearScreen(SplashKit.ColorWhite());
-                    bar_x = SplashKit.MousePosition().X; // sets bar_x value to mouse x value
-                    percent = ((bar_x - 100) / (500 - 100)) * 100; // convert bar_x position to percent value
-                    bar = SplashKit.LineFrom(bar_x,310,bar_x,290);
-                    
-                    // redraw Lines and volume text
-                    SplashKit.DrawLine(SplashKit.ColorBlack(),bar);
-                    SplashKit.DrawLine(SplashKit.ColorBlack(),slider);
-                    SplashKit.DrawText(volume + percent.ToString(),SplashKit.ColorBlack(),200,450);
-                    SplashKit.RefreshScreen();
+                    // Redraw Lines and volume text
+                    window.DrawLine(Color.Black, bar);
+                    window.DrawLine(Color.Black, slider);
+                    window.DrawText(volume + percent.ToString(), Color.Black, 200, 450);
+                    window.Refresh();
                     SplashKit.ProcessEvents();
-
                 }
-
-    
-            }   
+            }
+            window.Close();
         }
     }
 }
