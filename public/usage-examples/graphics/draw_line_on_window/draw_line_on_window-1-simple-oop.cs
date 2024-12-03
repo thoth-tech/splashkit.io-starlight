@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace DrawLineOnWindow
+namespace DrawLineOnWindowExample
 {
     public class Program
     {
@@ -8,10 +8,10 @@ namespace DrawLineOnWindow
         {
             // Create Window
             Window window = new Window("Colourful Starburst", 600, 600);
+            
             window.Clear(Color.Black);
 
-
-            // Draws starburst pattern with changing colours to window
+            // Draws starburst pattern with changing colours to specific window
             window.DrawLine(Color.Yellow, 0, 0, 600, 600);
             window.DrawLine(Color.Green, 0, 150, 600, 450);
             window.DrawLine(Color.Teal, 0, 300, 600, 300);
@@ -23,6 +23,7 @@ namespace DrawLineOnWindow
             window.DrawLine(Color.Orange, 600, 0, 0, 600);
 
             window.Refresh();
+
             SplashKit.Delay(5000);
             window.Close();
         }

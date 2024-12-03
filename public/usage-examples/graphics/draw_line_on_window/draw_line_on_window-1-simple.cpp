@@ -4,10 +4,10 @@ int main()
 {
     // Create Window
     window window = open_window("Colourful Starburst", 600, 600);
+
     clear_screen(COLOR_BLACK);
 
-
-    // Draws starburst pattern with changing colours to window
+    // Draws starburst pattern with changing colours to specific window
     draw_line_on_window(window, COLOR_YELLOW, 0, 0, 600, 600);
     draw_line_on_window(window, COLOR_GREEN, 0, 150, 600, 450);
     draw_line_on_window(window, COLOR_TEAL, 0, 300, 600, 300);
@@ -19,7 +19,9 @@ int main()
     draw_line_on_window(window, COLOR_ORANGE, 600, 0, 0, 600);
 
     refresh_screen();
+
     delay(5000);
     close_all_windows();
+    
     return 0;
 }
