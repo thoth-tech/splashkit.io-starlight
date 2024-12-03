@@ -1,25 +1,24 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-//Create Window
-Window window = OpenWindow("portal", 600, 600);
+// Create Window
+Window Window = OpenWindow("Portal", 600, 600);
 
-// load portal sprites
-LoadBitmap("bluePortal", "bluePortal.png");
-LoadBitmap("orangePortal", "orangePortal.png");
-Sprite blue_portal = CreateSprite(BitmapNamed("bluePortal"));
-Sprite orange_portal = CreateSprite(BitmapNamed("orangePortal"));
+// Load portal sprites
+LoadBitmap("BluePortal", "bluePortal.png");
+LoadBitmap("OrangePortal", "orangePortal.png");
+Sprite BluePortal = CreateSprite(BitmapNamed("BluePortal"));
+Sprite OrangePortal = CreateSprite(BitmapNamed("OrangePortal"));
 
+// Set random portal location
+SpriteSetPosition(BluePortal, RandomWindowPoint(Window));
+SpriteSetPosition(OrangePortal, RandomWindowPoint(Window));
 
-//set random portal location
-SpriteSetPosition(blue_portal, RandomWindowPoint(window));
-SpriteSetPosition(orange_portal, RandomWindowPoint(window));
+ClearWindow(Window, ColorBlack());
 
-ClearWindow(window, ColorBlack());
-
-//Draw the sprite
-DrawSprite(blue_portal);
-DrawSprite(orange_portal);
+// Draw the sprite
+DrawSprite(BluePortal);
+DrawSprite(OrangePortal);
 
 RefreshScreen();
 Delay(5000);

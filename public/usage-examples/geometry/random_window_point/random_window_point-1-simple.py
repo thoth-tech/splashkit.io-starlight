@@ -1,16 +1,15 @@
 from splashkit import *
 
 # Create Window
-window = open_window("portal", 600, 600)
+window = open_window("Portal", 600, 600)
 
+# Load portal sprites
+load_bitmap("blue_portal", "bluePortal.png")
+load_bitmap("orange_portal", "orangePortal.png")
+blue_portal = create_sprite(bitmap_named("blue_portal"))
+orange_portal = create_sprite(bitmap_named("orange_portal"))
 
-# load portal sprites
-load_bitmap("bluePortal", "bluePortal.png")
-load_bitmap("orangePortal", "orangePortal.png")
-blue_portal = create_sprite(bitmap_named("bluePortal"))
-orange_portal = create_sprite(bitmap_named("orangePortal"))
-
-# set random portal location
+# Set random portal location
 sprite_set_position(blue_portal, random_window_point(window))
 sprite_set_position(orange_portal, random_window_point(window))
 
