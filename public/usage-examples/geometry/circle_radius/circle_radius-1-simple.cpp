@@ -15,8 +15,10 @@ int main()
     // Find the radius of the circle A
     double radius = circle_radius(A);
 
-    //Draw the Circle
-    draw_circle(COLOR_RED, x_position, y_position, radius);
+    //Fill the Circle
+    fill_circle(COLOR_RED, x_position, y_position, radius);
+    //Use the radius to create a rectangle to cut 1/4 of the circle
+    fill_rectangle(COLOR_WHITE, x_position, y_position , radius, radius);
     
     string text = "Radius: " + std::to_string(radius);
     //Print result on window

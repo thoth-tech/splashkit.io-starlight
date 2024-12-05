@@ -15,7 +15,9 @@ Circle A = CircleAt(x_position, y_position, 200);
 double radius = CircleRadius(A);
 
 //Draw the Circle
-DrawCircle(Color.Red, x_position, y_position, radius);
+FillCircle(Color.Red, x_position, y_position, radius);
+//Use the radius to create a rectangle to cut 1/4 of the circle
+FillRectangle(Color.White, x_position, y_position , radius, radius);
     
 string text = "Radius: " + radius.ToString();
 // Print result on window

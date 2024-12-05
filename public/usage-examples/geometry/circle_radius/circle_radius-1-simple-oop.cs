@@ -19,8 +19,10 @@ namespace CircleRadius
         // Find the radius of the circle A
         double radius = SplashKit.CircleRadius(A);
 
-        //Draw the Circle
-        SplashKit.DrawCircle(Color.Red, x_position, y_position, radius);
+        //Fill the Circle
+        SplashKit.FillCircle(Color.Red, x_position, y_position, radius);
+        //Use the radius to create a rectangle to cut 1/4 of the circle
+        SplashKit.FillRectangle(Color.White, x_position, y_position , radius, radius);
     
         string text = "Radius: " + radius.ToString();
         // Print result on window
