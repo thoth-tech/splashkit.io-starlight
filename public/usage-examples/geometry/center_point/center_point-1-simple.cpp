@@ -12,8 +12,11 @@ int main()
     //Create a circle at the position (x_position, y_position)
     circle A = circle_at(x_position, y_position, 200);
 
-    //Draw the Circle
-    draw_circle(COLOR_RED, A);
+    //Fill the Circle
+    fill_circle(COLOR_RED, A);
+
+    //Using the center point to fill a triangle to cut the circle
+    fill_triangle(COLOR_WHITE, center_point(A).x, center_point(A).y, 0, 300, 500, 0);
     
     //Draw Point in the center of the circle
     fill_circle(COLOR_BLACK, center_point(A).x, center_point(A).y, 3);

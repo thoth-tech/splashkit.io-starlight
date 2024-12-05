@@ -16,8 +16,11 @@ namespace CenterPoint
         // Create A circle name "A"
         Circle A = SplashKit.CircleAt(x_position, y_position, 200);
 
-        //Draw the Circle A
-        SplashKit.DrawCircle(Color.Red, A);
+        //Fill the Circle A
+        SplashKit.FillCircle(Color.Red, A);
+
+        //Using the center point to fill a triangle to cut the circle
+        SplashKit.FillTriangle(Color.White, SplashKit.CenterPoint(A).X, SplashKit.CenterPoint(A).Y, 0, 300, 500, 0);
 
         //Draw Point in the center of the circle
         SplashKit.FillCircle(Color.Black, SplashKit.CenterPoint(A).X, SplashKit.CenterPoint(A).Y, 3);

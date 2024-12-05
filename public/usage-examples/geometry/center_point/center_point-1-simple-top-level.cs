@@ -11,8 +11,11 @@ double y_position = 300;
 // Create A circle name "A"
 Circle A = CircleAt(x_position, y_position, 200);
 
-//Draw the Circle A
-DrawCircle(Color.Red, A);
+//Fill the Circle A
+FillCircle(Color.Red, A);
+
+//Using the center point to fill a triangle to cut the circle
+FillTriangle(Color.White, CenterPoint(A).X, CenterPoint(A).Y, 0, 300, 500, 0);
     
 //Draw Point in the center of the circle
 FillCircle(Color.Black, CenterPoint(A).X, CenterPoint(A).Y, 3);
