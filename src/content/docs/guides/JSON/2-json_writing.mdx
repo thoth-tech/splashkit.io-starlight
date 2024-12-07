@@ -195,6 +195,10 @@ Then we tackle the nested JSON object, the screen size object. We use [Create Js
 
 Now that we have the `new_game_data` object that stores the same values as the JSON file used previously. Now, we can save this using [Json To File](/api/json/#json-to-file) like in the code below.
 
+:::note
+Make sure to run `skm resources` to create the `Resources/json/` folder before executing this code.
+:::
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -303,8 +307,8 @@ List<string> levelsArray = new List<string>
 JsonSetArray(newGameData, "levels", levelsArray);
 
 JsonToFile(newGameData, "new_game_data.json");
-
 FreeJson(newGameData);
+
 FreeJson(screenSizeData);
 ```
 
@@ -343,8 +347,8 @@ namespace WritingJsonData
             SplashKit.JsonSetArray(newGameData, "levels", levelsArray);
 
             SplashKit.JsonToFile(newGameData, "new_game_data.json");
-
             SplashKit.FreeJson(newGameData);
+
             SplashKit.FreeJson(screenSizeData);
         }
     }
@@ -360,30 +364,23 @@ namespace WritingJsonData
 ```python
 from splashkit import *
 
-# Create a new JSON object
 new_game_data = create_json()
 
-# Set string, boolean, and number values in the JSON object
 json_set_string(new_game_data, "gameTitle", "My New Game")
 json_set_bool(new_game_data, "fullScreenMode", False)
 json_set_number_integer(new_game_data, "numPlayers", 1)
 
-# Create a nested JSON object for screen size
 screen_size_data = create_json()
 json_set_number_integer(screen_size_data, "width", 800)
 json_set_number_integer(screen_size_data, "height", 600)
 
-# Add the nested object to the main JSON
 json_set_object(new_game_data, "screenSize", screen_size_data)
 
-# Create a list of levels and add it to the JSON
 levels_array = ["level1", "level2", "level3"]
-json_set_array_of_string(new_game_data, "levels", levels_array)
 
-# Save the JSON data to a file
+json_set_array_of_string(new_game_data, "levels", levels_array)
 json_to_file(new_game_data, "new_game_data.json")
 
-# Free all JSON data
 free_all_json()
 ```
 
