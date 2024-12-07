@@ -1,0 +1,7 @@
+#### Basic Load Music
+
+The following code shows examples of using [Load Music](/api/audio#load-music) to load a music file. The program will check if the music was loaded successfully or not and report in the console.
+
+:::note
+To test this example code you can download these [**Resources**](/usage-examples/audio/load_music/MusicResources.zip).
+::: 
