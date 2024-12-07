@@ -33,4 +33,4 @@ while not quit_requested():
         refresh_screen()
         process_events()
 
-close_all_windows()
+close_window(window)

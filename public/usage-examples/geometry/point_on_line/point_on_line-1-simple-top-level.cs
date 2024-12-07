@@ -22,4 +22,4 @@ while (!QuitRequested())
     RefreshScreen();
     ProcessEvents();
 }
-CloseAllWindows();
+CloseWindow(Window);

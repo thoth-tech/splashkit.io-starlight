@@ -14,7 +14,7 @@ int main()
     line slider = line_from(100, 300, 500, 300);
     line bar = line_from(bar_x, 310, bar_x, 290);
     double percent = 0;
-    std::string volume = "Volume: ";
+    string volume = "Volume: ";
 
     // Create window and draw initial lines
     open_window("Volume Slider", 600, 600);
@@ -45,6 +45,6 @@ int main()
             process_events();
         }
     }
-    close_all_windows();
+    close_window(window);
     return 0;
 }

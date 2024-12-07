@@ -38,4 +38,4 @@ while (!QuitRequested())
     }
 }
 
-CloseAllWindows();
+CloseWindow(Window);

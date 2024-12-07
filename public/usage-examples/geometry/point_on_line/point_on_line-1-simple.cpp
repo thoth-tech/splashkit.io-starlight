@@ -23,6 +23,6 @@ int main()
         refresh_screen();
         process_events();
     }
-    close_all_windows();
+    close_window(window);
     return 0;
 }
