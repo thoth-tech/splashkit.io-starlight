@@ -3,7 +3,7 @@ title: Writing JSON Data in SplashKit
 description: Having covered how to read JSON data in SplashKit, this part of the tutorial focuses on creating and writing data to JSON files. This functionality is crucial for features like saving game settings or player progress and information.
 category: Guides
 author: Jonathan Tynan and others
-lastupdated: October 2024
+lastupdated: December 2024
 sidebar:
   label: "Writing JSON Data"
 ---
@@ -467,6 +467,21 @@ SplashKit.JsonSetObject(playerData, "stats", statsData);
 </Tabs>
 
 </TabItem>
+<TabItem label="Python">
+
+```python
+player_data = create_json()
+json_set_string(player_data, "name", "Hero")
+
+stats_data = create_json()
+json_set_number_integer(stats_data, "health", 100)
+json_set_number_integer(stats_data, "mana", 50)
+json_set_number_integer(stats_data, "strength", 75)
+
+json_set_object(player_data, "stats", stats_data)
+```
+
+</TabItem>
 </Tabs>
 
 First we create the player JSON object to store the data for an entire character, then we create an individual object to hold the stats for the character. After this we add the stats object and nest it in the `player_data` object we created earlier.
@@ -490,6 +505,7 @@ json_to_file(existing_data, "modified_game_data.json");
 ```csharp
 Json existingData = JsonFromFile("new_game_data.json");
 JsonSetObject(existingData, "character", playerData);
+
 JsonToFile(existingData, "modified_game_data.json");
 ```
 
@@ -499,11 +515,22 @@ JsonToFile(existingData, "modified_game_data.json");
 ```csharp
 Json existingData = SplashKit.JsonFromFile("new_game_data.json");
 SplashKit.JsonSetObject(existingData, "character", playerData);
+
 SplashKit.JsonToFile(existingData, "modified_game_data.json");
 ```
 
 </TabItem>
 </Tabs>
+
+</TabItem>
+<TabItem label="Python">
+
+```python
+existing_data = json_from_file("new_game_data.json")
+json_set_object(existing_data, "character", player_data)
+
+json_to_file(existing_data, "modified_game_data.json")
+```
 
 </TabItem>
 </Tabs>
@@ -560,10 +587,13 @@ int hp = json_read_number_as_int(stats, "health");
 ```csharp
 // Load our JSON
 Json modifiedGameData = JsonFromFile("modified_game_data.json");
+
 // Retrieve Character JSON object from the file.
 Json modifiedGameData = JsonFromFile("modified_game_data.json");
+
 // Retrieve the Stats JSON object from the Character JSON
 Json stats = JsonReadObject(character, "stats");
+
 // Retrieve the value of health from the stats JSON object
 int hp = JsonReadNumberAsInt(stats, "health");
 ```
@@ -574,16 +604,36 @@ int hp = JsonReadNumberAsInt(stats, "health");
 ```csharp
 // Load our JSON
 Json modifiedGameData = SplashKit.JsonFromFile("modified_game_data.json");
+
 // Retrieve Character JSON object from the file.
 Json character = SplashKit.JsonReadObject(modifiedGameData, "character");
+
 // Retrieve the Stats JSON object from the Character JSON
 Json stats = SplashKit.JsonReadObject(character, "stats");
+
 // Retrieve the value of health from the stats JSON object
 int hp = SplashKit.JsonReadNumberAsInt(stats, "health");
 ```
 
 </TabItem>
 </Tabs>
+
+</TabItem>
+<TabItem label="Python">
+
+```python
+# Load our JSON
+modified_game_data = json_from_file("modified_game_data.json")
+
+# Retrieve Character JSON object from the file.
+character = json_read_object(modified_game_data, "character")
+
+# Retrieve the Stats JSON object from the Character JSON
+stats = json_read_object(character, "stats")
+
+# Retrieve the value of health from the stats JSON object
+hp = json_read_number_as_int(stats, "health")
+```
 
 </TabItem>
 </Tabs>
