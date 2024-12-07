@@ -3,15 +3,18 @@ title: Vector Arithmetic
 description: This tutorial covers essential vector arithmetic operations, including addition, subtraction, and multiplication, using SplashKit functions. These operations are fundamental for tasks such as calculating movement, force, and direction in game development and physics simulations.
 category: Guides
 author: Shaun Ratcliff
-lastupdated: 14 Sep 24
+lastupdated: 07 Dec 24
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
+import { Aside } from '@astrojs/starlight/components';
 
 **{frontmatter.description}**  
 
 Written by: {frontmatter.author}  
 _Last updated: {frontmatter.lastupdated}_
+
+_While some Python code has been included in basic functions, full Python code for this tutorial is still in development._
 
 ---
 
@@ -19,30 +22,42 @@ _Last updated: {frontmatter.lastupdated}_
 
 Vector arithmetic involves the addition, subtraction, and multiplication of vectors. These operations are used in various programming scenarios, particularly in game development and physics simulations, to calculate and manipulate directions, positions, and forces.
 
-## SplashKit Vector Functions Used in This Tutorial:
+### SplashKit Vector Functions Used in This Tutorial
 
 1. [Vector Add](/api/physics/#vector-add)
 2. [Vector Subtract](/api/physics/#vector-subtract)
 3. [Vector Multiply](/api/physics/#vector-multiply) 
 
-## Contents
+## Vector Addition
 
-- [Vector Addition](#vector-addition)
-- [Vector Subtraction](#vector-subtraction)
-- [Practical Applications of Vector Addition and Subtraction](#practical-applications-of-vector-addition-and-subtraction)
-- [Scenario: Character Movement with Multiple Forces](#scenario-character-movement-with-multiple-forces)
-- [Scenario: Calculating Ship Trajectory](#scenario-calculating-ship-trajectory)
-- [Vector Multiplication](#vector-multiplication)
-- [Scenario: Spaceship Afterburners](#scenario-spaceship-afterburners)
-- [Conclusion](#conclusion)
+<Aside type="note" title="Function">
+  Vector addition combines two vectors into a new vector. The resulting vector represents the cumulative effect of the original vectors. This is particularly useful in scenarios where multiple forces, velocities, or displacements need to be combined.
 
-
-### Vector Addition
-Vector addition combines two vectors into a new vector. The resulting vector represents the cumulative effect of the original vectors. This is particularly useful in scenarios where multiple forces, velocities, or displacements need to be combined.
+  <Tabs syncKey="code-language">
+  <TabItem label="C++">
+    ```cpp 
+    vector_2d vector_add(const vector_2d &v1, const vector_2d &v2)
+    ```
+  </TabItem>
+  <TabItem label="C#">
+    ```csharp 
+    public static Vector2D Vector2D.VectorAdd(Vector2D v1, Vector2D v2);
+    public static Vector2D SplashKit.VectorAdd(Vector2D v1, Vector2D v2);
+    ```
+  </TabItem>
+  <TabItem label="Python">
+    ```cpp 
+    def vector_add(v1, v2):
+    ```
+  </TabItem>
+</Tabs>
+</Aside>
 
 For example, adding vectors `v1` and `v2` is computed as:
 
+<Aside type="note" title="Maths">
 $$ \text{Resultant Vector} = v_1.x + v_2.x, v_1.y + v_2.y $$
+</Aside>
 
 We can make use of the `vector_add` function to compute this as follows:
 
@@ -60,6 +75,20 @@ We can make use of the `vector_add` function to compute this as follows:
   Vector2D v1 = new Vector2D() { X = 100, Y = 50 };
   Vector2D v2 = new Vector2D() { X = 200, Y = 150 };
   Vector2D result = SplashKit.VectorAdd(v1, v2);
+  ```
+  </TabItem>
+
+  <TabItem label="Python">
+  ```python
+  v1 = Vector2D()
+  v1.x = 100
+  v1.y = 50
+
+  v2 = Vector2D()
+  v2.x = 200
+  v2.y = 150
+
+  result = vector_add(v1, v2)
   ```
   </TabItem>
 </Tabs>
@@ -235,12 +264,35 @@ while (!SplashKit.WindowCloseRequested("Vector Addition"))
 </Tabs>
 </details>
 
-### Vector Subtraction
-Conversely, vector subtraction finds the difference between two vectors, yielding a vector that points from the end of one vector to the other. This is useful for calculating relative positions, directions, or the change in velocity or force.
+## Vector Subtraction
+<Aside type="note" title="Function">
+  Conversely, vector subtraction finds the difference between two vectors, yielding a vector that points from the end of one vector to the other. This is useful for calculating relative positions, directions, or the change in velocity or force.
+
+  <Tabs syncKey="code-language">
+  <TabItem label="C++">
+    ```cpp 
+    vector_2d vector_subtract(const vector_2d &v1, const vector_2d &v2)
+    ```
+  </TabItem>
+  <TabItem label="C#">
+    ```csharp 
+    public static Vector2D Vector2D.VectorSubtract(Vector2D v1, Vector2D v2);
+    public static Vector2D SplashKit.VectorSubtract(Vector2D v1, Vector2D v2);
+    ```
+  </TabItem>
+  <TabItem label="Python">
+    ```cpp 
+    def vector_subtract(v1, v2):
+    ```
+  </TabItem>
+</Tabs>
+</Aside>
 
 For example, subtracting vector `v2` from `v1` gives:
 
+<Aside type="note" title="Maths">
 $$ \text{Resultant Vector} = v_1.x - v_2.x, v_1.y - v_2.y $$
+</Aside>
 
 We can make use of the `vector_subtract` function to compute this as follows:
 
@@ -258,6 +310,20 @@ We can make use of the `vector_subtract` function to compute this as follows:
   Vector2D v1 = new Vector2D() { X = 300, Y = 200 };
   Vector2D v2 = new Vector2D() { X = 100, Y = 50 };
   Vector2D result = SplashKit.VectorSubtract(v1, v2);
+  ```
+  </TabItem>
+
+    <TabItem label="Python">
+  ```python
+  v1 = Vector2D()
+  v1.x = 300
+  v1.y = 200
+
+  v2 = Vector2D()
+  v2.x = 2100
+  v2.y = 50
+
+  result = vector_subtract(v1, v2)
   ```
   </TabItem>
 </Tabs>
@@ -433,7 +499,7 @@ while (!SplashKit.WindowCloseRequested("Vector Subtraction"))
 </Tabs>
 </details>
 
-### Practical Applications of Vector Addition and Subtraction
+## Practical Applications of Vector Addition and Subtraction
 
 Vector addition and subtraction are fundamental operations in game development, particularly in handling movement, physics, and collision detection. For example, when simulating a character's movement in a game, multiple forces like gravity, wind, or user input can be combined using vector addition to determine the character's final trajectory. Similarly, vector subtraction can be used to calculate the relative velocity between two objects, such as a missile and a target, helping in predicting collisions or adjusting aiming mechanics.
 
@@ -955,9 +1021,32 @@ public class Program
 </Tabs>
 </details>
 
-### Vector Multiplication
+## Vector Multiplication
 
-The `vector_multiply` function is used to scale a vector. This function takes two arguments: a vector `v1` and a scalar value `s`, and it returns a new vector where each component of the original vector is multiplied by the scalar.  For example, if you have a vector `v1 = {2, 3}` and you multiply it by a scalar `s = 2`, the resulting vector would be `{4, 6}`.
+<Aside type="note" title="Function">
+  The `vector_multiply` function is used to scale a vector. This function takes two arguments: a vector `v1` and a scalar value `s`, and it returns a new vector where each component of the original vector is multiplied by the scalar.  
+
+  <Tabs syncKey="code-language">
+  <TabItem label="C++">
+    ```cpp 
+    vector_2d vector_multiply(const vector_2d &v1, double s)
+    ```
+  </TabItem>
+  <TabItem label="C#">
+    ```csharp 
+    public static Vector2D Vector2D.VectorMultiply(Vector2D v1, double s);
+    public static Vector2D SplashKit.VectorMultiply(Vector2D v1, double s);
+    ```
+  </TabItem>
+  <TabItem label="Python">
+    ```cpp 
+    def vector_multiply(v1, s):
+    ```
+  </TabItem>
+</Tabs>
+</Aside>
+
+For example, if you have a vector `v1 = {2, 3}` and you multiply it by a scalar `s = 2`, the resulting vector would be `{4, 6}`.
 
 `vector_multiply` is particularly useful in scenarios where you need to adjust the magnitude of a vector without changing its direction. For example, when developing games, you might want to control the speed of an object by scaling its velocity vector. If an object needs to move faster or slower, multiplying its velocity vector by a scalar can achieve this.
 
@@ -1208,8 +1297,8 @@ while (!SplashKit.WindowCloseRequested("Ship with Velocity Vector"))
 </Tabs>
 </details>
 
-### Conclusion
+## Conclusion
 
-Here we have explored some simple vector arithmetic operations, including vector addition, subtraction, and multiplication. These fundamental operations are crucial in various programming scenarios, particularly in game development. By understanding and applying vector arithmetic, you can effectively calculate and manipulate directions, positions, and forces, enhancing your ability to create realistic and dynamic movements.
+Here we have explored some simple vector arithmetic operations, including vector addition, subtraction, and multiplication. These fundamental operations are useful in various programming scenarios, particularly in game development. By understanding and applying vector arithmetic, you can effectively calculate and manipulate directions, positions, and forces, enhancing your ability to create realistic and dynamic movements.
 
 Mastering vector arithmetic will empower you to build more complex and interactive systems, laying a solid foundation for advanced topics in physics and game development.

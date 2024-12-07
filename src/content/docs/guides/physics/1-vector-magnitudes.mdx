@@ -3,15 +3,18 @@ title: Vector Magnitudes
 description: Understanding vector magnitudes, squared magnitudes, and inversions is essential for various programming applications, from game mechanics to physics simulations. This tutorial explores these concepts using SplashKit functions to enhance your programming toolkit.
 category: Guides
 author: Shaun Ratcliff
-lastupdated: 14 Sep 24
+lastupdated: 07 Dec 24
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
+import { Aside } from '@astrojs/starlight/components';
 
 **{frontmatter.description}**  
 
 Written by: {frontmatter.author}  
 _Last updated: {frontmatter.lastupdated}_
+
+_While some Python code has been included in basic functions, full Python code for this tutorial is still in development._
 
 ---
 
@@ -19,44 +22,115 @@ _Last updated: {frontmatter.lastupdated}_
 
 Vectors are used in programming to represent quantities that involve direction and magnitude. Understanding how to compute and use vector magnitudes is essential for many tasks, such as movement calculations and physics simulations. This tutorial will guide you through these concepts using SplashKit functions.
 
-## SplashKit Vector Functions Used in This Tutorial:
+### SplashKit Vector Functions Used in This Tutorial
 
 1. [Vector Magnitude](/api/physics/#vector-magnitude)
 2. [Vector Magnitude Squared](/api/physics/#vector-magnitude-sqared)
 3. [Vector Invert](/api/physics/#vector-invert) 
 
-## Contents
+## Vector Magnitude
 
-- [Vector Magnitude](#vector-magnitude)
-- [Vector Magnitude Squared](#vector-magnitude-squared)
-- [Vector Invert](#vector-invert)
-- [Visualising Magnitudes](#visualising-magnitudes)
-- [Why Not Use Magnitude Squared to Compare?](#why-not-use-magnitude-squared-to-compare)
-- [Conclusion](#conclusion)
+The magnitude of a vector represents its length or size in space. It is calculated as the distance from the origin to the vector’s point. In a 2D space, the magnitude gives you a measure of how "long" or "strong" the vector is. 
 
-### Vector Magnitude
+<Aside type="note" title="Function">
+  The `vector_magnitude` function returns the magnitude (or “length”) of the vector.
 
-The magnitude of a vector represents its length or size in space. It is calculated as the distance from the origin to the vector’s point. In a 2D space, the magnitude gives you a measure of how "long" or "strong" the vector is. If a vector represents velocity, the magnitude indicates the speed; if it represents force, the magnitude shows the strength of the force applied. For a 2D vector `(x, y)`, the magnitude is calculated using the formula:
+  <Tabs syncKey="code-language">
+  <TabItem label="C++">
+    ```cpp 
+    double vector_magnitude(const vector_2d &v)
+    ```
+  </TabItem>
+  <TabItem label="C#">
+    ```csharp 
+    public static double Vector2D.VectorMagnitude(Vector2D v);
+    public static double SplashKit.VectorMagnitude(Vector2D v);
+    ```
+  </TabItem>
+  <TabItem label="Python">
+    ```cpp 
+    def vector_magnitude(v):
+    ```
+  </TabItem>
+</Tabs>
+</Aside>
 
-$$ {Magnitude} = \sqrt{x^2 + y^2} $$
+If a vector represents velocity, the magnitude indicates the speed; if it represents force, the magnitude shows the strength of the force applied. For a 2D vector `(x, y)`, the magnitude is calculated using the formula:
+
+<Aside type="note" title="Maths">
+$$ \text{Magnitude} = \sqrt{x^2 + y^2} $$
+</Aside>
 
 The magnitude provides a scalar value that reflects how "intense" or "strong" the vector is, without considering its direction.
 
-### Vector Magnitude Squared
+## Vector Magnitude Squared
 
-SplashKit offers the `vector_magnitude_sqared` function which produces a value calculated by the equation:
+<Aside type="note" title="Function">
+  The `vector_magnitude_sqared` function returns the squared magnitude (or “length”) of the vector.
 
+  <Tabs syncKey="code-language">
+  <TabItem label="C++">
+    ```cpp 
+    double vector_magnitude_sqared(const vector_2d &v)
+    ```
+  </TabItem>
+  <TabItem label="C#">
+    ```csharp 
+    public static double Vector2D.VectorMagnitudeSqared(Vector2D v);
+    public static double SplashKit.VectorMagnitudeSqared(Vector2D v);
+    ```
+  </TabItem>
+  <TabItem label="Python">
+    ```cpp 
+    def vector_magnitude_sqared(v):
+    ```
+  </TabItem>
+</Tabs>
+</Aside>
+
+`vector_magnitude_sqared` is calculated using the formula:
+
+<Aside type="note" title="Maths">
 $$ \text{Magnitude Squared} = x^2 + y^2 $$
+</Aside>
 
 When comparing the lengths of two vectors, you only need to compare their magnitude squared values. This eliminates the need for square root calculations and speeds up the comparison process. In some performance-critical applications, calculating the magnitude squared value is often more computationally efficient than calculating the magnitude itself, due to it avoiding the computationally expensive square root operation. 
 
-### Vector Invert
+### When Not To Use `Magnitude Squared` to Compare?
+While both `vector_magnitude` and `vector_magnitude_sqared` have the same theoretical time complexity, the square root operation in the magnitude calculation is generally more computationally intensive than addition or multiplication. In practical terms, calculating the magnitude will typically take longer due to the square root operation.
 
-The `vector_invert` function eturns a new vector that is the inverse (or negation) of the input vector. In other words, it flips the direction of the vector while keeping its magnitude unchanged. This function is useful in various programming scenarios where you need to reverse the direction of movement or force.
+While the magnitude squared value is efficient for comparisons, it is less intuitive for humans to interpret compared to the actual magnitude of a vector. For displaying and understanding vector lengths in a graphical context, the actual magnitude is usually more meaningful and easier to comprehend.
+
+## Vector Invert
+
+<Aside type="note" title="Function">
+  The `vector_invert` function returns a new vector that is the inverse (or negation) of the input vector. 
+
+  <Tabs syncKey="code-language">
+  <TabItem label="C++">
+    ```cpp 
+    vector_2d vector_invert(const vector_2d &v)
+    ```
+  </TabItem>
+  <TabItem label="C#">
+    ```csharp 
+    public static Vector2D Vector2D.VectorInvert(Vector2D v);
+    public static Vector2D SplashKit.VectorInvert(Vector2D v);
+    ```
+  </TabItem>
+  <TabItem label="Python">
+    ```cpp 
+    def vector_invert(v):
+    ```
+  </TabItem>
+</Tabs>
+</Aside>
+
+`vector_invert` flips the direction of the vector while keeping its magnitude unchanged. This function is useful in various programming scenarios where you need to reverse the direction of movement or force.
 
 In games or simulations, you might need to reverse the direction of movement or force. For example, if an object is moving in a certain direction and you want it to move in the exact opposite direction, you can use vector inversion.
 
-### Visualising Magnitudes
+## Visualising Magnitudes
 The below diagram (and code) graphically represents two vectors and their respective inverse. 
 
 <Tabs syncKey="code-language">
@@ -71,8 +145,18 @@ The below diagram (and code) graphically represents two vectors and their respec
 
   <TabItem label="C#">
   ```csharp 
-  Vector2D myVector1 = new Vector2D() { X = 200, Y = 100 };
+  Vector2D myVector1 = new Vector2D();
+  myVector1.X = 200;
+  myVector1.Y = 100;
   Vector2D invertedMyVector1 = SplashKit.VectorInvert(myVector1);
+  ```
+  </TabItem>
+    <TabItem label="Python">
+  ```python
+  my_vector_1 = Vector2D()
+  my_vector_1.x = 200
+  my_vector_1.y = 100
+  inverted_my_vector_1 = vector_invert(my_vector_1)
   ```
   </TabItem>
 </Tabs>
@@ -284,12 +368,7 @@ while (!SplashKit.WindowCloseRequested(window))
 </Tabs>
 </details>
 
-### Why Not Use `Magnitude Squared` to Compare?
-While both have the same theoretical time complexity, the square root operation in the magnitude calculation is generally more computationally intensive than addition or multiplication. In practical terms, calculating the magnitude will typically take longer due to the square root operation.
-
-While magnitude squared is efficient for comparisons, it is less intuitive for humans to interpret compared to the actual magnitude of a vector. For displaying and understanding vector lengths in a graphical context, the actual magnitude is more meaningful and easier to comprehend.
-
-### Conclusion
+## Conclusion
 Key take aways:
 - Magnitudes: Reflect the length of vectors and are always positive. Inverted vectors have the same magnitudes as the original vectors.
 - Comparison: Direct magnitude comparison indicates the relative lengths of vectors.
