@@ -1,0 +1,3 @@
+#### Line Mid Point
+
+The following code is an example using [Line Mid Point](/api/geometry#line-mid-point) to return the mid point of a line as a point2d.
