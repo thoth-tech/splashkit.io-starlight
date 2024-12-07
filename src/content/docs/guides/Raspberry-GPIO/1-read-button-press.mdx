@@ -171,8 +171,6 @@ Lets break down this code and analyse it in sections.
     </Tabs>
 
     We start this code by initialising our hardware through [Raspi Init](/api/raspberry/#raspi-init), we then define the [Pins](/api/types/#pins) that we're are using for the button (Pin 29), and the LED (Pin 11). We also initialise a variable, `led_state`, to hold the state of the LED at any point in time. We use `led_state` later to determine whether to switch the LED on, or off.
-
-    ---
 2.
     <Tabs syncKey="code-language">
     <TabItem label="C++">
@@ -198,8 +196,6 @@ Lets break down this code and analyse it in sections.
     </Tabs>
 
     We begin by setting the mode for each pin using [Raspi Set Mode](/api/raspberry/#raspi-set-mode). The button pin is set to [`GPIO_INPUT`](/api/types/#pin-modes) and the LED pin is set to [`GPIO_OUTPUT`](/api/types/#pin-modes). We do this as in this program we are detecting the input of the button and are writing the output of the LED. Then we use [Raspi Set Pull Up Down](/api/raspberry/#raspi-set-pull-up-down) on the button pin with the argument [`PUD_DOWN`](/api/types/#pull-up-down). This sets the internal pull-down resistor to prevent the pin from being a ["floating pin."](#floating-pins)
-
-    ---
 3.
     <Tabs syncKey="code-language">
     <TabItem label="C++">
@@ -229,8 +225,6 @@ Lets break down this code and analyse it in sections.
     </Tabs>
 
     Just like in the [first tutorial](/guides/raspberry-gpio/0-blink-led), we create a timer that limits how long our program runs for. We do this so we know that our pins are cleaned properly upon exiting the program.
-
-    ---
 
 4.
     <Tabs syncKey="code-language">
@@ -274,8 +268,6 @@ Lets break down this code and analyse it in sections.
 
     Above is the main section of this code. On each loop we read the state of the button pin using [Raspi Read](/api/raspberry/#raspi-read) and if the result is `GPIO_HIGH`, then this indicates that the button has been pressed. We then read the state of the led, which can either be `GPIO_LOW` indicated the LED is not on, or `GPIO_HIGH` indicating that the LED is on. Once we have this state we can use [Raspi Write](/api/raspberry/#raspi-write) to change the pin to the opposite of what has been read.
 
-    ---
-
 5.
     <Tabs syncKey="code-language">
     <TabItem label="C++">
@@ -297,8 +289,6 @@ Lets break down this code and analyse it in sections.
     </TabItem>
     </Tabs>
     Just like in the [first tutorial](/guides/raspberry-gpio/0-blink-led) and most projects involving GPIO pins, we must ensure that the hardware and resources we've used are cleaned properly, and we do this by stopping and freeing our timers and calling [Raspi Cleanup](/api/raspberry/#raspi-cleanup).
-
-    ---
 
 ### Build and run the code
 
