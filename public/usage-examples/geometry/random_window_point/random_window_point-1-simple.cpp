@@ -23,7 +23,7 @@ int main()
 
     refresh_screen();
     delay(5000);
-    close_all_windows();
+    close_window(window);
 
     return 0;
 }

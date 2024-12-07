@@ -21,4 +21,4 @@ draw_sprite(orange_portal)
 
 refresh_screen()
 delay(5000)
-close_all_windows()
+close_window(window)

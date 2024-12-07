@@ -22,4 +22,4 @@ DrawSprite(OrangePortal);
 
 RefreshScreen();
 Delay(5000);
-CloseAllWindows();
+CloseWindow(Window);

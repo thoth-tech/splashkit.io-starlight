@@ -1,3 +1,3 @@
 #### Random Window Point
 
-The following code shows examples of using [Random Window Point](/api/geometry#random-window-point) to select a random point to draw the portal sprites.
+The following code shows an example of using [Random Window Point](/api/geometry#random-window-point) to select a random point to draw the portal sprites.
