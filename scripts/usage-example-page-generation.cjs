@@ -492,9 +492,13 @@ categories.forEach((categoryKey) => {
 					  let globalIframe = document.getElementById('sko_iframe_global');
 					  const messageQueue = []; // Queue for storing messages while iframe is not ready
 					  let isIframeReady = false; // Tracks whether iframe is ready to receive messages
+					  let readinessTimeout = null; // Timeout for processing messages in the queue
 
-					  // Add a fallback timeout to process messages
-					  let readinessTimeout = null;
+					  // Clear the message queue on every button click
+					  const resetMessageQueue = () => {
+						console.log('Clearing message queue.');
+						messageQueue.length = 0;
+					  };
 
 					  // Ensure only one message listener is added
 					  if (!window.skoListenerAdded) {
@@ -569,9 +573,43 @@ categories.forEach((categoryKey) => {
 						globalIframe.style.height = 'calc(100% - 30px)';
 						globalIframe.style.border = 'none';
 						globalIframeContainer.appendChild(globalIframe);
+
+						// Add functionality to make the container draggable
+						let offsetX = 0, offsetY = 0, isDragging = false;
+						dragBar.addEventListener('mousedown', function(event) {
+						  isDragging = true;
+						  offsetX = event.clientX - globalIframeContainer.getBoundingClientRect().left;
+						  offsetY = event.clientY - globalIframeContainer.getBoundingClientRect().top;
+						  document.addEventListener('mousemove', onMouseMove);
+						  document.addEventListener('mouseup', onMouseUp);
+						});
+
+						// Function to handle mouse movement for dragging
+						function onMouseMove(event) {
+						  if (isDragging) {
+							const viewportWidth = window.innerWidth;
+							const viewportHeight = window.innerHeight;
+							const containerRect = globalIframeContainer.getBoundingClientRect();
+							let newLeft = event.clientX - offsetX;
+							let newTop = event.clientY - offsetY;
+							newLeft = Math.max(0, Math.min(newLeft, viewportWidth - containerRect.width));
+							newTop = Math.max(0, Math.min(newTop, viewportHeight - containerRect.height));
+							globalIframeContainer.style.left = newLeft + 'px';
+							globalIframeContainer.style.top = newTop + 'px';
+							globalIframeContainer.style.transform = 'translate(0, 0)';
+						  }
+						}
+
+						// Function to stop dragging
+						function onMouseUp() {
+						  isDragging = false;
+						  document.removeEventListener('mousemove', onMouseMove);
+						  document.removeEventListener('mouseup', onMouseUp);
+						}
 					  }
 
-					  // Display the iframe container
+					  // Clear the message queue and display the iframe container
+					  resetMessageQueue();
 					  globalIframeContainer.style.display = 'block';
 
 					  // Function to send a message to the iframe, queuing if it's not ready
@@ -599,14 +637,11 @@ categories.forEach((categoryKey) => {
 						  const message = messageQueue.shift();
 						  globalIframe.contentWindow.postMessage(message, '*');
 						}
-					  }, 100); // 0.1-second timeout
+					  }, 100);
 
 					  // Fetch the C++ code and ZIP file
 					  fetch(filePath)
-						.then(response => {
-						  if (!response.ok) throw new Error('Failed to fetch C++ file.');
-						  return response.text();
-						})
+						.then(response => response.ok ? response.text() : Promise.reject('Failed to fetch C++ file.'))
 						.then(async codeData => {
 						  let zipBlob = null;
 						  try {
@@ -626,9 +661,9 @@ categories.forEach((categoryKey) => {
 						  // Send the message to the iframe
 						  sendMessageToIframe(message);
 						})
-						.catch(err => console.error('Error fetching resources:', err));
+						.catch(console.error);
 					} catch (error) {
-					  console.error('Error initializing iframe:', error);
+					  console.error(error);
 					}
 				  })();
 				"
