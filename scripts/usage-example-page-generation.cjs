@@ -493,7 +493,32 @@ categories.forEach((categoryKey) => {
 					  const messageQueue = []; // Queue for storing messages while iframe is not ready
 					  let isIframeReady = false; // Tracks whether iframe is ready to receive messages
 
-					  // Create and initialize the iframe if it doesn't exist
+					  // Add a fallback timeout to process messages
+					  let readinessTimeout = null;
+
+					  // Ensure only one message listener is added
+					  if (!window.skoListenerAdded) {
+						window.skoListenerAdded = true;
+
+						// Add an event listener to process messages from the iframe
+						window.addEventListener('message', function(event) {
+						  if (event.data.type === 'SplashKitOnlineListening') {
+							console.log('Iframe is ready to receive messages.');
+							isIframeReady = true;
+
+							// Clear timeout if readiness signal is received
+							if (readinessTimeout) clearTimeout(readinessTimeout);
+
+							// Process all queued messages
+							while (messageQueue.length > 0) {
+							  const message = messageQueue.shift();
+							  globalIframe.contentWindow.postMessage(message, '*');
+							}
+						  }
+						});
+					  }
+
+					  // Create the iframe and its container if it doesn't already exist
 					  if (!globalIframeContainer) {
 						// Create a container for the iframe
 						globalIframeContainer = document.createElement('div');
@@ -544,57 +569,10 @@ categories.forEach((categoryKey) => {
 						globalIframe.style.height = 'calc(100% - 30px)';
 						globalIframe.style.border = 'none';
 						globalIframeContainer.appendChild(globalIframe);
-
-						// Add functionality to make the container draggable
-						let offsetX = 0, offsetY = 0, isDragging = false;
-						dragBar.addEventListener('mousedown', function (event) {
-						  isDragging = true;
-						  offsetX = event.clientX - globalIframeContainer.getBoundingClientRect().left;
-						  offsetY = event.clientY - globalIframeContainer.getBoundingClientRect().top;
-						  document.addEventListener('mousemove', onMouseMove);
-						  document.addEventListener('mouseup', onMouseUp);
-						});
-
-						// Function to handle mouse movement for dragging
-						function onMouseMove(event) {
-						  if (isDragging) {
-							const viewportWidth = window.innerWidth;
-							const viewportHeight = window.innerHeight;
-							const containerRect = globalIframeContainer.getBoundingClientRect();
-							let newLeft = event.clientX - offsetX;
-							let newTop = event.clientY - offsetY;
-							newLeft = Math.max(0, Math.min(newLeft, viewportWidth - containerRect.width));
-							newTop = Math.max(0, Math.min(newTop, viewportHeight - containerRect.height));
-							globalIframeContainer.style.left = newLeft + 'px';
-							globalIframeContainer.style.top = newTop + 'px';
-							globalIframeContainer.style.transform = 'translate(0, 0)';
-						  }
-						}
-
-						// Function to stop dragging
-						function onMouseUp() {
-						  isDragging = false;
-						  document.removeEventListener('mousemove', onMouseMove);
-						  document.removeEventListener('mouseup', onMouseUp);
-						}
 					  }
 
-					  // Ensure the iframe container is visible
+					  // Display the iframe container
 					  globalIframeContainer.style.display = 'block';
-
-					  // Listen for a message indicating that the iframe is ready
-					  window.addEventListener('message', function(event) {
-						if (event.data.type === 'SplashKitOnlineListening') {
-						  console.log('Iframe is ready to receive messages.');
-						  isIframeReady = true;
-
-						  // Send all queued messages to the iframe
-						  while (messageQueue.length > 0) {
-							const message = messageQueue.shift();
-							globalIframe.contentWindow.postMessage(message, '*');
-						  }
-						}
-					  });
 
 					  // Function to send a message to the iframe, queuing if it's not ready
 					  const sendMessageToIframe = (message) => {
@@ -610,7 +588,20 @@ categories.forEach((categoryKey) => {
 					  const filePath = '/usage-examples/${categoryKey}/${functionKey}/${exampleKey}.cpp';
 					  const zipPath = '${zipFilePath}';
 
-					  // Fetch the C++ code and ZIP file and send them to the iframe
+					  // Reset iframe state before sending new data
+					  sendMessageToIframe({ eventType: 'ResetProjectState' });
+
+					  // Add a fallback to process messages after a timeout
+					  readinessTimeout = setTimeout(() => {
+						console.warn('Iframe readiness timeout. Processing queued messages.');
+						isIframeReady = true;
+						while (messageQueue.length > 0) {
+						  const message = messageQueue.shift();
+						  globalIframe.contentWindow.postMessage(message, '*');
+						}
+					  }, 100); // 0.1-second timeout
+
+					  // Fetch the C++ code and ZIP file
 					  fetch(filePath)
 						.then(response => {
 						  if (!response.ok) throw new Error('Failed to fetch C++ file.');
