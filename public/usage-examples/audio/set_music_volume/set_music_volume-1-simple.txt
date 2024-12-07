@@ -1,0 +1,7 @@
+#### Basic Music Volume Control
+
+The following code shows examples of using [Set Music Volume](/api/audio#set-music-volume) to adjust the volume of the music with the scroll wheel.
+
+:::note
+To test this example code you can download these [**Resources**](/usage-examples/audio/fade_music_out/MusicResources.zip).
+::: 
