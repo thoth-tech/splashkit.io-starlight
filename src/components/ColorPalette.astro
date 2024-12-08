@@ -1,0 +1,323 @@
+---
+import fs from "fs";
+import path from "path";
+import { Tabs, TabItem, Code } from "@astrojs/starlight/components";
+
+// Function to read JSON file dynamically
+function getColorData() {
+  const filePath = path.resolve("./scripts/splashkit-color-palette.json");
+  const data = fs.readFileSync(filePath, "utf-8");
+  return JSON.parse(data);
+}
+
+const colorPaletteData = getColorData();
+
+// Define the custom order of color names based on your table
+const customOrder = [
+  [
+    "Red",
+    "Crimson",
+    "Dark Red",
+    "Firebrick",
+    "Indian Red",
+    "Salmon",
+    "Light Coral",
+    "Rosy Brown",
+    "Tomato",
+    "Coral",
+    "Dark Orange",
+    "Orange",
+  ],
+  [
+    "Gold",
+    "Yellow",
+    "Lemon Chiffon",
+    "Light Goldenrod Yellow",
+    "Cornsilk",
+    "Beige",
+    "Wheat",
+    "Navajo White",
+    "Moccasin",
+    "Peach Puff",
+    "Papaya Whip",
+    "Antique White",
+  ],
+  [
+    "Burly Wood",
+    "Tan",
+    "Sandy Brown",
+    "Goldenrod",
+    "Dark Goldenrod",
+    "Peru",
+    "Chocolate",
+    "Saddle Brown",
+    "Sienna",
+    "Brown",
+    "Maroon",
+    "Dark Khaki",
+  ],
+  [
+    "Lime",
+    "Lawn Green",
+    "Chartreuse",
+    "Green Yellow",
+    "Light Green",
+    "Pale Green",
+    "Yellow Green",
+    "Olive Drab",
+    "Olive",
+    "Dark Olive Green",
+    "Dark Green",
+    "Forest Green",
+  ],
+  [
+    "Medium Sea Green",
+    "Sea Green",
+    "Spring Green",
+    "Light Sea Green",
+    "Medium Aquamarine",
+    "Aquamarine",
+    "Pale Turquoise",
+    "Turquoise",
+    "Medium Turquoise",
+    "Dark Turquoise",
+    "Teal",
+    "Dark Cyan",
+  ],
+  [
+    "Cyan",
+    "Aqua",
+    "Light Cyan",
+    "Powder Blue",
+    "Light Blue",
+    "Sky Blue",
+    "Light Sky Blue",
+    "Deep Sky Blue",
+    "Dodger Blue",
+    "Steel Blue",
+    "Cadet Blue",
+    "Cornflower Blue",
+  ],
+  [
+    "Royal Blue",
+    "Blue",
+    "Medium Blue",
+    "Dark Blue",
+    "Navy",
+    "Midnight Blue",
+    "Slate Blue",
+    "Dark Slate Blue",
+    "Light Slate Blue",
+    "Medium Slate Blue",
+    "Ghost White",
+    "Lavender",
+  ],
+  [
+    "Blue Violet",
+    "Dark Violet",
+    "Dark Orchid",
+    "Medium Orchid",
+    "Orchid",
+    "Violet",
+    "Plum",
+    "Thistle",
+    "Medium Purple",
+    "Purple",
+    "Indigo",
+    "Magenta",
+  ],
+  [
+    "Hot Pink",
+    "Deep Pink",
+    "Pale Violet Red",
+    "Medium Violet Red",
+    "Light Pink",
+    "Pink",
+    "Misty Rose",
+    "Lavender Blush",
+    "Snow",
+    "Floral White",
+    "Ivory",
+    "Linen",
+  ],
+  [
+    "White",
+    "Ghost White",
+    "Gainsboro",
+    "Light Gray",
+    "Silver",
+    "Dark Gray",
+    "Dim Gray",
+    "Gray",
+    "Light Slate Gray",
+    "Slate Gray",
+    "Dark Slate Gray",
+    "Black",
+  ],
+  [
+    "Fuchsia",
+    "Swinburne Red",
+    "Dark Salmon",
+    "Light Salmon",
+    "Orange Red",
+    "Medium Aquamarine",
+    "Pale Goldenrod",
+    "Khaki",
+    "Pale Green",
+    "Medium Spring Green",
+    "Mint Cream",
+    "Honeydew",
+  ],
+  [
+    "Lemon Chiffon",
+    "Old Lace",
+    "Sea Shell",
+    "Light Yellow",
+    "Light Goldenrod",
+    "Dark Sea Green",
+    "Forest Green",
+    "Spring Green",
+    "Transparent",
+    "Azure",
+    "Alice Blue",
+    "Antique White",
+  ],
+];
+
+// Sort the color data based on the custom order
+const sortedColors = [];
+customOrder.forEach((row) => {
+  row.forEach((name) => {
+    const color = colorPaletteData.find((c) => c.name === name);
+    if (color) sortedColors.push(color);
+  });
+});
+---
+
+<style>
+  .palette-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    max-width: fit-content;
+    align-items: start;
+  }
+
+  .palette-container > .color-box:first-child {
+    margin-top: 16px;
+  }
+
+  .color-box {
+    width: 100%;
+    aspect-ratio: 0.725;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: relative;
+    cursor: crosshair;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+    box-sizing: border-box;
+  }
+
+  .color-box:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .color-box span {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    text-align: center;
+  }
+
+  .color-box:hover span {
+    display: block;
+  }
+
+  .color-info {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+</style>
+
+<div class="palette-container" id="palette-container">
+  {
+    sortedColors.map((color) => (
+      <div
+        class="color-box"
+        style={`background-color: rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b});`}
+        data-color-name={color.name}
+        data-color-rgb={`rgb_color(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})`}
+        data-color-hsb={`hsb_color(${color.hsb.h.toFixed(2)}, ${color.hsb.s.toFixed(2)}, ${color.hsb.b.toFixed(2)})`}
+      >
+        <span>{color.name}</span>
+      </div>
+    ))
+  }
+</div>
+
+<div class="color-info" id="color-info">
+  <Tabs syncKey="code-language">
+    <TabItem label="C++">
+      <div class="tab-content" id="cpp-code">
+        Click a color to see details for C++
+      </div>
+    </TabItem>
+    <TabItem label="C#">
+      <div class="tab-content" id="csharp-code">
+        Click a color to see details for C#
+      </div>
+    </TabItem>
+    <TabItem label="Python">
+      <div class="tab-content" id="python-code">
+        Click a color to see details for Python
+      </div>
+    </TabItem>
+  </Tabs>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const paletteContainer = document.getElementById("palette-container");
+    const cppCode = document.getElementById("cpp-code");
+    const csharpCode = document.getElementById("csharp-code");
+    const pythonCode = document.getElementById("python-code");
+
+    paletteContainer.addEventListener("click", (event) => {
+      const colorBox = event.target.closest(".color-box");
+
+      if (colorBox) {
+        const colorName = colorBox.dataset.colorName;
+        const colorRgb = colorBox.dataset.colorRgb;
+        const colorHsb = colorBox.dataset.colorHsb;
+
+        cppCode.innerHTML =
+          `COLOR_${colorName.toUpperCase().replaceAll(" ", "_")}<br>` +
+          `${colorRgb}<br>` +
+          `${colorHsb}`;
+
+        csharpCode.innerHTML =
+          `SplashKit.Color${colorName.replaceAll(" ", "")}<br>` +
+          `SplashKit.RGBColor(${colorRgb.slice(10, -1)});<br>` +
+          `SplashKit.HSBColor(${colorHsb.slice(10, -1)});`;
+
+        pythonCode.innerHTML =
+          `color_${colorName.toLowerCase().replaceAll(" ", "_")}()<br>` +
+          `rgb_color_from_double(${colorRgb.slice(10, -1)}):<br>` +
+          `hsb_color(${colorHsb.slice(10, -1)}):`;
+      }
+    });
+  });
+</script>

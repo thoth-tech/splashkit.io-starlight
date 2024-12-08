@@ -1,0 +1,525 @@
+<style>
+  /* General slider styles */
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+
+  #red-slider {
+    background-color: #f8d7d7;
+  }
+  #red-slider:hover {
+    background-color: red;
+  }
+  #red-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background-color: red;
+    border-radius: 50%;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.2s ease;
+  }
+  #red-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 10px red;
+    transform: scale(1.1);
+  }
+
+  #green-slider {
+    background-color: #d7f8d7;
+  }
+  #green-slider:hover {
+    background-color: green;
+  }
+  #green-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background-color: green;
+    border-radius: 50%;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.2s ease;
+  }
+  #green-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 10px green;
+    transform: scale(1.1);
+  }
+
+  #blue-slider {
+    background-color: #d7d7f8;
+  }
+  #blue-slider:hover {
+    background-color: blue;
+  }
+  #blue-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background-color: blue;
+    border-radius: 50%;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.2s ease;
+  }
+  #blue-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 10px blue;
+    transform: scale(1.1);
+  }
+
+  #alpha-slider {
+    background-color: #e0e0e0;
+  }
+  #alpha-slider:hover {
+    background-color: grey;
+  }
+  #alpha-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background-color: grey;
+    border-radius: 50%;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.2s ease;
+  }
+  #alpha-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 10px grey;
+    transform: scale(1.1);
+  }
+
+  /* HSB Slider Colors */
+  #hue-slider {
+    background: linear-gradient(
+      to right,
+      red,
+      orange,
+      yellow,
+      green,
+      cyan,
+      blue,
+      violet,
+      red
+    );
+  }
+  #hue-slider::-webkit-slider-thumb {
+    background-color: white;
+  }
+  #hue-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 10px white;
+    transform: scale(1.1);
+  }
+
+  #saturation-slider {
+    background: linear-gradient(to right, grey, currentColor);
+  }
+  #saturation-slider::-webkit-slider-thumb {
+    background-color: white;
+  }
+  #saturation-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 10px white;
+    transform: scale(1.1);
+  }
+
+  #brightness-slider {
+    background: linear-gradient(to right, black, white);
+  }
+  #brightness-slider::-webkit-slider-thumb {
+    background-color: white;
+  }
+  #brightness-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 10px white;
+    transform: scale(1.1);
+  }
+
+  /* Hue Slider Thumb */
+  #hue-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background-color: white; /* Neutral white thumb for contrast */
+    border-radius: 50%;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.2s ease;
+  }
+  #hue-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 10px white;
+    transform: scale(1.1);
+  }
+
+  /* Saturation Slider Thumb */
+  #saturation-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background-color: white; /* Neutral white thumb */
+    border-radius: 50%;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.2s ease;
+  }
+  #saturation-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 10px white;
+    transform: scale(1.1);
+  }
+
+  /* Brightness Slider Thumb */
+  #brightness-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 25px;
+    height: 25px;
+    background-color: white; /* Neutral white thumb */
+    border-radius: 50%;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.2s ease;
+  }
+  #brightness-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 10px white;
+    transform: scale(1.1);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Tab container */
+  .tab-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+
+  .tab-header {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ccc;
+  }
+
+  .tab-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1rem;
+  }
+
+  .tab-button.active {
+    border-bottom: 2px solid #007bff;
+    color: #007bff;
+    font-weight: bold;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  #rgb-color-preview,
+  #hsb-color-preview {
+    width: 150px;
+    height: 150px;
+    margin-left: 20px;
+    border: 2px solid #000;
+    border-radius: 4px;
+  }
+
+  pre {
+    margin: 0;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 1rem;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+  }
+
+  :root {
+    --text-primary-light: #000; /* Dark text for light mode */
+    --text-primary-dark: #fff; /* Light text for dark mode */
+    --background-light: #fff; /* Background color for light mode */
+    --background-dark: #121212; /* Background color for dark mode */
+  }
+
+  [data-theme="light"] {
+    --text-primary: var(--text-primary-light);
+    --background: var(--background-light);
+  }
+
+  [data-theme="dark"] {
+    --text-primary: var(--text-primary-dark);
+    --background: var(--background-dark);
+  }
+
+  body {
+    color: var(--text-primary);
+    background-color: var(--background);
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  /* Code blocks */
+  pre,
+  code {
+    background-color: var(--background);
+    color: var(--text-primary);
+    border: 1px solid var(--text-primary);
+    padding: 8px;
+    border-radius: 4px;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  /* Tab Headers */
+  .tab-header {
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--text-primary);
+  }
+
+  /* Slider Labels */
+  label {
+    color: var(--text-primary);
+  }
+</style>
+
+<div class="tab-container">
+  <!-- Tab Header -->
+  <div class="tab-header">
+    <button class="tab-button active" data-tab="rgb-tab">RGB</button>
+    <button class="tab-button" data-tab="hsb-tab">HSB</button>
+  </div>
+
+  <!-- RGB Tab Content -->
+  <div id="rgb-tab" class="tab-content active">
+    <div
+      style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+    >
+      <div
+        id="rgb-sliders-container"
+        style="flex: 1; display: flex; flex-direction: column; gap: 16px;"
+      >
+        <div>
+          <label for="red-slider">Red: <span id="red-value">128</span></label>
+          <input id="red-slider" type="range" min="0" max="255" value="128" />
+        </div>
+        <div>
+          <label for="green-slider"
+            >Green: <span id="green-value">128</span></label
+          >
+          <input id="green-slider" type="range" min="0" max="255" value="128" />
+        </div>
+        <div>
+          <label for="blue-slider">Blue: <span id="blue-value">128</span></label
+          >
+          <input id="blue-slider" type="range" min="0" max="255" value="128" />
+        </div>
+        <div>
+          <label>
+            <input id="alpha-toggle" type="checkbox" />
+            Enable Alpha
+          </label>
+        </div>
+        <div id="alpha-slider-container" class="hidden">
+          <label for="alpha-slider"
+            >Alpha: <span id="alpha-value">1.00</span></label
+          >
+          <input
+            id="alpha-slider"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1.00"
+          />
+        </div>
+      </div>
+
+      <div id="rgb-color-preview" style="background-color: rgb(128, 128, 128);">
+      </div>
+    </div>
+    <div id="rgb-output-box">
+      <pre><code id="rgb-code-block" class="language-cpp">rgb_color(128, 128, 128);</code></pre>
+    </div>
+  </div>
+
+  <!-- HSB Tab Content -->
+  <div id="hsb-tab" class="tab-content">
+    <div
+      style="display: flex; justify-content: space-between; align-items: center; padding: 20px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+    >
+      <div
+        id="hsb-sliders-container"
+        style="flex: 1; display: flex; flex-direction: column; gap: 16px;"
+      >
+        <div>
+          <label for="hue-slider">Hue: <span id="hue-value">180.00</span></label>
+          <input
+            id="hue-slider"
+            type="range"
+            min="0"
+            max="360"
+            step="1"
+            value="180"
+          />
+        </div>
+        <div>
+          <label for="saturation-slider"
+            >Saturation: <span id="saturation-value">0.50</span></label
+          >
+          <input
+            id="saturation-slider"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.50"
+          />
+        </div>
+        <div>
+          <label for="brightness-slider"
+            >Brightness: <span id="brightness-value">0.50</span></label
+          >
+          <input
+            id="brightness-slider"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.50"
+          />
+        </div>
+      </div>
+      <div id="hsb-color-preview" style="background-color: hsl(0, 50%, 50%);">
+      </div>
+    </div>
+    <div id="hsb-output-box">
+      <pre><code id="hsb-code-block" class="language-cpp">hsb_color(180.00, 0.50, 0.50);</code></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Tab Switching Logic
+    const tabs = document.querySelectorAll(".tab-button");
+    const contents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("active"));
+        contents.forEach((c) => c.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.tab).classList.add("active");
+      });
+    });
+
+    // RGB Logic
+    const redSlider = document.getElementById("red-slider");
+    const greenSlider = document.getElementById("green-slider");
+    const blueSlider = document.getElementById("blue-slider");
+    const alphaToggle = document.getElementById("alpha-toggle");
+    const alphaSlider = document.getElementById("alpha-slider");
+    const alphaSliderContainer = document.getElementById(
+      "alpha-slider-container"
+    );
+
+    const redValue = document.getElementById("red-value");
+    const greenValue = document.getElementById("green-value");
+    const blueValue = document.getElementById("blue-value");
+    const alphaValue = document.getElementById("alpha-value");
+
+    const rgbPreview = document.getElementById("rgb-color-preview");
+    const rgbCodeBlock = document.getElementById("rgb-code-block");
+
+    function updateRgbPreview() {
+      const red = parseInt(redSlider.value, 10);
+      const green = parseInt(greenSlider.value, 10);
+      const blue = parseInt(blueSlider.value, 10);
+      const alpha = parseFloat(alphaSlider.value);
+
+      redValue.textContent = red;
+      greenValue.textContent = green;
+      blueValue.textContent = blue;
+
+      if (alphaToggle.checked) {
+        alphaValue.textContent = alpha.toFixed(2);
+        alphaSliderContainer.classList.remove("hidden");
+        rgbPreview.style.backgroundColor = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+        rgbCodeBlock.textContent = `rgba_color(${red}, ${green}, ${blue}, ${alpha.toFixed(2)});`;
+      } else {
+        alphaSliderContainer.classList.add("hidden");
+        rgbPreview.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+        rgbCodeBlock.textContent = `rgb_color(${red}, ${green}, ${blue});`;
+      }
+    }
+
+    redSlider.addEventListener("input", updateRgbPreview);
+    greenSlider.addEventListener("input", updateRgbPreview);
+    blueSlider.addEventListener("input", updateRgbPreview);
+    alphaSlider.addEventListener("input", updateRgbPreview);
+    alphaToggle.addEventListener("change", updateRgbPreview);
+
+    // HSB Logic
+    const hueSlider = document.getElementById("hue-slider");
+    const saturationSlider = document.getElementById("saturation-slider");
+    const brightnessSlider = document.getElementById("brightness-slider");
+
+    const hueValue = document.getElementById("hue-value");
+    const saturationValue = document.getElementById("saturation-value");
+    const brightnessValue = document.getElementById("brightness-value");
+
+    const hsbPreview = document.getElementById("hsb-color-preview");
+    const hsbCodeBlock = document.getElementById("hsb-code-block");
+
+    function updateHsbPreview() {
+      const hue = parseFloat(hueSlider.value);
+      const saturation = parseFloat(saturationSlider.value);
+      const brightness = parseFloat(brightnessSlider.value);
+
+      hueValue.textContent = hue.toFixed(2);
+      saturationValue.textContent = saturation.toFixed(2);
+      brightnessValue.textContent = brightness.toFixed(2);
+
+      hsbPreview.style.backgroundColor = `hsl(${hue}, ${saturation * 100}%, ${
+        brightness * 50
+      }%)`;
+      hsbCodeBlock.textContent = `hsb_color(${hue.toFixed(2)}, ${saturation.toFixed(
+        2
+      )}, ${brightness.toFixed(2)});`;
+    }
+
+    hueSlider.addEventListener("input", updateHsbPreview);
+    saturationSlider.addEventListener("input", updateHsbPreview);
+    brightnessSlider.addEventListener("input", updateHsbPreview);
+  });
+</script>
