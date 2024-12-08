@@ -96,7 +96,7 @@ const { id, filePath, buttonText, iframeSrc } = Astro.props;
             globalIframe.style.border = 'none';
             globalIframeContainer.appendChild(globalIframe);
 
-            // Add drag functionality
+            // Add drag functionality.
             let offsetX = 0, offsetY = 0, isDragging = false;
 
             dragBar.addEventListener('mousedown', function(event) {
