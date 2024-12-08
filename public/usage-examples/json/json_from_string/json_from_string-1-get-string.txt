@@ -1,0 +1,3 @@
+### Get string from JSON object
+
+The following code shows an example of using [json from string](/api/json/#json-from-string) to create a JSON object with a string, and then call `json_to_string` to get the string JSON.

@@ -1,0 +1,3 @@
+### Check if a JSON is active
+
+The following code shows an example of using [json read bool](/api/json/#json-read-bool) to create a JSON object with a boolean, and then call `json_read_bool` to get the boolean value.
