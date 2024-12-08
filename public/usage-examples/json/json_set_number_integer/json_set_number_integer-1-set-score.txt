@@ -1,0 +1,3 @@
+### Setting the score as an integer in a JSON object
+
+The following code shows an example of using [json set number integer](/api/json/#json-set-number-1) to set the score as an integer in a JSON object.
