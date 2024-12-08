@@ -1,0 +1,3 @@
+### Read a JSON string
+
+The following code shows an example of using [json read string](/api/json/#json-read-string) to read a JSON string from a file and print it.
