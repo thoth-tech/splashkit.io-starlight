@@ -1,0 +1,5 @@
+#### Create a Vector Out of a Rectangle from a Point
+
+Determines the vector needed to move back from a point out of rectangle given the point was moving at the velocity specified.
+
+Uses the [vector_out_of_rect_from_point](/api/physics/#vector-out-of-rect-from-point) function.

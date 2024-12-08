@@ -1,0 +1,5 @@
+#### Invert a Vector
+
+Create a new vector that is the inverted version of another vector - that is, flip the x and y values to their negative values. 
+
+Uses the [vector_invert](/api/physics/#vector-invert) function.

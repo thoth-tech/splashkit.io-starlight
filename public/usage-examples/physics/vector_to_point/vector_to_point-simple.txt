@@ -1,0 +1,5 @@
+#### Create a Vector To a point_2d Parameter
+
+Returns a new vector using the x and y value of a point parameter. This is a vector from the origin to that point. Outputs the value of the vector to the terminal.
+
+Uses the [vector_to](/api/physics/#vector-to-1) function.
