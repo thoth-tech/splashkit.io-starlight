@@ -1,0 +1,3 @@
+#### Circles Intersection Detect System
+
+The following code shows examples of using [Circles Intersect](/api/geometry/#circles-intersect-1) to show how to detect if two circle A and B intersect or not.
