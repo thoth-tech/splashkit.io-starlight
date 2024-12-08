@@ -1,0 +1,3 @@
+### Set a JSON Greeting string
+
+The following code shows an example of using [json set string](/api/json/#json-set-string) to set a greeting string in a JSON object.

@@ -1,0 +1,3 @@
+### Setting the parent of a JSON object
+
+The following code shows an example of using [json set object](/api/json/#json-set-object) to set the parent of a child JSON object.
