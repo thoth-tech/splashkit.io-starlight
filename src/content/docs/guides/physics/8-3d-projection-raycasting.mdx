@@ -3,12 +3,10 @@ title: 2D to 3D Projection
 description: This tutorial demonstrates how to implement a 2D to 3D projection system using raycasting in SplashKit, combining a first-person 3D view with a top-down 2D map to visualise the player's field of view and interactions in a grid-based environment.
 category: Guides
 authors: Shaun Ratcliff
-lastupdated: 07 Dec 24
+lastupdated: 08 Dec 24
 ---
 
-import { Tabs, TabItem } from "@astrojs/starlight/components";
-import { Aside } from '@astrojs/starlight/components';
-import { Steps } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Aside, Steps } from "@astrojs/starlight/components";
 import SKOTutorialButton from '../../../../components/SKOTutorialButton.astro';
 
 **{frontmatter.description}**
@@ -29,6 +27,8 @@ In this tutorial, we’ll explore how to use SplashKit to build a 2D to 3D rayca
 - Display a top-down 2D map alongside the 3D view for reference. 
 
 This approach is ideal if you are looking to take your games to the next level. Even beginners can experiment with these concepts to add a visually striking effect to simpler applications, such as dungeon crawlers or maze games. By the end of this tutorial, you’ll have a dynamic system that combines 2D and 3D perspectives, bringing your virtual worlds to life.
+
+![2D to 3D Projection](/gifs/guides/physics/2d-3d-projection.gif)
 
 <Aside type="caution" title="Checkpoint!">
 We recommend you first familiarise yourself with the [Raycasting Basics](/guides/physics/6-raycasting-basics/) tutorial before proceeding with this one. This will provide you with a solid understanding of the fundamental principles of raycasting and how to effectively make use of the SplashKit functions.

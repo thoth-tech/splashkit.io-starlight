@@ -3,12 +3,10 @@ title: Raycasting Basics
 description: This tutorial introduces raycasting, a foundational technique in game development and computer graphics used to simulate line-of-sight, detect collisions, and render 3D effects in 2D environments.
 category: Guides
 authors: Shaun Ratcliff
-lastupdated: 07 Dec 24
+lastupdated: 08 Dec 24
 ---
 
-import { Tabs, TabItem } from "@astrojs/starlight/components";
-import { Aside } from '@astrojs/starlight/components';
-import { Steps } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Aside, Steps } from "@astrojs/starlight/components";
 import SKOTutorialButton from '../../../../components/SKOTutorialButton.astro';
 
 **{frontmatter.description}**
@@ -40,6 +38,17 @@ At its core, raycasting is about using mathematics to track the path of a ray, c
 2. [Vector From Angle](/api/physics/#vector-from-angle)
 3. [Vector Multiply](/api/physics/#vector-multiply)
 4. [Point Offset By](/api/geometry/#point-offset-by)
+
+<Aside type="caution" title="Checkpoint!">
+<p>We recommend you first familiarise yourself with the suite of vector basics tutorials before proceeding with this one.</p>
+
+<p>[Introduction to Vectors](/guides/physics/0-introduction-to-vectors/)</p>
+<p>[Vector Magnitudes](/guides/physics/1-vector-magnitudes/)</p>
+<p>[Vector Arithmetic](/guides/physics/2-vector-arithmetic/)</p>
+<p>[Vector Angles](/guides/physics/3-vector-geometry-angles/)</p>
+
+These will provide you with a solid understanding of the fundamental principles of vectors and how to effectively make use of the SplashKit physics functions.
+</Aside>
 
 ## Key Raycasting Concepts
 
