@@ -30,7 +30,9 @@ const { id, filePath, buttonText, iframeSrc } = Astro.props;
           let readinessTimeout = null;
 
           const resetMessageQueue = () => {
+            console.log('Resetting message queue. Current queue:', messageQueue);
             messageQueue = [];
+            console.log('Reset message queue. Current queue:', messageQueue);
           };
 
           if (!window.skoListenerAdded) {
@@ -127,7 +129,6 @@ const { id, filePath, buttonText, iframeSrc } = Astro.props;
             }
           }
 
-          resetMessageQueue();
           globalIframeContainer.style.display = 'block';
 
           const sendMessageToIframe = (message) => {
