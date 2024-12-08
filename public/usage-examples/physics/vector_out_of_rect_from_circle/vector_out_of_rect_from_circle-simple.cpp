@@ -14,7 +14,7 @@ int main()
 
     // Define the inner circle
     circle inner_circle;
-    inner_circle.center = {150, 150};
+    inner_circle.center = point_at(150, 150);
     inner_circle.radius = 25;
 
     // Define the velocity vector

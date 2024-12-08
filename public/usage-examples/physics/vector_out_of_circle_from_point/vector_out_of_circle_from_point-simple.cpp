@@ -7,7 +7,7 @@ int main()
   
   // Define the outer circle
   circle outer_circle;
-  outer_circle.center = {150, 150};
+  outer_circle.center = point_at(150, 150);
   outer_circle.radius = 75;
  
   // Define the inner point
