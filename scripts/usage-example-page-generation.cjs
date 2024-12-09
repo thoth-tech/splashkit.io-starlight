@@ -289,7 +289,8 @@ categories.forEach((categoryKey) => {
 
             // Define required code files
             const requiredCodeFiles = {
-              ".cpp": "C++\t\t",
+              "-sk.cpp": "C++ (SplashKit)",
+              "-beyond.cpp": "C++ (Beyond)",
               "-top-level.cs": "C# (Top-Level)",
               "-oop.cs": "C# (Object-Oriented)",
               ".py": "Python\t",
@@ -361,6 +362,7 @@ categories.forEach((categoryKey) => {
 
               // Check if both top level and oop code has been found for current function
               const csharpFiles = codeFiles.filter(file => file.endsWith("-top-level.cs") || file.endsWith("-oop.cs")).filter(file => file.includes(exampleKey));
+              const cppFiles = codeFiles.filter(file => file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp")).filter(file => file.includes(exampleKey));
               if (lang == "csharp" && csharpFiles.length > 0) {
                 csharpFiles.forEach(file => {
                   if (file.includes(exampleKey)) {
@@ -372,13 +374,25 @@ categories.forEach((categoryKey) => {
                     }
                   }
                 });
-              }
+              } // Check for cpp files for standard SK and Beyond SK
+              else if (lang == "cpp" && cppFiles.length > 0) {
+                cppFiles.forEach(file => {
+                  if (file.includes(exampleKey)){
+                    if (file.includes("-sk")){
+                      mdxContent += `import ${importTitle}_sk_${lang} from '${codeFilePath.replaceAll(".cpp", "-sk.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                    }
+                    if (file.includes("-beyond")){
+                      mdxContent += `import ${importTitle}_beyond_${lang} from '${codeFilePath.replaceAll(".cpp", "-beyond.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                    }
+                  }
+              });
+            }
               else {
                 mdxContent += `import ${importTitle}_${lang} from '${codeFilePath.replaceAll("/usage", "/public/usage")}?raw';\n`;
               }
             }
           });
-
+          console.log("Generated Imports for C++:\n", mdxContent);
           mdxContent += "\n";
 
           // Code tabs
@@ -391,9 +405,12 @@ categories.forEach((categoryKey) => {
 
               // Check if both top level and oop code has been found for current function
               const csharpFiles = codeFiles.filter(file => file.endsWith("-top-level.cs") || file.endsWith("-oop.cs")).filter(file => file.includes(exampleKey));
+              const cppFiles = codeFiles.filter(file => file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp")).filter(file => file.includes(exampleKey));
               functionTag = exampleKey.split("-")[0];
               if (lang == "cpp") {
-                functionTag = groupName;
+                functionTag = groupName.split("_")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join("");
               }
               if (lang == "csharp") {
                 functionTag = groupName.split("_")
@@ -419,14 +436,33 @@ categories.forEach((categoryKey) => {
                 });
                 mdxContent += "  </Tabs>\n\n";
                 mdxContent += "  </TabItem>\n";
+              } // Check for cpp files and generate nested tabs
+              else if (lang == "cpp" && cppFiles.length > 0) {
+                mdxContent += "\n <Tabs syncKey=\"cpp-style\">\n";
+                cppFiles.slice().reverse().forEach(file => {
+                  if (file.includes(exampleKey)) {
+                    if (file.includes("-sk")) {
+                      mdxContent += `    <TabItem label="SplashKit">\n`;
+                      mdxContent += `      <Code code={${importTitle}_sk_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
+                      mdxContent += "    </TabItem>\n";
+                    }
+                    if (file.includes("-beyond")) {
+                      mdxContent += `    <TabItem label="Beyond SplashKit">\n`;
+                      mdxContent += `      <Code code={${importTitle}_beyond_${lang}} lang="${lang}" mark={"SplashKit.${functionTag}"} />\n`;
+                      mdxContent += "    </TabItem>\n";
+                    }
+                  }
+                });
+                mdxContent += "  </Tabs>\n\n";
+                mdxContent += "  </TabItem>\n";
               }
               else {
                 mdxContent += `    <Code code={${importTitle}_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
                 mdxContent += "  </TabItem>\n";
               }
             }
-
           });
+          console.log("Generated Imports for C++:\n", mdxContent);
           mdxContent += "</Tabs>\n\n";
 
           // Image or gif output
