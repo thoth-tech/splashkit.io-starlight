@@ -96,13 +96,7 @@ export default defineConfig({
         },
         {
           label: "Beyond SplashKit",
-          collapsed: true,
-          items: [
-            { label: "Overview", link: "beyond-splashkit/" },
-            { label: "Graphics", autogenerate: { directory: "beyond-splashkit/Graphics Beyond", collapsed: false } },
-            { label: "Maths", autogenerate: { directory: "beyond-splashkit/Math", collapsed: false } },
-            { label: "Cryptography", autogenerate: { directory: "beyond-splashkit/Cryptography", collapsed: false } },
-          ]
+          autogenerate: { directory: "beyond-splashkit", collapsed: true },
         },
         // {
         //   label: "Arcade Hackathon Project",
