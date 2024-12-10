@@ -248,3 +248,7 @@ code {
   border: 1px solid lightgray;
   margin-left: 20px;
 }
+
+mjx-container svg {
+  display: inline !important;
+}
