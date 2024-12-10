@@ -1,0 +1,480 @@
+---
+title: Graphics
+description: placeholder
+author: placeholder
+lastupdated: placeholder
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+**{frontmatter.description}**  
+Written by: {frontmatter.author}  
+_Last updated: {frontmatter.lastupdated}_
+
+---
+
+## Open A Window 
+
+The following code shows how to open a window without Splashkit. This method uses SDL2 which is actually one of SplashKits dependencies
+```cpp
+#include <iostream>
+#include <SDL2/SDL.h>
+
+int main(int argv, char** args)    
+{
+    // Open window without SplashKit.
+
+    // Declare Variables
+    SDL_Window* window=nullptr;
+
+    // Check for successful initialisation
+    if(SDL_Init(SDL_INIT_VIDEO) < 0){
+        std::cout << "SDL could not be initialized: " << SDL_GetError();
+        exit(1);
+    }
+
+    // Create Window
+    window = SDL_CreateWindow(
+        "No SK Window",                  
+        SDL_WINDOWPOS_CENTERED,            
+        SDL_WINDOWPOS_CENTERED,   
+        800,                               
+        600,                               
+        SDL_WINDOW_OPENGL                  
+    );
+    // Error handling for window
+    if (window == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
+        exit(1);
+    }   
+
+    // Hold window 4 seconds
+    SDL_Delay(4000);
+    // Cleanup and free memory
+    SDL_DestroyWindow(window);
+    
+    return 0;
+}
+
+```
+
+## Quit Requested
+
+This version will hold the window until the user quits
+```cpp
+#include <iostream>
+#include <SDL2/SDL.h>
+
+
+
+SDL_Window* sdl_open_window()
+{
+    // This function demonstrates how we can open window without SplashKit.
+
+    // Declare Variables
+    SDL_Window* window=nullptr;
+
+    // Check for successful initialisation
+    if(SDL_Init(SDL_INIT_VIDEO) < 0){
+        std::cout << "SDL could not be initialized: " << SDL_GetError();
+        exit(1);
+    }
+
+    // Create Window
+    window = SDL_CreateWindow(
+        "No SK Window",                  
+        SDL_WINDOWPOS_CENTERED,            
+        SDL_WINDOWPOS_CENTERED,   
+        800,                               
+        600,                               
+        SDL_WINDOW_OPENGL                  
+    );
+    // Error handling for window
+    if (window == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
+        exit(1);
+    }   
+
+    return window;
+}
+
+int main(int argv, char** args)
+{
+    
+    SDL_Window* window = sdl_open_window();
+    
+    // Hang window until quit
+    SDL_Event event;
+    while (event.type != SDL_QUIT) {
+        SDL_PollEvent(&event);
+    }
+    // Cleanup and free memory
+    SDL_DestroyWindow(window);
+    return 0;
+}
+```
+
+## Draw Rectangle
+
+This program will draw a rectangle to the screen
+```cpp
+#include <iostream>
+#include <SDL2/SDL.h>
+#include <splashkit.h>
+
+void no_sk_version()
+{
+    
+    // This version uses the SDL2 library to draw a rectangle to a screen.
+    // This would be quite similar to what is happening behind the scenes when using splashkit functions
+    
+    SDL_Window* window=nullptr;
+
+    //Check for successful initialisation
+    if(SDL_Init(SDL_INIT_VIDEO) < 0){
+        std::cout << "SDL could not be initialized: " << SDL_GetError();
+    }
+
+    // Create Window
+    window = SDL_CreateWindow(
+        "Draw SDL2 Rectangle",                  
+        SDL_WINDOWPOS_CENTERED,            
+        SDL_WINDOWPOS_CENTERED,   
+        600,                               
+        600,                               
+        SDL_WINDOW_OPENGL                  
+    );
+
+    if (window == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
+        exit(1);
+    }
+
+    // Create renderer
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (renderer == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create rederer: %s\n", SDL_GetError());
+        exit(1);
+    }
+
+    // Define a rectangle
+    SDL_Rect rect = { 100, 100, 400, 300 }; 
+
+    // Clear screen with a black color
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+
+    // Set rectangle color to blue
+    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+
+    // Draw & fill rectangle s
+    SDL_RenderDrawRect(renderer, &rect);
+    SDL_RenderFillRect(renderer, &rect);
+
+    // Display drawing
+    SDL_RenderPresent(renderer);
+
+
+    SDL_Event event;
+    while (event.type != SDL_QUIT) {
+        // check for quit requested
+        SDL_PollEvent(&event);
+    }
+
+    // Cleanup and free memory
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+}
+
+void sk_version()
+{
+    
+    // This version purely uses SplashKit functions
+    // What is shown here is an abstracted version of what is happening above
+    
+    open_window("Draw SplashKit Rectangle", 600, 600); //Create window
+    rectangle rect = rectangle_from(100,100,400,300); //Define a rectangle
+    clear_screen(COLOR_BLACK);// Clear screen with a black color
+    fill_rectangle(COLOR_BLUE, rect); //Draw & fill rectangle
+    refresh_screen(); // Display drawing
+
+    // Hold window until quit requested
+    while(!quit_requested())
+    {
+        process_events();
+    }
+
+    // Cleanup and free memory
+    close_all_windows();
+}
+
+int main(int argv, char** args)
+{
+
+    no_sk_version();
+    sk_version();
+    
+    return 0;
+}
+```
+
+
+## Draw Texture
+
+This program will draw an image to the screen
+```cpp
+#include <iostream>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
+
+SDL_Window* sdl_open_window()
+{
+    // Open window without SplashKit.
+
+    //Declare Variables
+    SDL_Window* window=nullptr;
+
+    //Check for successful initialisation
+    if(SDL_Init(SDL_INIT_VIDEO) < 0){
+        std::cout << "SDL could not be initialized: " << SDL_GetError();
+        exit(1);
+    }
+
+    // Create Window
+    window = SDL_CreateWindow(
+        "No SK Window",                  
+        SDL_WINDOWPOS_CENTERED,            
+        SDL_WINDOWPOS_CENTERED,   
+        800,                               
+        600,                               
+        SDL_WINDOW_OPENGL                  
+    );
+    // Error handling for window
+    if (window == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
+        exit(1);
+    }   
+
+    return window;
+}
+SDL_Renderer* sdl_create_renderer(SDL_Window* window)
+{
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (renderer == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create rederer: %s\n", SDL_GetError());
+        exit(1);
+    }
+
+    return renderer;
+}
+
+
+int main(int argv, char** args)
+{
+    // This program demonstrates how we can load textures and draw them on a window without using splashkit 
+    
+    SDL_Window* window = sdl_open_window();
+    SDL_Renderer* renderer = sdl_create_renderer(window);
+
+
+    // Create a surface for imported image
+    SDL_Surface* background = IMG_Load("Resources/images/photo.jpg");
+    if (background == NULL) {
+        std::cout << "Failed to load background.jpg" << SDL_GetError();
+        exit(1);
+    }  
+    // Convert surface to texture
+    SDL_Texture* background_texture = SDL_CreateTextureFromSurface(renderer, background);
+    if (background_texture == NULL) {
+        std::cout << "Failed to create texture" << SDL_GetError();
+        exit(1);
+    }
+    SDL_FreeSurface(background); // Free memory
+
+    // Get image size to avoid stretching
+    int background_width = 0, background_height = 0;
+    SDL_QueryTexture(background_texture, NULL, NULL, &background_width, &background_height);
+
+    // Hang window until quit
+    SDL_Event event;
+    while (event.type != SDL_QUIT) {
+        SDL_PollEvent(&event);
+
+        // Draw image to screen
+        SDL_Rect background_rect = { 75, 125, background_width, background_height }; 
+        SDL_RenderCopy(renderer, background_texture, NULL, &background_rect); 
+
+        // Display drawing
+        SDL_RenderPresent(renderer);
+
+    }
+    // Cleanup and free memory
+    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(renderer);
+    return 0;
+}
+```
+
+## Eyedropper
+
+This program combines the above into a small program that will change the screen color based on where you click on the picture 
+```cpp
+#include <splashkit.h>
+#include <iostream>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+
+
+void no_sk_eye_dropper()
+{
+    // Declare Variables
+    SDL_Window* window=nullptr;
+    int mouse_x, mouse_y;
+    unsigned int clr = 0;
+    SDL_Color mouse_color = {0, 0, 0, 255};
+
+    // Check for successful initialisation
+    if(SDL_Init(SDL_INIT_VIDEO) < 0){
+        std::cout << "SDL could not be initialized: " << SDL_GetError();
+        exit(1);
+    }
+    if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & (IMG_INIT_PNG | IMG_INIT_JPG))) {
+        std::cout << "Failed to initialize SDL_image: " << IMG_GetError();
+        exit(1);
+    }
+  
+    // Create Window
+    window = SDL_CreateWindow(
+        "SDL2 eyedropper",                  
+        SDL_WINDOWPOS_CENTERED,            
+        SDL_WINDOWPOS_CENTERED,   
+        800,                               
+        600,                               
+        SDL_WINDOW_OPENGL                  
+    );
+    if (window == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
+        exit(1);
+    }
+
+    // Create renderer
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (renderer == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create rederer: %s\n", SDL_GetError());
+        exit(1);
+    }
+
+
+    // Create textures for eye drop and background image
+    SDL_Surface* background = IMG_Load("Resources/images/photo.jpg");
+    if (background == NULL) {
+        std::cout << "Failed to load background.jpg" << SDL_GetError();
+        exit(1);
+    }  
+
+    SDL_Texture* background_texture = SDL_CreateTextureFromSurface(renderer, background);
+    if (background_texture == NULL) {
+        std::cout << "Failed to create texture" << SDL_GetError();
+        exit(1);
+    }
+    SDL_FreeSurface(background); 
+    SDL_Surface* eyedrop = IMG_Load("Resources/images/eyedrop.png");
+    if (eyedrop == NULL) {
+        std::cout << "Failed to load eyedrop.png" << SDL_GetError();
+        exit(1);
+    }  
+
+    SDL_Texture* eyedrop_texture = SDL_CreateTextureFromSurface(renderer, eyedrop);
+    if (eyedrop_texture == NULL) {
+        std::cout << "Failed to create texture" << SDL_GetError();
+        exit(1);
+    }
+    SDL_FreeSurface(eyedrop); 
+
+    // Get the native dimensions of the textures
+    int background_width = 0, background_height = 0, eyedrop_width = 0, eyedrop_height = 0;
+    SDL_QueryTexture(background_texture, NULL, NULL, &background_width, &background_height);
+    SDL_QueryTexture(eyedrop_texture, NULL, NULL, &eyedrop_width, &eyedrop_height);
+
+
+    SDL_Event event;
+    while (event.type != SDL_QUIT) {
+        // Check for quit requested
+        SDL_PollEvent(&event);
+
+        // Clear screen with mouse color
+        SDL_SetRenderDrawColor(renderer, mouse_color.r, mouse_color.g, mouse_color.b, mouse_color.a);
+        SDL_RenderClear(renderer);
+
+        // Draw background
+        SDL_Rect background_rect = { 75, 125, background_width, background_height }; 
+        SDL_RenderCopy(renderer, background_texture, NULL, &background_rect); 
+        
+        // Get the mouse position
+        SDL_GetMouseState(&mouse_x, &mouse_y);
+        SDL_Rect rect = {mouse_x, mouse_y, 1, 1};
+        
+        // Draw eyedropper as curser
+        SDL_Rect eyedrop_rect = { mouse_x - 3, mouse_y - eyedrop_height + 3, eyedrop_width, eyedrop_height }; 
+        SDL_RenderCopy(renderer, eyedrop_texture, NULL, &eyedrop_rect); 
+        SDL_ShowCursor(SDL_DISABLE);
+        
+        // Set color at cursor when click
+        if (event.type == SDL_MOUSEBUTTONDOWN)
+        {
+            SDL_RenderReadPixels(renderer, &rect, SDL_PIXELFORMAT_RGBA8888, &clr, 1);
+            SDL_GetRGBA(clr, SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888), &mouse_color.r, &mouse_color.g, &mouse_color.b, &mouse_color.a);
+        }
+        
+        // Display drawing
+        SDL_RenderPresent(renderer);
+    }
+    // Cleanup and free memory
+    SDL_DestroyTexture(background_texture);
+    SDL_DestroyTexture(eyedrop_texture);
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+}
+
+
+void sk_eye_dropper()
+{
+    // Declare Variables
+    color eye_select = COLOR_BLACK;    
+    open_window("SK eyedropper", 800, 600);
+
+    // Load bitmaps
+    load_bitmap("background", "photo.jpg");  
+    load_bitmap("eyedrop", "eyedrop.png");  
+
+    while (!quit_requested())
+    {
+        process_events();
+        clear_screen(eye_select);// Clear screen with mouse color
+        draw_bitmap("background", 75, 125); // Draw background
+
+        // Draw eyedropper as curser
+        draw_bitmap("eyedrop", mouse_x() - 3, mouse_y() - bitmap_height("eyedrop") + 3);
+        hide_mouse();
+
+        // Set color at cursor when click
+        if (mouse_clicked(LEFT_BUTTON))
+            eye_select = get_pixel( mouse_x(), mouse_y() );
+            
+        refresh_screen(); // Display drawing
+    }
+}
+
+int main(int argv, char** args)
+{
+    
+    no_sk_eye_dropper();
+    sk_eye_dropper();
+    return 0;
+}
+```
+
+---
