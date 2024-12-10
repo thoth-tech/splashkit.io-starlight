@@ -289,8 +289,7 @@ categories.forEach((categoryKey) => {
 
             // Define required code files
             const requiredCodeFiles = {
-              "-sk.cpp": "C++ (SplashKit)",
-              "-beyond.cpp": "C++ (Beyond)",
+              ".cpp": "C++\t\t",
               "-top-level.cs": "C# (Top-Level)",
               "-oop.cs": "C# (Object-Oriented)",
               ".py": "Python\t",
