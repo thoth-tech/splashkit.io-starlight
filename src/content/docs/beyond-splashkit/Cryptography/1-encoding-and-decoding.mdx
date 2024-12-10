@@ -1,6 +1,6 @@
 ---
 title: Encoding and Decoding
-description: Explore the essentials of encoding and decoding data using Base64, caesar cipher, and URL transformations for secure and efficient data representation.
+description: Explore the essentials of encoding and decoding data using Base64, Caesar Cipher, and URL transformations for secure and efficient data representation.
 category: Guides
 author: Brianna Laird
 lastupdated: December 2024
@@ -15,7 +15,7 @@ _Last updated: {frontmatter.lastupdated}_
 
 ---
 
-Encoding and decoding play a crucial role in the way data is represented, stored, and transmitted across systems. Whether it's transforming binary data into a readable format, encoding a URL for safe web usage, or encrypting messages using a simple cipher, these operations enable secure and efficient communication. In this guide, we'll explore how to implement popular encoding and decoding techniques like Base64, caesar cipher, and URL transformations. These foundational skills not only enhance your understanding of data manipulation but also pave the way for integrating advanced cryptographic solutions into your projects.
+Encoding and decoding play a crucial role in the way data is represented, stored, and transmitted across systems. Whether it's transforming binary data into a readable format, encoding a URL for safe web usage, or encrypting messages using a simple cipher, these operations enable secure and efficient communication. In this guide, we'll explore how to implement popular encoding and decoding techniques like Base64, Caesar Cipher, and URL transformations. These foundational skills not only enhance your understanding of data manipulation but also pave the way for integrating advanced cryptographic solutions into your projects.
 
 ## Base64
 
@@ -323,7 +323,7 @@ Decoded: "Hello, World!"
 
 ## Caesar Cipher
 
-The Caesar cipher is a simple substitution cipher named after Julius Caesar, who used it to encrypt his private correspondence. It is a type of symmetric encryption, meaning the same key is used for both encryption and decryption. In the Caesar cipher, each letter in the plaintext is shifted a fixed number of positions down or up the alphabet. For example, with a shift of 3:
+The Caesar Cipher is a simple substitution cipher named after Julius Caesar, who used it to encrypt his private correspondence. It is a type of symmetric encryption, meaning the same key is used for both encryption and decryption. In the Caesar Cipher, each letter in the plaintext is shifted a fixed number of positions down or up the alphabet. For example, with a shift of 3:
 
 - `A` becomes `D`
 - `B` becomes `E`
@@ -362,7 +362,7 @@ Ciphers are widely used in various applications to ensure secure communication a
 
 ### Encoding with the Caesar Cipher
 
-Encoding data with the caesar cipher involves shifting the characters in the input message by a fixed number of positions. This process ensures that the message is encrypted and can only be decrypted using the same shift value. The following code shows how you can implement the caesar cipher to encode a message by shifting the characters by a specified number of positions.
+Encoding data with the Caesar Cipher involves shifting the characters in the input message by a fixed number of positions. This process ensures that the message is encrypted and can only be decrypted using the same shift value. The following code shows how you can implement the Caesar Cipher to encode a message by shifting the characters by a specified number of positions.
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
@@ -479,7 +479,7 @@ Encoded: "Khoor, Zruog!"
 
 ### Decoding with the Caesar Cipher
 
-Decoding data with the caesar cipher involves shifting the characters in the input message by the reverse of the encoding shift value. This process ensures that the message is decrypted and can be read in its original form. The following code shows how you can implement the caesar cipher to decode a message by shifting the characters back by the specified number of positions.
+Decoding data with the Caesar Cipher involves shifting the characters in the input message by the reverse of the encoding shift value. This process ensures that the message is decrypted and can be read in its original form. The following code shows how you can implement the Caesar Cipher to decode a message by shifting the characters back by the specified number of positions.
 
 :::note
 This function relies on the `caesar_cipher_encode` function to decode the message using the reverse shift value.
@@ -565,7 +565,7 @@ Decoded: "Hello, World!"
 
 ### Brute-Forcing the Caesar Cipher
 
-In some cases, the shift value used in the caesar cipher may not be known. To decrypt the message without the key, you can use a brute-force approach to try all possible shift values and find the one that produces a readable message. As there is only 26 possible shift values in the caesar cipher, this method is feasible and can be implemented efficiently. Here is how you can brute-force the caesar cipher to decrypt a message:
+In some cases, the shift value used in the Caesar Cipher may not be known. To decrypt the message without the key, you can use a brute-force approach to try all possible shift values and find the one that produces a readable message. As there is only 26 possible shift values in the Caesar Cipher, this method is feasible and can be implemented efficiently. Here is how you can brute-force the Caesar Cipher to decrypt a message:
 
 :::note
 This function relies on the `ceasar_cipher_decode` function to decode the message using each possible shift value, which also relies on the `caesar_cipher_encode` function.
@@ -612,8 +612,6 @@ def caesar_cipher_brute_force(input_string):
 #### Using this function
 
 Here is an example of how you can use the `caesar_cipher_brute_force` function to decrypt a message without knowing the shift value:
-
-#### Using this function
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
@@ -683,7 +681,7 @@ Shift 25=> Lipps Asvph!
 
 ## Vigenère Cipher
 
-The Vigenère cipher is a method of encrypting alphabetic text using a form of polyalphabetic substitution, which applies multiple Caesar ciphers based on a keyword. Each letter in the plaintext is shifted by an amount determined by the corresponding letter in the keyword, creating a more secure encryption than a single-shift cipher. This method is more resistant to brute force attacks because the pattern of shifts varies based on the keyword.
+The Vigenère cipher is a method of encrypting alphabetic text using a form of polyalphabetic substitution, which applies multiple Caesar Ciphers based on a keyword. Each letter in the plaintext is shifted by an amount determined by the corresponding letter in the keyword, creating a more secure encryption than a single-shift cipher. This method is more resistant to brute force attacks because the pattern of shifts varies based on the keyword.
 
 Mathematically, the Vigenère cipher relies on modular arithmetic to compute shifts. For encoding, each letter in the plaintext is shifted according to the corresponding letter in the keyword:
 
