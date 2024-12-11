@@ -1,0 +1,3 @@
+#### OPTION ROTATE BITMAP
+
+The following code shows an examples of using [Option Rotate Bitmap](/api/graphics#option-rotate-bitmap) to rotate a clock hand bitmap to different angles to simulate the movement of a clock.
