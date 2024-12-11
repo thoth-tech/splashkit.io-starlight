@@ -15,11 +15,11 @@ namespace LineLength
 
       // Create a line from start and end points
       Line demoLine = SplashKit.LineFrom(startPoint, endPoint);
-      SplashKit.DrawLine(SplashKit.ColorRed(), demoLine);
+      SplashKit.DrawLine(Color.Red, demoLine);
 
       // Calculate the squared length and draw to window
       float length = SplashKit.LineLengthSquared(demoLine);
-      SplashKit.DrawText("Line length squared: " + length.ToString(), SplashKit.ColorBlack(), 110, 130);
+      SplashKit.DrawText("Line length squared: " + length.ToString(), Color.Black, 110, 130);
 
       SplashKit.RefreshScreen();
       SplashKit.Delay(5000);

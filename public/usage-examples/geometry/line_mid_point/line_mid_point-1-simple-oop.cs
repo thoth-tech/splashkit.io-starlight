@@ -14,14 +14,14 @@ namespace LineMidPoint
 
       // Create a line from start and end points
       Line demoLine = SplashKit.LineFrom(startPoint, endPoint);
-      SplashKit.DrawLine(SplashKit.ColorRed(), demoLine);
+      SplashKit.DrawLine(Color.Red, demoLine);
 
       // Find the mid point and mark it
       Point2D midPoint = SplashKit.LineMidPoint(demoLine);
-      SplashKit.DrawCircle(SplashKit.ColorBlack(), midPoint.X, midPoint.Y, 2);
+      SplashKit.DrawCircle(Color.Black, midPoint.X, midPoint.Y, 2);
 
       // Display the midpoint coordinates
-      SplashKit.DrawText("Midpoint Coordinates: " + midPoint.X.ToString() + ", " + midPoint.Y.ToString(), SplashKit.ColorBlack(), midPoint.X + 10, midPoint.Y - 10);
+      SplashKit.DrawText("Midpoint Coordinates: " + midPoint.X.ToString() + ", " + midPoint.Y.ToString(), SplashKit.Color.Black, midPoint.X + 10, midPoint.Y - 10);
 
       SplashKit.RefreshScreen();
       SplashKit.Delay(5000);

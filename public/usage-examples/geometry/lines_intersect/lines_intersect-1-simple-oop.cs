@@ -9,35 +9,35 @@ namespace LinesIntersect
       SplashKit.OpenWindow("Lines Intersect", 800, 600);
 
       // Define points for the lines
-      Point2D startPoint1 = new Point2D() { X = 100, Y = 150 };
-      Point2D endPoint1 = new Point2D() { X = 500, Y = 550 };
+      Point2D startPointA = new Point2D() { X = 100, Y = 150 };
+      Point2D endPointA = new Point2D() { X = 500, Y = 550 };
 
-      Point2D startPoint2 = new Point2D() { X = 100, Y = 550 };
-      Point2D endPoint2 = new Point2D() { X = 500, Y = 150 };
+      Point2D startPointB = new Point2D() { X = 100, Y = 550 };
+      Point2D endPointB = new Point2D() { X = 500, Y = 150 };
 
-      Point2D startPoint3 = new Point2D() { X = 550, Y = 150 };
-      Point2D endPoint3 = new Point2D() { X = 550, Y = 500 };
+      Point2D startPointC = new Point2D() { X = 550, Y = 150 };
+      Point2D endPointC = new Point2D() { X = 550, Y = 500 };
 
       // Draw the lines
-      Line demoLine1 = SplashKit.LineFrom(startPoint1, endPoint1);
-      SplashKit.DrawLine(SplashKit.ColorRed(), demoLine1);
-      SplashKit.DrawText("A", SplashKit.ColorBlack(), startPoint1.X - 20, startPoint1.Y - 10);
+      Line demoLineA = SplashKit.LineFrom(startPointA, endPointA);
+      SplashKit.DrawLine(Color.Red, demoLineA);
+      SplashKit.DrawText("A", Color.Black, startPointA.X - 20, startPointA.Y - 10);
 
-      Line demoLine2 = SplashKit.LineFrom(startPoint2, endPoint2);
-      SplashKit.DrawLine(SplashKit.ColorBlue(), demoLine2);
-      SplashKit.DrawText("B", SplashKit.ColorBlack(), startPoint2.X - 20, startPoint2.Y - 10);
+      Line demoLineB = SplashKit.LineFrom(startPointB, endPointB);
+      SplashKit.DrawLine(Color.Blue, demoLineB);
+      SplashKit.DrawText("B", Color.Black, startPointB.X - 20, startPointB.Y - 10);
 
-      Line demoLine3 = SplashKit.LineFrom(startPoint3, endPoint3);
-      SplashKit.DrawLine(SplashKit.ColorGreen(), demoLine3);
-      SplashKit.DrawText("C", SplashKit.ColorBlack(), startPoint3.X - 20, startPoint3.Y - 10);
+      Line demoLineC = SplashKit.LineFrom(startPointC, endPointC);
+      SplashKit.DrawLine(Color.Green, demoLineC);
+      SplashKit.DrawText("C", Color.Black, startPointC.X - 20, startPointC.Y - 10);
 
       // Check intersections
-      bool intersect1And2 = SplashKit.LinesIntersect(demoLine1, demoLine2);
-      bool intersect1And3 = SplashKit.LinesIntersect(demoLine1, demoLine3);
+      bool intersectAB = SplashKit.LinesIntersect(demoLineA, demoLineB);
+      bool intersectAC = SplashKit.LinesIntersect(demoLineA, demoLineC);
 
       // Display intersection results
-      SplashKit.DrawText("A and B intersect: " + (intersect1And2 ? "Yes" : "No"), SplashKit.ColorBlack(), 150, 130);
-      SplashKit.DrawText("A and C intersect: " + (intersect1And3 ? "Yes" : "No"), SplashKit.ColorBlack(), 150, 150);
+      SplashKit.DrawText("A and B intersect: " + (intersectAB ? "Yes" : "No"), Color.Black, 150, 130);
+      SplashKit.DrawText("A and C intersect: " + (intersectAC ? "Yes" : "No"), Color.Black, 150, 150);
 
       SplashKit.RefreshScreen();
       SplashKit.Delay(5000);

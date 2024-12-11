@@ -15,11 +15,11 @@ namespace LineToString
 
       // Create a line from start and end points
       Line demoLine = SplashKit.LineFrom(startPoint, endPoint);
-      SplashKit.DrawLine(SplashKit.ColorRed(), demoLine);
+      SplashKit.DrawLine(Color.Red, demoLine);
 
       // Find the text description of the line
       string desc = SplashKit.LineToString(demoLine);
-      SplashKit.DrawText(desc, SplashKit.ColorBlack(), 110, 130);
+      SplashKit.DrawText(desc, Color.Black, 110, 130);
 
       SplashKit.RefreshScreen();
       SplashKit.Delay(5000);
