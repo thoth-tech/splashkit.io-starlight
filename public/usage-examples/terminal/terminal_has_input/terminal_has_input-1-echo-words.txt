@@ -1,0 +1,3 @@
+### Echo a conversation
+
+The following code shows an example of using [terminal has input](/api/terminal/#terminal-has-input) where it checks for user input and echos it back to the user. The program will continue to echo the user's input until the user types "exit".
