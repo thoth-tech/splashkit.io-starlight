@@ -1,0 +1,3 @@
+### Reading JSON object from file
+
+The following code shows an example of using [json read object](/api/json/#json-read-object) to read a JSON object from a file.
