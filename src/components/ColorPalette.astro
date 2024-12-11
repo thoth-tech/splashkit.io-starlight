@@ -12,181 +12,180 @@ function getColorData() {
 
 const colorPaletteData = getColorData();
 
-// Define the custom order of color names based on your table
-const customOrder = [
+// Group like colours and present them in a specified order
+const colorOrder = [
+  // Greys and Neutral Tones
   [
-    "Red",
-    "Crimson",
-    "Dark Red",
-    "Firebrick",
-    "Indian Red",
-    "Salmon",
-    "Light Coral",
-    "Rosy Brown",
-    "Tomato",
-    "Coral",
-    "Dark Orange",
-    "Orange",
-  ],
-  [
-    "Gold",
-    "Yellow",
-    "Lemon Chiffon",
-    "Light Goldenrod Yellow",
-    "Cornsilk",
-    "Beige",
-    "Wheat",
-    "Navajo White",
-    "Moccasin",
-    "Peach Puff",
-    "Papaya Whip",
-    "Antique White",
-  ],
-  [
-    "Burly Wood",
-    "Tan",
-    "Sandy Brown",
-    "Goldenrod",
-    "Dark Goldenrod",
-    "Peru",
-    "Chocolate",
-    "Saddle Brown",
-    "Sienna",
-    "Brown",
-    "Maroon",
-    "Dark Khaki",
-  ],
-  [
-    "Lime",
-    "Lawn Green",
-    "Chartreuse",
-    "Green Yellow",
-    "Light Green",
-    "Pale Green",
-    "Yellow Green",
-    "Olive Drab",
-    "Olive",
-    "Dark Olive Green",
-    "Dark Green",
-    "Forest Green",
-  ],
-  [
-    "Medium Sea Green",
-    "Sea Green",
-    "Spring Green",
-    "Light Sea Green",
-    "Medium Aquamarine",
-    "Aquamarine",
-    "Pale Turquoise",
-    "Turquoise",
-    "Medium Turquoise",
-    "Dark Turquoise",
-    "Teal",
-    "Dark Cyan",
-  ],
-  [
-    "Cyan",
-    "Aqua",
-    "Light Cyan",
-    "Powder Blue",
-    "Light Blue",
-    "Sky Blue",
-    "Light Sky Blue",
-    "Deep Sky Blue",
-    "Dodger Blue",
-    "Steel Blue",
-    "Cadet Blue",
-    "Cornflower Blue",
-  ],
-  [
-    "Royal Blue",
-    "Blue",
-    "Medium Blue",
-    "Dark Blue",
-    "Navy",
-    "Midnight Blue",
-    "Slate Blue",
-    "Dark Slate Blue",
-    "Light Slate Blue",
-    "Medium Slate Blue",
-    "Ghost White",
-    "Lavender",
-  ],
-  [
-    "Blue Violet",
-    "Dark Violet",
-    "Dark Orchid",
-    "Medium Orchid",
-    "Orchid",
-    "Violet",
-    "Plum",
-    "Thistle",
-    "Medium Purple",
-    "Purple",
-    "Indigo",
-    "Magenta",
-  ],
-  [
-    "Hot Pink",
-    "Deep Pink",
-    "Pale Violet Red",
-    "Medium Violet Red",
-    "Light Pink",
-    "Pink",
-    "Misty Rose",
-    "Lavender Blush",
-    "Snow",
-    "Floral White",
-    "Ivory",
-    "Linen",
-  ],
-  [
-    "White",
-    "Ghost White",
-    "Gainsboro",
-    "Light Gray",
-    "Silver",
-    "Dark Gray",
+    "Black",
     "Dim Gray",
     "Gray",
+    "Dark Gray",
+    "Silver",
+    "Light Gray",
+    "Gainsboro",
+    "Rosy Brown",
+    "Light Coral",
+    "Indian Red",
+    "Brown",
+    "Firebrick",
+  ],
+  // Reds and Pinks
+  [
+    "Maroon",
+    "Dark Red",
+    "Red",
+    "Swinburne Red",
+    "Salmon",
+    "Tomato",
+    "Dark Salmon",
+    "Coral",
+    "Orange Red",
+    "Light Salmon",
+    "Sienna",
+    "Saddle Brown",
+  ],
+  // Oranges and Warm Tones
+  [
+    "Chocolate",
+    "Sandy Brown",
+    "Peach Puff",
+    "Peru",
+    "Bisque",
+    "Dark Orange",
+    "Burly Wood",
+    "Antique White",
+    "Tan",
+    "Navajo White",
+    "Blanched Almond",
+    "Papaya Whip",
+    "Moccasin",
+    "Orange",
+    "Wheat",
+    "Dark Goldenrod",
+    "Goldenrod",
+    "Gold",
+    "Lemon Chiffon",
+    "Khaki",
+    "Pale Goldenrod",
+    "Dark Khaki",
+    "Beige",
+    "Light Yellow",
+  ],
+  // Yellow-greens
+  [
+    "Light Goldenrod Yellow",
+    "Olive",
+    "Yellow",
+    "Olive Drab",
+    "Yellow Green",
+    "Dark Olive Green",
+    "Green Yellow",
+    "Chartreuse",
+    "Lawn Green",
+    "Dark Sea Green",
+    "Light Green",
+    "Pale Green",
+  ],
+  // Greens
+  [
+    "Forest Green",
+    "Lime Green",
+    "Dark Green",
+    "Green",
+    "Bright Green",
+    "Lime",
+    "Sea Green",
+    "Medium Sea Green",
+    "Spring Green",
+    "Medium Spring Green",
+    "Medium Aquamarine",
+    "Aquamarine",
+  ],
+  // Aquas and Teals
+  [
+    "Turquoise",
+    "Light Sea Green",
+    "Medium Turquoise",
+    "Light Cyan",
+    "Pale Turquoise",
+    "Dark Slate Gray",
+    "Teal",
+    "Dark Cyan",
+    "Aqua",
+    "Cyan",
+    "Dark Turquoise",
+    "Cadet Blue",
+  ],
+  // Blues
+  [
+    "Powder Blue",
+    "Light Blue",
+    "Deep Sky Blue",
+    "Sky Blue",
+    "Light Sky Blue",
+    "Steel Blue",
+    "Dodger Blue",
     "Light Slate Gray",
     "Slate Gray",
-    "Dark Slate Gray",
-    "Black",
+    "Light Steel Blue",
+    "Cornflower Blue",
+    "Royal Blue",
+    "Midnight Blue",
+    "Navy",
+    "Dark Blue",
+    "Medium Blue",
+    "Blue",
+    "Slate Blue",
+    "Dark Slate Blue",
+    "Medium Slate Blue",
+    "Medium Purple",
+    "Blue Violet",
+    "Indigo",
+    "Dark Orchid",
   ],
+  // Purples and Magentas
   [
+    "Dark Violet",
+    "Medium Orchid",
+    "Thistle",
+    "Plum",
+    "Violet",
+    "Purple",
+    "Dark Magenta",
     "Fuchsia",
-    "Swinburne Red",
-    "Dark Salmon",
-    "Light Salmon",
-    "Orange Red",
-    "Medium Aquamarine",
-    "Pale Goldenrod",
-    "Khaki",
-    "Pale Green",
-    "Medium Spring Green",
-    "Mint Cream",
-    "Honeydew",
+    "Magenta",
+    "Orchid",
+    "Medium Violet Red",
+    "Deep Pink",
   ],
+  // Pinks
+  ["Hot Pink", "Pale Violet Red", "Crimson", "Pink", "Light Pink"],
+  // Almost White colours
   [
-    "Lemon Chiffon",
+    "White Smoke",
+    "Lavender",
+    "Linen",
     "Old Lace",
-    "Sea Shell",
-    "Light Yellow",
-    "Light Goldenrod",
-    "Dark Sea Green",
-    "Forest Green",
-    "Spring Green",
     "Transparent",
-    "Azure",
+    "White",
+    "Snow",
+    "Ghost White",
+    "Mint Cream",
     "Alice Blue",
-    "Antique White",
+    "Honeydew",
+    "Azure",
+    "Lavender Blush",
+    "Floral White",
+    "Ivory",
+    "Sea Shell",
+    "Misty Rose",
+    "Cornsilk",
   ],
 ];
 
-// Sort the color data based on the custom order
+// Sort the colour data based on colorOrder
 const sortedColors = [];
-customOrder.forEach((row) => {
+colorOrder.forEach((row) => {
   row.forEach((name) => {
     const color = colorPaletteData.find((c) => c.name === name);
     if (color) sortedColors.push(color);
@@ -195,64 +194,153 @@ customOrder.forEach((row) => {
 ---
 
 <style>
-  .palette-container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    max-width: fit-content;
-    align-items: start;
+  /* Define colour and background variables for light and dark themes */
+  :root {
+    --text-primary-light: #000; /* Text colour for light mode */
+    --text-primary-dark: #fff; /* Text colour for dark mode */
+    --background-light: #fff; /* Background colour for light mode */
+    --background-dark: #121212; /* Background colour for dark mode */
+    --code-box-light: #f4f4f4; /* Code box background for light mode */
+    --code-box-dark: #1e1e1e; /* Code box background for dark mode */
+    --border-color-light: #ddd; /* Border colour for light mode */
+    --border-color-dark: #333; /* Border colour for dark mode */
   }
 
+  /* Apply theme-specific variables based on the data-theme attribute */
+  [data-theme="light"] {
+    --text-primary: var(--text-primary-light);
+    --background: var(--background-light);
+    --code-box: var(--code-box-light);
+    --border-color: var(--border-color-light);
+  }
+
+  [data-theme="dark"] {
+    --text-primary: var(--text-primary-dark);
+    --background: var(--background-dark);
+    --code-box: var(--code-box-dark);
+    --border-color: var(--border-color-dark);
+  }
+
+  /* Global body styles */
+  body {
+    color: var(--text-primary); /* Text colour */
+    background-color: var(--background); /* Background colour */
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease; /* Smooth transitions */
+  }
+
+  /* Grid container for the colour palette */
+  .palette-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* 12-column grid */
+    max-width: fit-content; /* Adjust grid width */
+    align-items: start; /* Align items to the top */
+  }
+
+  /* Add spacing above the first colour box */
   .palette-container > .color-box:first-child {
     margin-top: 16px;
   }
 
+  /* Style for each colour box */
   .color-box {
     width: 100%;
-    aspect-ratio: 0.725;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    position: relative;
-    cursor: crosshair;
+    aspect-ratio: 0.725; /* Maintain aspect ratio */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 4px; /* Rounded corners */
+    position: relative; /* Position for hover text */
+    cursor: crosshair; /* Pointer style */
     transition:
       transform 0.2s ease,
-      box-shadow 0.2s ease;
-    box-sizing: border-box;
+      box-shadow 0.2s ease; /* Smooth hover effects */
+    box-sizing: border-box; /* Include padding in width/height */
   }
 
+  /* Hover effect for colour boxes */
   .color-box:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1); /* Slight zoom-in effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
   }
 
+  /* Hidden label inside the colour box */
   .color-box span {
-    display: none;
-    position: absolute;
+    display: none; /* Hidden by default */
+    position: absolute; /* Centered text */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 0.75rem;
     font-weight: bold;
     color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Add shadow to text */
     text-align: center;
   }
 
+  /* Show label on hover */
   .color-box:hover span {
-    display: block;
+    display: block; /* Make the text visible */
   }
 
+  /* Container for detailed colour info and code output */
   .color-info {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-    text-align: center;
-    font-family: Arial, sans-serif;
+    margin-top: 20px; /* Space above the container */
+    padding: 10px; /* Inner padding */
+    border: 1px solid var(--border-color); /* Dynamic border colour */
+    border-radius: 4px; /* Rounded corners */
+    background-color: var(--code-box); /* Dynamic background */
+    color: var(--text-primary); /* Dynamic text colour */
+    text-align: center; /* Center the text */
+    font-family: Arial, sans-serif; /* Font styling */
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease; /* Smooth transitions */
+  }
+
+  /* Styles for code block content */
+  .tab-content {
+    margin: 0; /* Remove extra margin */
+    padding: 0; /* Reset padding */
+    background: var(--code-box); /* Dynamic background colour */
+    border-radius: 5px; /* Rounded corners */
+    font-family: monospace; /* Monospace font for code */
+    font-size: 1rem; /* Font size */
+    overflow-x: auto; /* Allow horizontal scrolling for long code */
+    border: 1px solid var(--border-color); /* Dynamic border colour */
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease; /* Smooth transitions */
+    white-space: pre-wrap; /* Preserve whitespace */
+    text-align: left; /* Left-align the text */
+  }
+
+  /* Styles for tab headers */
+  .tab-header {
+    color: var(--text-primary); /* Dynamic text colour */
+    border-bottom: 2px solid var(--text-primary); /* Dynamic border colour */
+  }
+
+  /* Reset margin and add consistent padding to code blocks */
+  .expressive-code pre {
+    margin: 0;
+    padding: 8px;
+  }
+
+  /* Adjust spacing for the colour-info section */
+  .color-info {
+    margin-top: 8px; /* Reduce gap above the section */
+    padding: 0; /* Remove unnecessary padding */
+  }
+
+  /* Reset spacing for expressive-code component inside colour-info */
+  .color-info .expressive-code {
+    margin: 0;
+    padding: 0;
   }
 </style>
 
 <div class="palette-container" id="palette-container">
+  <!-- Dynamically rendered colour boxes -->
   {
     sortedColors.map((color) => (
       <div
@@ -271,52 +359,74 @@ customOrder.forEach((row) => {
 <div class="color-info" id="color-info">
   <Tabs syncKey="code-language">
     <TabItem label="C++">
-      <div class="tab-content" id="cpp-code">
-        Click a color to see details for C++
+      <div class="tab-content cpp-code">
+        <Code code="Click a colour to see details for C++" lang="cpp" />
       </div>
     </TabItem>
     <TabItem label="C#">
-      <div class="tab-content" id="csharp-code">
-        Click a color to see details for C#
+      <div class="tab-content csharp-code">
+        <Code code="Click a colour to see details for C#" lang="csharp" />
       </div>
     </TabItem>
     <TabItem label="Python">
-      <div class="tab-content" id="python-code">
-        Click a color to see details for Python
+      <div class="tab-content python-code">
+        <Code code="Click a colour to see details for Python" lang="python" />
       </div>
     </TabItem>
   </Tabs>
 </div>
 
 <script>
+  // Wait until the DOM is fully loaded before executing the script
   document.addEventListener("DOMContentLoaded", () => {
+    // Get the palette container element by its ID
     const paletteContainer = document.getElementById("palette-container");
-    const cppCode = document.getElementById("cpp-code");
-    const csharpCode = document.getElementById("csharp-code");
-    const pythonCode = document.getElementById("python-code");
 
+    // Add a click event listener to the palette container
     paletteContainer.addEventListener("click", (event) => {
+      // Identify the closest clicked element with the class 'color-box'
       const colorBox = event.target.closest(".color-box");
-
       if (colorBox) {
-        const colorName = colorBox.dataset.colorName;
-        const colorRgb = colorBox.dataset.colorRgb;
-        const colorHsb = colorBox.dataset.colorHsb;
+        // Retrieve custom data attributes from the selected colour box
+        const colorName = colorBox.dataset.colorName; // Colour name (e.g., "Red")
+        const colorRgb = colorBox.dataset.colorRgb; // RGB value (e.g., "rgb_color(255, 0, 0)")
+        const colorHsb = colorBox.dataset.colorHsb; // HSB value (e.g., "hsb_color(0.00, 1.00, 1.00)")
 
-        cppCode.innerHTML =
-          `COLOR_${colorName.toUpperCase().replaceAll(" ", "_")}<br>` +
-          `${colorRgb}<br>` +
-          `${colorHsb}`;
+        // Generate the C++ code snippet using the colour data
+        const cppCode = `COLOR_${colorName
+          .toUpperCase()
+          .replaceAll(" ", "_")}\n${colorRgb}\n${colorHsb}`;
 
-        csharpCode.innerHTML =
-          `SplashKit.Color${colorName.replaceAll(" ", "")}<br>` +
-          `SplashKit.RGBColor(${colorRgb.slice(10, -1)});<br>` +
-          `SplashKit.HSBColor(${colorHsb.slice(10, -1)});`;
+        // Generate the C# code snippet using the color data
+        const csharpCode = `SplashKit.Color${colorName.replaceAll(
+          " ",
+          ""
+        )}();\nSplashKit.RGBColor(${colorRgb.slice(
+          10,
+          -1
+        )});\nSplashKit.HSBColor(${colorHsb.slice(10, -1)});`;
 
-        pythonCode.innerHTML =
-          `color_${colorName.toLowerCase().replaceAll(" ", "_")}()<br>` +
-          `rgb_color_from_double(${colorRgb.slice(10, -1)}):<br>` +
-          `hsb_color(${colorHsb.slice(10, -1)}):`;
+        // Generate the Python code snippet using the colour data
+        const pythonCode = `color_${colorName
+          .toLowerCase()
+          .replaceAll(" ", "_")}()\nrgb_color(${colorRgb.slice(
+          10,
+          -1
+        )})\nhsb_color(${colorHsb.slice(10, -1)})`;
+
+        // Update the C++ tab content with the generated code
+        document.querySelector(".cpp-code .expressive-code pre").textContent =
+          cppCode;
+
+        // Update the C# tab content with the generated code
+        document.querySelector(
+          ".csharp-code .expressive-code pre"
+        ).textContent = csharpCode;
+
+        // Update the Python tab content with the generated code
+        document.querySelector(
+          ".python-code .expressive-code pre"
+        ).textContent = pythonCode;
       }
     });
   });
