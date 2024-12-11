@@ -1,0 +1,3 @@
+### Get RGB of Purple in JSON
+
+The following code shows an example of using [json to color](/api/json/#json-to-color) to get the RGB of a purple hex color in a JSON object.
