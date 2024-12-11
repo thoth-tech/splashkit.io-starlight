@@ -1,0 +1,3 @@
+### Create and free all JSON objects
+
+The following code shows an example of using [free all json](/api/json/#free-all-json) to create 2 JSON objects and then free them. It also shows how when you try call a JSON you freed you get a log warning message.

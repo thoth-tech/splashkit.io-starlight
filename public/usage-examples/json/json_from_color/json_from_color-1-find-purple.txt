@@ -1,0 +1,3 @@
+### Get the Hex Code of a Color
+
+The following code shows an example of using [json from color](/api/json/#json-from-color) to create a JSON object with a splashkit color, and then call `json_to_string` to get the hex code of the color.
