@@ -574,21 +574,21 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
 
   // Listener to update HSB code blocks dynamically
   document.addEventListener("updateHSBCode", (event) => {
-    const { hsbCppCode, hsbCsharpCode, hsbPythonCode } = (event as CustomEvent)
+    const { hsbCPPCode, hsbCSCode, hsbPythonCode } = (event as CustomEvent)
       .detail;
 
-    const hsbCodeBlocks = document.querySelectorAll("#hsb-output Code");
+    const hsbCodeBlocks = document.querySelectorAll(".tab-container Code");
 
     // Update code blocks for each language tab
     hsbCodeBlocks.forEach((block, index) => {
       switch (index) {
-        case 0:
-          block.textContent = hsbCppCode;
+        case 3:
+          block.textContent = hsbCPPCode;
           break;
-        case 1:
-          block.textContent = hsbCsharpCode;
+        case 4:
+          block.textContent = hsbCSCode;
           break;
-        case 2:
+        case 5:
           block.textContent = hsbPythonCode;
           break;
         default:
