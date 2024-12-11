@@ -1,0 +1,3 @@
+#### POP CLIP
+
+The following code shows an examples of using [Pop Clip](/api/graphics#pop-clip) to push a clipping area and then pop it to restore the full window drawing area, with indicators of the change.

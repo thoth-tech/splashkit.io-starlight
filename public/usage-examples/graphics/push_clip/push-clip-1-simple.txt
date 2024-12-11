@@ -1,0 +1,3 @@
+#### PUSH CLIP
+
+The following code shows an examples of using [Push Clip](/api/graphics#push-clip) to push push a small clipping area and draw a rectangle within it, then draw outside to show contrast.

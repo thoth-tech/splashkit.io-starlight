@@ -1,0 +1,3 @@
+#### RESET CLIP
+
+The following code shows an examples of using [Reset Clip](/api/graphics#reset-clip) to set a clip around a specific rectangle area and draw only within this area to emphasize a region.
