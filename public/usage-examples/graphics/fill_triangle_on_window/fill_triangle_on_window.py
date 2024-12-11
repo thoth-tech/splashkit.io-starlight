@@ -1,7 +1,7 @@
 from splashkit import *
 import random
 
-open_window("Draw Triangle", 800, 600)
+open_window("Fill Triangle", 800, 600)
 clear_screen(color_white())
 
 for i in range(50):
