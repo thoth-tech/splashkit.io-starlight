@@ -19,6 +19,11 @@ export default defineConfig({
         starlightLinksValidator({
           errorOnRelativeLinks: true,
         }),
+        starlightDocSearch({
+          appId: process.env.DOCSEARCH_API_ID,
+          apiKey: process.env.DOCSEARCH_API_SERACH_KEY,
+          indexName: process.env.DOCSEARCH_INDEX_NAME,
+        }),
       ],
       expressiveCode: {
         // theme: ["github-dark", "github-light"],
