@@ -5,7 +5,7 @@ OpenWindow("Fill Triangle", 800, 600);
 ClearScreen();
 
 Random random = new Random();
-for (int i = 0; i < 10; i++)
+for (int i = 0; i < 50; i++)
     {
     int x1 = random.Next(800);
     int y1 = random.Next(600);
