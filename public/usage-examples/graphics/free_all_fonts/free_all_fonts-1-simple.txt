@@ -1,0 +1,3 @@
+#### FREE ALL FONTS
+
+The following code shows an examples of using [Free all fonts](/api/graphics#free-all-fonts) to reset a program's theme by freeing all fonts and reloading a new font set.

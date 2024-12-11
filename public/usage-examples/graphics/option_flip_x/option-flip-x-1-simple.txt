@@ -1,0 +1,3 @@
+#### Option Flip X
+
+The following code shows an examples of using [Option Flip X](/api/graphics#option-flip-x) to flipped version of a bitmap (e.g., a character image) along the X-axis, creating a mirror image effect next to the original.
