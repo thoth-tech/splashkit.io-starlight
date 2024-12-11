@@ -1,0 +1,3 @@
+### Making and loading JSON from a file
+
+The following code shows examples of using [json from file](/api/json/#json-from-file) to load JSON from a file after creating it. You will need to run `skm resources` to create the location the file will be saved to.
