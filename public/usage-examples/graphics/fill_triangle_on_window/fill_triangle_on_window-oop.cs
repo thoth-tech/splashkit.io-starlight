@@ -6,7 +6,7 @@ namespace Program
     {
         public static void Main()
         {
-        SplashKit.OpenWindow("Fill Triangle on Window", 800, 600);
+        SplashKit.OpenWindow("Fill Triangle", 800, 600);
         
 
         Random random = new Random();
