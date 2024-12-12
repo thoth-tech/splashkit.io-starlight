@@ -1,24 +1,19 @@
 #include "splashkit.h"
-
+ 
 int main()
-{
-    open_window("Has Font", 800, 600);
-    clear_screen();
-
-    //Check if the font exit or not
-    bool fontCheck = has_font("NORMAL_FONT");
+{  
+    // Load a font
+    load_font("my_font", "arial.ttf");
+   
+    // Check if the font exit or not
+    bool fontCheck = has_font("my_font");
+ 
     // Display the text to show the result
-    
     if(fontCheck)
     {
-        draw_text("Font find!", COLOR_BLACK, 300, 300);
+        write_line("Font found!");
     }else
     {
-        draw_text("Font not find!", COLOR_BLACK, 300, 300);
+        write_line("Font not found!");
     }
-
-    refresh_screen();
-    delay(4000);
-    close_all_windows();
-
 }

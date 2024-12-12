@@ -1,21 +1,17 @@
-using SplashKitSDK;
-
-SplashKit.OpenWindow("Has Font", 800, 600);
-SplashKit.ClearScreen();
-
+using static SplashKitSDK.SplashKit;
+ 
+// Load a font
+LoadFont("my_font", "arial.ttf");
+ 
 // Check if the font exists
-bool fontCheck = HasFont("NORMAL_FONT");
-
+bool fontCheck = HasFont("my_font");
+ 
 // Display the result
 if (fontCheck)
 {
-    DrawText("Font found!", Color.Black, 300, 300);
+    WriteLine("Font found!");
 }
 else
 {
-    DrawText("Font not found!", Color.Black, 300, 300);
+    WriteLine("Font not found!");
 }
-
-RefreshScreen();
-Delay(4000);
-CloseAllWindows();
