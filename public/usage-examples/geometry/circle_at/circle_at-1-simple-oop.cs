@@ -17,7 +17,7 @@ namespace CircleAt
         Circle A = SplashKit.CircleAt(x_position, y_position, 200);
 
         //Draw the Circle
-        SplashKit.DrawCircle(Color.Red, x_position, y_position, 200);
+        SplashKit.DrawCircle(Color.Red, A);
     
         string text = "Circle At: (400,300), Radius: 200";
         // Print result on window

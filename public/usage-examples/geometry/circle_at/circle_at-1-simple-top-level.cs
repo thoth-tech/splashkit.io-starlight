@@ -12,7 +12,7 @@ double y_position = 300;
 Circle A = CircleAt(x_position, y_position, 200);
 
 //Draw the Circle
-DrawCircle(Color.Red, x_position, y_position, 200);
+DrawCircle(Color.Red, A);
     
 string text = "Circle At: (400,300), Radius: 200";
 // Print result on window

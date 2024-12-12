@@ -6,7 +6,7 @@ int main()
     clear_screen();
 
     //Set position for the circle
-    double x_position = rand() % 400 + 200;
+    double x_position = 400;
     //Give random  x_position value bewteen 200 - 400
     double y_position = 300;
 
@@ -14,7 +14,7 @@ int main()
     circle A = circle_at(x_position, y_position, 200);
 
     //Draw the Circle
-    draw_circle(COLOR_RED, x_position, y_position, 200);
+    draw_circle(COLOR_RED, A);
     
     string text = "Circle At: (400,300), Radius: 200";
     //Print result on window
