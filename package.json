@@ -3,9 +3,9 @@
   "type": "module",
   "version": "0.9",
   "scripts": {
-    "dev": "npm run generate-mdx && npm run generate-game && npm run generate-usage-examples-pages && npm run generate-groups && astro dev",
-    "start": "npm run generate-mdx && npm run generate-game && npm run generate-usage-examples-pages && npm run generate-groups && astro dev",
-    "build": "npm run generate-mdx && npm run generate-game && npm run generate-usage-examples-pages && npm run generate-groups && astro build",
+    "dev": "npm run generate-mdx && npm run generate-usage-examples-pages && npm run generate-groups && npm run feature-games && astro dev",
+    "start": "npm run generate-mdx && npm run generate-usage-examples-pages && npm run generate-groups && npm run feature-games && astro dev",
+    "build": "npm run generate-mdx && npm run generate-usage-examples-pages && npm run generate-groups && npm run feature-games && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "generate-mdx": "node ./scripts/components.cjs",
