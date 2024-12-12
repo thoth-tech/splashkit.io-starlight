@@ -1,0 +1,3 @@
+#### Display Name
+
+The following code shows an examples of using [Display Name](/api/graphics#display-name) to Print the name of the primary display.
