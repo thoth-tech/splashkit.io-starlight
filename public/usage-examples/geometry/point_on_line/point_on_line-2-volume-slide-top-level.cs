@@ -9,7 +9,7 @@ double Percent = 0;
 string Volume = "Volume: ";
 
 // Create window and draw initial Lines
-OpenWindow("Volume Slider", 600, 600);
+Window window = OpenWindow("Volume Slider", 600, 600);
 ClearScreen(ColorWhite());
 
 DrawLine(ColorBlack(), Slider);
@@ -38,4 +38,4 @@ while (!QuitRequested())
     }
 }
 
-CloseWindow(Window);
+CloseWindow(window);

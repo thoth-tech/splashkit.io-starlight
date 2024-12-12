@@ -6,7 +6,7 @@ int main()
     line line = line_from(100, 300, 500, 300);
 
     // Create window
-    open_window("Select Point", 600, 600);
+    window window = open_window("Select Point", 600, 600);
 
     while (!quit_requested())
     {

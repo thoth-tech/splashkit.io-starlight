@@ -5,7 +5,7 @@ using static SplashKitSDK.SplashKit;
 Line line = LineFrom(100, 300, 500, 300);
 
 // Create window
-OpenWindow("Select Point", 600, 600);
+Window window = OpenWindow("Select Point", 600, 600);
 
 while (!QuitRequested())
 {
@@ -22,4 +22,4 @@ while (!QuitRequested())
     RefreshScreen();
     ProcessEvents();
 }
-CloseWindow(Window);
+CloseWindow(window);

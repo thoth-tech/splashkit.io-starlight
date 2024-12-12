@@ -17,7 +17,7 @@ int main()
     string volume = "Volume: ";
 
     // Create window and draw initial lines
-    open_window("Volume Slider", 600, 600);
+    window window = open_window("Volume Slider", 600, 600);
     clear_screen(color_white());
 
     draw_line(color_black(), slider);
