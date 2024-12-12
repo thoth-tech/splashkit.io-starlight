@@ -8,7 +8,7 @@ void no_sk_version()
     // This version uses the SDL2 library to draw a rectangle to a screen.
     // This would be quite similar to what is happening behind the scenes when using splashkit functions
     
-    SDL_Window* window=nullptr;
+    SDL_Window* window = nullptr;
 
     //Check for successful initialisation
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
@@ -74,7 +74,7 @@ void sk_version()
     // What is shown here is an abstracted version of what is happening above
     
     open_window("Draw SplashKit Rectangle", 600, 600); //Create window
-    rectangle rect = rectangle_from(100,100,400,300); //Define a rectangle
+    rectangle rect = rectangle_from(100.0 ,100.0 ,400.0 ,300.0); //Define a rectangle
     clear_screen(COLOR_BLACK);// Clear screen with a black color
     fill_rectangle(COLOR_BLUE, rect); //Draw & fill rectangle
     refresh_screen(); // Display drawing

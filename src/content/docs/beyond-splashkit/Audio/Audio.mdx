@@ -26,7 +26,7 @@ SDL_Window* sdl_open_window()
     // Open window without SplashKit.
 
     // Declare Variables
-    SDL_Window* window=nullptr;
+    SDL_Window* window = nullptr;
 
     // Check for successful initialisation
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
@@ -70,7 +70,7 @@ void music_and_effects_no_sk()
     Mix_Chunk* jump = Mix_LoadWAV("Resources/sounds/jump.wav");
     Mix_Chunk* explosion = Mix_LoadWAV("Resources/sounds/explosion.wav");
     Mix_Music* music = Mix_LoadMUS("Resources/sounds/time_for_adventure.mp3");
-    if (jump == NULL | explosion == NULL | music == NULL) {
+    if (jump == NULL || explosion == NULL || music == NULL) {
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create audio: %s\n", Mix_GetError());
         exit(1);
     }   
@@ -98,7 +98,7 @@ void music_and_effects_no_sk()
 
 void music_and_effects_sk()
 {
-    float volume = 0.5;
+    double volume = 0.5;
     // Open Window and load sound effects
     open_window("test", 600,600);
     load_sound_effect("jump","jump.wav");

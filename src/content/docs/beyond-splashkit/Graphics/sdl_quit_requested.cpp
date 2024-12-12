@@ -8,7 +8,7 @@ SDL_Window* sdl_open_window()
     // This function demonstrates how we can open window without SplashKit.
 
     // Declare Variables
-    SDL_Window* window=nullptr;
+    SDL_Window* window = nullptr;
 
     // Check for successful initialisation
     if(SDL_Init(SDL_INIT_VIDEO) < 0){

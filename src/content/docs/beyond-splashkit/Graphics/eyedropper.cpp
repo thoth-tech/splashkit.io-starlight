@@ -7,7 +7,7 @@
 void no_sk_eye_dropper()
 {
     // Declare Variables
-    SDL_Window* window=nullptr;
+    SDL_Window* window = nullptr;
     int mouse_x, mouse_y;
     unsigned int clr = 0;
     SDL_Color mouse_color = {0, 0, 0, 255};
