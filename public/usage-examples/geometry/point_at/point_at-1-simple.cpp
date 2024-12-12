@@ -10,7 +10,7 @@ int main()
         int x1 = rnd(800);
         int y1 = rnd(600);
 
-        // Create a point at position (400,300)
+        // Create a point at position (x1, y1)
         point_2d point = point_at(x1, y1);
 
         color randomColor = rgb_color(rnd(255), rnd(255), rnd(255));

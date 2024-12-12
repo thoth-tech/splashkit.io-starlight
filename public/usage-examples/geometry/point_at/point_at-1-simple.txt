@@ -1,3 +1,3 @@
 #### Draw face
 
-The following code shows examples of using [Point At](/api/geometry/#point-at) to show how to create a point at a specific location and draw different graphs base on the point.
+The following code shows examples of using [Point At](/api/geometry/#point-at) to show how to create a point at a random location and draw faces at that point.
