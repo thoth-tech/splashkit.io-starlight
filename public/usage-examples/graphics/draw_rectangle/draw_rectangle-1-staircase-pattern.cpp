@@ -7,11 +7,11 @@ int main()
 
     for (int i = 0; i < 21; i++)
     {
-      
+
         int x = i * 40 - 40;
         int y = 600 - i * 30;
 
-        color randomColor = rgb_color(rand() % 255, rand() % 255, rand() % 255);
+        color randomColor = rgb_color(rnd(255), rnd(255), rnd(255));
 
         draw_rectangle(randomColor, x, y, 40, 30);
     }
