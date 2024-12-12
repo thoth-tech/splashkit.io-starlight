@@ -1,5 +1,4 @@
 from splashkit import *
-import random
 
 open_window("Draw Ellipse", 800, 600)
 clear_screen(color_white())
@@ -12,7 +11,7 @@ for i in range(30):
     y = 100 + i * 5
 
     random_color = rgb_color(
-        random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)   
+        rnd_int(255), rnd_int(255), rnd_int(255)   
     )
 
     draw_ellipse(random_color, x, y, width, height)

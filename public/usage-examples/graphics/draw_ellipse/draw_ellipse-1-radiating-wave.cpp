@@ -12,7 +12,7 @@ int main()
         int x = 100 + i * 10;
         int y = 100 + i * 5;
 
-        color randomColor = rgb_color(rand() % 255, rand() % 255, rand() % 255);
+        color randomColor = rgb_color(rnd(255), rnd(255), rnd(255));
 
         draw_ellipse(randomColor, x, y, width, height);
     }
