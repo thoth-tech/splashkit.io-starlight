@@ -1,0 +1,3 @@
+#### Display Details
+
+The following code shows an examples of using [Display Details](/api/graphics#display-details) to List all connected displays and their details, such as name, resolution.
