@@ -23,7 +23,7 @@ int non_sk_convert_int_validation()
     std::cout << "Please enter an integer: " << std::endl;
 
     // Holds program in a loop until user enters a valid integer
-    while (! nosk_is_integer(x))
+    while (!nosk_is_integer(x))
     {
         std::cin >> x;
         if (!nosk_is_integer(x)) std::cout << "Please enter a valid integer." << std::endl;
