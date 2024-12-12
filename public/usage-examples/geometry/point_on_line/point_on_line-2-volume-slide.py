@@ -8,7 +8,7 @@ percent = 0
 volume = "Volume: "
 
 # Create window and draw initial lines
-open_window("point on line", 600, 600)
+window = open_window("point on line", 600, 600)
 clear_screen(color_white())
 
 draw_line_record(color_black(), slider)

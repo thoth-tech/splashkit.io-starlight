@@ -4,7 +4,7 @@ from splashkit import *
 line = line_from(100, 300, 500, 300)
 
 # Create window
-open_window("Select Point", 600, 600)
+window = open_window("Select Point", 600, 600)
 
 while not quit_requested():
     # Display line
