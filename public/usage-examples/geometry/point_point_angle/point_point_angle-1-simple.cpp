@@ -2,7 +2,7 @@
 
 int main()
 {
-    open_window("Point point angle", 800, 600);
+    open_window("Point Point Angle", 800, 600);
     clear_screen();
 
     // Create circle at the point

@@ -13,7 +13,7 @@ Point2D originPoint = PointAt(400, 300);
 
 RefreshScreen();
 
-while (!SplashKit.QuitRequested())
+while (!QuitRequested())
 {
     // Get the current mouse position
     Point2D mouse = MousePosition();
