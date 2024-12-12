@@ -1,0 +1,3 @@
+#### Point On Line
+
+The following code shows an example of using [Point On Line](/api/geometry#point-on-line) to show a simple use case for point on line in this case as a volume slider
