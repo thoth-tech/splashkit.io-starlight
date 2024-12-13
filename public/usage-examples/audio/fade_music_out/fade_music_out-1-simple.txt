@@ -3,5 +3,5 @@
 The following code shows examples of using [Fade Music Out](/api/audio#fade-music-out) to fade the music out over 3 seconds, gradually lowering the volume until the music stops. 
 
 :::note
-To test this example code you can download these [**Resources**](/usage-examples/audio/fade_music_out/MusicResources.zip).
+To test this example code you can download these [**Resources**](/usage-examples/audio/fade_music_out/Resources.zip).
 ::: 
