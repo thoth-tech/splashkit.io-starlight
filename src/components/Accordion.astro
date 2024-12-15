@@ -4,13 +4,19 @@ const { title, uniqueID, customButton, customContent } = Astro.props;
 let uniqueContent = uniqueID + "-content";
 ---
 
-
-<accordion-component class="accordion" data-button={uniqueID} data-content={uniqueContent}>
-    <button id={uniqueID}
-    class={customButton || "accordionButton"}  >
-    {title}
+<accordion-component
+    class="accordion"
+    data-button={uniqueID}
+    data-content={uniqueContent}
+>
+    <button id={uniqueID} class={customButton || "accordionButton"}>
+        {title}
     </button>
-    <div id={uniqueContent} class={customContent || "accordionContent"} style="display: none;">
+    <div
+        id={uniqueContent}
+        class={customContent || "accordionContent"}
+        style="display: none;"
+    >
         <slot />
     </div>
 </accordion-component>
@@ -23,25 +29,25 @@ let uniqueContent = uniqueID + "-content";
             console.log(buttonID, contentID);
             var button;
             if (buttonID != null) button = document.getElementById(buttonID);
-            if (button != null)
-            {
-                button.onclick = function() {
-                    console.log('clicked')
+            if (button != null) {
+                button.onclick = function () {
+                    console.log("clicked");
                     var accordionContent;
-                    if (contentID != null) accordionContent = document.getElementById(contentID)
+                    if (contentID != null)
+                        accordionContent = document.getElementById(contentID);
                     if (accordionContent != null) {
-                        if (accordionContent.style.display !== 'none'){
-                        accordionContent.style.display = 'none';
-                    } else {
-                        accordionContent.style.display = 'block';
+                        if (accordionContent.style.display !== "none") {
+                            accordionContent.style.display = "none";
+                        } else {
+                            accordionContent.style.display = "block";
+                        }
                     }
-                    }
-                }
+                };
             }
         }
     }
 
-    customElements.define('accordion-component', Accordion);
+    customElements.define("accordion-component", Accordion);
 </script>
 
 <style>
@@ -69,8 +75,8 @@ let uniqueContent = uniqueID + "-content";
     .accordionContentList {
         list-style-type: none;
     }
-    .accordionContentList a{
-        font-size:medium;
+    .accordionContentList a {
+        font-size: medium;
         font-weight: 600;
     }
 </style>
