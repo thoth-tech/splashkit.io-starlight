@@ -1,22 +1,26 @@
 from splashkit import *
 
 text = "Monkeys love bananas, but penguins prefer ice cream sundaes."
-
-# Split the string into words
-words = text.split(' ')
+word = ""
 result = ""
+to_upper = True
 
-# Alternate words between lowercase and uppercase
-for i in range(len(words)):
-    if i % 2 == 0:
-        # Convert to uppercase
-        result += to_uppercase(words[i])
+# Loop through each character in the string
+for i in range(len(text) + 1):
+    if i == len(text) or text[i] == ' ':
+        # Process the word (alternate between uppercase and lowercase)
+        if to_upper:
+            result += to_uppercase(word)
+        else:
+            result += to_lowercase(word)
+        
+        if i != len(text):
+            result += " "  # Add space after word if not at end of string
+
+        word = ""  # Reset word
+        to_upper = not to_upper  # Alternate case for next word
     else:
-        # Convert to lowercase
-        result += to_lowercase(words[i])
+        word += text[i]  # Add character to current word
 
-    if i < len(words) - 1:
-        result += " "  # Add space between words
-
-write_line(f"Original text: {text}")
-write_line(f"Modified text: {result}")
+write_line("Original text: " + text)
+write_line("Modified text: " + result)
