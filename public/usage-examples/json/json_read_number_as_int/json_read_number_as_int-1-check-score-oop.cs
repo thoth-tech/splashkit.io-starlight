@@ -11,7 +11,7 @@ namespace JsonReadNumberInt
             SplashKit.JsonSetNumber(json_obj, "score", 100);
 
             // Read the integer value from the JSON object
-            int score = (int)SplashKit.JsonReadNumberAsDouble(json_obj, "score");
+            int score = (int)SplashKit.JsonReadNumberAsInt(json_obj, "score");
 
             // Display the integer value
             SplashKit.WriteLine("Score: " + score.ToString());

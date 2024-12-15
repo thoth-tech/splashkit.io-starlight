@@ -6,7 +6,7 @@ Json json_obj = CreateJson();
 JsonSetNumber(json_obj, "score", 100);
 
 // Read the integer value from the JSON object
-int score = (int)JsonReadNumberAsDouble(json_obj, "score");
+int score = (int)JsonReadNumberAsInt(json_obj, "score");
 
 // Display the integer value
 WriteLine("Score: " + score.ToString());

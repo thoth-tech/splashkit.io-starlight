@@ -1,3 +1,3 @@
 ### Setting Pi as a Double in a JSON Object
 
-The following code shows an example of using [json set number double](/api/json/#json-set-number-2) to set Pi as a double in a JSON object.
+The following code shows an example of using [Json Set Number Double](/api/json/#json-set-number-2) to set Pi as a double in a JSON object.
