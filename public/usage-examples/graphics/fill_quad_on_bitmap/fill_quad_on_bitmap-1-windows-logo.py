@@ -1,14 +1,11 @@
 from splashkit import *
 
 # Create a window and bitmap for the window
-window = open_window("Window", 400, 300)
-bitmap = create_bitmap("Bitmap", 400, 300)
+window = open_window("Windows Logo", 400, 300)
+bitmap = create_bitmap("Windows Logo Bitmap", 400, 300)
 
-# Fill background with white
+# Fill background with windows blue
 clear_bitmap(bitmap, rgba_color(51, 118, 212, 255))
-
-# Create color
-color = color_white()
 
 # Draw the four Window panels
 panels = [
@@ -40,7 +37,7 @@ panels = [
 
 # Draw each panel
 for panel in panels:
-    fill_quad_on_bitmap(bitmap, color, panel)
+    fill_quad_on_bitmap(bitmap, color_white(), panel)
 
 while not window_close_requested(window):
     process_events()

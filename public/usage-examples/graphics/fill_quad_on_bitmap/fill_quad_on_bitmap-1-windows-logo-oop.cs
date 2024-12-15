@@ -7,10 +7,10 @@ namespace FillQuadOnBitmap
         public static void Main()
         {
             // Create a window and bitmap for the window
-            Window window = new Window("Window", 400, 300);
-            Bitmap bitmap = new Bitmap("Bitmap", 400, 300);
+            Window window = new Window("Windows Logo", 400, 300);
+            Bitmap bitmap = new Bitmap("Windows Logo Bitmap", 400, 300);
 
-            // Fill background with white
+            // Fill background with windows blue
             bitmap.Clear(Color.RGBAColor(51, 118, 212, 255));
 
             // Create color

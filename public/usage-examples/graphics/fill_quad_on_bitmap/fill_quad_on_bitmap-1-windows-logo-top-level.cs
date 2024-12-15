@@ -2,14 +2,11 @@ using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
 // Create a window and bitmap for the window
-Window window = OpenWindow("Window", 400, 300);
-Bitmap bitmap = CreateBitmap("Bitmap", 400, 300);
+Window window = OpenWindow("Windows Logo", 400, 300);
+Bitmap bitmap = CreateBitmap("Windows Logo Bitmap", 400, 300);
 
-// Fill background with white
+// Fill background with windows blue
 ClearBitmap(bitmap, RGBAColor(51, 118, 212, 255));
-
-// Create color
-Color color = ColorWhite();
 
 // Draw the four Window panels
 Quad[] panels = {
@@ -42,7 +39,7 @@ Quad[] panels = {
 // Draw each panel
 for (int i = 0; i < panels.Length; i++)
 {
-    FillQuadOnBitmap(bitmap, color, panels[i]);
+    FillQuadOnBitmap(bitmap, ColorWhite(), panels[i]);
 }
 
 while (!window.CloseRequested)
