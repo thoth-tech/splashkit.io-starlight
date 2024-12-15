@@ -10,7 +10,6 @@ double product = value1 * value2;
 double difference = value1 - value2;
 double quotient = value1 / value2;
 
-// Output the results using WriteLine(double data)
 WriteLine("The values used are:");
 WriteLine(value1); // Writing the first double value
 WriteLine(value2); // Writing the second double value

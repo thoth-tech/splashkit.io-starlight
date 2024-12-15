@@ -1,3 +1,3 @@
 ### Read User Information
 
-The following code shows an example of using [delay](/api/terminal/#read-line), where the program asks the user 3 questions and reads the response for each question. The program then prints the user's responses.
+The following code shows an example of using [read line](/api/terminal/#read-line), where the program asks the user 3 questions and reads the response for each question. The program then prints the user's responses.

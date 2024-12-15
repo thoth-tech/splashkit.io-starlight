@@ -10,7 +10,6 @@ product = value1 * value2
 difference = value1 - value2
 quotient = value1 / value2
 
-# Output the results using write_line_double
 write_line("The values used are:")
 write_line_double(value1)  # Writing the first double value
 write_line_double(value2)  # Writing the second double value

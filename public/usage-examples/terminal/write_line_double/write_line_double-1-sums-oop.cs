@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace Program
+namespace WriteLineDouble
 {
     public class Program
     {
@@ -16,7 +16,6 @@ namespace Program
             double difference = value1 - value2;
             double quotient = value1 / value2;
 
-            // Output the results using SplashKit.WriteLine(double data)
             SplashKit.WriteLine("The values used are:");
             SplashKit.WriteLine(value1); // Writing the first double value
             SplashKit.WriteLine(value2); // Writing the second double value

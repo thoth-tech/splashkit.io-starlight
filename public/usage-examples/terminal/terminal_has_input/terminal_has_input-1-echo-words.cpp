@@ -6,19 +6,26 @@ int main()
     write_line("Type something and press Enter to see it echoed back.");
     write_line("Type 'exit' and press Enter to quit the program.");
 
-    while (true)
+    string input;
+
+    do
     {
         // Check if there's input waiting in the terminal
         if (terminal_has_input())
         {
-            // Read and echo the input
-            string input = read_line();
-            if (input == "exit")
+            // Read the input
+            input = read_line();
+            if (input != "exit")
             {
-                write_line("Exiting the program...");
-                break;
+                write_line("You typed: " + input);
             }
-            write_line("You typed: " + input);
         }
-    }
+        else
+        {
+            input = ""; // If no input, continue waiting
+        }
+    } while (input != "exit");
+
+    write_line("Exiting the program...");
+    return 0;
 }

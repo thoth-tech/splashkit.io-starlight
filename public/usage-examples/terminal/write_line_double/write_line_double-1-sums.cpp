@@ -11,7 +11,6 @@ int main()
     double difference = value1 - value2;
     double quotient = value1 / value2;
 
-    // Output the results using write_line(double data)
     write_line("The values used are:");
     write_line(value1); // Writing the first double value
     write_line(value2); // Writing the second double value
