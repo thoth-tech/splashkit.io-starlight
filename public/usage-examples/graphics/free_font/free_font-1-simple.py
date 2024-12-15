@@ -1,12 +1,13 @@
 from splashkit import *
 
-# Load first font
+# Open new window
 wnd = open_window("Font Styles", 600, 500)
 clear_screen_to_white()
 
-# Draw text with font
+# Load first font
 font1 =  load_font("BebasNeue", "BebasNeue.ttf")
 
+# Draw text with font
 draw_text_on_window(wnd, "This font is called Bebas Neue", color_black(), font1, 30, 150, 210)
 draw_text_on_window(wnd, "The font style is Regular 400", color_black(), font1, 30, 150, 240)
 refresh_screen()

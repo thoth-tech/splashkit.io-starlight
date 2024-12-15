@@ -37,5 +37,5 @@ int main()
     
     // Close window
     close_all_windows();  
-
+    return 0;
 }

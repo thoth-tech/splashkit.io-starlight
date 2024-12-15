@@ -1,8 +1,8 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-// Open a new window
-SplashKitSDK.Window wnd = OpenWindow("Font Styles", 600, 500);
+// Open new window
+Window wnd = OpenWindow("Font Styles", 600, 500);
 
 // Load first font
 Font font1 = LoadFont("BebasNeue", "BebasNeue.ttf");

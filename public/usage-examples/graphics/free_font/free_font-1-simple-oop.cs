@@ -13,7 +13,7 @@ namespace LoadFont
             // Load first font
             Font font1 = SplashKit.LoadFont("BebasNeue", "BebasNeue.ttf");
 
-             // Draw text with font 
+            // Draw text with font 
             SplashKit.DrawTextOnWindow(wnd, "This font is called Bebas Neue", Color.Black, font1, 30, 150, 210);
             SplashKit.DrawTextOnWindow(wnd, "The font style is Regular 400", Color.Black, font1, 30, 150, 240);
             SplashKit.RefreshScreen();
@@ -29,7 +29,7 @@ namespace LoadFont
             // Load second font
             Font font2 = SplashKit.LoadFont("NunitoSans", "NunitoSans.ttf");
 
-             // Draw text with font
+            // Draw text with font
             SplashKit.DrawTextOnWindow(wnd, "This font is called Nunito Sans", Color.Black, font2, 30, 120, 210);
             SplashKit.DrawTextOnWindow(wnd, "The font style is Extra Light 200", Color.Black, font2, 30, 120, 240);
             SplashKit.RefreshScreen();
