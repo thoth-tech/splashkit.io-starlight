@@ -28,22 +28,30 @@ CookieConsent.run({
                     label: 'Google Analytics 4',
                     onAccept: () => {
                         console.log("Analytics consent granted");
-                        window.gtag('consent', 'update', {
-                            ad_storage: 'granted',
-                            ad_user_data: 'granted',
-                            ad_personalization: 'granted',
-                            analytics_storage: 'granted',
-                        });
+                        if (typeof window.gtag === "function") {
+                            window.gtag('consent', 'update', {
+                                ad_storage: 'granted',
+                                ad_user_data: 'granted',
+                                ad_personalization: 'granted',
+                                analytics_storage: 'granted',
+                            });
+                        } else {
+                            console.error("gtag is not defined. Ensure Google Analytics is loaded.");
+                        }
                     },
                     onReject: () => {
                         console.log("Analytics consent denied");
-                        window.gtag('consent', 'update', {
-                            ad_storage: 'denied',
-                            ad_user_data: 'denied',
-                            ad_personalization: 'denied',
-                            analytics_storage: 'denied',
-                        });
-                    },
+                        if (typeof window.gtag === "function") {
+                            window.gtag('consent', 'update', {
+                                ad_storage: 'denied',
+                                ad_user_data: 'denied',
+                                ad_personalization: 'denied',
+                                analytics_storage: 'denied',
+                            });
+                        } else {
+                            console.error("gtag is not defined. Ensure Google Analytics is loaded.");
+                        }
+                    },                    
                     cookies: [
                         {
                             name: /^_ga/,
