@@ -408,15 +408,21 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
             mdxContent += "**Return Type:** " + typeMappings[func.return.type] + "\n\n";
           }
 
+          let usageHeading = false;
+
           let linked = false;
           usageExamples.forEach((example) => {
             if (func.unique_global_name == example && !linked) {
               formattedUsageLink = func.unique_global_name.replace(/_/g, "-");
-              mdxContent += `**Usage:**\n`
+
+              mdxContent += `**Usage:**\n\n`
+              usageHeading = true;
+
               mdxContent += `<LinkButton href="/usage-examples/${categoryKey}/#${formattedUsageLink}" variant="secondary">\nSee Example Code\n</LinkButton>\n\n`
               linked = true;
             }
           });
+
           let allGuides = [];
           guidesCategories.forEach((category) => {
             category.forEach((guide) => {
@@ -431,9 +437,11 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
             })
           })
 
-
           if (allGuides.length > 0) {
-            mdxContent += "**Usage:**\n\n"
+
+            if (!usageHeading) {
+              mdxContent += "**Usage:**\n\n"
+            }
             mdxContent += `<Accordion title="See Implemenations in Guides" uniqueID={${JSON.stringify(func.unique_global_name)}} customButton="guidesAccordion">\n\n`
 
             mdxContent += `<ul>`
@@ -444,7 +452,6 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
 
             mdxContent += `</Accordion>\n`
           }
-
 
           mdxContent += "**Signatures:**\n\n";
           mdxContent += "<Tabs syncKey=\"code-language\">\n";
