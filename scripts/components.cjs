@@ -1,4 +1,5 @@
 // Script to generate .mdx file in a specific format to adapt to Starlight from JSON data.
+
 // Author: @XQuestCode and @omckeon
 const fs = require("fs");
 const kleur = require("kleur");
@@ -146,6 +147,36 @@ function getColorRGBValues(colorName, jsonData) {
   return rgbValues;
 }
 
+function getJsonData() {
+  var jsonFile;
+  var jsonData;
+  try {
+    jsonFile = fs.readFileSync(`${__dirname}/guides.json`);
+  } catch (err) {
+    console.error(kleur.red("Error reading JSON file:"), err);
+    return;
+  }
+  try {
+    jsonData = JSON.parse(jsonFile);
+  } catch (error) {
+    console.error(kleur.red("Error parsing JSON:"), error);
+    return;
+  }
+  return jsonData;
+}
+
+function getApiCategories(jsonData) {
+  const apiCategories = [];
+  for (const categoryKey in jsonData) {
+    if (categoryKey != "types") {
+      apiCategories.push(jsonData[categoryKey]);
+    }
+  }
+  return apiCategories;
+}
+
+const readGuides = require('./api-guides-generation.cjs');
+
 fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
   if (err) {
     console.error(kleur.red("Error reading JSON file:"), err);
@@ -156,9 +187,29 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
   try {
     const jsonData = JSON.parse(data);
     Mappings(jsonData);
-    console.log(`Generating MDX files for components`);
+    console.log(`Generating MDX files for components\n`);
+
+    const guidesDir = path.join(__dirname, 'guides'); // Base directory for guides
+    const outputFile = path.join(__dirname, 'guides.json')
+
+    try {
+      // console.log(kleur.green('Reading guides folder...'));
+      const guidesContent = readGuides(guidesDir);
+
+      try {
+        console.log(kleur.green('Writing guides functions to json file...\n'));
+        fs.writeFileSync(outputFile, JSON.stringify(guidesContent, null, 4));
+      } catch (err) {
+        console.log(kleur.red('Error writing output files: ', err));
+      }
+    } catch (error) {
+      console.log(kleur.red('Error processing guides files: ', error));
+    }
 
     const jsonColors = getColorData();
+    let guidesJson = getJsonData();
+    let guidesCategories = getApiCategories(guidesJson);
+
     const usageExamples = getAllFinishedExamples();
     // console.log(usageExamples);
 
@@ -192,7 +243,7 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
           mdxContent += `:::\n`
         }
       }
-      mdxContent += `\nimport { Tabs, TabItem } from "@astrojs/starlight/components";\nimport { LinkCard, CardGrid } from "@astrojs/starlight/components";\nimport { LinkButton } from '@astrojs/starlight/components';\n`;
+      mdxContent += `\nimport { Tabs, TabItem, LinkCard, CardGrid, LinkButton } from "@astrojs/starlight/components";\nimport Accordion from '../../../components/Accordion.astro'\n`;
       if (guidesAvailable[categoryKey]) {
         mdxContent += "\n## \n";
         mdxContent += `## ${name} Guides\n`;
@@ -366,6 +417,34 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
               linked = true;
             }
           });
+          let allGuides = [];
+          guidesCategories.forEach((category) => {
+            category.forEach((guide) => {
+              guide.functions.forEach((used) => {
+                if (func.unique_global_name == used) {
+                  allGuides.push({
+                    name: guide.name,
+                    url: guide.url
+                  });
+                }
+              })
+            })
+          })
+
+
+          if (allGuides.length > 0) {
+            mdxContent += "**Usage:**\n\n"
+            mdxContent += `<Accordion title="See Implemenations in Guides" uniqueID={${JSON.stringify(func.unique_global_name)}} customButton="guidesAccordion">\n\n`
+
+            mdxContent += `<ul>`
+            allGuides.forEach((guide) => {
+              mdxContent += `<li> [${guide.name}](${guide.url}) </li>`
+            })
+            mdxContent += `</ul>\n\n`
+
+            mdxContent += `</Accordion>\n`
+          }
+
 
           mdxContent += "**Signatures:**\n\n";
           mdxContent += "<Tabs syncKey=\"code-language\">\n";
@@ -508,10 +587,11 @@ fs.readFile(`${__dirname}/api.json`, "utf8", async (err, data) => {
       }
 
 
-
+      // Replace spaces with hyphens in the name
+      const formattedName = name.replace(/\s+/g, '-');
 
       // Write the MDX file
-      fs.writeFile(`./src/content/docs/api/${name}.mdx`, mdxContent, (err) => {
+      fs.writeFile(`./src/content/docs/api/${formattedName}.mdx`, mdxContent, (err) => {
         if (err) {
           console.log(kleur.red(`Error writing ${input} MDX file: ${err.message}`));
         } else {
