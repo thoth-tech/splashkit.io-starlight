@@ -1,3 +1,3 @@
 ### Check the temperature in a JSON object
 
-The following code shows an example of using [json read number](/api/json/#json-read-number) to create a JSON object with a number, and then call `json_read_number` to get the number value.
+The following code shows an example of using [json read number](/api/json/#json-read-number) to read a number from a JSON object.

@@ -1,3 +1,3 @@
 ### Get some Pi from a JSON object
 
-The following code shows an example of using [json read number as double](/api/json/#json-read-number-as-double) to create a JSON object with a number, and then call `json_read_number_as_double` to get the number value as a double.
+The following code shows an example of using [json read number as double](/api/json/#json-read-number-as-double) to read a number from a JSON object as a double.

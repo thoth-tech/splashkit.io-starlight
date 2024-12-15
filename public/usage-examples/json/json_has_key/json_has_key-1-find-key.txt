@@ -1,3 +1,3 @@
 ### Check is a key exists in a JSON object
 
-The following code shows an example of using [json has key](/api/json/#json-has-key) to create a JSON object with a key, and then call `json_has_key` to check if the key exists in the JSON.
+The following code shows an example of using [json has key](/api/json/#json-has-key) to check if a key exists in a JSON object.
