@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace Program
+namespace WriteLineEmpty
 {
     public class Program
     {
