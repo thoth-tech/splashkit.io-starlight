@@ -1,3 +1,3 @@
 ### Count up the keys
 
-The following code shows an example of using [Json count keys](/api/json/#json-count-keys) to create a JSON with three objects and then calls `json_count_keys` to count the keys in the JSON.
+The following code shows an example of using [Json Count Keys](/api/json/#json-count-keys) to create a JSON with three objects and then calls `json_count_keys` to count the keys in the JSON.

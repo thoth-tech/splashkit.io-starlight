@@ -1,3 +1,3 @@
 ### Create and free a specific JSON object
 
-The following code shows an example of using [free json](/api/json/#free-json) to create a JSON object and then free it. It also shows how when you try to call a JSON you freed, you get a log warning message.
+The following code shows an example of using [Free Json](/api/json/#free-json) to create a JSON object and then free it. It also shows how when you try to call a JSON you freed, you get a log warning message.

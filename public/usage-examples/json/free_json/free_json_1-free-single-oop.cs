@@ -10,7 +10,7 @@ namespace FreeJson
             Json json = SplashKit.CreateJson();
 
             // Add some data to the JSON object
-            SplashKit.JsonSetString(json1, "name", "Breezy");
+            SplashKit.JsonSetString(json, "name", "Breezy");
             SplashKit.WriteLine("Json: " + SplashKit.JsonToString(json));
 
             // Free the JSON object
