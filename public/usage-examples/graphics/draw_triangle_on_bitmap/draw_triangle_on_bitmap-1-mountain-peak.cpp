@@ -32,10 +32,10 @@ int main()
         process_events();
         // Draw the bitmap to the window
         draw_bitmap(bitmap, 0, 0);
-        // Refresh the window
         refresh_screen();
     }
     
     free_bitmap(bitmap);
+    close_all_windows();
     return 0;
 }

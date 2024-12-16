@@ -26,13 +26,13 @@ DrawTriangleOnBitmap(bitmap, ColorGray(),
                      200, 100,   // Peak
                      300, 250);  // Right base
 
-while (!window.CloseRequested)
+while (!WindowCloseRequested(window))
 {
     ProcessEvents();
     // Draw the bitmap to the window
     DrawBitmap(bitmap, 0, 0);
-    // Refresh the window
     RefreshScreen();
 }
 
 FreeBitmap(bitmap);
+CloseAllWindows();
