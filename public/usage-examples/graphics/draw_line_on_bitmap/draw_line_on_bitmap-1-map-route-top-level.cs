@@ -20,8 +20,8 @@ while (!window.CloseRequested)
     ProcessEvents();
     // Draw the bitmap to the current window
     DrawBitmap(bitmap, 0, 0);
-    // Refresh the window
     RefreshScreen();
 }
 
 FreeBitmap(bitmap);
+CloseAllWindows();

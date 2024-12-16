@@ -25,10 +25,10 @@ namespace DrawLineOnBitmap
                 SplashKit.ProcessEvents();
                 // Draw the bitmap to the current window
                 window.DrawBitmap(bitmap, 0, 0);
-                // Refresh the window
                 SplashKit.RefreshScreen();
             }
             bitmap.Free();
+            window.Cl
         }
     }
 }
