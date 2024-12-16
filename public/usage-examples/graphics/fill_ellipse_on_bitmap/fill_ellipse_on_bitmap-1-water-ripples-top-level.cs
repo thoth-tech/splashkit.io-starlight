@@ -30,13 +30,13 @@ for (int i = 0; i < rippleColors.Length; i++)
                         150 + i * 40);             // height increases for outer ripples
 }
 
-while (!window.CloseRequested)
+while (!WindowCloseRequested(window))
 {
     ProcessEvents();
     // Draw the bitmap to the window
     DrawBitmap(bitmap, 0, 0);
-    // Refresh the window
     RefreshScreen();
 }
 
 FreeBitmap(bitmap);
+CloseAllWindows();
