@@ -12,8 +12,7 @@ clear_screen(color_white())
 draw_circle_record(color_red(), circle1)
 draw_circle_record(color_blue(), circle2)
 draw_circle_record(color_orange(), circle_at(screen_center(), 150))
-draw_circle_record(color_green(), circle_at(screen_center(), 200)
-)
+draw_circle_record(color_green(), circle_at(screen_center(), 200))
 
 refresh_screen()
 
