@@ -3,25 +3,19 @@ using static SplashKitSDK.SplashKit;
 
 OpenWindow("Draw Circles", 800, 600);
 
+// Create circles with different radii
+Circle circle1 = CircleAt(ScreenCenter(), 50);
+Circle circle2 = CircleAt(ScreenCenter(), 100);
+
 ClearScreen();
-
-// Define the center point of circles
-Point2D center = new Point2D { X = 400, Y = 300 };
-
-// Create 4 circles with different radii
-Circle circle1 = new Circle { Center = center, Radius = 50 };
-Circle circle2 = new Circle { Center = center, Radius = 100 };
-Circle circle3 = new Circle { Center = center, Radius = 150 };
-Circle circle4 = new Circle { Center = center, Radius = 200 };
 
 // Draw the circles with different colors
 DrawCircle(ColorRed(), circle1);
 DrawCircle(ColorBlue(), circle2);
-DrawCircle(ColorOrange(), circle3);
-DrawCircle(ColorGreen(), circle4);
+DrawCircle(ColorOrange(), CircleAt(ScreenCenter(), 150));
+DrawCircle(ColorGreen(), CircleAt(ScreenCenter(), 200));
 
 RefreshScreen();
 
 Delay(4000);
-
 CloseAllWindows();
