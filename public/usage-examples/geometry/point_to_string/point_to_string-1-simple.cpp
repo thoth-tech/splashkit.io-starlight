@@ -2,26 +2,23 @@
 
 int main()
 {
-    // Variable Declaration
-    string click_message = "Mouse clicked at ";
-    string mouse_position_text;
+    string mouse_position_text = "Click to see coordinates...";
 
-    // Open Window
     open_window("Mouse Clicked Location", 600, 600);
-    clear_screen(COLOR_GHOST_WHITE);
 
     while (!quit_requested())
     {
+        process_events();
+
         // Check for mouse click
         if (mouse_clicked(LEFT_BUTTON))
-        { 
-            mouse_position_text = point_to_string(mouse_position());
-            clear_screen(COLOR_GHOST_WHITE);
+        {
+            mouse_position_text = "Mouse clicked at " + point_to_string(mouse_position());
         }
 
         // Print mouse position to screen
-        draw_text(click_message + mouse_position_text, COLOR_BLACK, 100, 300);
-        process_events();
+        clear_screen(COLOR_GHOST_WHITE);
+        draw_text(mouse_position_text, COLOR_BLACK, 100, 300);
         refresh_screen();
     }
 

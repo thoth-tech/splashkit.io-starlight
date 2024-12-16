@@ -1,23 +1,19 @@
 from splashkit import *
 
-# Variable Declaration
-click_message = "Mouse clicked at "
-mouse_position_text = ""
+mouse_position_text = "Click to see coordinates..."
 
-# Open Window
 open_window("Mouse Clicked Location", 600, 600)
-clear_screen(color_ghost_white())
 
 while not quit_requested():
+    process_events()
 
     # check for mouse click
     if mouse_clicked(MouseButton.left_button):
-        mouse_position_text = point_to_string(mouse_position())
-        clear_screen(color_ghost_white())
+        mouse_position_text = "Mouse clicked at " + point_to_string(mouse_position())
     
     # Print mouse position to screen
-    draw_text_no_font_no_size(click_message + mouse_position_text, color_black(), 100, 300)
-    process_events()
+    clear_screen(color_ghost_white())
+    draw_text_no_font_no_size(mouse_position_text, color_black(), 100, 300)
     refresh_screen()
 
 close_all_windows()
