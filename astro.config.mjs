@@ -119,7 +119,7 @@ export default defineConfig({
   },
   // Render mathematical equations using remark-math and rehype-mathjax
   markdown: {
-      remarkPlugins: [remarkMath],
-      rehypePlugins: [rehypeMathjax],
-    },
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeMathjax],
+  },
 });

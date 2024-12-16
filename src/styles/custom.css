@@ -249,6 +249,7 @@ code {
   margin-left: 20px;
 }
 
+/* Display maths equations on single line */
 mjx-container svg {
   display: inline !important;
 }
