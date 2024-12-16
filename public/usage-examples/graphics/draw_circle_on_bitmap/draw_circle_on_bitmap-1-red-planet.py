@@ -25,7 +25,7 @@ while not window_close_requested(window):
     process_events()
     # Draw the bitmap to the window
     draw_bitmap(planet, 0, 0)
-    # Refresh the window
     refresh_screen()
 
 free_bitmap(planet)
+close_all_windows()

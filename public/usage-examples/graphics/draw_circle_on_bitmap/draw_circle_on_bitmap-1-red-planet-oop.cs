@@ -33,10 +33,10 @@ namespace DrawCircleOnBitmap
                 SplashKit.ProcessEvents();
                 // Draw the bitmap to the window
                 window.DrawBitmap(bitmap, 0, 0);
-                // Refresh the window
                 SplashKit.RefreshScreen();
             }
             bitmap.Free();
+            SplashKit.CloseAllWindows();
         }
     }
 }
