@@ -2,7 +2,6 @@
 
 int main()
 {
-    // Create Window
     open_window("Colourful Starburst", 600, 600);
     clear_screen(COLOR_BLACK);
 

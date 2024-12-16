@@ -1,15 +1,13 @@
 using SplashKitSDK;
 
-namespace DrawLine
+namespace DrawLineExample
 {
     public class Program
     {
         public static void Main()
         {
-            // Create Window
             Window window = new Window("Colourful Starburst", 600, 600);
             window.Clear(Color.Black);
-
 
             // Draws starburst pattern with changing colours to window
             window.DrawLine(Color.Yellow, 0, 0, 600, 600);

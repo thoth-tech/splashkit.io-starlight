@@ -1,6 +1,5 @@
 from splashkit import *
 
-# Create_window
 open_window("Colourful Starburst", 600, 600)
 clear_screen(color_black())
 
