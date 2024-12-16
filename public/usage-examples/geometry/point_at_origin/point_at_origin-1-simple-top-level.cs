@@ -2,17 +2,14 @@ using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 OpenWindow("Point At Origin", 800, 600);
-ClearScreen();
 
 // Create a point at origin
-Point2D Point = PointAtOrigin();
+Point2D point = PointAtOrigin();
 
-// Create circle at the origin point
-FillCircle(Color.Red, Point.X, Point.Y, 4);
-
+// Create red circle at the origin point
+ClearScreen();
+FillCircle(ColorRed(), point.X, point.Y, 4);
 RefreshScreen();
+
 Delay(4000);
 CloseAllWindows();
-     
-
-
