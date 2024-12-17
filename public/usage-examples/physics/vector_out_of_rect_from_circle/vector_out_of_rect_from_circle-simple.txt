@@ -1,0 +1,5 @@
+#### Create a Vector Out of a Rectangle from a Circle
+
+Returns a vector that can be used to move a circle back out of a rectangle, given that the circle is moving at the specified velocity.
+
+Uses the [vector_out_of_rect_from_circle](/api/physics/#vector-out-of-rect-from-circle) function.

@@ -1,0 +1,5 @@
+#### Create a Vector From a Point to a Rectangle
+
+Returns a vector from a point to a rectangle.
+
+Uses the [vector_from_point_to_rect](/api/physics/#vector-from-point-to-rect) function.

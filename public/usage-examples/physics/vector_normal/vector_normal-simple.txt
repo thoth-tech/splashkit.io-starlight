@@ -1,0 +1,5 @@
+#### Create a Perpendicular Unit Vector
+
+Returns a unit vector that is perpendicular (“normal”) to the provided vector. Note: when passed a zero or null vector (a vector with no magnitude or direction) then this function returns a zero/null vector.
+
+Uses the [vector_normal](/api/physics/#vector-normal) function.

@@ -1,0 +1,5 @@
+#### Create a Vector from a Line
+
+Returns a vector that points from the start to the end of a line. 
+
+Uses the [vector_from_line](/api/physics/#vector-from-line) function.

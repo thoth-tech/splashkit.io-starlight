@@ -1,0 +1,5 @@
+#### Create a Vector Out of One Rectangle from Another Rectangle
+
+Returns the vector needed to move a rectangle back out of another rectangle assuming the inner rectangle was moving at the velocity specified.
+
+Uses the [vector_out_of_rect_from_rect](/api/physics/#vector-out-of-rect-from-rect) function.
