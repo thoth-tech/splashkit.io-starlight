@@ -1,0 +1,5 @@
+#### Determine if Two Sprites have Collided
+
+Test if two sprites have collided.
+
+Uses the [sprite_collision](/api/physics/#sprite-collision) function.
