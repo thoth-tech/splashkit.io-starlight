@@ -1,0 +1,5 @@
+#### Calculate Vector Magnitude
+
+Calculate the magnitude (or “length”) of a vector.
+
+Uses the [vector_magnitude](/api/physics/#vector-magnitude) function.
