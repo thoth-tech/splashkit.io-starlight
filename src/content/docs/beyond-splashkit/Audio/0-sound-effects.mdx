@@ -50,7 +50,7 @@ sudo apt-get install cmake libpng-dev libcurl4-openssl-dev libsdl2-dev libsdl2-m
 
 ### Compiling Your Code
 
-With C++ programs, you will need to adjust the compiling command to link to the libraries being used. Below you will see the different commands to compile with and without SplashKit.
+With C++ programs, you will need to adjust the compiling command to link to any libraries being used. Below you will see the different commands to compile with and without SplashKit.
 
 Now, assuming the code filename is `program.cpp`.
 
@@ -60,7 +60,7 @@ Now, assuming the code filename is `program.cpp`.
 As usual, you will compile the SplashKit C++ code using the following command:
 
 ```shell
-g++ program.cpp -o run_program -l SplashKit
+g++ program.cpp -o test -l SplashKit
 ```
 
 </TabItem>
@@ -68,7 +68,7 @@ g++ program.cpp -o run_program -l SplashKit
 
 :::note
 
-When compiling without SplashKit, you will need to include more compiler flags.
+When compiling without SplashKit, you may need to include more compiler flags for any libraries used.
 
 :::
 
