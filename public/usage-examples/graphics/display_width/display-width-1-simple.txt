@@ -1,0 +1,3 @@
+#### Display Width
+
+The following code shows an examples of using [Display Width](/api/graphics#display-width) to Retrieve the width of a display.
