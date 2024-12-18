@@ -1,0 +1,3 @@
+### Check is a key exists in a JSON object
+
+The following code shows an example of using [json has key](/api/json/#json-has-key) to check if a key exists in a JSON object.
