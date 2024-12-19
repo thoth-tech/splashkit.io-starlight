@@ -184,10 +184,10 @@ const colorOrder = [
 ];
 
 // Sort the colour data based on colorOrder
-const sortedColors = [];
+const sortedColors: any[] = [];
 colorOrder.forEach((row) => {
   row.forEach((name) => {
-    const color = colorPaletteData.find((c) => c.name === name);
+    const color = colorPaletteData.find((c: any) => c.name === name);
     if (color) sortedColors.push(color);
   });
 });
@@ -312,10 +312,26 @@ colorOrder.forEach((row) => {
     transition:
       background-color 0.3s ease,
       color 0.3s ease; /* Smooth transitions */
-    white-space: pre-wrap; /* Preserve whitespace */
     text-align: left; /* Left-align the text */
   }
+  .cpp-code,
+  .csharp-code,
+  .python-code {
+    padding-bottom: 10px;
+  }
 
+  .cpp-color-func,
+  .cpp-code-rgb,
+  .cpp-code-hsb,
+  .cs-code-color-oo,
+  .cs-code-rgb-sk,
+  .cs-code-rgb-oo,
+  .cs-code-hsb-sk,
+  .cs-code-hsb-oo,
+  .python-code-rgb,
+  .python-code-hsb {
+    display: none; /* Hidden by default */
+  }
   /* Styles for tab headers */
   .tab-header {
     color: var(--text-primary); /* Dynamic text colour */
@@ -366,17 +382,53 @@ colorOrder.forEach((row) => {
   <Tabs syncKey="code-language">
     <TabItem label="C++">
       <div class="tab-content cpp-code">
-        <Code code="Click a colour to see details for C++" lang="cpp" />
+        <div class="cpp-color-const" id="cpp-color-const">
+          <Code code="Click a colour to see details for C++" lang="cpp" />
+        </div>
+        <div class="cpp-color-func" id="cpp-color-func">
+          <Code code="Click a colour to see details for C++" lang="cpp" />
+        </div>
+        <div class="cpp-code-rgb" id="cpp-code-rgb">
+          <Code code="Click a colour to see details for C++" lang="cpp" />
+        </div>
+        <div class="cpp-code-hsb" id="cpp-code-hsb">
+          <Code code="Click a colour to see details for C++" lang="cpp" />
+        </div>
       </div>
     </TabItem>
     <TabItem label="C#">
       <div class="tab-content csharp-code">
-        <Code code="Click a colour to see details for C#" lang="csharp" />
+        <div class="cs-code-color-sk" id="cs-code-color-sk">
+          <Code code="Click a colour to see details for C#" lang="csharp" />
+        </div>
+        <div class="cs-code-color-oo" id="cs-code-color-oo">
+          <Code code="Click a colour to see details for C#" lang="csharp" />
+        </div>
+        <div class="cs-code-rgb-sk" id="cs-code-rgb-sk">
+          <Code code="Click a colour to see details for C#" lang="csharp" />
+        </div>
+        <div class="cs-code-rgb-oo" id="cs-code-rgb-oo">
+          <Code code="Click a colour to see details for C#" lang="csharp" />
+        </div>
+        <div class="cs-code-hsb-sk" id="cs-code-hsb-sk">
+          <Code code="Click a colour to see details for C#" lang="csharp" />
+        </div>
+        <div class="cs-code-hsb-oo" id="cs-code-hsb-oo">
+          <Code code="Click a colour to see details for C#" lang="csharp" />
+        </div>
       </div>
     </TabItem>
     <TabItem label="Python">
       <div class="tab-content python-code">
-        <Code code="Click a colour to see details for Python" lang="python" />
+        <div class="python-code-color" id="python-code-color">
+          <Code code="Click a colour to see details for Python" lang="python" />
+        </div>
+        <div class="python-code-rgb" id="python-code-rgb">
+          <Code code="Click a colour to see details for Python" lang="python" />
+        </div>
+        <div class="python-code-hsb" id="python-code-hsb">
+          <Code code="Click a colour to see details for Python" lang="python" />
+        </div>
       </div>
     </TabItem>
   </Tabs>
@@ -389,9 +441,9 @@ colorOrder.forEach((row) => {
     const paletteContainer = document.getElementById("palette-container");
 
     // Add a click event listener to the palette container
-    paletteContainer.addEventListener("click", (event) => {
+    paletteContainer?.addEventListener("click", (event) => {
       // Identify the closest clicked element with the class 'color-box'
-      const colorBox = event.target.closest(".color-box");
+      const colorBox = event.target?.closest(".color-box");
       if (colorBox) {
         // Retrieve custom data attributes from the selected colour box
         const colorName = colorBox.dataset.colorName; // Colour name (e.g., "Red")
@@ -399,35 +451,99 @@ colorOrder.forEach((row) => {
         const colorHsb = colorBox.dataset.colorHsb; // HSB value (e.g., "hsb_color(0.00, 1.00, 1.00)")
 
         // Generate the C++ code snippet using the colour data
-        const cppCode = `COLOR_${colorName
+        const cppCodeForColorConst = `COLOR_${colorName
           .toUpperCase()
-          .replaceAll(" ", "_")}\n${colorRgb}\n${colorHsb}`;
+          .replaceAll(" ", "_")}`;
+        const cppCodeForColorFunc = `color_${colorName
+          .toLowerCase()
+          .replaceAll(" ", "_")}()`;
+        const cppCodeForRgb = `${colorRgb}`;
+        const cppCodeForHsb = `${colorHsb}`;
 
         // Generate the C# code snippet using the color data
-        const csharpCode = `SplashKit.Color${colorName.replaceAll(
-          " ",
-          "",
-        )}();\nSplashKit.RGBColor(${colorRgb.slice(
-          10,
-          -1,
-        )});\nSplashKit.HSBColor(${colorHsb.slice(10, -1)});`;
+        const csCodeForColorSK = `SplashKit.Color${colorName.replaceAll(" ", "")}()`;
+        const csCodeForColorOO = `Color.${colorName.replaceAll(" ", "")}`;
+        const csCodeForRgbSK = `SplashKit.RGBColor(${colorRgb.slice(10, -1)})`;
+        const csCodeForRgbOO = `Color.RGBColor(${colorRgb.slice(10, -1)})`;
+        const csCodeForHsbSK = `SplashKit.HSBColor(${colorHsb.slice(10, -1)})`;
+        const csCodeForHsbOO = `Color.HSBColor(${colorHsb.slice(10, -1)})`;
 
         // Generate the Python code snippet using the colour data
-        const pythonCode = `color_${colorName
+        const pythonCodeForColor = `color_${colorName
           .toLowerCase()
-          .replaceAll(" ", "_")}()\nrgb_color(${colorRgb.slice(
-          10,
-          -1,
-        )})\nhsb_color(${colorHsb.slice(10, -1)})`;
+          .replaceAll(" ", "_")}()`;
+        const pythonCodeForRgb = `rgb_color(${colorRgb.slice(10, -1)})`;
+        const pythonCodeForHsb = `hsb_color(${colorHsb.slice(10, -1)})`;
 
         // Update the C++ tab content with the generated code
-        document.querySelector(".cpp-code .code").textContent = cppCode;
+        // C++ Color
+        const cppColorConst = document.querySelector(".cpp-color-const .code");
+        if (cppColorConst) cppColorConst.textContent = cppCodeForColorConst;
+        const cppColorFunc = document.querySelector(".cpp-color-func .code");
+        if (cppColorFunc) cppColorFunc.textContent = cppCodeForColorFunc;
+        const cppColorFuncDisplay = document.getElementById("cpp-color-func");
+        if (cppColorFuncDisplay) cppColorFuncDisplay.style.display = "block";
+
+        // C++ RGB
+        const cppRgb = document.querySelector(".cpp-code-rgb .code");
+        if (cppRgb) cppRgb.textContent = cppCodeForRgb;
+        const cppRgbDisplay = document.getElementById("cpp-code-rgb");
+        if (cppRgbDisplay) cppRgbDisplay.style.display = "block";
+
+        // C++ HSB
+        const cppHsb = document.querySelector(".cpp-code-hsb .code");
+        if (cppHsb) cppHsb.textContent = cppCodeForHsb;
+        const cppHsbDisplay = document.getElementById("cpp-code-hsb");
+        if (cppHsbDisplay) cppHsbDisplay.style.display = "block";
 
         // Update the C# tab content with the generated code
-        document.querySelector(".csharp-code .code").textContent = csharpCode;
+        // C# Color
+        const csColorSK = document.querySelector(".cs-code-color-sk .code");
+        if (csColorSK) csColorSK.textContent = csCodeForColorSK;
+
+        const csColorOO = document.querySelector(".cs-code-color-oo .code");
+        if (csColorOO) csColorOO.textContent = csCodeForColorOO;
+        const csColorOODisplay = document.getElementById("cs-code-color-oo");
+        if (csColorOODisplay) csColorOODisplay.style.display = "block";
+
+        // C# RGB
+        const csRgbSK = document.querySelector(".cs-code-rgb-sk .code");
+        if (csRgbSK) csRgbSK.textContent = csCodeForRgbSK;
+        const csRgbSKDisplay = document.getElementById("cs-code-rgb-sk");
+        if (csRgbSKDisplay) csRgbSKDisplay.style.display = "block";
+
+        const csRgbOO = document.querySelector(".cs-code-rgb-oo .code");
+        if (csRgbOO) csRgbOO.textContent = csCodeForRgbOO;
+        const csRgbOODisplay = document.getElementById("cs-code-rgb-oo");
+        if (csRgbOODisplay) csRgbOODisplay.style.display = "block";
+
+        // C# HSB
+        const csHsbSK = document.querySelector(".cs-code-hsb-sk .code");
+        if (csHsbSK) csHsbSK.textContent = csCodeForHsbSK;
+        const csHsbSKDisplay = document.getElementById("cs-code-hsb-sk");
+        if (csHsbSKDisplay) csHsbSKDisplay.style.display = "block";
+
+        const csHsbOO = document.querySelector(".cs-code-hsb-oo .code");
+        if (csHsbOO) csHsbOO.textContent = csCodeForHsbOO;
+        const csHsbOODisplay = document.getElementById("cs-code-hsb-oo");
+        if (csHsbOODisplay) csHsbOODisplay.style.display = "block";
 
         // Update the Python tab content with the generated code
-        document.querySelector(".python-code .code").textContent = pythonCode;
+        // Python Color
+        const pythonColor = document.querySelector(".python-code-color .code");
+        if (pythonColor) pythonColor.textContent = pythonCodeForColor;
+
+        // Python RGB
+        const pythonRgb = document.querySelector(".python-code-rgb .code");
+        if (pythonRgb) pythonRgb.textContent = pythonCodeForRgb;
+        const pythonRgbDisplay = document.getElementById("python-code-rgb");
+        if (pythonRgbDisplay) pythonRgbDisplay.style.display = "block";
+
+        // Python HSB
+        const pythonHsb = document.querySelector(".python-code-hsb .code");
+        if (pythonHsb) pythonHsb.textContent = pythonCodeForHsb;
+        const pythonHsbDisplay = document.getElementById("python-code-hsb");
+        if (pythonHsbDisplay) pythonHsbDisplay.style.display = "block";
       }
     });
   });
