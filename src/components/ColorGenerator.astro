@@ -19,76 +19,46 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
     background: #ddd; /* Default background color */
     border-radius: 5px; /* Rounded edges */
     outline: none; /* Remove focus outline */
-    transition: background-color 0.3s ease; /* Smooth background color change */
+    /* transition: background-color 0.3s ease; Smooth background color change */
   }
 
   /* Individual styling for Red slider */
   #red-slider {
-    background-color: #f8d7d7; /* Light red background */
+    background-color: rgba(255, 150, 150, 0.5); /* Light red background */
   }
-  #red-slider:hover {
-    background-color: red; /* Intense red on hover */
-  }
+
   #red-slider::-webkit-slider-thumb {
     -webkit-appearance: none; /* Custom thumb styling */
-    width: 25px;
-    height: 25px;
     background-color: red; /* Thumb color */
-    border-radius: 50%; /* Circular shape */
-    border: 2px solid #000; /* Black border */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition:
-      box-shadow 0.3s ease,
-      transform 0.2s ease; /* Smooth shadow and scaling */
-  }
-  #red-slider:hover::-webkit-slider-thumb {
-    box-shadow: 0 0 10px red; /* Glow effect */
-    transform: scale(1.1); /* Slight enlargement */
   }
 
   /* Styling for Green slider */
   #green-slider {
-    background-color: #d7f8d7; /* Light green */
+    background-color: rgba(150, 220, 150, 0.5); /* Light green */
   }
-  #green-slider:hover {
-    background-color: green;
-  }
+
   #green-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
     background-color: green;
-  }
-  #green-slider:hover::-webkit-slider-thumb {
-    box-shadow: 0 0 10px green;
-    transform: scale(1.1);
   }
 
   /* Styling for Blue slider */
   #blue-slider {
-    background-color: #d7d7f8; /* Light blue */
+    background-color: rgba(150, 150, 255, 0.5); /* Light blue */
   }
-  #blue-slider:hover {
-    background-color: blue;
-  }
+
   #blue-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
     background-color: blue;
-  }
-  #blue-slider:hover::-webkit-slider-thumb {
-    box-shadow: 0 0 10px blue;
-    transform: scale(1.1);
   }
 
   /* Styling for Alpha (transparency) slider */
   #alpha-slider {
-    background-color: #e0e0e0; /* Neutral gray */
-  }
-  #alpha-slider:hover {
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.5); /* Neutral gray */
   }
   #alpha-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
     background-color: grey;
-  }
-  #alpha-slider:hover::-webkit-slider-thumb {
-    box-shadow: 0 0 10px grey;
-    transform: scale(1.1);
   }
 
   /* Hue slider with gradient background */
@@ -96,40 +66,56 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
     background: linear-gradient(
       to right,
       red,
-      orange,
       yellow,
       green,
       cyan,
       blue,
-      violet,
+      magenta,
       red
     ); /* Full hue spectrum */
+    --hue-thumb-color: hsl(180, 100%, 50%);
+  }
+  #hue-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: var(--hue-thumb-color);
   }
 
   /* Saturation slider with a dynamic gradient */
   #saturation-slider {
-    background: linear-gradient(to right, grey, currentColor);
+    background: linear-gradient(
+      to right,
+      hsl(180, 0%, 25%),
+      hsl(180, 100%, 25%)
+    );
+    --saturation-thumb-color: hsl(180, 50%, 25%);
+  }
+  #saturation-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: var(--saturation-thumb-color);
   }
 
   /* Brightness slider with light-to-dark gradient */
   #brightness-slider {
     background: linear-gradient(to right, black, white);
+    --brightness-thumb-color: hsl(180, 0%, 50%);
+  }
+  #brightness-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: var(--brightness-thumb-color);
   }
 
   /* General thumb styling for sliders */
   input[type="range"]::-webkit-slider-thumb {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%; /* Circular */
     border: 2px solid #000; /* Black border */
     cursor: pointer;
-    transition:
-      box-shadow 0.3s ease,
-      transform 0.2s ease; /* Smooth effects */
+    transition: transform 0.3s ease-in-out; /* Smooth effects */
   }
   input[type="range"]:hover::-webkit-slider-thumb {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Glow on hover */
-    transform: scale(1.1); /* Slightly larger */
+    border: 2px solid #000; /* Black border */
+    transform: scale(1.2); /* Slightly larger */
   }
 
   /* Tab container styles */
@@ -392,7 +378,10 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
           </div>
         </div>
         <!-- HSB color preview box -->
-        <div id="hsb-color-preview" style="background-color: hsl(0, 50%, 50%);">
+        <div
+          id="hsb-color-preview"
+          style="background-color: hsl(180, 50%, 25%);"
+        >
         </div>
       </div>
 
@@ -418,19 +407,19 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
     // Get references to RGB sliders and alpha toggle/slider elements
     const redSlider = document.getElementById("red-slider") as HTMLInputElement;
     const greenSlider = document.getElementById(
-      "green-slider"
+      "green-slider",
     ) as HTMLInputElement;
     const blueSlider = document.getElementById(
-      "blue-slider"
+      "blue-slider",
     ) as HTMLInputElement;
     const alphaToggle = document.getElementById(
-      "alpha-toggle"
+      "alpha-toggle",
     ) as HTMLInputElement;
     const alphaSlider = document.getElementById(
-      "alpha-slider"
+      "alpha-slider",
     ) as HTMLInputElement;
     const alphaSliderContainer = document.getElementById(
-      "alpha-slider-container"
+      "alpha-slider-container",
     );
 
     // Display elements for RGB/Alpha values
@@ -464,6 +453,7 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
           alphaSliderContainer.classList.remove("hidden");
         if (rgbPreview)
           rgbPreview.style.backgroundColor = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+
         // Generate RGBA code snippets
         rgbCPPCode = `rgba_color(${red}, ${green}, ${blue}, ${alpha.toFixed(2)});`;
         rgbCSCode = `SplashKit.RGBAColor(${red}, ${green}, ${blue}, ${alpha.toFixed(2)});`;
@@ -472,6 +462,7 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
         if (alphaSliderContainer) alphaSliderContainer.classList.add("hidden");
         if (rgbPreview)
           rgbPreview.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+
         // Generate RGB code snippets
         rgbCPPCode = `rgb_color(${red}, ${green}, ${blue});`;
         rgbCSCode = `SplashKit.RGBColor(${red}, ${green}, ${blue});`;
@@ -482,7 +473,7 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
       document.dispatchEvent(
         new CustomEvent("updateRGBCode", {
           detail: { rgbCPPCode, rgbCSCode, rgbPythonCode },
-        })
+        }),
       );
     }
 
@@ -497,10 +488,10 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
     // Get references to HSB sliders
     const hueSlider = document.getElementById("hue-slider") as HTMLInputElement;
     const saturationSlider = document.getElementById(
-      "saturation-slider"
+      "saturation-slider",
     ) as HTMLInputElement;
     const brightnessSlider = document.getElementById(
-      "brightness-slider"
+      "brightness-slider",
     ) as HTMLInputElement;
 
     // Display elements for HSB values
@@ -523,11 +514,33 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
       if (saturationValue) saturationValue.textContent = saturation.toString();
       if (brightnessValue) brightnessValue.textContent = brightness.toString();
 
-      let hsbCPPCode, hsbCSCode, hsbPythonCode;
-
       // Update preview box color
       if (hsbPreview)
         hsbPreview.style.backgroundColor = `hsl(${hue}, ${saturation * 100}%, ${brightness * 50}%)`;
+
+      // Update slider colors
+      if (hueSlider) {
+        hueSlider.style.setProperty(
+          "--hue-thumb-color",
+          `hsl(${hue}, 100%, 50%)`,
+        );
+      }
+      if (saturationSlider) {
+        saturationSlider.style.background = `linear-gradient(to right, hsl(${hue}, 0%, ${brightness * 50}%), hsl(${hue}, 100%, ${brightness * 50}%))`;
+        saturationSlider.style.setProperty(
+          "--saturation-thumb-color",
+          `hsl(${hue}, ${saturation * 100}%, ${brightness * 50}%)`,
+        );
+      }
+      if (brightnessSlider) {
+        brightnessSlider.style.setProperty(
+          "--brightness-thumb-color",
+          `hsl(${hue}, 0%, ${brightness * 100}%)`,
+        );
+      }
+
+      let hsbCPPCode, hsbCSCode, hsbPythonCode;
+
       // Generate HSB code snippets
       hsbCPPCode = `hsb_color(${hue.toFixed(2)}, ${saturation.toFixed(2)}, ${brightness.toFixed(2)});`;
       hsbCSCode = `SplashKit.HSBColor(${hue.toFixed(2)}, ${saturation.toFixed(2)}, ${brightness.toFixed(2)});`;
@@ -537,7 +550,7 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
       document.dispatchEvent(
         new CustomEvent("updateHSBCode", {
           detail: { hsbCPPCode, hsbCSCode, hsbPythonCode },
-        })
+        }),
       );
     }
 
@@ -552,7 +565,7 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
     const { rgbCPPCode, rgbCSCode, rgbPythonCode } = (event as CustomEvent)
       .detail;
 
-    const codeBlocks = document.querySelectorAll(".tab-container Code");
+    const codeBlocks = document.querySelectorAll(".tab-container .code");
 
     // Update code blocks for each language tab
     codeBlocks.forEach((block, index) => {
@@ -577,7 +590,7 @@ let hsbPythonCode = "hsb_color(180.00, 0.50, 0.50)";
     const { hsbCPPCode, hsbCSCode, hsbPythonCode } = (event as CustomEvent)
       .detail;
 
-    const hsbCodeBlocks = document.querySelectorAll(".tab-container Code");
+    const hsbCodeBlocks = document.querySelectorAll(".tab-container .code");
 
     // Update code blocks for each language tab
     hsbCodeBlocks.forEach((block, index) => {

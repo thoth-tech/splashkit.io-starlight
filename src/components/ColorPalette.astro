@@ -255,12 +255,14 @@ colorOrder.forEach((row) => {
       transform 0.2s ease,
       box-shadow 0.2s ease; /* Smooth hover effects */
     box-sizing: border-box; /* Include padding in width/height */
+    line-height: 0.9rem;
   }
 
   /* Hover effect for colour boxes */
   .color-box:hover {
     transform: scale(1.1); /* Slight zoom-in effect */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+    z-index: 1;
   }
 
   /* Hidden label inside the colour box */
@@ -272,8 +274,8 @@ colorOrder.forEach((row) => {
     transform: translate(-50%, -50%);
     font-size: 0.75rem;
     font-weight: bold;
-    color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Add shadow to text */
+    /* color: white; */
+    /* text-shadow: #000 0px 0px 1px; Add shadow to text */
     text-align: center;
   }
 
@@ -340,7 +342,7 @@ colorOrder.forEach((row) => {
 </style>
 
 <div class="palette-container" id="palette-container">
-  <!-- Dynamically rendered colour boxes -->
+  <!-- Dynamically rendered colour boxes (with text colour based on contrast to box colour) -->
   {
     sortedColors.map((color) => (
       <div
@@ -350,7 +352,11 @@ colorOrder.forEach((row) => {
         data-color-rgb={`rgb_color(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})`}
         data-color-hsb={`hsb_color(${color.hsb.h.toFixed(2)}, ${color.hsb.s.toFixed(2)}, ${color.hsb.b.toFixed(2)})`}
       >
-        <span>{color.name}</span>
+        <span
+          style={`color: hsl(0, 0%, ${Math.round((100 - Math.round((0.2126 * color.rgb.r + 0.7152 * color.rgb.g + 0.0722 * color.rgb.b + 0.05) / (0.2126 + 0.7152 + 0.0722 + 0.05))) / 100 + 0.5) * 100}%);`}
+        >
+          {color.name}
+        </span>
       </div>
     ))
   }
@@ -400,10 +406,10 @@ colorOrder.forEach((row) => {
         // Generate the C# code snippet using the color data
         const csharpCode = `SplashKit.Color${colorName.replaceAll(
           " ",
-          ""
+          "",
         )}();\nSplashKit.RGBColor(${colorRgb.slice(
           10,
-          -1
+          -1,
         )});\nSplashKit.HSBColor(${colorHsb.slice(10, -1)});`;
 
         // Generate the Python code snippet using the colour data
@@ -411,22 +417,17 @@ colorOrder.forEach((row) => {
           .toLowerCase()
           .replaceAll(" ", "_")}()\nrgb_color(${colorRgb.slice(
           10,
-          -1
+          -1,
         )})\nhsb_color(${colorHsb.slice(10, -1)})`;
 
         // Update the C++ tab content with the generated code
-        document.querySelector(".cpp-code .expressive-code pre").textContent =
-          cppCode;
+        document.querySelector(".cpp-code .code").textContent = cppCode;
 
         // Update the C# tab content with the generated code
-        document.querySelector(
-          ".csharp-code .expressive-code pre"
-        ).textContent = csharpCode;
+        document.querySelector(".csharp-code .code").textContent = csharpCode;
 
         // Update the Python tab content with the generated code
-        document.querySelector(
-          ".python-code .expressive-code pre"
-        ).textContent = pythonCode;
+        document.querySelector(".python-code .code").textContent = pythonCode;
       }
     });
   });
