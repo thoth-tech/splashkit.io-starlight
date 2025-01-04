@@ -4,16 +4,20 @@ open_window("Draw Ellipse", 800, 600)
 clear_screen(color_white())
 
 for i in range(30):
-    
+    # Decrease width by 20 every round
     width = 600 - i * 20
+    # Decrease height by 10 every round
     height = 400 - i * 10
+    # Increase x position by 10 every round
     x = 100 + i * 10
+    # Increase y position by 5 every round
     y = 100 + i * 5
 
     random_color = rgb_color(
         rnd_int(255), rnd_int(255), rnd_int(255)   
     )
 
+    # Draw ellipse based on the given data
     draw_ellipse(random_color, x, y, width, height)
 
 refresh_screen()
