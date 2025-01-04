@@ -15,11 +15,13 @@ draw_circle(color_red(), x_position, y_position, 200)
 
 # Access the center of the circle
 center = A.center  
+
 # Draw Point in the center of the circle
 fill_circle(color_black(), center.x, center.y, 3)
 
-# Print result on window
 text = "Center Point At: (" + str(center.x) + ", " + str(center.y) + ")"
+
+# Print result on window
 draw_text(text, color_black(), 0, 20, x_position - 20, y_position - 20)
 
 refresh_screen()

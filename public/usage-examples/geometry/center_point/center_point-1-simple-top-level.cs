@@ -21,6 +21,7 @@ FillTriangle(Color.White, CenterPoint(A).X, CenterPoint(A).Y, 0, 300, 500, 0);
 FillCircle(Color.Black, CenterPoint(A).X, CenterPoint(A).Y, 3);
     
 string text = "Center Point At: " + PointToString(CenterPoint(A));
+
 // Print result on window
 DrawText(PointToString(CenterPoint(A)), Color.Black, x_position -20, y_position - 20);
 

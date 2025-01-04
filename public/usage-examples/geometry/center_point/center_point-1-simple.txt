@@ -1,2 +1,2 @@
 #### Use Triangle To Cut Circle
-The following code shows examples of using [Center Point](/api/geometry/#center-point) to show how to use center point as origin point to cut circle. 
+The following code shows an example of using [Center Point](/api/geometry/#center-point) to show how to use center point as origin point to cut circle. 

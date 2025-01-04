@@ -22,6 +22,7 @@ int main()
     fill_circle(COLOR_BLACK, center_point(A).x, center_point(A).y, 3);
     
     string text = "Center Point At: " + point_to_string(center_point(A));
+    
     //Print result on window
     draw_text(point_to_string(center_point(A)), COLOR_BLACK, x_position -20, y_position - 20);
     

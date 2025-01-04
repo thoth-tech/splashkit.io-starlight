@@ -26,6 +26,7 @@ namespace CenterPoint
         SplashKit.FillCircle(Color.Black, SplashKit.CenterPoint(A).X, SplashKit.CenterPoint(A).Y, 3);
     
         string text = "Center Point At: " + SplashKit.PointToString(SplashKit.CenterPoint(A));
+        
         // Print result on window
         SplashKit.DrawText(SplashKit.PointToString(SplashKit.CenterPoint(A)), Color.Black, x_position -20, y_position - 20);
 
