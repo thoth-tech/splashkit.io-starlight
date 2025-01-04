@@ -6,7 +6,7 @@ WriteLine("X coordinate for circle A: ");
 int X_A = ConvertToInteger(ReadLine());
 WriteLine("Y coordinate for circle A: ");
 int Y_A = ConvertToInteger(ReadLine());
-WriteLine("Radient for circle A: ");
+WriteLine("Radius for circle A: ");
 int R_A = ConvertToInteger(ReadLine());
 
 // Create circle A based on the user's data
@@ -17,7 +17,7 @@ WriteLine("X coordinate for circle B: ");
 int X_B = ConvertToInteger(ReadLine());
 WriteLine("Y coordinate for circle B: ");
 int Y_B = ConvertToInteger(ReadLine());
-WriteLine("Radient for circle B: ");
+WriteLine("Radius for circle B: ");
 int R_B = ConvertToInteger(ReadLine());
 
 // Create circle B based on the user's data
@@ -39,7 +39,7 @@ ClearScreen();
 
 // Draw the circles based on the data given by user
 DrawCircle(Color.Red, X_A, Y_A, R_A);
-DrawCircle(Color.Red, X_B, Y_B, R_B);
+DrawCircle(Color.Blue, X_B, Y_B, R_B);
 
 RefreshScreen();
 Delay(4000);

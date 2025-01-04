@@ -7,7 +7,7 @@ int main()
     int X_A = convert_to_integer(read_line());
     write_line("Y coordinate for circle A: ");
     int Y_A = convert_to_integer(read_line());
-    write_line("Radient for circle A: ");
+    write_line("Radius for circle A: ");
     int R_A = convert_to_integer(read_line());
     
     // Create circle A based on the user's data
@@ -18,7 +18,7 @@ int main()
     int X_B = convert_to_integer(read_line());
     write_line("Y coordinate for circle B: ");
     int Y_B = convert_to_integer(read_line());
-    write_line("Radient for circle B: ");
+    write_line("Radius for circle B: ");
     int R_B = convert_to_integer(read_line());
 
     // Create circle B based on the user's data
@@ -39,7 +39,7 @@ int main()
 
     // Draw the circles based on the data given by user
     draw_circle(COLOR_RED, X_A, Y_A, R_A);
-    draw_circle(COLOR_RED, X_B, Y_B, R_B);
+    draw_circle(COLOR_BLUE, X_B, Y_B, R_B);
 
     refresh_screen();
     delay(4000);
