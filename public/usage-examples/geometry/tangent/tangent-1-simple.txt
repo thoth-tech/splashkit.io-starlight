@@ -1,0 +1,3 @@
+#### Tangent Example
+
+The following code shows examples of using [Tangent](/api/geometry#tangent) to show how we can calculate the tangent of an angle.
