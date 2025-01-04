@@ -6,11 +6,11 @@ ClearScreen();
 
 Random random = new Random();
 // Set position for the circle
-//Give random  x_position value bewteen 200 - 600
+// Give random  x_position value bewteen 200 - 600
 double x_position = random.Next(400) + 200;
 double y_position = 300;
 
-// Create A circle name "A"
+// Create A circle name "A" at the position (x_position, y_position)
 Circle A = CircleAt(x_position, y_position, 200);
 // Find the x position of the circle
 double circleX = CircleX(A);

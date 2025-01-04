@@ -9,7 +9,7 @@ clear_screen(color_white())
 x_position = random.randint(200, 600)
 y_position = 300
 
-# Create a circle A at the position (x_position, y_position)
+# Create A circle name "A" at the position (x_position, y_position)
 A = circle_at(point_at(x_position, y_position), 200)
 
 # Find the x position of the circle A
