@@ -7,7 +7,6 @@ int main()
 
     //Set position for the circle
     double x_position = 400;
-    //Give random  x_position value bewteen 200 - 400
     double y_position = 300;
 
     //Create a circle at the position (x_position, y_position)
