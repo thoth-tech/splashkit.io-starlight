@@ -13,9 +13,9 @@ A = circle_at(point_at(x_position, y_position), 200)
 # Find the radius of the circle A
 radius = circle_radius(A)
 
-# Draw the circle
+# Fill the circle
 fill_circle(color_red(), x_position, y_position, radius)
-#Use the radius to create a rectangle to cut 1/4 of the circle
+# Use the radius to create a rectangle to cut 1/4 of the circle
 fill_rectangle(color_white(), x_position, y_position , radius, radius)
 
 text = "Radius: " + str(radius)
