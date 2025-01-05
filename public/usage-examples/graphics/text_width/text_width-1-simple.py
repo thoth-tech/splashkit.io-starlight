@@ -1,16 +1,15 @@
 from splashkit import *
 
-# Open a window
 open_window("Text Width", 800, 600)
-
-# Clear the screen to a black background
 clear_screen(color_white())
 
-# Text to display
 text = "Text Width!"
 
-# Calculate the text width with Normal font '0' and size 16
-text_width = text_width(text, 0, 16)
+# Load font
+load_font("my_font", "arial.ttf")
+
+# Calculate the text width, 0 for arial.ttf, and 16 is the font size
+text_width = text_width(text, "my_font", 16)
 
 # Calculate the x and y position to make the text in the centre of the window
 x_position = (800 - text_width) // 2
