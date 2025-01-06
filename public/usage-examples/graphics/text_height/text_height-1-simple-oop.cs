@@ -5,28 +5,34 @@ namespace TextHeight
     public class Program
     {
         public static void Main()
-        {           
+        {
+            // Let user enter the text
+            SplashKit.WriteLine("Type some text: ");
+            string text = SplashKit.ReadLine();
+
+            // Let user enter the size
+            SplashKit.WriteLine("Enter the size for the text: ");
+            int size = SplashKit.ConvertToInteger(SplashKit.ReadLine());
+
             SplashKit.OpenWindow("Text Height", 800, 600);
             SplashKit.ClearScreen();
 
-            string text = "Text Height!";
-
             // Load font
             SplashKit.LoadFont("my_font", "arial.ttf");
-            // Calculate the text height, 0 for normal font, and 16 is the font size
-            int textHeight = SplashKit.TextHeight(text, "my_font", 16);
 
-            //Calculate the y position to make the text align it vertically in the window
-            int xPosition = 200;
-            int yPosition = (600-textHeight) / 2;
+            // Calculate the text height with size enter by user
+            int textHeight = SplashKit.TextHeight(text, "my_font", size);
 
-            // Display the text align it vertically in the window
-            SplashKit.DrawText(text, Color.Black, xPosition, yPosition);
+            // Display the height of text.
+            SplashKit.WriteLine("The height of the text is: " + textHeight);
+
+            // Display the text in the window
+            SplashKit.DrawText(text, Color.Black, "my_font", size, 100, 100);
 
             SplashKit.RefreshScreen();
             SplashKit.Delay(4000);
             SplashKit.CloseAllWindows();
-        }    
+        }
     }
 }
 

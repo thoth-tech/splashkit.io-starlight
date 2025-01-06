@@ -1,24 +1,27 @@
 from splashkit import *
 
-# Open a window
-open_window("Text Height", 800, 600)
+#Let user enter the text
+write_line("Type some text: ")
+text = read_line()
 
-# Clear the screen to a black background
+#Let user enter the size
+write_line("Enter the size for the text: ")
+size = convert_to_integer(read_line())
+
+open_window("Text Height", 800, 600)
 clear_screen(color_white())
 
-# Text to display
-text = "Text Height!"
+# Load font
+load_font("my_font", "arial.ttf")
 
-# Calculate the text height with Normal font '0' and size 16
-text_width = text_width(text, 0, 16)
+# Calculate the text height with size enter by user
+text_height = text_width(text, "my_font", size)
 
-# Calculate the y position to make the text in the centre of the window
-x_position = (800 - text_width) // 2
-y_position = 600 // 2
-
-# Display the text in the centre of the window
-draw_text(text, color_black(), 0, 16, x_position, y_position)
-
+# Display the height of text
+write_line("The height of the text is: " + str(text_height))
+    
+# Display the text in the window
+draw_text(text, color_black(), "my_font", size, 100, 100)
 
 refresh_screen()
 delay(4000)
