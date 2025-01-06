@@ -2,6 +2,11 @@
 
 const fs = require("fs");
 const kleur = require("kleur");
+const path = require('path');
+
+// For cleaning files from usage-examples folder
+const directoryToClean = 'src/content/docs/usage-examples';
+const filesToKeep = ['index.mdx', 'CONTRIBUTING.mdx'];
 
 // Define language label mappings
 const languageLabelMappings = {
@@ -125,11 +130,29 @@ function getFunctionLink(jsonData, groupNameToCheck, uniqueNameToCheck) {
   return functionLink;
 }
 
+// Clean directory function to remove all files except those in the exclusions list
+// Resolves the issue of usage example mdx files being left behind when changing branches causing failures in builds
+function cleanDirectory(directory, exclusions) {
+  const files = fs.readdirSync(directory, { withFileTypes: true });
+  files.forEach(file => {
+    const fullPath = path.join(directory, file.name);
+    if (file.isDirectory()) {
+      cleanDirectory(fullPath, exclusions);  // Recursively clean directories
+    } else if (!exclusions.includes(file.name)) {
+      fs.unlinkSync(fullPath);  // Delete file if not in exclusions
+      console.log(kleur.red(`Deleted:`) + ` ${fullPath}`);
+    }
+  });
+}
+
+console.log('Cleaning up directory for Usage examples pages...\n');
+cleanDirectory(directoryToClean, filesToKeep);
+
 // ===============================================================================
 // Start of Main Script
 // ===============================================================================
 
-console.log("Generating MDX files for Usage Examples pages...\n");
+console.log("\nGenerating MDX files for Usage Examples pages...\n");
 
 let name;
 let success = true;
@@ -434,21 +457,32 @@ categories.forEach((categoryKey) => {
 
           const imageFiles = categoryFiles.filter(file => file.endsWith(exampleKey + '.png'));
           let outputFilePath = categoryPath + "/" + functionKey + "/" + exampleTxtKey;
-
+          // Check for .png files
           if (imageFiles.length > 0) {
             outputFilePath = outputFilePath.replaceAll(".txt", ".png");
+            mdxContent += `![${exampleKey} example](${outputFilePath})\n`
           }
           else {
-            const gifFiles = categoryFiles.filter(file => file.endsWith('.gif'));
+            const gifFiles = categoryFiles.filter(file => file.endsWith('.gif')).filter(file => file.startsWith(exampleKey));
+            // Check for .gif files
             if (gifFiles.length > 0) {
               outputFilePath = outputFilePath.replaceAll(".txt", ".gif");
+              mdxContent += `![${exampleKey} example](${outputFilePath})\n`
             }
             else {
-              console.log(kleur.red("\nError: No image or gif files found for " + exampleKey + "usage example"));
+              const webmFiles = categoryFiles.filter(file => file.endsWith('.webm'));
+              // Check for .webm files
+              if (webmFiles.length > 0) {
+                outputFilePath = outputFilePath.replaceAll(".txt", ".webm");
+                mdxContent += `<video controls style="max-width:100%; margin:auto; margin-top:16px;">\n`
+                mdxContent += `\t<source src="${outputFilePath}" type="video/webm" />\n`
+                mdxContent += `</video>\n`
+              }
+              else {
+                console.log(kleur.red("\nError: No image, gif or webm (audio) files found for " + exampleKey + "usage example"));
+              }
             }
           }
-
-          mdxContent += `![${exampleKey} example](${outputFilePath})\n`
           mdxContent += "\n---\n";
         });
       }
