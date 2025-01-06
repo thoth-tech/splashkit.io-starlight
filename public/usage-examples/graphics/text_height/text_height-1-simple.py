@@ -15,7 +15,7 @@ clear_screen(color_white())
 load_font("my_font", "arial.ttf")
 
 # Calculate the text height with size enter by user
-text_height = text_width(text, "my_font", size)
+text_height = text_height(text, "my_font", size)
 
 # Display the height of text
 write_line("The height of the text is: " + str(text_height))
