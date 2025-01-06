@@ -9,23 +9,27 @@ namespace DrawCircleOnWindow
         Window myWindow = SplashKit.OpenWindow("Draw Circle on Window", 800, 600);
         SplashKit.ClearScreen();
 
-        Random random = new Random();
         for (int i = 0; i < 50; i++)
-        {
-            double x = random.Next(800);
-            double y = random.Next(600);
-            double radius = random.Next(50);
+        {   
+            // Set random x position to 1 - 800
+            double x = SplashKit.Rnd(800);
+
+            // Set random y position to 1 - 600
+            double y = SplashKit.Rnd(600);
+
+            // Set random radius to 1 - 50
+            double radius = SplashKit.Rnd(50);
 
             Color randomColor = SplashKit.RGBColor(
-                random.Next(255), random.Next(255), random.Next(255)  
+                SplashKit.Rnd(255), SplashKit.Rnd(255), SplashKit.Rnd(255)  
             );
 
+            // Draw the circle base on the random data
             SplashKit.DrawCircleOnWindow(myWindow, randomColor, x, y, radius);
         }
 
         SplashKit.RefreshScreen();
         SplashKit.Delay(4000);
-
         SplashKit.CloseAllWindows();
         }
     }
