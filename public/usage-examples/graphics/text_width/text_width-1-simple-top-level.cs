@@ -1,26 +1,29 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Text Width", 800, 600);
+// Let user enter the text
+WriteLine("Type some text: ");
+string text = ReadLine();
 
+// Let user enter the size
+WriteLine("Enter the size for the text: ");
+int size = ConvertToInteger(ReadLine());
+
+OpenWindow("Text Width", 800, 600);
 ClearScreen();
 
-string text = "Text Width!";
-
-// Load font
+// Load a font
 LoadFont("my_font", "arial.ttf");
 
-// Calculate the text width, 0 for arial.ttf, and 16 is the font size
-int textWidth = TextWidth(text, "my_font", 16);
+//Calculate the text width with size enter by user
+int textWidth = TextWidth(text, "my_font", size);
 
-// Calculate the x and y position to make the text in the centre of the window
-int xPosition = (800 - textWidth) / 2;
-int yPosition = 600 / 2;
+// Display the width of text.
+WriteLine("The width of the text is: " + textWidth);
 
-// Display the text in the centre of the window
-DrawText(text, Color.Black, "my_font", 16, xPosition, yPosition);
+// Display the text in the window
+DrawText(text, Color.Black, "my_font", size, 100, 100);
 
 RefreshScreen();
 Delay(4000);
 CloseAllWindows();
-

@@ -1,3 +1,3 @@
-#### Centre text
+#### Find width
 
-The following code shows examples of using [Text Width](/api/graphics/#text-width) to show how to find the width of the text and centre it on the window.
+The following code shows examples of using [Text Width](/api/graphics/#text-width) to show how to find the width of the text

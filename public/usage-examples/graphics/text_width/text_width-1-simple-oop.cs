@@ -1,32 +1,37 @@
 using SplashKitSDK;
 
-namespace TextWidth
+namespace TextHeight
 {
     public class Program
     {
         public static void Main()
-        {           
+        {
+            // Let user enter the text
+            SplashKit.WriteLine("Type some text: ");
+            string text = SplashKit.ReadLine();
+
+            // Let user enter the size
+            SplashKit.WriteLine("Enter the size for the text: ");
+            int size = SplashKit.ConvertToInteger(SplashKit.ReadLine());
+
             SplashKit.OpenWindow("Text Width", 800, 600);
             SplashKit.ClearScreen();
 
-            string text = "Text Width!";
-
             // Load font
             SplashKit.LoadFont("my_font", "arial.ttf");
-            // Calculate the text width, 0 for normal font, and 16 is the font size
-            int textWidth = SplashKit.TextWidth(text, "my_font", 16);
 
-            // Calculate the x and y position to make the text in the center of the window
-            int xPosition = (800 - textWidth) / 2;
-            int yPosition = 600 / 2;
+            // Calculate the text width with size enter by user
+            int textWidth = SplashKit.TextWidth(text, "my_font", size);
 
-            // Display the text in the center of the window
-            SplashKit.DrawText(text, Color.Black, xPosition, yPosition);
+            // Display the width of text.
+            SplashKit.WriteLine("The width of the text is: " + textWidth);
+
+            // Display the text in the window
+            SplashKit.DrawText(text, Color.Black, "my_font", size, 100, 100);
 
             SplashKit.RefreshScreen();
             SplashKit.Delay(4000);
             SplashKit.CloseAllWindows();
-        }    
+        }
     }
 }
-
