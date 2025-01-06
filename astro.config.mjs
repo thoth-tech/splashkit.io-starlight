@@ -4,14 +4,13 @@ import solidJs from "@astrojs/solid-js";
 import react from "@astrojs/react";
 import starlightLinksValidator from 'starlight-links-validator';
 import sitemap from "@astrojs/sitemap";
+import remarkMath from 'remark-math';
+import rehypeMathjax from 'rehype-mathjax'
 import starlightBlog from 'starlight-blog'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://splashkit.io/',
-  // base: '/splashkit.io-starlight',  // if hosted without domain.
-  //   output: "server",
-  //   adapter: netlify(),
   integrations: [
     starlight({
       title: "SplashKit",
@@ -35,7 +34,6 @@ export default defineConfig({
         useDarkModeMediaQuery: true,
       },
       customCss: [
-
         "/src/styles/custom.css",
         "/src/styles/background.css",
         "/src/styles/cards.css",
@@ -50,29 +48,21 @@ export default defineConfig({
       },
       sidebar: [
         {
+          label: "Blog",
+          autogenerate: { directory: "blog", collapsed: true },
+        },
+        {
           label: "Installation",
           collapsed: true,
           autogenerate: { directory: "installation", collapsed: true },
-          // items: [
-          //   { label: "Linux", autogenerate: { directory: "linux", collapsed: true }, attrs: { class: 'linux' } },
-          //   { label: "MacOS", autogenerate: { directory: "macos", collapsed: true }, attrs: { class: 'macos' } },
-          //   { label: "Windows", autogenerate: { directory: "windows", collapsed: true }, attrs: { class: 'windows' } },
-          // ]
         },
         {
           label: "Troubleshooting",
-          // items: [
-          // 	// Each item here is one entry in the navigation menu.
-          // 	{ label: 'MacOS', link: '/troubleshoot/macos/mac/' },
-          // 	//{ label: 'Windows', link: '/troubleshoot/macOS/mac' },
-          // ],
           collapsed: true,
           autogenerate: { directory: "troubleshoot", collapsed: true },
-          badge: "New",
-
         },
         {
-          label: "Developer Documentation",
+          label: "Developer API Documentation",
           autogenerate: { directory: "api", collapsed: false },
         },
         {
@@ -84,30 +74,29 @@ export default defineConfig({
             { label: "Animations", autogenerate: { directory: "guides/Animations", collapsed: false } },
             { label: "Audio", autogenerate: { directory: "guides/Audio", collapsed: false } },
             { label: "Camera", autogenerate: { directory: "guides/Camera", collapsed: false } },
+            { label: "Color", autogenerate: { directory: "guides/Color", collapsed: false } },
             { label: "Graphics", autogenerate: { directory: "guides/Graphics", collapsed: false } },
             { label: "Input", autogenerate: { directory: "guides/Input", collapsed: false } },
             { label: "Interface", autogenerate: { directory: "guides/Interface", collapsed: false } },
             { label: "Json", autogenerate: { directory: "guides/JSON", collapsed: false } },
             { label: "Networking", autogenerate: { directory: "guides/Networking", collapsed: false } },
+            { label: "Physics", badge: 'New', autogenerate: { directory: "guides/Physics", collapsed: false } },
             { label: "Raspberry GPIO", autogenerate: { directory: "guides/Raspberry-GPIO", collapsed: false } },
             { label: "Resource Bundles", autogenerate: { directory: "guides/Resource-Bundles", collapsed: false } },
-            // { label: "Sprites", autogenerate: { directory: "guides/Sprites", collapsed: false } },
             { label: "Utilities", autogenerate: { directory: "guides/Utilities", collapsed: false } },
-          ]
+          ],
           // autogenerate: { directory: "guides", collapsed: true },
         },
         {
           label: "Usage Examples",
           autogenerate: { directory: "usage-examples", collapsed: true },
+          badge: "New",
         },
         {
-          label: "Blog",
-          autogenerate: { directory: "blog", collapsed: true },
+          label: "Beyond SplashKit",
+          autogenerate: { directory: "beyond-splashkit", collapsed: true },
+          badge: "New",
         },
-        // {
-        //   label: "Arcade Hackathon Project",
-        //   autogenerate: { directory: "arcade-hackathon-project", collapsed: true },
-        // },
       ],
 
     }),
@@ -119,6 +108,12 @@ export default defineConfig({
   image: { service: squooshImageService() },
   server: {
     host: true,
-    port: 4322
-  }
+    port: 4321
+  },
+
+  // Render mathematical equations using remark-math and rehype-mathjax
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeMathjax],
+  },
 });
