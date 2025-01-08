@@ -15,6 +15,7 @@ int main()
         refresh_screen();
     }
     close_all_windows();
+    free_all_bitmaps();
 
     return 0;
 }
