@@ -1,33 +1,22 @@
 using SplashKitSDK;
 
-namespace Program
+public class Program
 {
-    public class Program
+    public static void Main()
     {
-        public static void Main()
-        {
-         
+        SplashKit.OpenWindow("sprite_set_y", 600, 600);
 
-            Window myWindow = SplashKit.OpenWindow("sprite_set_y", 600, 600);
+        SplashKit.LoadBitmap("player", "player-run.png");
+        Sprite playerSprite = SplashKit.CreateSprite(SplashKit.BitmapNamed("player"));
 
-            SplashKit.OpenWindow("sprite_set_y", 600, 600);
+        // Setting the x coordinate in reference to the window
+        SplashKit.SpriteSetY(playerSprite, 300);
 
-            
-            Bitmap playerBitmap = SplashKit.LoadBitmap("player", "player-run.png");
-            
-            Sprite playerSprite = SplashKit.CreateSprite(playerBitmap);
+        SplashKit.ClearScreen(Color.Black);
+        SplashKit.DrawSprite(playerSprite);
+        SplashKit.RefreshScreen();
+        SplashKit.Delay(5000);
 
-           
-            SplashKit.SpriteSetY(playerSprite, 300);
-            SplashKit.ClearScreen(Color.Black);
-            SplashKit.DrawSprite(playerSprite);
-            SplashKit.RefreshScreen();
-            SplashKit.Delay(5000);
-
-
-
-            SplashKit.CloseAllWindows();
-
+        SplashKit.CloseAllWindows();
     }
-  }
 }
