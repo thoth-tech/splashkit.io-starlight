@@ -1,26 +1,24 @@
 using SplashKitSDK;
 
-namespace Program
+public class Program
 {
-    public class Program
+    public static void Main()
     {
-        public static void Main()
-        {
-            SplashKit.OpenWindow("Create Sprite", 800, 600);
+    Window start = SplashKit.OpenWindow("create_sprite", 600, 600);
 
-            Bitmap playerBitmap = SplashKit.LoadBitmap("player", "player.png");
+    // Load the bitmap for creating a sprite
+    Bitmap player = SplashKit.LoadBitmap("player_bitmap", "player.png");
 
-            Sprite playerSprite = SplashKit.CreateSprite(playerBitmap);
+    // Create the player sprite
+    Sprite playerSprite = SplashKit.CreateSprite(player);
 
-            playerSprite.X = 300;
-            playerSprite.Y = 300;
-            
-            SplashKit.ProcessEvents();
-            SplashKit.ClearScreen(Color.Black);
-            SplashKit.DrawSprite(playerSprite);
-            SplashKit.RefreshWindow(myWindow);
-            SplashKit.Delay(3000);
-            SplashKit.CloseAllWindows();
-        }
+    playerSprite.X = 300;
+    playerSprite.Y = 300;
+
+    SplashKit.ClearScreen(Color.Black);
+    SplashKit.DrawSprite(playerSprite);
+    SplashKit.RefreshScreen();
+    SplashKit.Delay(5000);
+    SplashKit.CloseAllWindows();
     }
 }
