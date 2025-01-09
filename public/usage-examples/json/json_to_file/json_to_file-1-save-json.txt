@@ -1,0 +1,3 @@
+### Saving JSON to a file
+
+The following code shows an example of using [json to file](/api/json/#json-to-file) to save a JSON object to a file. You will need to run `skm resources` to create the location the file will be saved to.
