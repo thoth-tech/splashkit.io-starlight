@@ -4,8 +4,8 @@ using static SplashKitSDK.SplashKit;
 Write("Enter an angle: ");
 
 // User inputs angle
-float input = float.Parse(ReadLine());
-float result = Sine(input);
+double input = ConvertToDouble(ReadLine());
+float result = Sine((float)input);
 
 // Write sine to console
 Write("Sine: ");

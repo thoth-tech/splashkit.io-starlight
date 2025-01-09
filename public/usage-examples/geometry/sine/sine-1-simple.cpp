@@ -2,13 +2,13 @@
 
 int main()
 {
-  write("Enter an angle: ");
+    write("Enter an angle: ");
 
-  // User inputs angle
-  float input = stof(read_line());
-  float result = sine(input);
+    // User inputs angle
+    double input = convert_to_double(read_line());
+    float result = sine((float)input);
 
-  // Write sine to console
-  write("Sine: ");
-  write_line(result);
+    // Write sine to console
+    write("Sine: ");
+    write_line(result);
 }

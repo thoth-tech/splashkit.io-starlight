@@ -4,8 +4,8 @@ using static SplashKitSDK.SplashKit;
 Write("Enter an angle: ");
 
 // User inputs angle
-float input = float.Parse(ReadLine());
-float result = Tangent(input);
+double input = ConvertToDouble(ReadLine());
+float result = Tangent((float)input);
 
 // Write tangent to console
 Write("Tangent: ");

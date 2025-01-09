@@ -2,19 +2,19 @@ using SplashKitSDK;
 
 namespace Program
 {
-  public class Program
-  {
-    public static void Main()
+    public class Program
     {
-      SplashKit.Write("Enter an angle: ");
+        public static void Main()
+        {
+            SplashKit.Write("Enter an angle: ");
 
-      // User inputs angle
-      float input = float.Parse(SplashKit.ReadLine());
-      float result = SplashKit.Cosine(input);
+            // User inputs angle
+            double input = SplashKit.ConvertToDouble(SplashKit.ReadLine());
+            float result = SplashKit.Cosine((float)input);
 
-      // Write cosine to console
-      SplashKit.Write("Cosine: ");
-      SplashKit.WriteLine(result);
+            // Write cosine to console
+            SplashKit.Write("Cosine: ");
+            SplashKit.WriteLine(result);
+        }
     }
-  }
 }
