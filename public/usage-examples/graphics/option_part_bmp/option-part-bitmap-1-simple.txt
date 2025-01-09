@@ -1,0 +1,3 @@
+#### Option Part Bitmap
+
+The following code shows an examples of using [Option Part Bitmap](/api/graphics#option-part-bitmap) to Extract and display a single sprite from a sprite sheet using option_part_bmp() with specific coordinates.

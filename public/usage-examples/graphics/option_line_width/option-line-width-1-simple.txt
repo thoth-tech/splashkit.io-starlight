@@ -1,0 +1,2 @@
+#### Option line width
+The following code shows an examples of using [Option Line Width](/api/graphics#option-line-width) to Draw concentric circles with increasing line widths using option_line_width() to create a ripple effect.
