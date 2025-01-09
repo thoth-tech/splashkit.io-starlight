@@ -1,18 +1,18 @@
 from splashkit import *
 
-open_window("Create Sprite", 800, 600)
+open_window("create_sprite", 600, 600)
 
+# Load the bitmap for creating a sprite
+player = load_bitmap("player_bitmap", "player.png")
 
-player = load_bitmap("player_bitmap", "player.png");
+# Create the player sprite
+player_sprite = create_sprite(player)
 
-
-player_sprite = create_sprite(player);
-
-sprite_set_x(player_sprite, 300);
-sprite_set_y(player_sprite, 300);
+sprite_set_x(player_sprite, 300)
+sprite_set_y(player_sprite, 300)
 
 clear_screen(color_black())
-draw_sprite(player_sprite);
-refresh_screen();
-delay(5000);
-close_all_windows();
+draw_sprite(player_sprite)
+refresh_screen()
+delay(5000)
+close_all_windows()
