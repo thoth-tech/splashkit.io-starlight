@@ -1,3 +1,0 @@
-#### Test text height
-
-The following code shows examples of using [Text Height](/api/graphics/#text-height) to show how to find the height of the text.
