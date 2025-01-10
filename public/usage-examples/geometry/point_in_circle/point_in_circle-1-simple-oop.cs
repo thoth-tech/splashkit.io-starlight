@@ -6,45 +6,40 @@ namespace PointInCircle
     {
         public static void Main()
         {
-            // Let user create a circle
-            SplashKit.WriteLine("Create a circle!");
-            SplashKit.WriteLine("Center point x1: ");
-            int x1 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-            SplashKit.WriteLine("Center point y1: ");
-            int y1 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-            SplashKit.WriteLine("Radius for circle: ");
-            int radius = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-
-            // Let user create a point
-            SplashKit.WriteLine("Create a point now!");
-            SplashKit.WriteLine("x for point: ");
-            int px1 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-            SplashKit.WriteLine("y for point: ");
-            int py1 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-
             SplashKit.OpenWindow("Point In Circle", 800, 600);
             SplashKit.ClearScreen();
 
-            // Create the circle base on the data given by user
-            Circle A = SplashKit.CircleAt(x1, y1, radius);
+            // Create a circle A
+            Circle A = SplashKit.CircleAt(400, 300, 100);
 
-            // Create the point base on the data given by user
-            Point2D B = SplashKit.PointAt(px1, py1);
+            // Create a point 2d name mounse point
+            Point2D MousePoint;
 
-            // Draw the circle
-            SplashKit.DrawCircle(SplashKit.ColorRed(), A);
-
-            // Draw the point
-            SplashKit.FillCircle(SplashKit.ColorGreen(), px1, py1, 4);
-
-            // Detect if the point in the circle or not
-            if (SplashKit.PointInCircle(B, A))
+            while (!SplashKit.QuitRequested())
             {
-                SplashKit.WriteLine("Point in the circle!");
-            }
-            else
-            {
-                SplashKit.WriteLine("Point not in the circle!");
+                SplashKit.ProcessEvents();
+
+                // Set mouse point to the position of mouse
+                MousePoint = SplashKit.MousePosition();
+
+                // When mouse inside the circle show text "point in the circle!" and the color of the circle change to red
+                if (SplashKit.PointInCircle(MousePoint, A))
+                {
+                    SplashKit.ClearScreen();
+                    SplashKit.DrawCircle(SplashKit.ColorRed(), A);
+                    string text = "Point in the Circle!";
+                    SplashKit.DrawText(text, SplashKit.ColorRed(), 100, 100);
+                    SplashKit.RefreshScreen();
+                }
+                // When mouse do not inside the circle show text "point not in the circle!" and the color of the circle change to green
+                else
+                {
+                    SplashKit.ClearScreen();
+                    SplashKit.DrawCircle(SplashKit.ColorGreen(), A);
+                    string text = "Point not in the Circle!";
+                    SplashKit.DrawText(text, SplashKit.ColorRed(), 100, 100);
+                    SplashKit.RefreshScreen();
+                }
             }
 
             SplashKit.RefreshScreen();
@@ -53,4 +48,3 @@ namespace PointInCircle
         }
     }
 }
-

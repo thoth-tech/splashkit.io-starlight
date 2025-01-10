@@ -1,42 +1,34 @@
 from splashkit import *
 
-# Let user create a circle
-write_line("Create a circle!")
-write_line("Center point x1: ")
-x1 = convert_to_integer(read_line())
-write_line("Center point y1: ")
-y1 = convert_to_integer(read_line())
-write_line("Radius for circle: ")
-radius = convert_to_integer(read_line())
-
-# Let user create a point
-write_line("Create a ponow!")
-write_line("x for point: ")
-px1 = convert_to_integer(read_line())
-write_line("y for point: ")
-py1 = convert_to_integer(read_line())
-
-open_window("Point In circle", 800, 600)
+open_window("Point In Circle", 800, 600)
 clear_screen(color_white())
 
-# Create the circle base on the data given by user
-A = circle_at(point_at(x1, y1), radius)
+# Create a circle A
+A = circle_at(point_at(400, 300), 100)
 
-# Create the pobase on the data given by user
-B = point_at(px1, py1)
+while not quit_requested():
+   
+    process_events()
 
-# Draw the circle
-draw_circle(color_red(), x1, y1, radius)
+    # Set mouse point to the position of mouse
+    MousePoint = mouse_position()
 
-# Draw the point
-fill_circle(color_green(), px1, py1, 4)
-
-# Detect if the poin the circle or not
-if point_in_circle(B, A): 
-    write_line("Point in the circle!")
-else:
-    write_line("Point not in the circle!")
-    
+    # When mouse inside the circle show text "point in the circle!" and the color of the circle change to red
+    if point_in_circle(MousePoint, A):
+        clear_screen(color_white())
+        draw_circle(color_red(), 400, 300, 100)
+        text = "Point in the Circle!"
+        draw_text(text, color_red(),0, 10, 100, 100)
+        refresh_screen()
+        
+    # When mouse do not inside the circle show text "point not in the circle!" and the color of the circle change to green
+    else:
+        clear_screen(color_white())
+        draw_circle(color_green(), 400, 300, 100)
+        text = "Point not in the Circle!"
+        draw_text(text, color_red(), 0, 10, 100, 100)
+        refresh_screen()
+        
 refresh_screen()
 delay(4000)
 close_all_windows()

@@ -2,47 +2,41 @@
 
 int main()
 {
-    // Let user create a circle
-    write_line("Create a circle!");
-    write_line("Center point x1: ");
-    int x1 = convert_to_integer(read_line());
-    write_line("Center point y1: ");
-    int y1 = convert_to_integer(read_line());
-    write_line("Radius for circle: ");
-    int radius = convert_to_integer(read_line());
-
-    // Let user create a point
-    write_line("Create a point now!");
-    write_line("x for point: ");
-    int px1 = convert_to_integer(read_line());
-    write_line("y for point: ");
-    int py1 = convert_to_integer(read_line());
-
-    open_window("Point In circle", 800, 600);
+    open_window("Point In Circle", 800, 600);
     clear_screen();
 
-    // Create the circle base on the data given by user
-    circle A = circle_at(x1, y1, radius);
+    // Create a circle A
+    circle A = circle_at(400, 300, 100);
 
-    // Create the point base on the data given by user
-    point_2d B = point_at(px1, py1);
+    // Create a point 2d name mounse point
+    point_2d MousePoint;
 
-    // Draw the circle
-    draw_circle(COLOR_RED, A);
-
-    // Draw the point
-    fill_circle(COLOR_GREEN, px1, py1, 4);
-
-    // Detect if the point in the circle or not
-    if (point_in_circle(B, A))
+    while (!quit_requested())
     {
-        write_line("Point in the circle!");
-    }
-    else
-    {
-        write_line("Point not in the circle!");
-    }
+        process_events();
 
+        // Set mouse point to the position of mouse
+        MousePoint = mouse_position();
+
+        // When mouse inside the circle show text "point in the circle!" and the color of the circle change to red
+        if (point_in_circle(MousePoint, A))
+        {
+            clear_screen();
+            draw_circle(COLOR_RED, A);
+            string text = "Point in the Circle!";
+            draw_text(text, COLOR_RED, 100, 100);
+            refresh_screen();
+        }
+        // When mouse do not inside the circle show text "point not in the circle!" and the color of the circle change to green
+        else
+        {
+            clear_screen();
+            draw_circle(COLOR_GREEN, A);
+            string text = "Point not in the Circle!";
+            draw_text(text, COLOR_RED, 100, 100);
+            refresh_screen();
+        }
+    }
     refresh_screen();
     delay(4000);
     close_all_windows();

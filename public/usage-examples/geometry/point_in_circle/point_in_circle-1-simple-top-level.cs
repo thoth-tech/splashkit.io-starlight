@@ -1,48 +1,42 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-// Let user create a circle
-WriteLine("Create a circle!");
-WriteLine("Center point x1: ");
-int x1 = ConvertToInteger(ReadLine());
-WriteLine("Center point y1: ");
-int y1 = ConvertToInteger(ReadLine());
-WriteLine("Radius for circle: ");
-int radius = ConvertToInteger(ReadLine());
-
-// Let user create a point
-WriteLine("Create a point now!");
-WriteLine("x for point: ");
-int px1 = ConvertToInteger(ReadLine());
-WriteLine("y for point: ");
-int py1 = ConvertToInteger(ReadLine());
-
 OpenWindow("Point In Circle", 800, 600);
 ClearScreen();
 
-// Create the circle base on the data given by user
-Circle A = CircleAt(x1, y1, radius);
+// Create a circle A
+Circle A = CircleAt(400, 300, 100);
 
-// Create the point base on the data given by user
-Point2D B = PointAt(px1, py1);
+// Create a point 2d name mounse point
+Point2D MousePoint;
 
-// Draw the circle
-DrawCircle(ColorRed(), A);
+while (!QuitRequested())
+{   
+    ProcessEvents();
 
-// Draw the point
-FillCircle(ColorGreen(), px1, py1, 4);
-
-// Detect if the point in the circle or not
-if (PointInCircle(B, A))
-{
-    WriteLine("Point in the circle!");
-}
-else
-{
-    WriteLine("Point not in the circle!");
+    // Set mouse point to the position of mouse
+    MousePoint = MousePosition();
+    
+    // When mouse inside the circle show text "point in the circle!" and the color of the circle change to red
+    if (PointInCircle(MousePoint, A))
+    {
+        ClearScreen();
+        DrawCircle(ColorRed(), A);
+        string text = "Point in the Circle!";
+        DrawText(text, ColorRed(), 100, 100);
+        RefreshScreen();
+    }
+    // When mouse do not inside the circle show text "point not in the circle!" and the color of the circle change to green
+    else
+    {
+        ClearScreen();
+        DrawCircle(ColorGreen(), A);
+        string text = "Point not in the Circle!";
+        DrawText(text, ColorRed(), 100, 100);
+        RefreshScreen();
+    }
 }
 
 RefreshScreen();
 Delay(4000);
 CloseAllWindows();
-
