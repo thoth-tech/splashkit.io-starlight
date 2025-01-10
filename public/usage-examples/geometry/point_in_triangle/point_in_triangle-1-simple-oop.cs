@@ -1,56 +1,45 @@
 using SplashKitSDK;
 
-namespace PointInTriangle
+namespace PointIntriangle
 {
     public class Program
     {
         public static void Main()
         {
-            // Let user create a triangle
-            SplashKit.WriteLine("Create a triangle!");
-            SplashKit.WriteLine("x1: ");
-            int x1 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-            SplashKit.WriteLine("y1: ");
-            int y1 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-            SplashKit.WriteLine("x2: ");
-            int x2 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-            SplashKit.WriteLine("y2: ");
-            int y2 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-            SplashKit.WriteLine("x3: ");
-            int x3 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-            SplashKit.WriteLine("y3: ");
-            int y3 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-
-            // Let user create a point
-            SplashKit.WriteLine("Create a point now!");
-            SplashKit.WriteLine("x for point: ");
-            int px1 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-            SplashKit.WriteLine("y for point: ");
-            int py1 = SplashKit.ConvertToInteger(SplashKit.ReadLine());
-
             SplashKit.OpenWindow("Point In Triangle", 800, 600);
             SplashKit.ClearScreen();
 
-            // Create the triangle base on the data given by user
-            Triangle A = SplashKit.TriangleFrom(x1, y1, x2, y2, x3, y3);
+            // Create a triangle A
+            Triangle A = SplashKit.TriangleFrom(700, 200, 500, 1, 200, 500);
 
-            // Create the point base on the data given by user
-            Point2D B = SplashKit.PointAt(px1, py1);
+            // Create a point 2d name mounse point
+            Point2D MousePoint;
 
-            // Draw the triangle
-            SplashKit.DrawTriangle(SplashKit.ColorRed(), A);
-
-            // Draw the point
-            SplashKit.FillCircle(SplashKit.ColorGreen(), px1, py1, 4);
-
-            // Detect if the point in the triangle or not
-            if (SplashKit.PointInTriangle(B, A))
+            while (!SplashKit.QuitRequested())
             {
-                SplashKit.WriteLine("Point in the triangle!");
-            }
-            else
-            {
-                SplashKit.WriteLine("Point not in the triangle!");
+                SplashKit.ProcessEvents();
+
+                // Set mouse point to the position of mouse
+                MousePoint = SplashKit.MousePosition();
+
+                // When mouse inside the triangle show text "point in the triangle!" and the color of the triangle change to red
+                if (SplashKit.PointInTriangle(MousePoint, A))
+                {
+                    SplashKit.ClearScreen();
+                    SplashKit.DrawTriangle(SplashKit.ColorRed(), A);
+                    string text = "Point in the triangle!";
+                    SplashKit.DrawText(text, SplashKit.ColorRed(), 100, 100);
+                    SplashKit.RefreshScreen();
+                }
+                // When mouse do not inside the triangle show text "point not in the triangle!" and the color of the triangle change to green
+                else
+                {
+                    SplashKit.ClearScreen();
+                    SplashKit.DrawTriangle(SplashKit.ColorGreen(), A);
+                    string text = "Point not in the triangle!";
+                    SplashKit.DrawText(text, SplashKit.ColorRed(), 100, 100);
+                    SplashKit.RefreshScreen();
+                }
             }
 
             SplashKit.RefreshScreen();

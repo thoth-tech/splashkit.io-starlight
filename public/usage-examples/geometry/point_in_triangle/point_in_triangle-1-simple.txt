@@ -1,3 +1,3 @@
 #### Point in triangle
 
-The following code shows examples of using [Point In Triangle](/api/geometry/#point-in-triangle) to show how to check if the point in triangle or not.
+The following code shows examples of using [Point In Triangle](/api/geometry/#point-in-triangle) to show how to check if the mouse point in triangle or not.
