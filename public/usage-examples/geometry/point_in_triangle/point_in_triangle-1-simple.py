@@ -22,7 +22,7 @@ px1 = convert_to_integer(read_line())
 write_line("y for point: ")
 py1 = convert_to_integer(read_line())
 
-open_window("PoIn Triangle", 800, 600)
+open_window("Point In Triangle", 800, 600)
 clear_screen(color_white())
 
 # Create the triangle base on the data given by user
@@ -39,9 +39,9 @@ fill_circle(color_green(), px1, py1, 4)
 
 # Detect if the poin the triangle or not
 if point_in_triangle(B, A): 
-    write_line("Poin the triangle!")
+    write_line("Point in the triangle!")
 else:
-    write_line("Ponot in the triangle!")
+    write_line("Point not in the triangle!")
     
 refresh_screen()
 delay(4000)
