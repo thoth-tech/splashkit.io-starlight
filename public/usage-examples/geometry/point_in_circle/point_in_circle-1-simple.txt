@@ -1,0 +1,3 @@
+#### Point in tcircle
+
+The following code shows examples of using [Point In Circle](/api/geometry/#point-in-circle) to show how check if the point in circle or not.
