@@ -1,0 +1,3 @@
+#### CURRENT CLIP
+
+The following code shows an examples of using [Current Clip](/api/graphics#current-clip) to set a clip region and draw a rectangle to visually show the active clipping area.
