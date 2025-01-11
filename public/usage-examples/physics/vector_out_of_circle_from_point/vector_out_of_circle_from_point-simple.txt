@@ -1,0 +1,5 @@
+#### Create a Vector from a Point Out of a Circle
+
+Returns the vector out to move a point back out of a circle, given the point was moving at the specified velocity.
+
+Uses the [vector_out_of_circle_from_point](/api/physics/#vector-out-of-circle-from-point) function.

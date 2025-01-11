@@ -61000,7 +61000,7 @@
     ]
   },
   "physics": {
-    "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.Provides matrix functions to work on 2d coordinates.Provides vector functions to work on vectors.",
+    "brief": "SplashKit Collisions library allow you to perform tests between bitmaps, sprites and shapes to determine if a collision has occured. Provides matrix functions to work on 2d coordinates. Provides vector functions to work on vectors.",
     "description": "",
     "functions": [
       {

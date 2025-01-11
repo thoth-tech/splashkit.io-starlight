@@ -1,0 +1,5 @@
+#### Create a Unit Vector
+
+Returns the unit vector of another vector. The unit vector has a magnitude of 1, resulting in a vector that indicates the direction of the original vector.
+
+Uses the [unit_vector](/api/physics/#unit-vector) function.
