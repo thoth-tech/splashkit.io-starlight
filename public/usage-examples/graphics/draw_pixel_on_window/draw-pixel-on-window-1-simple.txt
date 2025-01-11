@@ -1,0 +1,3 @@
+#### Draw Pixel On window
+
+The following code shows an examples of using [Draw Pixel On window](/api/graphics#draw-pixel-on-window) to Draw pixels randomly across the window to simulate falling snow or static noise.

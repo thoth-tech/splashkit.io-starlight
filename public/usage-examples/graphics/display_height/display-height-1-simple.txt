@@ -1,0 +1,3 @@
+#### Display Height
+
+The following code shows an examples of using [Display Height(/api/graphics#display-height) to Retrieve the height of a display.
