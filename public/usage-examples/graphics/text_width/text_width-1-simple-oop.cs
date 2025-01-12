@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace TextHeight
+namespace TextHeightExample
 {
     public class Program
     {
@@ -14,8 +14,8 @@ namespace TextHeight
             SplashKit.WriteLine("Enter the size for the text: ");
             int size = SplashKit.ConvertToInteger(SplashKit.ReadLine());
 
-            SplashKit.OpenWindow("Text Width", 800, 600);
-            SplashKit.ClearScreen();
+            Window window = new Window("Text Width", 800, 600);
+            window.Clear(Color.White);
 
             // Load font
             SplashKit.LoadFont("my_font", "arial.ttf");
@@ -29,9 +29,9 @@ namespace TextHeight
             // Display the text in the window
             SplashKit.DrawText(text, Color.Black, "my_font", size, 100, 100);
 
-            SplashKit.RefreshScreen();
+            window.Refresh();
             SplashKit.Delay(4000);
-            SplashKit.CloseAllWindows();
+            window.Close();
         }
     }
 }
