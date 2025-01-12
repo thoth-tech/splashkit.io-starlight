@@ -1,13 +1,13 @@
 using SplashKitSDK;
 
-namespace PointIntriangle
+namespace PointIntriangleExample
 {
     public class Program
     {
         public static void Main()
         {
-            SplashKit.OpenWindow("Point In Triangle", 800, 600);
-            SplashKit.ClearScreen();
+            Window window = new Window("Point In Triangle", 800, 600);
+            window.Clear(Color.White);
 
             // Create a triangle A
             Triangle A = SplashKit.TriangleFrom(700, 200, 500, 1, 200, 500);
@@ -42,9 +42,9 @@ namespace PointIntriangle
                 }
             }
 
-            SplashKit.RefreshScreen();
+            window.Refresh();
             SplashKit.Delay(4000);
-            SplashKit.CloseAllWindows();
+            window.Close();
         }
     }
 }
