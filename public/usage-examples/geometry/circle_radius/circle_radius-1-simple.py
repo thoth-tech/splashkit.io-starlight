@@ -1,24 +1,26 @@
 from splashkit import *
 
+# Let user enter the radius
+write_line("Enter Radius for circle: ")
+Radius = convert_to_double(read_line())
+
 open_window("Circle Radius", 800, 600)
 clear_screen(color_white())
 
-# Set position for the circle
-x_position = 400
-y_position = 300
+# Create a circle at the position (400,300)
+circle = circle_at(point_at(400,300), Radius)
 
-# Create a circle A at the position (x_position, y_position)
-A = circle_at(point_at(x_position, y_position), 200)
-
-# Find the radius of the circle A
-radius = circle_radius(A)
+# Find the radius of the circle 
+radius = circle_radius(circle)
 
 # Fill the circle
-fill_circle(color_red(), x_position, y_position, radius)
-# Use the radius to create a rectangle to cut 1/4 of the circle
-fill_rectangle(color_white(), x_position, y_position , radius, radius)
+fill_circle(color_red(), 400,300, radius)
+
+# Create a rectangle to show the radius
+draw_rectangle(color_white(), 400,300 , radius, radius)
 
 text = "Radius: " + str(radius)
+
 # Print result on the window
 draw_text(text, color_black(), 0, 20, 100, 100)
 

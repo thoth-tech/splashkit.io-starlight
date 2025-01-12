@@ -1,3 +1,3 @@
-#### Cut Circle
+#### How big is the circle?
 
-The following code shows examples of using [Circle Radius](/api/geometry/#circle-radius) to show how to use the circle radius to create a rectangle to cut of 1/4 of the circle.
+The following code shows an examples of using [Circle Radius](/api/geometry/#circle-radius) to show how to find the radius for the circle and draw a rectangle to shwo the radius

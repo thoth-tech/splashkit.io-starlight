@@ -2,25 +2,27 @@
 
 int main()
 {
+    // Let user enter the radius
+    write_line("Enter Radius for circle: ");
+    double Radius = convert_to_double(read_line());
+
     open_window("Circle Radius", 800, 600);
     clear_screen();
 
-    // Set position for the circle
-    double x_position = 400;
-    double y_position = 300;
+    // Create a circle at the position (400, 300)
+    circle circle = circle_at(400, 300, Radius);
 
-    // Create a circle A at the position (x_position, y_position)
-    circle A = circle_at(x_position, y_position, 200);
-
-    // Find the radius of the circle A
-    double radius = circle_radius(A);
+    // Find the radius of the circle 
+    double radius = circle_radius(circle);
 
     // Fill the Circle
-    fill_circle(COLOR_RED, x_position, y_position, radius);
-    //Use the radius to create a rectangle to cut 1/4 of the circle
-    fill_rectangle(COLOR_WHITE, x_position, y_position , radius, radius);
+    fill_circle(COLOR_RED, 400, 300, radius);
+    
+    // Create a rectangle to show the radius
+    draw_rectangle(COLOR_WHITE, 400, 300, radius, radius);
     
     string text = "Radius: " + std::to_string(radius);
+    
     // Print result on window
     draw_text(text, COLOR_BLACK, 0, 20, 100, 100);
     

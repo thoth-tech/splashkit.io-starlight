@@ -1,25 +1,27 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
+// Let user enter the radius
+WriteLine("Enter Radius for circle: ");
+double Radius = ConvertToDouble(ReadLine());
+
 OpenWindow("Circle Radius", 800, 600);
 ClearScreen();
 
-// Set position for the circle
-double x_position = 400;
-double y_position = 300;
+// Create a circle at the position (400, 300)
+Circle circle = CircleAt(400, 300, Radius);
 
- // Create a circle A at the position (x_position, y_position)
-Circle A = CircleAt(x_position, y_position, 200);
-
-// Find the radius of the circle A
-double radius = CircleRadius(A);
+// Find the radius of the circle 
+double radius = CircleRadius(circle);
 
 // Fill the Circle
-FillCircle(Color.Red, x_position, y_position, radius);
-// Use the radius to create a rectangle to cut 1/4 of the circle
-FillRectangle(Color.White, x_position, y_position , radius, radius);
-    
+FillCircle(Color.Red, 400, 300, radius);
+
+// Create a rectangle to show the radius
+DrawRectangle(Color.White, 400, 300, radius, radius);
+
 string text = "Radius: " + radius.ToString();
+
 // Print result on window
 DrawText(text, Color.Black, "NORMAL_FONT", 20, 100, 100);
 
