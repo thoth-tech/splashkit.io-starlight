@@ -1,13 +1,13 @@
 using SplashKitSDK;
 
-namespace PointInCircle
+namespace PointInCircleExample
 {
     public class Program
     {
         public static void Main()
         {
-            SplashKit.OpenWindow("Point In Circle", 800, 600);
-            SplashKit.ClearScreen();
+            Window window = new Window("Point In Circle", 800, 600);
+            window.Clear(Color.White);
 
             // Create a circle A
             Circle A = SplashKit.CircleAt(400, 300, 100);
@@ -42,9 +42,9 @@ namespace PointInCircle
                 }
             }
 
-            SplashKit.RefreshScreen();
+            window.Refresh();
             SplashKit.Delay(4000);
-            SplashKit.CloseAllWindows();
+            window.Close();
         }
     }
 }
