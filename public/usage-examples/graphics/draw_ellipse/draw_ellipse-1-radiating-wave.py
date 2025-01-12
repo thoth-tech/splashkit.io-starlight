@@ -3,6 +3,7 @@ from splashkit import *
 open_window("Draw Ellipse", 800, 600)
 clear_screen(color_white())
 
+# Draw 30 ellipses
 for i in range(30):
     # Decrease width by 20 every round
     width = 600 - i * 20

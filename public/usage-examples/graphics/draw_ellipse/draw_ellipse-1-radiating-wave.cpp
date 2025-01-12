@@ -5,7 +5,7 @@ int main()
     open_window("Draw Ellipse", 800, 600);
     clear_screen();
 
-    //Draw 30 ellipses
+    // Draw 30 ellipses
     for (int i = 0; i < 30; i++)
     {   
         // Decrease width by 20 every round
