@@ -1,0 +1,3 @@
+#### Point in tcircle
+
+The following code shows an example of using [Point In Circle](/api/geometry/#point-in-circle) to show how to check if the mouse point in circle or not.
