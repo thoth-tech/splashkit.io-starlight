@@ -28,8 +28,6 @@ import { LinkCard, CardGrid } from "@astrojs/starlight/components";
 
 import Card from "../../components/Card.astro";
 
-import { ScriptComp } from "../../assets/ScriptComp";
-
 #### To install SplashKit, copy and paste the following into your terminal
 
 ```shell
@@ -70,13 +68,12 @@ bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-sc
     <LinkCard
     title="Troubleshooting"
     icon="pencil"
-    description="FAQs on MacOS and Windows"
+    description="FAQs on MacOS, Windows, Linux and WSL"
     href="/troubleshoot/"
     />
   </Card>
 </CardGrid>
 
-<ScriptComp client:only />
 <footer>
 <center>
 
