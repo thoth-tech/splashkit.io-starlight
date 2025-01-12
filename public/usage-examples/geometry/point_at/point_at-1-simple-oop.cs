@@ -1,13 +1,13 @@
 using SplashKitSDK;
 
-namespace PointAt
+namespace PointAtExample
 {
     public class Program
     {
         public static void Main()
         {
-            SplashKit.OpenWindow("Point At", 800, 600);
-            SplashKit.ClearScreen();
+            Window window = new Window("Point At", 800, 600);
+            window.Clear(Color.White);
 
             for (int i = 0; i < 30; i++)
             {
@@ -34,9 +34,9 @@ namespace PointAt
             SplashKit.FillCircle(Color.Red, pointMiddle.X, pointMiddle.Y, 4);
             SplashKit.DrawText("Center Point", Color.Black, pointMiddle.X - 20, pointMiddle.Y - 20);
 
-            SplashKit.RefreshScreen();
+            window.Refresh();
             SplashKit.Delay(4000);
-            SplashKit.CloseAllWindows();
+            window.Close();
         }
     }
 }
