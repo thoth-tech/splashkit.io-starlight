@@ -1,6 +1,6 @@
 from splashkit import *
 
-my_window = open_window("Draw Circle on Window", 800, 600)
+window = open_window("Draw Circle on Window", 800, 600)
 clear_screen(color_white())
 
 for _ in range(50):
@@ -19,7 +19,7 @@ for _ in range(50):
     )
 
     # Draw the circle base on the random data
-    draw_circle_on_window(my_window, random_color, x, y, radius)
+    draw_circle_on_window(window, random_color, x, y, radius)
 
 refresh_screen()
 delay(4000)

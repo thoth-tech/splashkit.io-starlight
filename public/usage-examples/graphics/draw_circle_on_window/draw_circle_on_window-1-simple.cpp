@@ -2,7 +2,7 @@
 
 int main()
 {
-    window myWindow = open_window("Draw Circle on Window", 800, 600);
+    window window = open_window("Draw Circle on Window", 800, 600);
     clear_screen();
     
     for (int i = 0; i < 50; i++)
@@ -19,7 +19,7 @@ int main()
         color randomColor = rgb_color(rnd(255), rnd(255), rnd(255));
 
         // Draw the circle base on the random data
-        draw_circle_on_window(myWindow, randomColor, x, y, radius);
+        draw_circle_on_window(window, randomColor, x, y, radius);
     }
     
     refresh_screen();

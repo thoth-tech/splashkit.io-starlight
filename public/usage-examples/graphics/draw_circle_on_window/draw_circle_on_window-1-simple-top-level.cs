@@ -1,7 +1,7 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Window myWindow = OpenWindow("Draw Circle on Window", 800, 600);
+Window window = OpenWindow("Draw Circle on Window", 800, 600);
 
 ClearScreen();
 
@@ -21,7 +21,7 @@ for (int i = 0; i < 50; i++)
     );
 
     // Draw the circle base on the random data
-    DrawCircleOnWindow(myWindow, randomColor, x, y, radius);
+    DrawCircleOnWindow(window, randomColor, x, y, radius);
 }
 
 RefreshScreen();
