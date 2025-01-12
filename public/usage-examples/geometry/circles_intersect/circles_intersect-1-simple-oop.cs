@@ -39,16 +39,16 @@ namespace CircleIntersectExample
             }
 
             // Create a window 
-            SplashKit.OpenWindow("Circle Intersect", 800, 600);
-            SplashKit.ClearScreen();
+            Window window = new Window("Circle Intersect", 800, 600);
+            window.Clear(Color.White);
 
             // Draw the circles based on the data given by user
             SplashKit.DrawCircle(Color.Red, X_A, Y_A, R_A);
             SplashKit.DrawCircle(Color.Blue, X_B, Y_B, R_B);
 
-            SplashKit.RefreshScreen();
+            window.Refresh();
             SplashKit.Delay(4000);
-            SplashKit.CloseAllWindows();
+            window.Close();
         }
     }
 }
