@@ -1,16 +1,16 @@
 using SplashKitSDK;
 
-namespace DrawRactangle
+namespace DrawRactangleExample
 {
     public class Program
     {
         public static void Main()
         {
-            SplashKit.OpenWindow("Draw Rectangle", 800, 600);
-            SplashKit.ClearScreen();
+            Window window = new Window("Draw Rectangle", 800, 600);
+            window.Clear(Color.White);
 
             for (int i = 0; i < 21; i++)
-            {   
+            {
                 // Increase x position by 40 every round
                 int x = i * 40 - 40;
 
@@ -25,9 +25,9 @@ namespace DrawRactangle
                 SplashKit.DrawRectangle(randomColor, x, y, 40, 30);
             }
 
-            SplashKit.RefreshScreen();
+            window.Refresh();
             SplashKit.Delay(4000);
-            SplashKit.CloseAllWindows();
+            window.Close();
         }
     }
 }
