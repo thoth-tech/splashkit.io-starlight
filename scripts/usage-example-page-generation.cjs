@@ -391,7 +391,7 @@ categories.forEach((categoryKey) => {
               }
             }
           });
-          console.log("Generated Imports for C++:\n", mdxContent);
+          // console.log("Generated Imports for C++:\n", mdxContent);
           mdxContent += "\n";
 
           // Code tabs
@@ -447,6 +447,7 @@ categories.forEach((categoryKey) => {
                     }
                     if (file.includes("-beyond")) {
                       mdxContent += `    <TabItem label="Beyond SplashKit">\n`;
+                      mdxContent += `      See the [Graphics](https://splashkit.io/beyond-splashkit/graphics/0-getting-started-with-graphics/#getting-started-without-splashkit) or [Audio](https://splashkit.io/beyond-splashkit/audio/0-sound-effects/#getting-started-without-splashkit) Beyond SplashKit guides for help compiling without SplashKit.\n`;
                       mdxContent += `      <Code code={${importTitle}_beyond_${lang}} lang="${lang}" mark={"SplashKit.${functionTag}"} />\n`;
                       mdxContent += "    </TabItem>\n";
                     }
@@ -461,7 +462,7 @@ categories.forEach((categoryKey) => {
               }
             }
           });
-          console.log("Generated Imports for C++:\n", mdxContent);
+          // console.log("Generated Imports for C++:\n", mdxContent); // Debugging
           mdxContent += "</Tabs>\n\n";
 
           // Image or gif output
