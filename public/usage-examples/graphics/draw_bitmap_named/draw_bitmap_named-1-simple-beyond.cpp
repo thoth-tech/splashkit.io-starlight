@@ -51,10 +51,11 @@ SDL_Renderer *sdl_create_renderer(SDL_Window *window)
 
 int main(int argv, char **args)
 {
+    // Open Window
     SDL_Window *window = sdl_open_window("Basic Bitmap Drawing", 315, 330);
     SDL_Renderer *renderer = sdl_create_renderer(window);
 
-    // Load image
+    // Load bitmap image
     // Create a surface for imported image
     SDL_Surface *image = IMG_Load("Resources/images/skbox.png");
     if (image == NULL)
