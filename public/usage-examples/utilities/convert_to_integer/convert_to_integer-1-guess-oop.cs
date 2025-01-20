@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace Program
+namespace ConvertToIntegerExample
 {
     public class Program
     {
@@ -9,16 +9,15 @@ namespace Program
             SplashKit.WriteLine("Welcome to the Number Guessing Game!");
             SplashKit.WriteLine("I'm thinking of a number between 1 and 100...");
 
-            // Set a secret number
-            int secretNumber = 42;
-
+            string input; // User input
+            int secretNumber = 42; // Set a secret number
             int guess = -1;  // Initialise with an invalid guess
 
-            // Ask the user for their guess
             while (guess != secretNumber)
             {
-               SplashKit. WriteLine("Please enter your guess:");
-                string input = SplashKit.ReadLine();
+                // Ask the user for their guess
+                SplashKit.WriteLine("Please enter your guess:");
+                input = SplashKit.ReadLine();
 
                 // Validate if the input is a valid integer
                 if (SplashKit.IsInteger(input))
@@ -27,17 +26,13 @@ namespace Program
                     guess = SplashKit.ConvertToInteger(input);
 
                     // Check if the guess is correct
-                    if (guess == secretNumber)
+                    if (guess > secretNumber)
                     {
-                        SplashKit.WriteLine($"Congratulations! You've guessed the correct number: {guess}");
+                        SplashKit.WriteLine("Too high! Try again.");
                     }
                     else if (guess < secretNumber)
                     {
                         SplashKit.WriteLine("Too low! Try again.");
-                    }
-                    else
-                    {
-                        SplashKit.WriteLine("Too high! Try again.");
                     }
                 }
                 else
@@ -46,6 +41,7 @@ namespace Program
                 }
             }
 
+            SplashKit.WriteLine($"Congratulations! You've guessed the correct number: {guess}");
         }
     }
 }
