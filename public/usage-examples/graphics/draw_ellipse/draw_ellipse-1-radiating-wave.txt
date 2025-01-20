@@ -1,3 +1,3 @@
-#### Draw Ellipse
+#### Radiating Wave
 
-The following code shows an example of using [Draw Ellipse](/api/graphics#draw-ellipse-1) to show how to use the function draw ellipse to draw radiating wave.
+The following code shows an example of using [Draw Ellipse](/api/graphics#draw-ellipse-3) to draw a radiating wave pattern.
