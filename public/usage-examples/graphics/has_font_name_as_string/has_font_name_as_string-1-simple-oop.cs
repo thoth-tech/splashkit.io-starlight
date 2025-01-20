@@ -1,19 +1,16 @@
 using SplashKitSDK;
  
-namespace HasFont
+namespace HasFontExample
 {
     public class Program
     {
         public static void Main()
-        {  
+        {
             // Load a font
             SplashKit.LoadFont("my_font", "arial.ttf");
  
             // Check if the font exists
-            bool fontCheck = SplashKit.HasFont("my_font");
- 
-            // Display the result
-            if (fontCheck)
+            if (SplashKit.HasFont("my_font"))
             {
                 SplashKit.WriteLine("Font found!");
             }
