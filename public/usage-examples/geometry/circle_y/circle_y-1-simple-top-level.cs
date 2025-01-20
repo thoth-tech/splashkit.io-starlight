@@ -1,39 +1,25 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
+// Create a circle (with random y position value between 200 - 400)
+Circle circle = CircleAt(400, Rnd(200) + 200, 200);
+
 OpenWindow("Circle Y", 800, 600);
-ClearScreen();
 
-// Set position for the circle
-double x_position = 400;
-// Give random  y_position value bewteen 200 - 400
-double y_position = Rnd(200) + 200;
-
-// Create a circle A at the position (x_position, y_position)
-Circle A = CircleAt(x_position, y_position, 200);
-// Find the y position of the circle
-double circleY = CircleY(A);
-
-// Draw the Circle
-DrawCircle(Color.Red, x_position, circleY, 200);
+// Draw the Circle and y coordinate on window
+ClearScreen(ColorWhite());
+DrawCircle(ColorRed(), circle);
+DrawText("Circle Y: " + CircleY(circle), ColorBlack(), 100, 100);
 
 // Draw a line to show the circle Y coordinate
-DrawLine(Color.Black, 0, circleY, 800, circleY);
+DrawLine(ColorBlack(), 0, CircleY(circle), ScreenWidth(), CircleY(circle));
 
-string text = "Circle Y: " + circleY.ToString();
-// Print result on window
-DrawText(text, Color.Black, 100, 100);
-
-// Draw 10 circle with radient 50 and the same circle y coordinate
+// Draw 10 circles with radius of 50 and the same circle y coordinate
 for (int i = 0; i < 10; i++)
 {
-    int x = i * 60 + 100;
-    int radiant = 50;
-
-    DrawCircle(Color.Blue, x, circleY, radiant);
+    DrawCircle(ColorBlue(), i * 60 + 100, CircleY(circle), 50);
 }
-
 RefreshScreen();
+
 Delay(4000);
 CloseAllWindows();
-

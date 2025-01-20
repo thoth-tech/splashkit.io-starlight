@@ -1,46 +1,33 @@
 using SplashKitSDK;
 
-namespace CircleY
+namespace CircleYExample
 {
     public class Program
     {
         public static void Main()
         {
-            SplashKit.OpenWindow("Circle Y", 800, 600);
-            SplashKit.ClearScreen();
+            // Create a circle (with random y position value between 200 - 400)
+            Circle circle = SplashKit.CircleAt(400, SplashKit.Rnd(200) + 200, 200);
 
-            // Set position for the circle
-            double x_position = 400;
-            // Give random  y_position value bewteen 200 - 400
-            double y_position = SplashKit.Rnd(200) + 200;
+            Window window = new Window("Circle Y", 800, 600);
 
-            // Create a circle A at the position (x_position, y_position)
-            Circle A = SplashKit.CircleAt(x_position, y_position, 200);
-            // Find the y position of the circle
-            double circleY = SplashKit.CircleY(A);
-
-            // Draw the Circle
-            SplashKit.DrawCircle(Color.Red, x_position, circleY, 200);
+            // Draw the Circle and y coordinate on window
+            window.Clear(Color.White);
+            SplashKit.DrawCircle(Color.Red, circle);
+            SplashKit.DrawText("Circle Y: " + SplashKit.CircleY(circle), Color.Black, 100, 100);
 
             // Draw a line to show the circle Y coordinate
-            SplashKit.DrawLine(Color.Black, 0, circleY, 800, circleY);
+            SplashKit.DrawLine(Color.Black, 0, SplashKit.CircleY(circle), SplashKit.ScreenWidth(), SplashKit.CircleY(circle));
 
-            string text = "Circle Y: " + circleY.ToString();
-            // Print result on window
-            SplashKit.DrawText(text, Color.Black, 100, 100);
-
-            // Draw 10 circles with radient 50 and the same circle y coordinate
+            // Draw 10 circles with radius of 50 and the same circle y coordinate
             for (int i = 0; i < 10; i++)
             {
-                int x = i * 60 + 100;
-                int radiant = 50;
-
-                SplashKit.DrawCircle(Color.Blue, x, circleY, radiant);
+                SplashKit.DrawCircle(Color.Blue, i * 60 + 100, SplashKit.CircleY(circle), 50);
             }
+            window.Refresh();
 
-            SplashKit.RefreshScreen();
             SplashKit.Delay(4000);
-            SplashKit.CloseAllWindows();
+            window.Close();
         }
     }
 }
