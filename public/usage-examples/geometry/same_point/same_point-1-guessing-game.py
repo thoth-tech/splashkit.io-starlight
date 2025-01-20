@@ -1,40 +1,51 @@
 from splashkit import *
 
-# Variable declarations
-point_1 = point_at(50, 75)
-guess = False
-write_line("Guess the coordinate inside (100,100)")
-
-while not guess:
-
+def get_point(prompt):
     # Get user input
-    write("Enter your coordinates as x,y: ")
+    write(prompt)
     guess_input = read_line()
     coords = split(guess_input, ',')
+
+    # Validate input
+    while (not is_double(coords[0]) or not is_double(coords[1])):
+        write_line("Invalid input. Try again.")
+        write(prompt)
+        guess_input = read_line()
+        coords = split(guess_input, ',')
+
+    # Convert input
     guess_x = convert_to_double(coords[0])
     guess_y = convert_to_double(coords[1])
+    return point_at(guess_x, guess_y)
 
-    # Convert input 
-    point_2 = point_at(guess_x, guess_y)
-    
-    # Clues
-    if point_1.x > guess_x:
-        write_line("x is too low")
-    elif point_1.x < guess_x:
-        write_line("x is too high")
-    else:
-        write_line("x is correct !!!")
-    
-    if point_1.y > guess_y: 
-        write_line("y is too low")
-    elif point_1.y < guess_y: 
-        write_line("y is too high")
-    else: 
-        write_line("y is correct !!!")
+def main():
+    # Variable declarations
+    target_point = point_at(50, 75)
 
-    # Point comparison 
-    guess = same_point(point_1, point_2)
-    if not guess:
+    write_line("Guess the coordinate inside (100,100)")
+
+    # Get point input from user
+    guess_point = get_point("Enter your coordinates as x,y: ")
+
+    while (not same_point(target_point, guess_point)):        
+        # Clues
+        if target_point.x > guess_point.x:
+            write_line("x is too low")
+        elif target_point.x < guess_point.x:
+            write_line("x is too high")
+        else:
+            write_line("x is correct !!!")
+        
+        if target_point.y > guess_point.y: 
+            write_line("y is too low")
+        elif target_point.y < guess_point.y: 
+            write_line("y is too high")
+        else: 
+            write_line("y is correct !!!")
+
         write_line("Try Again!")
-    else:
-        write_line("You Win!")
+        guess_point = get_point("Enter your coordinates as x,y: ")
+
+    write_line("You Win!")
+
+main()
