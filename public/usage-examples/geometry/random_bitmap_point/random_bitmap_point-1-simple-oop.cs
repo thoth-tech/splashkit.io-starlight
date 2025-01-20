@@ -1,31 +1,33 @@
 using SplashKitSDK;
 
-namespace RandomBitmapPoint
+namespace RandomBitmapPointExample
 {
     public class Program
     {
         public static void Main()
-        {   
-            // Create Window
-            Window Window = new Window("Random Quad Shape", 600, 600);
-            Bitmap Bmp = new Bitmap("Random Quads", 600, 600);
+        {
+            // Create Window and empty bitmap
+            Window window = new Window("Random Bitmap Points with Triangles", 600, 600);
+            Bitmap bmp = new Bitmap("Random Triangles", 600, 600);
 
-            // Create quad using random points on bitmap
-            Quad Q = SplashKit.QuadFrom(
-                SplashKit.RandomBitmapPoint(Bmp),
-                SplashKit.RandomBitmapPoint(Bmp),
-                SplashKit.RandomBitmapPoint(Bmp),
-                SplashKit.RandomBitmapPoint(Bmp));
-            Bmp.DrawQuad(Color.Black, Q);
+            for (int i = 0; i < 10; i++)
+            {
+                // Create triangle using random points on bitmap
+                Triangle triangle = SplashKit.TriangleFrom(
+                    SplashKit.RandomBitmapPoint(bmp),
+                    SplashKit.RandomBitmapPoint(bmp),
+                    SplashKit.RandomBitmapPoint(bmp));
 
-            Window.Clear(Color.WhiteSmoke);
+                bmp.FillTriangle(Color.Random(), triangle);
+            }
 
             // Draw the bitmap
-            Window.DrawBitmap(Bmp, 0, 0);
+            window.Clear(Color.WhiteSmoke);
+            window.DrawBitmap(bmp, 0, 0);
+            window.Refresh();
 
-            Window.Refresh();
             SplashKit.Delay(5000);
-            Window.Close();
+            window.Close();
         }
     }
 }

@@ -1,23 +1,25 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-// Create Window
-OpenWindow("Random Quad Shape", 600, 600);
-Bitmap Bmp = new Bitmap("Random Quads", 600, 600);
+// Create Window and empty bitmap
+OpenWindow("Random Bitmap Points with Triangles", 600, 600);
+Bitmap bmp = CreateBitmap("Random Triangles", 600, 600);
 
-// Create quad using random points on bitmap
-Quad Q = QuadFrom(
-    RandomBitmapPoint(Bmp),
-    RandomBitmapPoint(Bmp),
-    RandomBitmapPoint(Bmp),
-    RandomBitmapPoint(Bmp));
-DrawQuadOnBitmap(Bmp, Color.Black, Q);
+for (int i = 0; i < 10; i++)
+{
+    // Create triangle using random points on bitmap
+    Triangle triangle = TriangleFrom(
+        RandomBitmapPoint(bmp),
+        RandomBitmapPoint(bmp),
+        RandomBitmapPoint(bmp));
 
-ClearScreen(Color.WhiteSmoke);
+    FillTriangleOnBitmap(bmp, RandomColor(), triangle);
+}
 
 // Draw the bitmap
-DrawBitmap(Bmp, 0, 0);
-
+ClearScreen(ColorWhiteSmoke());
+DrawBitmap(bmp, 0, 0);
 RefreshScreen();
+
 Delay(5000);
 CloseAllWindows();

@@ -1,23 +1,22 @@
 from splashkit import *
 
-# Create Window
-open_window("Random Quad Shape", 600, 600)
-bmp = create_bitmap("Random Quads", 600, 600)
+# Create Window and empty bitmap
+open_window("Random Bitmap Points with Triangles", 600, 600)
+bmp = create_bitmap("Random Triangles", 600, 600)
 
-# Create quad using random points on bitmap
-q = quad_from_points(
-    random_bitmap_point(bmp),
-    random_bitmap_point(bmp),
-    random_bitmap_point(bmp),
-    random_bitmap_point(bmp)
-)
-draw_quad_on_bitmap(bmp, color_black(), q)
+for _ in range(10):
+    # Create triangle using random points on bitmap
+    triangle = triangle_from(
+        random_bitmap_point(bmp),
+        random_bitmap_point(bmp),
+        random_bitmap_point(bmp))
 
-clear_screen(color_white_smoke())
+    fill_triangle_on_bitmap(bmp, random_color(), triangle)
 
 # Draw the bitmap
+clear_screen(color_white_smoke())
 draw_bitmap(bmp, 0, 0)
-
 refresh_screen()
+
 delay(5000)
 close_all_windows()
