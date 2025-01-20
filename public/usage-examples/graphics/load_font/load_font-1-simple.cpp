@@ -2,10 +2,12 @@
 
 int main()
 {
+  // Load font
+  font my_font = load_font("MyFont", "RobotoSlab.ttf");
+  
   open_window("Font Load Example", 800, 600);
 
-  // Import font and draw text
-  font my_font = load_font("MyFont", "RobotoSlab.ttf");
+  // Draw text using loaded font
   draw_text("Hello, SplashKit!", color_black(), my_font, 40, 250, 270);
   refresh_screen();
 

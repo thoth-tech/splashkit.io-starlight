@@ -1,10 +1,12 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
+// Load font
+Font myFont = LoadFont("MyFont", "RobotoSlab.ttf");
+
 OpenWindow("Font Load Example", 800, 600);
 
-// Import font and draw text
-Font myFont = LoadFont("MyFont", "RobotoSlab.ttf");
+// Draw text using loaded font
 DrawText("Hello, SplashKit!", ColorBlack(), myFont, 40, 250, 270);
 RefreshScreen();
 

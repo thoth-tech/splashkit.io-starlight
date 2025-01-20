@@ -1,6 +1,6 @@
-#### Load Font Example
+#### Using Fonts
 
-The following code shows examples of using [Load Font](/api/graphics#load-font) to show how double buffering works.
+The following code shows an example of using [Load Font](/api/graphics#load-font) to draw text in a specific font.
 
 :::note
 To test this example code you can download these [**Resources**](/usage-examples/graphics/load_font/LoadFont_BasicLoadFontResources.zip).
