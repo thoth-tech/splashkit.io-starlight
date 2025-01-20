@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace DrawPixel
+namespace DrawPixelExample
 {
     public class Program
     {
@@ -8,29 +8,29 @@ namespace DrawPixel
         {
             // Declare variables
             const int TrailLength = 50;
-            Point2D MousePoint;
-            Point2D[] MouseHistory = new Point2D[TrailLength];
-            Color[] ColorList = { Color.Blue, Color.Red, Color.Green, Color.Yellow, Color.Pink };
+            Point2D mousePoint;
+            Point2D[] mouseHistory = new Point2D[TrailLength];
+            Color[] colorList = { Color.Blue, Color.Red, Color.Green, Color.Yellow, Color.Pink };
 
             Window window = new Window("Cursor Trail", 600, 600);
 
             while (!SplashKit.QuitRequested())
             {
-                MousePoint = SplashKit.MousePosition();
+                mousePoint = SplashKit.MousePosition();
                 window.Clear(Color.Black);
                 // Set mouse position history
                 for (int i = 0; i < TrailLength - 1; i++)
                 {
                     // Shuffle forward
-                    MouseHistory[i] = MouseHistory[i + 1];
+                    mouseHistory[i] = mouseHistory[i + 1];
                 }
 
-                MouseHistory[TrailLength - 1] = MousePoint;
+                mouseHistory[TrailLength - 1] = mousePoint;
 
                 // Draw mouse trail
                 for (int i = 0; i < TrailLength; i++)
                 {
-                    SplashKit.DrawPixel(ColorList[i % 5], MouseHistory[i]);
+                    SplashKit.DrawPixel(colorList[i % 5], mouseHistory[i]);
                 }
 
                 SplashKit.ProcessEvents();

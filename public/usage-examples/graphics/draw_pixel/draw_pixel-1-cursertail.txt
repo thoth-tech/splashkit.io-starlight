@@ -1,3 +1,0 @@
-#### Draw Pixel
-
-The following code shows examples of using [Draw Pixel](/api/graphics#draw-pixel) to show how to make a curser trail on the screen
