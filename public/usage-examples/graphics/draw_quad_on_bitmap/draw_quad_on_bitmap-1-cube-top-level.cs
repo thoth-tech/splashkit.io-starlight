@@ -1,5 +1,6 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
+
 // Create a window and bitmap to draw on
 Window window = OpenWindow("Cube", 800, 600);
 Bitmap bitmap = CreateBitmap("cube", 800, 600);
@@ -43,4 +44,6 @@ while (!window.CloseRequested)
     // Refresh the window
     RefreshScreen();
 }
+
 FreeBitmap(bitmap);
+CloseWindow(window);

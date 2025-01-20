@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace DrawQuadOnBitmap
+namespace DrawQuadOnBitmapExample
 {
     public class Program
     {
@@ -49,7 +49,9 @@ namespace DrawQuadOnBitmap
                 // Refresh the window
                 SplashKit.RefreshScreen();
             }
+            
             bitmap.Free();
+            window.Close();
         }
     }
 }
