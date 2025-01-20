@@ -11,7 +11,7 @@ for _ in range(10):
         random_bitmap_point(bmp),
         random_bitmap_point(bmp))
 
-    fill_triangle_on_bitmap(bmp, random_color(), triangle)
+    fill_triangle_on_bitmap_record(bmp, random_color(), triangle)
 
 # Draw the bitmap
 clear_screen(color_white_smoke())
