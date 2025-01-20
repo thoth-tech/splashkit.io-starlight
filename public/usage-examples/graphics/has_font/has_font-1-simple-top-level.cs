@@ -1,15 +1,19 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Font myFont = null;
-
 // Check if program has font
 Write("Font available before loading: ");
-WriteLine(HasFont(myFont).ToString());
+if (HasFont(FontNamed("MyFont")))
+    WriteLine("True");
+else
+    WriteLine("False");
 
 // Load font
-myFont = LoadFont("MyFont", "RobotoSlab.ttf");
+Font myFont = LoadFont("MyFont", "arial.ttf");
 
 // Check if program has font again
 Write("Font available after loading: ");
-WriteLine(HasFont(myFont).ToString());
+if (HasFont(myFont))
+    WriteLine("True");
+else
+    WriteLine("False");
