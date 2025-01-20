@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace Program
+namespace IndexOfExample
 {
     public class Program
     {
