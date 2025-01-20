@@ -36,5 +36,7 @@ int main()
     }
     
     free_bitmap(bitmap);
+    close_window(window);
+
     return 0;
 }

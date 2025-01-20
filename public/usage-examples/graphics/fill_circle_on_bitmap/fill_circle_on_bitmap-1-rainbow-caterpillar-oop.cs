@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace FillCircleOnBitmap
+namespace FillCircleOnBitmapExample
 {
     public class Program
     {
@@ -40,6 +40,7 @@ namespace FillCircleOnBitmap
             }
 
             bitmap.Free();
+            window.Close();
         }
     }
 }

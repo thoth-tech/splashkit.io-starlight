@@ -36,3 +36,4 @@ while not window_close_requested(window):
     refresh_screen()
 
 free_bitmap(bitmap)
+close_window(window)

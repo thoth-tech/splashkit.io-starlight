@@ -33,4 +33,6 @@ while (!window.CloseRequested)
     // Refresh the window
     RefreshScreen();
 }
+
 FreeBitmap(bitmap);
+CloseWindow(window);
