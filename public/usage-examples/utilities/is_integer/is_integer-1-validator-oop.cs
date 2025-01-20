@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace Program
+namespace IsIntegerExample
 {
     public class Program
     {
@@ -8,29 +8,25 @@ namespace Program
         {
             SplashKit.WriteLine("Welcome to the Integer Validation Checker!");
 
-            bool validInput = false;
+            // Get the user input as a string
+            SplashKit.WriteLine("Please enter a valid integer:");
+            string input = SplashKit.ReadLine();
 
-            // Loop until the user enters a valid integer
-            while (!validInput)
+            // Check if the input is a valid integer
+            // Loop while the user input is NOT valid (aka check for the wrong answers here)
+            while (!SplashKit.IsInteger(input))
             {
+                SplashKit.WriteLine("Oops! That's not a valid integer. Please try again.");
+                // Allow the user to enter their input again
                 SplashKit.WriteLine("Please enter a valid integer:");
-                string input = SplashKit.ReadLine();
-
-                // Check if the input is a valid integer
-                if (SplashKit.IsInteger(input))
-                {
-                    int number = SplashKit.ConvertToInteger(input);  // Convert input to integer
-                    SplashKit.WriteLine($"Great! You've entered a valid integer: {number}");
-                    validInput = true;  // Exit loop on valid input
-                }
-                else
-                {
-                    SplashKit.WriteLine("Oops! That's not a valid integer. Please try again.");
-                }
+                input = SplashKit.ReadLine();
             }
 
-            SplashKit.WriteLine("Thank you for using the Integer Validation Checker!");
+            // Convert input to integer
+            int number = SplashKit.ConvertToInteger(input);
+            SplashKit.WriteLine($"Great! You've entered a valid integer: {number}");
 
+            SplashKit.WriteLine("Thank you for using the Integer Validation Checker!");
         }
     }
 }

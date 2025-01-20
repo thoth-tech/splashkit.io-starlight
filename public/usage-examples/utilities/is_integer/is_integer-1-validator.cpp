@@ -4,27 +4,23 @@ int main()
 {
     write_line("Welcome to the Integer Validation Checker!");
 
-    string input;
-    bool valid_input = false;
+    // Get the user input as a string
+    write_line("Please enter a valid integer:");
+    string input = read_line();
 
-    // Loop until the user enters a valid integer
-    while (!valid_input)
+    // Check if the input is a valid integer
+    // Loop while the user input is NOT valid (aka check for the wrong answers here)
+    while (!is_integer(input))
     {
+        write_line("Oops! That's not a valid integer. Please try again.");
+        // Allow the user to enter their input again
         write_line("Please enter a valid integer:");
         input = read_line();
-
-        // Check if the input is a valid integer
-        if (is_integer(input))
-        {
-            int number = convert_to_integer(input);  // Convert input to integer
-            write_line("Great! You've entered a valid integer: " + std::to_string(number));
-            valid_input = true;  // Exit loop on valid input
-        }
-        else
-        {
-            write_line("Oops! That's not a valid integer. Please try again.");
-        }
     }
+
+    // Convert input to integer
+    int number = convert_to_integer(input);
+    write_line("Great! You've entered a valid integer: " + std::to_string(number));
 
     write_line("Thank you for using the Integer Validation Checker!");
 
