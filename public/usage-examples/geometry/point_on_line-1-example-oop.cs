@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace PointOnLine
+namespace PointOnLineExample
 {
     public class Program
     {

@@ -1,3 +1,0 @@
-#### Point On Line
-
-The following code shows an example of using [Point On Line](/api/geometry#point-on-line) to show how to check if any given point exists on a line

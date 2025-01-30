@@ -24,5 +24,6 @@ int main()
         process_events();
     }
     close_window(window);
+    
     return 0;
 }
