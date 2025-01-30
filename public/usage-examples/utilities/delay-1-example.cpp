@@ -57,4 +57,5 @@ int main()
     delay(800);
 
     write_with_delay(" Catch you later!", 200);
+    write_line();
 }

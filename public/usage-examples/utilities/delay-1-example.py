@@ -41,4 +41,5 @@ delay(1100)
 write_with_delay("Oh well, it's been fun.", 200)
 delay(800)
 
-write_with_delay("Catch you later!\n", 200)
+write_with_delay("Catch you later!", 200)
+write_line()

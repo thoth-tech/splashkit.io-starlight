@@ -1,23 +1,23 @@
 ﻿using SplashKitSDK;
 
-namespace Program
+namespace DelayExample
 {
     public class Program
     {
+        // Write a string to the console with a delay between each word
+        public static void WriteWithDelay(string text, int delayTime)
+        {
+            string[] words = text.Split(' ');
+            foreach (string word in words)
+            {
+                SplashKit.Write(word + " ");
+                SplashKit.Delay(delayTime);
+            }
+            SplashKit.Write("");  // Output the last word if there’s no trailing space
+        }
+
         public static void Main()
         {
-            // Write a string to the console with a delay between each word
-            void WriteWithDelay(string text, int delayTime)
-            {
-                string[] words = text.Split(' ');
-                foreach (string word in words)
-                {
-                    SplashKit.Write(word + " ");
-                    SplashKit.Delay(delayTime);
-                }
-                SplashKit.Write("");  // Output the last word if there’s no trailing space
-            }
-
             WriteWithDelay("Hello there stranger!\n", 200);
             SplashKit.Delay(600);
 
@@ -51,7 +51,8 @@ namespace Program
             WriteWithDelay("Oh well, it's been fun.", 200);
             SplashKit.Delay(800);
 
-            WriteWithDelay("Catch you later!\n", 200);
+            WriteWithDelay("Catch you later!", 200);
+            SplashKit.WriteLine();
         }
     }
 }

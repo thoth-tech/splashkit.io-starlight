@@ -1,7 +1,7 @@
 ﻿using static SplashKitSDK.SplashKit;
 
 // Write a string to the console with a delay between each word
-void WriteWithDelay(string text, int delayTime)
+static void WriteWithDelay(string text, int delayTime)
 {
     string[] words = text.Split(' ');
     foreach (string word in words)
@@ -45,4 +45,5 @@ Delay(1100);
 WriteWithDelay("Oh well, it's been fun.", 200);
 Delay(800);
 
-WriteWithDelay("Catch you later!\n", 200);
+WriteWithDelay("Catch you later!", 200);
+WriteLine();

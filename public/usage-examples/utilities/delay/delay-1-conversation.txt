@@ -1,3 +1,0 @@
-### Simulating a Conversation
-
-The following code shows examples of using [delay](/api/utilities/#delay) to simulate a conversation, where a function delays the output of each word in a string. With an additional delay between each sentence to simulate a pause between speakers.
