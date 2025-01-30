@@ -1,4 +1,0 @@
-#### Closest Point to Point on Circle
-
-The following is a simple program that prompts the user for an x and y value for a position and uses [Closes Point On Circle](/api/geometry/#closest-point-on-circle) to get the closest point to that point on a circle, these points are indicated by a blue and red dot.
-
