@@ -1,3 +1,1 @@
-#### Line To String
-
-The following code is an example using [Line To String](/api/geometry#line-to-string) to get the text description of a line.
+Display Line Information

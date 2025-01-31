@@ -1,3 +1,1 @@
-#### Line Length
-
-The following code is an example using [Line Length](/api/geometry#line-length) to show how to measure and return the length of a line.
+Simple Line Length

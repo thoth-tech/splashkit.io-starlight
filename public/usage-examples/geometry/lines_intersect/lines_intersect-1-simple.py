@@ -52,4 +52,5 @@ draw_text_no_font_no_size(
 
 refresh_screen()
 delay(5000)
+
 close_all_windows()

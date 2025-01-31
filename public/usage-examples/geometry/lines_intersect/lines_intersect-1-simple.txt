@@ -1,3 +1,1 @@
-#### Lines Intersect
-
-The following code is an example using [Lines Intersect](/api/geometry#lines-intersect) to draw three lines and check if two lines intersect and return a boolean of the result.
+Simple Line Intersect Check

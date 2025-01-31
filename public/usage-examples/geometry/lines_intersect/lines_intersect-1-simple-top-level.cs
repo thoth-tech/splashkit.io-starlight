@@ -38,4 +38,3 @@ RefreshScreen();
 Delay(5000);
 
 CloseAllWindows();
-
