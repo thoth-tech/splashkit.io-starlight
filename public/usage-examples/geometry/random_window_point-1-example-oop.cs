@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace RandomWindowPoint
+namespace RandomWindowPointExample
 {
     public class Program
     {
