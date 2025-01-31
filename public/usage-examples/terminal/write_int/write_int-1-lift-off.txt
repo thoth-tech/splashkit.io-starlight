@@ -1,3 +1,1 @@
-### Countdown to lift off
-
-The following code shows an example of using [write](/api/terminal/#write-3) to countdown from 10 to 0 before lift off using write int.
+Countdown to lift off

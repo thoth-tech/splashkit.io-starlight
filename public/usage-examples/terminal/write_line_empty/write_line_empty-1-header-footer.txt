@@ -1,3 +1,1 @@
-### Write a Letter
-
-The following code shows an example of using [write line](/api/terminal/#write-line-2) to demonstrate how write line empty works by structuring a letter.
+Adding Blank Lines

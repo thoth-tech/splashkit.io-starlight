@@ -10,4 +10,6 @@ int main()
     write_line("This is the second line of body content.");
     write_line(); // Add more spacing
     write_line("Footer Text");
+
+    return 0;
 }

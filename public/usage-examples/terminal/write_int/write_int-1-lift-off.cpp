@@ -10,5 +10,6 @@ int main()
         write_line(" seconds...");
     }
     write_line("Lift off!");
+
     return 0;
 }

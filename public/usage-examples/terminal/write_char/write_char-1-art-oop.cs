@@ -21,9 +21,11 @@ namespace WriteCharArt
             SplashKit.Write("|______  |\n");
 
             SplashKit.Write("  | |           | |    .");
-            for (int i = 0; i < 4; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 4; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write(". .");
-            for (int i = 0; i < 4; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 4; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write(".     | |           | |\n");
 
             SplashKit.Write("  | |   ");
@@ -31,9 +33,11 @@ namespace WriteCharArt
             SplashKit.Write("   ");
             SplashKit.Write(symbol);
             SplashKit.Write("   | |    .");
-            for (int i = 0; i < 5; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 5; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write(".");
-            for (int i = 0; i < 5; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 5; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write(".     | |   ");
             SplashKit.Write(symbol);
             SplashKit.Write("   ");
@@ -41,19 +45,23 @@ namespace WriteCharArt
             SplashKit.Write("   | |\n");
 
             SplashKit.Write("  | |     -     | |     .");
-            for (int i = 0; i < 9; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 9; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write(".      | |     -     | |\n");
 
             SplashKit.Write("  | |   \\___/   | |      .");
-            for (int i = 0; i < 7; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 7; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write(".       | |   \\___/   | |\n");
 
             SplashKit.Write("  | |___     ___| |       .");
-            for (int i = 0; i < 5; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 5; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write(".        | |___________| |\n");
 
             SplashKit.Write("  |_____|\\_/|_____|        .");
-            for (int i = 0; i < 3; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 3; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write(".         |_______________|\n");
 
             SplashKit.Write("    _|__|/ \\|_|_.............");
@@ -61,18 +69,22 @@ namespace WriteCharArt
             SplashKit.Write(".............._|________|_\n");
 
             SplashKit.Write("   / ");
-            for (int i = 0; i < 10; i++) SplashKit.Write(symbol); 
+            for (int i = 0; i < 10; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write(" \\                          / ");
-            for (int i = 0; i < 10; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 10; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write(" \\\n");
 
             SplashKit.Write(" /  ");
-            for (int i = 0; i < 12; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 12; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write("  \\                      /  ");
-            for (int i = 0; i < 12; i++) SplashKit.Write(symbol);
+            for (int i = 0; i < 12; i++)
+                SplashKit.Write(symbol);
             SplashKit.Write("  \\\n");
 
-            SplashKit.Write("--------------------                    --------------------\n");
+            SplashKit.WriteLine("--------------------                    --------------------\n");
         }
     }
 }

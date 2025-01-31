@@ -7,4 +7,4 @@ for i in range(16):  # Simulate progress in 15 steps
     delay(150)  # Pause for 150 milliseconds
     write("=")  # Append to the progress bar
 
-write("] Complete!\n")
+write_line("] Complete!\n")

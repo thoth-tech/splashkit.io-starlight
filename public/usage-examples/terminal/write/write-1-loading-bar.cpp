@@ -11,5 +11,7 @@ int main()
         write("="); // Append to the progress bar
     }
 
-    write("] Complete!\n");
+    write_line("] Complete!\n");
+
+    return 0;
 }

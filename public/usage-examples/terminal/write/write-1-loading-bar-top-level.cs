@@ -9,4 +9,4 @@ for (int i = 0; i <= 15; i++) // Simulate progress in 15 steps
     Write("="); // Append to the progress bar
 }
 
-Write("] Complete!\n");
+WriteLine("] Complete!\n");

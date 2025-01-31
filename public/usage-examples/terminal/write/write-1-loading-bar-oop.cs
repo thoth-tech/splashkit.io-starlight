@@ -15,7 +15,7 @@ namespace LoadingBar
                 SplashKit.Write("="); // Append to the progress bar
             }
 
-            SplashKit.Write("] Complete!\n");
+            SplashKit.WriteLine("] Complete!\n");
         }
     }
 }
