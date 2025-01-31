@@ -1,3 +1,0 @@
-#### How big is the circle?
-
-The following code shows an example of using [Circle Radius](/api/geometry/#circle-radius) to show how to find the radius for the circle and draw a rectangle to shwo the radius
