@@ -10,24 +10,14 @@ sk_bmp = load_bitmap("skbox", "skbox.png")
 sk_sprite = create_sprite(sk_bmp)
 
 # Define sprite and rectangle positions
-sk_sprite_loc = Point2D()
-sk_sprite_loc.x = 50
-sk_sprite_loc.y = 50
+sk_sprite_loc = point_at(50, 50)
 sprite_set_position(sk_sprite, sk_sprite_loc)
 
 # Define the first rectangle
-test_rectangle_1 = Rectangle()
-test_rectangle_1.x = 20
-test_rectangle_1.y = 20
-test_rectangle_1.width = 20
-test_rectangle_1.height = 20
+test_rectangle_1 = rectangle_from(20, 20, 20, 20)
 
 # Define the second rectangle
-test_rectangle_2 = Rectangle()
-test_rectangle_2.x = 150
-test_rectangle_2.y = 200
-test_rectangle_2.width = 20
-test_rectangle_2.height = 20
+test_rectangle_2 = rectangle_from(150, 200, 20, 20)
 
 # Clear the screen and draw elements
 clear_screen(color_white())

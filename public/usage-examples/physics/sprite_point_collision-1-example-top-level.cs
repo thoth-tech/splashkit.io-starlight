@@ -11,9 +11,9 @@ Bitmap skBmp = LoadBitmap("skbox", "skbox.png");
 Sprite skSprite = CreateSprite(skBmp);
 
 // Define sprite and collision point positions
-Point2D skSpriteLoc = new Point2D() { X = 50, Y = 50 };
-Point2D collisionLoc1 = new Point2D() { X = 20, Y = 20 };
-Point2D collisionLoc2 = new Point2D() { X = 200, Y = 150 };
+Point2D skSpriteLoc = PointAt(50, 50);
+Point2D collisionLoc1 = PointAt(20, 20);
+Point2D collisionLoc2 = PointAt(200, 150);
 
 // Set sprite position
 SpriteSetPosition(skSprite, skSpriteLoc);

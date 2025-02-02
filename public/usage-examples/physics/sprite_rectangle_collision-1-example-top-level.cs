@@ -11,12 +11,12 @@ Bitmap skBmp = LoadBitmap("skbox", "skbox.png");
 Sprite skSprite = CreateSprite(skBmp);
 
 // Define sprite and rectangle positions
-Point2D skSpriteLoc = new Point2D() { X = 50, Y = 50 };
+Point2D skSpriteLoc = PointAt(50, 50);
 SpriteSetPosition(skSprite, skSpriteLoc);
 
 // Define the rectangles
-Rectangle testRectangle1 = new Rectangle() { X = 20, Y = 20, Width = 20, Height = 20 };
-Rectangle testRectangle2 = new Rectangle() { X = 150, Y = 200, Width = 20, Height = 20 };
+Rectangle testRectangle1 = RectangleFrom(20, 20, 20, 20);
+Rectangle testRectangle2 = RectangleFrom(150, 200, 20, 20);
 
 // Clear the screen and draw elements
 ClearScreen(ColorWhite());

@@ -1,5 +1,0 @@
-#### Determine Sprite Collisions with Points
-
-Tests if a sprite is drawn at a given point.
-
-Uses the [sprite_point_collision](/api/physics/#sprite-point-collision) function.

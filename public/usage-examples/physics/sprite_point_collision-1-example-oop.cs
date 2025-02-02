@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace SpritePointCollisionDemo
+namespace SpritePointCollisionExample
 {
     public class Program
     {
@@ -24,10 +24,10 @@ namespace SpritePointCollisionDemo
             SplashKit.SpriteSetPosition(skSprite, skSpriteLoc);
 
             // Clear the screen and draw elements
-            SplashKit.ClearScreen(SplashKit.ColorWhite());
-            SplashKit.DrawSprite(skSprite);
-            SplashKit.FillCircle(SplashKit.ColorBlack(), SplashKit.CircleAt(collisionLoc1, 2));
-            SplashKit.FillCircle(SplashKit.ColorRed(), SplashKit.CircleAt(collisionLoc2, 2));
+            SplashKit.ClearScreen(Color.White);
+            skSprite.Draw();
+            SplashKit.FillCircle(Color.Black, SplashKit.CircleAt(collisionLoc1, 2));
+            SplashKit.FillCircle(Color.Red, SplashKit.CircleAt(collisionLoc2, 2));
 
             // Check for collisions
             if (SplashKit.SpritePointCollision(skSprite, collisionLoc1))

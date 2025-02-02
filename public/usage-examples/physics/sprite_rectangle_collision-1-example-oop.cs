@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace SpriteRectangleCollisionDemo
+namespace SpriteRectangleCollisionExample
 {
     public class Program
     {

@@ -10,17 +10,9 @@ sk_bmp = load_bitmap("skbox", "skbox.png")
 sk_sprite = create_sprite(sk_bmp)
 
 # Define sprite and collision point positions
-sk_sprite_loc = Point2D()
-sk_sprite_loc.x = 50
-sk_sprite_loc.y = 50
-
-collision_loc_1 = Point2D()
-collision_loc_1.x = 20
-collision_loc_1.y = 20
-
-collision_loc_2 = Point2D()
-collision_loc_2.x = 200
-collision_loc_2.y = 150
+sk_sprite_loc = point_at(50, 50)
+file_sprite_loc = point_at(20, 20)
+bug_sprite_loc = point_at(200, 150)
 
 # Set sprite position
 sprite_set_position(sk_sprite, sk_sprite_loc)
