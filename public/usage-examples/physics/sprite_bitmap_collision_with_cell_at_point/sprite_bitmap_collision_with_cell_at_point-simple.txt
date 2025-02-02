@@ -1,5 +1,0 @@
-#### Determine Sprite Collisions with Cell of a Bitmap
-
-Tests if a sprite will collide with a bitmap drawn at the indicated location.
-
-Uses the [sprite_bitmap_collision](/api/physics/#sprite-bitmap-collision-2) function.
