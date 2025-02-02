@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace SpriteBitmapCollisionDemo
+namespace SpriteBitmapCollisionExample
 {
     public class Program
     {
@@ -26,7 +26,7 @@ namespace SpriteBitmapCollisionDemo
             SplashKit.SpriteSetPosition(skSprite, skSpriteLoc);
 
             // Clear the screen and draw all elements
-            SplashKit.ClearScreen(SplashKit.ColorWhite());
+            SplashKit.ClearScreen(Color.White);
             SplashKit.DrawSprite(skSprite);
             SplashKit.DrawBitmap(fileBmp, fileBmpLoc.X, fileBmpLoc.Y);
             SplashKit.DrawBitmap(bugBmp, bugBmpLoc.X, bugBmpLoc.Y);

@@ -13,9 +13,9 @@ Bitmap bugBmp = LoadBitmap("bug", "bug_image.png");
 Sprite skSprite = CreateSprite(skBmp);
 
 // Define positions
-Point2D skSpriteLoc = new Point2D() { X = 50, Y = 50 };
-Point2D fileBmpLoc = new Point2D() { X = 20, Y = 20 };
-Point2D bugBmpLoc = new Point2D() { X = 200, Y = 150 };
+Point2D skSpriteLoc = PointAt(50, 50);
+Point2D fileBmpLoc = PointAt(20, 20);
+Point2D bugBmpLoc = PointAt(200, 150);
 
 // Set sprite position
 SpriteSetPosition(skSprite, skSpriteLoc);

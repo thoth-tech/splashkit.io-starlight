@@ -12,17 +12,9 @@ bug_bmp = load_bitmap("bug", "bug_image.png")
 sk_sprite = create_sprite(sk_bmp)
 
 # Define positions
-sk_sprite_loc = Point2D()
-sk_sprite_loc.x = 50
-sk_sprite_loc.y = 50
-
-file_bmp_loc = Point2D()
-file_bmp_loc.x = 20
-file_bmp_loc.y = 20
-
-bug_bmp_loc = Point2D()
-bug_bmp_loc.x = 200
-bug_bmp_loc.y = 150
+sk_sprite_loc = point_at(50, 50)
+file_bmp_loc = point_at(20, 20)
+bug_bmp_loc = point_at(200, 150)
 
 # Set sprite position
 sprite_set_position(sk_sprite, sk_sprite_loc)
