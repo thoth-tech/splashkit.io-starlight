@@ -16,9 +16,9 @@ int main()
     sprite bug_sprite = create_sprite(bug_bmp);
 
     // Define sprite positions
-    point_2d sk_sprite_loc = {50, 50};
-    point_2d file_sprite_loc = {20, 20};
-    point_2d bug_sprite_loc = {200, 150};
+    point_2d sk_sprite_loc = point_at(50, 50);
+    point_2d file_sprite_loc = point_at(20, 20);
+    point_2d bug_sprite_loc = point_at(200, 150);
 
     // Set sprite positions
     sprite_set_position(sk_sprite, sk_sprite_loc);

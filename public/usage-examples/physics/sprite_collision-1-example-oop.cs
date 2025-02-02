@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace SpriteCollisionDemo
+namespace SpriteCollisionExample
 {
     public class Program
     {
@@ -30,7 +30,7 @@ namespace SpriteCollisionDemo
             SplashKit.SpriteSetPosition(bugSprite, bugSpriteLoc);
 
             // Clear the screen and draw sprites
-            SplashKit.ClearScreen(SplashKit.ColorWhite());
+            SplashKit.ClearScreen(Color.White);
             SplashKit.DrawSprite(skSprite);
             SplashKit.DrawSprite(fileSprite);
             SplashKit.DrawSprite(bugSprite);

@@ -14,17 +14,9 @@ file_sprite = create_sprite(file_bmp)
 bug_sprite = create_sprite(bug_bmp)
 
 # Define sprite positions
-sk_sprite_loc = Point2D()
-sk_sprite_loc.x = 50
-sk_sprite_loc.y = 50
-
-file_sprite_loc = Point2D()
-file_sprite_loc.x = 20
-file_sprite_loc.y = 20
-
-bug_sprite_loc = Point2D()
-bug_sprite_loc.x = 200
-bug_sprite_loc.y = 150
+sk_sprite_loc = point_at(50, 50)
+file_sprite_loc = point_at(20, 20)
+bug_sprite_loc = point_at(200, 150)
 
 # Set sprite positions
 sprite_set_position(sk_sprite, sk_sprite_loc)
