@@ -12,23 +12,19 @@ hero:
     - text: Documentation
       link: /api/
       icon: document
-      variant: primary
+      variant: secondary
     - text: Article & Guides
       link: /guides/
       icon: open-book
       variant: minimal
-    - text: Usage Examples
-      link: /usage-examples/
-      icon: rocket
-      variant: secondary
+    - text: Installation Guides
+      link: /installation/
+      icon: right-arrow
+      variant: primary
 ---
 
 
-import { LinkCard, CardGrid } from "@astrojs/starlight/components";
-
-import Card from "../../components/Card.astro";
-
-import { ScriptComp } from "../../assets/ScriptComp";
+import { Card, LinkCard, CardGrid } from "@astrojs/starlight/components";
 
 #### To install SplashKit, copy and paste the following into your terminal
 
@@ -70,13 +66,12 @@ bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-sc
     <LinkCard
     title="Troubleshooting"
     icon="pencil"
-    description="FAQs on MacOS and Windows"
+    description="FAQs on MacOS, Windows, Linux and WSL"
     href="/troubleshoot/"
     />
   </Card>
 </CardGrid>
 
-<ScriptComp client:only />
 <footer>
 <center>
 
