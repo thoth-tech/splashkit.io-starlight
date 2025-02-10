@@ -1,13 +1,11 @@
 using SplashKitSDK;
 
-namespace Program
+namespace Ipv4ToHexExample
 {
     public class Program
     {
         public static void Main()
         {
-
-
             SplashKit.WriteLine("Hello! Welcome to the IP to hexadecimal converter.");
 
             // Prompt the user for an IP input in dotted decimal format (e.g., 127.0.0.1)
@@ -21,7 +19,6 @@ namespace Program
 
             // Display the result
             SplashKit.WriteLine("The IP address in hexadecimal format is: " + ip_as_hex);
-
         }
     }
 }
