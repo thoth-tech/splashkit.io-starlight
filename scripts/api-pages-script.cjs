@@ -200,6 +200,26 @@ function getColorRGBValues(colorName, jsonData) {
 }
 
 // ------------------------------------------------------------------------------
+// Find zip file in .txt file of usage examples
+// ------------------------------------------------------------------------------
+function findZipFileInTxt(folderPath) {
+  const txtFiles = fs.readdirSync(folderPath).filter(file => file.endsWith('.txt'));
+  for (const txtFile of txtFiles) {
+    const txtFilePath = `${folderPath}/${txtFile}`;
+    const fileContent = fs.readFileSync(txtFilePath, 'utf-8');
+
+    // Regex to match a .zip path or URL
+    const zipRegex = /\/[^\s]*\.zip/g;
+    const match = fileContent.match(zipRegex);
+
+    if (match && match.length > 0) {
+      return match[0]; // Return the first match
+    }
+  }
+  return null;
+}
+
+// ------------------------------------------------------------------------------
 // Get JSON data from .json file
 // ------------------------------------------------------------------------------
 function getJsonData(jsonFileName) {
@@ -379,7 +399,7 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
                 });
                 mdxData += "  </Tabs>\n\n";
                 mdxData += "  </TabItem>\n";
-              } 
+              }
               // Check for cpp files and generate nested tabs
               else if (lang == "cpp" && cppFiles.length > 0) {
                 mdxData += "\n  <Tabs syncKey=\"cpp-style\">\n";
@@ -387,6 +407,16 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
                   if (file.includes(exampleKey)) {
                     if (file.includes("-sk")) {
                       mdxData += `    <TabItem label="SplashKit">\n`;
+                      mdxData += `      <SKOExamplesButton\n`;
+                      mdxData += `        id="${importTitle}_sko_button"\n`;
+                      mdxData += `        filePath="${categoryPath}/${file}"\n`;
+                      let zipPath = findZipFileInTxt(categoryFilePath);
+                      if (zipPath)
+                        mdxData += `        zipPath="${zipPath}"\n`;
+                      mdxData += `        buttonText = "Test Code in SplashKit Online"\n`;
+                      mdxData += `        iframeSrc="https://thoth-tech.github.io/SplashkitOnline/?language=C++"\n`;
+                      mdxData += `      />\n`;
+
                       mdxData += `      <Code code={${importTitle}_sk_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
                       mdxData += "    </TabItem>\n";
                     }
@@ -516,7 +546,7 @@ for (const categoryKey in jsonData) {
       mdxContent += `:::\n`
     }
   }
-  mdxContent += `\nimport { Code, Tabs, TabItem, LinkCard, CardGrid, LinkButton } from "@astrojs/starlight/components";\nimport Accordion from '../../../components/Accordion.astro'\n`;
+  mdxContent += `\nimport { Code, Tabs, TabItem, LinkCard, CardGrid, LinkButton } from "@astrojs/starlight/components";\nimport Accordion from '../../../components/Accordion.astro';\nimport SKOExamplesButton from '../../../components/SKOExamplesButton.astro';\n`;
   if (guidesAvailable[categoryKey]) {
     mdxContent += "\n## \n";
     mdxContent += `## ${name} Guides\n`;
