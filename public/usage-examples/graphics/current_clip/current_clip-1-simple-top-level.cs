@@ -1,7 +1,8 @@
 using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
+
         // Open a window with the title "Current Clip" and dimensions
-        Window window= OpenWindow("Current Clip", 800, 600);
+        Window window = OpenWindow("Current Clip", 800, 600);
         
         // Push a clipping area
         Rectangle rectangle = CurrentClip();

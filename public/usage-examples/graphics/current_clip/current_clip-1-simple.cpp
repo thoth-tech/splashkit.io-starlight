@@ -3,10 +3,10 @@
 int main() 
 {
     // Open a window with the title "Current Clip" and dimensions
-    window win = open_window("Current Clip", 800, 600);
+    window window = open_window("Current Clip", 800, 600);
 
     // Define the clipping area
-    rectangle rect = current_clip(win);
+    rectangle rect = current_clip(window);
 
     // Draw the clipping information
     draw_text("Current Clip: " + std::to_string(rect.width) + " X " + std::to_string(rect.height), COLOR_BLACK, "Arial", 24, 100, 100);

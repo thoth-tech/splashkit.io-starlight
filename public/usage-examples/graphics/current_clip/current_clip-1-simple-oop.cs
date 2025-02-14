@@ -5,7 +5,7 @@ public class Program
     public static void Main()
     {   
         // Open a window with the title "Current Clip" and dimensions
-        Window window= SplashKit.OpenWindow("Current Clip", 800, 600);
+        Window window = SplashKit.OpenWindow("Current Clip", 800, 600);
         
         // Push a clipping area
         Rectangle rectangle = SplashKit.CurrentClip();

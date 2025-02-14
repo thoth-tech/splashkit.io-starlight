@@ -5,10 +5,10 @@ window = open_window("Current Clip", 800, 600)
 font = load_font("Arial", "arial.ttf")
 
 # Retrieve the current clipping area
-r = current_clip()
+rectangle = current_clip()
 
 # Draw the clipping area dimensions as text on the screen
-draw_text("Current Clip: " + str(r.width) + " X " + str(r.height), color_black(), font, 24, 100, 100)
+draw_text("Current Clip: " + str(rectangle.width) + " X " + str(rectangle.height), color_black(), font, 24, 100, 100)
 
 # Refresh the screen to display the text
 refresh_screen()
