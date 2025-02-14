@@ -23,8 +23,6 @@ public class Program
             SplashKit.RefreshScreen();
             SplashKit.Delay(3000);
 
-            SplashKit.CloseAllWindows();
-
             // Close the window
             SplashKit.CloseAllWindows();
 
