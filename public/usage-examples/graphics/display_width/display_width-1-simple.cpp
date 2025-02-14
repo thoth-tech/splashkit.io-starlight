@@ -18,8 +18,12 @@ int main()
 
     // Refresh the screen to show the drawn text
     refresh_screen();
-    delay(5000);
+
+    // Keep the window open for 3 seconds
+    delay(3000);
 
     // Close all windows
     close_all_windows();
+
+    return 0;
 }

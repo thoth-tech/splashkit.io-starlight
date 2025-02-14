@@ -21,6 +21,7 @@ int main()
         
     }
     // Close all windows
-    close_all_windows;
+    close_all_windows();
+
     return 0;
 }

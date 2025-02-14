@@ -25,7 +25,7 @@ namespace Program
         // Refresh the screen to show drawn text
         SplashKit.RefreshScreen();
 
-        // Pause for 3 seconds to allow viewing
+        // Keep the window open for 3 seconds
         SplashKit.Delay(3000);
 
         // Close the window

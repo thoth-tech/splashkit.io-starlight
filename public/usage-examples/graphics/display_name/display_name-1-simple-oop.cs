@@ -14,7 +14,7 @@ public class Program
             // Retrieve display details
             var display = SplashKit.DisplayDetails(i);
 
-            // Write display details to the screen
+            // Write display name to the screen
             SplashKit.DrawText($"NAME: {display.Name}", Color.Black, "Arial", 24, 100, 100);
             
 
@@ -23,7 +23,7 @@ public class Program
         // Refresh the screen to show drawn text
         SplashKit.RefreshScreen();
 
-        // Pause for 3 seconds to allow viewing
+        // Keep the window open for 3 seconds
         SplashKit.Delay(3000);
 
         // Close the window

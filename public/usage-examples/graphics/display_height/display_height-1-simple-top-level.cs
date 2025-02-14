@@ -17,11 +17,11 @@ using static SplashKitSDK.SplashKit;
 
         }
 
-        // Refresh the screen to show drawn text
+        // Refresh the screen to show drawn text         
         RefreshScreen();
 
-        // Pause for 3 seconds to allow viewing
+        // Keep the window open for 3 seconds
         Delay(3000);
-
+            
         // Close the window
         CloseAllWindows();

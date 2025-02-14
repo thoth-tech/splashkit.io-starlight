@@ -19,8 +19,11 @@ public class Program
                 SplashKit.DrawText($"  Resolution: {display.Width} X {display.Height}", Color.Black, "Arial", 24, 100, 200);
                 
             }
-            // Keep the window open for 5 seconds
+
+            // Refresh the screen to show drawn text
             SplashKit.RefreshScreen();
+
+            // Keep the window open for 3 seconds
             SplashKit.Delay(3000);
 
             // Close the window
