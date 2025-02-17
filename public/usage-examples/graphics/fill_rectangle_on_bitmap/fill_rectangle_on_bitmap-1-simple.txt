@@ -1,7 +1,0 @@
-#### Cityscape
-
-The following code shows an example of using [Fill Rectangle On Bitmap](/api/graphics/#fill-rectangle-on-bitmap-1) to display various rectangles of different colors and placements on a specified bitmap to create a simple cityscape visual.
-
-:::note
-To test this example code you can download these [**Resources**](/usage-examples/graphics/fill_rectangle_on_bitmap/FillRectangle_OnBitmapBasicResources.zip).
-:::

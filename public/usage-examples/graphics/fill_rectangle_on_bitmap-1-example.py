@@ -30,7 +30,7 @@ for j in range(320, 700, 50):
 clear_screen_to_white()
 draw_bitmap(night_sky, 0, 0)
 refresh_screen()
-delay(10000)
+delay(5000)
 
 # Free resources and close windows 
 free_all_bitmaps()

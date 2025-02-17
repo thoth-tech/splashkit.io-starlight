@@ -46,7 +46,7 @@ int main()
     clear_screen();
     draw_bitmap(night_sky, 0, 0);
     refresh_screen();
-    delay(10000);
+    delay(5000);
 
     // Free resources and close windows 
     free_all_bitmaps();

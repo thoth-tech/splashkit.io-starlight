@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace FillRectangleOnBitmap
+namespace FillRectangleOnBitmapExample
 {
     public class Program
     {
@@ -49,13 +49,11 @@ namespace FillRectangleOnBitmap
             SplashKit.ClearScreen();
             SplashKit.DrawBitmap(night_sky, 0, 0);
             SplashKit.RefreshScreen();
-            SplashKit.Delay(10000);
+            SplashKit.Delay(5000);
 
             // Free resources and close window/s 
             SplashKit.FreeAllBitmaps();
             SplashKit.CloseAllWindows();
-
-
         }
     }
 }
