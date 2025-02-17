@@ -132,6 +132,11 @@ export default defineConfig({
           autogenerate: { directory: "beyond-splashkit", collapsed: true },
           badge: "New",
         },
+        {
+          label: "SplashKit Online",
+          autogenerate: { directory: "splashkit-online", collapsed: true },
+          badge: "New",
+        },
       ],
 
     }),
