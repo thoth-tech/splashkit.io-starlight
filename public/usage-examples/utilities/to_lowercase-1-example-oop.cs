@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace ToLowercase
+namespace ToLowercaseExample
 {
     public class Program
     {

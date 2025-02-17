@@ -1,3 +1,0 @@
-### Convert to lowercase
-
-The following code shows examples of using [to lowercase](/api/utilities/#to-lowercase) to convert a string the user inputs to lowercase.
