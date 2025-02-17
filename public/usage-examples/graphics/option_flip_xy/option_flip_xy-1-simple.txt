@@ -1,0 +1,4 @@
+#### Option Flip XY
+
+The following code shows an examples of using [Option Flip XY](/api/graphics#option-flip-xy) to draw a bitmap (e.g., a house image) with both X and Y flipped, creating an upside-down mirror version next to the original.
+

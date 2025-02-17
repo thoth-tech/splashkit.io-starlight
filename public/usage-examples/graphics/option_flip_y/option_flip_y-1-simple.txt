@@ -1,0 +1,4 @@
+#### Option Flip Y
+
+The following code shows an examples of using [Option Flip Y](/api/graphics#option-flip-y) to flip an image of a landscape along the Y-axis to create an upside-down reflection effect below the original.
+
