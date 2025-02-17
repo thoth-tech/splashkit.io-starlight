@@ -6,36 +6,42 @@ namespace Program
     {
         public static void Main()
         {
+            // Open a window
             SplashKit.OpenWindow("Rectangle on Bitmap", 400, 400);
+
+            // Create a bitmap
             Bitmap bitmap = new Bitmap("bricks", 400, 400);
         
-
+        // Draw 50 random rectangles on the bitmap
         Random random = new Random();
         for (int i = 0; i < 50; i++)
         {
-                double x = SplashKit.Rnd(50, 350);  // Random X position
-                double y = SplashKit.Rnd(50, 350);  // Random Y position
-                double width = SplashKit.Rnd(20, 50); // Random width
-                double height = SplashKit.Rnd(20, 50); // Random height
+                double x = SplashKit.Rnd(50, 350);  
+                double y = SplashKit.Rnd(50, 350);  
+                double width = SplashKit.Rnd(20, 50); 
+                double height = SplashKit.Rnd(20, 50); 
                 
-            
+            // Generate a random color
             Color randcolor = SplashKit.RGBColor(
                 SplashKit.Rnd(255), SplashKit.Rnd(255), SplashKit.Rnd(255)
             );
-
+            // Draw the rectangle with the random color on the bitmap
             bitmap.DrawRectangle(randcolor, x, y, width, height);
         }
 
-           // Main loop to display the bitmap
-            while(!SplashKit.QuitRequested())
-            {
-                SplashKit.ProcessEvents();
-                SplashKit.DrawBitmap(bitmap, 0, 0);
-                SplashKit.RefreshScreen();
-            }
+            // Draw the bitmap onto the window
+            SplashKit.DrawBitmap(bitmap, 0, 0);
 
-            // Free resources
-            bitmap.Free();
+            // Refresh the screen
+            SplashKit.RefreshScreen();
+
+            // Delay to keep the window open for 5 seconds
+            SplashKit.Delay(5000);
+            
+
+            // Close the window
+            SplashKit.CloseAllWindows();
+
         }
     }
 }
