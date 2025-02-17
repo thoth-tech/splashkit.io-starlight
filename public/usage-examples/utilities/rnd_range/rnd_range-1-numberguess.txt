@@ -1,0 +1,3 @@
+### Random Number Guessing Game
+
+The following code shows examples of using [rnd](/api/utilities/#rnd) which generates a random number between the range specified by the user, including input validation on the range.
