@@ -1,3 +1,0 @@
-### Random number Generator
-
-The following code shows examples of using [rnd](/api/utilities/#rnd-3), it generates a random number up to a specified upper bound.
