@@ -1,4 +1,5 @@
 ﻿using static SplashKitSDK.SplashKit;
+
 // Write a terminal welcome message and instructions
 WriteLine("Welcome to the Magic 8-Ball!");
 WriteLine("Ask a question, and let the universe decide your fate...");
@@ -15,10 +16,10 @@ WriteLine("\nShaking the Magic 8-Ball...");
 Delay(2000); // Add suspense
 
 // Generate a random float and determine the response
-float RandomValue = Rnd();
+float randomValue = Rnd();
 WriteLine("The universe whispers...");
 
-if (RandomValue < 0.5)
+if (randomValue < 0.5)
 {
     // Less than 0.5 responses
     switch (choice)
@@ -30,10 +31,10 @@ if (RandomValue < 0.5)
         WriteLine("\"The odds aren't in your favor, but miracles happen.\"");
         break;
     case 3:
-        WriteLine("\"It’s better to wait and see.\"");
+        WriteLine("\"It's better to wait and see.\"");
         break;
     case 4:
-        WriteLine("\"Keep searching. It’s not your time yet.\"");
+        WriteLine("\"Keep searching. It's not your time yet.\"");
         break;
     default:
         WriteLine("\"Hmm... the universe is confused by your question.\"");
@@ -55,7 +56,7 @@ else
         WriteLine("\"Go for it! Fortune favors the bold.\"");
         break;
     case 4:
-        WriteLine("\"Yes, you’ll find it sooner than you think.\"");
+        WriteLine("\"Yes, you'll find it sooner than you think.\"");
         break;
     default:
         WriteLine("\"Hmm... the universe is confused by your question.\"");

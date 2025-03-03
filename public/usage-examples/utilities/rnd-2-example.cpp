@@ -33,10 +33,10 @@ int main()
             write_line("\"The odds aren't in your favor, but miracles happen.\"");
             break;
         case 3:
-            write_line("\"It’s better to wait and see.\"");
+            write_line("\"It's better to wait and see.\"");
             break;
         case 4:
-            write_line("\"Keep searching. It’s not your time yet.\"");
+            write_line("\"Keep searching. It's not your time yet.\"");
             break;
         default:
             write_line("\"Hmm... the universe is confused by your question.\"");
@@ -58,7 +58,7 @@ int main()
             write_line("\"Go for it! Fortune favors the bold.\"");
             break;
         case 4:
-            write_line("\"Yes, you’ll find it sooner than you think.\"");
+            write_line("\"Yes, you'll find it sooner than you think.\"");
             break;
         default:
             write_line("\"Hmm... the universe is confused by your question.\"");

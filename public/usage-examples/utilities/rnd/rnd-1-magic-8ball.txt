@@ -1,3 +1,0 @@
-### Magic 8-Ball
-
-The following code shows an example of using [rnd](/api/utilities/#rnd-1) to simulate a Magic 8-Ball. It generates a random float between 0 and 1 to decide the answer to the user's chosen question.

@@ -26,9 +26,9 @@ if random_value < 0.5:
     elif choice == 2:
         write_line("\"The odds aren't in your favor, but miracles happen.\"")
     elif choice == 3:
-        write_line("\"It’s better to wait and see.\"")
+        write_line("\"It's better to wait and see.\"")
     elif choice == 4:
-        write_line("\"Keep searching. It’s not your time yet.\"")
+        write_line("\"Keep searching. It's not your time yet.\"")
     else:
         write_line("\"Hmm... the universe is confused by your question.\"")
 else:
@@ -40,7 +40,7 @@ else:
     elif choice == 3:
         write_line("\"Go for it! Fortune favors the bold.\"")
     elif choice == 4:
-        write_line("\"Yes, you’ll find it sooner than you think.\"")
+        write_line("\"Yes, you'll find it sooner than you think.\"")
     else:
         write_line("\"Hmm... the universe is confused by your question.\"")
 

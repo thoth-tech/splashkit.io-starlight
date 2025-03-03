@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace Program
+namespace RndExample
 {
     public class Program
     {
@@ -22,10 +22,10 @@ namespace Program
             SplashKit.Delay(2000); // Add suspense
 
             // Generate a random float and determine the response
-            float RandomValue = SplashKit.Rnd();
+            float randomValue = SplashKit.Rnd();
             SplashKit.WriteLine("The universe whispers...");
 
-            if (RandomValue < 0.5)
+            if (randomValue < 0.5)
             {
                 // Less than 0.5 responses
                 switch (choice)
@@ -37,10 +37,10 @@ namespace Program
                     SplashKit.WriteLine("\"The odds aren't in your favor, but miracles happen.\"");
                     break;
                 case 3:
-                    SplashKit.WriteLine("\"It’s better to wait and see.\"");
+                    SplashKit.WriteLine("\"It's better to wait and see.\"");
                     break;
                 case 4:
-                    SplashKit.WriteLine("\"Keep searching. It’s not your time yet.\"");
+                    SplashKit.WriteLine("\"Keep searching. It's not your time yet.\"");
                     break;
                 default:
                     SplashKit.WriteLine("\"Hmm... the universe is confused by your question.\"");
@@ -62,7 +62,7 @@ namespace Program
                     SplashKit.WriteLine("\"Go for it! Fortune favors the bold.\"");
                     break;
                 case 4:
-                    SplashKit.WriteLine("\"Yes, you’ll find it sooner than you think.\"");
+                    SplashKit.WriteLine("\"Yes, you'll find it sooner than you think.\"");
                     break;
                 default:
                     SplashKit.WriteLine("\"Hmm... the universe is confused by your question.\"");
