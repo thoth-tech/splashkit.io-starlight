@@ -2,8 +2,11 @@ from splashkit import *
 
 write_line("Let's make this more interesting!")
 
+min_value = 1
+max_value = 0
+
 # Loop until a valid range is provided
-while True:
+while (min_value >= max_value):
     # Get user input for the range
     write_line("Please enter the minimum number:")
     min_value = int(read_line())

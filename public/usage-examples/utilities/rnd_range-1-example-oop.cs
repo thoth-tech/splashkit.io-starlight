@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace Program
+namespace RndExample
 {
     public class Program
     {
@@ -8,10 +8,11 @@ namespace Program
         {
             SplashKit.WriteLine("Let's make this more interesting!");
 
-            int minValue, maxValue;
+            int minValue = 1;
+            int maxValue = 0;
 
             // Loop until a valid range is provided
-            do
+            while (minValue >= maxValue)
             {
                 // Get user input for the range
                 SplashKit.WriteLine("Please enter the minimum number:");
@@ -25,7 +26,7 @@ namespace Program
                 {
                     SplashKit.WriteLine("Oops! The minimum value should be less than the maximum value. Let's re-enter both values.");
                 }
-            } while (minValue >= maxValue); // Continue asking until valid
+            }
 
             SplashKit.WriteLine($"Get ready to generate a random number between {minValue} and {maxValue}...");
             SplashKit.WriteLine("Drum roll please...");

@@ -4,10 +4,11 @@ int main()
 {
     write_line("Let's make this more interesting!");
 
-    int min_value, max_value;
+    int min_value = 1;
+    int max_value = 0;
 
     // Loop until a valid range is provided
-    do
+    while (min_value >= max_value)
     {
         // Get user input for the range
         write_line("Please enter the minimum number:");
@@ -21,7 +22,7 @@ int main()
         {
             write_line("Oops! The minimum value should be less than the maximum value. Let's re-enter both values.");
         }
-    } while (min_value >= max_value); // Continue asking until valid
+    }
 
     write_line("Get ready to generate a random number between " + std::to_string(min_value) + " and " + std::to_string(max_value) + "...");
     write_line("Drum roll please...");

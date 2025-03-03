@@ -2,10 +2,11 @@
 
 WriteLine("Let's make this more interesting!");
 
-int minValue, maxValue;
+int minValue = 1;
+int maxValue = 0;
 
 // Loop until a valid range is provided
-do
+while (minValue >= maxValue)
 {
     // Get user input for the range
     WriteLine("Please enter the minimum number:");
@@ -19,7 +20,7 @@ do
     {
         WriteLine("Oops! The minimum value should be less than the maximum value. Let's re-enter both values.");
     }
-} while (minValue >= maxValue); // Continue asking until valid
+}
 
 WriteLine($"Get ready to generate a random number between {minValue} and {maxValue}...");
 WriteLine("Drum roll please...");
