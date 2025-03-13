@@ -1,7 +1,7 @@
 using System;
 using SplashKitSDK;
 
-namespace DisplayDetails
+namespace DisplayX
 {
     public class Program
     {
