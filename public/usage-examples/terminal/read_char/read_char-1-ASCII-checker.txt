@@ -1,0 +1,3 @@
+### Check ASCII Values
+
+The following code shows an example of using [read char](/api/terminal/#read-char) to prompt the user to enter a value, then tells the user what the ASCII value of that character is.
