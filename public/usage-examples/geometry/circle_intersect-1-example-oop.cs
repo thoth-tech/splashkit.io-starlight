@@ -6,55 +6,61 @@ namespace OOP
 {
     public class Program
     {
-        //Method to get the maximum length for the circle to still be on screen
-        static int get_val(int rand, int large)
-        {
-            int start;
-
-            if (rand > (large - rand))
-            {
-                start = large - rand;
-            }
-            else
-            {
-                start = rand;
-            }
-
-            return start;
-        }
-
-        //Method that retrieves a random circle position
-        static Circle get_circle()
-        {
-            Random rnd = new Random();
-            int random_value = rnd.Next(0,300);
-            int start_value = get_val(random_value, 600);
-            Circle circle = SplashKit.CircleAt(rnd.Next(0 + start_value, 800 - start_value), rnd.Next(start_value, 600 - start_value), random_value);
-            return circle;
-        }
-
         public static void Main()
         {
-            Circle circle_1 = get_circle();
+            const int SPEED = 3;
+            const int PLAYER_RADIUS = 50;
 
-            Circle circle_2 = get_circle();
+            List<Circle> circles = new List<Circle>();
+            circles.Add(SplashKit.CircleAt(150, 150, 130));
+            circles.Add(SplashKit.CircleAt(450, 150, 130));
+            circles.Add(SplashKit.CircleAt(150, 450, 130));
+            circles.Add(SplashKit.CircleAt(450, 450, 130));
 
+            Circle player_circle = SplashKit.CircleAt(300, 300, PLAYER_RADIUS);
+            SplashKit.OpenWindow("Intersecting Circles?", 600, 600);
+            while(!SplashKit.QuitRequested())
+            {
+                SplashKit.ProcessEvents();
 
-            SplashKit.OpenWindow("Circle X", 800, 600);
-
-            // Draw the Circle and x coordinate on window
-            SplashKit.ClearScreen(SplashKit.ColorWhite());
-            SplashKit.DrawCircle(SplashKit.ColorRed(), circle_1);
-            SplashKit.DrawCircle(SplashKit.ColorGreen(), circle_2);
-
-            //Checks if the circles intersect or not
-            bool circle_intersect = SplashKit.CirclesIntersect(circle_1, circle_2);
-            string val = circle_intersect ? "true" : "false";
-            SplashKit.DrawText("Circle X intersecting with Circle Y is " + val , SplashKit.ColorBlack(), 100, 100);
-            SplashKit.RefreshScreen();
-
-            SplashKit.Delay(4000);
-            SplashKit.CloseAllWindows();
+                if (SplashKit.KeyDown(KeyCode.LeftKey) && SplashKit.CircleX(player_circle) > PLAYER_RADIUS)
+                {
+                    float val = SplashKit.CircleX(player_circle) - SPEED;
+                    player_circle = SplashKit.CircleAt(val, SplashKit.CircleY(player_circle), PLAYER_RADIUS);
+                }
+                if (SplashKit.KeyDown(KeyCode.RightKey)&& SplashKit.CircleX(player_circle) > PLAYER_RADIUS)
+                {
+                    float val = SplashKit.CircleX(player_circle) + SPEED;
+                    player_circle = SplashKit.CircleAt(val, SplashKit.CircleY(player_circle), PLAYER_RADIUS);
+                }
+                if (SplashKit.KeyDown(KeyCode.DownKey)&& SplashKit.CircleY(player_circle) > PLAYER_RADIUS)
+                {
+                    float val = SplashKit.CircleY(player_circle) + SPEED;
+                    player_circle = SplashKit.CircleAt(SplashKit.CircleX(player_circle), val, PLAYER_RADIUS);
+                }
+                if (SplashKit.KeyDown(KeyCode.UpKey)&& SplashKit.CircleY(player_circle) > PLAYER_RADIUS)
+                {
+                    float val = SplashKit.CircleY(player_circle) - SPEED;
+                    player_circle = SplashKit.CircleAt(SplashKit.CircleX(player_circle), val, PLAYER_RADIUS);
+                }
+                
+                SplashKit.ClearScreen(SplashKit.ColorWhite());
+                for (int i = 0; i < 4; i++)
+                {
+                    // Check if the player circle has intersected any other circles
+                    if (SplashKit.CirclesIntersect(player_circle, circles[i]))
+                    {
+                        SplashKit.FillCircle(SplashKit.ColorRed(), circles[i]);
+                    }
+                    else
+                    {
+                        SplashKit.DrawCircle(SplashKit.ColorRed(), circles[i]);
+                    }
+                }
+                SplashKit.FillCircle(SplashKit.ColorBlue(), player_circle);
+                SplashKit.Delay(60);
+                SplashKit.RefreshScreen();
+            }
         }
     }
 }
