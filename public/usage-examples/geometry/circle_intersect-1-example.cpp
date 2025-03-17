@@ -1,49 +1,49 @@
 #include "splashkit.h"
 
-//Method to get the maximum length for the circle to still be on screen
-int get_val(int rand, int large)
-{
-    int base = 0;
-
-    if (rand > (large - rand))
-    {
-        base = large - rand;
-    }
-    else
-    {
-        base = rand;
-    }
-
-    return base;
-}
-
-//Method that retrieves a random circle position
-circle get_circle()
-{
-    int random_value = rnd(300);
-    int start_value = get_val(random_value, 600);
-    circle circle = circle_at(rnd(0 + start_value, 800 - start_value), rnd(start_value, 600 - start_value), random_value);
-    return circle;
-}
-
 int main()
 {
-    circle circle_1 = get_circle();
-    circle circle_2 = get_circle();
+    const int SPEED = 3;
+    const int PLAYER_RADIUS = 50;
 
-    open_window("Circle X", 800, 600);
+    vector<circle> circles;
+    circles.push_back(circle_at(150, 150, 130));
+    circles.push_back(circle_at(450, 150, 130));
+    circles.push_back(circle_at(150, 450, 130));
+    circles.push_back(circle_at(450, 450, 130));
 
-    // Draw the Circle and x coordinate on window
-    clear_screen(color_white());
-    draw_circle(COLOR_RED, circle_1);
-    draw_circle(COLOR_GREEN, circle_2);
-    
-    //Checks if the circles intersect or not
-    bool circle_intersect = circles_intersect(circle_1, circle_2);
-    string val = circle_intersect ? "true" : "false";
-    draw_text("Circle X intersecting with Circle Y is " + val , COLOR_BLACK, 100, 100);
-    refresh_screen();
+    circle player_circle = circle_at(300, 300, PLAYER_RADIUS);
 
-    delay(4000);
+    open_window("Intersecting Circles?", 600, 600);
+
+    while (!quit_requested())
+    {
+        process_events();
+
+        if (key_down(LEFT_KEY) && player_circle.center.x > PLAYER_RADIUS)
+            player_circle.center.x -= SPEED;
+        if (key_down(RIGHT_KEY) && player_circle.center.x < screen_width() - PLAYER_RADIUS)
+            player_circle.center.x += SPEED;
+        if (key_down(UP_KEY) && player_circle.center.y > PLAYER_RADIUS)
+            player_circle.center.y -= SPEED;
+        if (key_down(DOWN_KEY) && player_circle.center.y < screen_height() - PLAYER_RADIUS)
+            player_circle.center.y += SPEED;
+
+        clear_screen(color_white());
+        for (int i = 0; i < 4; i++)
+        {
+            // Check if the player circle has intersected any other circles
+            if (circles_intersect(player_circle, circles[i]))
+                fill_circle(COLOR_RED, circles[i]);
+            else
+                draw_circle(COLOR_RED, circles[i]);
+        }
+        fill_circle(COLOR_BLUE, player_circle);
+        refresh_screen(60);
+    }
+
+    close_all_windows();
+
+    return 0;
+}
     close_all_windows();
 }
