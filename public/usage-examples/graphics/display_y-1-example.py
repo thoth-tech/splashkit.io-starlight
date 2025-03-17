@@ -10,8 +10,10 @@ disp_y = []
 if disp_count > 1:
     # Loop through displays
     for i in range(disp_count):
+        
         # Get details for display
         disp_details = display_details(i)
+
         # Get Y coordinate info for display
         disp_y.append(display_y(disp_details))
     

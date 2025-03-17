@@ -4,28 +4,28 @@ using static SplashKitSDK.SplashKit;
 
 
 // Set number of displays
-int DispCount = NumberOfDisplays();
+int dispCount = NumberOfDisplays();
 
 // Declare Variables
-int[] DispY = new int[DispCount];
-Display DispDetails;
+int[] dispY = new int[dispCount];
+Display dispDetails;
 
 // Check for more that 1 display
-if (DispCount > 1)
+if (dispCount > 1)
 {
     // Loop through displays
-    for (uint i = 0; i < DispCount; i++)
+    for (uint i = 0; i < dispCount; i++)
     {
         // Get details for display
-        DispDetails = DisplayDetails(i);
+        dispDetails = DisplayDetails(i);
 
         // Get Y coordinate info for display
-        DispY[i] = DisplayY(DispDetails);
+        dispY[i] = DisplayY(dispDetails);
     }
     // Check that all displays are on the same Y to determine verticality  
-    for (int i = 0; i < DispY.Length - 1; i++)
+    for (int i = 0; i < dispY.Length - 1; i++)
     {
-        if (DispY[i] != DispY[i + 1])
+        if (dispY[i] != dispY[i + 1])
         {
             WriteLine("Your displays are at different heights");
             break;

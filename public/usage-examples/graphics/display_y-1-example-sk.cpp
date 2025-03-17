@@ -14,7 +14,7 @@ int main()
     if (disp_count > 1)
     {
         // Loop through displays
-        for (int i = 0; i < disp_count; i++)
+        for (unsigned int i = 0; i < disp_count; i++)
         {
             // Get details for display
             disp_details = display_details(i);
@@ -34,5 +34,5 @@ int main()
 
     }
     else { write_line("You only have 1 display"); }
-
+    return 0;
 }
