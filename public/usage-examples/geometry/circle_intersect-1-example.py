@@ -1,41 +1,43 @@
 from splashkit import *
-import random as rnd
-
-#Method to get the maximum length for the circle to still be on screen
-def get_val(rand,large):
-    base = 0
-
-    if rand > (large - rand):
-        base = large - rand
-    else:
-        base = rand
-
-    return base
-
-# Method that retrieves a random circle position
-def get_circle():
-    random_value = rnd.randint(0, 300)
-    start_value = get_val(random_value, 600)
-    circle = circle_at_from_points(rnd.randint(0 + start_value, 800 - start_value), rnd.randint(start_value, 600 - start_value), random_value)
-    return circle
 
 def main():
-    circle_1 = get_circle()
-    circle_2 = get_circle()
-
-    open_window("Circle X", 800, 600)
-
-    # Draw the Circle and x coordinate on window
-    clear_screen(color_white())
-    draw_circle_record(color_red(), circle_1)
-    draw_circle_record(color_green(), circle_2)
+    SPEED = 3
+    PLAYER_RADIUS = 50
     
-    # Checks if the circles intersect or not
-    circle_intersect = circles_intersect(circle_1, circle_2)
-    draw_text_no_font_no_size("Circle X intersecting with Circle Y is " + str(circle_intersect) , color_black(), 100, 100)
-    refresh_screen()
+    circles = [
+        circle_at_from_points(150, 150, 130),
+        circle_at_from_points(450, 150, 130),
+        circle_at_from_points(150, 450, 130),
+        circle_at_from_points(450, 450, 130)
+    ]
+    
+    player_circle = circle_at_from_points(300, 300, PLAYER_RADIUS)
+    
+    
 
-    delay(4000)
+    open_window("Intersecting Circles?", 600, 600)
+
+    while (not quit_requested()):
+        process_events()
+        if key_down(KeyCode.left_key) and player_circle.center.x > PLAYER_RADIUS:
+            player_circle.center.x -= SPEED
+        if key_down(KeyCode.right_key) and player_circle.center.x < screen_width() - PLAYER_RADIUS:
+            player_circle.center.x += SPEED
+        if key_down(KeyCode.up_key) and player_circle.center.y > PLAYER_RADIUS:
+            player_circle.center.y -= SPEED
+        if key_down(KeyCode.down_key) and player_circle.center.y < screen_height() - PLAYER_RADIUS:
+            player_circle.center.y += SPEED
+         
+        clear_screen(color_white())
+        for i in range(0, 4):
+            if circles_intersect(player_circle, circles[i]):
+                fill_circle_record(color_red(), circles[i])
+            else:
+                draw_circle_record(color_red(), circles[i])
+
+        fill_circle_record(color_blue(), player_circle)
+        delay(60)
+        refresh_screen()
     close_all_windows()
 
 if __name__ == "__main__":
