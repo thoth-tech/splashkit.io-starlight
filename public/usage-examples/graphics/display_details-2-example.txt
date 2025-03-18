@@ -1,1 +1,5 @@
 Draw physical display setup on a window with labels
+
+:::note
+To test this example code you can download these [**Resources**](/usage-examples/graphics/display_detials-2-example-resources.zip).
+:::
