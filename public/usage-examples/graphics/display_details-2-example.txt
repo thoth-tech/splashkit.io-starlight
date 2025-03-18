@@ -1,0 +1,1 @@
+Draw physical display setup on a window with labels
