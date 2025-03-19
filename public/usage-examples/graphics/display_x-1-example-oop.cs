@@ -1,4 +1,3 @@
-using System;
 using SplashKitSDK;
 
 namespace DisplayXExample
@@ -10,8 +9,8 @@ namespace DisplayXExample
             // Declare Variables
             Display dispDetails;
 
-            SplashKit.WriteLine("***Display Coordinates***");
-            SplashKit.WriteLine("********************************");
+            SplashKit.WriteLine("Display Coordinates");
+            SplashKit.WriteLine("------------------------------------");
             // Loop through displays
             for (uint i = 0; i < SplashKit.NumberOfDisplays(); i++)
             {
@@ -22,7 +21,6 @@ namespace DisplayXExample
                 SplashKit.WriteLine($"Display Number: {i + 1} is located at: {dispDetails.X}, {dispDetails.Y} Coordinates on the display map");
                 SplashKit.WriteLine();
             }
-            SplashKit.WriteLine("********************************");
         }
     }
 }
