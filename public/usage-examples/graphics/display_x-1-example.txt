@@ -1,1 +1,1 @@
-Display map coordinates for physical display layout
+Displays physical display layout coordinates
