@@ -1,4 +1,3 @@
-using System;
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
