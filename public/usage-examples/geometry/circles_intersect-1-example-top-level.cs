@@ -1,4 +1,3 @@
-using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 const int SPEED = 3;
