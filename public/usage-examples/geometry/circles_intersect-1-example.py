@@ -1,5 +1,7 @@
 from splashkit import *
 
+open_window("Intersecting Circles?", 600, 600)
+
 SPEED = 3
 PLAYER_RADIUS = 50
 
@@ -11,10 +13,6 @@ circles = [
 ]
 
 player_circle = circle_at_from_points(300, 300, PLAYER_RADIUS)
-
-
-
-open_window("Intersecting Circles?", 600, 600)
 
 while (not quit_requested()):
     process_events()
