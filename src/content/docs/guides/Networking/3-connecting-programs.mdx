@@ -1,0 +1,304 @@
+---
+title: Connecting Programs over the Network
+description: Learn how to build two programs that can communicate with each other over the local network.
+category: Guides
+author: Brianna Laird
+lastupdated: August 5th 2024
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+**{frontmatter.description}**  
+Written by: {frontmatter.author}  
+_Last updated: {frontmatter.lastupdated}_
+
+---
+
+This guide will show you how to build the foundational blocks for building programs that can communicate with one another. We'll start by setting up a server (the host program) that listens for incoming connections and processes data sent by clients. Then, we’ll move on to creating a client program that can connect to the server, send messages, and receive responses. By the end of this guide, you’ll have a solid understanding of how to build basic networking applications.
+
+:::tip[Expand Your Horizons]
+The concepts and code you learn here can be extended in countless ways:
+
+- Multiplayer Games: Develop real-time multiplayer games where players interact with each other over a network.
+- Chat Applications: Create chat applications that support multiple users communicating simultaneously.
+- Remote Control: Build applications that allow you to control devices remotely, such as smart home systems.
+
+:::
+
+While working through this guide, try and think of some creative ways you could use these concepts in your own projects.
+
+## Server and Client Programs
+
+### What is the server program?
+
+The server program is responsible for working as the program to which other programs connect. It listens for incoming connections and processes the data sent by the clients. The server program is built using the `create_server_with_port`, found [here](/api/networking/#create-server-1), function to establish a server that listens for incoming connections on the specified port. The server program then processes the data sent by the clients and sends a confirmation message back to the client.
+
+### What is the client program?
+
+The client program is the program that connects to the server program. It sends messages to the server and receives responses. The client program is built using the by using `open_connection`, found [here](/api/networking/#open-connection) to establish a connection to the server.
+
+### Getting Started
+
+To start, lets work on building two programs that can establish a connection with each other. We will build a simple server program that listens for incoming connections and prints the connection received. We will also build a simple client program that connects to the server and keeps the connection open.
+
+## Building the Basic Server Program
+
+The server program establishes a server with `create_server_with_port` and listens for incoming connections. When a connection is received, it prints a message to the console. The server program keeps the connection open until the client disconnects. The key to keeping the connections open when building programs that communicate is to use the `check_network_activity` function to monitor network activity.
+
+### The Program Code
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+using std::to_string;
+
+void start_server(const string& name, int port) {
+    // Assign the server to nullptr to ensure it is not left uninitialised
+    server_socket server = nullptr;
+    
+    // Create the server
+    server = create_server(name, port);
+    write_line("Server '" + name + "' started, listening on port " + to_string(port));
+
+    while (true) {
+        // Check for new connections and network activity
+        check_network_activity();
+        
+        // Accept new connections
+        if (accept_new_connection(server)) {
+            // Get the last connection
+            connection client_connection = last_connection(server);
+            unsigned int client_ip = connection_ip(client_connection);
+            write_line("Connected by " + to_string(client_ip));
+
+            // Keep the connection open
+            while (is_connection_open(client_connection)) {
+                check_network_activity();
+            }
+
+            // Client disconnected
+            write_line("Client " + to_string(client_ip) + " disconnected.");
+        }
+    }
+
+    // Close the server
+    if (server != nullptr) {
+        close_server(server);
+    }
+    write_line("Server closed.");
+}
+
+int main() {
+    start_server("MyServer", 65432);
+    return 0;
+}
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+using System;
+using SplashKitSDK;
+
+ServerSocket server = null;
+try
+{
+    // Create the server
+    server = SplashKit.CreateServer("MyServer", 65432);
+    SplashKit.WriteLine("Server 'MyServer' started, listening on port 65432");
+
+    while (true)
+    {
+        // Check for new connections and network activity
+        SplashKit.CheckNetworkActivity();
+
+        if (SplashKit.AcceptNewConnection(server))
+        {
+            Connection clientConnection = SplashKit.LastConnection(server);
+            uint clientIp = SplashKit.ConnectionIP(clientConnection);
+            SplashKit.WriteLine("Connected by " + clientIp);
+
+            while (SplashKit.IsConnectionOpen(clientConnection))
+            {
+                SplashKit.CheckNetworkActivity();
+            }
+
+            // Client disconnected
+            SplashKit.WriteLine("Client " + clientIp + " disconnected.");
+        }
+    }
+}
+catch (Exception e)
+{
+    SplashKit.WriteLine("Server error: " + e.Message);
+}
+
+if (server != null)
+{
+    SplashKit.CloseServer(server);
+}
+SplashKit.WriteLine("Server closed.");
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+from splashkit import *
+
+def start_server(name, port):
+    try:
+        # Create the server
+        server = create_server_with_port(name, port)
+        write_line(f"Server '{name}' started, listening on port {port}")
+
+        while True:
+            # Check for new connections and network activity
+            check_network_activity()
+            
+            # Check for new connections
+            if accept_new_connection(server):
+                # Get the last connection
+                connection = last_connection(server)
+                client_name = connection_ip(connection)
+                write_line(f"Connected by {client_name}")
+
+                # Keep the connection open
+                while is_connection_open(connection):
+                    check_network_activity()
+           
+    finally:
+        if server:
+            # Close the server
+            close_connection(server)
+        write_line("Server closed.")
+
+if __name__ == "__main__":
+    start_server("MyServer", 65432)
+```
+
+  </TabItem>
+</Tabs>
+
+:::tip[Keeping the Connection Active]
+Remember, to ensure that the connection is kept open, you will need to use the `check_network_activity` function to monitor network activity. This is very important when building programs that communicate with each other.
+:::
+
+## Building the Basic Client Program
+
+The client program uses the `open_connection` function to establish a connection to the server. The client program then connects to the server with the given port, we then use a `while` loop for the connection. While `is_connection_open` is true, the client program will keep the connection open by using the `check_network_activity` function to monitor network activity.
+
+### The Program Code
+
+<Tabs syncKey="code-language">
+  <TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+using std::to_string;
+
+void start_client(const string& name, const string& host = "127.0.0.1", int port = 65432) {
+    // Create the client connection
+    connection client = open_connection(name, host, port);
+    write_line("Connected to server at " + host + ":" + to_string(port));
+
+    // Keep the connection open
+    while (is_connection_open(client)) {
+        check_network_activity();
+    }
+
+    // Close the client connection
+    close_connection(client);
+    write_line("Client closed.");
+}
+
+int main() {
+    start_client("MyClient", "127.0.0.1", 65432);
+    return 0;
+}
+
+```
+
+  </TabItem>
+  <TabItem label="C#">
+
+```csharp
+using System;
+using SplashKitSDK;
+
+// Create the client connection
+Connection client = SplashKit.OpenConnection("MyClient", "127.0.0.1", 65432);
+SplashKit.WriteLine("Connected to server at 127.0.0.1:65432");
+
+// Keep the connection open
+while (SplashKit.IsConnectionOpen(client))
+{
+    SplashKit.CheckNetworkActivity();
+}
+
+// Close the client connection
+SplashKit.CloseConnection(client);
+SplashKit.WriteLine("Client closed.");
+```
+
+  </TabItem>
+  <TabItem label="Python">
+
+```python
+from splashkit import *
+
+def start_client(name, host='127.0.0.1', port=65432):
+    try:
+        # Create the client connection
+        client = open_connection(name, host, port)
+        write_line(f"Connected to server at {host}:{port}")
+        
+        # Keep the connection open
+        while is_connection_open(client):
+            check_network_activity()
+        
+    finally:
+        if client:
+            # Close the client connection
+            close_connection(client)
+        write_line("Client closed.")
+
+if __name__ == "__main__":
+    start_client("MyClient", "127.0.0.1", 65432)
+```
+
+  </TabItem>
+</Tabs>
+
+## Running the Programs
+
+To run these two programs, you must start the server first. Depending on the programming language you use, this will vary. The example below was done using the cpp version of the server and client programs. Once you've started the server, you can then start the client program. The client program will connect to the server and you should see and keep the connection open until you close the client program.
+
+### Expected Outputs
+
+In your server program you should see the following output when you first start it:
+
+```bash
+Server 'MyServer' started, listening on port 65432
+```
+
+Then start the client program and you should see the following output if your client program started successfully:
+
+```bash
+Connected to server at 127.0.0.1:65432
+```
+
+Looking back at the server program, there should be a new line that says:
+
+```bash
+Connected by 2130706433
+```
+
+### Terminal View
+
+Here is an example of how this would look in your terminal, when running this programs its handy to run both terminals side by side.
+
+![Window with dimensions illustrated](/usage-examples-images-gifs/networking/server-client-tut-starter.png)
