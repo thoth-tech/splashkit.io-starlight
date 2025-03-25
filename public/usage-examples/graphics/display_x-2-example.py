@@ -49,7 +49,6 @@ for i, display in enumerate(disp_store):
     display_name_string = f"Name: {name}"
     display_num_string = f"Display Number: {i + 1}"
     display_coord_string = f"Display Coordinates: ({origin_x}, {origin_y})"
-    display_resolution_string = f"Resolution: {len_w}x{len_h}"
 
     # Refactor size and normalize for 300,300 origin in window
     origin_x = (origin_x - min_x + 300)/8

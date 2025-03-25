@@ -61,7 +61,6 @@ int main()
         string display_name_string = "Name: " + disp_names[i];
         string display_num_string = "Display Number: " + std::to_string(i + 1);
         string display_coord_string = "Display Coordinates: (" + std::to_string(origin_x) + ", " + std::to_string(origin_y) + ")";
-        string display_resolution_string = "Resolution: " + std::to_string(len_w) + "x" + std::to_string(len_h);
 
         // Refactor size and normalize for 300,300 origin in window
         origin_x = (origin_x - min_x + 300) / 8;
