@@ -24,7 +24,7 @@ while (!WindowCloseRequested(window))
     ProcessEvents();
 
     // Rotate the box 180 degrees every second
-    angle += 360 / 2 / fps;
+    angle += 360.0 / 2 / fps;
 
     // Create the draw options that will rotate the bitmap
     DrawingOptions opts = OptionRotateBmp(angle);
