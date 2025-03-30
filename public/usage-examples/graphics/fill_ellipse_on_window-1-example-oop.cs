@@ -11,7 +11,7 @@ namespace FillEllipseOnWindow
             SplashKit.ClearScreen();
 
             // While user doesn't request to quit window
-            while (!SplashKit.WindowCloseRequested(window))
+            while (!window.CloseRequested)
             {
                 SplashKit.ProcessEvents();
                 SplashKit.DrawText("Press on the C key to clear screen", Color.Black, 5, 10);
@@ -31,9 +31,11 @@ namespace FillEllipseOnWindow
                     SplashKit.ClearScreen();
                 }
 
-                // Close all windows
                 SplashKit.RefreshScreen(60);
             }
+            
+            // Close all windows
+            window.Close();
         }
     }
 }
