@@ -598,15 +598,9 @@ for (const categoryKey in jsonData) {
 
       const formattedLink = formattedName3.toLowerCase().replace(/\s+/g, "-");
       const formattedUniqueLink =  func.unique_global_name.toLowerCase().replace(/_/g, "-");
-      let formattedName4 = "";
-
-      if (formattedLink != formattedUniqueLink){
-        formattedName4 = formattedUniqueLink.replace(`${formattedLink}-`, '');
-        formattedName4 = formattedName4.replaceAll('-', ' ')
-      }
 
       const formattedName = isOverloaded
-        ? `\n#### [${functionName2}](#${formattedUniqueLink}) <span style='display: none'>${formattedName4}</span>`
+        ? `\n#### [${functionName2}](#${formattedUniqueLink}) \\{#${formattedUniqueLink}\\}`
         : `\n### [${functionName2}](#${formattedLink})`;
 
 
