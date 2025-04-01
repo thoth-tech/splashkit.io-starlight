@@ -13,6 +13,7 @@ namespace TextWidthExample
             SplashKit.SetFontStyle("LOTR", FontStyle.BoldFont);
             SplashKit.DrawText("Ringbearer", Color.Black, "LOTR", 100, 30, 20);
 
+            //Getting the width of the text to fill a rectange of that width
             int width = SplashKit.TextWidth("Ringbearer", "LOTR", 100);
             SplashKit.FillRectangle(Color.Black, 30, 130, width, 10);
             SplashKit.RefreshScreen();

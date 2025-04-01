@@ -9,6 +9,7 @@ int main()
     set_font_style("LOTR", BOLD_FONT);
     draw_text("Ringbearer", COLOR_BLACK, "LOTR", 100, 30, 20);
 
+    //Getting the width of the text to fill a rectange of that width
     int width = text_width("Ringbearer", "LOTR", 100);
     fill_rectangle(COLOR_BLACK, 30, 130, width, 10);
     refresh_screen();
