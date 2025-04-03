@@ -1,0 +1,3 @@
+Using The Circle Intersect Method
+
+Note: For circles that are within circles, these are also considered "intersected".
