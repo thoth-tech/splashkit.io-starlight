@@ -6,48 +6,67 @@ namespace DrawPixelOnWindowExample
     {
         public static void Main()
         {
-            // Sets the refresh rate at 60 frames per second
+            // Access the first display
+            Display display = SplashKit.DisplayDetails(0);
+
+            // Set the refresh rate to 60 frames per second
             const int fps = 60;
 
-            const int width = 800;
-            const int height = 600;
+            const int windowWidth = 800;
+            const int windowHeight = 600;
 
-            // Create a window and make the background black
-            Window window = SplashKit.OpenWindow("Usage Example - Draw Pixel On Window", width, height);
-            window.Clear(Color.Black);
+            // Calculate the position of the first window
+            int windowPositionX = (display.Width - 2 * windowWidth) / 2;
+            int windowPositionY = (display.Height - windowHeight) / 2;
 
-            // Variables for the angle and radius of the spiral at any given time
+            // Open two windows with black backgrounds
+            Window windowOne = SplashKit.OpenWindow("Window 1 - Draw Pixel On Window", windowWidth, windowHeight);
+            Window windowTwo = SplashKit.OpenWindow("Window 2 - Draw Pixel On Window", windowWidth, windowHeight);
+            windowOne.Clear(Color.Black);
+            windowTwo.Clear(Color.Black);
+
+            // Position the windows side by side in the middle of the display
+            windowOne.MoveTo(windowPositionX, windowPositionY);
+            windowTwo.MoveTo(windowPositionX + windowWidth, windowPositionY);
+
+            // Store the angle and radius of the spiral at any given time
             double angle = 0.0;
             double radius = 0.0;
 
-            const double max_radius = width / 2;
-            Point2D center = SplashKit.PointAt(width / 2, height / 2);
+            const double maxRadius = windowWidth / 2;
 
-            while (!window.CloseRequested)
+            // Coordinates for the center of the spiral
+            Point2D center = SplashKit.PointAt(windowWidth / 2, windowHeight / 2);
+
+            while (!windowOne.CloseRequested && !windowTwo.CloseRequested)
             {
                 // Poll for user interaction
                 SplashKit.ProcessEvents();
-                
+
                 // Stop drawing spiral once the width of the window is exceeded
-                if (radius > max_radius) continue;
-                
+                if (radius > maxRadius) continue;
+
                 // Increment spiral radius so it will reach window width in 30 seconds
-                radius += max_radius / fps / 30;
-                
-                // Increment spiral angle so it will complete a cycle every 5 seconds
+                radius += maxRadius / fps / 30;
+
+                // Increment spiral angle so it will complete a revolution every 5 seconds
                 angle += 360.0 / fps / 5;
-                
+
                 // Calculate the x and y coordinates of the pixel to be drawn
                 double x = center.X + radius * SplashKit.Cosine((float)angle);
                 double y = center.Y + radius * SplashKit.Sine((float)angle);
 
-                // Draws the next pixel of the spiral on the window
-                SplashKit.DrawPixelOnWindow(window, Color.Yellow, x, y);
-                window.Refresh(fps);
+                // Draw the next pixel of the spiral on both windows
+                // NOTE: The Window class doesn't currently have a method for DrawPixelOnWindow
+                SplashKit.DrawPixelOnWindow(windowOne, Color.Yellow, x, y);
+                SplashKit.DrawPixelOnWindow(windowTwo, Color.Red, x, y);
+
+                SplashKit.RefreshScreen(fps);
             }
 
-            // Clean up any resources or memory used by the window
-            window.Close();
+            // Clean up any resources or memory used by the windows
+            windowOne.Close();
+            windowTwo.Close();
         }
     }
 }

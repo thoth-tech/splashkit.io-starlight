@@ -1,1 +1,1 @@
-Draw a spiral.
+Draw a spiral on two windows
