@@ -1,1 +1,1 @@
-Takes user input to change font style and changes displayed text to match.
+Takes user input to change font style and changes displayed text string to match.
