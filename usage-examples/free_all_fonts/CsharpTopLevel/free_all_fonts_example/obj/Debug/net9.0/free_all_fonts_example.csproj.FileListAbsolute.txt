@@ -1,0 +1,15 @@
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\obj\Debug\net9.0\free_all_fonts_example.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\obj\Debug\net9.0\free_all_fonts_example.AssemblyInfoInputs.cache
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\obj\Debug\net9.0\free_all_fonts_example.AssemblyInfo.cs
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\obj\Debug\net9.0\free_all_fonts_example.csproj.CoreCompileInputs.cache
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\obj\Debug\net9.0\free_all_fonts_example.sourcelink.json
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\bin\Debug\net9.0\free_all_fonts_example.exe
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\bin\Debug\net9.0\free_all_fonts_example.deps.json
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\bin\Debug\net9.0\free_all_fonts_example.runtimeconfig.json
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\bin\Debug\net9.0\free_all_fonts_example.dll
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\bin\Debug\net9.0\free_all_fonts_example.pdb
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\obj\Debug\net9.0\free_all_fonts_example.dll
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\obj\Debug\net9.0\refint\free_all_fonts_example.dll
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\obj\Debug\net9.0\free_all_fonts_example.pdb
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\obj\Debug\net9.0\free_all_fonts_example.genruntimeconfig.cache
+C:\Users\jangh\Desktop\SplashKitTestCpp\splashkit.io-starlight\usage-examples\free_all_fonts\CsharpTopLevel\free_all_fonts_example\obj\Debug\net9.0\ref\free_all_fonts_example.dll
