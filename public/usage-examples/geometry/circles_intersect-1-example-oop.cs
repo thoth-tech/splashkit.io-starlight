@@ -43,20 +43,20 @@ namespace CirclesIntersectExample
                     player_circle = SplashKit.CircleAt(SplashKit.CircleX(player_circle), val, PLAYER_RADIUS);
                 }
 
-                SplashKit.ClearScreen(SplashKit.Color.White);
+                SplashKit.ClearScreen(Color.White);
                 for (int i = 0; i < 4; i++)
                 {
                     // Check if the player circle has intersected any other circles
                     if (SplashKit.CirclesIntersect(player_circle, circles[i]))
                     {
-                        SplashKit.FillCircle(SplashKit.Color.Red, circles[i]);
+                        SplashKit.FillCircle(Color.Red, circles[i]);
                     }
                     else
                     {
-                        SplashKit.DrawCircle(SplashKit.Color.Red, circles[i]);
+                        SplashKit.DrawCircle(Color.Red, circles[i]);
                     }
                 }
-                SplashKit.FillCircle(SplashKit.Color.Blue, player_circle);
+                SplashKit.FillCircle(Color.Blue, player_circle);
                 SplashKit.Delay(60);
                 SplashKit.RefreshScreen();
             }
