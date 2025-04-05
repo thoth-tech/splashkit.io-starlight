@@ -1,7 +1,7 @@
 using SplashKitSDK;
 
 
-namespace OOP
+namespace CirclesIntersectExample
 {
     public class Program
     {
@@ -43,20 +43,20 @@ namespace OOP
                     player_circle = SplashKit.CircleAt(SplashKit.CircleX(player_circle), val, PLAYER_RADIUS);
                 }
 
-                SplashKit.ClearScreen(SplashKit.ColorWhite());
+                SplashKit.ClearScreen(SplashKit.Color.White);
                 for (int i = 0; i < 4; i++)
                 {
                     // Check if the player circle has intersected any other circles
                     if (SplashKit.CirclesIntersect(player_circle, circles[i]))
                     {
-                        SplashKit.FillCircle(SplashKit.ColorRed(), circles[i]);
+                        SplashKit.FillCircle(SplashKit.Color.Red, circles[i]);
                     }
                     else
                     {
-                        SplashKit.DrawCircle(SplashKit.ColorRed(), circles[i]);
+                        SplashKit.DrawCircle(SplashKit.Color.Red, circles[i]);
                     }
                 }
-                SplashKit.FillCircle(SplashKit.ColorBlue(), player_circle);
+                SplashKit.FillCircle(SplashKit.Color.Blue, player_circle);
                 SplashKit.Delay(60);
                 SplashKit.RefreshScreen();
             }
