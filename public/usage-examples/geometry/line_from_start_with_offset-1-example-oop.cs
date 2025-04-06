@@ -11,8 +11,8 @@ namespace LineFromStartWithOffsetExample
             // Use the center of the window as the start point for lines
             Point2D start = SplashKit.PointAt(150, 150);
             // Create vectors for up and right
-            Vector2D vecUp = new Vector2D{X = 0.0, Y = -100.0};
-            Vector2D vecRight = new Vector2D{X = 100.0, Y = 0.0};
+            Vector2D vecUp = SplashKit.VectorTo(0.0, -100.0);
+            Vector2D vecRight = SplashKit.VectorTo(100.0, 0.0);
 
             while (!window.CloseRequested)
             {

@@ -7,8 +7,8 @@ int main()
     // Use the center of the window as the start point for lines
     point_2d start = point_at(150, 150);
     // Create vectors for up and right
-    vector_2d vec_up = vector_2d{0.0, -100.0};
-    vector_2d vec_right = vector_2d{100.0, 0.0};
+    vector_2d vec_up = vector_to(0.0, -100.0);
+    vector_2d vec_right = vector_to(100.0, 0.0);
 
     while (!window_close_requested(window))
     {
