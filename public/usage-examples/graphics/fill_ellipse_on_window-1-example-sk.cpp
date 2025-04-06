@@ -2,32 +2,55 @@
 
 int main()
 {
-    // Open a new window
-    window window = open_window("Ellipse Painter", 800, 600);
-    clear_screen();
+    // Open new windows
+    window whiteWindow = open_window("Ellipse Painter on White", 500, 500);
+    window blueWindow = open_window("Ellipse Painter on Blue", 500, 500);
 
-    // While user doesn't request to quit window
-    while (!window_close_requested(window))
+    // Set windows' postions
+    move_window_to(whiteWindow, 100, 100);
+    move_window_to(blueWindow, 620, 100);
+
+    // Clear windows to white and blue
+    clear_window(whiteWindow, color_white());
+    clear_window(blueWindow, color_aqua());
+
+    // While user doesn't request to quit windows
+    while (!window_close_requested(whiteWindow) && !window_close_requested(blueWindow))
     {
         process_events();
-        draw_text("Press on the C key to clear screen", color_black(), 5, 10);
+        draw_text_on_window(whiteWindow, "Press L to paint. Press on the C key to clear screen", color_black(), 5, 10);
+        draw_text_on_window(blueWindow, "Press P to paint. Press on the D key to clear screen", color_black(), 5, 10);
 
-        // If mouse clicked or held down get mouse position
-        if (mouse_clicked(LEFT_BUTTON) || mouse_down(LEFT_BUTTON))
+        // Get random points on the windows
+        point_2d whitePos = random_window_point(whiteWindow);
+        point_2d bluePos = random_window_point(blueWindow);
+
+        // If L key is pressed draw ellipse on whiteWindow in random point
+        if (key_typed(L_KEY))
         {
-            point_2d pos = mouse_position();
-
-            // Fill ellipse in the position with random color
-            fill_ellipse_on_window(window, random_color(), pos.x, pos.y, 100, 50);
+            fill_ellipse_on_window(whiteWindow, random_color(), whitePos.x, whitePos.y, 100, 50);
         }
 
-        // Clear screen if C key is pressed 
+        // If P key is pressed draw ellipse on blueWindow in random point
+        if (key_typed(P_KEY))
+        {
+            fill_ellipse_on_window(blueWindow, random_color(), bluePos.x, bluePos.y, 100, 50);
+        }
+
+        // Clear whiteWindow if C key is pressed 
         if (key_typed(C_KEY))
         {
-            clear_screen();
+            clear_window(whiteWindow, color_white());
         }
 
-        refresh_screen(60);
+         // Clear blueWindow if D key is pressed 
+        if (key_typed(D_KEY))
+        {
+            clear_window(blueWindow, color_aqua());
+        }
+
+        refresh_window(whiteWindow, 60);
+        refresh_window(blueWindow, 60);
     }
 
     // Close all windows
