@@ -9,7 +9,7 @@ namespace TextWidthExample
             SplashKit.OpenWindow("Text Width", 680, 200);
             SplashKit.ClearScreen(Color.White);
 
-            SplashKit.LoadFont("LOTR", "lotr.TTF");
+            SplashKit.LoadFont("LOTR", "lotr.ttf");
             SplashKit.SetFontStyle("LOTR", FontStyle.BoldFont);
             SplashKit.DrawText("Ringbearer", Color.Black, "LOTR", 100, 30, 20);
 

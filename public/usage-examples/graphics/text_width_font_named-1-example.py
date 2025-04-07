@@ -3,7 +3,7 @@ from splashkit import *
 open_window("Text Width", 680, 200)
 clear_screen(color_white())
 
-load_font("LOTR", "lotr.TTF")
+load_font("LOTR", "lotr.ttf")
 set_font_style_name_as_string("LOTR", FontStyle.bold_font)
 draw_text_font_as_string("Ringbearer", color_black(), "LOTR", 100, 30, 20)
 

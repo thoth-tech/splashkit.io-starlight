@@ -3,7 +3,7 @@ using static SplashKitSDK.SplashKit;
 OpenWindow("Text Width", 680, 200);
 ClearScreen(ColorWhite());
 
-LoadFont("LOTR", "lotr.TTF");
+LoadFont("LOTR", "lotr.ttf");
 SetFontStyle("LOTR", SplashKitSDK.FontStyle.BoldFont);
 DrawText("Ringbearer", ColorBlack(), "LOTR", 100, 30, 20);
 

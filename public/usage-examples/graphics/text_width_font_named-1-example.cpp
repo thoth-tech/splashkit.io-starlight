@@ -5,7 +5,7 @@ int main()
     open_window("Text Width", 680, 200);
     clear_screen(COLOR_WHITE);
 
-    load_font("LOTR", "lotr.TTF");
+    load_font("LOTR", "lotr.ttf");
     set_font_style("LOTR", BOLD_FONT);
     draw_text("Ringbearer", COLOR_BLACK, "LOTR", 100, 30, 20);
 
