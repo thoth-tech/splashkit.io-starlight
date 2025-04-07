@@ -552,8 +552,8 @@ for (const categoryKey in jsonData) {
         .join(" ");
       const formattedLink = formattedFunctionName.toLowerCase().replace(/\s+/g, "-");
 
-      const formattedGroupLink = `${formattedLink}`;
-      mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink})\n\n`;
+      const formattedGroupLink = `${formattedLink}-functions`;
+      mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink}) \\{#${formattedGroupLink}\\}\n\n`;
 
       mdxContent += ":::note\n\n";
       mdxContent += "This function is overloaded. The following versions exist:\n\n";
@@ -579,7 +579,8 @@ for (const categoryKey in jsonData) {
           }
           paramNumber++;
         }
-        mdxContent += `)](/api/${input}/#${formattedLink.toLowerCase()}-${index + 1})\n`;
+        const formattedUniqueLink =  func.unique_global_name.toLowerCase().replace(/_/g, "-");
+        mdxContent += `)](/api/${input}/#${formattedUniqueLink})\n`;
       });
 
       mdxContent += "\n:::\n";
@@ -596,9 +597,10 @@ for (const categoryKey in jsonData) {
         .join(" ");
 
       const formattedLink = formattedName3.toLowerCase().replace(/\s+/g, "-");
+      const formattedUniqueLink =  func.unique_global_name.toLowerCase().replace(/_/g, "-");
 
       const formattedName = isOverloaded
-        ? `\n#### [${functionName2}](#${formattedLink.toLowerCase()}-${index + 1})`
+        ? `\n#### [${functionName2}](#${formattedUniqueLink}) \\{#${formattedUniqueLink}\\}`
         : `\n### [${functionName2}](#${formattedLink})`;
 
 
@@ -839,6 +841,22 @@ for (const categoryKey in jsonData) {
           mdxContent += "\n";
         }
 
+        for (const typeName in typeMappings) {
+          const typeMapping = typeMappings[typeName];
+          description = description.replace(new RegExp(`\`\\b${typeName}\\b\``, "g"), typeMapping);
+        }
+        for (const names of functionNames) {
+          const normalName = names
+            .split("_")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
+          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+          description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
+        }
+        description = description.replaceAll("\n\n\n", "\n\n");
+        mdxContent += `${description}\n\n`;
+
         // If it's an enum, add a table for its constants
         if (type.constants) {
           mdxContent += "<Tabs syncKey=\"code-language\">\n";
@@ -883,22 +901,7 @@ for (const categoryKey in jsonData) {
           mdxContent += "</Tabs>\n";
         }
 
-        for (const typeName in typeMappings) {
-          const typeMapping = typeMappings[typeName];
-          description = description.replace(new RegExp(`\`\\b${typeName}\\b\``, "g"), typeMapping);
-        }
-        for (const names of functionNames) {
-          const normalName = names
-            .split("_")
-            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(" ");
-          const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
-          description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
-        }
-        description = description.replaceAll("\n\n\n", "\n\n");
-        mdxContent += `${description}\n\n`;
-        mdxContent += `---\n`;
+        mdxContent += `\n---\n`;
       }
     });
   }
