@@ -1,4 +1,3 @@
-
 #include <iostream>
 #ifdef __APPLE__
 #include <SDL.h>
@@ -6,10 +5,8 @@
 #include <SDL2/SDL.h>
 #endif
 
-int main(int argv, char **args)
+SDL_Window *sdl_open_window(const char *window_title, const int width, const int height)
 {
-    // Opening a Window without SplashKit
-
     // Declare Variables
     SDL_Window *window = nullptr;
 
@@ -22,11 +19,11 @@ int main(int argv, char **args)
 
     // Create Window
     window = SDL_CreateWindow(
-        "No SK Window: OpenWindow",
+        window_title,
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        800,
-        600,
+        width,
+        height,
         SDL_WINDOW_OPENGL);
 
     // Error handling for window
@@ -36,7 +33,27 @@ int main(int argv, char **args)
         exit(1);
     }
 
-    // Hold window open for 4 seconds
+    return window;
+}
+
+int main(int argv, char **args)
+{
+    // Open window with title and dimensions
+    SDL_Window *window = sdl_open_window("Blue Background", 800, 600);
+
+    // Create renderer
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    if (renderer == NULL)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create renderer: %s\n", SDL_GetError());
+        exit(1);
+    }
+    
+    // Clear screen to blue
+    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
+
     Uint32 start_time = SDL_GetTicks(); // Start timer
     SDL_Event event;
 
@@ -46,7 +63,9 @@ int main(int argv, char **args)
     }
 
     // Cleanup and free memory
+    SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    SDL_Quit();
 
     return 0;
 }
