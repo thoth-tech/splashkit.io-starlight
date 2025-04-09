@@ -1,0 +1,32 @@
+
+Title: Circle Tracker Program using SplashKit
+
+Description:
+This program is a graphical application that tracks the position of a circle on the screen. The circle's position is updated to the mouse's position within a window. The program calculates and displays the closest point on a line from the moving circle.
+
+Components:
+1. Circle:
+   - A circle is drawn at the current mouse position.
+   - The circle has a radius of 50 pixels.
+
+2. Line:
+   - A line is drawn from a starting point (200, 100) to an ending point (600, 500).
+
+3. Closest Point Calculation:
+   - The program calculates the closest point on the line to the circle's current position using vector projection.
+   - The calculated point is highlighted on the screen in green.
+
+Steps:
+1. A `CircleTracker` class is implemented to manage the circle and line.
+2. A method `Run()` initializes the window and runs a loop, constantly updating the circle's position to the mouse's location.
+3. The closest point on the line is calculated in each frame using the `GetClosestPointOnLine` method.
+4. The program continuously redraws the line, the circle, and the closest point on the line.
+
+Details:
+- The program uses SplashKit for window management, drawing shapes, and handling mouse events.
+- The closest point on the line is determined through a projection of the circle’s position onto the line, ensuring the point lies within the line segment.
+
+Key Concepts:
+- Object-Oriented Programming (OOP)
+- Vector Mathematics (for projection calculation)
+- Real-time graphical rendering
