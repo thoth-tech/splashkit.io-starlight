@@ -481,7 +481,9 @@ let success = true;
 const jsonData = getJsonData("api.json");
 const jsonColors = getJsonData("colors.json");
 let guidesJson = getJsonData("guides.json");
+let usageExamplesJson = getJsonData("examples.json");
 let guidesCategories = getApiCategories(guidesJson);
+let examplesCategories = getApiCategories(usageExamplesJson);
 const usageExamples = getAllFinishedExamples();
 
 Mappings(jsonData);
@@ -720,6 +722,22 @@ for (const categoryKey in jsonData) {
         })
       })
 
+      var limit = 0;
+      let allExamples = [];
+      examplesCategories.forEach((category) => {
+        category.forEach((example) => {
+          example.functions.forEach((used) => {
+            if (func.unique_global_name == used && limit < 4) {
+              allExamples.push({
+                name: example.title,
+                url: example.url
+              })
+              limit++
+            }
+          }) 
+        })
+      })
+
       if (allGuides.length > 0) {
 
         if (!usageHeading) {
@@ -729,9 +747,18 @@ for (const categoryKey in jsonData) {
         mdxContent += `<Accordion title="See Implementations in Guides" uniqueID={${JSON.stringify(func.unique_global_name + "_guides")}} customButton="guidesAccordion">\n\n`
 
         mdxContent += `<ul>`
+        mdxContent += `Tutorials and Guides`
         allGuides.forEach((guide) => {
           mdxContent += `<li> [${guide.name}](${guide.url}) </li>`
         })
+        
+        if (allExamples.length > 0) {
+          mdxContent += `\n API Documentation`
+          allExamples.forEach((example) => {
+            mdxContent += `<li> [${example.name}](${example.url}) </li>`
+          })
+        }
+
         mdxContent += `</ul>\n\n`
 
         mdxContent += `</Accordion>\n\n`
@@ -924,3 +951,4 @@ for (const categoryKey in jsonData) {
 if (success) {
   console.log(kleur.green("\nAll API Documentation MDX files generated successfully.\n"));
 }
+
