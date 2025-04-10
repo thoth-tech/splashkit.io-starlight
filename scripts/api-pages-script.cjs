@@ -545,15 +545,18 @@ for (const categoryKey in jsonData) {
 
     if (isOverloaded) {
       // Create a section for overloaded functions
+      const hasExampleInGroup = functionGroups[functionName].some((func) =>
+        usageExamples.some((example) => example.startsWith(func.unique_global_name))
+      );
 
       const formattedFunctionName = functionName
-        .split("_")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-      const formattedLink = formattedFunctionName.toLowerCase().replace(/\s+/g, "-");
-
-      const formattedGroupLink = `${formattedLink}-functions`;
-      mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink}) \\{#${formattedGroupLink}\\}\n\n`;
+      .split("_")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+      const headingText = hasExampleInGroup ? `${formattedFunctionName} *` : formattedFunctionName;
+      const formattedGroupLink = `${formattedFunctionName.toLowerCase().replace(/\s+/g, "-")}-functions`;
+    
+      mdxContent += `\n### ${headingText} \\{#${formattedGroupLink}\\}\n\n`;
 
       mdxContent += ":::note\n\n";
       mdxContent += "This function is overloaded. The following versions exist:\n\n";
@@ -599,6 +602,10 @@ for (const categoryKey in jsonData) {
       const formattedLink = formattedName3.toLowerCase().replace(/\s+/g, "-");
       const formattedUniqueLink =  func.unique_global_name.toLowerCase().replace(/_/g, "-");
 
+      const hasExample = usageExamples.some(example => example.startsWith(func.unique_global_name));
+      if (hasExample) {
+        functionName2 += " *";
+      }
       const formattedName = isOverloaded
         ? `\n#### [${functionName2}](#${formattedUniqueLink}) \\{#${formattedUniqueLink}\\}`
         : `\n### [${functionName2}](#${formattedLink})`;
