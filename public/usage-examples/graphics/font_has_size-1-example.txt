@@ -1,0 +1,4 @@
+Checking font using font name overload:
+Font Arial with size 12: Yes
+Checking font using font object overload:
+Font Arial with size 12: Yes
