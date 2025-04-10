@@ -545,16 +545,18 @@ for (const categoryKey in jsonData) {
 
     if (isOverloaded) {
       // Create a section for overloaded functions
+      
       const hasExampleInGroup = functionGroups[functionName].some((func) =>
         usageExamples.some((example) => example.startsWith(func.unique_global_name))
       );
 
       const formattedFunctionName = functionName
-      .split("_")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
+        .split("_")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+      const formattedLink = formattedFunctionName.toLowerCase().replace(/\s+/g, "-");
       const headingText = hasExampleInGroup ? `${formattedFunctionName} *` : formattedFunctionName;
-      const formattedGroupLink = `${formattedFunctionName.toLowerCase().replace(/\s+/g, "-")}-functions`;
+      const formattedGroupLink = `${formattedLink}-functions`;
     
       mdxContent += `\n### ${headingText} \\{#${formattedGroupLink}\\}\n\n`;
 
