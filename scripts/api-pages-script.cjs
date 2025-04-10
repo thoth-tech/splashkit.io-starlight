@@ -751,10 +751,14 @@ for (const categoryKey in jsonData) {
         allGuides.forEach((guide) => {
           mdxContent += `<li> [${guide.name}](${guide.url}) </li>`
         })
-        mdxContent += `\n API Documentation`
-        allExamples.forEach((example) => {
-          mdxContent += `<li> [${example.name}](${example.url}) </li>`
-        })
+        
+        if (allExamples.length > 0) {
+          mdxContent += `\n API Documentation`
+          allExamples.forEach((example) => {
+            mdxContent += `<li> [${example.name}](${example.url}) </li>`
+          })
+        }
+
         mdxContent += `</ul>\n\n`
 
         mdxContent += `</Accordion>\n\n`
@@ -947,3 +951,4 @@ for (const categoryKey in jsonData) {
 if (success) {
   console.log(kleur.green("\nAll API Documentation MDX files generated successfully.\n"));
 }
+
