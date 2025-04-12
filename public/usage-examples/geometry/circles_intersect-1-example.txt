@@ -1,5 +1,3 @@
 The Circles Intersecting Program
 
-This program get a singular blue circles with 4 stationary white circles and when the white and blue circles intersect, the white circles turns red and within the window, you can move the blue circle anywhere you want.
-
 Note: For circles that are within circles, these are also considered "intersected".
