@@ -744,16 +744,16 @@ for (const categoryKey in jsonData) {
           mdxContent += "**Usage:**\n\n"
           usageHeading = true;
         }
-        mdxContent += `<Accordion title="See Implementations in Guides" uniqueID={${JSON.stringify(func.unique_global_name + "_guides")}} customButton="guidesAccordion">\n\n`
+        mdxContent += `<Accordion title="See Implementations" uniqueID={${JSON.stringify(func.unique_global_name + "_guides")}} customButton="guidesAccordion">\n\n`
 
         mdxContent += `<ul>`
-        mdxContent += `Tutorials and Guides`
+        mdxContent += `<span style="font-weight: bold">Tutorials and Guides</span>`
         allGuides.forEach((guide) => {
           mdxContent += `<li> [${guide.name}](${guide.url}) </li>`
         })
         
         if (allExamples.length > 0) {
-          mdxContent += `\n API Documentation`
+          mdxContent += `\n <span style="font-weight: bold">API Documentation Code Examples</span>`
           allExamples.forEach((example) => {
             mdxContent += `<li> [${example.name}](${example.url}) </li>`
           })
