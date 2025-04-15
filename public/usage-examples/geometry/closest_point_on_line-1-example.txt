@@ -1,0 +1,1 @@
+Creating a point on line based on mouse position
