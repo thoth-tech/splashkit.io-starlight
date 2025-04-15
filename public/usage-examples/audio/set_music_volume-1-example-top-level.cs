@@ -2,7 +2,7 @@ using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 // Declare Variables
-float Volume = 1.0f;
+double Volume = 1.0f;
 double MScrollVal = 1.0;
 double ScrollDelta = MScrollVal;
 
@@ -17,7 +17,7 @@ LoadMusic("adventure", "time_for_adventure.mp3");
 PlayMusic("adventure");
 
 // Open Window
-OpenWindow("Change Volume", 600, 600);
+OpenWindow("Change Volume", 800, 600);
 
 // Main Loop
 while (!QuitRequested())
@@ -30,24 +30,31 @@ while (!QuitRequested())
     // Check if scroll up & volume not max
     if (ScrollDelta > MScrollVal && Volume > 0)
     {
-        Volume -= 0.05f;
+        Volume -= 0.01f;
     }
     // Check if scroll down & volume not min
     if (ScrollDelta < MScrollVal && Volume < 1)
     {
-        Volume += 0.05f;
+        Volume += 0.01f;
     }
 
     // Set volume
     SetMusicVolume(Volume);
 
-    // Reset scroll delta
+    // Stop scroll input from affecting the next iteration
     ScrollDelta = MScrollVal;
 
     // Draw volume to screen
     ClearScreen(Color.White);
-    DrawText($"Volume: {MusicVolume()}", Color.Black, 100, 300);
+    DrawText("Scroll to change the volume", Color.Black, 100, 100);
+    DrawText($"Volume: %{(int)(MusicVolume() * 100)}", Color.Black, 100, 300);
     RefreshScreen();
+
+    // Loop Music
+    if (!MusicPlaying())
+    {
+        PlayMusic("adventure");
+    }
 }
 
 // Cleanup
