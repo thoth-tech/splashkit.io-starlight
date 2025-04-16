@@ -1,0 +1,1 @@
+Creating a point on rectangle based on closest point in relation to circle
