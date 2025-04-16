@@ -555,7 +555,7 @@ for (const categoryKey in jsonData) {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
       const formattedLink = formattedFunctionName.toLowerCase().replace(/\s+/g, "-");
-      const headingText = hasExampleInGroup ? `${formattedFunctionName} *` : formattedFunctionName;
+      const headingText = hasExampleInGroup ? `:badge[&lt;/&gt;] ${formattedFunctionName}` : formattedFunctionName;
       const formattedGroupLink = `${formattedLink}-functions`;
     
       mdxContent += `\n### ${headingText} \\{#${formattedGroupLink}\\}\n\n`;
@@ -603,11 +603,12 @@ for (const categoryKey in jsonData) {
 
       const formattedLink = formattedName3.toLowerCase().replace(/\s+/g, "-");
       const formattedUniqueLink =  func.unique_global_name.toLowerCase().replace(/_/g, "-");
+      
+      // const hasExample = usageExamples.some(example => example.startsWith(func.unique_global_name));
+      // if (hasExample) {
+      //   functionName2 += " :badge[&lt;/&gt;]";
+      // }
 
-      const hasExample = usageExamples.some(example => example.startsWith(func.unique_global_name));
-      if (hasExample) {
-        functionName2 += " *";
-      }
       const formattedName = isOverloaded
         ? `\n#### [${functionName2}](#${formattedUniqueLink}) \\{#${formattedUniqueLink}\\}`
         : `\n### [${functionName2}](#${formattedLink})`;
