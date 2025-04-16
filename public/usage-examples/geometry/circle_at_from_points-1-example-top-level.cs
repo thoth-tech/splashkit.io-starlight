@@ -2,16 +2,16 @@
 using static SplashKitSDK.SplashKit;
 
 // Open a window and draw the circle
-OpenWindow("Circle Example", 800, 600);
+OpenWindow("Circle At Example", 800, 600);
 Circle myCircle = CircleAt(400, 300, 100);
 
-while (!WindowCloseRequested("Circle Example"))
+while (!WindowCloseRequested("Circle At Example"))
 {
     ProcessEvents();
-    ClearScreen(Color.White);
+    ClearScreen(ColorWhite());
 
     // Draw the circle
-    FillCircle(Color.Blue, myCircle);
+    FillCircle(ColorBlue(), myCircle);
 
     RefreshScreen(60);
 }
