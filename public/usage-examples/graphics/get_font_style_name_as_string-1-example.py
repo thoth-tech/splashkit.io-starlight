@@ -1,11 +1,10 @@
 from splashkit import *
 
-open_window("Font Style", 800, 120)
+open_window("Interactive Font Style Changer", 800, 120)
 
-# Load font
 loaded_font = load_font("Arial", "Arial.TTF")
 
-# Default message
+# Initialise Default message
 message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined."
 message1 = ""
 

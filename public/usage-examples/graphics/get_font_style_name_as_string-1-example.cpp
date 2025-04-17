@@ -20,12 +20,10 @@ std::string font_style_to_string(font_style style)
 
 int main()
 {
-    open_window("Font Style", 800, 120);
-
-    // Load font
+    open_window("Interactive Font Style Changer", 800, 120);
     load_font("Arial", "Arial.TTF");
 
-    // Default message
+    // Initialise Default message
     std::string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
     std::string message1 = "";
 

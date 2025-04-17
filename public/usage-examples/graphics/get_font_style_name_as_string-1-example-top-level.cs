@@ -1,12 +1,10 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Window window = new Window("Font Style", 800, 120);
-
-// Load font
+Window window = new Window("Interactive Font Style Changer", 800, 120);
 LoadFont("Arial", "Arial.TTF");
 
-// Default message
+// Initialise Default message
 string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
 string message1 = "";
 
