@@ -1,5 +1,5 @@
-﻿using System;
-using SplashKitSDK;
+﻿using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
 Window window = new Window("Font Style", 800, 120);
 
