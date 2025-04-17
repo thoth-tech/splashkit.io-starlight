@@ -21,12 +21,12 @@ namespace ResumeMusicExample
             while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
-                
+
                 // Check for pause/play request
                 if (SplashKit.KeyDown(KeyCode.SpaceKey))
                 {
                     window.Clear(Color.White);
-                    
+
                     // Check if music is paused or not
                     if (MusicState == 1) // Pause if playing
                     {
@@ -41,13 +41,11 @@ namespace ResumeMusicExample
                         window.DrawText("Playing", Color.Black, 100, 100);
                     }
                 }
-                
                 window.Refresh();
                 SplashKit.Delay(200);
             }
-
             // Cleanup
-            SplashKit.FreeAllMusic();    
+            SplashKit.FreeAllMusic();
             SplashKit.CloseAllWindows();
         }
     }

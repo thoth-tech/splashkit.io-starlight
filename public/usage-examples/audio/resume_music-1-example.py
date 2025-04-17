@@ -1,6 +1,5 @@
 from splashkit import *
 
-
 music_state = 1
 # Check if audio is ready to use
 if not audio_ready():
@@ -29,8 +28,7 @@ while not quit_requested():
             resume_music()
             music_state = 1
             draw_text_no_font_no_size("Playing", color_black(), 100, 100)
-       
-    
+                
     refresh_screen()
     delay(200)
 

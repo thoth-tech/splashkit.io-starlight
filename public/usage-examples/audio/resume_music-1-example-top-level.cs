@@ -17,12 +17,12 @@ DrawText("Playing", Color.Black, 100, 100);
 while (!QuitRequested())
 {
     ProcessEvents();
-    
+
     // Check for pause/play request
     if (KeyDown(KeyCode.SpaceKey))
     {
         ClearScreen(Color.White);
-        
+
         // Check if music is paused or not
         if (MusicState == 1) // Pause if playing
         {
@@ -37,11 +37,9 @@ while (!QuitRequested())
             DrawText("Playing", Color.Black, 100, 100);
         }
     }
-    
     RefreshScreen();
     Delay(200);
 }
-
 // Cleanup
-FreeAllMusic();    
+FreeAllMusic();
 CloseAllWindows();
