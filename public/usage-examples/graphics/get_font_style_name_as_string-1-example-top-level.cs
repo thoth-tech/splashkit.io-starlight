@@ -4,7 +4,7 @@ using SplashKitSDK;
 Window window = new Window("Font Style", 800, 120);
 
 // Load font
-Font myFont = SplashKit.LoadFont("Arial", "Arial.TTF");
+LoadFont("Arial", "Arial.TTF");
 
 // Default message
 string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
@@ -12,35 +12,35 @@ string message1 = "";
 
 while (!window.CloseRequested)
 {
-    SplashKit.ProcessEvents();
+    ProcessEvents();
 
     // Check key presses and update font style
-    if (SplashKit.KeyTyped(KeyCode.NKey))
+    if (KeyTyped(KeyCode.NKey))
     {
-        SplashKit.SetFontStyle(myFont, FontStyle.NormalFont);
+        SetFontStyle("Arial", FontStyle.NormalFont);
     }
-    else if (SplashKit.KeyTyped(KeyCode.BKey))
+    else if (KeyTyped(KeyCode.BKey))
     {
-        SplashKit.SetFontStyle(myFont, FontStyle.BoldFont);
+        SetFontStyle("Arial", FontStyle.BoldFont);
     }
-    else if (SplashKit.KeyTyped(KeyCode.IKey))
+    else if (KeyTyped(KeyCode.IKey))
     {
-        SplashKit.SetFontStyle(myFont, FontStyle.ItalicFont);
+        SetFontStyle("Arial", FontStyle.ItalicFont);
     }
-    else if (SplashKit.KeyTyped(KeyCode.UKey))
+    else if (KeyTyped(KeyCode.UKey))
     {
-        SplashKit.SetFontStyle(myFont, FontStyle.UnderlineFont);
+        SetFontStyle("Arial", FontStyle.UnderlineFont);
     }
 
-    message1 = $"Font style set to {SplashKit.GetFontStyle(myFont)}";
+    message1 = $"Font style set to {GetFontStyle("Arial")}";
 
     // Clear screen and draw updated message
-    SplashKit.ClearScreen(Color.White);
-    SplashKit.DrawText(message, Color.Black, myFont, 20, 50, 20);
-    SplashKit.DrawText(message1, Color.Black, myFont, 20, 50, 80);
+    ClearScreen(Color.White);
+    DrawText(message, Color.Black, "Arial", 20, 50, 20);
+    DrawText(message1, Color.Black, "Arial", 20, 50, 80);
     // Refresh the window with the updated text
-    window.Refresh(60);
+    RefreshScreen();
 }
 
-SplashKit.Delay(5000);
-SplashKit.CloseAllWindows();
+Delay(5000);
+CloseAllWindows();

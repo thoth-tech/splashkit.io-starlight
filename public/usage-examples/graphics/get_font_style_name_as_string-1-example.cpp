@@ -23,7 +23,7 @@ int main()
     open_window("Font Style", 800, 120);
 
     // Load font
-    font myFont = load_font("Arial", "Arial.TTF");
+    load_font("Arial", "Arial.TTF");
 
     // Default message
     std::string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
@@ -36,27 +36,27 @@ int main()
         // Check key presses and update font style
         if (key_typed(N_KEY))
         {
-            set_font_style(myFont, NORMAL_FONT);
+            set_font_style("Arial", NORMAL_FONT);
         }
         else if (key_typed(B_KEY))
         {
-            set_font_style(myFont, BOLD_FONT);
+            set_font_style("Arial", BOLD_FONT);
         }
         else if (key_typed(I_KEY))
         {
-            set_font_style(myFont, ITALIC_FONT);
+            set_font_style("Arial", ITALIC_FONT);
         }
         else if (key_typed(U_KEY))
         {
-            set_font_style(myFont, UNDERLINE_FONT);
+            set_font_style("Arial", UNDERLINE_FONT);
         }
 
-        message1 = "Font style set to " + font_style_to_string(get_font_style(myFont));
+        message1 = "Font style set to " + font_style_to_string(get_font_style("Arial"));
 
         // Clear screen and draw updated message
         clear_screen(COLOR_WHITE);
-        draw_text(message, COLOR_BLACK, myFont, 20, 50, 20);
-        draw_text(message1, COLOR_BLACK, myFont, 20, 50, 80);
+        draw_text(message, COLOR_BLACK, "Arial", 20, 50, 20);
+        draw_text(message1, COLOR_BLACK, "Arial", 20, 50, 80);
         // Refresh the window with the updated text
         refresh_screen();
     }
