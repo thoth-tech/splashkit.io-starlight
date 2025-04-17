@@ -6,7 +6,7 @@ int main()
     open_window("Font Style", 800, 60);
     load_font("Arial", "Arial.TTF");
 
-    // Default message
+    // Initialise Default message
     std::string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
 
     while (!quit_requested())

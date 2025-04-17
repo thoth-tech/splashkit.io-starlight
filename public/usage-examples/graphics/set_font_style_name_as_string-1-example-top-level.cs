@@ -4,7 +4,7 @@ using static SplashKitSDK.SplashKit;
 Window window = new Window("Font Style", 800, 60);
 LoadFont("Arial", "Arial.TTF");
 
-// Default message
+// Initialise Default message
 string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
 
 while (!window.CloseRequested)
