@@ -1,0 +1,5 @@
+Draw physical display setup on a window with Display X explaination
+
+:::note
+To test this example code you can download these [**Resources**](/usage-examples/graphics/display_x-2-example-resources.zip).
+:::
