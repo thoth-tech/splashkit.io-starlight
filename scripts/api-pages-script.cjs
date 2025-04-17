@@ -738,7 +738,7 @@ for (const categoryKey in jsonData) {
       if (allGuides.length > 0) {
 
         if (!usageHeading) {
-          mdxContent += "**Usage:&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;**\n\n"
+          mdxContent += "**Usage:**\n\n"
           usageHeading = true;
         }
         mdxContent += `<Accordion title="See Implementations in Guides" uniqueID={${JSON.stringify(func.unique_global_name + "_guides")}} customButton="guidesAccordion">\n\n`
@@ -756,13 +756,13 @@ for (const categoryKey in jsonData) {
       usageExamples.forEach((example) => {
         if (func.unique_global_name == example.split('-')[0]) {
           if (!usageHeading) {
-            mdxContent += `**Usage:&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;**\n\n`
+            mdxContent += `**Usage:**\n\n`
             usageHeading = true;
           }
           mdxContent += getUsageExampleImports(categoryKey, example.replace(".txt", ""));
           if (!linked) {
             // Import code files
-            mdxContent += `<Accordion title="See Code Examples" uniqueID={${JSON.stringify(func.unique_global_name + "_example")}} customButton="usageExamplesAccordion">\n\n`;
+            mdxContent += `<Accordion title="See Code Examples &nbsp;&lcub;&lt;/&gt;&rcub;" uniqueID={${JSON.stringify(func.unique_global_name + "_example")}} customButton="usageExamplesAccordion">\n\n`;
             linked = true;
           }
 
