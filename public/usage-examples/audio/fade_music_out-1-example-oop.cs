@@ -7,13 +7,12 @@ namespace FadeMusicOutExample
         public static void Main()
         {
             // Check if audio is ready to use
-            if(! SplashKit.AudioReady())
+            if (!SplashKit.AudioReady())
                 SplashKit.OpenAudio();
 
             // Load music file and start playback
             Music music = SplashKit.LoadMusic("adventure", "time_for_adventure.mp3");
             music.Play();
-
 
             // Wait 1 second before fadeout
             SplashKit.Delay(1000);
@@ -26,6 +25,6 @@ namespace FadeMusicOutExample
 
             // Free resources
             SplashKit.FreeAllMusic();
-        }    
+        }
     }
 }
