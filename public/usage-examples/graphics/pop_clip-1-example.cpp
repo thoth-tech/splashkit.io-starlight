@@ -2,6 +2,7 @@
 
 int main()
 {
+    //Create a new window with width and height of 400 called "Pop Clip Example"
     open_window("Pop Clip Example", 400, 400);
 
     //Clip region to centre width and height of the same
