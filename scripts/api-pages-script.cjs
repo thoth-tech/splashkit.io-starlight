@@ -555,8 +555,8 @@ for (const categoryKey in jsonData) {
         .join(" ");
       const formattedLink = formattedFunctionName.toLowerCase().replace(/\s+/g, "-");
   
-      // Put </> symbol at the end of header if function has a usage example
-      const hasSymbol = hasExampleInGroup ? `&nbsp;&nbsp;<strong>[&lt;/&gt;]</strong>` : "";
+      // Put {</>} symbol at the end of header if function has a usage example
+      const hasSymbol = hasExampleInGroup ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;` : "";
       const formattedGroupLink = `${formattedLink}-functions`;
 
       mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink})${hasSymbol} \\{#${formattedGroupLink}\\}\n\n`;
@@ -588,9 +588,10 @@ for (const categoryKey in jsonData) {
         const formattedUniqueLink = func.unique_global_name.toLowerCase().replace(/_/g, "-");
         mdxContent += `)](/api/${input}/#${formattedUniqueLink})`;
 
+        // Put bolded {</>} symbol at the end of heading link if function has a usage example
         const hasExample = usageExamples.some(example => example.endsWith(func.unique_global_name + "-1-example.txt"));
         if (hasExample) {
-          mdxContent += "&nbsp;&nbsp;<strong>[&lt;/&gt;]</strong>";
+          mdxContent += "&nbsp;&nbsp;<strong>&lcub;&lt;/&gt;&rcub;</strong>";
         }
 
         mdxContent += `\n`;
@@ -613,10 +614,10 @@ for (const categoryKey in jsonData) {
       const formattedUniqueLink = func.unique_global_name.toLowerCase().replace(/_/g, "-");
       const hasExample = usageExamples.some(example => example.endsWith(func.unique_global_name + "-1-example.txt"));
       
-      // Put </> symbol at the end of headers of overloaded functions with usage example or else just keep empty
+      // Put {</>} symbol at the end of headers of overloaded functions with usage example or else just keep empty
       const formattedName = isOverloaded
-    ? `\n#### [${functionName2}](#${formattedUniqueLink})${hasExample ? '&nbsp;&nbsp;<strong>[&lt;/&gt;]</strong>' : ''} \\{#${formattedUniqueLink}\\}`
-    : `\n### [${functionName2}](#${formattedLink})${hasExample ? '&nbsp;&nbsp;<strong>[&lt;/&gt;]</strong>' : ''}`;
+    ? `\n#### [${functionName2}](#${formattedUniqueLink})${hasExample ? '&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;' : ''} \\{#${formattedUniqueLink}\\}`
+    : `\n### [${functionName2}](#${formattedLink})${hasExample ? '&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;' : ''}`;
 
       // Replace type names in the description with formatted versions
       let description = func.description || "";
