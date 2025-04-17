@@ -1,11 +1,10 @@
-﻿using System;
-using SplashKitSDK;
+﻿using SplashKitSDK;
 
 namespace GetFontStyleExample
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
             Window window = new Window("Interactive Font Style Changer", 800, 120);
             SplashKit.LoadFont("Arial", "Arial.TTF");

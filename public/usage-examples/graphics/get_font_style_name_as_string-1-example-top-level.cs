@@ -36,7 +36,6 @@ while (!window.CloseRequested)
     ClearScreen(Color.White);
     DrawText(message, Color.Black, "Arial", 20, 50, 20);
     DrawText(message1, Color.Black, "Arial", 20, 50, 80);
-    // Refresh the window with the updated text
     RefreshScreen();
 }
 

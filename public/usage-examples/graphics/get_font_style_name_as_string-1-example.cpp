@@ -1,22 +1,4 @@
 #include "splashkit.h"
-#include <iostream>
-
-std::string font_style_to_string(font_style style)
-{
-    switch (style)
-    {
-    case NORMAL_FONT:
-        return "Normal";
-    case BOLD_FONT:
-        return "Bold";
-    case ITALIC_FONT:
-        return "Italic";
-    case UNDERLINE_FONT:
-        return "Underlined";
-    default:
-        return "Unknown";
-    }
-}
 
 int main()
 {
@@ -24,8 +6,9 @@ int main()
     load_font("Arial", "Arial.TTF");
 
     // Initialise Default message
-    std::string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
-    std::string message1 = "";
+    string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
+    string message1 = "";
+    font_style style = NORMAL_FONT;
 
     while (!quit_requested())
     {
@@ -49,13 +32,33 @@ int main()
             set_font_style("Arial", UNDERLINE_FONT);
         }
 
-        message1 = "Font style set to " + font_style_to_string(get_font_style("Arial"));
+        message1 = "Font style set to ";
+        style = get_font_style("Arial");
+
+        // A switch case is needed for c++ as get_font_style returns an enum not a string
+        switch (style)
+        {
+        case NORMAL_FONT:
+            message1 += "Normal";
+            break;
+        case BOLD_FONT:
+            message1 += "Bold";
+            break;
+        case ITALIC_FONT:
+            message1 += "Italic";
+            break;
+        case UNDERLINE_FONT:
+            message1 += "Underlined";
+            break;
+        default:
+            message1 += "Unknown";
+            break;
+        }
 
         // Clear screen and draw updated message
         clear_screen(COLOR_WHITE);
         draw_text(message, COLOR_BLACK, "Arial", 20, 50, 20);
         draw_text(message1, COLOR_BLACK, "Arial", 20, 50, 80);
-        // Refresh the window with the updated text
         refresh_screen();
     }
 

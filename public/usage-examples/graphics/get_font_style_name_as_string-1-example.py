@@ -1,7 +1,6 @@
 from splashkit import *
 
 open_window("Interactive Font Style Changer", 800, 120)
-
 loaded_font = load_font("Arial", "Arial.TTF")
 
 # Initialise Default message
