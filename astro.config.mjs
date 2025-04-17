@@ -9,7 +9,6 @@ import rehypeMathjax from 'rehype-mathjax'
 import starlightBlog from 'starlight-blog'
 import starlightDocSearch from '@astrojs/starlight-docsearch';
 import remarkHeadingID from 'remark-heading-id';
-import starlightHeadingBadges from 'starlight-heading-badges'
 
 import { loadEnv } from "vite";
 
@@ -43,7 +42,6 @@ export default defineConfig({
           apiKey: DOCSEARCH_API_SEARCH_KEY,
           indexName: DOCSEARCH_INDEX_NAME,
         }),
-        starlightHeadingBadges(),
       ],
       expressiveCode: {
         // theme: ["github-dark", "github-light"],
