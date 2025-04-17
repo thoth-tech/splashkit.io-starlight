@@ -379,7 +379,7 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
                 });
                 mdxData += "  </Tabs>\n\n";
                 mdxData += "  </TabItem>\n";
-              } 
+              }
               // Check for cpp files and generate nested tabs
               else if (lang == "cpp" && cppFiles.length > 0) {
                 mdxData += "\n  <Tabs syncKey=\"cpp-style\">\n";
@@ -543,11 +543,10 @@ for (const categoryKey in jsonData) {
     const overloads = functionGroups[functionName];
     const isOverloaded = overloads.length > 1;
 
+    // Create a section for overloaded functions
     if (isOverloaded) {
-      // Create a section for overloaded functions
-      
       const hasExampleInGroup = functionGroups[functionName].some((func) =>
-        usageExamples.some((example) => example.startsWith(func.unique_global_name))
+        usageExamples.some((example) => example.endsWith(func.unique_global_name + "-1-example.txt"))
       );
 
       const formattedFunctionName = functionName
@@ -557,7 +556,7 @@ for (const categoryKey in jsonData) {
       const formattedLink = formattedFunctionName.toLowerCase().replace(/\s+/g, "-");
       const headingText = hasExampleInGroup ? `:badge[&lt;/&gt;] ${formattedFunctionName}` : formattedFunctionName;
       const formattedGroupLink = `${formattedLink}-functions`;
-    
+
       mdxContent += `\n### ${headingText} \\{#${formattedGroupLink}\\}\n\n`;
 
       mdxContent += ":::note\n\n";
@@ -584,8 +583,15 @@ for (const categoryKey in jsonData) {
           }
           paramNumber++;
         }
-        const formattedUniqueLink =  func.unique_global_name.toLowerCase().replace(/_/g, "-");
-        mdxContent += `)](/api/${input}/#${formattedUniqueLink})\n`;
+        const formattedUniqueLink = func.unique_global_name.toLowerCase().replace(/_/g, "-");
+        mdxContent += `)](/api/${input}/#${formattedUniqueLink})`;
+
+        const hasExample = usageExamples.some(example => example.endsWith(func.unique_global_name + "-1-example.txt"));
+        if (hasExample) {
+          mdxContent += "&nbsp;&nbsp;&nbsp;<strong>[&lt;/&gt;]</strong>";
+        }
+
+        mdxContent += `\n`;
       });
 
       mdxContent += "\n:::\n";
@@ -602,8 +608,8 @@ for (const categoryKey in jsonData) {
         .join(" ");
 
       const formattedLink = formattedName3.toLowerCase().replace(/\s+/g, "-");
-      const formattedUniqueLink =  func.unique_global_name.toLowerCase().replace(/_/g, "-");
-      
+      const formattedUniqueLink = func.unique_global_name.toLowerCase().replace(/_/g, "-");
+
       // const hasExample = usageExamples.some(example => example.startsWith(func.unique_global_name));
       // if (hasExample) {
       //   functionName2 += " :badge[&lt;/&gt;]";
