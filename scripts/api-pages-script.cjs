@@ -549,6 +549,14 @@ for (const categoryKey in jsonData) {
         usageExamples.some((example) => example.endsWith(func.unique_global_name + "-1-example.txt"))
       );
 
+      const hasGuideInGroup = functionGroups[functionName].some((func) =>
+        guidesCategories.some((category) =>
+          category.some((guide) =>
+            guide.functions.includes(func.unique_global_name)
+          )
+        )
+      );
+
       const formattedFunctionName = functionName
         .split("_")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -556,7 +564,7 @@ for (const categoryKey in jsonData) {
       const formattedLink = formattedFunctionName.toLowerCase().replace(/\s+/g, "-");
   
       // Put {</>} symbol at the end of header if function has a usage example
-      const hasSymbol = hasExampleInGroup ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;` : "";
+      const hasSymbol = (hasExampleInGroup || hasGuideInGroup) ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;`: "";
       const formattedGroupLink = `${formattedLink}-functions`;
 
       mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink})${hasSymbol} \\{#${formattedGroupLink}\\}\n\n`;
@@ -590,7 +598,9 @@ for (const categoryKey in jsonData) {
 
         // Put bolded {</>} symbol at the end of heading link if function has a usage example
         const hasExample = usageExamples.some(example => example.endsWith(func.unique_global_name + "-1-example.txt"));
-        if (hasExample) {
+        const hasGuide =  guidesCategories.some((category) => category.some((guide) => guide.functions.includes(func.unique_global_name)));
+
+        if (hasExample || hasGuide) {
           mdxContent += "&nbsp;&nbsp;<strong>&lcub;&lt;/&gt;&rcub;</strong>";
         }
 
@@ -613,11 +623,12 @@ for (const categoryKey in jsonData) {
       const formattedLink = formattedName3.toLowerCase().replace(/\s+/g, "-");
       const formattedUniqueLink = func.unique_global_name.toLowerCase().replace(/_/g, "-");
       const hasExample = usageExamples.some(example => example.endsWith(func.unique_global_name + "-1-example.txt"));
+      const hasGuide =  guidesCategories.some((category) => category.some((guide) => guide.functions.includes(func.unique_global_name)));
       
       // Put {</>} symbol at the end of headers of overloaded functions with usage example or else just keep empty
       const formattedName = isOverloaded
-    ? `\n#### [${functionName2}](#${formattedUniqueLink})${hasExample ? '&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;' : ''} \\{#${formattedUniqueLink}\\}`
-    : `\n### [${functionName2}](#${formattedLink})${hasExample ? '&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;' : ''}`;
+    ? `\n#### [${functionName2}](#${formattedUniqueLink})${(hasExample || hasGuide) ? '&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;' : ''} \\{#${formattedUniqueLink}\\}`
+    : `\n### [${functionName2}](#${formattedLink})${(hasExample || hasGuide) ? '&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;' : ''}`;
 
       // Replace type names in the description with formatted versions
       let description = func.description || "";
@@ -738,7 +749,7 @@ for (const categoryKey in jsonData) {
       if (allGuides.length > 0) {
 
         if (!usageHeading) {
-          mdxContent += "**Usage:**\n\n"
+          mdxContent += "**Usage:&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;**\n\n"
           usageHeading = true;
         }
         mdxContent += `<Accordion title="See Implementations in Guides" uniqueID={${JSON.stringify(func.unique_global_name + "_guides")}} customButton="guidesAccordion">\n\n`
@@ -756,13 +767,13 @@ for (const categoryKey in jsonData) {
       usageExamples.forEach((example) => {
         if (func.unique_global_name == example.split('-')[0]) {
           if (!usageHeading) {
-            mdxContent += `**Usage:**\n\n`
+            mdxContent += `**Usage:&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;**\n\n`
             usageHeading = true;
           }
           mdxContent += getUsageExampleImports(categoryKey, example.replace(".txt", ""));
           if (!linked) {
             // Import code files
-            mdxContent += `<Accordion title="See Code Examples &nbsp;&lcub;&lt;/&gt;&rcub;" uniqueID={${JSON.stringify(func.unique_global_name + "_example")}} customButton="usageExamplesAccordion">\n\n`;
+            mdxContent += `<Accordion title="See Code Examples" uniqueID={${JSON.stringify(func.unique_global_name + "_example")}} customButton="usageExamplesAccordion">\n\n`;
             linked = true;
           }
 
