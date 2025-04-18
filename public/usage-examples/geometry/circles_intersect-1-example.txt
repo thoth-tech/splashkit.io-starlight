@@ -1,0 +1,3 @@
+The Circles Intersecting Program
+
+Note: For circles that are within circles, these are also considered "intersected".
