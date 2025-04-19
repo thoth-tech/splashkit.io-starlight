@@ -1,0 +1,41 @@
+# Lines From Rectangle Example
+
+This example demonstrates how to use the `LinesFrom` function to retrieve the edges of a rectangle and interact with them using the mouse.
+
+The program draws a rectangle in the center of the screen and obtains its edges as individual lines using SplashKit’s `LinesFrom(Rectangle)` function. Each edge is displayed in a different color.
+
+A key enhancement in this example is the addition of **mouse hover detection**. When the user moves the mouse pointer over any of the rectangle’s edges, that edge highlights with a thicker and brighter color. This provides an interactive and visual way to explore what the `LinesFrom` function does.
+
+---
+
+## Function Demonstrated
+
+`LinesFrom(Rectangle rect)`  
+Returns a list of 4 lines representing the edges of the rectangle: top, right, bottom, and left.
+
+---
+
+## Effectiveness and Usefulness
+
+The example goes beyond a static demonstration by simulating a real-world interactive scenario. This makes it easy for developers to understand:
+
+- How `LinesFrom` breaks a rectangle into lines.
+- How to access and individually interact with each line.
+- How this can be used for hover effects, selection zones, or collision detection in games and UI systems.
+
+This dynamic interaction highlights the practical use of `LinesFrom` in game and graphics development with SplashKit.
+
+---
+
+## Language Versions Included
+
+- C++
+- C# (Top-Level Statements)
+- C# (OOP)
+- Python
+
+---
+
+## Visual Aid
+
+An animated GIF is recommended to showcase the hover effect across the edges.
