@@ -1,0 +1,125 @@
+
+# Python - Widest Points of a Circle Along a Vector
+from splashkit import *
+
+def normalize_vector(v):
+    mag = math.sqrt(v.x**2 + v.y**2)
+    return vector_to(v.x / mag, v.y / mag) if mag != 0 else vector_to(0, 0)
+
+def widest_points(c, direction, pt1, pt2):
+    unit = normalize_vector(direction)
+    offset = vector_multiply(unit, c.radius)
+    pt1.x = c.center.x + offset.x
+    pt1.y = c.center.y + offset.y
+    pt2.x = c.center.x - offset.x
+    pt2.y = c.center.y - offset.y
+
+open_window("Widest Points Python", 800, 600)
+circle_center = point_at(400, 300)
+my_circle = circle_at(circle_center, 100)
+direction = normalize_vector(vector_point_to_point(point_at(0, 0), point_at(1, 2)))
+pt1 = point_at(0, 0)
+pt2 = point_at(0, 0)
+widest_points(my_circle, direction, pt1, pt2)
+while not window_close_requested("Widest Points Python"):
+    process_events()
+    clear_screen(Color.White)
+    draw_circle(Color.SkyBlue, my_circle)
+    draw_line(Color.DarkGray, circle_center, point_at(circle_center.x + direction.x * 100, circle_center.y + direction.y * 100))
+    fill_circle(Color.Red, pt1.x, pt1.y, 5)
+    fill_circle(Color.Red, pt2.x, pt2.y, 5)
+    draw_text(f"Vector: ({direction.x:.2f}, {direction.y:.2f})", Color.Black, 10, 30)
+    draw_text(f"Point 1: ({pt1.x:.2f}, {pt1.y:.2f})", Color.Black, 10, 50)
+    draw_text(f"Point 2: ({pt2.x:.2f}, {pt2.y:.2f})", Color.Black, 10, 70)
+    refresh_screen(60)
+
+
+
+// C# OOP - Widest Points of a Circle Along a Vector
+using SplashKitSDK;
+
+public class WidestPointApp
+{
+    private Circle _circle;
+    private Vector2D _direction;
+    private Point2D _pt1, _pt2;
+
+    public WidestPointApp()
+    {
+        _circle.Center = new Point2D() { X = 400, Y = 300 };
+        _circle.Radius = 100;
+        _direction = SplashKit.UnitVector(SplashKit.VectorPointToPoint(new Point2D() { X = 0, Y = 0 }, new Point2D() { X = 1, Y = 2 }));
+        CalculateWidestPoints();
+    }
+
+    private void CalculateWidestPoints()
+    {
+        Vector2D offset = SplashKit.VectorMultiply(_direction, _circle.Radius);
+        _pt1.X = _circle.Center.X + offset.X;
+        _pt1.Y = _circle.Center.Y + offset.Y;
+        _pt2.X = _circle.Center.X - offset.X;
+        _pt2.Y = _circle.Center.Y - offset.Y;
+    }
+
+    public void Run()
+    {
+        SplashKit.OpenWindow("Widest Points C# OOP", 800, 600);
+        while (!SplashKit.WindowCloseRequested("Widest Points C# OOP"))
+        {
+            SplashKit.ProcessEvents();
+            SplashKit.ClearScreen(Color.White);
+            SplashKit.DrawCircle(Color.SkyBlue, _circle);
+            SplashKit.DrawLine(Color.DarkGray, _circle.Center, new Point2D()
+            {
+                X = _circle.Center.X + _direction.X * _circle.Radius,
+                Y = _circle.Center.Y + _direction.Y * _circle.Radius
+            });
+            SplashKit.FillCircle(Color.Red, _pt1.X, _pt1.Y, 5);
+            SplashKit.FillCircle(Color.Red, _pt2.X, _pt2.Y, 5);
+            SplashKit.DrawText($"Vector: ({_direction.X:0.00}, {_direction.Y:0.00})", Color.Black, 10, 30);
+            SplashKit.DrawText($"Point 1: ({_pt1.X:0.00}, {_pt1.Y:0.00})", Color.Black, 10, 50);
+            SplashKit.DrawText($"Point 2: ({_pt2.X:0.00}, {_pt2.Y:0.00})", Color.Black, 10, 70);
+            SplashKit.RefreshScreen(60);
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        var app = new WidestPointApp();
+        app.Run();
+    }
+}
+
+
+
+// C# Top-Level - Widest Points of a Circle Along a Vector
+using SplashKitSDK;
+
+SplashKit.OpenWindow("Widest Points C# Top Level", 800, 600);
+Circle circle;
+circle.Center = new Point2D() { X = 400, Y = 300 };
+circle.Radius = 100;
+Vector2D direction = SplashKit.UnitVector(SplashKit.VectorPointToPoint(new Point2D() { X = 0, Y = 0 }, new Point2D() { X = 1, Y = 2 }));
+Vector2D offset = SplashKit.VectorMultiply(direction, circle.Radius);
+Point2D pt1 = new Point2D() { X = circle.Center.X + offset.X, Y = circle.Center.Y + offset.Y };
+Point2D pt2 = new Point2D() { X = circle.Center.X - offset.X, Y = circle.Center.Y - offset.Y };
+while (!SplashKit.WindowCloseRequested("Widest Points C# Top Level"))
+{
+    SplashKit.ProcessEvents();
+    SplashKit.ClearScreen(Color.White);
+    SplashKit.DrawCircle(Color.SkyBlue, circle);
+    SplashKit.DrawLine(Color.DarkGray, circle.Center, new Point2D()
+    {
+        X = circle.Center.X + direction.X * circle.Radius,
+        Y = circle.Center.Y + direction.Y * circle.Radius
+    });
+    SplashKit.FillCircle(Color.Red, pt1.X, pt1.Y, 5);
+    SplashKit.FillCircle(Color.Red, pt2.X, pt2.Y, 5);
+    SplashKit.DrawText($"Vector: ({direction.X:0.00}, {direction.Y:0.00})", Color.Black, 10, 30);
+    SplashKit.DrawText($"Point 1: ({pt1.X:0.00}, {pt1.Y:0.00})", Color.Black, 10, 50);
+    SplashKit.DrawText($"Point 2: ({pt2.X:0.00}, {pt2.Y:0.00})", Color.Black, 10, 70);
+    SplashKit.RefreshScreen(60);
+}
