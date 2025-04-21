@@ -1,6 +1,7 @@
 from splashkit import *
 
 def main():
+    # Create and open a new window 
     open_window("Line Width Example", 800, 600)
 
     # Set line width to 10
