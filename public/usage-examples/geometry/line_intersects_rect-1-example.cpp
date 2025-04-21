@@ -7,10 +7,12 @@ int main()
 
     // Set line width to 10
     option_line_width(10);
+    // Draws a black rectangle with the current line width at position (100, 100).
     draw_rectangle(COLOR_BLACK, 100, 100, 200, 150);
 
     // Set line width to 5
     option_line_width(5);
+    // Draws a red rectangle with the current line width at position (400, 100).
     draw_rectangle(COLOR_RED, 400, 100, 200, 150);
 
     refresh_screen();
