@@ -7,6 +7,7 @@ public class LineWidthExample
 
     public LineWidthExample()
     {
+       // Create and open a new window
         _window = SplashKit.OpenWindow("Line Width Example", 800, 600);
     }
 
