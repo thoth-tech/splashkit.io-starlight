@@ -9,10 +9,12 @@ public class Program
 
         // Set line width to 10
         SplashKit.OptionLineWidth(10);
+        // Draws a black rectangle with the current line width at position (100, 100).
         SplashKit.DrawRectangle(Color.Black, 100, 100, 200, 150);
 
         // Set line width to 5
         SplashKit.OptionLineWidth(5);
+        // Draws a red rectangle with the current line width at position (400, 100).
         SplashKit.DrawRectangle(Color.Red, 400, 100, 200, 150);
 
         SplashKit.RefreshScreen();
