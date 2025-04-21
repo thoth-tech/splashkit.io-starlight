@@ -4,6 +4,7 @@ public class Program
 {
     public static void Main()
     {
+        // Create and open a new window
         Window window = SplashKit.OpenWindow("Line Width Example", 800, 600);
 
         // Set line width to 10
