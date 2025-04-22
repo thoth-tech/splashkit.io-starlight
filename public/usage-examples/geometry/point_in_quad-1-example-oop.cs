@@ -21,12 +21,12 @@ namespace PointInQuad
                 // The text and quad colour is updated depending on whether cursor is inside the quad
                 if (SplashKit.PointInQuad(cursor_pos, quad))
                 {
-                    quad_clr = SplashKit.ColorGreen();
+                    quad_clr = Color.Green;
                     text = "Cursor in the quad!";
                 }
                 else
                 {
-                    quad_clr = SplashKit.ColorRed();
+                    quad_clr = Color.Red;
                     text = "Cursor not in the quad!";
                 }
 
