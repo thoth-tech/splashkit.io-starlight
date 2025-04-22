@@ -4,7 +4,9 @@ int main()
 {
     // Check if audio is ready to use
     if(! audio_ready())
+    {
         open_audio();
+    }
 
     // Load music file
     load_music("adventure", "time_for_adventure.mp3");
@@ -17,5 +19,6 @@ int main()
 
     // Free resources
     free_all_music();
+    
     return 0;
 }
