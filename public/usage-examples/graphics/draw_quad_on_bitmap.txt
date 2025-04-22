@@ -1,0 +1,1 @@
+draw_quad_on_bitmap
