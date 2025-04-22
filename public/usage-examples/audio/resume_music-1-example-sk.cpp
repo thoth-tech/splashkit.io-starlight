@@ -2,41 +2,55 @@
 
 int main()
 {
-    int music_state = 1;
     //  Check if audio is ready to use
-    if(! audio_ready())
+    if (!audio_ready())
+    {
         open_audio();
+    }
 
-    //  Load music file
+    // Load music file and start playing
     music music = load_music("adventure", "time_for_adventure.mp3");
     play_music(music);
-    
-    open_window("Pause/Resume", 300, 200);
-    draw_text("Playing", COLOR_BLACK, 100, 100);
+    bool music_playing = true;
 
-    while(! quit_requested())
+    window window = open_window("Pause/Resume", 300, 200);
+
+    while (!quit_requested())
     {
         process_events();
+
         // Check for pause/play request
-        if(key_down(SPACE_KEY))
+        if (key_typed(SPACE_KEY))
         {
-            clear_screen(COLOR_WHITE);
             // Check if music is paused or not
-            if (music_state == 1){ // Pause if playing
+            if (music_playing)
+            {
+                // Pause if playing
                 pause_music();
-                music_state = 0;
-                draw_text("Paused...", COLOR_BLACK, 100,100);
+                music_playing = false;
             }
-            else{ // Play if paused
+            else
+            {
+                // Play if paused
                 resume_music();
-                music_state = 1;
-                draw_text("Playing", COLOR_BLACK, 100, 100);
+                music_playing = true;
             }
         }
-        refresh_screen();
-        delay(200);
+
+        // Display text showing if music is playing or not
+        clear_window(window, COLOR_WHITE);
+        if (music_playing)
+        {
+            draw_text_on_window(window, "Playing", COLOR_BLACK, 100, 100);
+        }
+        else
+        {
+            draw_text_on_window(window, "Paused...", COLOR_BLACK, 100, 100);
+        }
+        refresh_window(window);
     }
+
     // Cleanup
-    free_all_music();    
+    free_all_music();
     close_all_windows();
 }

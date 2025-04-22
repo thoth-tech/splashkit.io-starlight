@@ -1,37 +1,39 @@
 from splashkit import *
 
-music_state = 1
 # Check if audio is ready to use
-if not audio_ready():
+if (not audio_ready()):
     open_audio()
 
-# Load music file
+# Load music file and start playing
 music = load_music("adventure", "time_for_adventure.mp3")
 play_music(music)
+music_playing = True
 
-open_window("Pause/Resume", 300, 200)
-draw_text_no_font_no_size("Playing", color_black(), 100, 100)
+window = open_window("Pause/Resume", 300, 200)
 
-while not quit_requested():
+while (not quit_requested()):
     process_events()
+
     # Check for pause/play request
-    if(key_down(KeyCode.space_key)):
-    
-        clear_screen(color_white())
+    if (key_typed(KeyCode.space_key)):
         # Check if music is paused or not
-        if music_state == 1: # Pause if playing
+        if (music_playing):
+            # Pause if playing
             pause_music()
-            music_state = 0
-            draw_text_no_font_no_size("Paused...", color_black(), 100,100)
-       
-        else: # Play if paused
+            music_playing = False
+        else:
+            # Play if paused
             resume_music()
-            music_state = 1
-            draw_text_no_font_no_size("Playing", color_black(), 100, 100)
-                
-    refresh_screen()
-    delay(200)
+            music_playing = True
+
+    # Display text showing if music is playing or not
+    clear_window(window, color_white())
+    if (music_playing):
+        draw_text_on_window_no_font_no_size(window, "Playing", color_black(), 100, 100)
+    else:
+        draw_text_on_window_no_font_no_size(window, "Paused...", color_black(), 100, 100)
+    refresh_window(window)
 
 # Cleanup
-free_all_music()    
+free_all_music()
 close_all_windows()

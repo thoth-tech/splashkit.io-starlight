@@ -1,4 +1,4 @@
-Resume Music
+Pausing and Resuming Game Music
 
 :::note
 To test this example code you can download these [**Resources**](/usage-examples/audio/resume_music-1-example-resources.zip).
