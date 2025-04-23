@@ -2,16 +2,15 @@
 
 int main()
 {
-    window window = open_window("Get System Font", 800, 600);
-    
-    font font = NULL;
+    open_window("Get System Font", 800, 600);
 
     // The get system font function writes a font to this variable. If it is unable to find one, it won't write anything and the variable will remain blank
-    font = get_system_font();
+    font font = get_system_font();
 
     while (!quit_requested())
     {
         process_events();
+        clear_screen();
         if (font != NULL)
         {
             draw_text("System font detected!", color_black(), 300, 100);
@@ -25,6 +24,6 @@ int main()
         }
         refresh_screen();
     }
-    close_window(window);
+    close_all_windows();
     return 0;
 }

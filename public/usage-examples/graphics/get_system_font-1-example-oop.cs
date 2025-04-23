@@ -6,16 +6,15 @@ namespace GetSystemFont
     {
         public static void Main()
         {
-            Window window = new Window("Get System Font", 800, 600);
-
-            Font font = null;
+            new Window("Get System Font", 800, 600);
 
             // The get system font function writes a font to this variable. If it is unable to find one, it won't write anything and the variable will remain blank
-            font = SplashKit.GetSystemFont();
+            Font font = SplashKit.GetSystemFont();
             
             while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
+                SplashKit.ClearScreen();
                 if (font != null)
                 {
                     SplashKit.DrawText("System font detected!", SplashKit.ColorBlack(), 300, 100);
@@ -29,7 +28,7 @@ namespace GetSystemFont
                 }
                 SplashKit.RefreshScreen();
             }
-            window.Close();
+            SplashKit.CloseAllWindows();
         }
     }
 }

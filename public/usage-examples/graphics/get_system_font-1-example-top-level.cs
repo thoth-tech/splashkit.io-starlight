@@ -1,16 +1,15 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Window window = new Window("Get System Font", 800, 600);
-
-Font font = null;
+new Window("Get System Font", 800, 600);
 
 // The get system font function writes a font to this variable. If it is unable to find one, it won't write anything and the variable will remain blank
-font = GetSystemFont();
+Font font = GetSystemFont();
             
 while (!QuitRequested())
 {
     ProcessEvents();
+    ClearScreen();
     if (font != null)
     {
         DrawText("System font detected!", ColorBlack(), 300, 100);
@@ -24,4 +23,4 @@ while (!QuitRequested())
     }
     RefreshScreen();
 }
-window.Close();
+CloseAllWindows();

@@ -1,16 +1,14 @@
 from splashkit import *
 
-window = open_window("Get System Font", 800, 600)
-
-font = None
+open_window("Get System Font", 800, 600)
 
 # The get system font function writes a font to this variable. If it is unable to find one, it won't write anything and the variable will remain blank
 font = get_system_font()
 
 while (not quit_requested()):
     process_events()
-    if (
-        font != None):
+    clear_screen_to_white()
+    if font is not None:
         draw_text_no_font_no_size("System font detected!", color_black(), 300, 100)
         
         # This line uses draw_text to give an example using this font
@@ -20,4 +18,4 @@ while (not quit_requested()):
 
     refresh_screen()
 
-close_window(window)
+close_all_windows()
