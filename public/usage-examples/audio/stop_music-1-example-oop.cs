@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace PauseMusicExample
+namespace StopMusicExample
 {
     public static class Program
     {
@@ -8,30 +8,50 @@ namespace PauseMusicExample
         {
             // Check if audio is ready to use
             if (!SplashKit.AudioReady())
+            {
                 SplashKit.OpenAudio();
+            }
 
             // Load music file
-            Music music = new Music("adventure", "time_for_adventure.mp3");
+            Music music = SplashKit.LoadMusic("adventure", "time_for_adventure.mp3");
             music.Play();
+            bool musicPlaying = true;
 
-            Window window = new Window("Stop Music", 300, 200);
-            window.DrawText("Click to stop the music", Color.Black, 25, 100);
-            window.Refresh();
+            Window window = SplashKit.OpenWindow("Stop/Start", 300, 200);
+
 
             while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
-                
-                // Check for pause/play request
+
+                // Check for stop/play request
                 if (SplashKit.MouseClicked(MouseButton.LeftButton))
                 {
-                    SplashKit.ClearScreen(Color.White);
-                    SplashKit.StopMusic();
-                    window.DrawText("Music Stopped. Exiting...", Color.Black, 25, 100);
-                    window.Refresh();
-                    SplashKit.Delay(1300);
-                    SplashKit.CloseAllWindows();
+                    if (musicPlaying)
+                    {
+                        // Stop if playing
+                        SplashKit.StopMusic();
+                        musicPlaying = false;
+                    }
+                    else
+                    {
+                        // Play if stopped
+                        music.Play();
+                        musicPlaying = true;
+                    }
                 }
+
+                // Display text showing if music is playing or not
+                window.Clear(Color.White);
+                if (musicPlaying)
+                {
+                    window.DrawText("Music Playing", Color.Black, 100, 100);
+                }
+                else
+                {
+                    window.DrawText("Music Stopped", Color.Black, 100, 100);
+                }
+                window.Refresh();
             }
 
             // Cleanup
