@@ -23,6 +23,9 @@
             "options": {
                 "cwd": "${workspaceFolder}/built-examples"
             },
+            "linux":{
+                "command": "${workspaceFolder}/built-examples/setup_example_test_files.sh"
+            },
             "windows":{
                 "options": {
                     "cwd": "${workspaceFolder}\\built-examples"

@@ -63,5 +63,5 @@ fi
 if [ "${CSHARP}" ]; then
     dotnet build
 elif [ "${CPP}" ]; then
-    clang++ program.cpp -l splashkit -o test
+    clang++ program.cpp -l SplashKit -o test
 fi

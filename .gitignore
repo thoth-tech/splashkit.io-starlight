@@ -21,6 +21,9 @@ pnpm-debug.log*
 
 # built examples
 built-examples/*/*
+*.sln
+*.log
+
 # macOS-specific files
 .DS_Store
 

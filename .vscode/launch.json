@@ -62,7 +62,6 @@
             "windows": {
                 "program": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\CSharp_Testing\\bin\\Debug\\net9.0\\CSharp_Testing.dll",
                 "cwd": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\CSharp_Testing",
-                "externalConsole": false
             },
             "preLaunchTask": "Setup testing files",
         },
@@ -70,12 +69,11 @@
             "name": "Python - Usage Example Testing",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/Python_Testing/program.py",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/Python_Testing",
             "windows": {
                 "cwd": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\Python_Testing",
-
             },
             "preLaunchTask": "Setup testing files"
         }
