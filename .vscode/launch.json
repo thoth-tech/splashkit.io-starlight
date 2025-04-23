@@ -2,50 +2,121 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C/C++: g++ build and debug active file",
+            "name": "C++ - Usage Example Testing",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/Cpp_Testing/test",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/",
+            "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/Cpp_Testing",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ],
-            "preLaunchTask": "C/C++: g++ build active file",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "linux": {
+                "miDebuggerPath": "/usr/bin/gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    },
+                    {
+                        "description": "Set Disassembly Flavor to Intel",
+                        "text": "-gdb-set disassembly-flavor intel",
+                        "ignoreFailures": true
+                    }
+                ],
+            },
+            "osx": {
+                "MIMode": "lldb",
+            },
+            "windows": {
+                "program": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\test.exe",
+                "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    },
+                    {
+                        "description": "Set Disassembly Flavor to Intel",
+                        "text": "-gdb-set disassembly-flavor intel",
+                        "ignoreFailures": true
+                    }
+                ],
+            },
+            "preLaunchTask": "Setup testing files"
         },
         {
-            "name": ".NET Core Launch Current File (console)",
-            "type": "coreclr",
+            "name": "C# - Usage Example Testing",
+            "type":"coreclr",
             "request": "launch",
-            "preLaunchTask": "C# build",
-            "program": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/bin/Debug/net9.0/${fileBasenameNoExtension}.dll",
+            "program": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/CSharp_Testing/bin/Debug/net9.0/CSharp_Testing.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}",
+            "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/CSharp_Testing",
             "stopAtEntry": false,
-            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
+            "console": "integratedTerminal",
+            "windows": {
+                "console": "externalTerminal",
+            },
+            "preLaunchTask": "Setup testing files"
         },
         {
-            "name":"Python Debugger: Current File",
+            "name": "Python - Usage Example Testing",
             "type":"debugpy",
             "request":"launch",
             "program":"${file}",
             "console":"integratedTerminal",
-            "preLaunchTask": "Extract resources",
-            "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}"
+            "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/Python_Testing",
+            "preLaunchTask": "Setup testing files"
         }
+        // {
+        //     "name": "C/C++: g++ build and debug active file",
+        //     "type": "cppdbg",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/${fileBasenameNoExtension}",
+        //     "args": [],
+        //     "stopAtEntry": false,
+        //     "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/",
+        //     "environment": [],
+        //     "externalConsole": false,
+        //     "MIMode": "gdb",
+        //     "setupCommands": [
+        //         {
+        //             "description": "Enable pretty-printing for gdb",
+        //             "text": "-enable-pretty-printing",
+        //             "ignoreFailures": true
+        //         },
+        //         {
+        //             "description": "Set Disassembly Flavor to Intel",
+        //             "text": "-gdb-set disassembly-flavor intel",
+        //             "ignoreFailures": true
+        //         }
+        //     ],
+        //     "preLaunchTask": "C/C++: g++ build active file",
+        //     "miDebuggerPath": "/usr/bin/gdb"
+        // },
+        // {
+        //     "name": ".NET Core Launch Current File (console)",
+        //     "type": "coreclr",
+        //     "request": "launch",
+        //     "preLaunchTask": "C# build",
+        //     "program": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/bin/Debug/net9.0/${fileBasenameNoExtension}.dll",
+        //     "args": [],
+        //     "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}",
+        //     "stopAtEntry": false,
+        //     "console": "internalConsole",
+        // },
+        // {
+        //     "name":"Python Debugger: Current File",
+        //     "type":"debugpy",
+        //     "request":"launch",
+        //     "program":"${file}",
+        //     "console":"integratedTerminal",
+        //     "preLaunchTask": "Extract resources",
+        //     "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}"
+        // }
     ]
 }
