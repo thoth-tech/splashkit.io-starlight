@@ -2,9 +2,7 @@ from splashkit import *
 
 window = open_window("Distant Point On Circle", 800, 600)
 
-cursor_pos = Point2D 
 circle_shape = circle_at(point_at(400, 200), 100)
-distant_point_coordinates = Point2D
 
 while (not quit_requested()):
     process_events()
