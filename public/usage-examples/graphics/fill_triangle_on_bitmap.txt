@@ -1,0 +1,1 @@
+fill_triangle_on_bitmap
