@@ -31,7 +31,8 @@
                 "MIMode": "lldb",
             },
             "windows": {
-                "program": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\test.exe",
+                "program": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\Cpp_Testing\\test.exe",
+                "cwd": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\Cpp_Testing",
                 "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
                 "setupCommands": [
                     {
@@ -50,7 +51,7 @@
         },
         {
             "name": "C# - Usage Example Testing",
-            "type":"coreclr",
+            "type": "coreclr",
             "request": "launch",
             "program": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/CSharp_Testing/bin/Debug/net9.0/CSharp_Testing.dll",
             "args": [],
@@ -59,17 +60,23 @@
             "internalConsoleOptions": "openOnSessionStart",
             "console": "integratedTerminal",
             "windows": {
-                "console": "externalTerminal",
+                "program": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\CSharp_Testing\\bin\\Debug\\net9.0\\CSharp_Testing.dll",
+                "cwd": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\CSharp_Testing",
+                "externalConsole": false
             },
-            "preLaunchTask": "Setup testing files"
+            "preLaunchTask": "Setup testing files",
         },
         {
             "name": "Python - Usage Example Testing",
-            "type":"debugpy",
-            "request":"launch",
-            "program":"${file}",
-            "console":"integratedTerminal",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/Python_Testing",
+            "windows": {
+                "cwd": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\Python_Testing",
+
+            },
             "preLaunchTask": "Setup testing files"
         }
         // {

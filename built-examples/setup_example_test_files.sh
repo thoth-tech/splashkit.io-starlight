@@ -61,7 +61,7 @@ fi
 
 # Compile example code for C# and C++
 if [ "${CSHARP}" ]; then
-    dotnet buld
+    dotnet build
 elif [ "${CPP}" ]; then
     clang++ program.cpp -l splashkit -o test
 fi

@@ -16,13 +16,18 @@
         {
             "label": "Setup testing files",
             "type":"shell",
-            "command": "${workspaceFolder}/built-examples/setup_example_test_files.sh",
+            "command": "./setup_example_test_files.sh",
             "args": [
                 "${fileBasename}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}/built-examples"
             },
+            "windows":{
+                "options": {
+                    "cwd": "${workspaceFolder}\\built-examples"
+                },
+            }
         },
         // {
         //     "label": "Build splashkit.io Website",
