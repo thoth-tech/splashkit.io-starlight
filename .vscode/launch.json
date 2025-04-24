@@ -72,6 +72,9 @@
             "program": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/Python_Testing/program.py",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/Python_Testing",
+            "linux": {
+                "cwd": "${workspaceFolder}/built-examples/${fileBasenameNoExtension}/Python_Testing"
+            },
             "windows": {
                 "cwd": "${workspaceFolder}\\built-examples\\${fileBasenameNoExtension}\\Python_Testing",
             },
