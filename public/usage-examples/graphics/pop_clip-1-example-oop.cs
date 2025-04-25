@@ -2,7 +2,7 @@ using SplashKitSDK;
 
 namespace PopClip
 {
-    class tester
+    class Tester
     {
         static void Main()
         {
