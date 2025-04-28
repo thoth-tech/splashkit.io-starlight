@@ -1,39 +1,41 @@
 ﻿using SplashKitSDK;
 
-namespace LineIntersectionPoint
+namespace LineIntersectionPointExample
 {
     public class Program
     {
         public static void Main()
         {
-            new Window("Line Intersection Point", 800, 600);
-            
-            Line line1;
-            Line line2;
-            float line1_rotation_degrees = 0;
-            bool boolean;
-            Point2D line1_rotation_coordinates;
-            Point2D line_intersection_coordinates = new Point2D();
+            Line spinningLine;
+            Line fixedLine;
+            Point2D spinningLineRotationPoint;
+            float spinningLineRotationDegrees = 0;
+            Point2D lineIntersectionCoordinates = new Point2D();
+
+            SplashKit.OpenWindow("Line Intersection Point", 800, 600);
 
             while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
                 
-                line1_rotation_degrees += 0.01f;
-                line1_rotation_coordinates = SplashKit.PointAt(250 + 100 * SplashKit.Cosine(line1_rotation_degrees), 250 + 100 * SplashKit.Sine(line1_rotation_degrees));
-        
-                line1 = SplashKit.LineFrom(SplashKit.PointAt(250, 250), line1_rotation_coordinates);
-                line2 = SplashKit.LineFrom(SplashKit.PointAt(400, 0), SplashKit.PointAt(800, 400));
+                // For the spinning line, only one point spins as the other is fixed. The code below increments a variable by 0.01 every frame
+                spinningLineRotationDegrees += 0.01f;
 
-                // The boolean variable that this function returns to isn't relevant
-                // The 'line_intersection_coordinates' variable as noted here holds the Point2D data of where the two lines would intersect instead
-                boolean = SplashKit.LineIntersectionPoint(line1, line2, ref line_intersection_coordinates);
+                // This code takes the constantly increasing variable and uses trignometry functions to generate a Point2D variable which perpetually moves in a circle
+                spinningLineRotationPoint = SplashKit.PointAt(250 + 100 * SplashKit.Cosine(spinningLineRotationDegrees), 250 + 100 * SplashKit.Sine(spinningLineRotationDegrees));
 
-                SplashKit.ClearScreen();
-                SplashKit.DrawLine(Color.Black, line1);
-                SplashKit.DrawLine(Color.Black, line2);
-                SplashKit.FillCircle(Color.Red, SplashKit.CircleAt(line_intersection_coordinates, 5));
-                SplashKit.DrawText("Position of intersection between the two lines would be at: " + SplashKit.PointToString(line_intersection_coordinates), Color.Black, 60, 500);
+                // The two line's coordinates are set, for a given frame. The fixed line stays static
+                spinningLine = SplashKit.LineFrom(SplashKit.PointAt(250, 250), spinningLineRotationPoint);
+                fixedLine = SplashKit.LineFrom(SplashKit.PointAt(400, 0), SplashKit.PointAt(800, 400));
+
+                // The 'line_intersection_coordinates' variable holds the Point2D data of where the two lines intersect/ would intersect
+                SplashKit.LineIntersectionPoint(spinningLine, fixedLine, ref lineIntersectionCoordinates);
+
+                SplashKit.ClearScreen(Color.White);
+                SplashKit.DrawLine(Color.Black, spinningLine);
+                SplashKit.DrawLine(Color.Black, fixedLine);
+                SplashKit.FillCircle(Color.Red, SplashKit.CircleAt(lineIntersectionCoordinates, 5));
+                SplashKit.DrawText($"Position of intersection between the two lines would be at: {(int)lineIntersectionCoordinates.X}, {(int)lineIntersectionCoordinates.Y}", Color.Black, 60, 500);
 
                 SplashKit.RefreshScreen();
             }

@@ -2,34 +2,36 @@
 
 int main()
 {
-    open_window("Line Intersection Point", 800, 600);
-
-    line line1;
-    line line2;
-    float line1_rotation_degrees = 0;
-    bool boolean;
-    point_2d line1_rotation_coordinates;
+    line spinning_line;
+    line fixed_line;
+    point_2d spinning_line_rotation_point;
+    double spinning_line_rotation_degrees = 0;
     point_2d line_intersection_coordinates;
+
+    open_window("Line Intersection Point", 800, 600);
 
     while (!quit_requested())
     {
         process_events();
 
-        line1_rotation_degrees = line1_rotation_degrees + 0.01;
-        line1_rotation_coordinates = point_at((250 + 100 * cosine(line1_rotation_degrees)), (250 + 100 * sine(line1_rotation_degrees)));
+        // For the spinning line, only one point spins as the other is fixed. The code below increments a variable by 0.01 every frame
+        spinning_line_rotation_degrees = spinning_line_rotation_degrees + 0.01;
+
+        // This code takes the constantly increasing variable and uses trignometry functions to generate a Point2D variable which perpetually moves in a circle
+        spinning_line_rotation_point = point_at((250 + 100 * cosine(spinning_line_rotation_degrees)), (250 + 100 * sine(spinning_line_rotation_degrees)));
         
-        line1 = line_from(point_at(250, 250), line1_rotation_coordinates);
-        line2 = line_from(point_at(400, 0), point_at(800, 400));
+        // The two line's coordinates are set, for a given frame. The fixed line stays static
+        spinning_line = line_from(point_at(250, 250), spinning_line_rotation_point);
+        fixed_line = line_from(point_at(400, 0), point_at(800, 400));
 
-        // The boolean variable that this function returns to isn't relevant
-        // The 'line_intersection_coordinates' variable as noted here holds the Point2D data of where the two lines would intersect instead
-        boolean = line_intersection_point(line1, line2, line_intersection_coordinates);
+        // The 'line_intersection_coordinates' variable holds the Point2D data of where the two lines intersect/ would intersect
+        line_intersection_point(spinning_line, fixed_line, line_intersection_coordinates);
 
-        clear_screen();
-        draw_line(color_black(), line1);
-        draw_line(color_black(), line2);
+        clear_screen(color_white());
+        draw_line(color_black(), spinning_line);
+        draw_line(color_black(), fixed_line);
         fill_circle(color_red(), circle_at(line_intersection_coordinates, 5));
-        draw_text("Position of intersection between the two lines would be at: " + point_to_string(line_intersection_coordinates), color_black(), 60, 500);
+        draw_text("Position of intersection between the two lines would be at: " + std::to_string((int)line_intersection_coordinates.x) + ", " + std::to_string((int)line_intersection_coordinates.y), color_black(), 60, 500);
         
         refresh_screen();
     }

@@ -1,34 +1,36 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-new Window("Line Intersection Point", 800, 600);
-            
-Line line1;
-Line line2;
-float line1RotationDegrees = 0;
-bool boolean;
-Point2D line1RotationCoordinates;
+Line spinningLine;
+Line fixedLine;
+Point2D spinningLineRotationPoint;
+float spinningLineRotationDegrees = 0;
 Point2D lineIntersectionCoordinates = new Point2D();
+
+OpenWindow("Line Intersection Point", 800, 600);
 
 while (!QuitRequested())
 {
     ProcessEvents();
                 
-    line1RotationDegrees += 0.01f;
-    line1RotationCoordinates = PointAt(250 + 100 * Cosine(line1RotationDegrees), 250 + 100 * Sine(line1RotationDegrees));
-        
-    line1 = LineFrom(PointAt(250, 250), line1RotationCoordinates);
-    line2 = LineFrom(PointAt(400, 0), PointAt(800, 400));
+    // For the spinning line, only one point spins as the other is fixed. The code below increments a variable by 0.01 every frame
+    spinningLineRotationDegrees += 0.01f;
 
-    // The boolean variable that this function returns to isn't relevant
-    // The 'line_intersection_coordinates' variable as noted here holds the Point2D data of where the two lines would intersect instead
-    boolean = LineIntersectionPoint(line1, line2, ref lineIntersectionCoordinates);
+    // This code takes the constantly increasing variable and uses trignometry functions to generate a Point2D variable which perpetually moves in a circle
+    spinningLineRotationPoint = PointAt(250 + 100 * Cosine(spinningLineRotationDegrees), 250 + 100 * Sine(spinningLineRotationDegrees));
 
-    ClearScreen();
-    DrawLine(Color.Black, line1);
-    DrawLine(Color.Black, line2);
-    FillCircle(Color.Red, CircleAt(lineIntersectionCoordinates, 5));
-    DrawText("Position of intersection between the two lines would be at: " + PointToString(lineIntersectionCoordinates), Color.Black, 60, 500);
+    // The two line's coordinates are set, for a given frame. The fixed line stays static
+    spinningLine = LineFrom(PointAt(250, 250), spinningLineRotationPoint);
+    fixedLine = LineFrom(PointAt(400, 0), PointAt(800, 400));
+
+    // The 'line_intersection_coordinates' variable holds the Point2D data of where the two lines intersect/ would intersect
+    LineIntersectionPoint(spinningLine, fixedLine, ref lineIntersectionCoordinates);
+
+    ClearScreen(ColorWhite());
+    DrawLine(ColorBlack(), spinningLine);
+    DrawLine(ColorBlack(), fixedLine);
+    FillCircle(ColorRed(), CircleAt(lineIntersectionCoordinates, 5));
+    DrawText($"Position of intersection between the two lines would be at: {(int)lineIntersectionCoordinates.X}, {(int)lineIntersectionCoordinates.Y}", ColorBlack(), 60, 500);
 
     RefreshScreen();
 }
