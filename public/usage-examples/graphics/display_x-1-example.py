@@ -10,5 +10,3 @@ for i in range(number_of_displays()):
     # Write info to console
     write_line(f"Display Number: {i + 1} is located at: {display_x(disp_details)}, {display_y(disp_details)} Coordinates on the display map")
     write_line("")
-
-
