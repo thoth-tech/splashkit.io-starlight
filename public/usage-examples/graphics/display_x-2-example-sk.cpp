@@ -43,8 +43,14 @@ int main()
         disp_names[i] = disp_name;     
 
         // Set min coordinate offset for drawing
-        if (disp_x < min_x) min_x = disp_x;
-        if (disp_y < min_y) min_y = disp_y;
+        if (disp_x < min_x) 
+        {
+            min_x = disp_x;
+        }
+        if (disp_y < min_y)
+        {
+            min_y = disp_y;
+        } 
     }
 
     window wind = open_window("Display X", 800, 600);
@@ -64,7 +70,7 @@ int main()
 
         // Refactor size and normalize for 300,300 origin in window
         origin_x = (origin_x - min_x + 300) / 8;
-        origin_y = (origin_y - min_y + 400) / 8;
+        origin_y = (origin_y - min_y + 500) / 8;
         len_w = len_w / 8;
         len_h = len_h / 8;
 
