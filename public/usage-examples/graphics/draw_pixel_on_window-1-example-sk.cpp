@@ -2,63 +2,54 @@
 
 int main()
 {
-    // Access the first display
-    display display = display_details(0);
+    // Declare constants
+    const int FPS = 60;     // Set frame rate to 60 frames per second
+    
+    const int WINDOW_WIDTH = 800;
+    const int WINDOW_HEIGHT = 600;
 
-    // Set the refresh rate to 60 frames per second
-    const int fps = 60;
+    const int WINDOW_X_POS = (display_width(display_details(0)) - 2 * WINDOW_WIDTH) / 2;
+    const int WINDOW_Y_POS = (display_height(display_details(0)) - WINDOW_HEIGHT) / 2;
 
-    const int window_width = 800;
-    const int window_height = 600;
+    const double MAX_RADIUS = WINDOW_HEIGHT * 3.0 / 8;
 
-    // Calculate the position of the first window
-    const int window_position_x = (display_width(display) - 2 * window_width) / 2;
-    const int window_position_y = (display_height(display) - window_height) / 2;
-
-    // Open two windows with black backgrounds
-    window window_one = open_window("Window 1 - Draw Pixel On Window", window_width, window_height);
-    window window_two = open_window("Window 2 - Draw Pixel On Window", window_width, window_height);
-    clear_window(window_one, COLOR_BLACK);
-    clear_window(window_two, COLOR_BLACK);
-
-    // Position the windows side by side in the middle of the display
-    move_window_to(window_one, window_position_x, window_position_y);
-    move_window_to(window_two, window_position_x + window_width, window_position_y);
-
-    // Store the angle and radius of the spiral at any given time
+    // Declare variables
     double angle = 0.0;
     double radius = 0.0;
 
-    const double max_radius = window_width / 2;
+    // Open two windows with black backgrounds and position them side by side at center screen
+    window window_left = open_window("Left Window - Pink Spiral", WINDOW_WIDTH, WINDOW_HEIGHT);
+    window window_right = open_window("Right Window - Blue Spiral", WINDOW_WIDTH, WINDOW_HEIGHT);
 
-    // Coordinates for the center of the spiral
-    const point_2d center = point_at(window_width / 2, window_height / 2);
+    clear_window(window_left, COLOR_BLACK);
+    clear_window(window_right, COLOR_BLACK);
 
-    while (!window_close_requested(window_one) && !window_close_requested(window_two))
+    move_window_to(window_left, WINDOW_X_POS, WINDOW_Y_POS);
+    move_window_to(window_right, WINDOW_X_POS + WINDOW_WIDTH, WINDOW_Y_POS);
+
+    while (!window_close_requested(window_left) && !window_close_requested(window_right))
     {
-        // Poll for user interaction
         process_events();
 
-        // Stop drawing spiral once the width of the window is exceeded
-        if (radius > max_radius) continue;
+        // Stop drawing when max radius is exceeded
+        if (radius > MAX_RADIUS)
+        {
+            continue;
+        }
 
-        // Increment spiral radius so it will reach window width in 30 seconds
-        radius += max_radius / fps / 30;
+        // Increment the radius and angle of the next pixel, and calculate the x-y coordinates
+        radius += MAX_RADIUS / FPS / 60;
+        angle += 360.0 / FPS / 15;
 
-        // Increment spiral angle so it will complete a revolution every 5 seconds
-        angle += 360.0 / fps / 5;
+        double x = WINDOW_WIDTH / 2 + radius * cosine(angle);
+        double y = WINDOW_HEIGHT / 2 + radius * sine(angle);
 
-        // Calculate the x and y coordinates of the pixel to be drawn
-        double x = center.x + radius * cosine(angle);
-        double y = center.y + radius * sine(angle);
-
-        // Draw the next pixel of the spiral on both windows
-        draw_pixel_on_window(window_one, COLOR_YELLOW, x, y);
-        draw_pixel_on_window(window_two, COLOR_RED, x, y);
-
-        refresh_screen(fps);
+        // Draw the pixel on each window and refresh
+        draw_pixel_on_window(window_left, COLOR_HOT_PINK, x, y);
+        draw_pixel_on_window(window_right, COLOR_CYAN, x, y);
+        refresh_screen(FPS);
     }
 
-    // Clean up any resources or memory used by the windows
+    // Clean up
     close_all_windows();
 }

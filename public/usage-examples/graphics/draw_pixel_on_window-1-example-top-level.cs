@@ -1,62 +1,53 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-// Access the first display
-Display display = DisplayDetails(0);
+// Declare constants
+const int FPS = 60;     // Set frame rate to 60 frames per second
 
-// Set the refresh rate to 60 frames per second
-const int fps = 60;
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
 
-const int windowWidth = 800;
-const int windowHeight = 600;
+int WINDOW_X_POS = (DisplayWidth(DisplayDetails(0)) - 2 * WINDOW_WIDTH) / 2;
+int WINDOW_Y_POS = (DisplayHeight(DisplayDetails(0)) - WINDOW_HEIGHT) / 2;
 
-// Calculate the position of the first window
-int windowPositionX = (DisplayWidth(display) - 2 * windowWidth) / 2;
-int windowPositionY = (DisplayHeight(display) - windowHeight) / 2;
+const double MAX_RADIUS = WINDOW_HEIGHT * 3.0 / 8;
 
-// Open two windows with black backgrounds
-Window windowOne = OpenWindow("Window 1 - Draw Pixel On Window", windowWidth, windowHeight);
-Window windowTwo = OpenWindow("Window 2 - Draw Pixel On Window", windowWidth, windowHeight);
-ClearWindow(windowOne, Color.Black);
-ClearWindow(windowTwo, Color.Black);
-
-// Position the windows side by side in the middle of the display
-MoveWindowTo(windowOne, windowPositionX, windowPositionY);
-MoveWindowTo(windowTwo, windowPositionX + windowWidth, windowPositionY);
-
-// Store the angle and radius of the spiral at any given time
+// Declare variables
 double angle = 0.0;
 double radius = 0.0;
 
-const double maxRadius = windowWidth / 2;
+// Open two windows with black backgrounds and position them side by side at center screen
+Window windowLeft = OpenWindow("Left Window - Pink Spiral", WINDOW_WIDTH, WINDOW_HEIGHT);
+Window windowRight = OpenWindow("Right Window - Blue Spiral", WINDOW_WIDTH, WINDOW_HEIGHT);
 
-// Coordinates for the center of the spiral
-Point2D center = PointAt(windowWidth / 2, windowHeight / 2);
+ClearWindow(windowLeft, ColorBlack());
+ClearWindow(windowRight, ColorBlack());
 
-while (!WindowCloseRequested(windowOne) && !WindowCloseRequested(windowTwo))
+MoveWindowTo(windowLeft, WINDOW_X_POS, WINDOW_Y_POS);
+MoveWindowTo(windowRight, WINDOW_X_POS + WINDOW_WIDTH, WINDOW_Y_POS);
+
+while (!WindowCloseRequested(windowLeft) && !WindowCloseRequested(windowRight))
 {
-    // Poll for user interaction
     ProcessEvents();
 
-    // Stop drawing spiral once the width of the window is exceeded
-    if (radius > maxRadius) continue;
+    // Stop drawing when max radius is exceeded
+    if (radius > MAX_RADIUS)
+    {
+        continue;
+    }
 
-    // Increment spiral radius so it will reach window width in 30 seconds
-    radius += maxRadius / fps / 30;
+    // Increment the radius and angle of the next pixel, and calculate the x-y coordinates
+    radius += MAX_RADIUS / FPS / 60;
+    angle += 360.0 / FPS / 15;
 
-    // Increment spiral angle so it will complete a revolution every 5 seconds
-    angle += 360.0 / fps / 5;
+    double x = WINDOW_WIDTH / 2 + radius * Cosine((float)angle);
+    double y = WINDOW_HEIGHT / 2 + radius * Sine((float)angle);
 
-    // Calculate the x and y coordinates of the pixel to be drawn
-    double x = center.X + radius * Cosine((float)angle);
-    double y = center.Y + radius * Sine((float)angle);
-
-    // Draw the next pixel of the spiral on both windows
-    DrawPixelOnWindow(windowOne, Color.Yellow, x, y);
-    DrawPixelOnWindow(windowTwo, Color.Red, x, y);
-
-    RefreshScreen(fps);
+    // Draw the pixel on each window and refresh
+    DrawPixelOnWindow(windowLeft, ColorHotPink(), x, y);
+    DrawPixelOnWindow(windowRight, ColorCyan(), x, y);
+    RefreshScreen(FPS);
 }
 
-// Clean up any resources or memory used by the windows
+// Clean up
 CloseAllWindows();

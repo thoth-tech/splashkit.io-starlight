@@ -1,60 +1,48 @@
 from splashkit import *
 
-# Access the first display
-display = display_details(0)
+# Declare constants
+FPS = 60     # Set frame rate to 60 frames per second
 
-# Set the refresh rate to 60 frames per second
-fps = 60
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 600
 
-window_width = 800
-window_height = 600
+WINDOW_X_POS = (display_width(display_details(0)) - 2 * WINDOW_WIDTH) // 2
+WINDOW_Y_POS = (display_height(display_details(0)) - WINDOW_HEIGHT) // 2
 
-# Calculate the position of the first window
-window_position_x = (display_width(display) - 2 * window_width) // 2
-window_position_y = (display_height(display) - window_height) // 2
+MAX_RADIUS = WINDOW_HEIGHT * 3.0 / 8
 
-# Open two windows with black backgrounds
-window_one = open_window("Window 1 - Draw Pixel On Window", window_width, window_height)
-window_two = open_window("Window 2 - Draw Pixel On Window", window_width, window_height)
-clear_window(window_one, color_black())
-clear_window(window_two, color_black())
-
-# Position the windows side by side in the middle of the display
-move_window_to(window_one, window_position_x, window_position_y)
-move_window_to(window_two, window_position_x + window_width, window_position_y)
-
-# Store the angle and radius of the spiral at any given time
+# Declare variables
 angle = 0.0
 radius = 0.0
 
-max_radius = window_width / 2
+# Open two windows with black backgrounds and position them side by side at center screen
+window_left = open_window("Left Window - Pink Spiral", WINDOW_WIDTH, WINDOW_HEIGHT)
+window_right = open_window("Right Window - Blue Spiral", WINDOW_WIDTH, WINDOW_HEIGHT)
 
-# Coordinates for the center of the spiral
-center = point_at(window_width / 2, window_height / 2)
+clear_window(window_left, color_black())
+clear_window(window_right, color_black())
 
-while not window_close_requested(window_one) and not window_close_requested(window_two):
-    # Poll for user interaction
+move_window_to(window_left, WINDOW_X_POS, WINDOW_Y_POS)
+move_window_to(window_right, WINDOW_X_POS + WINDOW_WIDTH, WINDOW_Y_POS)
+
+while not window_close_requested(window_left) and not window_close_requested(window_right):
     process_events()
 
-    # Stop drawing spiral once the width of the window is exceeded
-    if radius > max_radius: continue
+    # Stop drawing when max radius is exceeded
+    if radius > MAX_RADIUS:
+        continue
 
-    # Increment spiral radius so it will reach window width in 30 seconds
-    radius += max_radius / fps / 30
+    # Increment the radius and angle of the next pixel, and calculate the x-y coordinates
+    radius += MAX_RADIUS / FPS / 60
+    angle += 360.0 / FPS / 15
 
-    # Increment spiral angle so it will complete a revolution every 5 seconds
-    angle += 360.0 / fps / 5
+    x = WINDOW_WIDTH / 2 + radius * cosine(angle)
+    y = WINDOW_HEIGHT / 2 + radius * sine(angle)
 
-    # Calculate the x and y coordinates of the pixel to be drawn
-    x = center.x + radius * cosine(angle)
-    y = center.y + radius * sine(angle)
+    # Draw the pixel on each window and refresh
+    draw_pixel_on_window(window_left, color_hot_pink(), x, y)
+    draw_pixel_on_window(window_right, color_cyan(), x, y)
+    refresh_screen_with_target_fps(FPS)
 
-    # Draw the next pixel of the spiral on both windows
-    draw_pixel_on_window(window_one, color_yellow(), x, y)
-    draw_pixel_on_window(window_two, color_red(), x, y)
-
-    refresh_screen_with_target_fps(fps)
-
-
-# Clean up any resources or memory used by the windows
+# Clean up
 close_all_windows()
