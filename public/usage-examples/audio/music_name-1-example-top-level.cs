@@ -2,25 +2,51 @@ using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 // Check if audio is ready to use
-if(! AudioReady())
+if (!AudioReady())
+{
     OpenAudio();
+}
 
 // Load music file and start playback
-Music music = LoadMusic("adventure", "time_for_adventure.mp3");
-PlayMusic(music);
+Music music1 = LoadMusic("byte blast", "byte-blast.mp3");
+Music music2 = LoadMusic("pixel fight", "pixel-fight.mp3");
+Music currentTrack = music1;
+PlayMusic(currentTrack);
 
 // Open Window
-Window window = OpenWindow("Music File", 600, 600);
+OpenWindow("Music File", 600, 600);
+
+Rectangle rect = RectangleFrom(235, 275, 125, 100);
 
 // Main Loop
-while (! QuitRequested())
+while (!QuitRequested())
 {
+    // Create next track button
+    ClearScreen(ColorWhite());
+    FillTriangle(ColorBlack(), 250, 275, 325, 325, 250, 375);
+    FillRectangle(ColorBlack(), 235, 275, 10, 100);
+    DrawRectangle(ColorWhite(), rect);
+
+    // Draw name of music track to screen
+    DrawText("Current Music: " + MusicName(currentTrack), ColorBlack(), 100, 150);
+    RefreshScreen();
+
     ProcessEvents();
 
-    window.Clear(Color.White);
-    // Draw name of music track to screen
-    window.DrawText("Current Music: " + MusicName(music), Color.Black, 100, 300);
-    window.Refresh();
+    // Check for button click
+    if (MouseClicked(MouseButton.LeftButton) & PointInRectangle(MousePosition(), rect))
+    {
+        if (currentTrack == music1)
+        {
+            currentTrack = music2;
+            PlayMusic(currentTrack);
+        }
+        else
+        {
+            currentTrack = music1;
+            PlayMusic(currentTrack);
+        }
+    }
 }
 CloseAllWindows();
-FreeMusic(music);
+FreeAllMusic();
