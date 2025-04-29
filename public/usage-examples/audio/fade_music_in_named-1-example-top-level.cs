@@ -1,11 +1,11 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-
 // Check if audio is ready to use
-if(! AudioReady())
+if (!AudioReady())
+{
     OpenAudio();
-
+}
 // Load music file
 LoadMusic("adventure", "time_for_adventure.mp3");
 

@@ -7,8 +7,10 @@ namespace FadeMusicInNamedExample
         public static void Main()
         {
             // Check if audio is ready to use
-            if(! SplashKit.AudioReady())
+            if (!SplashKit.AudioReady())
+            {
                 SplashKit.OpenAudio();
+            }
 
             // Load music file
             SplashKit.LoadMusic("adventure", "time_for_adventure.mp3");
@@ -21,6 +23,6 @@ namespace FadeMusicInNamedExample
 
             // Free resources
             SplashKit.FreeAllMusic();
-        }    
+        }
     }
 }
