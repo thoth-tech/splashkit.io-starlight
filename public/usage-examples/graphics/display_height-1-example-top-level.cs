@@ -1,22 +1,24 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-
 // Declare Variables
 Circle ball;
-int height = DisplayHeight(DisplayDetails(0));
+// -80 to account for title bar and task bar
+int height = DisplayHeight(DisplayDetails(0)) - 80;
 double acceleration = 0.8;
 double damping = 0.5;
 double velocity = 0;
 double ballY = 0;
 int radius = 50;
 
-OpenWindow("DisplayHeightExample", 800, height);
+// Open window with the height of the display
+OpenWindow("Bouncing Ball", 800, height);
 
 while (!QuitRequested())
 {
     ClearScreen(ColorWhite());
 
+    DrawText($"Display Height: {DisplayHeight(DisplayDetails(0))} Pixels", ColorBlack(), 25, 25);
     // Set ball details and draw
     ball = CircleAt(400, ballY, radius);
     FillCircle(ColorBlue(), ball);
@@ -41,3 +43,4 @@ while (!QuitRequested())
     RefreshScreen(60);
     ProcessEvents();
 }
+CloseAllWindows();

@@ -8,19 +8,22 @@ namespace DisplayHeightExample
         {
             // Declare Variables
             Circle ball;
-            int height = SplashKit.DisplayDetails(0).Height;
+            // -80 to account for title bar and task bar
+            int height = SplashKit.DisplayDetails(0).Height - 80;
             double acceleration = 0.8;
             double damping = 0.5;
             double velocity = 0;
             double ballY = 0;
             int radius = 50;
 
-            Window wind = SplashKit.OpenWindow("DisplayHeightExample", 800, height);
+            // Open window with the height of the display
+            SplashKit.OpenWindow("Bouncing Ball", 800, height);
 
             while (!SplashKit.QuitRequested())
             {
-                wind.Clear(Color.White);
+                SplashKit.ClearScreen(Color.White);
 
+                SplashKit.DrawText($"Display Height: {SplashKit.DisplayDetails(0).Height} Pixels", Color.Black, 25, 25);
                 // Set ball details and draw
                 ball = SplashKit.CircleAt(400, ballY, radius);
                 ball.Fill(Color.Blue);
@@ -42,9 +45,10 @@ namespace DisplayHeightExample
                         velocity = 0;
                     }
                 }
-                wind.Refresh(60);
+                SplashKit.RefreshScreen(60);
                 SplashKit.ProcessEvents();
             }
+            SplashKit.CloseAllWindows();
         }
     }
 }
