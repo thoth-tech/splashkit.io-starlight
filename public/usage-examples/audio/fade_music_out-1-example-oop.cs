@@ -8,7 +8,9 @@ namespace FadeMusicOutExample
         {
             // Check if audio is ready to use
             if (!SplashKit.AudioReady())
+            {
                 SplashKit.OpenAudio();
+            }
 
             // Load music file and start playback
             Music music = SplashKit.LoadMusic("adventure", "time_for_adventure.mp3");

@@ -3,8 +3,10 @@
 int main()
 {
     //  Check if audio is ready to use
-    if(! audio_ready())
+    if(!audio_ready())
+    {
         open_audio();
+    }   
 
     //  Load music file and start playback
     load_music("adventure", "time_for_adventure.mp3");
