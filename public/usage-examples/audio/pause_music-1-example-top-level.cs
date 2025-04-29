@@ -1,47 +1,54 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-int MusicState = 1;
-
 // Check if audio is ready to use
 if (!AudioReady())
+{
     OpenAudio();
+}
 
-// Load music file
+// Load music file and start playing
 Music music = LoadMusic("Adventure", "time_for_adventure.mp3");
 PlayMusic(music);
+bool musicPlaying = true;
 
-OpenWindow("Pause/Resume", 300, 200);
-DrawText("Playing", Color.Black, 100, 100);
+Window window = OpenWindow("Pause/Resume", 300, 200);
 
 while (!QuitRequested())
 {
     ProcessEvents();
-    
+
     // Check for pause/play request
-    if (KeyDown(KeyCode.SpaceKey))
+    if (KeyTyped(KeyCode.SpaceKey))
     {
-        ClearScreen(Color.White);
-        
         // Check if music is paused or not
-        if (MusicState == 1) // Pause if playing
+        if (musicPlaying)
         {
+            // Pause if playing
             PauseMusic();
-            MusicState = 0;
-            DrawText("Paused...", Color.Black, 100, 100);
+            musicPlaying = false;
         }
-        else // Play if paused
+        else
         {
+            // Play if paused
             ResumeMusic();
-            MusicState = 1;
-            DrawText("Playing", Color.Black, 100, 100);
+            musicPlaying = true;
         }
     }
-    
-    RefreshScreen();
-    Delay(200);
-}
 
+    // Display text showing if music is playing or not
+    ClearScreen(ColorWhite());
+    DrawTextOnWindow(window, "Press space bar to pause/resume.", ColorBlack(), 25, 50);
+    if (musicPlaying)
+    {
+        DrawTextOnWindow(window, "Playing", ColorBlack(), 100, 100);
+    }
+    else
+    {
+        DrawTextOnWindow(window, "Paused...", ColorBlack(), 100, 100);
+    }
+    window.Refresh();
+}
 // Cleanup
-FreeAllMusic();    
+FreeAllMusic();
 CloseAllWindows();

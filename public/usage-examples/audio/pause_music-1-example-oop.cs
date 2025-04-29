@@ -6,48 +6,56 @@ namespace PauseMusicExample
     {
         public static void Main()
         {
-            int MusicState = 1;
             // Check if audio is ready to use
             if (!SplashKit.AudioReady())
+            {
                 SplashKit.OpenAudio();
+            }
 
-            // Load music file
+            // Load music file and start playing
             Music music = SplashKit.LoadMusic("Adventure", "time_for_adventure.mp3");
             music.Play();
+            bool musicPlaying = true;
 
             Window window = SplashKit.OpenWindow("Pause/Resume", 300, 200);
-            window.DrawText("Playing", Color.Black, 100, 100);
 
             while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
-                
+
                 // Check for pause/play request
-                if (SplashKit.KeyDown(KeyCode.SpaceKey))
+                if (SplashKit.KeyTyped(KeyCode.SpaceKey))
                 {
-                    window.Clear(Color.White);
-                    
                     // Check if music is paused or not
-                    if (MusicState == 1) // Pause if playing
+                    if (musicPlaying)
                     {
+                        // Pause if playing
                         SplashKit.PauseMusic();
-                        MusicState = 0;
-                        window.DrawText("Paused...", Color.Black, 100, 100);
+                        musicPlaying = false;
                     }
-                    else // Play if paused
+                    else
                     {
+                        // Play if paused
                         SplashKit.ResumeMusic();
-                        MusicState = 1;
-                        window.DrawText("Playing", Color.Black, 100, 100);
+                        musicPlaying = true;
                     }
                 }
-                
-                window.Refresh();
-                SplashKit.Delay(200);
-            }
 
+                // Display text showing if music is playing or not
+                window.Clear(Color.White);
+                window.DrawText("Press space bar to pause/resume.", Color.Black, 25, 50);
+                if (musicPlaying)
+                {
+                    window.DrawText("Playing", Color.Black, 100, 100);
+                }
+                else
+                {
+                    window.DrawText("Paused...", Color.Black, 100, 100);
+                }
+                window.Refresh();
+            }
             // Cleanup
-            SplashKit.FreeAllMusic();    
+            SplashKit.FreeAllMusic();
             SplashKit.CloseAllWindows();
         }
     }
