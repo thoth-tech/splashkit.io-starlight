@@ -3,17 +3,25 @@ using static SplashKitSDK.SplashKit;
 
 // Check if audio is ready to use
 if (!AudioReady())
+{
     OpenAudio();
+}
 
-// Load music file
+String[] musicNames = { "adventure", "NoAdventure" };
+
 LoadMusic("adventure", "time_for_adventure.mp3");
 
-// Check for successful load
-if (HasMusic("adventure"))
-    WriteLine("Music successfully loaded. Ready for playback.");
-else
-    WriteLine("Loading music failed.");
-
+for (int i = 0; i < musicNames.Length; i++)
+{
+    // Check for successful load
+    if (HasMusic(musicNames[i]))
+    {
+        WriteLine($"{musicNames[i]} successfully loaded. Ready for playback.");
+    }
+    else
+    {
+        WriteLine($"Failed to load {musicNames[i]}, check file location.");
+    }
+}
 // Cleanup
 FreeAllMusic();
-
