@@ -1,0 +1,154 @@
+[33mcommit b85abe6c4bed1a616df9d66127a6db085b7d1946[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32m_Beyond_Splashkit_Circle_On_Window[m[33m, [m[1;31morigin/_Beyond_Splashkit_Circle_On_Window[m[33m)[m
+Author: Vipin-mahato <mahatovipin655@gmail.com>
+Date:   Thu May 1 05:41:21 2025 +1000
+
+    Aligned comments with the original usage example
+
+[1mdiff --git a/public/beyond-splashkit/code-files/graphics/0-getting-started-with-graphics/draw_circle_on_window-no-splashkit.cpp b/public/beyond-splashkit/code-files/graphics/0-getting-started-with-graphics/draw_circle_on_window-no-splashkit.cpp[m
+[1mindex 861d94a..7aedb56 100644[m
+[1m--- a/public/beyond-splashkit/code-files/graphics/0-getting-started-with-graphics/draw_circle_on_window-no-splashkit.cpp[m
+[1m+++ b/public/beyond-splashkit/code-files/graphics/0-getting-started-with-graphics/draw_circle_on_window-no-splashkit.cpp[m
+[36m@@ -1,105 +1,63 @@[m
+ #include <SDL2/SDL.h>[m
+[31m-#include <cmath>[m
+ #include <cstdlib>[m
+ #include <ctime>[m
+ [m
+[31m-// Function to draw a circle using SDL2 (no SplashKit)[m
+[31m-void draw_circle_sdl(SDL_Renderer* renderer, int centerX, int centerY, int radius, SDL_Color color)[m
+[31m-{[m
+[31m-    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);[m
+[31m-    [m
+[31m-    // Midpoint circle algorithm[m
+[31m-    int x = radius;[m
+[31m-    int y = 0;[m
+[31m-    int err = 0;[m
+[31m-[m
+[31m-    while (x >= y)[m
+[31m-    {[m
+[31m-        SDL_RenderDrawPoint(renderer, centerX + x, centerY + y);[m
+[31m-        SDL_RenderDrawPoint(renderer, centerX + y, centerY + x);[m
+[31m-        SDL_RenderDrawPoint(renderer, centerX - y, centerY + x);[m
+[31m-        SDL_RenderDrawPoint(renderer, centerX - x, centerY + y);[m
+[31m-        SDL_RenderDrawPoint(renderer, centerX - x, centerY - y);[m
+[31m-        SDL_RenderDrawPoint(renderer, centerX - y, centerY - x);[m
+[31m-        SDL_RenderDrawPoint(renderer, centerX + y, centerY - x);[m
+[31m-        SDL_RenderDrawPoint(renderer, centerX + x, centerY - y);[m
+[31m-[m
+[31m-        if (err <= 0)[m
+[31m-        {[m
+[31m-            y += 1;[m
+[31m-            err += 2*y + 1;[m
+[31m-        }[m
+[31m-        if (err > 0)[m
+[31m-        {[m
+[31m-            x -= 1;[m
+[31m-            err -= 2*x + 1;[m
+[31m-        }[m
+[31m-    }[m
+[31m-}[m
+[31m-[m
+ int main(int argc, char* argv[])[m
+ {[m
+[31m-    // Initialize random number generator[m
+[31m-    std::srand(std::time(nullptr));[m
+[31m-[m
+[31m-    // Initialize SDL[m
+[31m-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {[m
+[31m-        SDL_Log("SDL initialization failed: %s", SDL_GetError());[m
+[31m-        return 1;[m
+[31m-    }[m
+[31m-[m
+[31m-    // Create window[m
+[31m-    SDL_Window* window = SDL_CreateWindow([m
+[31m-        "Bubbles (Beyond SplashKit)",[m
+[31m-        SDL_WINDOWPOS_CENTERED,[m
+[31m-        SDL_WINDOWPOS_CENTERED,[m
+[31m-        800, 600,[m
+[31m-        SDL_WINDOW_SHOWN);[m
+[31m-[m
+[31m-    if (!window) {[m
+[31m-        SDL_Log("Window creation failed: %s", SDL_GetError());[m
+[31m-        SDL_Quit();[m
+[31m-        return 1;[m
+[31m-    }[m
+[31m-[m
+[31m-    // Create renderer[m
+[32m+[m[32m    // Create SDL window and renderer[m
+[32m+[m[32m    SDL_Init(SDL_INIT_VIDEO);[m
+[32m+[m[32m    SDL_Window* window = SDL_CreateWindow("Bubbles", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);[m
+     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);[m
+[31m-    if (!renderer) {[m
+[31m-        SDL_Log("Renderer creation failed: %s", SDL_GetError());[m
+[31m-        SDL_DestroyWindow(window);[m
+[31m-        SDL_Quit();[m
+[31m-        return 1;[m
+[31m-    }[m
+ [m
+     // Clear screen to white[m
+     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);[m
+     SDL_RenderClear(renderer);[m
+ [m
+[31m-    // Draw 50 random circles[m
+[32m+[m[32m    std::srand(static_cast<unsigned int>(std::time(nullptr)));[m
+[32m+[m
+     for (int i = 0; i < 50; i++)[m
+     {[m
+[31m-        // Generate random values[m
+[32m+[m[32m        // Set random circle values[m
+         int x = std::rand() % 800;[m
+         int y = std::rand() % 600;[m
+[31m-        int radius = 10 + (std::rand() % 40); // Radius between 10-50[m
+[31m-        SDL_Color color = {[m
+[31m-            static_cast<Uint8>(std::rand() % 256),[m
+[31m-            static_cast<Uint8>(std::rand() % 256),[m
+[31m-            static_cast<Uint8>(std::rand() % 256),[m
+[31m-            255[m
+[31m-        };[m
+[32m+[m[32m        int radius = std::rand() % 50;[m
+[32m+[m[32m        SDL_Color randomColor = { static_cast<Uint8>(std::rand() % 256), static_cast<Uint8>(std::rand() % 256), static_cast<Uint8>(std::rand() % 256), 255 };[m
+[32m+[m
+[32m+[m[32m        // Draw the circle base on the random data[m
+[32m+[m[32m        int cx = x, cy = y;[m
+[32m+[m[32m        int r = radius;[m
+[32m+[m[32m        int px = r;[m
+[32m+[m[32m        int py = 0;[m
+[32m+[m[32m        int err = 0;[m
+[32m+[m[32m        SDL_SetRenderDrawColor(renderer, randomColor.r, randomColor.g, randomColor.b, randomColor.a);[m
+[32m+[m[32m        while (px >= py)[m
+[32m+[m[32m        {[m
+[32m+[m[32m            SDL_RenderDrawPoint(renderer, cx + px, cy + py);[m
+[32m+[m[32m            SDL_RenderDrawPoint(renderer, cx + py, cy + px);[m
+[32m+[m[32m            SDL_RenderDrawPoint(renderer, cx - py, cy + px);[m
+[32m+[m[32m            SDL_RenderDrawPoint(renderer, cx - px, cy + py);[m
+[32m+[m[32m            SDL_RenderDrawPoint(renderer, cx - px, cy - py);[m
+[32m+[m[32m            SDL_RenderDrawPoint(renderer, cx - py, cy - px);[m
+[32m+[m[32m            SDL_RenderDrawPoint(renderer, cx + py, cy - px);[m
+[32m+[m[32m            SDL_RenderDrawPoint(renderer, cx + px, cy - py);[m
+ [m
+[31m-        // Draw the circle[m
+[31m-        draw_circle_sdl(renderer, x, y, radius, color);[m
+[32m+[m[32m            if (err <= 0)[m
+[32m+[m[32m            {[m
+[32m+[m[32m                py++;[m
+[32m+[m[32m                err += 2 * py + 1;[m
+[32m+[m[32m            }[m
+[32m+[m[32m            else[m
+[32m+[m[32m            {[m
+[32m+[m[32m                px--;[m
+[32m+[m[32m                err -= 2 * px + 1;[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+     }[m
+ [m
+[31m-    // Update screen[m
+[32m+[m[32m    // Present rendered content and wait[m
+     SDL_RenderPresent(renderer);[m
+[31m-[m
+[31m-    // Wait 4 seconds[m
+     SDL_Delay(4000);[m
+ [m
+[31m-    // Cleanup[m
+     SDL_DestroyRenderer(renderer);[m
+     SDL_DestroyWindow(window);[m
+     SDL_Quit();[m
