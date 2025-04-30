@@ -1,105 +1,63 @@
 #include <SDL2/SDL.h>
-#include <cmath>
 #include <cstdlib>
 #include <ctime>
 
-// Function to draw a circle using SDL2 (no SplashKit)
-void draw_circle_sdl(SDL_Renderer* renderer, int centerX, int centerY, int radius, SDL_Color color)
-{
-    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-    
-    // Midpoint circle algorithm
-    int x = radius;
-    int y = 0;
-    int err = 0;
-
-    while (x >= y)
-    {
-        SDL_RenderDrawPoint(renderer, centerX + x, centerY + y);
-        SDL_RenderDrawPoint(renderer, centerX + y, centerY + x);
-        SDL_RenderDrawPoint(renderer, centerX - y, centerY + x);
-        SDL_RenderDrawPoint(renderer, centerX - x, centerY + y);
-        SDL_RenderDrawPoint(renderer, centerX - x, centerY - y);
-        SDL_RenderDrawPoint(renderer, centerX - y, centerY - x);
-        SDL_RenderDrawPoint(renderer, centerX + y, centerY - x);
-        SDL_RenderDrawPoint(renderer, centerX + x, centerY - y);
-
-        if (err <= 0)
-        {
-            y += 1;
-            err += 2*y + 1;
-        }
-        if (err > 0)
-        {
-            x -= 1;
-            err -= 2*x + 1;
-        }
-    }
-}
-
 int main(int argc, char* argv[])
 {
-    // Initialize random number generator
-    std::srand(std::time(nullptr));
-
-    // Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        SDL_Log("SDL initialization failed: %s", SDL_GetError());
-        return 1;
-    }
-
-    // Create window
-    SDL_Window* window = SDL_CreateWindow(
-        "Bubbles (Beyond SplashKit)",
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED,
-        800, 600,
-        SDL_WINDOW_SHOWN);
-
-    if (!window) {
-        SDL_Log("Window creation failed: %s", SDL_GetError());
-        SDL_Quit();
-        return 1;
-    }
-
-    // Create renderer
+    // Create SDL window and renderer
+    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Window* window = SDL_CreateWindow("Bubbles", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) {
-        SDL_Log("Renderer creation failed: %s", SDL_GetError());
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
 
     // Clear screen to white
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
 
-    // Draw 50 random circles
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
     for (int i = 0; i < 50; i++)
     {
-        // Generate random values
+        // Set random circle values
         int x = std::rand() % 800;
         int y = std::rand() % 600;
-        int radius = 10 + (std::rand() % 40); // Radius between 10-50
-        SDL_Color color = {
-            static_cast<Uint8>(std::rand() % 256),
-            static_cast<Uint8>(std::rand() % 256),
-            static_cast<Uint8>(std::rand() % 256),
-            255
-        };
+        int radius = std::rand() % 50;
+        SDL_Color randomColor = { static_cast<Uint8>(std::rand() % 256), static_cast<Uint8>(std::rand() % 256), static_cast<Uint8>(std::rand() % 256), 255 };
 
-        // Draw the circle
-        draw_circle_sdl(renderer, x, y, radius, color);
+        // Draw the circle base on the random data
+        int cx = x, cy = y;
+        int r = radius;
+        int px = r;
+        int py = 0;
+        int err = 0;
+        SDL_SetRenderDrawColor(renderer, randomColor.r, randomColor.g, randomColor.b, randomColor.a);
+        while (px >= py)
+        {
+            SDL_RenderDrawPoint(renderer, cx + px, cy + py);
+            SDL_RenderDrawPoint(renderer, cx + py, cy + px);
+            SDL_RenderDrawPoint(renderer, cx - py, cy + px);
+            SDL_RenderDrawPoint(renderer, cx - px, cy + py);
+            SDL_RenderDrawPoint(renderer, cx - px, cy - py);
+            SDL_RenderDrawPoint(renderer, cx - py, cy - px);
+            SDL_RenderDrawPoint(renderer, cx + py, cy - px);
+            SDL_RenderDrawPoint(renderer, cx + px, cy - py);
+
+            if (err <= 0)
+            {
+                py++;
+                err += 2 * py + 1;
+            }
+            else
+            {
+                px--;
+                err -= 2 * px + 1;
+            }
+        }
     }
 
-    // Update screen
+    // Present rendered content and wait
     SDL_RenderPresent(renderer);
-
-    // Wait 4 seconds
     SDL_Delay(4000);
 
-    // Cleanup
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
