@@ -1,8 +1,10 @@
 from splashkit import *
 
-window = open_window("Distant Point On Circle", 800, 600)
+open_window("Distant Point On Circle", 800, 600)
 
+cursor_pos = Point2D 
 circle_shape = circle_at(point_at(400, 200), 100)
+distant_point_coordinates = Point2D
 
 while (not quit_requested()):
     process_events()
@@ -15,8 +17,8 @@ while (not quit_requested()):
     clear_screen_to_white()
     draw_circle_record(color_black(), circle_shape)
     fill_circle_record(color_red(), circle_at(distant_point_coordinates, 5))
-
-    draw_text_no_font_no_size("Most distant point on circle's circumference from mouse cursor is: " + point_to_string(distant_point_coordinates), color_black(), 35, 500)
+    draw_text_no_font_no_size(f"Most distant point on circle's circumference from mouse cursor is: {distant_point_coordinates.x:.0f}, {distant_point_coordinates.y:.0f}", color_black(), 100, 500)
+    
     refresh_screen()
 
-close_window(window)
+close_all_windows()

@@ -1,25 +1,25 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Window window = new Window("Distant Point On Circle", 800, 600);
+OpenWindow("Distant Point On Circle", 800, 600);
 
-Point2D cursor_pos;
-Circle circle_shape = CircleAt(PointAt(400, 200), 100);
-Point2D distant_point_coordinates;
+Point2D cursorPos;
+Circle circleShape = CircleAt(PointAt(400, 200), 100);
+Point2D distantPointCoordinates;
 
 while (!QuitRequested())
 {
     ProcessEvents();
-    cursor_pos = MousePosition();
+    cursorPos = MousePosition();
 
     // Point2D variable stores the x and y coordinates of the furthest point between the circle and mouse cursor
-    distant_point_coordinates = DistantPointOnCircle(cursor_pos, circle_shape);
+    distantPointCoordinates = DistantPointOnCircle(cursorPos, circleShape);
 
     ClearScreen();
-    DrawCircle(ColorBlack(), circle_shape);
-    FillCircle(ColorRed(), CircleAt(distant_point_coordinates, 5));
-
-    DrawText("Most distant point on circle's circumference from mouse cursor is: " + PointToString(distant_point_coordinates), ColorBlack(), 35, 500);
+    DrawCircle(ColorBlack(), circleShape);
+    FillCircle(ColorRed(), CircleAt(distantPointCoordinates, 5));
+    DrawText($"Most distant point on circle's circumference from mouse cursor is: {(int)distantPointCoordinates.X}, {(int)distantPointCoordinates.Y}", ColorBlack(), 100, 500);
+                
     RefreshScreen();
 }
-window.Close();
+CloseAllWindows();

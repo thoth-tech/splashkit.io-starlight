@@ -1,33 +1,33 @@
 ﻿using SplashKitSDK;
 
-namespace DistantPointOnCircle
+namespace DistantPointOnCircleExample
 {
     public class Program
     {
         public static void Main()
         {
-            Window window = new Window("Distant Point On Circle", 800, 600);
+            SplashKit.OpenWindow("Distant Point On Circle", 800, 600);
 
-            Point2D cursor_pos;
-            Circle circle_shape = SplashKit.CircleAt(SplashKit.PointAt(400, 200), 100);
-            Point2D distant_point_coordinates;
+            Point2D cursorPos;
+            Circle circleShape = SplashKit.CircleAt(SplashKit.PointAt(400, 200), 100);
+            Point2D distantPointCoordinates;
 
             while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
-                cursor_pos = SplashKit.MousePosition();
+                cursorPos = SplashKit.MousePosition();
 
                 // Point2D variable stores the x and y coordinates of the furthest point between the circle and mouse cursor
-                distant_point_coordinates = SplashKit.DistantPointOnCircle(cursor_pos, circle_shape);
+                distantPointCoordinates = SplashKit.DistantPointOnCircle(cursorPos, circleShape);
 
                 SplashKit.ClearScreen();
-                SplashKit.DrawCircle(SplashKit.ColorBlack(), circle_shape);
-                SplashKit.FillCircle(SplashKit.ColorRed(), SplashKit.CircleAt(distant_point_coordinates, 5));
-
-                SplashKit.DrawText("Most distant point on circle's circumference from mouse cursor is: " + SplashKit.PointToString(distant_point_coordinates), SplashKit.ColorBlack(), 35, 500);
+                SplashKit.DrawCircle(Color.Black, circleShape);
+                SplashKit.FillCircle(Color.Red, SplashKit.CircleAt(distantPointCoordinates, 5));
+                SplashKit.DrawText($"Most distant point on circle's circumference from mouse cursor is: {(int)distantPointCoordinates.X}, {(int)distantPointCoordinates.Y}", Color.Black, 100, 500);
+                
                 SplashKit.RefreshScreen();
             }
-            window.Close();
+            SplashKit.CloseAllWindows();
         }
     }
 }
