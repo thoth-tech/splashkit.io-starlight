@@ -12,6 +12,7 @@
     "generate-mdx": "node ./scripts/api-pages-script.cjs",
     "generate-json": "node ./scripts/json-files-script.cjs",
     "check-links": "SET CHECK_LINKS=true && npm run build && SET CHECK_LINKS=false"
+    
   },
   "dependencies": {
     "@astrojs/react": "^3.6.0",
