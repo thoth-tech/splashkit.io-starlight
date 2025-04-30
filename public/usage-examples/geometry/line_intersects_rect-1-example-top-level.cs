@@ -1,48 +1,62 @@
-using System;
 using SplashKitSDK;
 
-public class LineWidthExample
+// Create and open a new window
+Window window = SplashKit.OpenWindow("Line Intersects Rect", 800, 600);
+
+// Define a draggable line
+Point2D startPt = new Point2D() { X = 100, Y = 100 };
+Point2D endPt = new Point2D() { X = 700, Y = 500 };
+Line line = SplashKit.LineFrom(startPt, endPt);
+
+// Define a static rectangle
+Rectangle rect = new Rectangle()
 {
-    private Window _window;
+    X = 300,
+    Y = 200,
+    Width = 200,
+    Height = 150
+};
 
-    public LineWidthExample()
+while (!window.CloseRequested)
+{
+    SplashKit.ProcessEvents();
+
+    // Move the line ends with mouse
+    if (SplashKit.MouseDown(MouseButton.LeftButton))
     {
-       // Create and open a new window
-        _window = SplashKit.OpenWindow("Line Width Example", 800, 600);
-    }
-
-    public void Draw()
-    {
-        // Set line width to 10 and draw first rectangle
-        SplashKit.OptionLineWidth(10);
-        // Draws a black rectangle with the current line width at position (100, 100).
-        SplashKit.DrawRectangle(Color.Black, 100, 100, 200, 150);
-
-        // Set line width to 5 and draw second rectangle
-        SplashKit.OptionLineWidth(5);
-        // Draws a red rectangle with the current line width at position (400, 100).
-        SplashKit.DrawRectangle(Color.Red, 400, 100, 200, 150);
-
-        SplashKit.RefreshScreen();
-    }
-
-    public void Run()
-    {
-        Draw();
-
-        // Keep the window open until the user closes it
-        while (!_window.CloseRequested)
+        if (SplashKit.PointInCircle(SplashKit.MousePosition(), SplashKit.CircleAt(startPt, 10)))
         {
-            SplashKit.ProcessEvents();
+            startPt = SplashKit.MousePosition();
+        }
+        else if (SplashKit.PointInCircle(SplashKit.MousePosition(), SplashKit.CircleAt(endPt, 10)))
+        {
+            endPt = SplashKit.MousePosition();
         }
     }
-}
 
-public class Program
-{
-    public static void Main()
+    // Update the line
+    line = SplashKit.LineFrom(startPt, endPt);
+
+    // Check for intersection
+    bool intersects = SplashKit.LineIntersectsRect(line, rect);
+
+    SplashKit.ClearScreen(Color.White);
+
+    // Draw the rectangle
+    SplashKit.DrawRectangle(Color.Blue, rect);
+
+    // Draw the line
+    SplashKit.DrawLine(Color.Black, line);
+
+    // Draw draggable points
+    SplashKit.DrawCircle(Color.Green, startPt.X, startPt.Y, 5);
+    SplashKit.DrawCircle(Color.Green, endPt.X, endPt.Y, 5);
+
+    // Show text when intersecting
+    if (intersects)
     {
-        LineWidthExample example = new LineWidthExample();
-        example.Run();
+        SplashKit.DrawText("Intersecting", Color.Red, "Arial", 20, 10, 10);
     }
+
+    SplashKit.RefreshScreen();
 }
