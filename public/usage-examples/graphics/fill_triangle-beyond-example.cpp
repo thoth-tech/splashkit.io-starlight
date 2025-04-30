@@ -27,6 +27,10 @@ void fill_triangle(SDL_Renderer *renderer, SDL_Point p1, SDL_Point p2, SDL_Point
     };
 
     // Fill the triangle with horizontal lines
+    // Loop through each horizontal line (scanline) from top to bottom of the triangle.
+    // For each scanline, we calculate the left and right x-coordinates where the line intersects the triangle's edges.
+    // Then we draw a horizontal line between those two x-points to fill the triangle row by row.
+
     for (int y = p1.y; y <= p3.y; ++y)
     {
         if (y < p2.y)
