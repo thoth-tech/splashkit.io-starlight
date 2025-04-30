@@ -1,0 +1,3 @@
+Title: Background Switcher
+Description:
+This program demonstrates how to use a button in a graphical interface to toggle the background color of the window. When the user clicks the "Click Me!" button, the background alternates between white and light blue. It showcases SplashKit's button and draw_interface functions to build simple, interactive UIs.
