@@ -1,14 +1,14 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Window window = new Window("Interactive Font Style Changer", 800, 120);
+OpenWindow("Font Style", 800, 120);
 LoadFont("Arial", "Arial.TTF");
 
 // Initialise Default message
-string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
-string message1 = "";
-
-while (!window.CloseRequested)
+string InitialText = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
+string FontText = "";
+FontStyle style = FontStyle.NormalFont;
+while (!SplashKit.QuitRequested())
 {
     ProcessEvents();
 
@@ -30,12 +30,31 @@ while (!window.CloseRequested)
         SetFontStyle("Arial", FontStyle.UnderlineFont);
     }
 
-    message1 = $"Font style set to {GetFontStyle("Arial")}";
+    FontText = $"Font style set to ";
+    style = GetFontStyle("Arial");
+    switch (style)
+    {
+        case FontStyle.NormalFont:
+            FontText += "Normal";
+            break;
+        case FontStyle.BoldFont:
+            FontText += "Bold";
+            break;
+        case FontStyle.ItalicFont:
+            FontText += "Italic";
+            break;
+        case FontStyle.UnderlineFont:
+            FontText += "Underlined";
+            break;
+        default:
+            FontText += "Unknown";
+            break;
+    }
 
     // Clear screen and draw updated message
     ClearScreen(Color.White);
-    DrawText(message, Color.Black, "Arial", 20, 50, 20);
-    DrawText(message1, Color.Black, "Arial", 20, 50, 80);
+    DrawText(InitialText, Color.Black, "Arial", 20, 50, 20);
+    DrawText(FontText, Color.Black, "Arial", 20, 50, 80);
     RefreshScreen();
 }
 
