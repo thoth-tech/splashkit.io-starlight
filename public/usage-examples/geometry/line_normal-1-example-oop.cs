@@ -6,7 +6,7 @@ namespace LineNormalExample
     {
         public static void Main()
         {
-            SplashKit.OpenWindow("Line Normal", 800, 600);
+            SplashKit.OpenWindow("Interactive Line on Graph", 800, 600);
             
             Line userLine;
             Line xAxisLine;

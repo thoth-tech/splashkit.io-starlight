@@ -2,7 +2,7 @@
 
 int main()
 {
-    open_window("Line Normal", 800, 600);
+    open_window("Interactive Line on Graph", 800, 600);
 
     line user_line;
     line x_axis_line;

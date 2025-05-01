@@ -1,6 +1,6 @@
 from splashkit import *
 
-open_window("Line Normal", 800, 600)
+open_window("Interactive Line on Graph", 800, 600)
 
 user_line = Line
 x_axis_line = Line

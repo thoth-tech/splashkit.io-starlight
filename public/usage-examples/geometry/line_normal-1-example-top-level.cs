@@ -1,7 +1,7 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Line Normal", 800, 600);
+OpenWindow("Interactive Line on Graph", 800, 600);
 
 Line userLine;
 Line xAxisLine;
@@ -22,10 +22,10 @@ while (!QuitRequested())
     vector = LineNormal(userLine);
 
     ClearScreen();
-    DrawLine(Color.Black, userLine);
-    DrawLine(Color.Red, xAxisLine);
-    DrawLine(Color.Red, yAxisLine);
-    DrawText("The black line's normal is: " + vector.X.ToString() + "," + vector.Y.ToString(), Color.Black, 60, 500);
+    DrawLine(ColorBlack(), userLine);
+    DrawLine(ColorRed(), xAxisLine);
+    DrawLine(ColorRed(), yAxisLine);
+    DrawText("The black line's normal is: " + vector.X.ToString() + "," + vector.Y.ToString(), ColorBlack(), 60, 500);
 
     RefreshScreen();
 }
