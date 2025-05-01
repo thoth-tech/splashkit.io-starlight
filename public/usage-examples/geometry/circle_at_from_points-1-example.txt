@@ -1,1 +1,1 @@
-Simple Circle At Usage Example
+Blue circle in at the centre of the screen.

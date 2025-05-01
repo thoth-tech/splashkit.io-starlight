@@ -1,21 +1,27 @@
 ﻿using SplashKitSDK;
 
-public class Program
+namespace CircleAtExample
 {
-    public static void Main()
+    public class Program
     {
-        Window window = new Window("Circle At Example", 800, 600);
-
-        Circle circle = SplashKit.CircleAt(400, 300, 100);
-
-        while (!window.CloseRequested)
+        public static void Main()
         {
-            SplashKit.ProcessEvents();
-            window.Clear(Color.White);
-            SplashKit.FillCircle(Color.Blue, circle);
-            window.Refresh();
+            Window window = new Window("Blue Circle at the centre", 800, 600);
 
-            SplashKit.Delay(8000);
+            // Create a circle at (400, 300) with radius 100
+            Circle circle = SplashKit.CircleAt(400, 300, 100);
+
+            while (!window.CloseRequested)
+            {
+                SplashKit.ProcessEvents();
+                SplashKit.ClearScreen();
+
+                // Draw the circle
+                SplashKit.FillCircle(Color.Blue, circle);
+                SplashKit.RefreshScreen();
+            }
+
+            SplashKit.CloseAllWindows();
         }
     }
 }
