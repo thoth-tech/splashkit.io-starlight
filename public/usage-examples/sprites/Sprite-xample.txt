@@ -1,0 +1,22 @@
+ What the Program Shows on Screen
+When you run this program, the output window displays:
+- A game window titled “Sprite Switcher”, sized 800×600 pixels.
+- A character image (either player1.png or player2.png) appears at the center of the screen.
+- You can move the character using the arrow keys (↑ ↓ ← →).
+
+Pressing:
+- Key 1 will switch the character to player1.png
+- Key 2 will switch to player2.png
+A helpful instructional message is also drawn at the top of the screen:
+
+"Use arrow keys to move. Press 1 or 2 to switch characters."
+ What I Learned from This
+Through building and running this project, I learned several key things:
+- How to load and display images dynamically in a game using SplashKit.
+- How to move a character using keyboard input.
+- How to switch sprites based on user input at runtime.
+- How to manage resources (like clearing previous sprites using free_all_sprites()).
+The difference between bitmaps and sprites:
+A bitmap is a static image.
+A sprite can have position, movement (velocity), and animation.
+How to write this logic in C++, C# (top-level and OOP), and Python, gaining experience across multiple programming languages.
