@@ -19,10 +19,10 @@ public class Program
         {
             SplashKit.ProcessEvents();
 
-            if (SplashKit.KeyDown(KeyCode.UpKey)) playerCircle.Center.Y -= 2;
-            if (SplashKit.KeyDown(KeyCode.DownKey)) playerCircle.Center.Y += 2;
-            if (SplashKit.KeyDown(KeyCode.LeftKey)) playerCircle.Center.X -= 2;
-            if (SplashKit.KeyDown(KeyCode.RightKey)) playerCircle.Center.X += 2;
+            if (SplashKit.KeyDown(KeyCode.UpKey)) playerCircle.Center.Y -= 0.5;
+            if (SplashKit.KeyDown(KeyCode.DownKey)) playerCircle.Center.Y += 0.5;
+            if (SplashKit.KeyDown(KeyCode.LeftKey)) playerCircle.Center.X -= 0.5;
+            if (SplashKit.KeyDown(KeyCode.RightKey)) playerCircle.Center.X += 0.5;
 
             SplashKit.ClearScreen(Color.White);
             SplashKit.DrawTriangle(Color.Black, target);
