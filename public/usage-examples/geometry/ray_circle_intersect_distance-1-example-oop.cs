@@ -1,58 +1,50 @@
 using SplashKitSDK;
 
-public class RayCircleIntersectDistanceExample
+namespace RayCircleIntersectDistanceExample
 {
-    public void Run()
+    public class Program
     {
-        // opens a new 800 * 600 window
-        Window window = new Window("Ray-Circle Intersect Distance", 800, 600);
-
-        // sets the starting point of the ray on the left side of the screen
-        Point2D rayOrigin = SplashKit.PointAt(100, 200);
-
-        // creates a direction vector pointing toward the right and slightly down
-        Vector2D rayDirection = SplashKit.UnitVector(SplashKit.VectorTo(SplashKit.PointAt(700, 300)));
-
-        // creates a red circle at the center with radius 100
-        Circle circleObj = new Circle()
+        public static void Main()
         {
-            Center = SplashKit.PointAt(400, 300),
-            Radius = 100
-        };
+            // opens a new 800 * 600 window
+            Window window = new Window("Distance From Ray To Circle", 800, 600);
 
-        // runs the loop until the user requests to quit
-        while (!SplashKit.QuitRequested())
-        {
-            // fills the background with white
-            SplashKit.ClearScreen(Color.White);
+            // sets the starting point of the ray on the left side of the screen
+            Point2D rayOrigin = SplashKit.PointAt(0, 300);
 
-            // computes the laser's end point by scaling the direction vector
-            Point2D rayEnd = SplashKit.PointOffsetBy(rayOrigin, SplashKit.VectorMultiply(rayDirection, 800));
+            // sets the ending point of the ray on the right side of the screen
+            Point2D rayEnd = SplashKit.PointAt(800, 100);
 
-            // draws the laser beam as a blue line
-            SplashKit.DrawLine(Color.Blue, rayOrigin, rayEnd);
+            // creates a direction vector pointing toward the right and slightly up
+            Vector2D rayDirection = SplashKit.UnitVector(SplashKit.VectorTo(rayEnd));
 
-            // draws the circle target in red
-            SplashKit.DrawCircle(Color.Red, circleObj.Center.X, circleObj.Center.Y, circleObj.Radius);
-
-            // checks for collision between the ray and the circle
-            float distance = SplashKit.RayCircleIntersectDistance(rayOrigin, rayDirection, circleObj);
-
-            // if collision occurs, calculate and show the hit point with a green dot
-            if (distance > 0)
+            // creates a red circle at the center with radius 100
+            Circle circleObj = new Circle()
             {
-                Vector2D scaled = SplashKit.VectorMultiply(rayDirection, distance);
-                Point2D hitPoint = SplashKit.PointOffsetBy(rayOrigin, scaled);
-                SplashKit.FillCircle(Color.Green, hitPoint.X, hitPoint.Y, 5);
+                Center = SplashKit.PointAt(400, 300),
+                Radius = 100
+            };
+
+            // runs the loop until the user requests to quit
+            while (!SplashKit.QuitRequested())
+            {
+                // fills the background with white
+                SplashKit.ClearScreen(Color.White);
+
+                // draws the laser beam as a blue line
+                SplashKit.DrawLine(Color.Blue, rayOrigin, rayEnd);
+
+                // draws the circle target in red
+                SplashKit.DrawCircle(Color.Red, circleObj);
+
+                // checks for collision between the ray and the circle
+                float distance = SplashKit.RayCircleIntersectDistance(rayOrigin, rayDirection, circleObj);
+
+                // displays the distance to the circle
+                SplashKit.DrawText($"Distance to circle: {distance}", Color.Black, 100, 100);
+
+                SplashKit.RefreshScreen(60);
             }
-
-            // refreshes the screen at 60 FPS
-            SplashKit.RefreshScreen(60);
         }
-    }
-
-    public static void Main()
-    {
-        new RayCircleApp().Run();
     }
 }
