@@ -10,7 +10,7 @@ Pressing:
 A helpful instructional message is also drawn at the top of the screen:
 
 "Use arrow keys to move. Press 1 or 2 to switch characters."
- What I Learned from This
+ What I Learned from This.
 Through building and running this project, I learned several key things:
 - How to load and display images dynamically in a game using SplashKit.
 - How to move a character using keyboard input.

@@ -50,5 +50,5 @@ while not window_close_requested("Sprite Switcher"):
 
     clear_screen(Color.White)
     draw_sprite(current_sprite)
-    draw_text("Use arrow keys to move. Press 1 or 2 to switch.", Color.Black, 10, 10)
+    draw_text("Use arrow keys to move. Press 1 or 2 to switch..", Color.Black, 10, 10)
     refresh_screen(60)

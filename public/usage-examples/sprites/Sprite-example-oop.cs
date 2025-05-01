@@ -70,7 +70,7 @@ public class Program
 
             SplashKit.ClearScreen(Color.White);
             player.Draw();
-            SplashKit.DrawText("Use arrow keys to move. Press 1 or 2 to switch.", Color.Black, 10, 10);
+            SplashKit.DrawText("Use arrow keys to move. Press 1 or 2 to switch..", Color.Black, 10, 10);
             SplashKit.RefreshScreen(60);
         }
     }

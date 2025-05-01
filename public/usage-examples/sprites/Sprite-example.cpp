@@ -69,7 +69,7 @@ int main()
 
         clear_screen(COLOR_WHITE);
         draw_sprite(current_sprite);
-        draw_text("Use arrow keys to move. Press 1 or 2 to switch characters.", COLOR_BLACK, 10, 10);
+        draw_text("Use arrow keys to move. Press 1 or 2 to switch characters..", COLOR_BLACK, 10, 10);
         refresh_screen(60);
     }
 

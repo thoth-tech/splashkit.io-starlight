@@ -52,6 +52,6 @@ while (!SplashKit.WindowCloseRequested(gameWindow))
 
     SplashKit.ClearScreen(Color.White);
     SplashKit.DrawSprite(currentSprite);
-    SplashKit.DrawText("Use arrow keys to move. Press 1 or 2 to switch.", Color.Black, 10, 10);
+    SplashKit.DrawText("Use arrow keys to move. Press 1 or 2 to switch..", Color.Black, 10, 10);
     SplashKit.RefreshScreen(60);
 }
