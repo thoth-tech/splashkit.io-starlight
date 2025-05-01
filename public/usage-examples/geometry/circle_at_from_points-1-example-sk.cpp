@@ -2,17 +2,17 @@
 
 int main()
 {
-    open_window("Blue Circle at the centre", 800, 600);
+    open_window("Flag of Japan", 600, 400);
     
-    // Create a circle at (400, 300) with radius 100
-    circle myCircle = circle_at(400, 300, 100);
+    // Create a circle at (300, 200) with radius 120
+    circle myCircle = circle_at(300, 200, 120);
     
-    while (!window_close_requested("Blue Circle at the centre")) {
+    while (!window_close_requested("Flag of Japan")) {
         process_events();
         clear_screen(COLOR_WHITE);
         
         // Draw the circle
-        fill_circle(COLOR_BLUE, myCircle);
+        fill_circle(COLOR_DARK_RED, myCircle);
         
         refresh_screen(60);
     }

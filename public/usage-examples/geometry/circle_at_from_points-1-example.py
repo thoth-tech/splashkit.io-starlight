@@ -1,16 +1,16 @@
 from splashkit import *
 
-open_window("Circle At Example", 800, 600)
+open_window("Flag of Japan", 600, 400)
 
-# Create a circle at (400, 300) with radius 100
-my_circle = circle_at_from_points(400, 300, 100)
+# Create a circle at (300, 200) with radius 120
+my_circle = circle_at_from_points(300, 200, 120)
 
-while not window_close_requested("Circle At Example"):
+while (not quit_requested()):
     process_events()
-    clear_screen(Color.White)
+    clear_screen(color_white())
 
     # Draw the circle
-    fill_circle(Color.Blue, my_circle)
+    fill_circle_record(color_dark_red(), my_circle)
 
     refresh_screen() 
 

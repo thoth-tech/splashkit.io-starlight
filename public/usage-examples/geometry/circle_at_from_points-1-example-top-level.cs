@@ -1,18 +1,18 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Blue Circle at the centre", 800, 600);
+OpenWindow("Flag of Japan", 600, 400);
 
-// Create a circle at (400, 300) with radius 100
-Circle myCircle = CircleAt(400, 300, 100);
+// Create a circle at (300, 200) with radius 120
+Circle myCircle = CircleAt(300, 200, 120);
 
-while (!WindowCloseRequested("Blue Circle at the centre"))
+while (!QuitRequested())
 {
     ProcessEvents();
     ClearScreen(ColorWhite());
 
     // Draw the circle
-    FillCircle(ColorBlue(), myCircle);
+    FillCircle(ColorDarkRed(), myCircle);
 
     RefreshScreen(60);
 }

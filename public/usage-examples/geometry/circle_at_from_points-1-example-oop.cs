@@ -6,10 +6,10 @@ namespace CircleAtExample
     {
         public static void Main()
         {
-            Window window = new Window("Blue Circle at the centre", 800, 600);
+            Window window = new Window("Flag of Japan", 600, 400);
 
-            // Create a circle at (400, 300) with radius 100
-            Circle circle = SplashKit.CircleAt(400, 300, 100);
+            // Create a circle at (300, 200) with radius 120
+            Circle circle = SplashKit.CircleAt(300, 200, 120);
 
             while (!window.CloseRequested)
             {
@@ -17,7 +17,7 @@ namespace CircleAtExample
                 SplashKit.ClearScreen();
 
                 // Draw the circle
-                SplashKit.FillCircle(Color.Blue, circle);
+                SplashKit.FillCircle(Color.DarkRed, circle);
                 SplashKit.RefreshScreen();
             }
 
