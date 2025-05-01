@@ -1,10 +1,10 @@
 using SplashKitSDK;
 
-// Global state
+// Global sprite and tracking info
 Sprite currentSprite;
 string loadedSprite = "";
 
-// Load sprite from image
+// Load sprite from image and center it
 void LoadSprite(string spriteId, string filename)
 {
     if (loadedSprite != spriteId)
@@ -17,12 +17,15 @@ void LoadSprite(string spriteId, string filename)
         }
 
         currentSprite = SplashKit.CreateSprite(SplashKit.BitmapNamed(spriteId));
-        SplashKit.SpriteSetPosition(currentSprite, SplashKit.PointAt(400, 300));
         loadedSprite = spriteId;
+
+        float centerX = 800 / 2 - SplashKit.SpriteWidth(currentSprite) / 2;
+        float centerY = 600 / 2 - SplashKit.SpriteHeight(currentSprite) / 2;
+        SplashKit.SpriteSetPosition(currentSprite, SplashKit.PointAt(centerX, centerY));
     }
 }
 
-// Handle movement and switching
+// Handle input
 void HandleInput()
 {
     Vector2D velocity = SplashKit.VectorTo(0, 0);
@@ -34,11 +37,14 @@ void HandleInput()
 
     SplashKit.SpriteSetVelocity(currentSprite, velocity);
 
-    if (SplashKit.KeyTyped(KeyCode.Num1Key)) LoadSprite("player1", "player1.png");
-    if (SplashKit.KeyTyped(KeyCode.Num2Key)) LoadSprite("player2", "player2.png");
+    if (SplashKit.KeyTyped(KeyCode.Num1Key))
+        LoadSprite("player1", "player1.png");
+
+    if (SplashKit.KeyTyped(KeyCode.Num2Key))
+        LoadSprite("player2", "player2.png");
 }
 
-// Main loop
+// Setup and loop
 Window gameWindow = SplashKit.OpenWindow("Sprite Switcher", 800, 600);
 LoadSprite("player1", "player1.png");
 
@@ -46,12 +52,11 @@ while (!SplashKit.WindowCloseRequested(gameWindow))
 {
     SplashKit.ProcessEvents();
     HandleInput();
-
     SplashKit.UpdateSprite(currentSprite);
     SplashKit.MoveSprite(currentSprite);
 
     SplashKit.ClearScreen(Color.White);
     SplashKit.DrawSprite(currentSprite);
-    SplashKit.DrawText("Use arrow keys to move. Press 1 or 2 to switch..", Color.Black, 10, 10);
+    SplashKit.DrawText("Use arrow keys to move. Press 1 or 2 to switch characters.", Color.Black, 10, 10);
     SplashKit.RefreshScreen(60);
 }

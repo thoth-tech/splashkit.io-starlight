@@ -4,10 +4,9 @@
 sprite current_sprite;
 string loaded_sprite = "";
 
-// Load sprite from image
+// Load sprite from image and center it
 void load_sprite(const string &sprite_id, const string &filename)
 {
-    // If this sprite is not already loaded, create it
     if (loaded_sprite != sprite_id)
     {
         free_all_sprites(); // Remove previous sprite
@@ -18,16 +17,18 @@ void load_sprite(const string &sprite_id, const string &filename)
             load_bitmap(sprite_id, filename);
         }
 
-        // Create a sprite from the bitmap
+        // Create the sprite from the bitmap
         current_sprite = create_sprite(bitmap_named(sprite_id));
         loaded_sprite = sprite_id;
 
-        // Center the sprite
-        sprite_set_position(current_sprite, point_at(400, 300));
+        // Center the sprite in the window
+        float center_x = 800 / 2 - sprite_width(current_sprite) / 2;
+        float center_y = 600 / 2 - sprite_height(current_sprite) / 2;
+        sprite_set_position(current_sprite, point_at(center_x, center_y));
     }
 }
 
-// Handle keyboard input for movement and switching
+// Handle keyboard input for movement and sprite switching
 void handle_input()
 {
     vector_2d velocity = vector_to(0, 0);
@@ -56,7 +57,7 @@ int main()
 {
     window game_window = open_window("Sprite Switcher", 800, 600);
 
-    // Load the default sprite
+    // Load the default sprite and center it
     load_sprite("player1", "player1.png");
 
     while (!window_close_requested(game_window))
@@ -69,7 +70,7 @@ int main()
 
         clear_screen(COLOR_WHITE);
         draw_sprite(current_sprite);
-        draw_text("Use arrow keys to move. Press 1 or 2 to switch characters..", COLOR_BLACK, 10, 10);
+        draw_text("Use arrow keys to move. Press 1 or 2 to switch characters.", COLOR_BLACK, 10, 10);
         refresh_screen(60);
     }
 
