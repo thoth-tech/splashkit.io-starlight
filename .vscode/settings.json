@@ -1,6 +1,5 @@
 {
   "files.associations": {
-    "*.mdx": "markdown",
-    "vector": "cpp"
+    "*.mdx": "markdown"
   }
 }
