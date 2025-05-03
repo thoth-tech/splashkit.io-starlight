@@ -1,24 +1,29 @@
 using SplashKitSDK;
 
-namespace ClosestPointOnLineOOP
+namespace MagneticPointExample
 {
-    public class Program
+    public class MagneticPointApp
     {
-        public static void Main()
+        private Window _window;
+        private Line _line;
+
+        public MagneticPointApp()
         {
-            SplashKit.OpenWindow("Closest Point on Line", 600, 600);
+            _window = new Window("Magnetic Point", 600, 600);
+            _line = SplashKit.LineFrom(100, 100, 500, 400);
+        }
 
-            Line line = SplashKit.LineFrom(100, 100, 500, 400);
-            Point2D mouse, closest;
-
-            while (!SplashKit.QuitRequested())
+        public void Run()
+        {
+            while (!_window.CloseRequested)
             {
                 SplashKit.ProcessEvents();
-                mouse = SplashKit.MousePosition();
-                closest = SplashKit.ClosestPointOnLine(mouse, line);
+
+                Point2D mouse = SplashKit.MousePosition();
+                Point2D closest = SplashKit.ClosestPointOnLine(mouse, _line);
 
                 SplashKit.ClearScreen(Color.White);
-                SplashKit.DrawLine(Color.Black, line);
+                SplashKit.DrawLine(Color.Black, _line);
                 SplashKit.FillCircle(Color.Blue, mouse.X, mouse.Y, 5);
                 SplashKit.FillCircle(Color.Red, closest.X, closest.Y, 5);
                 SplashKit.DrawLine(Color.Gray, mouse.X, mouse.Y, closest.X, closest.Y);
@@ -28,7 +33,17 @@ namespace ClosestPointOnLineOOP
                 SplashKit.RefreshScreen();
             }
 
-            SplashKit.CloseAllWindows();
+            _window.Close();
+        }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            MagneticPointApp app = new MagneticPointApp();
+            app.Run();
         }
     }
 }
+

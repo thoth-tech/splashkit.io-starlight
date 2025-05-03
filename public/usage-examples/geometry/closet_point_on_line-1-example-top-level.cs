@@ -1,12 +1,13 @@
 using SplashKitSDK;
 
-SplashKit.OpenWindow("Closest Point on Line", 600, 600);
+SplashKit.OpenWindow("Magnetic Point", 600, 600);
 
 Line line = SplashKit.LineFrom(100, 100, 500, 400);
 Point2D mouse, closest;
 
 while (!SplashKit.QuitRequested())
 {
+    SplashKit.ProcessEvents();
     mouse = SplashKit.MousePosition();
     closest = SplashKit.ClosestPointOnLine(mouse, line);
 

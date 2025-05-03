@@ -1,1 +1,1 @@
-Closest Point on a Line
+Magnetic Point
