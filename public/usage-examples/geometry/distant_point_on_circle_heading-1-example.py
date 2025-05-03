@@ -1,25 +1,31 @@
 from splashkit import *
 
-# Clear the screen with white color
-clear_screen(Color.White)
+# Open a new window
+open_window("Ray Exit Point From A Circle", 800, 600)
 
-# Define the circle's center and radius
-center = Point2D(400, 300)
-radius = 100
-heading = 90
+# Define a laser beam starting from the top-left toward bottom-right
+ray_origin = point_at(0, 0)
+ray_end = point_at(800, 500)
+ray_direction = unit_vector(vector_to_point(ray_end))
 
-# Define the point of reference (can be used for calculations)
-from_point = Point2D(100, 100)
+# Create a circle centered in the window with radius 100
+target_circle = circle_at(point_at(400, 300), 100)
 
-# Calculate the distant point on the circle based on the given heading
-far_point = distant_point_on_circle_heading(center, radius, from_point, heading)
+exit_point = point_at(0, 0)
 
-# Draw the circle and the far point
-draw_circle(Color.Blue, center, radius)
-draw_pixel(Color.Red, far_point)
+while not quit_requested():
+    clear_screen(color_white())
 
-# Refresh screen to display everything at 60 FPS
-refresh_screen(60)
+    # Draw the laser beam
+    draw_line_point_to_point(color_red(), ray_origin, ray_end)
 
-# Delay for 5000 milliseconds to keep the window open
-delay(5000)
+    # Draw the circle
+    draw_circle_record(color_blue(), target_circle)
+
+    # Try to find the exit point on the circle along the laser beam
+    if distant_point_on_circle_heading(ray_origin, target_circle, ray_direction, exit_point):
+        
+        # If a valid exit point is found, draw it
+        fill_circle(color_green(), exit_point.x, exit_point.y, 5)
+
+    refresh_screen_with_target_fps(60)
