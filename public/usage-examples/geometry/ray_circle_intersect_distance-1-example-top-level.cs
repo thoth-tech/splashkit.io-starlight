@@ -1,20 +1,16 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-// opens a new 800 * 600 window
+// Ppens a new window
 Window window = new Window("Distance From Ray To Circle", 800, 600);
 
-// sets the starting point of the ray on the left side of the screen
+// Defines a laser beam from the left edge of the screen to the right
 Point2D rayOrigin = PointAt(0, 300);
-
-// sets the ending point of the ray on the right side of the screen
 Point2D rayEnd = PointAt(800, 100);
-
-// creates a direction vector pointing toward the right and slightly up
 Vector2D rayDirection = UnitVector(VectorTo(rayEnd));
 
-// creates a red circle at the center with radius 100
-Circle circleObj = new Circle()
+// Defines a circle at the center with radius 100
+Circle targetCircle = new Circle()
 {
     Center = PointAt(400, 300),
     Radius = 100
@@ -28,10 +24,10 @@ while (!QuitRequested())
     DrawLine(Color.Blue, rayOrigin, rayEnd);
 
     // draws the target circle in red
-    DrawCircle(Color.Red, circleObj);
+    DrawCircle(Color.Red, targetCircle);
 
     // checks for intersection and calculates distance
-    float distance = RayCircleIntersectDistance(rayOrigin, rayDirection, circleObj);
+    float distance = RayCircleIntersectDistance(rayOrigin, rayDirection, targetCircle);
 
     // displays the distance to the circle
     DrawText($"Distance to circle: {distance}", Color.Black, 100, 100);
