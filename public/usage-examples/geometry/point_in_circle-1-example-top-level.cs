@@ -1,33 +1,33 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Window window = OpenWindow("Point In Circle", 800, 600);
-Circle circle = CircleAt(400, 300, 100);
-Point2D mousePt;
-string text;
-Color circleClr;
+OpenWindow("Circular Toggle Button", 800, 600);
 
 while (!QuitRequested())
 {
     ProcessEvents();
 
-    mousePt = MousePosition();
+    //Declaring the variables
+    Color circleColor;
+    Point2D cursorPos = MousePosition();
+    Circle circle = CircleAt(400, 300, 80);
 
-    // Update text and circle colour based on the mouse position in relation to the circle
-    if (PointInCircle(mousePt, circle))
+    ClearScreen();
+
+    if (PointInCircle(cursorPos, circle))
     {
-        circleClr = ColorRed();
-        text = "Point in the Circle!";
+        circleColor = ColorGreen();
+        DrawText("Point is in the circle", ColorGreen(), 300, 100);
     }
     else
     {
-        circleClr = ColorGreen();
-        text = "Point not in the Circle!";
+        circleColor = ColorBrightGreen();
+        DrawText("Point is not in the circle", ColorRed(), 300, 100);
     }
 
-    ClearScreen();
-    DrawCircle(circleClr, circle);
-    DrawText(text, ColorRed(), 100, 100);
+    FillCircle(circleColor, circle);
+    DrawText("Button", Color.Black, 375, 300);
+
     RefreshScreen();
 }
-CloseWindow(window);
+CloseAllWindows();
