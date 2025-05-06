@@ -5,71 +5,76 @@
 #include <SDL2/SDL.h>
 #endif
 
-struct Point_2D
-{
-    unsigned int x;
-    unsigned int y;
+struct Quad {
+    SDL_Point points[4];
 };
 
-struct Color_RGB
+Quad quad_from(int x_top_left, int y_top_left,
+    int x_top_right, int y_top_right,
+    int x_bottom_left, int y_bottom_left,
+    int x_bottom_right, int y_bottom_right)
 {
-    Uint8 red;
-    Uint8 green;
-    Uint8 blue;
-};
+    Quad result;
+    result.points[0].x = x_top_left;
+    result.points[0].y = y_top_left;
+    result.points[1].x = x_top_right;
+    result.points[1].y = y_top_right;
+    result.points[2].x = x_bottom_left;
+    result.points[2].y = y_bottom_left;
+    result.points[3].x = x_bottom_right;
+    result.points[3].y = y_bottom_right;
+    return result;
+}
 
-void draw_quad_rgb(SDL_Renderer * renderer, Point_2D pt_1, Point_2D pt_2, Point_2D pt_3, Point_2D pt_4, Color_RGB color)
+void draw_quad(SDL_Renderer * renderer, SDL_Color clr, Quad q)
 {
     // Set the line color
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
-    SDL_SetRenderDrawColor(renderer, color.red, color.green, color.blue, 255);
+    SDL_SetRenderDrawColor(renderer, clr.r, clr.g, clr.b, clr.a);
 
-    // Draw quad on the surface attached to renderer
-    SDL_RenderDrawLine(renderer, pt_1.x, pt_1.y, pt_2.x, pt_2.y);
-    SDL_RenderDrawLine(renderer, pt_1.x, pt_1.y, pt_3.x, pt_3.y);
-    SDL_RenderDrawLine(renderer, pt_4.x, pt_4.y, pt_2.x, pt_2.y);
-    SDL_RenderDrawLine(renderer, pt_4.x, pt_4.y, pt_3.x, pt_3.y);
+    // Draw the edges of the quad
+    SDL_RenderDrawLine(renderer, q.points[0].x, q.points[0].y, q.points[1].x, q.points[1].y);
+    SDL_RenderDrawLine(renderer, q.points[0].x, q.points[0].y, q.points[2].x, q.points[2].y);
+    SDL_RenderDrawLine(renderer, q.points[3].x, q.points[3].y, q.points[1].x, q.points[1].y);
+    SDL_RenderDrawLine(renderer, q.points[3].x, q.points[3].y, q.points[2].x, q.points[2].y);
 }
 
-SDL_Window *sdl_open_window(const char *window_title, const int width, const int height)
+int main(int argv, char **args)
 {
-    // Initialize the window pointer
+    // Declare variables
+    Quad q1 = quad_from(400, 200, 300, 300, 300, 0, 200, 200);
+    Quad q2 = quad_from(400, 210, 310, 300, 600, 300, 400, 390);
+    Quad q3 = quad_from(200, 400, 300, 300, 300, 600, 400, 400);
+    Quad q4 = quad_from(200, 390, 290, 300, 0, 300, 200, 210);
+    
     SDL_Window *window = nullptr;
 
-    // Initialize the SDL library and check if unsuccessful
+    // Check if SDL was successfully initialized
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
         std::cout << "SDL could not be initialized: " << SDL_GetError();
         exit(1);
     }
 
-    // Create a window
+    // Create window
     window = SDL_CreateWindow(
-        window_title,
+        "Ninja Star",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        width,
-        height,
-        SDL_WINDOW_OPENGL);
+        600,
+        600,
+        SDL_WINDOW_OPENGL
+    );
 
-    // Check if window creation was unsuccessful
     if (window == NULL)
     {
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
         exit(1);
     }
 
-    return window;
-}
-
-int main(int argv, char **args)
-{
-    SDL_Window *window = sdl_open_window("Ninja Star", 600, 600);
-
-    // Create a renderer by attaching the window
+    // Create renderer
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     
-    // Check if renderer creation was unsuccessful
     if (renderer == NULL)
     {
         SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create rederer: %s\n", SDL_GetError());
@@ -80,19 +85,17 @@ int main(int argv, char **args)
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
 
-    // Draw a ninja star using four quads
-    draw_quad_rgb(renderer, {400, 200}, {300, 300}, {300, 0}, {200, 200}, {0, 0, 0});
-    draw_quad_rgb(renderer, {400, 210}, {310, 300}, {600, 300}, {400, 390}, {0, 127, 0});
-    draw_quad_rgb(renderer, {200, 400}, {300, 300}, {300, 600}, {400, 400}, {255, 0, 0});
-    draw_quad_rgb(renderer, {200, 390}, {290, 300}, {0, 300}, {200, 210}, {0, 0, 255});
+    // Draw the ninja star
+    draw_quad(renderer, {0, 0, 0, 255}, q1);
+    draw_quad(renderer, {0, 127, 0, 255}, q2);
+    draw_quad(renderer, {255, 0, 0, 255}, q3);
+    draw_quad(renderer, {0, 0, 255, 255}, q4);
 
-    // Render the frame onto the window
+    // Display the drawing for 5 seconds
     SDL_RenderPresent(renderer);
-
-    // Wait for 5 seconds before exiting
     SDL_Delay(5000);
 
-    // Clean up and free memory
+    // Clean up
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
