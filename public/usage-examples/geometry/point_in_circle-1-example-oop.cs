@@ -6,36 +6,36 @@ namespace PointInCircleExample
     {
         public static void Main()
         {
-            Window window = new Window("Point In Circle", 800, 600);
-            Circle circle = SplashKit.CircleAt(400, 300, 100);
-            Point2D mousePt;
-            string text;
-            Color circleClr;
+            SplashKit.OpenWindow("Circular Toggle Button", 800, 600);
 
             while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
 
-                mousePt = SplashKit.MousePosition();
+                //Declaring the variables
+                Color circleColor;
+                Point2D cursorPos = SplashKit.MousePosition();
+                Circle circle = SplashKit.CircleAt(400, 300, 80);
 
-                // Update text and circle colour based on the mouse position in relation to the circle
-                if (SplashKit.PointInCircle(mousePt, circle))
+                SplashKit.ClearScreen();
+
+                if (SplashKit.PointInCircle(cursorPos, circle))
                 {
-                    circleClr = SplashKit.ColorRed();
-                    text = "Point in the Circle!";
+                    circleColor = Color.Green;
+                    SplashKit.DrawText("Point is in the circle", Color.Green, 300, 100);
                 }
                 else
                 {
-                    circleClr = SplashKit.ColorGreen();
-                    text = "Point not in the Circle!";
+                    circleColor = Color.BrightGreen;
+                    SplashKit.DrawText("Point is not in the circle", Color.Red, 300, 100);
                 }
 
-                SplashKit.ClearScreen();
-                SplashKit.DrawCircle(circleClr, circle);
-                SplashKit.DrawText(text, SplashKit.ColorRed(), 100, 100);
+                SplashKit.FillCircle(circleColor, circle);
+                SplashKit.DrawText("Button", Color.Black, 375, 300);
+
                 SplashKit.RefreshScreen();
             }
-            window.Close();
+            SplashKit.CloseAllWindows();
         }
     }
 }

@@ -1,27 +1,27 @@
 from splashkit import *
 
-window = open_window("Point In Circle", 800, 600)
-circle = circle_at_from_points(400, 300, 100)
-mouse_pt = Point2D
-text = str
-circle_clr = Color
+open_window("Circular Toggle Button", 800, 600)
 
 while (not quit_requested()):
     process_events()
 
-    mouse_pt = mouse_position()
+    #Declaring the variables
+    circle_color = Color
+    cursor_pos = mouse_position()
+    circle = circle_at_from_points(400, 300, 80)
 
-    # Update text and circle colour based on the mouse position in relation to the circle
-    if (point_in_circle(mouse_pt, circle)):
-        circle_clr = color_red()
-        text = "Point in the Circle!"
+    clear_screen(color_white())
+
+    if (point_in_circle(cursor_pos, circle)):
+        circle_color = color_green()
+        draw_text_no_font_no_size("Point is in the circle", color_green(), 300, 100)
     else:
-        circle_clr = color_green()
-        text = "Point not in the Circle!"
+        circle_color = color_bright_green()
+        draw_text_no_font_no_size("Point is not in the circle", color_red(), 300, 100)
 
-    clear_screen_to_white()
-    draw_circle_record(circle_clr, circle)
-    draw_text_no_font_no_size(text, color_red(), 100, 100)
+    fill_circle_record(circle_color, circle)
+    draw_text_no_font_no_size("Button", color_black(), 375, 300)
+
     refresh_screen()
 
-close_window(window)
+close_all_windows()
