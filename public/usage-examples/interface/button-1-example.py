@@ -3,6 +3,7 @@ from splashkit import *
 # Open the window
 open_window("Button Toggle", 600, 400)
 
+# Define the background color and button rectangle
 bg_color = color_white()
 btn_rect = rectangle_from(200, 180, 200, 40)
 
@@ -10,10 +11,11 @@ btn_rect = rectangle_from(200, 180, 200, 40)
 while not quit_requested():
     process_events()
 
-    # Toggle background color if button_at_position is clicked
+    # If the button is clicked, toggle the background color
     if button_at_position("Click Me!", btn_rect):
         bg_color = color_light_blue() if bg_color == color_white() else color_white()
 
+    # Clear screen and draw interface
     clear_screen(bg_color)
     button_at_position("Click Me!", btn_rect)
     draw_interface()

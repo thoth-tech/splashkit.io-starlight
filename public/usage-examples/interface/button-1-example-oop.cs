@@ -6,31 +6,31 @@ namespace CreatingUserInterfaces
     {
         public static void Main()
         {
-            // open a window and clear it to white
-            Window window = new Window("Button Toggle", 600, 400);
-            Color backgroundColor = Color.White;
+            // Open the window
+            SplashKit.OpenWindow("Button Toggle", 600, 400);
 
-            Rectangle buttonRect = SplashKit.RectangleFrom(200, 180, 200, 40);
+            Color bgColor = SplashKit.ColorWhite();
+            Rectangle btnRect = SplashKit.RectangleFrom(200, 180, 200, 40);
 
-            while (!window.CloseRequested)
+            // Main loop
+            while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
 
-                // toggle color if the button is clicked
-                if (SplashKit.Button("Click Me!", buttonRect))
+                // If the button is clicked, toggle the background color
+                if (SplashKit.Button("Click Me!", btnRect))
                 {
-                    backgroundColor =
-                        backgroundColor == Color.White ? Color.LightBlue : Color.White;
+                    bgColor = (bgColor == SplashKit.ColorWhite()) ? SplashKit.ColorLightBlue() : SplashKit.ColorWhite();
                 }
 
-                // clear screen, draw button, draw interface
-                window.Clear(backgroundColor);
-                SplashKit.Button("Click Me!", buttonRect);
+                // Draw background and interface
+                SplashKit.ClearScreen(bgColor);
+                SplashKit.Button("Click Me!", btnRect);
                 SplashKit.DrawInterface();
-                window.Refresh(60);
+                SplashKit.RefreshScreen(60);
             }
 
-            // close all open windows
+            // Close all open windows
             SplashKit.CloseAllWindows();
         }
     }
