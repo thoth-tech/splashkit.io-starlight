@@ -5,7 +5,8 @@
 #include <SDL2/SDL.h>
 #endif
 
-struct Quad {
+struct Quad 
+{
     SDL_Point points[4];
 };
 
