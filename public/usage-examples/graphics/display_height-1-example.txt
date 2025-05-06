@@ -1,0 +1,1 @@
+Display Height function demonstrated by dropping a ball from the top of the display
