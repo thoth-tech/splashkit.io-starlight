@@ -1,41 +1,69 @@
 using SplashKitSDK;
 
-namespace DistantPointOnCircleHeadingExample
+namespace LaserShieldIntersectionExample
 {
     public class Program
     {
         public static void Main()
         {
-            // Open the window for graphical output
-            Window window = new Window("Distant Point Demo", 800, 600);
-            SplashKit.ClearScreen(Color.White);
+            // Open a window
+            Window window = new Window("Laser Passing Through Shield", 800, 600);
 
-            // Define the circle's center and radius
-            Point2D center = SplashKit.PointAt(400, 300);
-            float radius = 100;
+            // Fixed player position
+            Point2D playerPosition = SplashKit.PointAt(0, 0);
 
-            // Define heading in degrees (0 = east, 90 = north, 180 = west, 270 = south)
-            float heading = 90;
+            // Shield represented by a circle
+            Circle shield = new Circle()
+            {
+                Center = SplashKit.PointAt(400, 300),
+                Radius = 100
+            };
 
-            // Define a reference point (can be set to (0,0) for simplicity)
-            Point2D fromPoint = SplashKit.PointAt(0, 0);
+            // Points for entry and exit on the shield
+            Point2D entryPoint = SplashKit.PointAt(0, 0);
+            Point2D exitPoint = SplashKit.PointAt(0, 0);
 
-            // Calculate the distant point on the circle at the given heading
-            Point2D farPoint = SplashKit.DistantPointOnCircleHeading(center, radius, heading);
+            while (!SplashKit.QuitRequested())
+            {
+                SplashKit.ProcessEvents();
+                SplashKit.ClearScreen(Color.White);
 
-            // Draw the circle and the calculated point
-            SplashKit.DrawCircle(Color.Blue, center, radius);
-            SplashKit.DrawPixel(Color.Red, farPoint);
+                // Draw the shield
+                SplashKit.DrawCircle(Color.Blue, shield);
 
-            // Display coordinates as optional debug info
-            SplashKit.DrawText($"Point: ({farPoint.X:0.00}, {farPoint.Y:0.00})", Color.Black, 10, 10);
+                // Get current mouse position
+                Point2D aimPoint = SplashKit.MousePosition();
 
-            // Refresh the screen to display changes at 60 FPS
-            SplashKit.RefreshScreen(60);
-            SplashKit.Delay(5000);
+                // Draw aiming laser
+                SplashKit.DrawLine(Color.Red, playerPosition, aimPoint);
 
-            // Close the window after the delay
-            window.Close();
+                // Calculate laser heading
+                Vector2D heading = SplashKit.UnitVector(SplashKit.VectorPointToPoint(playerPosition, aimPoint));
+
+                // Find entry point (first intersection)
+                float entryDistance = SplashKit.RayCircleIntersectDistance(playerPosition, heading, shield);
+
+                if (entryDistance > 0)
+                {
+                    // Draw entry point
+                    entryPoint = SplashKit.PointAt(
+                        playerPosition.X + heading.X * entryDistance,
+                        playerPosition.Y + heading.Y * entryDistance
+                    );
+                    SplashKit.FillCircle(Color.Orange, entryPoint.X, entryPoint.Y, 5);
+
+                    // Find exit point using distant_point_on_circle_heading
+                    if (SplashKit.DistantPointOnCircleHeading(playerPosition, shield, heading, ref exitPoint))
+                    {
+                        SplashKit.FillCircle(Color.Green, exitPoint.X, exitPoint.Y, 5);
+
+                        // Draw line between entry and exit
+                        SplashKit.DrawLine(Color.Purple, entryPoint, exitPoint);
+                    }
+                }
+
+                SplashKit.RefreshScreen(60);
+            }
         }
     }
 }
