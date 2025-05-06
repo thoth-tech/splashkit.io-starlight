@@ -1,29 +1,42 @@
 from splashkit import *
 
-# Opens a new window
-open_window("Distance From Ray To Circle", 800, 600)
+# Open a new window
+open_window("Laser Collision with Circle", 800, 600)
 
-# Defines a laser beam from the left edge of the screen to the right
-ray_origin = point_at(0, 300)
-ray_end = point_at(800, 100)
-ray_direction = unit_vector(vector_to_point(ray_end))
+# Initialize the player position
+player_pos = point_at(0, 0)
 
-# Defines a circle at the center of the screen with radius 100
-target_circle = circle_at(point_at(400, 300), 100)
+# Variables to store the latest shot data
+last_target = player_pos
+last_direction = vector_to(0, 0)
+last_hit_distance = -1
+
+# Define the target circle
+target = circle_at(point_at(400, 300), 100)
 
 while not quit_requested():
-    clear_screen()
+    process_events()
+    clear_screen(color_white())
 
-    # Draws the ray as a blue line
-    draw_line_point_to_point(color_blue(), ray_origin, ray_end)
+    # Draw the target circle
+    draw_circle_record(color_blue(), target)
 
-    # Draws the red target circle
-    draw_circle_record(color_red(), target_circle)
+    # Fire a laser when the mouse is clicked
+    if mouse_clicked(MouseButton.left_button):
+        # Update the target position based on the mouse position
+        last_target = mouse_position()
+        last_direction = unit_vector(vector_point_to_point(player_pos, last_target))
 
-    # Calculates intersection distance between ray and circle
-    distance = ray_circle_intersect_distance(ray_origin, ray_direction, target_circle)
+        # Check for intersection and calculate hit distance
+        last_hit_distance = ray_circle_intersect_distance(player_pos, last_direction, target)
 
-    # Displays the distance to the circle
-    draw_text_no_font_no_size(f"Distance to circle: {distance}", color_black(), 100, 100)
+    # If a shot has been made, draw the laser and hit point
+    if last_hit_distance >= 0:
+        # Draw the laser beam
+        draw_line_point_to_point(color_red(), player_pos, last_target)
+
+        # Draw the impact point
+        if last_hit_distance > 0:
+            fill_circle(color_green(), player_pos.x + last_direction.x * last_hit_distance, player_pos.y + last_direction.y * last_hit_distance, 5)
 
     refresh_screen_with_target_fps(60)

@@ -1,16 +1,19 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-// Ppens a new window
-Window window = new Window("Distance From Ray To Circle", 800, 600);
+// Open a new window
+Window window = new Window("Laser Collision with Circle", 800, 600);
 
-// Defines a laser beam from the left edge of the screen to the right
-Point2D rayOrigin = PointAt(0, 300);
-Point2D rayEnd = PointAt(800, 100);
-Vector2D rayDirection = UnitVector(VectorTo(rayEnd));
+// Initialize the player position
+Point2D playerPos = PointAt(0, 0);
 
-// Defines a circle at the center with radius 100
-Circle targetCircle = new Circle()
+// Variables to store the latest shot data
+Point2D lastTarget = playerPos;
+Vector2D lastDirection = VectorTo(0, 0);
+float lastHitDistance = -1;
+
+// Define the target circle
+Circle target = new Circle()
 {
     Center = PointAt(400, 300),
     Radius = 100
@@ -18,19 +21,35 @@ Circle targetCircle = new Circle()
 
 while (!QuitRequested())
 {
+    ProcessEvents();
     ClearScreen();
 
-    // draws the laser beam in blue
-    DrawLine(Color.Blue, rayOrigin, rayEnd);
+    // Draw the target circle
+    DrawCircle(Color.Blue, target);
 
-    // draws the target circle in red
-    DrawCircle(Color.Red, targetCircle);
+    // Fire a laser when the mouse is clicked
+    if (MouseClicked(MouseButton.LeftButton))
+    {
+        // Update the target position based on the mouse position
+        lastTarget = MousePosition();
+        lastDirection = UnitVector(VectorPointToPoint(playerPos, lastTarget));
 
-    // checks for intersection and calculates distance
-    float distance = RayCircleIntersectDistance(rayOrigin, rayDirection, targetCircle);
+        // Check for intersection and calculate hit distance
+        lastHitDistance = RayCircleIntersectDistance(playerPos, lastDirection, target);
+    }
 
-    // displays the distance to the circle
-    DrawText($"Distance to circle: {distance}", Color.Black, 100, 100);
+    // If a shot has been made, draw the laser and hit point
+    if (lastHitDistance >= 0)
+    {
+        // Draw the laser beam
+        DrawLine(Color.Red, playerPos, lastTarget);
+
+        // Draw the impact point
+        if (lastHitDistance > 0)
+        {
+            FillCircle(Color.Green, playerPos.X + lastDirection.X * lastHitDistance, playerPos.Y + lastDirection.Y * lastHitDistance, 5);
+        }
+    }
 
     RefreshScreen(60);
 }
