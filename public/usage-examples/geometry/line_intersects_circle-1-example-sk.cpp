@@ -2,41 +2,36 @@
 
 int main()
 {
-    open_window("Line intersects Circle", 800, 600);
+    open_window("Interaction of Line and Circle", 800, 600);
 
-    // Define a circle
-
-    circle c = circle_at(400, 300, 50);
-
-    // Define a line
-
-    point_2d start_point = {100, 100};
-    point_2d end_point = {700, 500};
-
-
-
-    // Draw the circle
-    draw_circle(COLOR_RED, c);
-
-    // Draw the line
-    line l = line_from(start_point, end_point);
-    draw_line(COLOR_BLUE, l);
-
-    // Check for intersection
-    bool intersects = line_intersects_circle(l, c);
-
-    // Display result
-    if (intersects)
+    while (!quit_requested())
     {
-        draw_text("Intersecting", COLOR_GREEN, "Arial", 50, 20, 30);
-    }
-    else
-    {
-        draw_text("Not Intersecting", COLOR_RED, "Arial", 50, 20, 30);
-    }
+        process_events();
 
-    refresh_screen();
+        //Defining line and circle
+        point_2d cursor_pos = mouse_position();
+        line line = line_from(point_at(150, 100), cursor_pos);
+        circle circle = circle_at(400, 300, 100);
 
-    delay(5000);
+        clear_screen();
+
+        //Drawing line and circle
+        draw_line(COLOR_BLUE, line);
+        draw_circle(COLOR_BLACK, circle);
+
+        //Check for intersection and display results
+        if (line_intersects_circle(line, circle))
+        {
+            draw_text("Line and Circle intersect", COLOR_GREEN, 400, 100);
+        }
+        else
+        {
+            draw_text("Line and Circle do not intersect", COLOR_RED, 400, 100);
+        }
+
+        refresh_screen(); 
+    }
+    
+    close_all_windows();
     return 0;
 }

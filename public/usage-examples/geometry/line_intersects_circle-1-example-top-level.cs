@@ -1,29 +1,34 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Line Intersects Circle", 800, 600);
+OpenWindow("Interaction of Line and Circle", 800, 600);
 
-//Define points for the line
-Point2D startPoint = new Point2D() { X = 100, Y = 100, };
-Point2D endPoint = new Point2D() { X = 700, Y = 500, };
+while (!QuitRequested())
+{
+    ProcessEvents();
 
-//Define Circle
-Circle circle = CircleAt(400, 300, 100);
+    //Defining line and circle
+    Point2D cursorPos = MousePosition();
+    Line line = LineFrom(PointAt(150, 100), cursorPos);
+    Circle circle = CircleAt(400, 300, 100);
 
-//Draw a circle
-DrawCircle(ColorRed(), circle);
+    ClearScreen();
 
-//Draw a line
-Line line = LineFrom(startPoint, endPoint);
-DrawLine(ColorBlue(), line);
+    //Drawing line and circle
+    DrawLine(ColorBlue(), line);
+    DrawCircle(ColorBlack(), circle);
 
-//Check for intersection
-bool intersect = LineIntersectsCircle(line, circle);
+    //Check for intersection and display the results
+    if (LineIntersectsCircle(line, circle))
+    {
+        DrawText("Line and Circle intersect", ColorGreen(), 400, 100);
+    }
+    else
+    {
+        DrawText("Line and Circle do not intersect", ColorRed(), 400, 100);
+    }
 
-//Display intersection results
-DrawText("Line and circle intersect: " + (intersect ? "Yes" : "No"), ColorBlack(), 400, 100);
-
-RefreshScreen();
-Delay(5000);
+    RefreshScreen();
+}
 
 CloseAllWindows();

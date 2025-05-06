@@ -1,32 +1,31 @@
 from splashkit import *
 
-open_window("Circle Intersects Line", 800, 600)
+open_window("Interaction of Line and Circle", 800, 600)
 
-# Define points for the line
-start_point = Point2D()
-start_point.x = 100
-start_point.y = 100
-end_point = Point2D()
-end_point.x = 700
-end_point.y = 500
+cursor_pos = Point2D()
+line = Line
+circle = Circle
 
-#Define a circle
-circle = circle_at_from_points(400, 300, 100)
+while (not quit_requested()):
+    process_events()
 
-# Draw the line
-line = line_from_point_to_point(start_point, end_point)
-draw_line_record(color_blue(), line)
+    #Defining line and circle
+    cursor_pos = mouse_position()
+    line = line_from_point_to_point(point_at(150, 100), cursor_pos)
+    circle = circle_at_from_points(400, 300, 100)
 
-# Draw the circle
-draw_circle_record(color_red(), circle)
+    clear_screen(color_white())
 
-# Check for intersection
-intersect = line_intersects_circle(line, circle)
+    #Drawing line and circle
+    draw_line_record(color_blue(), line)
+    draw_circle_record(color_black(), circle)
 
-# Display result
-draw_text_no_font_no_size("Line and Circle intersect: " + ("Yes" if intersect else "No"), color_black(), 400, 100)
-
-refresh_screen()
-delay(5000)
+    #Check for intersection and display results
+    if (line_intersects_circle(line, circle)):
+        draw_text_no_font_no_size("Line and Circle intersect", color_green(), 400, 100)
+    else:
+        draw_text_no_font_no_size("Line and Circle do not intersect", color_red(), 400, 100)
+    
+    refresh_screen()
 
 close_all_windows()

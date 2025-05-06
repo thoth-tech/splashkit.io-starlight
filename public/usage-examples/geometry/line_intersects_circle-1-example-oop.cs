@@ -1,35 +1,40 @@
 ﻿using SplashKitSDK;
 
-namespace CircleIntersectsLine
+namespace LineIntersectsCircleExample
 {
     public class Program
     {
         public static void Main()
         {
-            Window window = new Window("Circle Intersects Line", 800, 600);
+            SplashKit.OpenWindow("Interaction of Line and Circle", 800, 600);
 
-            //Define a circle
-            Circle circle = SplashKit.CircleAt(400, 300, 100);
+            while (!SplashKit.QuitRequested())
+            {
+                SplashKit.ProcessEvents();
 
-            //Define a line
-            Point2D startPoint = new Point2D() { X = 100, Y = 100 };
-            Point2D endPoint = new Point2D() { X = 700, Y = 500 };
+                //Defining a line and circle
+                Point2D cursorPos = SplashKit.MousePosition();
+                Line line = SplashKit.LineFrom(SplashKit.PointAt(150, 100), cursorPos);
+                Circle circle = SplashKit.CircleAt(400, 300, 100);
 
-            //Draw the line
-            Line line = SplashKit.LineFrom(startPoint, endPoint);
-            SplashKit.DrawLine(Color.Blue, line);
+                SplashKit.ClearScreen();
 
-            //Draw the circle
-            SplashKit.DrawCircle(Color.Red, circle);
+                //Drawing the line and circle
+                SplashKit.DrawLine(Color.Blue, line);
+                SplashKit.DrawCircle(Color.Black, circle);
 
-            //Check for intersection
-            bool intersect = SplashKit.LineIntersectsCircle(line, circle);
+                //Check for intersection and display the results
+                if (SplashKit.LineIntersectsCircle(line, circle))
+                {
+                    SplashKit.DrawText("Line and Circle intersect", Color.Green, 400, 100);
+                }
+                else
+                {
+                    SplashKit.DrawText("Line and Circle do not intersect", Color.Red, 400, 100);
+                }
 
-            //Display Results
-            SplashKit.DrawText("Line and circle intersect: " + (intersect ? "Yes" : "No"), Color.Black, 400, 100);
-
-            SplashKit.RefreshScreen();
-            SplashKit.Delay(5000);
+                SplashKit.RefreshScreen();
+            }
 
             SplashKit.CloseAllWindows();
         }
