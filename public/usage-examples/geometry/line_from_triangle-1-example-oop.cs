@@ -1,7 +1,7 @@
 using System;
 using SplashKitSDK;
 
-namespace LinesFromTriangleExample
+namespace linesFromTriangle
 {
     class Program
     {
