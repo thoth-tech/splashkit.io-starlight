@@ -1,61 +1,44 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-// Open a window
-Window window = new Window("Laser Passing Through Shield", 800, 600);
+OpenWindow("Laser Passing Through Shield", 800, 600);
 
-// Fixed player position
+// Declare variables
 Point2D playerPosition = PointAt(0, 0);
-
-// Shield represented by a circle
-Circle shield = new Circle()
-{
-    Center = PointAt(400, 300),
-    Radius = 100
-};
-
-// Points for entry and exit on the shield
-Point2D entryPoint = PointAt(0, 0);
+Circle shield = CircleAt(400, 300, 100);
+Point2D aimPoint;
+Vector2D heading;
+float entryDistance;
+Point2D entryPoint;
 Point2D exitPoint = PointAt(0, 0);
 
 while (!QuitRequested())
 {
     ProcessEvents();
-    ClearScreen(Color.White);
 
-    // Draw the shield
-    DrawCircle(Color.Blue, shield);
+    // Calculate laser heading using mouse position
+    aimPoint = MousePosition();
+    heading = UnitVector(VectorPointToPoint(playerPosition, aimPoint));
 
-    // Get current mouse position
-    Point2D aimPoint = MousePosition();
+    // Calculate distance from player to shield and point of entry
+    entryDistance = RayCircleIntersectDistance(playerPosition, heading, shield);
+    entryPoint = PointAt(playerPosition.X + heading.X * entryDistance, playerPosition.Y + heading.Y * entryDistance);
 
-    // Draw aiming laser
-    DrawLine(Color.Red, playerPosition, aimPoint);
-
-    // Calculate laser heading
-    Vector2D heading = UnitVector(VectorPointToPoint(playerPosition, aimPoint));
-
-    // Find entry point (first intersection)
-    float entryDistance = RayCircleIntersectDistance(playerPosition, heading, shield);
+    // Draw the shield (circle) and laser (line)
+    ClearScreen(ColorWhite());
+    DrawCircle(ColorBlue(), shield);
+    DrawLine(ColorRed(), playerPosition, aimPoint);
 
     if (entryDistance > 0)
     {
-        // Draw entry point
-        entryPoint = PointAt(
-            playerPosition.X + heading.X * entryDistance,
-            playerPosition.Y + heading.Y * entryDistance
-        );
-        FillCircle(Color.Orange, entryPoint.X, entryPoint.Y, 5);
-
-        // Find exit point using distant_point_on_circle_heading
+        // Find exit point of laser
         if (DistantPointOnCircleHeading(playerPosition, shield, heading, ref exitPoint))
         {
-            FillCircle(Color.Green, exitPoint.X, exitPoint.Y, 5);
-
-            // Draw line between entry and exit
-            DrawLine(Color.Purple, entryPoint, exitPoint);
+            // Draw entry and exit points and line between entry and exit
+            FillCircle(ColorOrange(), entryPoint.X, entryPoint.Y, 5);
+            FillCircle(ColorGreen(), exitPoint.X, exitPoint.Y, 5);
+            DrawLine(ColorPurple(), entryPoint, exitPoint);
         }
     }
-
     RefreshScreen(60);
 }
