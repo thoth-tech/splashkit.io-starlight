@@ -1,0 +1,2 @@
+Magnetic Point
+Find the closest point on a line to the mouse pointer in real time.
