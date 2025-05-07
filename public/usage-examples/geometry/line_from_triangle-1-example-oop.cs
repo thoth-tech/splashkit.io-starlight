@@ -14,13 +14,13 @@ namespace linesFromTriangle
             //Loop through and display each line (edge) of the triangle individually
             foreach (Line line in SplashKit.LinesFrom(newTriangle))
             {
-                SplashKit.ClearScreen(Color.White);
-                Drawing.DrawLine(Color.Red, line);
-                SplashKit.RefreshScreen();
-                SplashKit.Delay(800);
+                ClearScreen(Color.White);
+                DrawLine(Color.Red, line);
+                RefreshScreen();
+                Delay(500);
             }
             //Pause briefly at the end
-            SplashKit.Delay(1000);
+            Delay(1000);
         }
     }
 }
