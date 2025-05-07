@@ -1,0 +1,1 @@
+A fixed line and perpetually rotating line, which generate a red mark at their intersection point
