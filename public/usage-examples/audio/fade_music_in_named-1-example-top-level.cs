@@ -10,7 +10,7 @@ if (!AudioReady())
 LoadMusic("adventure", "time_for_adventure.mp3");
 
 // Fade music in over 2 seconds
-FadeMusicIn("adventure", 2000);
+FadeMusicIn("adventure", 5000);
 
 // Hold program for 10 seconds
 Delay(10000);

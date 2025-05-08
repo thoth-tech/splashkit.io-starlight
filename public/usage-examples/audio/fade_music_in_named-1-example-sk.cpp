@@ -12,7 +12,7 @@ int main()
     load_music("adventure", "time_for_adventure.mp3");
 
     // Fade music in over 2 seconds
-    fade_music_in("adventure", 2000);
+    fade_music_in("adventure", 5000);
 
     // Hold program for 10 seconds
     delay(10000);
