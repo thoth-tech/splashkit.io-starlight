@@ -5,9 +5,10 @@ OpenWindow("Font Style", 800, 120);
 LoadFont("Arial", "Arial.TTF");
 
 // Initialise Default message
-string InitialText = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
-string FontText = "";
+string infoText = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
+string fontText = "";
 FontStyle style = FontStyle.NormalFont;
+
 while (!SplashKit.QuitRequested())
 {
     ProcessEvents();
@@ -30,31 +31,31 @@ while (!SplashKit.QuitRequested())
         SetFontStyle("Arial", FontStyle.UnderlineFont);
     }
 
-    FontText = $"Font style set to ";
+    fontText = $"Font style set to ";
     style = GetFontStyle("Arial");
     switch (style)
     {
         case FontStyle.NormalFont:
-            FontText += "Normal";
+            fontText += "Normal";
             break;
         case FontStyle.BoldFont:
-            FontText += "Bold";
+            fontText += "Bold";
             break;
         case FontStyle.ItalicFont:
-            FontText += "Italic";
+            fontText += "Italic";
             break;
         case FontStyle.UnderlineFont:
-            FontText += "Underlined";
+            fontText += "Underlined";
             break;
         default:
-            FontText += "Unknown";
+            fontText += "Unknown";
             break;
     }
 
     // Clear screen and draw updated message
     ClearScreen(Color.White);
-    DrawText(InitialText, Color.Black, "Arial", 20, 50, 20);
-    DrawText(FontText, Color.Black, "Arial", 20, 50, 80);
+    DrawText(infoText, Color.Black, FontNamed("Arial"), 20, 50, 20);
+    DrawText(fontText, Color.Black, FontNamed("Arial"), 20, 50, 80);
     RefreshScreen();
 }
 

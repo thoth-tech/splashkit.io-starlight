@@ -1,17 +1,16 @@
-﻿using System;
-using SplashKitSDK;
+﻿using SplashKitSDK;
 
-class Program
+public class Program
 {
-    static void Main()
+    public static void Main()
     {
         SplashKit.OpenWindow("Font Style", 800, 120);
         // Load Font
         SplashKit.LoadFont("Arial", "Arial.TTF");
 
         // Default Message
-        string InitialText = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
-        string FontText = "";
+        string infoText = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
+        string fontText = "";
         FontStyle style = FontStyle.NormalFont;
         while (!SplashKit.QuitRequested())
         {
@@ -35,30 +34,33 @@ class Program
                 SplashKit.SetFontStyle("Arial", FontStyle.UnderlineFont);
             }
 
-            FontText = $"Font style set to ";
+            fontText = $"Font style set to ";
             style = SplashKit.GetFontStyle("Arial");
+
+
             switch (style)
             {
                 case FontStyle.NormalFont:
-                    FontText += "Normal";
+                    fontText += "Normal";
                     break;
                 case FontStyle.BoldFont:
-                    FontText += "Bold";
+                    fontText += "Bold";
                     break;
                 case FontStyle.ItalicFont:
-                    FontText += "Italic";
+                    fontText += "Italic";
                     break;
                 case FontStyle.UnderlineFont:
-                    FontText += "Underlined";
+                    fontText += "Underlined";
                     break;
                 default:
-                    FontText += "Unknown";
+                    fontText += "Unknown";
                     break;
             }
+
             // Clear screen and draw updated message
             SplashKit.ClearScreen(Color.White);
-            SplashKit.DrawText(InitialText, Color.Black, "Arial", 20, 50, 20);
-            SplashKit.DrawText(FontText, Color.Black, "Arial", 20, 50, 80);
+            SplashKit.DrawText(infoText, Color.Black, SplashKit.FontNamed("Arial"), 20, 50, 20);
+            SplashKit.DrawText(fontText, Color.Black, SplashKit.FontNamed("Arial"), 20, 50, 80);
             // Refresh the window with updated text
             SplashKit.RefreshScreen();
         }

@@ -6,8 +6,8 @@ int main()
     load_font("Arial", "Arial.TTF");
 
     // Initialise Default message
-    string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
-    string message1 = "";
+    string info_text = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
+    string font_text = "";
     font_style style = NORMAL_FONT;
 
     while (!quit_requested())
@@ -32,33 +32,31 @@ int main()
             set_font_style("Arial", UNDERLINE_FONT);
         }
 
-        message1 = "Font style set to ";
+        font_text = "Font style set to ";
         style = get_font_style("Arial");
-
-        // A switch case is needed for c++ as get_font_style returns an enum not a string
         switch (style)
         {
         case NORMAL_FONT:
-            message1 += "Normal";
+            font_text += "Normal";
             break;
         case BOLD_FONT:
-            message1 += "Bold";
+            font_text += "Bold";
             break;
         case ITALIC_FONT:
-            message1 += "Italic";
+            font_text += "Italic";
             break;
         case UNDERLINE_FONT:
-            message1 += "Underlined";
+            font_text += "Underlined";
             break;
         default:
-            message1 += "Unknown";
+            font_text += "Unknown";
             break;
         }
 
         // Clear screen and draw updated message
         clear_screen(COLOR_WHITE);
-        draw_text(message, COLOR_BLACK, "Arial", 20, 50, 20);
-        draw_text(message1, COLOR_BLACK, "Arial", 20, 50, 80);
+        draw_text(info_text, COLOR_BLACK, "Arial", 20, 50, 20);
+        draw_text(font_text, COLOR_BLACK, "Arial", 20, 50, 80);
         refresh_screen();
     }
 

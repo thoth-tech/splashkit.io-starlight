@@ -3,46 +3,43 @@ from splashkit import *
 open_window("Font Style", 800, 120)
 
 # Load font
-# Unlike C++/C#, Python SplashKit requires using the loaded font object directly.
-# Using the font name string like "Arial" will result in invalid font errors.
-# To fix this, we load the font and keep a reference to the font object (e.g., `loaded_font`)
-loaded_font = load_font("Arial", "Arial.TTF")
+load_font("Arial", "Arial.TTF")
 
 # Default message
-InitialText = "Press N for Normal, B for Bold, I for Italics, or U for Underlined."
-FontText = ""
-
+info_text = "Press N for Normal, B for Bold, I for Italics, or U for Underlined."
+font_text = ""
 
 while not quit_requested():
     process_events()
 
     # Check key presses and update font style
     if key_typed(KeyCode.n_key):
-        set_font_style(loaded_font, FontStyle.normal_font)
+        set_font_style_name_as_string("Arial", FontStyle.normal_font)
     elif key_typed(KeyCode.b_key):
-        set_font_style(loaded_font, FontStyle.bold_font)
+        set_font_style_name_as_string("Arial", FontStyle.bold_font)
     elif key_typed(KeyCode.i_key):
-        set_font_style(loaded_font, FontStyle.italic_font)
+        set_font_style_name_as_string("Arial", FontStyle.italic_font)
     elif key_typed(KeyCode.u_key):
-        set_font_style(loaded_font, FontStyle.underline_font)
+        set_font_style_name_as_string("Arial", FontStyle.underline_font)
     
-    FontText = "Font style set to "
-    style = get_font_style(loaded_font)
+    font_text = "Font style set to "
+    style = get_font_style_name_as_string("Arial")
+    
     if style == FontStyle.normal_font:
-        FontText += "Normal"
+        font_text += "Normal"
     elif style == FontStyle.bold_font:
-        FontText += "Bold"
+        font_text += "Bold"
     elif style == FontStyle.italic_font:
-        FontText += "Italic"
+        font_text += "Italic"
     elif style == FontStyle.underline_font:
-        FontText += "Underlined"
+        font_text += "Underlined"
     else:
-        FontText += "Unknown"
+        font_text += "Unknown"
     
     # Clear screen and draw updated message
     clear_screen_to_white()
-    draw_text(InitialText, color_black(), loaded_font, 20, 50, 20)
-    draw_text(FontText, color_black(), loaded_font, 20, 50, 80)
+    draw_text(info_text, color_black(), font_named("Arial"), 20, 50, 20)
+    draw_text(font_text, color_black(), font_named("Arial"), 20, 50, 80)
     # Refresh the window with the updated text
     refresh_screen()  
 
