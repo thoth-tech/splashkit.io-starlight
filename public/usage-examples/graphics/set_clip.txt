@@ -1,0 +1,1 @@
+Checking for set_clip function
