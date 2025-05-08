@@ -1,0 +1,5 @@
+#### Scale Matrix by a Point
+
+Create a scale matrix that scales x and y to different degrees using a Point.
+
+Uses the [scale_matrix](/api/physics/#scale-matrix-1) function.

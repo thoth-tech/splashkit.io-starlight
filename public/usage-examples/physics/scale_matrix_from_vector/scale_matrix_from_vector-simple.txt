@@ -1,0 +1,5 @@
+#### Scale a Matrix by a Vector
+
+Create a scale matrix that scales x and y to different degrees using a vector.
+
+Uses the [scale_matrix](/api/physics/#scale-matrix-2) function.
