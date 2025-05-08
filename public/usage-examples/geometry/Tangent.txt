@@ -1,0 +1,190 @@
+// widest_tangents.cpp
+#include "splashkit.h"
+#include <string>
+#include <cmath>
+
+bool tangent_points(const point_2d &from_pt, const circle &c, point_2d &p1, point_2d &p2)
+{
+    vector_2d v = vector_point_to_point(c.center, from_pt);
+    float d = vector_magnitude(v);
+    if (d < c.radius) return false;
+
+    float r = c.radius;
+    float angle_to_center = atan2(v.y, v.x);
+    float angle_offset = acos(r / d);
+    float angle1 = angle_to_center + angle_offset;
+    float angle2 = angle_to_center - angle_offset;
+
+    p1.x = c.center.x + r * cos(angle1);
+    p1.y = c.center.y + r * sin(angle1);
+    p2.x = c.center.x + r * cos(angle2);
+    p2.y = c.center.y + r * sin(angle2);
+    return true;
+}
+
+int main()
+{
+    open_window("Dynamic Tangents to Circle", 800, 600);
+    point_2d external_point = {600, 150};
+    point_2d tangent1, tangent2;
+    circle c; c.center = {400, 300}; c.radius = 100;
+
+    while (!window_close_requested("Dynamic Tangents to Circle"))
+    {
+        process_events();
+        external_point.x = mouse_x();
+        external_point.y = mouse_y();
+        bool valid_tangents = tangent_points(external_point, c, tangent1, tangent2);
+        clear_screen(COLOR_WHITE);
+        draw_circle(COLOR_BLACK, c);
+        fill_circle(COLOR_RED, external_point.x, external_point.y, 5);
+        if (valid_tangents)
+        {
+            fill_circle(COLOR_BLUE, tangent1.x, tangent1.y, 5);
+            fill_circle(COLOR_BLUE, tangent2.x, tangent2.y, 5);
+            draw_line(COLOR_GREEN, external_point, tangent1);
+            draw_line(COLOR_GREEN, external_point, tangent2);
+        }
+        std::string coord_text = "External Point: (" + std::to_string((int)external_point.x) + ", " + std::to_string((int)external_point.y) + ")";
+        draw_text(coord_text, COLOR_BLACK, "Arial", 16, 10, 10);
+        refresh_screen(60);
+    }
+
+    return 0;
+}
+
+
+# widest_tangents.py
+from splashkit import *
+import math
+
+def tangent_points(from_pt, c):
+    v = vector_point_to_point(c.center, from_pt)
+    d = math.sqrt(v.x**2 + v.y**2)
+    if d < c.radius:
+        return False, None, None
+    r = c.radius
+    angle_to_center = math.atan2(v.y, v.x)
+    angle_offset = math.acos(r / d)
+    angle1 = angle_to_center + angle_offset
+    angle2 = angle_to_center - angle_offset
+    p1 = point_at(c.center.x + r * math.cos(angle1), c.center.y + r * math.sin(angle1))
+    p2 = point_at(c.center.x + r * math.cos(angle2), c.center.y + r * math.sin(angle2))
+    return True, p1, p2
+
+open_window("Dynamic Tangents", 800, 600)
+c = circle_at(point_at(400, 300), 100)
+
+while not window_close_requested("Dynamic Tangents"):
+    process_events()
+    from_pt = point_at(mouse_x(), mouse_y())
+    valid, p1, p2 = tangent_points(from_pt, c)
+    clear_screen(Color.White)
+    draw_circle(Color.Black, c)
+    fill_circle(Color.Red, from_pt.x, from_pt.y, 5)
+    if valid:
+        fill_circle(Color.Blue, p1.x, p1.y, 5)
+        fill_circle(Color.Blue, p2.x, p2.y, 5)
+        draw_line(Color.Green, from_pt, p1)
+        draw_line(Color.Green, from_pt, p2)
+    draw_text(f"External Point: ({int(from_pt.x)}, {int(from_pt.y)})", Color.Black, 10, 10)
+    refresh_screen(60)
+
+
+// WidestTangentApp.cs (OOP)
+using SplashKitSDK;
+
+public class WidestTangentApp
+{
+    private Circle _circle;
+    private Point2D _mouse;
+    private Point2D _p1, _p2;
+
+    public WidestTangentApp()
+    {
+        _circle.Center = new Point2D() { X = 400, Y = 300 };
+        _circle.Radius = 100;
+    }
+
+    public bool TangentPoints(Point2D fromPt, out Point2D p1, out Point2D p2)
+    {
+        Vector2D v = SplashKit.VectorPointToPoint(_circle.Center, fromPt);
+        float d = SplashKit.VectorMagnitude(v);
+        p1 = new Point2D(); p2 = new Point2D();
+        if (d < _circle.Radius) return false;
+
+        float angle = (float)Math.Atan2(v.Y, v.X);
+        float offset = (float)Math.Acos(_circle.Radius / d);
+
+        float a1 = angle + offset;
+        float a2 = angle - offset;
+
+        p1.X = _circle.Center.X + _circle.Radius * (float)Math.Cos(a1);
+        p1.Y = _circle.Center.Y + _circle.Radius * (float)Math.Sin(a1);
+        p2.X = _circle.Center.X + _circle.Radius * (float)Math.Cos(a2);
+        p2.Y = _circle.Center.Y + _circle.Radius * (float)Math.Sin(a2);
+        return true;
+    }
+
+    public void Run()
+    {
+        SplashKit.OpenWindow("C# Tangent OOP", 800, 600);
+        while (!SplashKit.WindowCloseRequested("C# Tangent OOP"))
+        {
+            SplashKit.ProcessEvents();
+            _mouse = new Point2D() { X = SplashKit.MouseX(), Y = SplashKit.MouseY() };
+            bool valid = TangentPoints(_mouse, out _p1, out _p2);
+
+            SplashKit.ClearScreen(Color.White);
+            SplashKit.DrawCircle(Color.Black, _circle);
+            SplashKit.FillCircle(Color.Red, _mouse.X, _mouse.Y, 5);
+            if (valid)
+            {
+                SplashKit.FillCircle(Color.Blue, _p1.X, _p1.Y, 5);
+                SplashKit.FillCircle(Color.Blue, _p2.X, _p2.Y, 5);
+                SplashKit.DrawLine(Color.Green, _mouse, _p1);
+                SplashKit.DrawLine(Color.Green, _mouse, _p2);
+            }
+            SplashKit.DrawText($"External Point: ({(int)_mouse.X}, {(int)_mouse.Y})", Color.Black, 10, 10);
+            SplashKit.RefreshScreen(60);
+        }
+    }
+}
+
+
+// WidestTangentTopLevel.cs
+using SplashKitSDK;
+
+SplashKit.OpenWindow("C# Tangents Top Level", 800, 600);
+Circle c; c.Center = new Point2D() { X = 400, Y = 300 }; c.Radius = 100;
+while (!SplashKit.WindowCloseRequested("C# Tangents Top Level"))
+{
+    SplashKit.ProcessEvents();
+    Point2D m = new Point2D() { X = SplashKit.MouseX(), Y = SplashKit.MouseY() };
+    Vector2D v = SplashKit.VectorPointToPoint(c.Center, m);
+    float d = SplashKit.VectorMagnitude(v);
+
+    SplashKit.ClearScreen(Color.White);
+    SplashKit.DrawCircle(Color.Black, c);
+    SplashKit.FillCircle(Color.Red, m.X, m.Y, 5);
+
+    if (d >= c.Radius)
+    {
+        float angle = (float)Math.Atan2(v.Y, v.X);
+        float offset = (float)Math.Acos(c.Radius / d);
+
+        float a1 = angle + offset;
+        float a2 = angle - offset;
+
+        Point2D p1 = new Point2D() { X = c.Center.X + c.Radius * (float)Math.Cos(a1), Y = c.Center.Y + c.Radius * (float)Math.Sin(a1) };
+        Point2D p2 = new Point2D() { X = c.Center.X + c.Radius * (float)Math.Cos(a2), Y = c.Center.Y + c.Radius * (float)Math.Sin(a2) };
+
+        SplashKit.FillCircle(Color.Blue, p1.X, p1.Y, 5);
+        SplashKit.FillCircle(Color.Blue, p2.X, p2.Y, 5);
+        SplashKit.DrawLine(Color.Green, m, p1);
+        SplashKit.DrawLine(Color.Green, m, p2);
+    }
+
+    SplashKit.DrawText($"External Point: ({(int)m.X}, {(int)m.Y})", Color.Black, 10, 10);
+    SplashKit.RefreshScreen(60);
+}
