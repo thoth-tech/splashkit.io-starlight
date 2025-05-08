@@ -1,0 +1,22 @@
+This project demonstrates the function: add_column_relative(double width)
+
+Purpose:
+- Visually simulate a UI layout where columns increase in width by percentage.
+- The container is represented as 50 characters wide in the console.
+
+How It Works:
+- 0.2 = 20% of the container width → 10 characters
+- 1.0 = 100% of the container width → 50 characters
+- A bar of '=' symbols visually represents this.
+
+Languages Included:
+- C++: Uses standard I/O and string manipulation
+- C#: Provided both top-level (minimal) and OOP formats
+- Python: Uses a for-loop and basic string multiplication
+
+All implementations show the same output:
+[==========] 20%
+[====================] 40%
+[==============================] 60%
+[========================================] 80%
+[==================================================] 100%
