@@ -1,25 +1,22 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-        // Open a new window with the title "Option Flip Y" and dimensions 600x600
-        Window window = OpenWindow("Option Flip Y ", 600, 600);
+  
+Window window = OpenWindow("Option Flip Y ", 600, 600);
 
-        // Load a bitmap image named "Player" from the file "character.png"
-        Bitmap bmp = LoadBitmap("Landscape", "landscape.png");
 
-        // Draw the original bitmap image at position (100, 300)
-        DrawBitmap(bmp, 100, 300); 
+Bitmap bmp = LoadBitmap("Landscape", "landscape.png");
 
-        // Draw the bitmap image flipped horizontally at position (400, 300)
-        DrawBitmap(bmp, 400, 300, OptionFlipY());
+// Draw the original bitmap image at position (100, 300)
+DrawBitmap(bmp, 100, 300); 
 
-        // Refresh the screen to display the drawings
-        RefreshScreen();
+// Draw the bitmap image flipped horizontally at position (400, 300)
+DrawBitmap(bmp, 400, 300, OptionFlipY());
+       
+RefreshScreen();
+     
+Delay(5000);
 
-        // Wait for 5 seconds before closing the window
-        Delay(5000);
-
-        // Close all open windows
-        CloseAllWindows();
+CloseAllWindows();
     
 

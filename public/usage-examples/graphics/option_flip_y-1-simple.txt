@@ -1,4 +1,2 @@
-#### Option Flip Y
-
 The following code shows to flip an image of a landscape.
 
