@@ -1,0 +1,5 @@
+#### Calculating Scalar Product Between Two Vectors
+
+Calculates the dot product (scalar product) between two vectors, returning a scalar value. If the result is 0.0 it means that the vectors are orthogonal (at right angles to each other). If the provided vectors are unit vectors (length of 1.0) and the dot product is 1.0, it means that the vectors are parallel.
+
+Uses the [dot_product](/api/physics/#dot-product) function.

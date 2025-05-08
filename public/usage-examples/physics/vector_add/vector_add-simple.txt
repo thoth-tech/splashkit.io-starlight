@@ -1,0 +1,5 @@
+#### Vector Addition
+
+Add two vectors together to get a resulting vector. 
+
+Uses the [vector_add](/api/physics/#vector-add) function.
