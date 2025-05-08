@@ -17,13 +17,13 @@ namespace FadeMusicOutExample
             music.Play();
 
             // Wait 1 second before fadeout
-            SplashKit.Delay(1000);
+            SplashKit.Delay(5000);
 
             // Fade music out over 3 seconds
-            SplashKit.FadeMusicOut(3000);
+            SplashKit.FadeMusicOut(5000);
 
             // Hold program for 4 seconds
-            SplashKit.Delay(4000);
+            SplashKit.Delay(10000);
 
             // Free resources
             SplashKit.FreeAllMusic();

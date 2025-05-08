@@ -9,13 +9,13 @@ load_music("adventure", "time_for_adventure.mp3")
 play_music_named("adventure")
 
 # Wait 1 second before fadeout
-delay(1000)
+delay(5000)
 
 # Fade music out over 3 seconds
-fade_music_out(3000)
+fade_music_out(5000)
 
 # Hold program for 4 seconds
-delay(4000)
+delay(10000)
 
 # Free resources
 free_all_music()
