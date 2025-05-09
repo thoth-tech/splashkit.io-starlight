@@ -1,6 +1,4 @@
-Title: Circle Collision Detection and Movement Example
-
-Description:Title: Circle Collision Detection and Movement Example
+Title: Circle Intersection Detection Example
 
 Description:
-This example demonstrates how to use SplashKit to create a simple interactive program where a player-controlled circle moves within window boundaries and avoids a bouncing obstacle. It showcases real-time collision detection using circular geometry and smooth animation using basic physics and input handling.
+This example demonstrates how to use SplashKit to create a simple interactive program that detects when two circles overlap. One circle is static and centered in the window, while the other follows the mouse pointer. The program uses real-time collision detection by comparing the distance between the centers of the circles to the sum of their radii. The background color changes to red when the circles intersect, and the circles are drawn dynamically based on their positions.

@@ -2,96 +2,40 @@
 
 int main()
 {
-    // Open a game window
-    open_window("Avoid the Obstacle", 600, 400);
+    open_window("Circle Intersection (Values)", 600, 600);
 
-    // Player circle properties
-    float player_X = 300;
-    float player_Y = 200;
-    const float player_radius = 30;
-
-    // Obstacle circle properties
-    float obstacle_X = 100;
-    float obstacle_Y = 100;
-    const float obstacle_radius = 30;
-    float obstacle_speed_X = 0.3f;
-    float obstacle_speed_Y = 0.3f;
+    // Static circle parameters
+    point_2d center = screen_center();
+    const double c1_x = center.x;
+    const double c1_y = center.y;
+    const double c1_r = 80.0;
 
     while (!quit_requested())
     {
         process_events();
 
-        // Move the player circle using arrow keys
-        if (key_down(UP_KEY))
-        {
-            player_Y -= 0.5f;
-        }
-        if (key_down(DOWN_KEY))
-        {
-            player_Y += 0.5f;
-        }
-        if (key_down(LEFT_KEY))
-        {
-            player_X -= 0.5f;
-        }
-        if (key_down(RIGHT_KEY))
-        {
-            player_X += 0.5f;
-        }
+        // Mouse‐controlled circle parameters
+        point_2d mp = mouse_position();
+        const double c2_x = mp.x;
+        const double c2_y = mp.y;
+        const double c2_r = 50.0;
 
-        // Prevent the player from going off-screen (soft wall boundaries)
-        if (player_X - player_radius < 0)
-        {
-            player_X = player_radius;
-        }
-        if (player_X + player_radius > 600)
-        {
-            player_X = 600 - player_radius;
-        }
-        if (player_Y - player_radius < 0)
-        {
-            player_Y = player_radius;
-        }
-        if (player_Y + player_radius > 400)
-        {
-            player_Y = 400 - player_radius;
-        }
+        // Determines if two circles overlap by comparing the distance between their centers to the sum of their radii
+        bool hit = circles_intersect(
+            c1_x, c1_y, c1_r,
+            c2_x, c2_y, c2_r
+        );
 
-        // Move the obstacle
-        obstacle_X += obstacle_speed_X;
-        obstacle_Y += obstacle_speed_Y;
+        // Red background on hit, white otherwise
+        clear_screen(hit ? COLOR_RED : COLOR_WHITE);
 
-        R // Bounce the obstacle off window edges
-            if (obstacle_X - obstacle_radius < 0 || obstacle_X + obstacle_radius > 600)
-        {
-            obstacle_speed_X *= -1;
-            S
-        }
-        if (obstacle_Y - obstacle_radius < 0 || obstacle_Y + obstacle_radius > 400)
-        {
-            R obstacle_speed_Y *= -1;
-        }
+        // Draw both circles by raw values
+        fill_circle(COLOR_BLUE,  c1_x, c1_y, c1_r);
+        fill_circle(COLOR_GREEN, c2_x, c2_y, c2_r);
 
-        // Change background color to red if a collision is detected, otherwise white
-        if (circles_intersect(player_X, player_Y, player_radius, obstacle_X, obstacle_Y, obstacle_radius))
-        {
-            R clear_screen(COLOR_RED);
-        }
-        else
-        {
-            clear_screen(COLOR_WHITE);
-        }
-
-        // Draw the player and the obstacle
-        fill_circle(COLOR_BLUE, player_X, player_Y, player_radius);
-        fill_circle(COLOR_RED, obstacle_X, obstacle_Y, obstacle_radius);
-
-        R // Update the screen and delay for smooth animation
-            refresh_screen(60);
+        refresh_screen(60);
     }
 
-    // close all open windows
     close_all_windows();
-
     return 0;
 }
