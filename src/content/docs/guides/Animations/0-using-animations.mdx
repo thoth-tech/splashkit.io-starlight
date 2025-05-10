@@ -759,17 +759,11 @@ from splashkit import *
 open_window("Animation Test", 120, 120)
 
 # # We could load all of the resources in a bundle
-# load_resource_bundle("dance bundle", "dance_bundle.txt")
+load_resource_bundle("dance bundle", "dance_bundle.txt")
 
 # # Then access by name
-# dance_script = animation_script_named("WalkingScript")
-# frog = bitmap_named("FrogBmp")
-
-# Loading them separately
-
-# Load image and set its cell details
-frog = load_bitmap("FrogBmp", "Frog.png")
-bitmap_set_cell_details(frog, 73, 105, 4, 4, 16)  # cell width, height, cols, rows, count
+dance_script = animation_script_named("WalkingScript")
+frog = bitmap_named("FrogBmp")
 
 # Load the animation script
 dance_script = load_animation_script("WalkingScript", "kermit.txt")
