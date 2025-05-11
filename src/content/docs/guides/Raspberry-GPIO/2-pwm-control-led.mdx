@@ -4,7 +4,7 @@ description: Pulse Width Modulation is a technique in which we emulate analog si
 
 category: Guides
 author: Jonathan Tynan
-lastupdated: Apr 27 2024
+lastupdated: May 11 2025
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -103,20 +103,20 @@ Below is an example program to iterate over the entire range of frequencies avai
                           320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
       const int pwm_range = 255;
       raspi_init();
-      pin led_pin = PIN_11;
+      gpio_pin led_pin = PIN_11;
       raspi_set_mode(led_pin, GPIO_OUTPUT);
       raspi_set_pwm_range(led_pin, pwm_range);
       raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
       for(int i = 0; i < 18; i++)
       {
           write("At Frequency: ");
-          write_line(freq[i]);
-          raspi_set_pwm_frequency(led_pin, freq[i]);
+          write_line(freqs[i]);
+          raspi_set_pwm_frequency(led_pin, freqs[i]);
           delay(1000);
       }
       raspi_cleanup();
       return 0;
-  }
+    }
   ```
 
 </TabItem>
@@ -135,7 +135,7 @@ Lets break down this code and look at it in sections.
                           320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
       const int pwm_range = 255;
       raspi_init();
-      pin led_pin = PIN_11;
+      gpio_pin led_pin = PIN_11;
       raspi_set_mode(led_pin, GPIO_OUTPUT);
       ```
 
@@ -168,8 +168,8 @@ Lets break down this code and look at it in sections.
       for(int i = 0; i < 18; i++)
       {
           write("At Frequency: ");
-          write_line(freq[i]);
-          raspi_set_pwm_frequency(led_pin, freq[i]);
+          write_line(freqs[i]);
+          raspi_set_pwm_frequency(led_pin, freqs[i]);
           delay(1000);
       }
       ```
