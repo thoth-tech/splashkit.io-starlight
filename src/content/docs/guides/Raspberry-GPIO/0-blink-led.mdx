@@ -3,7 +3,7 @@ title: Get Started with SplashKit GPIO
 description: General-purpose input/output, or GPIO, pins are a type of pin found on many microcontrollers that can be used for a variety of purposes. In this guide we use them to control the state of an LED
 category: Guides
 author: Jonathan Tynan
-lastupdated: December 2024
+lastupdated: May 2025
 ---
 
 import { Tabs, TabItem, Steps } from "@astrojs/starlight/components";
@@ -115,6 +115,11 @@ some output like the following:
 gpio_init() must be called before any other GPIO functions
 ```
 
+or
+
+```shell
+ERROR [default] Pigpio error: bad connect.
+```
 We can check if its running by using the following command:
 
 ```shell
@@ -147,7 +152,7 @@ blinks an LED on and off.
   int main()
   {
       raspi_init();
-      pins led_pin = PIN_11;
+      gpio_pin led_pin = PIN_11;
       raspi_set_mode(led_pin, GPIO_OUTPUT);
 
       open_window("dummy_window", 1, 1);
@@ -177,16 +182,16 @@ using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 RaspiInit();
-Pins ledPin = (Pins)11;
-RaspiSetMode(led_pin, (PinModes) 1);
+GpioPin ledPin = (GpioPin) 11;
+RaspiSetMode(ledPin, (GpioPinMode) 1);
 
 OpenWindow("dummy_window", 1, 1);
 while(!AnyKeyPressed())
 {
     ProcessEvents();
-    RaspiWrite(led_pin, (PinState) 1);
+    RaspiWrite(ledPin, (GpioPinValue) 1);
     Delay(500);
-    RaspiWrite(led_pin, (PinState) 0);
+    RaspiWrite(ledPin, (GpioPinValue) 0);
     Delay(500);
 }
 
@@ -207,16 +212,16 @@ namespace RaspberryPiBlinkingLED
         public static void Main()
         {
             SplashKit.RaspiInit();
-            Pins ledPin = (Pins)11;
-            SplashKit.RaspiSetMode(ledPin, (PinModes)1);
+            GpioPin ledPin = GpioPin.Pin11;
+            SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
 
             SplashKit.OpenWindow("dummy_window", 1, 1);
             while (!SplashKit.AnyKeyPressed())
             {
                 SplashKit.ProcessEvents();
-                SplashKit.RaspiWrite(ledPin, (PinValues)1);
+                SplashKit.RaspiWrite(ledPin, GpioPinValue.GpioHigh);
                 SplashKit.Delay(500);
-                SplashKit.RaspiWrite(ledPin, (PinValues)0);
+                SplashKit.RaspiWrite(ledPin, GpioPinValue.GpioLow);
                 SplashKit.Delay(500);
             }
 
@@ -244,7 +249,7 @@ To understand this code better, lets break it down and explore each section.
 
     ```cpp
     raspi_init();
-    pins led_pin = PIN_11;
+    gpio_pin led_pin = PIN_11;
     raspi_set_mode(led_pin, GPIO_OUTPUT);
     ```
 
@@ -257,8 +262,8 @@ To understand this code better, lets break it down and explore each section.
 
     ```csharp
     RaspiInit();
-    Pins ledPin = (Pins)11;
-    RaspiSetMode(led_pin, (PinModes) 1);
+    GpioPin ledPin = (GpioPin) 11;
+    RaspiSetMode(ledPin, (GpioPinMode) 1);
     ```
 
     </TabItem>
@@ -266,8 +271,8 @@ To understand this code better, lets break it down and explore each section.
 
     ```csharp
     SplashKit.RaspiInit();
-    Pins ledPin = (Pins)11;
-    SplashKit.RaspiSetMode(ledPin, (PinModes)1);
+    GpioPin ledPin = GpioPin.Pin11;
+    SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
     ```
 
     </TabItem>
@@ -349,9 +354,9 @@ To understand this code better, lets break it down and explore each section.
     <TabItem label="Top-level Statements">
 
     ```csharp
-    RaspiWrite(led_pin, (PinState) 1);
+    RaspiWrite(ledPin, (GpioPinValue) 1);
     Delay(500);
-    RaspiWrite(led_pin, (PinState) 0);
+    RaspiWrite(ledPin, (GpioPinValue) 0);
     Delay(500);
     ```
 
@@ -359,9 +364,9 @@ To understand this code better, lets break it down and explore each section.
     <TabItem label="Object-Oriented">
 
     ```csharp
-    SplashKit.RaspiWrite(ledPin, (PinValues)1);
+    SplashKit.RaspiWrite(ledPin, GpioPinValue.GpioHigh);
     SplashKit.Delay(500);
-    SplashKit.RaspiWrite(ledPin, (PinValues)0);
+    SplashKit.RaspiWrite(ledPin, GpioPinValue.GpioLow);
     SplashKit.Delay(500);
     ```
 
