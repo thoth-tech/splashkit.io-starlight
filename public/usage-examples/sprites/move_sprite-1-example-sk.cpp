@@ -2,47 +2,37 @@
 
 int main()
 {
-    // Open the main game window
-    open_window("2D Player movement", 800, 600);
+    open_window("Ball Throw with Mouse", 800, 600);
 
-    // Load the player bitmap from file
-    bitmap player_bitmap = load_bitmap("player", "player_sprite.png");
+    // Load the ball bitmap
+    bitmap ball_bitmap = load_bitmap("ball", "ball_sprite.png");
+    sprite ball = create_sprite(ball_bitmap);
 
-    // Create a sprite for the player
-    sprite player_sprite = create_sprite(player_bitmap);
+    // Place the ball on the bottom left
+    sprite_set_x(ball, 0);
+    sprite_set_y(ball, 350);
 
-    // Position the sprite in the center of the window
-    sprite_set_x(player_sprite, 400);
-    sprite_set_y(player_sprite, 300);
+    vector_2d velocity = vector_to(0, 0);
 
     while (!quit_requested())
     {
         process_events();
 
-        // Move the sprite based on key input
-        vector_2d movement_vector = vector_to(0, 0);
+        // Throw the ball toward the mouse when clicked
+        if (mouse_clicked(LEFT_BUTTON))
+        {
+            point_2d ball_pos = sprite_center_point(ball);
+            point_2d target = mouse_position();
+            vector_2d direction = unit_vector(vector_point_to_point(ball_pos, target));
 
-        if (key_down(W_KEY))
-        {
-            movement_vector.y -= 5;
-        }
-        if (key_down(S_KEY))
-        {
-            movement_vector.y += 5;
-        }
-        if (key_down(A_KEY))
-        {
-            movement_vector.x -= 5;
-        }
-        if (key_down(D_KEY))
-        {
-            movement_vector.x += 5;
+            velocity = vector_multiply(direction, 8); // adjust throw strength
         }
 
-        move_sprite(player_sprite, movement_vector);
+        // Move the ball with current velocity
+        move_sprite(ball, velocity);
 
         clear_screen(COLOR_WHITE);
-        draw_sprite(player_sprite);
+        draw_sprite(ball);
         refresh_screen(60);
     }
 

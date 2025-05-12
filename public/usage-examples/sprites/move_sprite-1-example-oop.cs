@@ -6,47 +6,37 @@ namespace MoveSpriteExample
     {
         public static void Main()
         {
-            // Open the main game window
-            SplashKit.OpenWindow("Sprite Movement Example", 800, 600);
+            SplashKit.OpenWindow("Ball Throw with Mouse", 800, 600);
 
-            // Load the player bitmap from file
-            Bitmap playerBitmap = SplashKit.LoadBitmap("player", "player_sprite.png");
+            // Load the ball bitmap
+            Bitmap ballBitmap = SplashKit.LoadBitmap("ball", "ball_sprite.png");
+            Sprite ball = SplashKit.CreateSprite(ballBitmap);
 
-            // Create a sprite for the player
-            Sprite playerSprite = SplashKit.CreateSprite(playerBitmap);
+            // Center the ball on the screen
+            SplashKit.SpriteSetX(ball, 0);
+            SplashKit.SpriteSetY(ball, 350);
 
-            // Position the sprite in the center of the window
-            SplashKit.SpriteSetX(playerSprite, 400);
-            SplashKit.SpriteSetY(playerSprite, 300);
+            Vector2D velocity = new Vector2D();
 
             while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
 
-                // Move the sprite based on key input
-                Vector2D movementVector = new Vector2D();
+                // Throw the ball toward the mouse when clicked
+                if (SplashKit.MouseClicked(MouseButton.LeftButton))
+                {
+                    Point2D ballPos = SplashKit.SpriteCenterPoint(ball);
+                    Point2D target = SplashKit.MousePosition();
+                    Vector2D direction = SplashKit.UnitVector(SplashKit.VectorPointToPoint(ballPos, target));
 
-                if (SplashKit.KeyDown(KeyCode.WKey))
-                {
-                    movementVector.Y -= 5;
-                }
-                if (SplashKit.KeyDown(KeyCode.SKey))
-                {
-                    movementVector.Y += 5;
-                }
-                if (SplashKit.KeyDown(KeyCode.AKey))
-                {
-                    movementVector.X -= 5;
-                }
-                if (SplashKit.KeyDown(KeyCode.DKey))
-                {
-                    movementVector.X += 5;
+                    velocity = SplashKit.VectorMultiply(direction, 8); // throw strength
                 }
 
-                SplashKit.MoveSprite(playerSprite, movementVector);
+                // Move the ball
+                SplashKit.MoveSprite(ball, velocity);
 
                 SplashKit.ClearScreen(Color.White);
-                SplashKit.DrawSprite(playerSprite);
+                SplashKit.DrawSprite(ball);
                 SplashKit.RefreshScreen(60);
             }
         }

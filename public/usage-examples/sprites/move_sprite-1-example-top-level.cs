@@ -1,47 +1,36 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-// Open the main game window
-OpenWindow("2D Player movement", 800, 600);
+OpenWindow("Ball Throw with Mouse", 800, 600);
 
-// Load the player bitmap from file
-Bitmap playerBitmap = LoadBitmap("player", "player_sprite.png");
+// Load the ball bitmap
+Bitmap ballBitmap = LoadBitmap("ball", "ball_sprite.png");
+Sprite ball = CreateSprite(ballBitmap);
 
-// Create a sprite for the player
-Sprite playerSprite = CreateSprite(playerBitmap);
+// Center the ball on the screen
+SpriteSetX(ball, 0);
+SpriteSetY(ball, 350);
 
-// Position the sprite in the center of the window
-SpriteSetX(playerSprite, 400);
-SpriteSetY(playerSprite, 300);
+Vector2D velocity = new Vector2D();
 
-// Main game loop
 while (!QuitRequested())
 {
     ProcessEvents();
 
-    // Move the sprite based on key input
-    Vector2D movementVector = new Vector2D();
+    // Throw the ball toward the mouse when clicked
+    if (MouseClicked(MouseButton.LeftButton))
+    {
+        Point2D ballPos = SpriteCenterPoint(ball);
+        Point2D target = MousePosition();
+        Vector2D direction = UnitVector(VectorPointToPoint(ballPos, target));
 
-    if (KeyDown(KeyCode.WKey))
-    {
-        movementVector.Y -= 5;
-    }
-    if (KeyDown(KeyCode.SKey))
-    {
-        movementVector.Y += 5;
-    }
-    if (KeyDown(KeyCode.AKey))
-    {
-        movementVector.X -= 5;
-    }
-    if (KeyDown(KeyCode.DKey))
-    {
-        movementVector.X += 5;
+        velocity = VectorMultiply(direction, 8); // adjust throw strength
     }
 
-    MoveSprite(playerSprite, movementVector);
+    // Move the ball
+    MoveSprite(ball, velocity);
 
     ClearScreen(Color.White);
-    DrawSprite(playerSprite);
+    DrawSprite(ball);
     RefreshScreen(60);
 }

@@ -1,36 +1,30 @@
 from splashkit import *
 
-# Open the main game window
-open_window("2D Player movement", 800, 600)
+open_window("Ball Throw with Mouse", 800, 600)
 
-# Load the player bitmap from file
-player_bitmap = load_bitmap("player", "player_sprite.png")
+# Load the ball bitmap
+ball_bitmap = load_bitmap("ball", "ball_sprite.png")
+ball = create_sprite(ball_bitmap)
 
-# Create a sprite for the player
-player_sprite = create_sprite(player_bitmap)
+# Center the ball on screen
+sprite_set_x(ball, 0)
+sprite_set_y(ball, 350)
 
-# Position the sprite in the center of the window
-sprite_set_x(player_sprite, 400)
-sprite_set_y(player_sprite, 300)
+velocity = vector_to(0, 0)
 
-# Main game loop
 while not quit_requested():
     process_events()
 
-    # Move the sprite based on key input
-    movement_vector = vector_to(0, 0)
+    # Throw the ball toward the mouse when clicked
+    if mouse_clicked(MouseButton.left_button):
+        ball_pos = sprite_center_point(ball)
+        target = mouse_position()
+        direction = unit_vector(vector_point_to_point(ball_pos, target))
 
-    if key_down(KeyCode.w_key):
-        movement_vector.y -= 5
-    if key_down(KeyCode.s_key):
-        movement_vector.y += 5
-    if key_down(KeyCode.a_key):
-        movement_vector.x -= 5
-    if key_down(KeyCode.d_key):
-        movement_vector.x += 5
+        velocity = vector_multiply(direction, 8)  # Adjust throw force
 
-    move_sprite_by_vector(player_sprite, movement_vector)
+    move_sprite_by_vector(ball, velocity)
 
     clear_screen(color_white())
-    draw_sprite(player_sprite)
+    draw_sprite(ball)
     refresh_screen_with_target_fps(60)
