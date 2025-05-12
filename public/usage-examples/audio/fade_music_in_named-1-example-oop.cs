@@ -15,7 +15,7 @@ namespace FadeMusicInNamedExample
             // Load music file
             SplashKit.LoadMusic("adventure", "time_for_adventure.mp3");
 
-            // Fade music in over 2 seconds
+            // Fade music in over 5 seconds
             SplashKit.FadeMusicIn("adventure", 5000);
 
             // Hold program for 10 seconds

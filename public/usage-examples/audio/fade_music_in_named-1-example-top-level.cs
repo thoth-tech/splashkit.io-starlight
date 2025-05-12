@@ -9,7 +9,7 @@ if (!AudioReady())
 // Load music file
 LoadMusic("adventure", "time_for_adventure.mp3");
 
-// Fade music in over 2 seconds
+// Fade music in over 5 seconds
 FadeMusicIn("adventure", 5000);
 
 // Hold program for 10 seconds

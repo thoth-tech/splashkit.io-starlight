@@ -11,7 +11,7 @@ int main()
     // Load music file
     load_music("adventure", "time_for_adventure.mp3");
 
-    // Fade music in over 2 seconds
+    // Fade music in over 5 seconds
     fade_music_in("adventure", 5000);
 
     // Hold program for 10 seconds
