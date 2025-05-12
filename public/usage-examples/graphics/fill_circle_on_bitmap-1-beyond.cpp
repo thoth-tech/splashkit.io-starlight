@@ -1,9 +1,41 @@
-// fill_circle_on_bitmap-1-example-beyond.cpp
-// Beyond SplashKit version using SDL2
-// Draws a rainbow caterpillar onto an off-screen bitmap
-
+#ifdef APPLE
+#include <SDL.h>
+#else
 #include <SDL2/SDL.h>
-#include <cmath>
+#endif
+#include <iostream>
+
+// Function to create an SDL window with error handling
+SDL_Window* sdl_open_window(const char* window_title, const int width, const int height)
+{
+    // Declare Variables
+    SDL_Window* window = nullptr;
+
+    // Check for successful initialisation
+    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    {
+        std::cout << "SDL could not be initialized: " << SDL_GetError() << std::endl;
+        exit(1);
+    }
+
+    // Create Window
+    window = SDL_CreateWindow(
+        window_title,
+        SDL_WINDOWPOS_CENTERED,
+        SDL_WINDOWPOS_CENTERED,
+        width,
+        height,
+        SDL_WINDOW_OPENGL);
+
+    // Error handling for window
+    if (window == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s\n", SDL_GetError());
+        exit(1);
+    }
+
+    return window;
+}
 
 // Function to draw a filled circle using midpoint algorithm
 void draw_filled_circle(SDL_Renderer* renderer, int cx, int cy, int radius, SDL_Color color)
@@ -25,10 +57,7 @@ void draw_filled_circle(SDL_Renderer* renderer, int cx, int cy, int radius, SDL_
 
 int main(int argc, char* argv[])
 {
-    SDL_Init(SDL_INIT_VIDEO);
-    SDL_Window* window = SDL_CreateWindow("Beyond SplashKit - Caterpillar",
-                                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                                          400, 200, SDL_WINDOW_SHOWN);
+    SDL_Window* window = sdl_open_window("Beyond SplashKit - Caterpillar", 400, 200);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     // Rainbow colors
@@ -50,7 +79,10 @@ int main(int argc, char* argv[])
     int y;
     for (int i = 0; i < 6; i++)
     {
-        y = (i % 2 == 0) ? 120 : 80;
+        if (i % 2 == 0)
+            y = 120;
+        else
+            y = 80;
         draw_filled_circle(renderer, x, y, 40, colors[i]);
         x += 60;
     }
