@@ -1,4 +1,5 @@
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
 namespace CurrentClipExample
 {
@@ -6,27 +7,34 @@ namespace CurrentClipExample
     {
         static void Main()
         {
-            var window = new Window("Current Clip Example", 400, 400);
-
-            //Clip the window to a 200×200 region at (100,100)
-            SplashKit.SetClip(100, 100, 200, 200);
+            OpenWindow("Current Clip Example", 400, 400);
 
             //Fill that region with red (with a rectangle)
-            SplashKit.FillRectangle(Color.Red, 100, 100, 200, 200);
+            var region = new Rectangle { X = 100, Y = 100, Width = 200, Height = 200 };
 
-            //Retrieve the clip bounds
-            var clip = SplashKit.CurrentClip();
+            while (!QuitRequested())
+            {
+                //Clip the window to the rectangle
+                SetClip(region);
 
-            //Exit out of the clip
-            SplashKit.PopClip();
+                //Fill that region with red
+                FillRectangle(Color.Red, region);
 
-            //Outline the old clip in green as a rectangle
-            SplashKit.DrawRectangle(Color.Green,
-                                    clip.X, clip.Y,
-                                    clip.Width, clip.Height);
+                //Retrieve the clip bounds
+                Rectangle clip = CurrentClip();
 
-            SplashKit.RefreshScreen();
-            SplashKit.Delay(5000);
+                //Exit out of the clip
+                PopClip();
+
+                //Outline the old clip in green as a rectangle
+                DrawRectangle(Color.Green,
+                                        clip.X, clip.Y,
+                                        clip.Width, clip.Height);
+
+                RefreshScreen();
+            }
+
+            CloseWindow("Current Clip Example");
         }
     }
 }

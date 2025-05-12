@@ -1,5 +1,1 @@
-1) Restrict drawing to an area
-2) Draw inside that clipped region.
-3) Retrieve the clip bounds with current_clip().
-4) Pop the clip (exit out of) to allow full‐window drawing again.
-5) Draw an outline of the original clip rectangle.
+Current Clip Example

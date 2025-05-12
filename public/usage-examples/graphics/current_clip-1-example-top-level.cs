@@ -1,21 +1,30 @@
+using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-var window = new Window("Current Clip Example", 400, 400);
-
-//Clip the window to a 200×200 region at (100,100)
-SetClip(100, 100, 200, 200);
+OpenWindow("Current Clip Example", 400, 400);
 
 //Fill that region with red (with a rectangle)
-FillRectangle(Color.Red, 100, 100, 200, 200);
+var region = new Rectangle { X = 100, Y = 100, Width = 200, Height = 200 };
 
-//Retrieve the clip bounds
-var clip = CurrentClip();
 
-//Exit out of the clip
-PopClip();
+while (!QuitRequested())
+{
+    //Clip the window to the rectangle
+    SetClip(region);
 
-//Outline the old clip in green as a rectangle
-DrawRectangle(Color.Green, clip.X, clip.Y, clip.Width, clip.Height);
+    //Fill that region with red
+    FillRectangle(Color.Red, region);
 
-RefreshScreen();
-Delay(5000);
+    //Retrieve the clip bounds
+    Rectangle clip = CurrentClip();
+
+    //Exit out of the clip
+    PopClip();
+
+    //Outline the old clip in green as a rectangle
+    DrawRectangle(Color.Green,clip.X, clip.Y, clip.Width, clip.Height);
+
+    RefreshScreen();
+}
+
+CloseWindow("Current Clip Example");
