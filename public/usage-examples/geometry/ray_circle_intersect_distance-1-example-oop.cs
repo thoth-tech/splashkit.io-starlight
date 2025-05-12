@@ -6,57 +6,40 @@ namespace RayCircleIntersectDistanceExample
     {
         public static void Main()
         {
-            // Create a window
-            Window window = new Window("Laser Collision with Circle", 800, 600);
+            SplashKit.OpenWindow("Ray-Circle Intersection Distance", 800, 600);
 
-            // Initialize player position
-            Point2D playerPos = SplashKit.PointAt(0, 0);
+            // Declare variables
+            Point2D rayOrigin = SplashKit.PointAt(0, 0);
+            Circle targetCircle = SplashKit.CircleAt(400, 300, 100);
+            Point2D mousePos;
+            Vector2D rayHeading;
+            float distanceToCircle;
 
-            // Variables to store the latest shot data
-            Point2D lastTarget = playerPos;
-            Vector2D lastDirection = SplashKit.VectorTo(0, 0);
-            float lastHitDistance = -1;
-
-            // Define the target circle
-            Circle targetCircle = new Circle()
-            {
-                Center = SplashKit.PointAt(400, 300),
-                Radius = 100
-            };
-
-            while (!window.CloseRequested)
+            while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
-                SplashKit.ClearScreen();
 
-                // Draw the target circle
+                // Calculate ray heading from origin to mouse
+                mousePos = SplashKit.MousePosition();
+                rayHeading = SplashKit.UnitVector(SplashKit.VectorPointToPoint(rayOrigin, mousePos));
+
+                // Find intersection distance between ray and circle
+                distanceToCircle = SplashKit.RayCircleIntersectDistance(rayOrigin, rayHeading, targetCircle);
+
+                // Draw scene
+                SplashKit.ClearScreen(Color.White);
                 SplashKit.DrawCircle(Color.Blue, targetCircle);
+                SplashKit.DrawLine(Color.Red, rayOrigin, mousePos);
 
-                // Fire a laser when the mouse is clicked
-                if (SplashKit.MouseClicked(MouseButton.LeftButton))
+                if (distanceToCircle > 0)
                 {
-                    // Update the target position based on the mouse position
-                    lastTarget = SplashKit.MousePosition();
-                    lastDirection = SplashKit.UnitVector(SplashKit.VectorPointToPoint(playerPos, lastTarget));
-
-                    // Check for intersection and calculate hit distance
-                    lastHitDistance = SplashKit.RayCircleIntersectDistance(playerPos, lastDirection, targetCircle);
+                    Point2D hitPoint = SplashKit.PointAt(
+                        rayOrigin.X + rayHeading.X * distanceToCircle,
+                        rayOrigin.Y + rayHeading.Y * distanceToCircle
+                    );
+                    SplashKit.FillCircle(Color.Green, hitPoint.X, hitPoint.Y, 5);
                 }
 
-                // If a shot has been made, draw the laser and hit point
-                if (lastHitDistance >= 0)
-                {
-                    // Draw the laser beam
-                    SplashKit.DrawLine(Color.Red, playerPos, lastTarget);
-
-                    // Draw the impact point
-                    if (lastHitDistance > 0)
-                    {
-                        SplashKit.FillCircle(Color.Green, playerPos.X + lastDirection.X * lastHitDistance, playerPos.Y + lastDirection.Y * lastHitDistance, 5);
-                    }
-                }
-
-                // Refresh the screen
                 SplashKit.RefreshScreen(60);
             }
         }

@@ -1,1 +1,1 @@
-Laser Collision with Circle
+Ray Collision with Circle

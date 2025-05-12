@@ -2,50 +2,36 @@
 
 int main()
 {
-    // Open a new window
-    open_window("Laser Collision with Circle", 800, 600);
+    open_window("Ray Collision with Circle", 800, 600);
 
-    // Initialize the player position
-    point_2d player_pos = point_at(0, 0);
-
-    // Variables to store the latest shot data
-    point_2d last_target = player_pos;
-    vector_2d last_direction = vector_to(0, 0);
-    float last_hit_distance = -1;
-
-    // Define the target circle
-    circle target = circle_at(point_at(400, 300), 100);
+    // Declare variables
+    point_2d ray_origin = point_at(0, 0);
+    circle target_circle = circle_at(point_at(400, 300), 100);
+    point_2d mouse_pos;
+    vector_2d ray_heading;
+    float distance_to_circle;
 
     while (!quit_requested())
     {
         process_events();
+
+        // Calculate ray heading from origin to mouse
+        mouse_pos = mouse_position();
+        ray_heading = unit_vector(vector_point_to_point(ray_origin, mouse_pos));
+
+        // Find intersection distance between ray and circle
+        distance_to_circle = ray_circle_intersect_distance(ray_origin, ray_heading, target_circle);
+
+        // Draw scene
         clear_screen(COLOR_WHITE);
+        draw_circle(COLOR_BLUE, target_circle);
+        draw_line(COLOR_RED, ray_origin, mouse_pos);
 
-        // Draw the target circle
-        draw_circle(COLOR_BLUE, target);
-
-        // Fire a laser when the mouse is clicked
-        if (mouse_clicked(LEFT_BUTTON))
+        if (distance_to_circle > 0)
         {
-            // Update the target position based on the mouse position
-            last_target = mouse_position();
-            last_direction = unit_vector(vector_point_to_point(player_pos, last_target));
-
-            // Check for intersection and calculate hit distance
-            last_hit_distance = ray_circle_intersect_distance(player_pos, last_direction, target);
-        }
-
-        // If a shot has been made, draw the laser and hit point
-        if (last_hit_distance >= 0)
-        {
-            // Draw the laser beam
-            draw_line(COLOR_RED, player_pos, last_target);
-
-            // Draw the impact point
-            if (last_hit_distance > 0)
-            {
-                fill_circle(COLOR_GREEN, player_pos.x + last_direction.x * last_hit_distance, player_pos.y + last_direction.y * last_hit_distance, 5);
-            }
+            point_2d hit_point = point_at(ray_origin.x + ray_heading.x * distance_to_circle,
+                                          ray_origin.y + ray_heading.y * distance_to_circle);
+            fill_circle(COLOR_GREEN, hit_point.x, hit_point.y, 5);
         }
 
         refresh_screen(60);
