@@ -1,0 +1,20 @@
+Add Column – Usage Example for Simulated add_column Function
+
+Description:
+This usage example visually demonstrates the concept of adding columns with varying widths using SplashKit. While the add_column function is not directly available in the SplashKit API for C++ and Python, this example simulates the behavior by drawing rectangles representing columns and labeling them appropriately.
+
+Each implementation (C++, Python, and C#) displays three columns labeled "Small", "Medium", and "Large", with different widths. This visually demonstrates how content can be organized in columnar layouts.
+
+Expected Output:
+A window will open (600x400) with a white background.
+You will see three columns displayed side by side:
+
+    The first column labeled "Small" with a width of 100 pixels.
+
+    The second column labeled "Medium" with a width of 200 pixels.
+
+    The third column labeled "Large" with a width of 300 pixels.
+
+Each column is filled with a light gray color, outlined with a black border, and has its label displayed near the top. The columns are horizontally aligned starting from the left side of the window.
+
+The program remains open until the window is manually closed.
