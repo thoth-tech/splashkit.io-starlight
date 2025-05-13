@@ -24,7 +24,7 @@ namespace RefreshScreen
             SplashKit.RefreshScreen();
             SplashKit.Delay(5000);
 
-            SplashKit.CloseAllWindows();
+            SplashKit.CloseAllWindows(); 
         }
     }
 }

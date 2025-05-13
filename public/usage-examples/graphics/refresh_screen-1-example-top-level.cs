@@ -18,4 +18,4 @@ FillTriangle(ColorRed(), 250, 300, 400, 150, 550, 300);
 RefreshScreen();
 Delay(5000);
 
-CloseAllWindows();
+CloseAllWindows(); 

@@ -22,5 +22,5 @@ int main()
 
     close_all_windows();
 
-    return 0;
+    return 0; 
 }
