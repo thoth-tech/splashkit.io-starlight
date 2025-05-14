@@ -1,50 +1,45 @@
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-// Open a window with a descriptive name
-SplashKit.OpenWindow("Point on line", 800, 600);
+// Create window
+Window window = new Window("Hover to Guess the Hidden Point", 800, 600);
 
-// Define a horizontal line from point (100, 300) to (700, 300)
-Point2D startPoint = SplashKit.PointAt(100, 300);
-Point2D endPoint = SplashKit.PointAt(700, 300);
-Line baseLine = SplashKit.LineFrom(startPoint, endPoint);
+// Define the base line and hidden point
+Line baseLine = LineFrom(PointAt(100, 300), PointAt(700, 300));
+Point2D hiddenPoint = PointAt(Rnd(100, 700), 300);
 
-// Random hidden point on the line
-double hiddenX = SplashKit.Rnd(100, 700);
-Point2D hiddenPoint = SplashKit.PointAt(hiddenX, 300);
-
-// Run until the user closes the window
-while (!SplashKit.WindowCloseRequested("Hover to Guess the Hidden Point"))
+while (!window.CloseRequested)
 {
-    // Update mouse and keyboard input
-    SplashKit.ProcessEvents();
+    // Process events and handle user input
+    ProcessEvents();
 
-    // Clear the screen before drawing
-    SplashKit.ClearScreen(Color.White);
+    // Clear the screen
+    ClearScreen(Color.White);
 
-    // Draw the black line
-    SplashKit.DrawLine(Color.Black, baseLine);
+    // Draw the base line
+    DrawLine(Color.Black, baseLine);
 
-    // Get current mouse position
-    Point2D mouse = SplashKit.MousePosition();
+    // Get mouse position
+    Point2D mouse = MousePosition();
 
-    // Check how close the mouse is to the hidden point
-    if (SplashKit.PointPointDistance(mouse, hiddenPoint) <= 8.0)
+    // Check if the mouse is close enough to the hidden point
+    if (PointPointDistance(mouse, hiddenPoint) <= 8.0)
     {
-        // User found the hidden point
-        SplashKit.DrawCircle(Color.Blue, hiddenPoint.X, hiddenPoint.Y, 5);
-        SplashKit.DrawText("You found the hidden point!", Color.Green, 260, 450);
+        DrawCircle(Color.Blue, hiddenPoint.X, hiddenPoint.Y, 5);
+        DrawText("You found the hidden point!", Color.Green, 260, 450);
     }
-    else if (SplashKit.PointOnLine(mouse, baseLine, 5.0f))
+    else if (PointOnLine(mouse, baseLine, 5.0f))
     {
-        // Mouse is on the line, but not on the hidden point
-        SplashKit.DrawText("You're on the line, but not on the hidden point.", Color.Red, 180, 450);
+        DrawText("You're on the line, but not on the hidden point.", Color.Red, 180, 450);
     }
     else
     {
-        // Mouse is not on the line
-        SplashKit.DrawText("Move your mouse over the line to find the hidden point!", Color.Black, 150, 450);
+        DrawText("Move your mouse over the line to find the hidden point!", Color.Black, 150, 450);
     }
 
-    // Show the new frame
-    SplashKit.RefreshScreen(60);
+    // Refresh the window with the updated screen
+    RefreshScreen(60);
 }
+
+// Close the window after the game ends
+CloseWindow(window);
