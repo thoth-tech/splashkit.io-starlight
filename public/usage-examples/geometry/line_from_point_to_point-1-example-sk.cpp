@@ -27,7 +27,6 @@ int main()
         draw_line(COLOR_RED, line);
         refresh_screen();
     }
-    
     close_all_windows();
     return 0;
 }

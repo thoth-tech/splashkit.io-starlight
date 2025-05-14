@@ -26,5 +26,4 @@ while (!window.CloseRequested)
     DrawLine(ColorRed(), line);
     RefreshScreen();
 }
-
 CloseAllWindows();
