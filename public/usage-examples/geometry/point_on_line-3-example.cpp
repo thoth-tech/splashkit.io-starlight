@@ -6,16 +6,16 @@ int main()
     open_window("Point on line", 800, 600);
 
     // Define a horizontal line from point (100, 300) to (700, 300)
-    point_2d startPoint = point_at(100, 300);
-    point_2d endPoint = point_at(700, 300);
-    line baseLine = line_from(startPoint, endPoint);
+    point_2d start_point = point_at(100, 300);
+    point_2d end_point = point_at(700, 300);
+    line base_line = line_from(start_point, end_point);
 
     // Random hidden point on the line
-    double hiddenX = rnd(100, 700);
-    point_2d hiddenPoint = point_at(hiddenX, 300);
+    double hidden_x = rnd(100, 700);
+    point_2d hidden_point = point_at(hidden_x, 300);
 
     // Run until the user closes the window
-    while (!window_close_requested("Hover to Guess the Hidden Point"))
+    while (!window_close_requested("Point on line"))
     {
         // Update mouse and keyboard input
         process_events();
@@ -24,19 +24,19 @@ int main()
         clear_screen(COLOR_WHITE);
 
         // Draw the black line
-        draw_line(COLOR_BLACK, baseLine);
+        draw_line(COLOR_BLACK, base_line);
 
         // Get current mouse position
         point_2d mouse = mouse_position();
 
         // Check how close the mouse is to the hidden point
-        if (point_point_distance(mouse, hiddenPoint) <= 8.0)
+        if (point_point_distance(mouse, hidden_point) <= 8.0)
         {
             // User found the hidden point
-            draw_circle(COLOR_BLUE, hiddenPoint.x, hiddenPoint.y, 5);
+            draw_circle(COLOR_BLUE, hidden_point.x, hidden_point.y, 5);
             draw_text("You found the hidden point!", COLOR_GREEN, 260, 450);
         }
-        else if (point_on_line(mouse, baseLine, 5.0f))
+        else if (point_on_line(mouse, base_line, 5.0f))
         {
             // Mouse is on the line, but not on the hidden point
             draw_text("You're on the line, but not on the hidden point.", COLOR_RED, 180, 450);
@@ -54,4 +54,3 @@ int main()
     // Close the window when done
     return 0;
 }
-
