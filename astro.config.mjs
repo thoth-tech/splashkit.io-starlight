@@ -8,6 +8,7 @@ import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax'
 import starlightBlog from 'starlight-blog'
 import starlightDocSearch from '@astrojs/starlight-docsearch';
+import remarkHeadingID from 'remark-heading-id';
 import { loadEnv } from "vite";
 
 const { DOCSEARCH_API_ID } = loadEnv(process.env.DOCSEARCH_API_ID, process.cwd(), "");
@@ -54,10 +55,10 @@ export default defineConfig({
         "/src/styles/background.css",
         "/src/styles/cards.css",
       ],
-      social: {
-        github: "https://github.com/splashkit",
-        youtube: 'https://www.youtube.com/@splashkit7674'
-      },
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/splashkit' },
+        { icon: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@splashkit7674' },
+      ],
       favicon: "/images/favicon.svg",
       logo: {
         src: "./src/assets/favicon.svg",
@@ -110,7 +111,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { label: "Overview", link: "guides/" },
-            { label: "Using SplashKit", autogenerate: { directory: "guides/Using-SplashKit" }, collapsed: true },
+            { label: "Using SplashKit", link: "guides/0-using-splashkit" },
             { label: "Animations", autogenerate: { directory: "guides/Animations" }, collapsed: true },
             { label: "Audio", autogenerate: { directory: "guides/Audio" }, collapsed: true },
             { label: "Camera", autogenerate: { directory: "guides/Camera" }, collapsed: true },
@@ -147,7 +148,7 @@ export default defineConfig({
 
   // Render mathematical equations using remark-math and rehype-mathjax
   markdown: {
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkMath, remarkHeadingID],
     rehypePlugins: [rehypeMathjax],
   },
 });
