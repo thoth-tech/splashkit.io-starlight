@@ -1,39 +1,56 @@
 using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
-// Create window
+// Open a window with a fixed title and size
 OpenWindow("Circle Quad Intersect Example", 800, 600);
 
-// Define 4 points (clockwise order)
-Point2D p1 = PointAt(300, 200); // top-left
-Point2D p2 = PointAt(500, 200); // top-right
-Point2D p3 = PointAt(500, 400); // bottom-right
-Point2D p4 = PointAt(300, 400); // bottom-left
+// Define the four corner points of the quad in clockwise order
+Point2D topLeft = PointAt(300, 200);
+Point2D topRight = PointAt(500, 200);
+Point2D bottomRight = PointAt(500, 400);
+Point2D bottomLeft = PointAt(300, 400);
 
-// Create quad using the points
-Quad fixedQuad = QuadFrom(p1, p2, p3, p4);
+// Create a quad using the four defined points
+Quad fixedQuad = QuadFrom(topLeft, topRight, bottomRight, bottomLeft);
 
+// Define a fixed radius for the mouse-following circle
 float radius = 30;
 
+// Main program loop — runs until the window is closed
 while (!WindowCloseRequested("Circle Quad Intersect Example"))
 {
+    // Handle all events (keyboard, mouse, window)
     ProcessEvents();
+
+    // Clear the screen with a dark background
     ClearScreen(Color.DarkSlateGray);
 
-    // Create circle following the mouse
-    Point2D pos = MousePosition();
-    Circle mouseCircle = CircleAt(pos.X, pos.Y, radius);
+    // Get the current position of the mouse
+    Point2D mouse = MousePosition();
 
-    // Check intersection
+    // Create a circle centered at the mouse position with the specified radius
+    Circle mouseCircle = CircleAt(mouse.X, mouse.Y, radius);
+
+    // Determine whether the circle intersects with the quad
     bool isIntersecting = CircleQuadIntersect(mouseCircle, fixedQuad);
 
-    // Draw the quad using 2 triangles
+    // Choose a fill color based on whether the intersection occurs
     Color fillColor = isIntersecting ? Color.Red : Color.Green;
-    FillTriangle(fillColor, p1.X, p1.Y, p2.X, p2.Y, p3.X, p3.Y);
-    FillTriangle(fillColor, p1.X, p1.Y, p4.X, p4.Y, p3.X, p3.Y);
 
-    // Draw circle
+    // Draw the quad using two filled triangles
+    FillTriangle(fillColor,
+        topLeft.X, topLeft.Y,
+        topRight.X, topRight.Y,
+        bottomRight.X, bottomRight.Y);
+
+    FillTriangle(fillColor,
+        topLeft.X, topLeft.Y,
+        bottomLeft.X, bottomLeft.Y,
+        bottomRight.X, bottomRight.Y);
+
+    // Draw the circle outline in white
     DrawCircle(Color.White, mouseCircle);
 
+    // Refresh the screen at 60 frames per second
     RefreshScreen(60);
 }
