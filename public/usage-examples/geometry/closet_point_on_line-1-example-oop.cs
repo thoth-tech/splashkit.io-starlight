@@ -1,49 +1,27 @@
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-namespace MagneticPointExample
+Window window = new Window("Magnetic Point", 600, 600);
+Line line = LineFrom(100, 100, 500, 400);
+
+while (!window.CloseRequested())
 {
-    public class MagneticPointApp
-    {
-        private Window _window;
-        private Line _line;
+    ProcessEvents();
 
-        public MagneticPointApp()
-        {
-            _window = new Window("Magnetic Point", 600, 600);
-            _line = SplashKit.LineFrom(100, 100, 500, 400);
-        }
+    Point2D mouse = MousePosition();
+    Point2D closest = ClosestPointOnLine(mouse, line);
 
-        public void Run()
-        {
-            while (!_window.CloseRequested)
-            {
-                SplashKit.ProcessEvents();
+    ClearScreen(COLOR_WHITE);
+    DrawLine(COLOR_BLACK, line);
+    FillCircle(COLOR_BLUE, mouse.X, mouse.Y, 5);
+    FillCircle(COLOR_RED, closest.X, closest.Y, 5);
+    DrawLine(COLOR_GRAY, mouse.X, mouse.Y, closest.X, closest.Y);
+    DrawText("Mouse: " + mouse.ToString(), COLOR_BLACK, 20, 520);
+    DrawText("Closest: " + closest.ToString(), COLOR_RED, 20, 540);
 
-                Point2D mouse = SplashKit.MousePosition();
-                Point2D closest = SplashKit.ClosestPointOnLine(mouse, _line);
-
-                SplashKit.ClearScreen(Color.White);
-                SplashKit.DrawLine(Color.Black, _line);
-                SplashKit.FillCircle(Color.Blue, mouse.X, mouse.Y, 5);
-                SplashKit.FillCircle(Color.Red, closest.X, closest.Y, 5);
-                SplashKit.DrawLine(Color.Gray, mouse.X, mouse.Y, closest.X, closest.Y);
-                SplashKit.DrawText("Mouse: " + mouse.ToString(), Color.Black, 20, 520);
-                SplashKit.DrawText("Closest: " + closest.ToString(), Color.Red, 20, 540);
-
-                SplashKit.RefreshScreen();
-            }
-
-            _window.Close();
-        }
-    }
-
-    public class Program
-    {
-        public static void Main()
-        {
-            MagneticPointApp app = new MagneticPointApp();
-            app.Run();
-        }
-    }
+    RefreshScreen();
 }
+
+window.Close();
+
 
