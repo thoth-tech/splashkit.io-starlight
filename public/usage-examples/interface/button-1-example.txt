@@ -1,0 +1,3 @@
+Title: Background Color Toggle Button
+
+Note: Click the "Click Me!" button to switch the background to light blue; click again to return to white.
