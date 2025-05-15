@@ -1,37 +1,46 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-// Open a 600×600 window
-OpenWindow("Circle Intersection (Values)", 600, 600);
+// Open a window for the circle-intersection demo
+OpenWindow("Background Change Circles", 600, 600);
 
-// Static circle parameters
-double c1_x = ScreenCenter().X;
-double c1_y = ScreenCenter().Y;
-double c1_r = 80;
+// Determine the static circle’s center and radius
+var centerPoint = ScreenCenter();
+float staticCenterX = (float)centerPoint.X;
+float staticCenterY = (float)centerPoint.Y;
+const float circleRadius = 80f;
 
+// Continue running until the user closes the window
 while (!QuitRequested())
 {
     ProcessEvents();
 
-    // Mouse‐controlled circle parameters
-    var mp = MousePosition();
-    double c2_x = mp.X;
-    double c2_y = mp.Y;
-    double c2_r = 50;
+    // Get the moving circle’s position from the mouse
+    var mousePoint = MousePosition();
+    float movingCircleX = (float)mousePoint.X;
+    float movingCircleY = (float)mousePoint.Y;
 
-    // Determines if two circles overlap by comparing the distance between their centers to the sum of their radii
-    bool hit = CirclesIntersect(c1_x, c1_y, c1_r,
-                                c2_x, c2_y, c2_r);
+    // Toggle background color when circles overlap
+    bool circlesOverlap = CirclesIntersect(
+        staticCenterX, staticCenterY, circleRadius,
+        movingCircleX,  movingCircleY,  circleRadius
+    );
+    if (circlesOverlap)
+    {
+        ClearScreen(ColorRed());
+    }
+    else
+    {
+        ClearScreen(ColorWhite());
+    }
 
-    // Red background on hit, white otherwise
-    ClearScreen(hit ? Color.Red() : Color.White());
+    // Draw the static and moving circles
+    FillCircle(ColorBlue(),  staticCenterX, staticCenterY, circleRadius);
+    FillCircle(ColorGreen(), movingCircleX, movingCircleY, circleRadius);
 
-    // Draw both circles by values
-    FillCircle(Color.Blue(),  c1_x, c1_y, c1_r);
-    FillCircle(Color.Green(), c2_x, c2_y, c2_r);
-
-    RefreshScreen();
-    Delay(10);
+    // Refresh at 30 FPS for smooth animation
+    RefreshScreen(30);
 }
 
+// Clean up and close
 CloseAllWindows();

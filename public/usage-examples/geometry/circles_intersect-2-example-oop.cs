@@ -1,37 +1,49 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
-// Open a 600×600 window
-OpenWindow("Circle Intersection (Top-Level OOP)", 600, 600);
-
-// Static circle parameters (centered, radius 80)
-double c1X = ScreenCenter().X, c1Y = ScreenCenter().Y, c1R = 80;
-
-// Mouse‐circle radius
-double c2R = 50;
-
-while (!QuitRequested())
+namespace CircleIntersectExample
 {
-    ProcessEvents();
+    public class Program
+    {
+        public static void Main()
+        {
+            // Open a window for the circle-intersection demo
+            SplashKit.OpenWindow("Background Change Circles", 600, 600);
+            // Determine the static circle’s center and radius
+            var center    = SplashKit.ScreenCenter();
+            float centerX = (float)center.X;
+            float centerY = (float)center.Y;
+            const float radius = 80f;
 
-    // Update mouse circle position
-    var mp = MousePosition();
-    double c2X = mp.X, c2Y = mp.Y;
+            // Main loop runs until the user closes the window
+            while (!SplashKit.QuitRequested())
+            {
+                SplashKit.ProcessEvents();
 
-    // 🔍 Determines if two circles overlap by comparing the distance between their centers to the sum of their radii
-    bool hit = CirclesIntersect(
-        c1X, c1Y, c1R,
-        c2X, c2Y, c2R
-    );
+                // Get the moving circle’s position from the mouse
+                var mp     = SplashKit.MousePosition();
+                float mouseX = (float)mp.X;
+                float mouseY = (float)mp.Y;
 
-    // Red background on hit, white otherwise
-    ClearScreen(hit ? Color.Red : Color.White);
+                // Toggle background on collision
+                if (SplashKit.CirclesIntersect(centerX, centerY, radius, mouseX, mouseY, radius))
+                {
+                    SplashKit.ClearScreen(SplashKit.ColorRed());
+                }
+                else
+                {
+                    SplashKit.ClearScreen(SplashKit.ColorWhite());
+                }
 
-    // Draw both circles
-    FillCircle(Color.Blue,  c1X, c1Y, c1R);
-    FillCircle(Color.Green, c2X, c2Y, c2R);
+                // Draw the two circles
+                SplashKit.FillCircle(SplashKit.ColorBlue(), centerX, centerY, radius);
+                SplashKit.FillCircle(SplashKit.ColorGreen(), mouseX,  mouseY, radius);
 
-    RefreshScreen();
+                // Refresh at 30 FPS for smooth animation
+                SplashKit.RefreshScreen(30);
+            }
+
+            // Clean up and close
+            SplashKit.CloseAllWindows();
+        }
+    }
 }
-
-CloseAllWindows();

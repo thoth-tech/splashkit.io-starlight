@@ -1,4 +1,2 @@
-Title: Circle Intersection Detection Example
-
-Description:
-This example demonstrates how to use SplashKit to create a simple interactive program that detects when two circles overlap. One circle is static and centered in the window, while the other follows the mouse pointer. The program uses real-time collision detection by comparing the distance between the centers of the circles to the sum of their radii. The background color changes to red when the circles intersect, and the circles are drawn dynamically based on their positions.
+Title: Circle Intersection example through Background Change Circles program
+Note: Background will change to red when the circles intersect and back to white when they do not.
