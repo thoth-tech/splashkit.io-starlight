@@ -1,83 +1,119 @@
+#include <iostream>
+#ifdef __APPLE__
+#include <SDL.h>
+#else
 #include <SDL2/SDL.h>
-#include <array>
+#endif
 
-struct Point2D
+SDL_Window* sdl_open_window(const char* window_title, int width, int height)
 {
-    int x, y;
-};
+    // Initialize SDL video subsystem
+    if (SDL_Init(SDL_INIT_VIDEO) < 0)
+    {
+        std::cout << "SDL could not initialize: " << SDL_GetError() << std::endl;
+        exit(1);
+    }
 
-constexpr int TRAIL_LENGTH = 50;
+    // Create the application window
+    SDL_Window* window = SDL_CreateWindow(
+        window_title,
+        SDL_WINDOWPOS_CENTERED,
+        SDL_WINDOWPOS_CENTERED,
+        width,
+        height,
+        SDL_WINDOW_SHOWN
+    );
 
-void updateMouseHistory(std::array<Point2D, TRAIL_LENGTH> &history, const Point2D &newPos)
-{
-    for (int i = 0; i < TRAIL_LENGTH - 1; ++i)
-        history[i] = history[i + 1];
-    history[TRAIL_LENGTH - 1] = newPos;
+    // Check for window creation error
+    if (window == nullptr)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create window: %s", SDL_GetError());
+        SDL_Quit();
+        exit(1);
+    }
+
+    return window;
 }
 
-void renderMouseTrail(const std::array<Point2D, TRAIL_LENGTH> &history, SDL_Renderer *renderer)
+int main(int argc, char* argv[])
 {
-    static const SDL_Color palette[5] = {
-        {0, 0, 255, 255},    // Blue
-        {255, 0, 0, 255},    // Red
-        {0, 255, 0, 255},    // Green
-        {255, 255, 0, 255},  // Yellow
-        {255, 105, 180, 255} // Pink
+    const int trail_length = 50;
+    SDL_Point mouse_history[trail_length] = {};
+
+    // Colors for the trail (blue, red, green, yellow, pink)
+    SDL_Color color_list[5] = {
+        {   0,   0, 255, 255 },
+        { 255,   0,   0, 255 },
+        {   0, 255,   0, 255 },
+        { 255, 255,   0, 255 },
+        { 255, 105, 180, 255 }
     };
 
-    for (int i = 0; i < TRAIL_LENGTH; ++i)
+    // Open window and create renderer
+    SDL_Window* window = sdl_open_window("Cursor Trail", 600, 600);
+    SDL_Renderer* renderer = SDL_CreateRenderer(
+        window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
+    );
+    if (renderer == nullptr)
     {
-        const auto &pt = history[i];
-        const SDL_Color &c = palette[i % 5];
-        SDL_SetRenderDrawColor(renderer, c.r, c.g, c.b, c.a);
-        SDL_RenderDrawPoint(renderer, pt.x, pt.y);
-    }
-}
-
-int main(int argc, char *argv[])
-{
-    // Initialize SDL2 video subsystem
-    if (SDL_Init(SDL_INIT_VIDEO) != 0)
-    {
-        SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
+        SDL_LogError(SDL_LOG_CATEGORY_ERROR, "Could not create renderer: %s", SDL_GetError());
+        SDL_DestroyWindow(window);
+        SDL_Quit();
         return 1;
     }
 
-    // Create an SDL2 window
-    SDL_Window *window = SDL_CreateWindow(
-        "Cursor Trail Demo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 600, SDL_WINDOW_SHOWN);
-
-    // Create an SDL2 renderer for the window
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-    std::array<Point2D, TRAIL_LENGTH> mouseHistory{};
     bool running = true;
+    SDL_Event event;
 
     while (running)
     {
-        SDL_Event evt;
-        while (SDL_PollEvent(&evt))
+        // Handle window events (e.g. close button)
+        while (SDL_PollEvent(&event))
         {
-            if (evt.type == SDL_QUIT)
+            if (event.type == SDL_QUIT)
+            {
                 running = false;
+            }
         }
 
-        int mx, my;
-        SDL_GetMouseState(&mx, &my);                // Get the current mouse position
-        updateMouseHistory(mouseHistory, {mx, my}); // Update the mouse trail history
+        // Get current mouse position
+        int mouse_x, mouse_y;
+        SDL_GetMouseState(&mouse_x, &mouse_y);
 
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Clear the screen with a black color
+        // Shift mouse history forward
+        for (int i = 0; i < trail_length - 1; i++)
+        {
+            mouse_history[i] = mouse_history[i + 1];
+        }
+        SDL_Point pt;
+        pt.x = mouse_x;
+        pt.y = mouse_y;
+        mouse_history[trail_length - 1] = pt;
+
+        // Clear screen to black
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        renderMouseTrail(mouseHistory, renderer); // Draw the mouse trail on the screen
-        SDL_RenderPresent(renderer);              // Present the rendered frame to the screen
+        // Draw the mouse trail
+        for (int i = 0; i < trail_length; i++)
+        {
+            SDL_Color col = color_list[i % 5];
+            SDL_SetRenderDrawColor(renderer, col.r, col.g, col.b, col.a);
+            SDL_RenderDrawPoint(renderer,
+                                mouse_history[i].x,
+                                mouse_history[i].y);
+        }
 
-        SDL_Delay(16); // Delay to limit the frame rate (~60 FPS)
+        // Present the updated frame
+        SDL_RenderPresent(renderer);
+
+        // Delay to cap at ~60 FPS
+        SDL_Delay(16);
     }
 
-    SDL_DestroyRenderer(renderer); // Destroy the renderer and free its resources
-    SDL_DestroyWindow(window);     // Destroy the window and free its resources
-    SDL_Quit();                    // Quit SDL2 subsystems
-
+    // Clean up
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
     return 0;
 }
