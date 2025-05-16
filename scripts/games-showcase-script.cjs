@@ -65,6 +65,12 @@ ${developers}
 Last Updated: ${game.date}
 
 <div class="centered-button-container">
+  <button class="custom-button" onclick="location.href='/games/try-it-online'">
+    Test it Online
+  </button>
+</div>
+
+<div class="centered-button-container">
   <button class="custom-button" onclick="location.href='/games'">
     Back to Games Index
   </button>
