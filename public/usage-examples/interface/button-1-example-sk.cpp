@@ -2,14 +2,13 @@
 
 int main()
 {
-    // Open a window for displaying the interface
     open_window("Button Click Example", 600, 400);
 
     // Define the background color and button rectangle
     color bg_color = COLOR_WHITE;
     rectangle btn_rect = rectangle_from(200, 180, 200, 40);
 
-    // Main loop
+    // Continue running until the user closes the window
     while (!quit_requested())
     {
         process_events();

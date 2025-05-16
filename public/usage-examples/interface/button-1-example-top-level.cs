@@ -1,18 +1,18 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-// Open the window
 OpenWindow("Background Color Toggle Button", 600, 400);
 
+// Define the background color and button rectangle
 Color bgColor = ColorWhite();
 Rectangle btnRect = RectangleFrom(200, 180, 200, 40);
 
-// Main loop
+// Continue running until the user closes the window
 while (!QuitRequested())
 {
     ProcessEvents();
 
-    // Alternate background color to give click feedback
+    // If the button is clicked, toggle the background color
     if (Button("Click Me!", btnRect))
     {
         if (bgColor == ColorWhite())
@@ -25,7 +25,7 @@ while (!QuitRequested())
         }
     }
 
-    // Draw background and interface
+    // Clear screen and draw interface
     ClearScreen(bgColor);
     Button("Click Me!", btnRect);
     DrawInterface();

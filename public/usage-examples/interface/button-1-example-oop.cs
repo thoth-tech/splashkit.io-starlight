@@ -6,9 +6,9 @@ namespace CreatingUserInterfaces
     {
         public static void Main()
         {
-            // Open a window for the button toggle example
             SplashKit.OpenWindow("Background Color Toggle Button", 600, 400);
 
+            // Define the background color and button rectangle
             Color bgColor = SplashKit.ColorWhite();
             Rectangle btnRect = SplashKit.RectangleFrom(200, 180, 200, 40);
 
@@ -17,7 +17,7 @@ namespace CreatingUserInterfaces
             {
                 SplashKit.ProcessEvents();
 
-                // Provide visual feedback by toggling the background color when clicked
+                // If the button is clicked, toggle the background color
                 if (SplashKit.Button("Click Me!", btnRect))
                 {
                     if (bgColor == SplashKit.ColorWhite())
@@ -30,14 +30,13 @@ namespace CreatingUserInterfaces
                     }
                 }
 
-                // Draw the current frame
+                // Clear screen and draw interface
                 SplashKit.ClearScreen(bgColor);
                 SplashKit.Button("Click Me!", btnRect);
                 SplashKit.DrawInterface();
                 SplashKit.RefreshScreen(60);
             }
 
-            // Clean up and close
             SplashKit.CloseAllWindows();
         }
     }

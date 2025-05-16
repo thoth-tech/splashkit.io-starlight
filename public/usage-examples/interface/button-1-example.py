@@ -6,7 +6,7 @@ open_window("Background Color Toggle Button", 600, 400)
 bg_color = color_white()
 btn_rect = rectangle_from(200, 180, 200, 40)
 
-# Main loop
+# Continue running until the user closes the window
 while (not quit_requested()):
     process_events()
 
@@ -16,6 +16,7 @@ while (not quit_requested()):
             bg_color = color_light_blue()
         else:
             bg_color = color_white()
+            
     # Clear screen and draw interface
     clear_screen(bg_color)
     button_at_position("Click Me!", btn_rect)
