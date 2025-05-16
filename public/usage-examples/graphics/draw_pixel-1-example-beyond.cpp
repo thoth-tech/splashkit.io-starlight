@@ -99,9 +99,7 @@ int main(int argc, char* argv[])
         {
             SDL_Color col = color_list[i % 5];
             SDL_SetRenderDrawColor(renderer, col.r, col.g, col.b, col.a);
-            SDL_RenderDrawPoint(renderer,
-                                mouse_history[i].x,
-                                mouse_history[i].y);
+            SDL_RenderDrawPoint(renderer, mouse_history[i].x, mouse_history[i].y);
         }
 
         // Present the updated frame
