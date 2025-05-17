@@ -1,13 +1,13 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Window window = new Window("Font Style", 800, 60);
+OpenWindow("Font Style", 800, 60);
 LoadFont("Arial", "Arial.TTF");
 
-// Initialise Default message
-string message = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
+// Default instructions
+string instructions = "Press N for Normal, B for Bold, I for Italics, or U for Underlined.";
 
-while (!window.CloseRequested)
+while (!QuitRequested())
 {
     ProcessEvents();
 
@@ -29,9 +29,9 @@ while (!window.CloseRequested)
         SetFontStyle("Arial", FontStyle.UnderlineFont);
     }
 
-    // Clear screen and draw updated message
+    // Clear screen and draw updated instructions
     ClearScreen(Color.White);
-    DrawText(message, Color.Black, "Arial", 20, 50, 20);
+    DrawText(instructions, Color.Black, "Arial", 20, 50, 20);
     // Refresh the window with the updated text
     RefreshScreen();
 }
