@@ -1,0 +1,1 @@
+Converts a Color to a Json object.
