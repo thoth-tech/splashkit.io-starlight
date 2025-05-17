@@ -1,0 +1,1 @@
+Returns the count of keys in the Json object.
