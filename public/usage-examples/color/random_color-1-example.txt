@@ -1,0 +1,1 @@
+Creates and returns a random color where the color and its opacity are random.
