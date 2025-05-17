@@ -52,10 +52,10 @@ int main()
     SDL_RenderFillRect(red_r, &rect);
     SDL_RenderPresent(red_r);
 
-    // Keep windows open and responsive for 5 seconds
+    // Keep windows open and responsive for 4 seconds
     Uint32 start = SDL_GetTicks();
     SDL_Event ev;
-    while (SDL_GetTicks() - start < 5000)
+    while (SDL_GetTicks() - start < 4000)
     {
         while (SDL_PollEvent(&ev)) {}
         SDL_Delay(16);
