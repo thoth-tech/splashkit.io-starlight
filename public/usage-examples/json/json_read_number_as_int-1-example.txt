@@ -1,0 +1,1 @@
+Reads a integer value from the Json object for the given String key.
