@@ -6,7 +6,7 @@ OpenWindow("Panel Example", 600, 400);
 while (!QuitRequested())
 {
     ProcessEvents();
-    ClearScreen(Color.White);
+    ClearScreen(ColorWhite());
 
     // Define the panel
     var panelArea = RectangleFrom(50, 50, 500, 300);
