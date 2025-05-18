@@ -30,7 +30,7 @@ while (!QuitRequested())
     // Move the ball
     MoveSprite(ball, velocity);
 
-    ClearScreen(Color.White);
+    ClearScreen(ColorWhite());
     DrawSprite(ball);
     RefreshScreen(60);
 }
