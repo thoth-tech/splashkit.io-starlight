@@ -502,6 +502,18 @@ mjx-container svg {
 }
 
 /* Tab Styling */
+
+/* Variables for light and dark theme colors*/
+/* [data-theme="dark"] {
+  --tab-bg: var(--sk-logo-blue);           
+  --tab-outline: var(--sk-logo-orange);
+}
+
+[data-theme="light"] {
+  --tab-bg: var(--sk-logo-orange);            
+  --tab-outline: var(--sk-logo-blue);
+}
+
 [role="tablist"],
 [role="tab"][aria-selected="false"] {
   position: relative;
@@ -516,21 +528,10 @@ mjx-container svg {
   z-index: 1;
   border-radius: 0.5rem 0.5rem 0 0;
   border: 1px solid gray;
-  background-color: var(--sk-logo-blue);
-  /* background-color: var(--sl-color-gray-2); */
+  background-color: var(--sl-color-gray-2);
   transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Variables for light and dark theme colors*/
-[data-theme="dark"] {
-  --tab-bg: var(--sk-logo-blue);           
-  --tab-outline: var(--sk-logo-orange);
-}
-
-[data-theme="light"] {
-  --tab-bg: var(--sk-logo-orange);            
-  --tab-outline: var(--sk-logo-blue);
-}
 
 [role="tab"]:hover {
   cursor: pointer;               
@@ -550,4 +551,62 @@ mjx-container svg {
   z-index: 2;
   border-radius: 0.5rem 0.5rem 0 0;
   background-color: var(--sl-color-gray-6);
+} */
+ 
+/* ---------------------------------------- */
+/* Olivia's Styling suggestions */
+
+/* Variables for light and dark theme colors*/
+[data-theme="dark"] {
+  --tab-bg: var(--sl-color-gray-5);
+  --tab-hover-bg: var(--sl-color-gray-6);
+  --tab-text: var(--sl-color-gray-3);
+  --tab-hover-text: var(--sl-color-white);
+  --tab-outline: var(--sk-logo-orange);
+  --focused-tab-outline: var(--sk-logo-blue);
+}
+
+[data-theme="light"] {
+  --tab-bg: var(--sl-color-gray-5);
+  --tab-hover-bg: var(--sl-color-gray-6);
+  --tab-text: var(--sl-color-gray-3);
+  --tab-hover-text: var(--sl-color-text-accent);
+  --tab-outline: var(--sk-logo-blue);
+  --focused-tab-outline: var(--sk-logo-orange);
+}
+
+/* Tab Styling */
+[role="tab"] {
+  position: relative;
+  margin-right: 4px;
+  margin-left: 4px;
+  padding-bottom: 2px;
+  border-radius: 0.5rem 0.5rem 0 0;
+  border: 2px solid var(--focused-tab-outline);
+  background-color: var(--tab-bg);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+[role="tab"][aria-selected="true"] {
+  background-color: var(--sl-color-bg);
+  border-bottom-color: var(--sl-color-bg);
+  padding-top: 2px;
+}
+
+[role="tab"][aria-selected="false"] {
+  margin-top: 3px;
+  color: var(--tab-text);
+  border-color: var(--tab-outline);
+  border-width: 1px;
+  border-bottom: none;
+}
+
+[role="tab"][aria-selected="false"]:hover {
+  cursor: pointer;
+  color: var(--tab-hover-text);
+  background-color: var(--tab-hover-bg);
+}
+
+[role="tablist"] {
+  border-bottom-color: var(--focused-tab-outline);
 }
