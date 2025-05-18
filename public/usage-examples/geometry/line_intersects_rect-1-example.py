@@ -21,10 +21,10 @@ while not window_close_requested(window):
             end_pt = mouse_position()
 
     # Update the line using current point positions
-    l = line_from(start_pt.x, start_pt.y, end_pt.x, end_pt.y)
+    line = line_from(start_pt.x, start_pt.y, end_pt.x, end_pt.y)
 
     # Check for intersection with rectangle
-    intersects = line_intersects_rect(l, rect)
+    intersects = line_intersects_rect(line, rect)
 
     clear_screen(color_white())
 
