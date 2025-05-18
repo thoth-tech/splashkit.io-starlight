@@ -1,0 +1,26 @@
+Title: Line Intersects Rectangle - SplashKit Usage Example
+
+Description:
+This usage example demonstrates how to use the 'line_intersects_rect' function in SplashKit to check if a line intersects a fixed rectangle. This interactive program allows users to drag the endpoints of a line and observe real-time feedback on intersection status, providing a practical understanding of geometry functions in SplashKit.
+
+Code Overview:
+The program opens an 800x600 pixel window titled 'Line Intersects Rect'. It initializes a draggable line with two endpoints and a fixed rectangle. The line's endpoints can be moved by clicking and dragging with the mouse, and the program checks for intersections with the rectangle on each frame.
+
+Key Features:
+
+Interactive Line Movement - Users can drag the start and end points of the line in real-time.
+
+Intersection Detection - The program uses the 'line_intersects_rect' function to detect when the line crosses the rectangle.
+
+Visual Feedback - A message indicating intersection is displayed when the line intersects the rectangle.
+
+Top-Level C# Syntax - Utilizes the simplified static import syntax for concise and clear code.
+
+Testing and Validation:
+The program was tested in the SplashKit environment to ensure:
+
+Accurate line dragging behavior.
+
+Correct intersection detection for various line positions.
+
+No performance issues during interaction.
