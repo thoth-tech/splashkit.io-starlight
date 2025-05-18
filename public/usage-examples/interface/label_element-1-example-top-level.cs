@@ -7,7 +7,7 @@ OpenWindow("SplashKit Interface Demo", 600, 400);
 while (!WindowCloseRequested("SplashKit Interface Demo"))
 {
     ProcessEvents();
-    ClearScreen(Color.White);
+    ClearScreen(ColorWhite());
 
     // Define the main panel
     Rectangle main_panel_area = RectangleFrom(50, 50, 500, 300);
