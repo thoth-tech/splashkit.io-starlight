@@ -29,4 +29,10 @@ while not quit_requested():
                              ray_origin.y + ray_heading.y * distance_to_circle)
         fill_circle(color_green(), hit_point.x, hit_point.y, 5)
 
+        # Display the distance
+        draw_text_no_font_no_size("Distance to Circle: " + str(distance_to_circle), color_black(), 10, 10)
+    else:
+        # Display no intersection message
+        draw_text_no_font_no_size("No Intersection", color_black(), 10, 10)
+
     refresh_screen_with_target_fps(60)

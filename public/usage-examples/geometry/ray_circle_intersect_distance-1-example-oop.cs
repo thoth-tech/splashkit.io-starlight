@@ -38,6 +38,14 @@ namespace RayCircleIntersectDistanceExample
                         rayOrigin.Y + rayHeading.Y * distanceToCircle
                     );
                     SplashKit.FillCircle(Color.Green, hitPoint.X, hitPoint.Y, 5);
+
+                    // Display the distance
+                    SplashKit.DrawText($"Distance to circle: {distanceToCircle}", Color.Black, 10, 10);
+                }
+                else
+                {
+                    // Display no intersection message
+                    SplashKit.DrawText("No intersection", Color.Black, 10, 10);
                 }
 
                 SplashKit.RefreshScreen(60);

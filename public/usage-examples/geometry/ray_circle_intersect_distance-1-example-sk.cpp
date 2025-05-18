@@ -32,6 +32,13 @@ int main()
             point_2d hit_point = point_at(ray_origin.x + ray_heading.x * distance_to_circle,
                                           ray_origin.y + ray_heading.y * distance_to_circle);
             fill_circle(COLOR_GREEN, hit_point.x, hit_point.y, 5);
+
+            // Display the distance
+            draw_text("Distance to Circle: " + std::to_string(distance_to_circle), COLOR_BLACK, 10, 10);
+        } 
+        else
+        {
+            draw_text("No intersection", COLOR_BLACK, 10, 10);
         }
 
         refresh_screen(60);

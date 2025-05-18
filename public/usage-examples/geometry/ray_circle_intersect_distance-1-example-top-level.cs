@@ -22,15 +22,23 @@ while (!QuitRequested())
     distanceToCircle = RayCircleIntersectDistance(rayOrigin, rayHeading, targetCircle);
 
     // Draw scene
-    ClearScreen(Color.White);
-    DrawCircle(Color.Blue, targetCircle);
-    DrawLine(Color.Red, rayOrigin, mousePos);
+    ClearScreen(ColorWhite());
+    DrawCircle(ColorBlue(), targetCircle);
+    DrawLine(ColorRed(), rayOrigin, mousePos);
 
     if (distanceToCircle > 0)
     {
         Point2D hitPoint = PointAt(rayOrigin.X + rayHeading.X * distanceToCircle,
                                    rayOrigin.Y + rayHeading.Y * distanceToCircle);
-        FillCircle(Color.Green, hitPoint.X, hitPoint.Y, 5);
+        FillCircle(ColorGreen(), hitPoint.X, hitPoint.Y, 5);
+
+        // Display the distance
+        DrawText($"Distance to circle: {distanceToCircle}", ColorBlack(), 10, 10);
+    }
+    else
+    {
+        // Display no intersection message
+        DrawText("No intersection", ColorBlack(), 10, 10);
     }
 
     RefreshScreen(60);
