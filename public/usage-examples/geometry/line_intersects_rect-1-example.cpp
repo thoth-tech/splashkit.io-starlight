@@ -8,7 +8,7 @@ int main()
     // Define a draggable line
     point_2d start_pt = point_at(100, 100);
     point_2d end_pt = point_at(700, 500);
-    line l = line_from(start_pt, end_pt);
+    line line = line_from(start_pt, end_pt);
 
     // Define a static rectangle
     rectangle rect;
@@ -35,10 +35,10 @@ int main()
         }
 
         // Update the line
-        l = line_from(start_pt, end_pt);
+        line = line_from(start_pt, end_pt);
 
         // Check for intersection
-        bool intersects = line_intersects_rect(l, rect);
+        bool intersects = line_intersects_rect(line, rect);
 
         clear_screen(COLOR_WHITE);
 
@@ -46,7 +46,7 @@ int main()
         draw_rectangle(COLOR_BLUE, rect);
 
         // Draw the line
-        draw_line(COLOR_BLACK, l);
+        draw_line(COLOR_BLACK, line);
 
         // Draw draggable points
         draw_circle(COLOR_GREEN, start_pt.x, start_pt.y, 5);
