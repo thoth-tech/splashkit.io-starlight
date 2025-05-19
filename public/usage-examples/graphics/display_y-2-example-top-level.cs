@@ -23,7 +23,7 @@ for (uint i = 0; i < dispCount; i++)
 
     // Get coordinate info for display
     int dispX = DisplayX(dispDetails);
-    int dispY = DisplayY(dispDetails);
+    int displayYValues = DisplayY(dispDetails);
 
     // Get resolution for display
     int dispWidth = DisplayWidth(dispDetails);
@@ -34,14 +34,14 @@ for (uint i = 0; i < dispCount; i++)
 
     // Add details to display store
     dispStore[i, 0] = dispX;
-    dispStore[i, 1] = dispY;
+    dispStore[i, 1] = displayYValues;
     dispStore[i, 2] = dispWidth;
     dispStore[i, 3] = dispHeight;
     dispNames[i] = dispName;
 
-    // Set min coordinate offset for drawing
+    // Calculate offset to handle negative coordinates for drawing 
     if (dispX < minX) minX = dispX;
-    if (dispY < minY) minY = dispY;
+    if (displayYValues < minY) minY = displayYValues;
 }
 
 Window wind = OpenWindow("Display Y", 800, 600);
@@ -54,7 +54,7 @@ for (int i = 0; i < dispCount; i++)
     int lenX = dispStore[i, 2];
     int lenY = dispStore[i, 3];
 
-    // Create strings for display
+    // Create labels for each display
     string displayNameString = $"Name: {dispNames[i]}";
     string displayNumString = $"Display Number: {i + 1}";
     string displayCoordString = $"Display Coordinates: ({originX}, {originY})";
@@ -65,7 +65,7 @@ for (int i = 0; i < dispCount; i++)
     lenX = lenX / 8;
     lenY = lenY / 8;
 
-    // Draw Display setup to screen and label
+    // Refresh screen after drawing each display and its labels
     Rectangle disp = RectangleFrom(originX, originY, lenX, lenY);
     DrawRectangle(ColorBlack(), disp);
     DrawTextOnWindow(wind, displayNameString, ColorBlack(), font, 10, originX + 5, originY + 5);

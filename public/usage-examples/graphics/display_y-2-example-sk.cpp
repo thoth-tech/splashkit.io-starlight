@@ -26,7 +26,7 @@ int main()
 
         // Get coordinate info for display
         int disp_x = display_x(disp_details);
-        int disp_y = display_y(disp_details);
+        int display_y_values = display_y(disp_details);
 
         // Get resolution for display
         int disp_width = display_width(disp_details);
@@ -37,14 +37,14 @@ int main()
 
         // Add details to display store
         disp_store[i][0] = disp_x;
-        disp_store[i][1] = disp_y;
+        disp_store[i][1] = display_y_values;
         disp_store[i][2] = disp_width;
         disp_store[i][3] = disp_height;
         disp_names[i] = disp_name;     
 
-        // Set min coordinate offset for drawing
+        // Calculate offset to handle negative coordinates for drawing 
         if (disp_x < min_x) min_x = disp_x;
-        if (disp_y < min_y) min_y = disp_y;
+        if (display_y_values < min_y) min_y = display_y_values;
     }
 
     window wind = open_window("Display Y", 800, 600);
@@ -57,7 +57,7 @@ int main()
         int len_w = disp_store[i][2];
         int len_h = disp_store[i][3];        
 
-        // Create strings for display
+        // Create labels for each display
         string display_name_string = "Name: " + disp_names[i];
         string display_num_string = "Display Number: " + std::to_string(i + 1);
         string display_coord_string = "Display Coordinates: (" + std::to_string(origin_x) + ", " + std::to_string(origin_y) + ")";
@@ -68,7 +68,7 @@ int main()
         len_w = len_w / 8;
         len_h = len_h / 8;
 
-        // Draw Display setup to screen and label
+        // Refresh screen after drawing each display and its labels
         rectangle disp = rectangle_from(origin_x, origin_y, len_w, len_h);
         draw_rectangle_on_window(wind, COLOR_BLACK, disp);
         draw_text_on_window(wind, display_name_string, COLOR_BLACK, font, 10, origin_x + 5, origin_y + 5);

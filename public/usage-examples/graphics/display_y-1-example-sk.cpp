@@ -7,10 +7,10 @@ int main()
     int disp_count = number_of_displays();
 
     // Declare Variables
-    int disp_y[disp_count];
+    int display_y_values[disp_count];
     display disp_details;
 
-    // Check for more that 1 display
+    // Only compare display positions if more than one display is connected
     if (disp_count > 1)
     {
         // Loop through displays
@@ -20,12 +20,12 @@ int main()
             disp_details = display_details(i);
 
             // Get Y coordinate info for display
-            disp_y[i] = display_y(disp_details);
+            display_y_values[i] = display_y(disp_details);
         }
-        // Check that all displays are on the same Y to determine verticality  
+        // Check that all displays are aligned horizontally 
         for (int i = 0; i < disp_count - 1; i++)
         {
-            if (disp_y[i] != disp_y[i + 1])
+            if (display_y_values[i] != display_y_values[i + 1])
             {
                 write_line("Your displays are at different heights");
                 break;

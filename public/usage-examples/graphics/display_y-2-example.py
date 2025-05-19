@@ -21,7 +21,7 @@ for i in range(disp_count):
 
     # Get coordinate info for display
     disp_x = display_x(disp_details)
-    disp_y = display_y(disp_details)
+    display_y_values = display_y(disp_details)
 
     # Get resolution for display
     disp_width = display_width(disp_details)
@@ -31,13 +31,13 @@ for i in range(disp_count):
     disp_name = display_name(disp_details)
     
     # Add details to display store
-    disp_store.append([disp_x,disp_y,disp_width,disp_height,disp_name])
+    disp_store.append([disp_x,display_y_values,disp_width,disp_height,disp_name])
 
-    # Set min coordinate offset for drawing
+    # Calculate offset to handle negative coordinates for drawing 
     if min_x > disp_x:
         min_x = disp_x 
-    if min_y > disp_y:
-        min_y = disp_y 
+    if min_y > display_y_values:
+        min_y = display_y_values 
 
 wind = open_window("Display Y", 800, 600)
 
@@ -45,7 +45,7 @@ for i, display in enumerate(disp_store):
     # Set Display Variables
     origin_x, origin_y, len_w, len_h, name = display
 
-    # Create strings for display
+    # Create labels for each display
     display_name_string = f"Name: {name}"
     display_num_string = f"Display Number: {i + 1}"
     display_coord_string = f"Display Coordinates: ({origin_x}, {origin_y})"
@@ -56,7 +56,7 @@ for i, display in enumerate(disp_store):
     len_w = len_w/8
     len_h = len_h/8
     
-    # Draw Display setup to screen and label
+    # Refresh screen after drawing each display and its labels
     disp = rectangle_from(origin_x, origin_y, len_w, len_h)
     draw_rectangle_on_window_record(wind,color_black(),disp)
     draw_text_on_window(wind, display_name_string, color_black(), font, 10, origin_x + 5, origin_y + 5)

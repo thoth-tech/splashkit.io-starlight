@@ -28,7 +28,7 @@ namespace DisplayYExample2
 
                 // Get coordinate info for display
                 int dispX = dispDetails.X;
-                int dispY = dispDetails.Y;
+                int displayYValues = dispDetails.Y;
 
                 // Get resolution for display
                 int dispWidth = dispDetails.Width;
@@ -39,14 +39,14 @@ namespace DisplayYExample2
 
                 // Add details to display store
                 dispStore[i, 0] = dispX;
-                dispStore[i, 1] = dispY;
+                dispStore[i, 1] = displayYValues;
                 dispStore[i, 2] = dispWidth;
                 dispStore[i, 3] = dispHeight;
                 dispNames[i] = dispName;
 
-                // Set min coordinate offset for drawing
+                // Calculate offset to handle negative coordinates for drawing 
                 if (dispX < minX) minX = dispX;
-                if (dispY < minY) minY = dispY;
+                if (displayYValues < minY) minY = displayYValues;
             }
 
             Window wind = SplashKit.OpenWindow("Display Y", 800, 600);
@@ -59,7 +59,7 @@ namespace DisplayYExample2
                 int lenX = dispStore[i, 2];
                 int lenY = dispStore[i, 3];
 
-                // Create strings for display
+                // Create labels for each display
                 string displayNameString = $"Name: {dispNames[i]}";
                 string displayNumString = $"Display Number: {i + 1}";
                 string displayCoordString = $"Display Coordinates: ({originX}, {originY})";
@@ -70,7 +70,7 @@ namespace DisplayYExample2
                 lenX = lenX / 8;
                 lenY = lenY / 8;
 
-                // Draw Display setup to screen and label
+                // Refresh screen after drawing each display and its labels
                 Rectangle disp = SplashKit.RectangleFrom(originX, originY, lenX, lenY);
                 wind.DrawRectangle(Color.Black, disp);
                 wind.DrawText(displayNameString, Color.Black, font, 10, originX + 5, originY + 5);
