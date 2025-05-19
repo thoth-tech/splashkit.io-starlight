@@ -1,5 +1,6 @@
 using SplashKitSDK;
-
+namespace CircleTriangleIntersectExample
+{
 public class Program
 {
     public static void Main()
