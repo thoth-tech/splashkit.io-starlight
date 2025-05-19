@@ -1,24 +1,24 @@
-using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-SplashKit.OpenWindow("Lines From Triangle", 400, 400);
+OpenWindow("Lines From Triangle", 400, 400);
 
 //Build the triangle and get its edges
-var p1    = SplashKit.PointAt(100, 100);
-var p2    = SplashKit.PointAt(200,  80);
-var p3    = SplashKit.PointAt(150, 200);
-var tri   = SplashKit.TriangleFrom(p1, p2, p3);
-List<Line> lines = SplashKit.LinesFrom(tri);
+var p1    = PointAt(100, 100);
+var p2    = PointAt(200,  80);
+var p3    = PointAt(150, 200);
+var tri   = TriangleFrom(p1, p2, p3);
+List<Line> lines = LinesFrom(tri);
 
 float R = 10f;  //Circle Radius
 
-while (!SplashKit.QuitRequested())
+while (!QuitRequested())
 {
-    SplashKit.ProcessEvents();
-    SplashKit.ClearScreen(Color.White);
+    ProcessEvents();
+    ClearScreen(Color.White);
 
     //Mouse position x and y
-    float mx = SplashKit.MouseX();
-    float my = SplashKit.MouseY();
+    float mx = MouseX();
+    float my = MouseY();
 
     //Draw each edge and its index, highlighting if touched
     for (int i = 0; i < lines.Count; i++)
@@ -38,16 +38,16 @@ while (!SplashKit.QuitRequested())
 
         //highlight colour blue if overlap or not in red
         Color col = overlap ? Color.Blue : Color.Red;
-        SplashKit.DrawLine(col, x1, y1, x2, y2);
+        DrawLine(col, x1, y1, x2, y2);
 
         //Draw the index at the midpoint
         float midX = (x1 + x2) * 0.5f;
         float midY = (y1 + y2) * 0.5f;
-        SplashKit.DrawText(i.ToString(), Color.Black, midX, midY);
+        DrawText(i.ToString(), Color.Black, midX, midY);
     }
 
     //Draw a little circle around the mouse
-    SplashKit.DrawCircle(Color.Green, SplashKit.MouseX(), SplashKit.MouseY(), R);
+    DrawCircle(Color.Green, MouseX(), MouseY(), R);
 
-    SplashKit.RefreshScreen();
+    RefreshScreen();
 }
