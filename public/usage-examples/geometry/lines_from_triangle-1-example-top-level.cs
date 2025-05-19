@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using SplashKitSDK;
 
 SplashKit.OpenWindow("Lines From Triangle", 400, 400);
