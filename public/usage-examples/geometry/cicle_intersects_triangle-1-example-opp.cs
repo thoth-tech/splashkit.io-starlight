@@ -16,7 +16,7 @@ public class Program
             Center = SplashKit.PointAt(100, 100)
         };
 
-        while (!gameWindow.CloseRequested)
+        while (!SplashKit.QuitRequested())
         {
             SplashKit.ProcessEvents();
 
