@@ -1,0 +1,10 @@
+Stay Close to the Line - Usage Example for point_line_distance
+
+This usage example demonstrates the point_line_distance function from the SplashKit library, which calculates the shortest distance from a point to a line. The program creates a simple game where the player must keep a moving point close to a fixed line to avoid losing the game.
+
+Program Description:
+Objective: Move the player point along the line without straying too far.
+
+Controls: Use the arrow keys to move the player.
+
+Game Over: If the player moves more than the allowed distance from the line, the game ends.
