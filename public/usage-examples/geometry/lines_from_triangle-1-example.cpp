@@ -1,16 +1,12 @@
 #include "splashkit.h"
-#include <vector>
-#include <string>
-#include <algorithm>
 
 int main()
 {
     open_window("Lines From Triangle", 400, 400);
 
-
     //Build the triangle and grab its 3 edges
     triangle tri    = triangle_from(100, 100, 200,  80, 150, 200);
-    std::vector<line> lines = lines_from(tri);
+    auto lines      = lines_from(tri);
 
     const float R = 10.0f;  //circle radius
 
@@ -28,15 +24,18 @@ int main()
         {
             line ln = lines[i];
 
-            float x1 = ln.start_point.x, y1 = ln.start_point.y;
-            float x2 = ln.end_point.x,   y2 = ln.end_point.y;
+            float x1 = ln.start_point.x;
+            float y1 = ln.start_point.y;
+            float x2 = ln.end_point.x;
+            float y2 = ln.end_point.y;
 
-            float left   = std::min(x1, x2) - R;
-            float right  = std::max(x1, x2) + R;
-            float top    = std::min(y1, y2) - R;
-            float bottom = std::max(y1, y2) + R;
+            float left   = (x1 < x2 ? x1 : x2) - R;
+            float right  = (x1 > x2 ? x1 : x2) + R;
+            float top    = (y1 < y2 ? y1 : y2) - R;
+            float bottom = (y1 > y2 ? y1 : y2) + R;
 
-            bool overlap = mx >= left && mx <= right && my >= top  && my <= bottom;
+            bool overlap = mx >= left && mx <= right
+                        && my >= top  && my <= bottom;
 
             color col = overlap ? COLOR_BLUE : COLOR_RED;
             draw_line(col, ln);
@@ -47,7 +46,7 @@ int main()
         }
 
         //Draw a little circle around the mouse
-        draw_circle(COLOR_GREEN, mx, my, R);
+        draw_circle(COLOR_GREEN, mouse_x(), mouse_y(), R);
 
         refresh_screen();
     }
