@@ -1,54 +1,61 @@
 using SplashKitSDK;
 
-public class Program
+namespace WidestPointsOnCircleExample
 {
-    public static void Main()
+    public class Program
     {
-        Window window = new Window("Tangent Points Calculation", 800, 600);
-        Circle circle = SplashKit.CircleAt(SplashKit.PointAt(400, 300), 100);
-
-        while (!window.CloseRequested)
+        public static void Main()
         {
-            SplashKit.ProcessEvents();
-            Point2D cursorPos = SplashKit.MousePosition();
+            SplashKit.OpenWindow("Widest points on a circle along a vector", 600, 600);
 
-            window.Clear(Color.White);
+            // Create the circle at the center of the screen
+            Point2D circleCenter = SplashKit.ScreenCenter();
+            Circle circle = SplashKit.CircleAt(circleCenter, 100);
 
-            // Draw the circle
-            window.DrawCircle(Color.Black, circle);
+            Point2D mousePos;
+            Vector2D directionVector;
+            Point2D widestPoint1, widestPoint2;
 
-            // Draw the external point (mouse)
-            window.FillCircle(Color.Blue, cursorPos.X, cursorPos.Y, 5);
-
-            // Display mouse coordinates
-            window.DrawText(
-                $"Mouse Position (External Point): ({(int)cursorPos.X}, {(int)cursorPos.Y})",
-                Color.Black, "Arial", 16, 10, 10);
-
-            // Calculate and draw tangent points if mouse is outside the circle
-            Point2D tangent1, tangent2;
-            if (SplashKit.TangentPoints(cursorPos, circle, out tangent1, out tangent2))
+            while (!SplashKit.QuitRequested())
             {
-                window.FillCircle(Color.Red, tangent1.X, tangent1.Y, 5);
-                window.FillCircle(Color.Red, tangent2.X, tangent2.Y, 5);
-                window.DrawLine(Color.Green, cursorPos, tangent1);
-                window.DrawLine(Color.Green, cursorPos, tangent2);
+                SplashKit.ProcessEvents();
 
-                // Show tangent point coordinates
-                window.DrawText($"Tangent 1: ({(int)tangent1.X}, {(int)tangent1.Y})",
-                                Color.Black, "Arial", 16, 10, 35);
-                window.DrawText($"Tangent 2: ({(int)tangent2.X}, {(int)tangent2.Y})",
-                                Color.Black, "Arial", 16, 10, 60);
-            }
-            else
-            {
-                window.DrawText("Move the mouse outside the circle to see tangent points.",
-                                Color.Black, "Arial", 16, 10, 35);
+                // Get current mouse position
+                mousePos = SplashKit.MousePosition();
+
+                // Calculate the direction vector from the center to the mouse position
+                directionVector = SplashKit.VectorPointToPoint(circle.Center, mousePos);
+
+                // Calculate the widest points along the direction vector
+                SplashKit.WidestPoints(circle, directionVector, out widestPoint1, out widestPoint2);
+
+                // Draw everything
+                SplashKit.ClearScreen();
+                SplashKit.DrawCircle(Color.Black, circle);
+                SplashKit.FillCircle(Color.Red, widestPoint1.X, widestPoint1.Y, 5);
+                SplashKit.FillCircle(Color.Red, widestPoint2.X, widestPoint2.Y, 5);
+                SplashKit.FillCircle(Color.Blue, mousePos.X, mousePos.Y, 5);
+                SplashKit.DrawLine(Color.Green, circle.Center, mousePos);
+                SplashKit.DrawLine(Color.Red, circle.Center, widestPoint1);
+                SplashKit.DrawLine(Color.Red, circle.Center, widestPoint2);
+
+                // Show calculation details
+                SplashKit.DrawText(
+                    $"Mouse Position (Vector Direction): ({(int)mousePos.X}, {(int)mousePos.Y})",
+                    Color.Black, "Arial", 16, 10, 10);
+
+                SplashKit.DrawText(
+                    $"Widest Point 1: ({(int)widestPoint1.X}, {(int)widestPoint1.Y})",
+                    Color.Black, "Arial", 16, 10, 35);
+
+                SplashKit.DrawText(
+                    $"Widest Point 2: ({(int)widestPoint2.X}, {(int)widestPoint2.Y})",
+                    Color.Black, "Arial", 16, 10, 60);
+
+                SplashKit.RefreshScreen();
             }
 
-            window.Refresh();
+            SplashKit.CloseAllWindows();
         }
-
-        window.Close();
     }
 }
