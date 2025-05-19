@@ -1,0 +1,11 @@
+Display columns with increasing percentage width using SplashKit.
+
+- The window is divided into four columns: 10%, 20%, 30%, and 40% of the total width.
+- Each column is drawn using a different color to visually separate them.
+- The code example is provided in C# (top-level and OOP) and Python.
+
+Columns:
+- 10% (Light Blue)
+- 20% (Light Green)
+- 30% (Yellow)
+- 40% (Pink)
