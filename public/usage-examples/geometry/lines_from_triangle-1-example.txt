@@ -1,1 +1,1 @@
-Draw separate lines from the triangle
+Draw separate lines from triangle
