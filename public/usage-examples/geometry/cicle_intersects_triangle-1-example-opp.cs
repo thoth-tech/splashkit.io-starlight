@@ -6,7 +6,7 @@ public class Program
     public static void Main()
     {
         // A fixed triangle is placed as the target.
-        Window gameWindow = new Window("Circle-Triangle Intersect", 600, 600);
+        SplashKit.OpenWindow("Circle Triangle Intersect", 600, 600);
         Triangle target = SplashKit.TriangleFrom(300, 100, 250, 300, 350, 300);
 
         // A circle moves with arrow keys.
