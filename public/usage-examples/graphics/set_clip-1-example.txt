@@ -1,0 +1,29 @@
+Set Clip Example - SplashKit
+
+Description:
+This example demonstrates how to use the set_clip (or SetClip) function in SplashKit to restrict drawing operations to a specific rectangular area of the window (the "clip area"). Any drawing commands after setting the clip will only show within this area. When the clip is removed (using pop_clip), drawing returns to the full window.
+
+Program Steps:
+1. Open a window (600x600).
+2. Define a rectangle (100, 100, 400, 200) as the clip area.
+3. Set the clip area using the set_clip (Python/C++), SetClip (C# OOP), or SetClip (C# top-level) function.
+4. Draw the background and outline the clip rectangle.
+5. Draw a red rectangle and blue circle—only the parts inside the clip area will be visible.
+6. Refresh the screen and pause for 3 seconds.
+7. Remove the clip using pop_clip (PopClip in C#), so drawing is allowed everywhere.
+8. Draw a green rectangle near the window bottom—this time, the entire shape is visible.
+9. Pause for 2 seconds, then close the window.
+
+Language Usage Notes:
+- C++ colors: color_red(), color_black(), color_white(), etc.
+- Python colors: color_red(), color_black(), color_white(), etc.
+- C# OOP colors: Color.Red, Color.Black, Color.White, etc.
+- C# Top-level colors: ColorRed(), ColorBlack(), ColorWhite(), etc.
+
+Purpose:
+This is a useful technique in graphics programming for masking, drawing interfaces, or focusing drawing to certain areas only.
+
+How to use:
+- You can copy this logic to any supported SplashKit language. Simply use the correct function and color style for your language.
+
+See the code examples in each language for the correct usage.
