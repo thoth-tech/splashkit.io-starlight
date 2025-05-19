@@ -1,6 +1,2 @@
 This program calculates and displays the two tangent points from an external point (the mouse position) to a circle using SplashKit.
 
-- Move the mouse outside the circle to see the tangent points.
-- The program draws the circle, the mouse position, both tangent points, and lines from the mouse to each tangent point.
-- The coordinates of the tangent points and the mouse are displayed at the top left of the window.
-- Works in SplashKit for Python, C# (OOP & top-level), and C++ (see source for each).
