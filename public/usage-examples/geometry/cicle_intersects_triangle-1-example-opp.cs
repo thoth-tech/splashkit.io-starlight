@@ -40,7 +40,9 @@ public class Program
                 SplashKit.DrawText("Circle is Intersecting the triangle", Color.Black, 170, 20);
             }
 
-            SplashKit.RefreshScreen(60);
+            SplashKit.RefreshScreen();
+         }
+         SplashKit.CloseAllWindows();
         }
     }
 }
