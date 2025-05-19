@@ -1,0 +1,28 @@
+Sprite Pack Simulation
+
+Description:
+This program demonstrates how to switch between two character sprites—Gliese and Aquarii—using keyboard input. Only the selected sprite can be moved left or right using the arrow keys. This approach simulates having two sprite packs and controlling which is active for movement and drawing, even though standard SplashKit C++/C#/Python does not provide built-in sprite pack management.
+
+How It Works:
+- The window opens at 800x600 pixels.
+- Two sprites are loaded: Gliese.png and Aquarii.png.
+- Both sprites start in the center of the window.
+- By default, the Gliese sprite is active.
+- Press '1' to select Gliese, or '2' to select Aquarii.
+- Only the selected sprite can be moved using the LEFT and RIGHT arrow keys.
+- Only the selected sprite is drawn to the screen.
+- Pressing the other number key switches control to the other sprite.
+
+User Instructions:
+1. Start the program.
+2. Use the '1' or '2' keys to choose which sprite you want to move.
+3. Use the LEFT and RIGHT arrow keys to move the selected sprite.
+4. Read the on-screen text to know which sprite is currently active.
+
+Purpose:
+This simulation is useful for learning about sprite management and conditional drawing/updating in SplashKit, even without a built-in sprite pack system.
+
+Note:
+- Make sure Gliese.png and Aquarii.png are in the program's directory.
+- This version is available in C++ (procedural), C# (OOP and top-level), and Python, each matching the typical code style for that language.
+
