@@ -40,9 +40,9 @@ int main()
             color col = overlap ? COLOR_BLUE : COLOR_RED;
             draw_line(col, ln);
 
-            float midx = (x1 + x2) * 0.5f;
-            float midy = (y1 + y2) * 0.5f;
-            draw_text(std::to_string(i), COLOR_BLACK, midx, midy);
+            float mid_x = (x1 + x2) * 0.5f;
+            float mid_y = (y1 + y2) * 0.5f;
+            draw_text(std::to_string(i), COLOR_BLACK, mid_x, mid_y);
         }
 
         //Draw a little circle around the mouse
