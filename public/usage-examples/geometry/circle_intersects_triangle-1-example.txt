@@ -1,0 +1,7 @@
+This program demonstrates the use of the circle_triangle_intersect function from SplashKit.
+A fixed triangle is displayed on the screen, and a user-controlled circle can be moved using the arrow keys.
+When the circle touches or intersects the triangle, the program highlights this visually by changing the circle's color and displaying a message.
+
+This usage example helps visualize collision/intersection detection between geometric shapes in SplashKit.
+
+
