@@ -16,10 +16,10 @@ int main()
     {
         process_events();
 
-        if (key_down(UP_KEY))    playerCircle.center.y -= 2;
-        if (key_down(DOWN_KEY))  playerCircle.center.y += 2;
-        if (key_down(LEFT_KEY))  playerCircle.center.x -= 2;
-        if (key_down(RIGHT_KEY)) playerCircle.center.x += 2;
+        if (key_down(UP_KEY))    playerCircle.center.y -= 0.5;
+        if (key_down(DOWN_KEY))  playerCircle.center.y += 0.5;
+        if (key_down(LEFT_KEY))  playerCircle.center.x -= 0.5;
+        if (key_down(RIGHT_KEY)) playerCircle.center.x += 0.5;
 
         clear_screen(COLOR_WHITE);
         draw_triangle(COLOR_BLACK, target);

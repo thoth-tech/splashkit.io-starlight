@@ -1,11 +1,12 @@
 using SplashKitSDK;
-
+namespace CircleTriangleIntersectExample
+{
 public class Program
 {
     public static void Main()
     {
         // A fixed triangle is placed as the target.
-        Window gameWindow = new Window("Circle-Triangle Intersect", 600, 600);
+        SplashKit.OpenWindow("Circle Triangle Intersect", 600, 600);
         Triangle target = SplashKit.TriangleFrom(300, 100, 250, 300, 350, 300);
 
         // A circle moves with arrow keys.
@@ -15,14 +16,14 @@ public class Program
             Center = SplashKit.PointAt(100, 100)
         };
 
-        while (!gameWindow.CloseRequested)
+        while (!SplashKit.QuitRequested())
         {
             SplashKit.ProcessEvents();
 
-            if (SplashKit.KeyDown(KeyCode.UpKey)) playerCircle.Center.Y -= 2;
-            if (SplashKit.KeyDown(KeyCode.DownKey)) playerCircle.Center.Y += 2;
-            if (SplashKit.KeyDown(KeyCode.LeftKey)) playerCircle.Center.X -= 2;
-            if (SplashKit.KeyDown(KeyCode.RightKey)) playerCircle.Center.X += 2;
+            if (SplashKit.KeyDown(KeyCode.UpKey)) playerCircle.Center.Y -= 0.5;
+            if (SplashKit.KeyDown(KeyCode.DownKey)) playerCircle.Center.Y += 0.5;
+            if (SplashKit.KeyDown(KeyCode.LeftKey)) playerCircle.Center.X -= 0.5;
+            if (SplashKit.KeyDown(KeyCode.RightKey)) playerCircle.Center.X += 0.5;
 
             SplashKit.ClearScreen(Color.White);
             SplashKit.DrawTriangle(Color.Black, target);
@@ -39,7 +40,9 @@ public class Program
                 SplashKit.DrawText("Circle is Intersecting the triangle", Color.Black, 170, 20);
             }
 
-            SplashKit.RefreshScreen(60);
+            SplashKit.RefreshScreen();
+         }
+         SplashKit.CloseAllWindows();
         }
     }
 }
