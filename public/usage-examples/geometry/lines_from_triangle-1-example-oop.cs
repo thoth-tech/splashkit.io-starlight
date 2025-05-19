@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
 using SplashKitSDK;
 
 namespace LinesFromTriangle
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
             SplashKit.OpenWindow("Lines From Triangle", 400, 400);
 
