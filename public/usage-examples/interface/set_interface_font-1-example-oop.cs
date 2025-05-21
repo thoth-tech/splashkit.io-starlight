@@ -23,7 +23,7 @@ namespace ButtonInterfaceFontDemo
                 SplashKit.ClearScreen(SplashKit.ColorWhite());
 
                 // Draw a button labeled "Click Me!" using the interface font
-                SplashKit.Button("Click Me!", btnRect);
+                SplashKit.Button("Just a button", btnRect);
 
                 // Render all interface elements
                 SplashKit.DrawInterface();

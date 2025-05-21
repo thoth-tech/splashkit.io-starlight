@@ -22,7 +22,7 @@ int main()
         clear_screen(color_white());
 
         // Draw a button labeled "Click Me!" using the interface font
-        button("Click Me!", btn_rect);
+        button("Just a button", btn_rect);
 
         // Render all interface elements
         draw_interface();

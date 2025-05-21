@@ -18,7 +18,7 @@ while (!QuitRequested())
     ClearScreen(ColorWhite());
 
     // Draw a button labeled "Click Me!" using the interface font
-    Button("Click Me!", btnRect);
+    Button("Just a button", btnRect);
 
     // Render all interface elements
     DrawInterface();

@@ -15,8 +15,8 @@ while not quit_requested():
     process_events()
     clear_screen(color_white())
 
-    # Draw a button labeled "Click Me!" using the interface font
-    button_at_position("Click Me!", btn_rect)
+    # Draw a button labeled "Just a button" using the interface font
+    button_at_position("Just a button", btn_rect)
 
     # Render all interface elements
     draw_interface()
