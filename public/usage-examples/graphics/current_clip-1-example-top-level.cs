@@ -1,4 +1,3 @@
-using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 OpenWindow("Current Clip Example", 400, 400);
@@ -9,6 +8,9 @@ var region = new Rectangle { X = 100, Y = 100, Width = 200, Height = 200 };
 
 while (!QuitRequested())
 {
+
+    ProcessEvents();
+    ClearScreen(Color.White);
     //Clip the window to the rectangle
     SetClip(region);
 
