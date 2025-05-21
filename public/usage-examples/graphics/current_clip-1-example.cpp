@@ -10,6 +10,8 @@ int main()
 
     while (!quit_requested())
     {
+        process_events();
+        clear_screen(COLOR_WHITE);
         //Fill that region with red (with a rectangle)
         set_clip(region);
         fill_rectangle(COLOR_RED, region);
