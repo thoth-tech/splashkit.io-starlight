@@ -1,40 +1,41 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
 namespace CurrentClipExample
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
-            OpenWindow("Current Clip Example", 400, 400);
+            SplashKit.OpenWindow("Current Clip Example", 400, 400);
 
             //Fill that region with red (with a rectangle)
             var region = new Rectangle { X = 100, Y = 100, Width = 200, Height = 200 };
 
-            while (!QuitRequested())
+            while (!SplashKit.QuitRequested())
             {
+                SplashKit.ProcessEvents();
+                SplashKit.ClearScreen(Color.White);
                 //Clip the window to the rectangle
-                SetClip(region);
+                SplashKit.SetClip(region);
 
                 //Fill that region with red
-                FillRectangle(Color.Red, region);
+                SplashKit.FillRectangle(Color.Red, region);
 
                 //Retrieve the clip bounds
-                Rectangle clip = CurrentClip();
+                Rectangle clip = SplashKit.CurrentClip();
 
                 //Exit out of the clip
-                PopClip();
+                SplashKit.PopClip();
 
                 //Outline the old clip in green as a rectangle
-                DrawRectangle(Color.Green,
+                SplashKit.DrawRectangle(Color.Green,
                                         clip.X, clip.Y,
                                         clip.Width, clip.Height);
 
-                RefreshScreen();
+                SplashKit.RefreshScreen();
             }
 
-            CloseWindow("Current Clip Example");
+            SplashKit.CloseWindow("Current Clip Example");
         }
     }
 }
