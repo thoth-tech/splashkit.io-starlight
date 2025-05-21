@@ -2,12 +2,12 @@ using SplashKitSDK;
 
 namespace PopClip
 {
-    class Tester
+    public class Tester
     {
-        static void Main()
+        public static void Main()
         {
             //Create a new window with width and height of 400 called "Pop Clip"
-            Window window = new Window("Pop Clip", 400, 400);
+            OpenWindow("Pop Clip", 400, 400);
 
             //Set a clipping region at (200, 200) with width and height of 200
             //Anything drawn outside this area will not be shown
