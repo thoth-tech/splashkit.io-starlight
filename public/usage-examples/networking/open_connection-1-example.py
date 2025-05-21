@@ -1,5 +1,8 @@
 from splashkit import *
 
+# Start a simple TCP server on localhost:8080
+create_server_with_port("127.0.0.1", 8080)
+
 # Establish a TCP connection to a local server on port 8080
 conn = open_connection("local server connection", "127.0.0.1", 8080)
 
