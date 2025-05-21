@@ -9,8 +9,8 @@ namespace BorderColorDemo
             // Open a window for the border‐color demo
             SplashKit.OpenWindow("Border Interface Color", 400, 200);
 
-            // Set all interface borders (e.g. buttons) to green
-            SplashKit.SetInterfaceBorderColor(SplashKit.ColorRed());
+            // Set all interface borders (e.g. buttons) to red
+            SplashKit.SetInterfaceBorderColor(Color.Red);
 
             // Define a button area
             var btnRect = SplashKit.RectangleFrom(150, 80, 100, 40);
@@ -19,7 +19,7 @@ namespace BorderColorDemo
             while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
-                SplashKit.ClearScreen(SplashKit.ColorWhite());
+                SplashKit.ClearScreen(Color.White);
 
                 // Render the button using the interface border color
                 SplashKit.Button("Click Me", btnRect);

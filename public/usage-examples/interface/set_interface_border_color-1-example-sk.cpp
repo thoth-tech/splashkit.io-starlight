@@ -5,7 +5,7 @@ int main()
     // Open a window for the border‐color demo
     open_window("Border Interface Color", 400, 200);
 
-    // Set all interface borders (e.g. buttons) to green
+    // Set all interface borders (e.g. buttons) to red
     set_interface_border_color(color_red());
 
     // Define a button area

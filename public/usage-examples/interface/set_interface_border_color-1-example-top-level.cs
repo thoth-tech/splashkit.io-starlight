@@ -4,7 +4,7 @@ using static SplashKitSDK.SplashKit;
 // Open a window for the border‐color demo
 OpenWindow("Border Interface Color", 400, 200);
 
-// Set all interface borders (e.g. buttons) to green
+// Set all interface borders (e.g. buttons) to red
 SetInterfaceBorderColor(ColorRed());
 
 // Define a button area

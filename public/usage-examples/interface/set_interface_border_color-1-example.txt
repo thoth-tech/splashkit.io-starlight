@@ -1,1 +1,1 @@
-Set Interface Border Color with Border Interface Color program 
+Setting the interface color of a button
