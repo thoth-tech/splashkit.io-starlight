@@ -1,0 +1,1 @@
+Drawing inside and outside a clip
