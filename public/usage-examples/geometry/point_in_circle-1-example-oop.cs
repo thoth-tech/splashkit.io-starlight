@@ -6,36 +6,51 @@ namespace PointInCircleExample
     {
         public static void Main()
         {
-            Window window = new Window("Point In Circle", 800, 600);
-            Circle circle = SplashKit.CircleAt(400, 300, 100);
-            Point2D mousePt;
+            SplashKit.OpenWindow("Circular Toggle Button", 800, 600);
+
+            //Declaring the variables
+            Color circleColor;
+            Color textColor;
+            Color bgColor = Color.White;
             string text;
-            Color circleClr;
+            Point2D cursorPos;
+            Circle circle = SplashKit.CircleAt(400, 300, 80);
 
             while (!SplashKit.QuitRequested())
             {
                 SplashKit.ProcessEvents();
 
-                mousePt = SplashKit.MousePosition();
+                cursorPos = SplashKit.MousePosition();
 
-                // Update text and circle colour based on the mouse position in relation to the circle
-                if (SplashKit.PointInCircle(mousePt, circle))
+                // Check for mouse position in relation to circle
+                if (SplashKit.PointInCircle(cursorPos, circle))
                 {
-                    circleClr = SplashKit.ColorRed();
-                    text = "Point in the Circle!";
+                    circleColor = Color.Green;
+                    textColor = Color.Green;
+                    text = "Point is in the circle";
+                    circle.Radius = 90;
+                    if (SplashKit.MouseClicked(MouseButton.LeftButton))
+                    {
+                        bgColor = Color.Random();
+                    }
                 }
                 else
                 {
-                    circleClr = SplashKit.ColorGreen();
-                    text = "Point not in the Circle!";
+                    circleColor = Color.BrightGreen;
+                    textColor = Color.Red;
+                    text = "Point is not in the circle";
+                    circle.Radius = 80;
                 }
 
-                SplashKit.ClearScreen();
-                SplashKit.DrawCircle(circleClr, circle);
-                SplashKit.DrawText(text, SplashKit.ColorRed(), 100, 100);
+                // Display the button and results
+                SplashKit.ClearScreen(bgColor);
+                SplashKit.DrawText("Click the button to change colour of the Screen", Color.Black, 200, 100);
+                SplashKit.DrawText(text, textColor, 300, 150);
+                SplashKit.FillCircle(circleColor, circle);
+                SplashKit.DrawText("Button", Color.Black, 375, 300);
                 SplashKit.RefreshScreen();
             }
-            window.Close();
+            SplashKit.CloseAllWindows();
         }
     }
 }
