@@ -91,6 +91,7 @@ Object.entries(inputJson).forEach(([key, data]) => {
     }
 })
 
+// Check if everything ran successfully
 if (success) {
   console.log(kleur.green("\nAll Game Showcase MDX files generated successfully.\n"));
 }
