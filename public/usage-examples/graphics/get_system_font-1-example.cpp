@@ -2,20 +2,20 @@
 
 int main()
 {
-    open_window("Get System Font", 800, 600);
+    open_window("System Font Retriever and Displayer", 800, 600);
 
-    // The get system font function writes a font to this variable. If it is unable to find one, it won't write anything and the variable will remain blank
+    // Set the font variable to the system's default font if available
     font font = get_system_font();
 
     while (!quit_requested())
     {
         process_events();
-        clear_screen();
+        clear_screen(color_white());
         if (font != NULL)
         {
             draw_text("System font detected!", color_black(), 300, 100);
 
-            // This line uses draw_text to give an example using this font
+            // Display some sample text to demonstrate the selected font
             draw_text("The quick brown fox jumps over the lazy dog", color_black(), font, 30, 50, 150);
         }
         else

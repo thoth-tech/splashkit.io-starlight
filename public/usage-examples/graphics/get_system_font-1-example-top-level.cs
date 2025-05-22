@@ -1,20 +1,20 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-new Window("Get System Font", 800, 600);
+OpenWindow("System Font Retriever and Displayer", 800, 600);
 
-// The get system font function writes a font to this variable. If it is unable to find one, it won't write anything and the variable will remain blank
+// Set the font variable to the system's default font if available
 Font font = GetSystemFont();
             
 while (!QuitRequested())
 {
     ProcessEvents();
-    ClearScreen();
+    ClearScreen(ColorWhite());
     if (font != null)
     {
         DrawText("System font detected!", ColorBlack(), 300, 100);
 
-        // This line uses draw_text to give an example using this font
+        // Display some sample text to demonstrate the selected font
         DrawText("The quick brown fox jumps over the lazy dog", ColorBlack(), font, 30, 50, 150);
     }
     else
