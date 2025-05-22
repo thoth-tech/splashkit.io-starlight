@@ -52,11 +52,10 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    // Clear screen to white
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
 
-    // Set color to blue and draw filled ellipse
+    // SplashKit uses top-left x, y and width/height; SDL version uses center and radius, so values of the ellipse and the rectangle differ
     SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // Blue
     int centerX = 400;
     int centerY = 300;
@@ -69,13 +68,8 @@ int main(int argc, char **argv)
     SDL_Rect rect = {200, 200, 400, 200};
     SDL_RenderDrawRect(renderer, &rect);
 
-    // Display drawing
     SDL_RenderPresent(renderer);
-
-    // Hold window 5 seconds
     SDL_Delay(5000);
-
-    // Cleanup and free memory
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
 
