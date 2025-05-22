@@ -1,9 +1,1 @@
-Title: Circle Quad Intersect
-
-Description:
-This example shows how to use the `CircleQuadIntersect` function to detect when a circle intersects with a quad.
-
-A white circle follows the mouse cursor. A green quad is drawn in the center of the screen. When the circle overlaps the quad, the quad turns red. This makes it easy to visualise how the `CircleQuadIntersect` function behaves.
-
-Function Demonstrated:
-- CircleQuadIntersect
+Circle Quad Intersect
