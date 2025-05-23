@@ -610,3 +610,40 @@ mjx-container svg {
 [role="tablist"] {
   border-bottom-color: var(--focused-tab-outline);
 }
+
+/* Round out styling using circle pseudo-element */
+[role="tab"][aria-selected="true"]::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  right: -15px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid transparent;
+  border-left-color: var(--focused-tab-outline);
+  border-bottom-color: var(--focused-tab-outline);
+  clip-path: inset(7px 5px 1px 0);
+  z-index: 2;
+  box-shadow: -4px 6px 0 var(--sl-color-bg);
+}
+
+[role="tab"][aria-selected="true"]::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: -15px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid transparent;
+  border-right-color: var(--focused-tab-outline);
+  border-bottom-color: var(--focused-tab-outline);
+  clip-path: inset(7px 0 1px 5px);
+  z-index: 2;
+  box-shadow: 4px 6px 0 var(--sl-color-bg);
+}
