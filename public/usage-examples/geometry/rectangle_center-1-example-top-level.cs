@@ -3,9 +3,13 @@ using SplashKitSDK;
 // Declare a variable with camelCase
 string exampleMessage = "this is an example of camelCase";
 
+// Open a drawing window
 SplashKit.OpenWindow("Spotlight on Center", 600, 400);
 
+// Define a rectangle
 Rectangle exampleRectangle = SplashKit.RectangleFrom(100, 100, 200, 150);
+
+// Calculate the rectangle's center
 Point2D centerPoint = SplashKit.RectangleCenter(exampleRectangle);
 
 while (!SplashKit.QuitRequested())
@@ -22,10 +26,10 @@ while (!SplashKit.QuitRequested())
         exampleRectangle.Height
     );
 
-    // Draw the center point
+    // Mark the center with a red circle
     SplashKit.FillCircle(Color.Red, centerPoint, 5);
 
-    // Draw label near the center
+    // Add label text
     SplashKit.DrawText("Center", Color.Black, "Arial", 12, centerPoint.X + 8, centerPoint.Y - 6);
 
     SplashKit.RefreshScreen();
