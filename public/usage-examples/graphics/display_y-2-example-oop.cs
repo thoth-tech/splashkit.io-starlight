@@ -1,6 +1,5 @@
 using SplashKitSDK;
 
-
 namespace DisplayYExample2
 {
     public class Program
