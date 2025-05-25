@@ -1,0 +1,7 @@
+Set Clip Example - SplashKit
+
+Description:
+This example demonstrates how to use the set_clip (or SetClip) function in SplashKit to restrict drawing operations to a specific rectangular area of the window (the "clip area"). Any drawing commands after setting the clip will only show within this area. When the clip is removed (using pop_clip), drawing returns to the full window.
+
+
+
