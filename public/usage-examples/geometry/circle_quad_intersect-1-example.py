@@ -1,63 +1,45 @@
 from splashkit import *
 
 def main():
-    # Open a graphical window with a title and fixed size
-    window = open_window("Circle Quad Intersect Example", 800, 600)
+    open_window("Mouse Circle vs Rectangle Area", 800, 600)
 
-    # Define the four corners of the quad using descriptive snake_case names
+    # Define the corners of a rectangular quad
     top_left = point_at(300, 200)
     top_right = point_at(500, 200)
     bottom_right = point_at(500, 400)
     bottom_left = point_at(300, 400)
 
-    # Create the quad using raw x and y values (required in Python)
+    # Create the quad using the defined corner points
     fixed_quad = quad_from(
-    top_left.x, top_left.y,
-    top_right.x, top_right.y,
-    bottom_right.x, bottom_right.y,
-    bottom_left.x, bottom_left.y
-)
+        top_left.x, top_left.y,
+        top_right.x, top_right.y,
+        bottom_right.x, bottom_right.y,
+        bottom_left.x, bottom_left.y
+    )
 
-    # Set the radius for the mouse-following circle
     radius = 30
+    mouse_circle = circle_at(point_at(0, 0), radius)
+    quad_color = color_black()
 
-    # Main program loop — runs until the window is closed
-    while not window_close_requested(window):
-        # Handle mouse and keyboard events
+    while not quit_requested():
         process_events()
+        clear_screen(color_white())
 
-        # Clear the screen with a dark slate gray background
-        clear_screen(color_dark_slate_gray())
-
-        # Get current mouse position
         mouse_pos = mouse_position()
+        mouse_circle = circle_at(mouse_pos, radius)
 
-        # Create a circle at the mouse position
-        center = point_at(mouse_pos.x, mouse_pos.y)
-        mouse_circle = circle_at(center, radius)
-
-        # Check if the circle intersects with the quad
+        # Update quad color based on intersection with the circle
         if circle_quad_intersect(mouse_circle, fixed_quad):
-            quad_color = color_red()   # Red if intersecting
+            quad_color = color_red()
         else:
-            quad_color = color_green() # Green if not intersecting
+            quad_color = color_green()
 
-        # Fill the quad using two triangles
-        fill_triangle(quad_color,
-                      top_left.x, top_left.y,
-                      top_right.x, top_right.y,
-                      bottom_right.x, bottom_right.y)
+        # Fill the quad using two colored triangles
+        fill_triangle(quad_color, top_left.x, top_left.y, top_right.x, top_right.y, bottom_right.x, bottom_right.y)
+        fill_triangle(quad_color, top_left.x, top_left.y, bottom_left.x, bottom_left.y, bottom_right.x, bottom_right.y)
 
-        fill_triangle(quad_color,
-                      top_left.x, top_left.y,
-                      bottom_left.x, bottom_left.y,
-                      bottom_right.x, bottom_right.y)
+        draw_circle(color_black(), mouse_circle.center.x, mouse_circle.center.y, radius)
 
-        # Draw the mouse-following circle in white
-        draw_circle(color_white(), center.x, center.y, radius)
-
-        # Refresh the screen at 60 frames per second
         refresh_screen_with_target_fps(60)
 
-# Run the main function to start the program
 main()
