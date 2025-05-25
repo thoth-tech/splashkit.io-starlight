@@ -1,6 +1,6 @@
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Mouse Circle Overlapping Quad", 800, 600);
+OpenWindow("Mouse Circle vs Rectangle Area", 800, 600);
 
 // Define quad corners using full type names
 SplashKitSDK.Point2D topLeft = PointAt(300, 200);

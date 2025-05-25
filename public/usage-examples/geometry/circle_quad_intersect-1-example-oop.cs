@@ -10,7 +10,7 @@ public class Program
 
 public class CircleQuadIntersectionApp
 {
-    private string _windowName = "Mouse Circle Overlapping Quad";
+    private string _windowName = "Mouse Circle vs Rectangle Area";
 
     // Points defining the corners of the quad
     private Point2D _topLeft;
