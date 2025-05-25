@@ -1,0 +1,2 @@
+This program calculates and displays the two tangent points from an external point (the mouse position) to a circle using SplashKit.
+
