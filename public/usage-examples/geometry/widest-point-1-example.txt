@@ -1,0 +1,6 @@
+Program: Widest Points on a Circle Along a Vector
+
+Description:
+This program calculates and displays the two widest points on a circle along a vector that extends from the circle’s center to the mouse position (the external point). As you move the mouse, the direction vector is updated, and the widest points are recalculated in real time.
+
+
