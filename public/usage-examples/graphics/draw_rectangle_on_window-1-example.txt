@@ -1,0 +1,3 @@
+// Draws red rectangles on one window and blue rectangles on another window.
+// Each window is cleared to white before drawing. 
+// The rectangles are spaced evenly and demonstrate drawing on multiple windows.
