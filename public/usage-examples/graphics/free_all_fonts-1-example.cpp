@@ -2,27 +2,33 @@
 
 int main()
 {
-    // Open a window and load a font
-    window my_window = open_window("Usage Example", 900, 600);
-    
-    font arial_font = load_font("Arial", "src/fonts/arial.ttf");
+    // Open a window
+    window my_window = open_window("Free All Fonts Example", 900, 600);
 
-    // Main loop to keep the window open
-    while (!window_close_requested(my_window))
-    {
-        process_events();
-        
-        clear_screen(COLOR_WHITE);
-        
-        // Display a message
-        draw_text("Hello, This is Usage Example", COLOR_BLACK, arial_font, 32, 100, 100);
-        
-        refresh_screen(60);
-    }
+    //  Load the fonts from the resource bundle located in Resources/bundles/Font.txt
+    load_resource_bundle("FontBundle", "Font.txt");
 
-    // Free fonts and close the window
+    // Display text using Font A and Font B (from the bundle)
+    clear_screen(COLOR_WHITE);
+    draw_text("This is Font A (Montserrat Black)", COLOR_BLACK, "FontA", 32, 100, 100);
+    draw_text("This is Font B (Montserrat Thin)", COLOR_BLACK, "FontB", 32, 100, 150);
+    refresh_screen();
+    delay(2000); // Show fonts A and B for 2 seconds
+
+    //  Free all loaded fonts
     free_all_fonts();
-    close_window(my_window);
 
+    //  Reload Font C manually by filename from Resources/fonts
+    load_font("FontC", "OpenSans_Condensed-Bold.ttf");
+
+    // Show that Font A and B are no longer available, and Font C is used now
+    clear_screen(COLOR_WHITE);
+    draw_text("Fonts A and B were freed.", COLOR_RED, "FontC", 32, 100, 250);
+    draw_text("Now using Font C (OpenSans Condensed Bold)", COLOR_RED, "FontC", 32, 100, 300);
+    refresh_screen();
+    delay(2000); // Show Font C for 2 seconds
+
+    // Close the window
+    close_window(my_window);
     return 0;
 }

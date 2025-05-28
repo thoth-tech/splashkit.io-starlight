@@ -1,26 +1,37 @@
 using System;
 using SplashKitSDK;
 
-public class FontExample
+namespace FreeAllFontsExample
 {
-    public static void Main()
+    public class Program
     {
-        // Open a window and load a font
-        Window myWindow = SplashKit.OpenWindow("A Message Window", 800, 600);
-        Font arialFont = SplashKit.LoadFont("Arial", "src/fonts/arial.ttf");
-        
-        // Main loop to keep the window open
-        while (!myWindow.CloseRequested)
+        public static void Main()
         {
-            SplashKit.ProcessEvents();
-            SplashKit.ClearScreen(Color.White);
-            // Display a message
-            SplashKit.DrawText("Hello, This is a usage example", Color.Black, arialFont, 32, 100, 100);
-            SplashKit.RefreshScreen(60);
-        }
+            Window window = SplashKit.OpenWindow("Free All Fonts Example", 900, 600);
 
-        // Free fonts and close the window
-        SplashKit.FreeAllFonts();
-        myWindow.Close();
+            // Load fonts from bundle
+            SplashKit.LoadResourceBundle("bundles", "Font.txt");
+
+            // Use FontA and FontB
+            SplashKit.ClearScreen(Color.White);
+            SplashKit.DrawText("This is Font A (Montserrat Black)", Color.Black, "FontA", 32, 100, 100);
+            SplashKit.DrawText("This is Font B (Montserrat Thin)", Color.Black, "FontB", 32, 100, 150);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(2000);
+
+            // Free all fonts
+            SplashKit.FreeAllFonts();
+
+            // Load FontC manually
+            SplashKit.LoadFont("FontC", "OpenSans_Condensed-Bold.ttf");
+
+            SplashKit.ClearScreen(Color.White);
+            SplashKit.DrawText("Fonts A and B were freed.", Color.Red, "FontC", 32, 100, 250);
+            SplashKit.DrawText("Now using Font C (OpenSans Condensed Bold)", Color.Red, "FontC", 32, 100, 300);
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(2000);
+
+            window.Close();
+        }
     }
 }
