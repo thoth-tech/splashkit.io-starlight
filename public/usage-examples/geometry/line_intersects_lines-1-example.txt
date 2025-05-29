@@ -1,1 +1,1 @@
-Line Intersection Demo - Two lines intersect with a message displayed
+Mouse-Guided Line vs Multiple Lines Intersection

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using SplashKitSDK;
 
 namespace LineIntersectsLinesExample
@@ -6,39 +7,55 @@ namespace LineIntersectsLinesExample
     {
         public static void Main()
         {
-            // Creating two lines
-            Line lineA = SplashKit.LineFrom(100, 100, 300, 300);
-            Line lineB = SplashKit.LineFrom(300, 100, 100, 300);
+            // open a window
+            Window window = new Window("Line Intersects Lines - Interactive Demo", 800, 600);
 
-            // Adding one line to a list to check intersection
-            List<Line> lines = new List<Line> { lineB };
+            // create three static lines to check for intersection
+            Line line1 = SplashKit.LineFrom(100, 150, 700, 150);
+            Line line2 = SplashKit.LineFrom(100, 300, 700, 300);
+            Line line3 = SplashKit.LineFrom(100, 450, 700, 450);
 
-            // Checking if lineA intersects with any line in the list
-            bool intersects = SplashKit.LineIntersectsLines(lineA, lines);
+            List<Line> linesToCheck = new List<Line> { line1, line2, line3 };
 
-            // Opening a window
-            SplashKit.OpenWindow("Line Intersection Demo", 800, 600);
-            SplashKit.ClearScreen(Color.White);
-
-            // Drawing both lines
-            SplashKit.DrawLine(Color.Red, lineA);
-            SplashKit.DrawLine(Color.Blue, lineB);
-
-            // Display result
-            if (intersects)
+            while (!SplashKit.WindowCloseRequested(window))
             {
-                SplashKit.DrawText("Lines Intersect", Color.Green, 320, 550);
-            }
-            else
-            {
-                SplashKit.DrawText("No Intersection", Color.Red, 320, 550);
-            }
+                SplashKit.ProcessEvents();
 
-            SplashKit.RefreshScreen();
-            
-            // Adding Delay for window to close
-            SplashKit.Delay(4000);
-            SplashKit.CloseAllWindows();
+                // line that updates from (0,0) to current mouse position
+                Line intersectingLine = SplashKit.LineFrom(0, 0, SplashKit.MouseX(), SplashKit.MouseY());
+
+                SplashKit.ClearScreen(Color.White);
+
+                SplashKit.DrawLine(Color.Red, intersectingLine);
+
+                // flag to indicate if intersection occurred
+                bool anyIntersection = false;
+
+                foreach (Line l in linesToCheck)
+                {
+                    if (SplashKit.LinesIntersect(intersectingLine, l))
+                    {
+                        SplashKit.DrawLine(Color.Green, l); // intersecting
+                        anyIntersection = true;
+                    }
+                    else
+                    {
+                        SplashKit.DrawLine(Color.Black, l); // not intersecting
+                    }
+                }
+
+                if (anyIntersection)
+                {
+                    SplashKit.DrawText("Intersection Detected!", Color.Green, 20, 20);
+                }
+                else
+                {
+                    SplashKit.DrawText("No Intersection", Color.Gray, 20, 20);
+                }
+
+                SplashKit.DrawText("Move mouse to test intersections", Color.Black, 20, 570);
+                SplashKit.RefreshScreen();
+            }
         }
     }
 }
