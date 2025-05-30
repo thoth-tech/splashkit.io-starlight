@@ -1,13 +1,12 @@
 ---
 title: Encoding and Decoding
-description: Explore the essentials of encoding and decoding data using Base64, Caesar Cipher, and URL transformations for secure and efficient data representation.
+description: Explore the essentials of encoding and decoding data using Base64, Caesar Cipher, URL transformations and Hill Cipher for secure and efficient data representation.
 category: Guides
-author: Brianna Laird
-lastupdated: December 2024
+author: Brianna Laird and Anna Shustser
+lastupdated: May 2025
 ---
 
-import { Tabs, TabItem } from "@astrojs/starlight/components";
-import { Aside } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
 
 **{frontmatter.description}**  
 Written by: {frontmatter.author}  
@@ -27,9 +26,11 @@ When using Base64, you need to define the characters used in the encoding proces
 const string BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 ```
 
-<Aside type="tip" title="Common Uses of Base64 Encoding">
+:::tip[Common Uses of Base64 Encoding]
+
 Base64 encoding is widely used to safely transmit binary data, such as images or files, over text-based protocols like HTTP, email, or JSON. It is also essential for embedding assets directly in HTML or converting binary data for use in web development.
-</Aside>
+
+:::
 
 ### Encoding with Base64
 
@@ -140,7 +141,7 @@ def base64_encode(input_string):
 </TabItem>
 </Tabs>
 
-#### Using this function
+:::note[Using this function]
 
 Here is an example of how you can use the `base64_encode` function to encode a message:
 
@@ -177,7 +178,9 @@ print(f"Encoded: {encoded_message}")
 </TabItem>
 </Tabs>
 
-#### Expected Output
+:::
+
+:::tip[Expected Output]
 
 The encoded message should be a Base64 representation of the original message.
 
@@ -185,6 +188,8 @@ The encoded message should be a Base64 representation of the original message.
 Original: "Hello, World!"
 Encoded: "SGVsbG8sIFdvcmxkIQ=="
 ```
+
+:::
 
 ### Decoding with Base64
 
@@ -275,7 +280,7 @@ def base64_decode(input_string):
 </TabItem>
 </Tabs>
 
-#### Using this function
+:::note[Using this function]
 
 Here is an example of how you can use the `base64_decode` function to decode a message:
 
@@ -312,7 +317,9 @@ print(f"Decoded: {decoded_message}")
 </TabItem>
 </Tabs>
 
-#### Expected Output
+:::
+
+:::tip[Expected Output]
 
 The decoded message should match the original message that was encoded.
 
@@ -320,6 +327,8 @@ The decoded message should match the original message that was encoded.
 Encoded: "SGVsbG8sIFdvcmxkIQ=="
 Decoded: "Hello, World!"
 ```
+
+:::
 
 ## Caesar Cipher
 
@@ -356,9 +365,11 @@ where:
 - $x$ is the position of the encrypted letter in the alphabet,
 - $n$ is the number of positions to shift (the key).
 
-<Aside type="tip" title="Common Uses of Ciphers">
+:::tip[Common Uses of Ciphers]
+
 Ciphers are widely used in various applications to ensure secure communication and data protection. They are essential in modern cryptography for encrypting sensitive information, securing online transactions, protecting personal data, and ensuring the confidentiality of communications. Ciphers are also used in digital signatures, authentication protocols, and solving cryptographic puzzles.
-</Aside>
+
+:::
 
 ### Encoding with the Caesar Cipher
 
@@ -429,7 +440,7 @@ def caesar_cipher_encode(input_string, shift):
 </TabItem>
 </Tabs>
 
-#### Using this function
+:::note[Using this function]
 
 Here is an example of how you can use the `caesar_cipher_encode` function to encode a message:
 
@@ -468,7 +479,9 @@ print(f"Original: {message}")
 </TabItem>
 </Tabs>
 
-#### Expected Output
+:::
+
+:::tip[Expected Output]
 
 The encoded message should be the original message with each character shifted by the specified number of positions.
 
@@ -476,6 +489,8 @@ The encoded message should be the original message with each character shifted b
 Original: "Hello, World!"
 Encoded: "Khoor, Zruog!"
 ```
+
+:::
 
 ### Decoding with the Caesar Cipher
 
@@ -516,7 +531,7 @@ def caesar_cipher_decode(input_string, shift):
 </TabItem>
 </Tabs>
 
-#### Using this function
+:::note[Using this function]
 
 The following code demonstrates how you can use the `caesar_cipher_decode` function to decode a message:
 
@@ -532,7 +547,6 @@ std::cout << "Decoded: " << caesar_cipher_decode(encoded_message, shift) << std:
 
 </TabItem>
 <TabItem label="C#">
-
 
 ```csharp
 string encodedMessage = "Khoor, Zruog!";
@@ -554,7 +568,9 @@ print(f"Decoded: {caesar_cipher_decode(encoded_message, shift)}")
 </TabItem>
 </Tabs>
 
-#### Expected Output
+:::
+
+:::tip[Expected Output]
 
 The decoded message should match the original message that was encoded.
 
@@ -562,6 +578,8 @@ The decoded message should match the original message that was encoded.
 Encoded: "Khoor, Zruog!"
 Decoded: "Hello, World!"
 ```
+
+:::
 
 ### Brute-Forcing the Caesar Cipher
 
@@ -609,7 +627,7 @@ def caesar_cipher_brute_force(input_string):
 </TabItem>
 </Tabs>
 
-#### Using this function
+:::note[Using this function]
 
 Here is an example of how you can use the `caesar_cipher_brute_force` function to decrypt a message without knowing the shift value:
 
@@ -644,7 +662,9 @@ caesar_cipher_brute_force(encoded_message)
 </TabItem>
 </Tabs>
 
-#### Expected Output
+:::
+
+:::tip[Expected Output]
 
 The brute-force method should display all possible decrypted messages for each shift value.
 
@@ -678,6 +698,8 @@ Shift 23=> Nkrru Cuxrj!
 Shift 24=> Mjqqt Btwqi!
 Shift 25=> Lipps Asvph!
 ```
+
+:::
 
 ## Vigenère Cipher
 
@@ -784,7 +806,7 @@ def vigenere_cipher_encode(input_string, keyword):
 </TabItem>
 </Tabs>
 
-#### Using this function
+:::note[Using this function]
 
 Here is an example of how you can use the `vigenere_cipher_encode` function to encode a message using a keyword:
 
@@ -824,7 +846,9 @@ print(f"Encoded: {encoded_message}")
 </TabItem>
 </Tabs>
 
-#### Expected Output
+:::
+
+:::tip[Expected Output]
 
 The encoded message should be the original message with each character shifted by the corresponding letter in the keyword.
 
@@ -832,6 +856,8 @@ The encoded message should be the original message with each character shifted b
 Original: "Hello, World!"
 Encoded: "Rijvs, Uyvvn!"
 ```
+
+:::
 
 ### Decoding with the Vigenère Cipher
 
@@ -908,7 +934,7 @@ def vigenere_cipher_decode(input_string, keyword):
 </TabItem>
 </Tabs>
 
-#### Using this function
+:::note[Using this function]
 
 Here is an example of how you can use the `vigenere_cipher_decode` function to decode a message using a keyword:
 
@@ -948,7 +974,9 @@ print(f"Decoded: {decoded_message}")
 </TabItem>
 </Tabs>
 
-#### Expected Output
+:::
+
+:::tip[Expected Output]
 
 The decoded message should match the original message that was encoded.
 
@@ -957,13 +985,17 @@ Encoded: "Rijvs, Uyvvn!"
 Decoded: "Hello, World!"
 ```
 
+:::
+
 ## URL Transformations
 
 URL transformations are used to encode and decode URLs to ensure that they are safe for use in web applications. URLs may contain special characters that need to be encoded to prevent errors and security vulnerabilities. The most common encoding scheme used for URLs is percent-encoding, which replaces special characters with a percent sign followed by two hexadecimal digits. This ensures that the URL is correctly interpreted by web browsers and servers.
 
-<Aside type="tip" title="Common Uses of URL Encoding and Decoding">
+:::tip[Common Uses of URL Encoding and Decoding]
+
 URL encoding and decoding are essential for ensuring that URLs are correctly interpreted by web browsers and servers. They are commonly used in web development to handle special characters in query parameters, form submissions, and API requests. Proper URL encoding helps prevent errors and security vulnerabilities, ensuring reliable and secure communication between clients and servers.
-</Aside>
+
+:::
 
 ### Encoding URLs
 
@@ -1058,7 +1090,7 @@ def url_encode(input_string):
 </TabItem>
 </Tabs>
 
-#### Using this function
+:::note[Using this function]
 
 Here is an example of how you can use the `url_encode` function to encode a URL:
 
@@ -1092,13 +1124,17 @@ print(f"URL Encode ({url})=> {encoded_url}")
 </TabItem>
 </Tabs>
 
-#### Expected Output
+:::
+
+:::tip[Expected Output]
 
 The encoded URL should replace special characters with their percent-encoded equivalents.
 
 ```plaintext
 URL Encode (https://www.example.com/search?q=hello world)=> https%3A%2F%2Fwww.example.com%2Fsearch%3Fq%3Dhello%20world
 ```
+
+:::
 
 ### Decoding URLs
 
@@ -1262,7 +1298,7 @@ def url_decode(input_string):
 </TabItem>
 </Tabs>
 
-#### Using this function
+:::note[Using this function]
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
@@ -1291,10 +1327,69 @@ print(f"URL Decode ({encoded_url})=> {url_decode(encoded_url)}")
 </TabItem>
 </Tabs>
 
-#### Expected Output
+:::
+
+:::tip[Expected Output]
 
 The decoded URL should match the original URL that was encoded.
 
 ```plaintext
 URL Decode (https%3A%2F%2Fwww.example.com%2Fsearch%3Fq%3Dhello%20world)=> https://www.example.com/search?q=hello world
 ```
+
+:::
+
+## Hill Cipher
+
+TODO: Add very brief introduction to matrix-based Hill Cipher.
+
+:::note[TL;DR]
+
+1. **Character Conversion:**
+   - Each character is mapped to a number (A=0, ..., Z=25).
+
+2. **Matrix Input:**
+   - User enters four integers forming a 2x2 matrix, reduced modulo 26.
+
+3. **Invertibility Check:**
+   - The matrix must have a modular inverse (i.e., its determinant must be coprime with 26).
+
+4. **Encoding/Decoding:**
+   - The text is processed in 2-character blocks using matrix multiplication.
+   - Uses original key for encoding and inverse key for decoding.
+
+:::
+
+TODO: Add somewhat compacted/concise version of your introduction to the Hill Cipher. This part can include some of the details such as the maths behind it, or can be more general, with the maths in the sections below.
+
+### Encoding with the Hill Cipher
+
+TODO: Add explanation and code for a function named "hill_cipher_encode" (can just be C++ code). And any related functions.
+
+:::note[Using this function]
+
+TODO: add example code using hill_cipher_encode
+
+:::
+
+:::tip[Expected Output]
+
+TODO: Add expected output (similar to above).
+
+:::
+
+### Decoding with the Hill Cipher
+
+TODO: Add explanation and code for a function named "hill_cipher_decode" (can just be C++ code). And any related functions and explanations such as the inverse matrix.
+
+:::note[Using this function]
+
+TODO: add example code using hill_cipher_decode
+
+:::
+
+:::tip[Expected Output]
+
+TODO: Add expected output (similar to above).
+
+:::
