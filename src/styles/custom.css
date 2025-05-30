@@ -501,81 +501,29 @@ mjx-container svg {
   /* Slight zoom effect on hover */
 }
 
-/* Tab Styling */
+/* 
+  ----- Start of new Tab Styling -----
+*/
 
 /* Variables for light and dark theme colors*/
-/* [data-theme="dark"] {
-  --tab-bg: var(--sk-logo-blue);           
-  --tab-outline: var(--sk-logo-orange);
-}
-
-[data-theme="light"] {
-  --tab-bg: var(--sk-logo-orange);            
-  --tab-outline: var(--sk-logo-blue);
-}
-
-[role="tablist"],
-[role="tab"][aria-selected="false"] {
-  position: relative;
-  border-bottom-color: var(--sk-logo-blue);
-  color: var(--sl-color-black);
-}
-
-[role="tab"] {
-  position: relative;
-  margin-right: 4px;
-  margin-left: 4px;
-  z-index: 1;
-  border-radius: 0.5rem 0.5rem 0 0;
-  border: 1px solid gray;
-  background-color: var(--sl-color-gray-2);
-  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-
-[role="tab"]:hover {
-  cursor: pointer;               
-  color: var(--sl-color-white);
-  background-color: var(--sl-color-gray-6);
-  transition: background-color 0.2s ease, border-color 0.2s ease;
-  transform: scale(1);
-}
-
-[role="tab"][aria-selected="true"] {
-  box-shadow:
-  inset 0 2px 0 0 var(--sk-logo-blue),    
-  inset 2px 0 0 0 var(--sk-logo-blue),    
-  inset -2px 0 0 0 var(--sk-logo-blue);
-  border-bottom: none;   
-  border: none;       
-  z-index: 2;
-  border-radius: 0.5rem 0.5rem 0 0;
-  background-color: var(--sl-color-gray-6);
-} */
- 
-/* ---------------------------------------- */
-/* Olivia's Styling suggestions */
-
-/* Variables for light and dark theme colors*/
-[data-theme="dark"] {
+:root {
   --tab-bg: var(--sl-color-gray-5);
   --tab-hover-bg: var(--sl-color-gray-6);
   --tab-text: var(--sl-color-gray-3);
   --tab-hover-text: var(--sl-color-white);
+}
+
+[data-theme="dark"] {
   --tab-outline: var(--sk-logo-orange);
   --focused-tab-outline: var(--sk-logo-blue);
 }
 
 [data-theme="light"] {
-  --tab-bg: var(--sl-color-gray-5);
-  --tab-hover-bg: var(--sl-color-gray-6);
-  --tab-text: var(--sl-color-gray-3);
-  --tab-hover-text: var(--sl-color-text-accent);
   --tab-outline: var(--sk-logo-blue);
   --focused-tab-outline: var(--sk-logo-orange);
 }
 
-/* Tab Styling */
+/* Basic Tab Style */
 [role="tab"] {
   position: relative;
   margin-right: 4px;
@@ -584,13 +532,17 @@ mjx-container svg {
   border-radius: 0.5rem 0.5rem 0 0;
   border: 2px solid var(--focused-tab-outline);
   background-color: var(--tab-bg);
-  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 [role="tab"][aria-selected="true"] {
-  background-color: var(--sl-color-bg);
+  background-color: inherit;
   border-bottom-color: var(--sl-color-bg);
   padding-top: 2px;
+}
+
+[data-theme="light"] .accordionContent [role="tab"][aria-selected="true"] {
+  /* Correct focused tab bottom border colour in Usage example tabs */
+  border-bottom-color: var(--sl-color-gray-7) !important;
 }
 
 [role="tab"][aria-selected="false"] {
@@ -647,3 +599,7 @@ mjx-container svg {
   z-index: 2;
   box-shadow: 4px 6px 0 var(--sl-color-bg);
 }
+
+/* 
+  ----- End Tab Styling -----
+*/
