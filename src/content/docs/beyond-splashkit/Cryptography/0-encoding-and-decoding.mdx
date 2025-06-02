@@ -1341,40 +1341,88 @@ URL Decode (https%3A%2F%2Fwww.example.com%2Fsearch%3Fq%3Dhello%20world)=> https:
 
 ## Hill Cipher
 
-TODO: Add very brief introduction to matrix-based Hill Cipher.
+The Hill Cipher is a polygraphic substitution cipher based on linear algebra (such as matrix multiplication, determinant calculation, and finding matrix inverses under modular arithmetic).
 
-:::note[TL;DR]
+First, each letter is mapped to a number (e.g. A → 0, B → 1, C → 2, ..., Z → 25). These numbers will be used further to represent the pairs of letters in the form of column matrices.
 
-1. **Character Conversion:**
-   - Each character is mapped to a number (A=0, ..., Z=25).
+:::note
 
-2. **Matrix Input:**
-   - User enters four integers forming a 2x2 matrix, reduced modulo 26.
+To ensure that the input into the function is uniform, all letters are first be converted to uppercase, using `toupper`, which will ensure that the conversions are made within **Modulo 26**, representing the number of letters in the alphabet.
 
-3. **Invertibility Check:**
-   - The matrix must have a modular inverse (i.e., its determinant must be coprime with 26).
+Characters can then be converted to integers and vice versa using the associated ASCII value of the first uppercase character, `A`. This results in the following code:
 
-4. **Encoding/Decoding:**
-   - The text is processed in 2-character blocks using matrix multiplication.
-   - Uses original key for encoding and inverse key for decoding.
+```cpp
+int char_to_int(char c)
+{
+    return toupper(c) - 'A'; 
+}
+
+char int_to_char(int i)
+{
+    return 'A' + (i % 26);
+}
+```
 
 :::
 
-TODO: Add somewhat compacted/concise version of your introduction to the Hill Cipher. This part can include some of the details such as the maths behind it, or can be more general, with the maths in the sections below.
+Next, the 2x2 **Key Matrix** is defined. This matrix is usually denoted as K and has the following form:
+
+$$
+K = \begin{bmatrix}
+k_{11} & k_{12} \\
+k_{21} & k_{22}
+\end{bmatrix}
+$$
+
+The key matrix is constant and is repetitively used for converting all the letter pairs in the message in the same pattern. As long as the recipients know the Key Matrix, the message can be decoded correctly.
+
+>TODO: Add explanation about input for key matrix (input 4 characters, check mod_inverse using matrix from input characters, etc).
+
+```cpp
+int mod_inverse(int a, int m) {
+    a %= m;
+    for (int x = 1; x < m; ++x) {
+        if ((a * x) % m == 1) return x;
+    }
+    return -1;
+}
+```
 
 ### Encoding with the Hill Cipher
 
-TODO: Add explanation and code for a function named "hill_cipher_encode" (can just be C++ code). And any related functions.
+>TODO: Improve explanation below and add C++ code for a function named "hill_cipher_encode" - check that key matrix is invertible inside function.
+
+To encoding data with the Hill Cipher, we take the first 2 letters of the message string and convert them to their mapped integer using the `char_to_int` function. Then we complete simple matrix multiplication and use the `int_to_char` function to map the integers back to letters, which are then appended to the string for encoded message.
+
+```cpp
+string hill_cipher_encode(string text, string key)
+{
+    // create key matrix from key string
+    // check that key matrix is invertible
+    // encode
+}
+```
 
 :::note[Using this function]
 
-TODO: add example code using hill_cipher_encode
+Here is an example of how you can use the `hill_cipher_encode` function to encode a message:
+
+```cpp
+string message = "HELLOWORLD";
+string key = "HELP";
+string encoded_message = hill_cipher_encode(message, key);
+write_line("Original: " + message);
+write_line("Encoded: " + encoded_message);
+```
 
 :::
 
 :::tip[Expected Output]
 
-TODO: Add expected output (similar to above).
+```plaintext
+Original: "HELLOWORLD"
+Encoded: "NHRAEQKTLK"
+```
 
 :::
 
@@ -1382,14 +1430,51 @@ TODO: Add expected output (similar to above).
 
 TODO: Add explanation and code for a function named "hill_cipher_decode" (can just be C++ code). And any related functions and explanations such as the inverse matrix.
 
+```cpp
+bool inverse_matrix(int mat[2][2], int inv[2][2]) {
+    int det = mat[0][0]*mat[1][1] - mat[0][1]*mat[1][0]; // Calculate determinant
+    det = (det % 26 + 26) % 26;// Ensure determinant is positive and within range
+
+    int inv_det = mod_inverse(det, 26);
+    if (inv_det == -1) return false;
+
+    inv[0][0] = (mat[1][1] * inv_det) % 26;
+    inv[0][1] = (-mat[0][1] * inv_det + 26) % 26;
+    inv[1][0] = (-mat[1][0] * inv_det + 26) % 26;
+    inv[1][1] = (mat[0][0] * inv_det) % 26;
+    return true;
+}
+```
+
+```cpp
+string hill_cipher_decode(string text, string key)
+{
+    // create key matrix from key string
+    // check that key matrix is invertible
+    // convert key to inverse matrix
+    // decode
+}
+```
+
 :::note[Using this function]
 
-TODO: add example code using hill_cipher_decode
+Here is an example of how you can use the `hill_cipher_encode` function to encode a message:
+
+```cpp
+string message = "NHRAEQKTLK";
+string key = "HELP";
+string decoded_message = hill_cipher_decode(message, key);
+write_line("Original: " + message);
+write_line("Decoded: " + decoded_message);
+```
 
 :::
 
 :::tip[Expected Output]
 
-TODO: Add expected output (similar to above).
+```plaintext
+Original: "NHRAEQKTLK"
+Decoded: "HELLOWORLD"
+```
 
 :::
