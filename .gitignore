@@ -4,7 +4,7 @@ dist/
 .astro/
 
 # vscode settings
-.vscode/
+# .vscode/
 
 *.sln
 
@@ -20,6 +20,11 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+
+# built examples
+built-examples/*/*
+*.sln
+*.log
 
 # macOS-specific files
 .DS_Store

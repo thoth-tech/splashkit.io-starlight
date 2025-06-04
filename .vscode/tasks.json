@@ -1,20 +1,36 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "Build splashkit.io Website",
-      "type": "shell",
-      "command": "npm install && npm run build && npm start",
-      "group": "build",
-      "presentation": {
-        "group": "buildGroup",
-        "reveal": "always",
-        "panel": "new",
-        "echo": false
-      },
-      // "runOptions": {
-      //   "runOn": "folderOpen" // This starts the task automatically
-      // }
-    }
-  ]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build and preview splashkit.io Website",
+            "type": "shell",
+            "command": "npm install && npm run build && npm run preview",
+            "group": "build",
+            "presentation": {
+                "group": "buildGroup",
+                "reveal": "always",
+                "panel": "new",
+                "echo": false
+            }
+        },
+        {
+            "label": "Setup testing files",
+            "type":"shell",
+            "command": "./setup_example_test_files.sh",
+            "args": [
+                "${fileBasename}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/built-examples"
+            },
+            "linux":{
+                "command": "${workspaceFolder}/built-examples/setup_example_test_files.sh"
+            },
+            "windows":{
+                "options": {
+                    "cwd": "${workspaceFolder}\\built-examples"
+                },
+            }
+        }
+    ]
 }
