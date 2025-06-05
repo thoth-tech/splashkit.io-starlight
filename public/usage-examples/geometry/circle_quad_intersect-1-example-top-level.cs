@@ -1,45 +1,46 @@
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Mouse Circle vs Rectangle Area", 800, 600);
+OpenWindow("Is the Circle inside the Quad?", 800, 600);
 
-// Define quad corners using full type names
-SplashKitSDK.Point2D topLeft = PointAt(300, 200);
-SplashKitSDK.Point2D topRight = PointAt(500, 200);
-SplashKitSDK.Point2D bottomRight = PointAt(500, 400);
-SplashKitSDK.Point2D bottomLeft = PointAt(300, 400);
+// Define an irregular quad using direct coordinates
+SplashKitSDK.Quad quad = QuadFrom(
+    300, 100,   // top-left
+    500, 200,   // top-right
+    200, 400,   // bottom-left
+    600, 500    // bottom-right
+);
 
-// Create quad
-SplashKitSDK.Quad fixedQuad = QuadFrom(topLeft, topRight, bottomRight, bottomLeft);
-
-// Declare variables
-float radius = 30;
-SplashKitSDK.Point2D mouse;
-SplashKitSDK.Circle mouseCircle;
-bool isIntersecting;
-SplashKitSDK.Color fillColor;
+// Define initial state
+SplashKitSDK.Circle mouseCircle = CircleAt(0, 0, 30);
+SplashKitSDK.Color quadColor = SplashKitSDK.Color.Black;
+string message = "";
 
 while (!QuitRequested())
 {
     ProcessEvents();
-    ClearScreen(ColorWhite());
+    ClearScreen(SplashKitSDK.Color.White);
 
-    mouse = MousePosition();
-    mouseCircle = CircleAt(mouse.X, mouse.Y, radius);
+    // Update the circle based on current mouse position
+    mouseCircle = CircleAt(MouseX(), MouseY(), 30);
 
-    isIntersecting = CircleQuadIntersect(mouseCircle, fixedQuad);
-
-    if (isIntersecting)
+    // Change color and message based on intersection
+    if (CircleQuadIntersect(mouseCircle, quad))
     {
-        fillColor = ColorRed();
+        quadColor = SplashKitSDK.Color.Green;
+        message = "Yes, it is!";
     }
     else
     {
-        fillColor = ColorGreen();
+        quadColor = SplashKitSDK.Color.Red;
+        message = "No, it isn't...";
     }
 
-    FillTriangle(fillColor, topLeft.X, topLeft.Y, topRight.X, topRight.Y, bottomRight.X, bottomRight.Y);
-    FillTriangle(fillColor, topLeft.X, topLeft.Y, bottomLeft.X, bottomLeft.Y, bottomRight.X, bottomRight.Y);
+    // Draw quad and circle with feedback text
+    FillQuad(quadColor, quad);
+    DrawText(message, SplashKitSDK.Color.Black, 330, 300);
+    DrawCircle(SplashKitSDK.Color.Black, mouseCircle);
 
-    DrawCircle(ColorBlack(), mouseCircle);
     RefreshScreen();
 }
+
+CloseAllWindows();
