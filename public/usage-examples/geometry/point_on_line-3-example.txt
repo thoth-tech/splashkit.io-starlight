@@ -1,0 +1,4 @@
+// SplashKit Usage Example - Point on Line: Hover Game Edition
+// Author: Saksham
+// Description: A simple interactive program where the user must hover over a hidden point on a line.
+
