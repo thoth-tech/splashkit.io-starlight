@@ -1,5 +1,0 @@
-Display Name Of Music
-
-:::note
-To test this example code you can download these [**Resources**](/usage-examples/audio/music_name-1-example-resources.zip).
-:::
