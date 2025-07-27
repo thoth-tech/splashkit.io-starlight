@@ -112,6 +112,7 @@ export default defineConfig({
           items: [
             { label: "Overview", link: "guides/" },
             { label: "Getting Started", autogenerate: { directory: "guides/getting-started" }, collapsed: false },
+            { label: "Sprites", autogenerate: { directory: "guides/sprites" }, collapsed: false },
             { label: "Raspberry GPIO", autogenerate: { directory: "guides/raspberry-gpio" }, collapsed: true },
             { label: "Physics", autogenerate: { directory: "guides/physics" }, collapsed: true },
             { label: "Interface", autogenerate: { directory: "guides/interface" }, collapsed: true },

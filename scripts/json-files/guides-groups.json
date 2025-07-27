@@ -3,5 +3,6 @@
   "interface",
   "networking",
   "physics",
-  "raspberry-gpio"
+  "raspberry-gpio",
+  "sprites"
 ]
