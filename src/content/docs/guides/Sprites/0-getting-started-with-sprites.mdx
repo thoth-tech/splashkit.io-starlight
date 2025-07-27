@@ -3,7 +3,7 @@ title: Getting Started With Sprites
 description: This article provide a quick overview of getting started with Sprites in SplashKit. It includes how to create Sprite objects, and how to manipulate them on a basic level.
 category: Tutorials
 author: Various Authors
-lastupdated: August 8 2024
+lastupdated: 27 July 2025
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -15,12 +15,12 @@ _Last updated: {frontmatter.lastupdated}_
 
 ---
 
-In this article you will see how to get started with Sprites in SplashKit, with some simple drawing operations. Once you have this working you will be able to start exploring the different features you can work with. This article assumes that you have some basic understanding of how to use Splashkit.
+In this article you will see how to get started with Sprites in SplashKit, with some simple drawing operations. Once you have this working you will be able to start exploring the different features you can work with. This article assumes that you have some basic understanding of how to use SplashKit.
 
 ## Sprites
 A sprite is a two dimensional grid of pixels collected into an image-object called a bitmap. Each pixel of the bitmap is mapped to specific coordinates. When viewed together this gives the illusion of a single contiguous image. You, as the programmer, do not need to manage sprites at this level of granularity however.
 
-In Splashkit a sprite is a structure (struct). You will not manipulate the variables of this struct directly, rather we manipulate data through [functions](/api/sprites). These functions include everything you need to manipulate the sprite programatically.
+In SplashKit a sprite is a structure (struct). You will not manipulate the variables of this struct directly, rather we manipulate data through [functions](/api/sprites). These functions include everything you need to manipulate the sprite programatically.
 
 Some important attributes of a sprite include:
 * **Position:** The cartesian co-ordinates of the sprite in space. In game terms these will be relative to the plane you are drawing the sprite to, and are measured from the center of the sprite.
@@ -34,11 +34,11 @@ Some important attributes of a sprite include:
 There are many others, but for now we will focus on the basics.
 
 ### Creating a Sprite
-Before we can manipulate the sprite we have to define it. Splashkit does not require you to define a sprite's bitmap pixel by pixel. Instead we can use common image file types. [Lossless](https://en.wikipedia.org/wiki/Lossless_compression) file types such as .png are preferred. 
+Before we can manipulate the sprite we have to define it. SplashKit does not require you to define a sprite's bitmap pixel by pixel. Instead we can use common image file types. [Lossless](https://en.wikipedia.org/wiki/Lossless_compression) file types such as .png are preferred. 
 
-For this tutorial we will use this circular fellow, but feel free to draw your own sprite if you prefer! 
-
-![CircleMan](./images/circleMan.png)
+:::note
+To test the code below you can download these [**Resources**](/resources/guides/sprites/basics/BasicSpritesResources.zip), but feel free to draw your own sprites if you prefer!.
+:::
 
 Now we will import this bitmap into our program and associate it with a sprite. Copy this code into your text editor, compile and run it:
 <Tabs syncKey="code-language">
@@ -50,7 +50,7 @@ Now we will import this bitmap into our program and associate it with a sprite. 
 
     int main()
     {
-        open_window("Sprite Demo", 320, 320);
+        open_window("Sprite Demo", 600, 600);
         
         bitmap bodyBit = load_bitmap("body", "circleMan.png");
         sprite bodySprite = create_sprite("body", bodyBit);
@@ -81,9 +81,9 @@ For the moment we are only interested in these statements:
 
 It is important to note that a sprite and a bitmap are distinct entities. A sprite requires a bitmap to describe what it's appearance. Therefore we need to call [load_bitmap()](https://splashkit.io/api/graphics/#load-bitmap) to create a bitmap, then associate it with the sprite when we call [create_sprite()](https://splashkit.io/api/sprites/#create-sprite-1). 
 
-You will also notice that instead of [draw_bitmap()](https://splashkit.io/api/graphics/#draw-bitmap-1) we use [draw_sprite()](https://splashkit.io/api/sprites/#draw-sprite-1). Splashkit handles drawing for these two data types slightly differently behind the scenes. If you try passing `bodySprite` to [draw_bitmap()](https://splashkit.io/api/graphics/#draw-bitmap-1) you will get a compile error. 
+You will also notice that instead of [draw_bitmap()](https://splashkit.io/api/graphics/#draw-bitmap-1) we use [draw_sprite()](https://splashkit.io/api/sprites/#draw-sprite-1). SplashKit handles drawing for these two data types slightly differently behind the scenes. If you try passing `bodySprite` to [draw_bitmap()](https://splashkit.io/api/graphics/#draw-bitmap-1) you will get a compile error. 
 
-Lastly we need to call [refresh_screen()](https://splashkit.io/usage-examples/graphics/#refresh-screen-examples). [Remember](https://splashkit.io/guides/graphics/1-double-buffering/) - drawing in Splashkit does not implicitly redraw the screen after being told to draw something. It is your job as a programmer to tell Splashkit when you need the screen updated!  
+Lastly we need to call [refresh_screen()](https://splashkit.io/api/graphics/#refresh-screen). [Remember](https://splashkit.io/guides/graphics/double-buffering/) - drawing in Splashkit does not implicitly redraw the screen after being told to draw something. It is your job as a programmer to tell SplashKit when you need the screen updated!  
 
 ### Moving the Sprite
 Next we will see how sprites can be controlled, either through code or user input. Modify the code to add the following lines after `draw_sprite(bodySprite, 0, 0);`: 
@@ -114,7 +114,7 @@ using namespace std;
 
 int main(){
 
-    open_window("Sprite Demo", 320, 320);
+    open_window("Sprite Demo", 600, 600);
     bitmap bodyBit = load_bitmap("body", "circleMan.png");
     sprite bodySprite = create_sprite("body", bodyBit);
     point_2d pos;
@@ -171,7 +171,7 @@ Sprites can be rotated by calling the [sprite_set_rotation()](https://splashkit.
 
   int main(){
 
-      open_window("Sprite Demo", 320, 320);
+      open_window("Sprite Demo", 600, 600);
       bitmap bodyBit = load_bitmap("body", "circleMan.png");
       sprite bodySprite = create_sprite("body", bodyBit);
       point_2d pos;
@@ -208,15 +208,15 @@ In the previous example we used the [move_sprite()](https://splashkit.io/api/spr
 
 If you're not familiar with linear algebra concepts don't worry, you don't need a deep understanding of vector math to understand what we're doing here. 
 
-The basic idea is this: Suppose that the world has only two dimensions, we label each dimension `x` and `y` respectively. These lines are infinite in both directions (we'll only worry about postive length for now) and run perpendicular to each other, intersecting at the co-ordinates `(0,0)`:
+The basic idea is this: Suppose that the world has only two dimensions, we label each dimension `x` and `y` respectively. These lines are infinite in both directions (we'll only worry about positive length for now) and run perpendicular to each other, intersecting at the co-ordinates `(0,0)`:
 
 ![Graph1](./images/graph.png)
 
-A vector is just an arrow that points somewhere in space. Vectors have an origin and a position describing where they "start" and "end" respectively. We can extract the  magnitude (lenght) of the vector. Our vector might have the `origin` of `(0,0)` and the position `(1,2)`:
+A vector is just an arrow that points somewhere in space. Vectors have an origin and a position describing where they "start" and "end" respectively. We can extract the  magnitude (length) of the vector. Our vector might have the `origin` of `(0,0)` and the position `(1,2)`:
 
 ![Graph2](./images/graph2.png)
 
-Why is this important? Because it give us a system for describing object positions and how they move through space. In the previous code example we calculated the sprite's new position by adding two vectors together - the sprite's current position and `moveVector` variable which we set based on user input. So if our spirte starts at `(2,2)` and we add our movement vector `(1,0)` the sprite's final position is `(3,3)`
+Why is this important? Because it give us a system for describing object positions and how they move through space. In the previous code example we calculated the sprite's new position by adding two vectors together - the sprite's current position and `moveVector` variable which we set based on user input. So if our sprite starts at `(2,2)` and we add our movement vector `(1,0)` the sprite's final position is `(3,3)`
 
 ![Graph3](./images/graph3.png)
 
@@ -232,7 +232,7 @@ Add the following two lines to your code after the `draw_text()` statement (line
   </TabItem>
 </Tabs>
 
-This is because we're adding a small amount of velocity to the sprite's position every time the loop iterates. Since there is no air resitance in our version of flatland the sprite will go faster and faster before disappearing off the screen.
+This is because we're adding a small amount of velocity to the sprite's position every time the loop iterates. Since there is no air resistance in our version of flatland the sprite will go faster and faster before disappearing off the screen.
 
 This has a lot of practical applications as far as game design is concerned. Say that you want to make a platformer. How should you model the characters movement at the height of their jump? You could use the equation `V = gt` where `V` is your velocity, `g` is the gravity of your world and `t` is time. 
 
@@ -247,7 +247,7 @@ For the sake of simplicity suppose that `g = -3` (our world is small!) and we me
 
   int main(){
 
-      open_window("Sprite Demo", 320, 320);
+      open_window("Sprite Demo", 600, 600);
       bitmap bodyBit = load_bitmap("body", "circleMan.png");
       sprite bodySprite = create_sprite("body", bodyBit);
       point_2d pos;
@@ -268,8 +268,8 @@ For the sake of simplicity suppose that `g = -3` (our world is small!) and we me
           draw_text(to_string(sprite_velocity(bodySprite).y), COLOR_BLACK, 0,10);
           
           //Stop the sprite from falling through the "floor"
-          if (sprite_position(bodySprite).y > 255){
-              sprite_set_position(bodySprite, {sprite_position(bodySprite).x, 255});
+          if (sprite_position(bodySprite).y > 536){
+              sprite_set_position(bodySprite, {sprite_position(bodySprite).x, 536});
               sprite_set_velocity(bodySprite, {0,0});
               //Reset the timer since the sprite is no longer in the air
               stop_timer("velocityTimer");
@@ -309,14 +309,14 @@ For the sake of simplicity suppose that `g = -3` (our world is small!) and we me
   </TabItem>
 </Tabs>
 
-We accomplish this by making two modifications to the code. This first section checks whether the sprite has fallen through the floor. Rather than using collision objects, in this simple example we set an arbitrary point on the y axis as our floor. If the sprites movement vector would move it past this point we instead set it the boundy (255). This is because the SplashKit coordinate system measures `(0,0)` from the top left corner instead of the bottom left. We also reset our timer so that velocity is calculated correctly the next time we jump! 
+We accomplish this by making two modifications to the code. This first section checks whether the sprite has fallen through the floor. Rather than using collision objects, in this simple example we set an arbitrary point on the y axis as our floor. If the sprites movement vector would move it past this point we instead set it the boundary (536). This is because the SplashKit coordinate system measures `(0,0)` from the top left corner instead of the bottom left. We also reset our timer so that velocity is calculated correctly the next time we jump! 
 
 <Tabs syncKey="code-language">
   <TabItem label="C++">
 
   ```cpp
-  if (sprite_position(bodySprite).y > 255){
-      sprite_set_position(bodySprite, {sprite_position(bodySprite).x, 255});
+  if (sprite_position(bodySprite).y > 536){
+      sprite_set_position(bodySprite, {sprite_position(bodySprite).x, 536});
       sprite_set_velocity(bodySprite, {0,0});
       //Reset the timer since the sprite is no longer in the air
       stop_timer("velocityTimer");
@@ -350,9 +350,9 @@ The `sprite_add_to_velocity()` statement might look daunting if you're new to pr
 </Tabs>
 
 **Note:** If you want to set only `x` or `y` value of the sprite's velocity you can also use 
-[[sprite_set_dx()]](https://splashkit.io/api/sprites/#sprite-set-dx) and [sprite_set_dy()](https://splashkit.io/api/sprites/#sprite-set-dy). 
+[sprite_set_dx()](https://splashkit.io/api/sprites/#sprite-set-dx) and [sprite_set_dy()](https://splashkit.io/api/sprites/#sprite-set-dy). 
 
-In our example we pass in our sprite `bodySprite` and a vector_2d variable we declare inside the function call. vector_2d has two members, `x` and `y`. We declare that this vector has a value of `0`. y (our velocity value) we calculate with this formula `((double)3 * timer_ticks("velocityTimer")/10000)`. In other words it is `V = gt` with the added step that we are dividing `V` by 10,000 and explicitly casting the result as a double (as 3 and the return value of `timer_ticks()` are both integers). This is necessary due to the small scale of our world. Without this extra step a jumnp lasting a third of a second would have enough velocity to move the sprite the entire height of the window three times over!
+In our example we pass in our sprite `bodySprite` and a vector_2d variable we declare inside the function call. vector_2d has two members, `x` and `y`. We declare that this vector has a value of `0`. y (our velocity value) we calculate with this formula `((double)3 * timer_ticks("velocityTimer")/10000)`. In other words it is `V = gt` with the added step that we are dividing `V` by 10,000 and explicitly casting the result as a double (as 3 and the return value of `timer_ticks()` are both integers). This is necessary due to the small scale of our world. Without this extra step a jump lasting a third of a second would have enough velocity to move the sprite the entire height of the window three times over!
 
 <Tabs syncKey="code-language">
   <TabItem label="C++">
@@ -364,7 +364,7 @@ In our example we pass in our sprite `bodySprite` and a vector_2d variable we de
 </Tabs>
 
 ## Layers
-Imagine a simple scene containing a character, a background and a foreground. How do you ensure that the character appears in front of the background, but behind the foreground? Layers solve this problem. Layers are separate objects odered to give the illusion of depth, while still allowing you to easily manipulate them individually. This is old cartoons were animated. Think about the different parts that make up the scene in Steamboat Willie. There is a background (rolling hills), a middle ground (The boat) and foreground (the wheel and mouse). Rather than (physically) redrawing the entire scene for every frame of animation elements in the composition are moved and re-used. If you're interested in animating in SplashKit have a look at [this tutorial](https://splashkit.io/guides/animations/0-using-animations/). 
+Imagine a simple scene containing a character, a background and a foreground. How do you ensure that the character appears in front of the background, but behind the foreground? Layers solve this problem. Layers are separate objects ordered to give the illusion of depth, while still allowing you to easily manipulate them individually. This is old cartoons were animated. Think about the different parts that make up the scene in Steamboat Willie. There is a background (rolling hills), a middle ground (The boat) and foreground (the wheel and mouse). Rather than (physically) redrawing the entire scene for every frame of animation elements in the composition are moved and re-used. If you're interested in animating in SplashKit have a look at [this tutorial](https://splashkit.io/guides/animations/using-animations/).
 
 ![steamboat](./images/steamboat.gif)
 
@@ -408,7 +408,7 @@ void draw_scene(sprite s, vector_2d m){
 
 int main(){
 
-    open_window("Sprite Demo", 320, 320);
+    open_window("Sprite Demo", 600, 600);
     bitmap bodyBit = load_bitmap("body", "circleMan.png");
     sprite bodySprite = create_sprite("body", bodyBit);
     vector_2d moveVector;
