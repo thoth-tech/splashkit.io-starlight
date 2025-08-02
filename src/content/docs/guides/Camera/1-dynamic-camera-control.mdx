@@ -118,6 +118,9 @@ int main()
 </TabItem>
 <TabItem label="C#">
 
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
   ```csharp
   using SplashKitSDK;
   using static SplashKitSDK.SplashKit;
@@ -189,6 +192,155 @@ int main()
 
 </TabItem>
 
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace DynamicCamera
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            // Zoom scale factor
+            const int zoomScale = 5;
+
+            // Initial camera position at (0,0)
+            Point2D cameraPosition = new Point2D { X = 0, Y = 0 };
+            int boxSize = 100;
+            bool zoomedIn = false;
+
+            // Open window with specified dimensions
+            SplashKit.OpenWindow("Camera Zooming Example", 500, 550);
+
+            // Load bitmap for the grid of colors
+            SplashKit.LoadBitmap("color-grid", "color-grid.png");
+
+            while (!SplashKit.WindowCloseRequested("Camera Zooming Example"))
+            {
+                SplashKit.ProcessEvents();
+                // Zoom In
+                if (SplashKit.MouseClicked(MouseButton.LeftButton) && !zoomedIn)
+                {
+                    int clickedBoxX = (int)SplashKit.MouseX() / boxSize;
+                    int clickedBoxY = (int)SplashKit.MouseY() / boxSize;
+
+
+
+                    // Update the camera position to center on the clicked box
+                    cameraPosition.X = (clickedBoxX * boxSize - boxSize * 2) * zoomScale;
+                    cameraPosition.Y = (clickedBoxY * boxSize - boxSize * 2) * zoomScale;
+
+                    SplashKit.SetCameraPosition(cameraPosition);
+
+                    zoomedIn = true;
+                }
+
+                // If Escape key is pressed, return to the full grid view
+                if (SplashKit.KeyTyped(KeyCode.EscapeKey) && zoomedIn)
+                {
+                    cameraPosition.X = 0;
+                    cameraPosition.Y = 0;
+
+                    SplashKit.SetCameraPosition(cameraPosition);
+
+                    zoomedIn = false;
+                }
+
+                // Draw a 5x5 grid of different colored boxes
+                SplashKit.ClearScreen();
+                if (!zoomedIn)
+                {
+                    SplashKit.DrawBitmap("color-grid", 0, 0, SplashKit.OptionDefaults());
+                }
+                else
+                {
+                    SplashKit.DrawBitmap("color-grid", 0, 0, SplashKit.OptionScaleBmp(zoomScale, zoomScale));
+                }
+                SplashKit.FillRectangle(Color.LightGray, 0, 500, SplashKit.ScreenWidth(), 50, SplashKit.OptionToScreen());
+                SplashKit.DrawText("Click a box to zoom in. Press ESC to return to grid", Color.Black, 10, SplashKit.ScreenHeight() - 30, SplashKit.OptionToScreen());
+                SplashKit.RefreshScreen();
+
+            }
+
+            // Close the window when finished
+            SplashKit.CloseAllWindows();
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+
+</TabItem>
+<TabItem label="Python">
+
+```python
+from splashkit import *
+
+# Zoom scale factor
+ZOOM_SCALE = 5
+
+# Initial camera position at (0,0)
+camera_pos = point_at(0, 0)
+BOX_SIZE = 100
+zoomed_in = False
+
+# Open window with specified dimensions
+open_window("Camera Zooming Example", 500, 550)
+
+# Load bitmap for the grid of colors
+load_bitmap("color_grid", "color-grid.png")
+color_grid = bitmap_named("color_grid")
+
+while (not quit_requested()):
+    process_events()
+
+    # Zoom In
+    if mouse_clicked(MouseButton.left_button) and not zoomed_in:
+        clicked_box_x = int(mouse_x()) // BOX_SIZE
+        clicked_box_y = int(mouse_y()) // BOX_SIZE
+
+        # Update the camera position to center on the clicked box
+        camera_pos.x = (clicked_box_x * BOX_SIZE - BOX_SIZE * 2) * ZOOM_SCALE
+        camera_pos.y = (clicked_box_y * BOX_SIZE - BOX_SIZE * 2) * ZOOM_SCALE
+
+        # Update the camera position
+        set_camera_position(camera_pos)
+
+        zoomed_in = True
+
+    # If Escape key is pressed, return to the full grid view
+    if key_typed(KeyCode.escape_key) and zoomed_in:
+        camera_pos.x = 0
+        camera_pos.y = 0
+
+        # Reset the camera position
+        set_camera_position(camera_pos)
+
+        zoomed_in = False
+
+    # Draw a 5x5 grid of different colored boxes
+    clear_screen(color_white())
+    if not zoomed_in:
+        draw_bitmap_with_options(color_grid, 0, 0, option_defaults())
+    else:
+        draw_bitmap_with_options(color_grid, 0, 0, option_scale_bmp(
+            ZOOM_SCALE, ZOOM_SCALE))
+
+    fill_rectangle_with_options(color_light_gray(), 0, 500,
+                                screen_width(), 50, option_to_screen())
+    draw_text_no_font_no_size_with_options("Click a box to zoom in. Press ESC to return to grid",
+                                           color_black(), 10, screen_height() - 30, option_to_screen())
+    refresh_screen()
+
+# Close the window when finished
+close_all_windows()
+```
+
+</TabItem>
+
 </Tabs>
 
 ### Understanding the code for zooming
@@ -226,6 +378,9 @@ int main()
 </TabItem>
 <TabItem label="C#">
 
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
 ```csharp
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
@@ -245,8 +400,52 @@ OpenWindow("Camera Zooming Example", 500, 550);
 LoadBitmap("color-grid", "color-grid.png");
 ```
 
-</TabItem>
 
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+// Zoom scale factor
+const int zoomScale = 5;
+
+// Initial camera position at (0,0)
+Point2D cameraPosition = new Point2D { X = 0, Y = 0 };
+int boxSize = 100;
+bool zoomedIn = false;
+
+// Open window with specified dimensions
+SplashKit.OpenWindow("Camera Zooming Example", 500, 550);
+
+// Load bitmap for the grid of colors
+SplashKit.LoadBitmap("color-grid", "color-grid.png");
+
+```
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem label="Python">
+
+```python
+from splashkit import *
+
+# Zoom scale factor
+ZOOM_SCALE = 5
+
+# Initial camera position at (0,0)
+camera_pos = point_at(0, 0)
+BOX_SIZE = 100
+zoomed_in = False
+
+# Open window with specified dimensions
+open_window("Camera Zooming Example", 500, 550)
+
+# Load bitmap for the grid of colors
+load_bitmap("color_grid", "color-grid.png")
+color_grid = bitmap_named("color_grid")
+```
+</TabItem>
 </Tabs>
 
 Here, we open a 500x550 window using [OpenWindow](https://splashkit.io/api/windows/#open-window) and load a bitmap using [LoadBitmap](https://splashkit.io/api/graphics/#load-bitmap). The [CameraPosition](https://splashkit.io/api/camera/#camera-position) is initially set to (0, 0).
@@ -282,6 +481,8 @@ while (!window_close_requested("Camera Zooming Example"))
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 while (!WindowCloseRequested("Camera Zooming Example"))
@@ -304,9 +505,54 @@ while (!WindowCloseRequested("Camera Zooming Example"))
 }
 
 ```
-
 </TabItem>
+<TabItem label="Object-Oriented">
 
+```csharp
+while (!SplashKit.WindowCloseRequested("Camera Zooming Example"))
+{
+    SplashKit.ProcessEvents();
+
+    // Zoom In
+    if (SplashKit.MouseClicked(MouseButton.LeftButton) && !zoomedIn)
+        {
+            int clickedBoxX = (int)SplashKit.MouseX() / boxSize;
+            int clickedBoxY = (int)SplashKit.MouseY() / boxSize;
+
+            // Update the camera position to center on the clicked box
+            cameraPosition.X = (clickedBoxX * boxSize - boxSize * 2) * zoomScale;
+            cameraPosition.Y = (clickedBoxY * boxSize - boxSize * 2) * zoomScale;
+
+            SplashKit.SetCameraPosition(cameraPosition);
+            zoomedIn = true;
+        }
+}
+```
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem label="Python">
+
+```python
+while (not quit_requested()):
+    process_events()
+
+    # Zoom In
+    if mouse_clicked(MouseButton.left_button) and not zoomed_in:
+        clicked_box_x = int(mouse_x()) // BOX_SIZE
+        clicked_box_y = int(mouse_y()) // BOX_SIZE
+
+        # Update the camera position to center on the clicked box
+        camera_pos.x = (clicked_box_x * BOX_SIZE - BOX_SIZE * 2) * ZOOM_SCALE
+        camera_pos.y = (clicked_box_y * BOX_SIZE - BOX_SIZE * 2) * ZOOM_SCALE
+
+        # Update the camera position
+        set_camera_position(camera_pos)
+
+        zoomed_in = True
+        
+```
+</TabItem>
 </Tabs>
 
 Here, we use [Mouse Clicked](https://splashkit.io/api/input/#mouse-clicked) to detect when the user clicks inside the window. If the left mouse button is clicked and the camera is not already zoomed in, we calculate the coordinates of the clicked box by dividing the mouse's position by "BOX SIZE".
@@ -333,6 +579,8 @@ if (key_typed(ESCAPE_KEY) && zoomed_in)
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 // If Escape key is pressed, return to the full grid view
@@ -345,9 +593,35 @@ if (KeyTyped(KeyCode.EscapeKey) && zoomedIn)
 }
 
 ```
-
 </TabItem>
+<TabItem label="Object-Oriented">
 
+```csharp
+// If Escape key is pressed, return to the full grid view
+if (SplashKit.KeyTyped(KeyCode.EscapeKey) && zoomedIn)
+{
+    cameraPosition.X = 0;
+    cameraPosition.Y = 0;
+    SplashKit.SetCameraPosition(cameraPosition);
+    zoomedIn = false;
+}
+```
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem label="Python">
+
+```python
+# If Escape key is pressed, return to the full grid view
+if key_typed(KeyCode.escape_key) and zoomed_in:
+    camera_pos.x = 0
+    camera_pos.y = 0
+
+    # Reset the camera position
+    set_camera_position(camera_pos)
+    zoomed_in = False
+```
+</TabItem>
 </Tabs>
 
 Here, the [Key Typed](https://splashkit.io/api/input/#key-typed) function is used to detect whether the "ESCAPE KEY" was pressed. When the "ESCAPE KEY" is pressed and the view is zoomed in, the camera's position is reset by setting camera position values to 0. This moves the camera back to the original full grid view. The function [SetCameraPosition](https://splashkit.io/api/camera/#set-camera-position) is then called to update the camera position.
@@ -377,7 +651,11 @@ refresh_screen();
 </TabItem>
 <TabItem label="C#">
 
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
 ```csharp
+
 // Draw the grid with or without zoom
 ClearScreen();
 if (!zoomedIn)
@@ -393,9 +671,45 @@ DrawText("Click a box to zoom in. Press ESC to return to grid", ColorBlack(), 10
 RefreshScreen();
 
 ```
-
 </TabItem>
+<TabItem label="Object-Oriented">
 
+```csharp
+// Draw a 5x5 grid of different colored boxes
+SplashKit.ClearScreen();
+if (!zoomedIn)
+{
+    SplashKit.DrawBitmap("color-grid", 0, 0, SplashKit.OptionDefaults());
+}
+else
+{
+    SplashKit.DrawBitmap("color-grid", 0, 0, SplashKit.OptionScaleBmp(zoomScale, zoomScale));
+}
+SplashKit.FillRectangle(Color.LightGray, 0, 500, SplashKit.ScreenWidth(), 50, SplashKit.OptionToScreen());
+SplashKit.DrawText("Click a box to zoom in. Press ESC to return to grid", Color.Black, 10, SplashKit.ScreenHeight() - 30, SplashKit.OptionToScreen());
+SplashKit.RefreshScreen();
+```
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem label="Python">
+
+```python
+# Draw a 5x5 grid of different colored boxes
+clear_screen(color_white())
+if not zoomed_in:
+        draw_bitmap_with_options(color_grid, 0, 0, option_defaults())
+    else:
+        draw_bitmap_with_options(color_grid, 0, 0, option_scale_bmp(
+            ZOOM_SCALE, ZOOM_SCALE))
+
+    fill_rectangle_with_options(color_light_gray(), 0, 500,
+                                screen_width(), 50, option_to_screen())
+    draw_text_no_font_no_size_with_options("Click a box to zoom in. Press ESC to return to grid",
+                                        color_black(), 10, screen_height() - 30, option_to_screen())
+    refresh_screen()
+```
+</TabItem>
 </Tabs>
 
 In this code, the [Draw Bitmap](https://splashkit.io/api/graphics/#draw-bitmap) function displays the grid with optional zooming, using [Option Defaults](https://splashkit.io/api/graphics/#option-defaults) for default settings. The [Option Scale Bmp](https://splashkit.io/api/graphics/#option-scale-bmp) function scales the bitmap based on the zoom factor. The [Option To Screen](https://splashkit.io/api/graphics/#option-to-screen) function is used to ensure that additional elements like rectangles and text are drawn with the correct positioning and transformations based on the current screen settings. After drawing the bitmap, we refresh the screen using [Refresh Screen](https://splashkit.io/api/graphics/#refresh-screen).
@@ -486,6 +800,8 @@ int main()
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 using SplashKitSDK;
@@ -553,7 +869,139 @@ CloseAllWindows();
 ```
 
 </TabItem>
+<TabItem label="Object-Oriented">
 
+```csharp
+using SplashKitSDK;
+
+namespace DynamicCamera
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            // Speed of camera movement
+            const int SPEED = 4;
+
+            // Open a window
+            SplashKit.OpenWindow("Camera Movement Example", 800, 600);
+
+            // Load a 5x5 colored grid bitmap
+            Bitmap grid = SplashKit.LoadBitmap("grid", "color-grid-5000.png");
+
+            // Set the initial camera position to center the bitmap
+            SplashKit.SetCameraPosition(SplashKit.PointAt(SplashKit.BitmapWidth(grid) / 2 - SplashKit.ScreenCenter().X, SplashKit.BitmapHeight(grid) / 2 - SplashKit.ScreenCenter().Y));
+
+            // Target position where the camera will move towards
+            Point2D target = SplashKit.PointAt(SplashKit.BitmapWidth(grid) / 2, SplashKit.BitmapHeight(grid) / 2);
+
+            // Main game loop
+            while (!SplashKit.WindowCloseRequested("Camera Movement Example"))
+            {
+                SplashKit.ProcessEvents();
+
+                // Set target Camera position to be centered on Mouse Position
+                if (SplashKit.MouseClicked(MouseButton.LeftButton))
+                {
+                    target = SplashKit.ToWorld(SplashKit.MousePosition());
+                }
+
+                // Move camera to center target position on screen
+                if (SplashKit.CameraX() < target.X - SplashKit.ScreenWidth() / 2)
+                {
+                    SplashKit.MoveCameraBy(SPEED, 0);
+                }
+                if (SplashKit.CameraX() + SplashKit.ScreenWidth() > target.X + SplashKit.ScreenWidth() / 2)
+                {
+                    SplashKit.MoveCameraBy(-SPEED, 0);
+                }
+                if (SplashKit.CameraY() < target.Y - SplashKit.ScreenHeight() / 2)
+                {
+                    SplashKit.MoveCameraBy(0, SPEED);
+                }
+                if (SplashKit.CameraY() + SplashKit.ScreenHeight() > target.Y + SplashKit.ScreenHeight() / 2)
+                {
+                    SplashKit.MoveCameraBy(0, -SPEED);
+                }
+
+                // Allow scroll movement
+                if (SplashKit.MouseWheelScroll().X < 0 || SplashKit.MouseWheelScroll().X > 0 || SplashKit.MouseWheelScroll().Y < 0 || SplashKit.MouseWheelScroll().Y > 0)
+                {
+                    SplashKit.MoveCameraBy(SPEED * SplashKit.MouseWheelScroll().X, 0);
+                    SplashKit.MoveCameraBy(0, SPEED * -SplashKit.MouseWheelScroll().Y);
+                    target = SplashKit.ScreenCenter();
+                }
+
+                // Draw Bitmap
+                SplashKit.ClearScreen(Color.Black);
+                SplashKit.DrawBitmap(grid, 0, 0);
+                SplashKit.RefreshScreen(60);
+            }
+
+            SplashKit.CloseAllWindows();
+        }
+    }
+}
+```
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem label="Python">
+
+```python
+from splashkit import *
+
+# Speed of camera movement
+SPEED = 4
+
+# Open a window
+open_window("Camera Movement Example", 800, 600)
+
+# Load a 5x5 colored grid bitmap
+grid = load_bitmap("grid", "color-grid-5000.png")
+
+
+# Set the initial camera position to center the bitmap
+set_camera_position(
+    point_at(bitmap_width(grid) / 2 - screen_center().x,
+             bitmap_height(grid) / 2 - screen_center().y)
+)
+
+# Target position where the camera will move towards
+target = point_at(bitmap_width(grid) / 2, bitmap_height(grid) / 2)
+
+# Main game loop
+while (not quit_requested()):
+    process_events()
+
+    # Set target Camera position to be centered on Mouse Position
+    if mouse_clicked(MouseButton.left_button):
+        target = to_world(mouse_position())
+
+    # Move camera to center target position on screen
+    if camera_x() < target.x - screen_width() / 2:
+        move_camera_by(SPEED, 0)
+    if camera_x() + screen_width() > target.x + screen_width() / 2:
+        move_camera_by(-SPEED, 0)
+    if camera_y() < target.y - screen_height() / 2:
+        move_camera_by(0, SPEED)
+    if camera_y() + screen_height() > target.y + screen_height() / 2:
+        move_camera_by(0, -SPEED)
+
+    # Allow scroll movement
+    if (mouse_wheel_scroll().x != 0 or mouse_wheel_scroll().y != 0):
+        move_camera_by(SPEED * mouse_wheel_scroll().x, 0)
+        move_camera_by(0, SPEED * -mouse_wheel_scroll().y)
+        target = screen_center()
+
+    # Draw Bitmap
+    clear_screen(color_black())
+    draw_bitmap(grid, 0, 0)
+    refresh_screen_with_target_fps(60)
+
+close_all_windows()
+```
+</TabItem>
 </Tabs>
 
 ### Understanding the code for movement
@@ -592,6 +1040,8 @@ int main()
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 using SplashKitSDK;
@@ -613,7 +1063,49 @@ SetCameraPosition(PointAt(BitmapWidth(grid) / 2 - ScreenCenter().X, BitmapHeight
 ```
 
 </TabItem>
+<TabItem label="Object-Oriented">
 
+```csharp
+using SplashKitSDK;
+
+// Speed of camera movement
+const int SPEED = 4;
+
+// Open a window
+SplashKit.OpenWindow("Camera Movement Example", 800, 600);
+
+// Load a 5x5 colored grid bitmap
+Bitmap grid = SplashKit.LoadBitmap("grid", "color-grid-5000.png");
+
+// Set the initial camera position to center the bitmap
+SplashKit.SetCameraPosition(SplashKit.PointAt(SplashKit.BitmapWidth(grid) / 2 - SplashKit.ScreenCenter().X, SplashKit.BitmapHeight(grid) / 2 - SplashKit.ScreenCenter().Y));
+```
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem label="Python">
+
+```python
+from splashkit import *
+
+# Speed of camera movement
+SPEED = 4
+
+# Open a window
+open_window("Camera Movement Example", 800, 600)
+
+# Load a 5x5 colored grid bitmap
+grid = load_bitmap("grid", "color-grid-5000.png")
+
+
+# Set the initial camera position to center the bitmap
+set_camera_position(
+    point_at(bitmap_width(grid) / 2 - screen_center().x,
+             bitmap_height(grid) / 2 - screen_center().y)
+)
+
+```
+</TabItem>
 </Tabs>
 
 In this part, the [OpenWindow](https://splashkit.io/api/windows/#open-window) function creates an 800x600 window, and the [LoadBitmap](https://splashkit.io/api/graphics/#load-bitmap) function loads a large 5x5 grid bitmap. The [SetCameraPosition](https://splashkit.io/api/camera/#set-camera-position) function centers the camera on the middle of the bitmap by adjusting the camera's position based on the bitmap's width and height.
@@ -632,6 +1124,8 @@ point_2d target = point_at(bitmap_width(grid) / 2, bitmap_height(grid) / 2);
 
 </TabItem>
 <TabItem label= "C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 
@@ -641,7 +1135,23 @@ Point2D target = PointAt(BitmapWidth(grid) / 2, BitmapHeight(grid) / 2);
 ```
 
 </TabItem>
+<TabItem label="Object-Oriented">
 
+```csharp
+// Target position where the camera will move towards
+Point2D target = SplashKit.PointAt(SplashKit.BitmapWidth(grid) / 2, SplashKit.BitmapHeight(grid) / 2);
+```
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem label="Python">
+
+```python
+# Target position where the camera will move towards
+target = point_at(bitmap_width(grid) / 2, bitmap_height(grid) / 2)
+
+```
+</TabItem>
 </Tabs>
 
 Here, we set the initial target to the center of the bitmap, which the camera will follow when the user interacts with the game world.
@@ -669,6 +1179,8 @@ while (!window_close_requested("Camera Movement Example"))
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 // Main game loop
@@ -685,7 +1197,37 @@ while (!WindowCloseRequested("Camera Movement Example"))
 ```
 
 </TabItem>
+<TabItem label="Object-Oriented">
 
+```csharp
+// Main game loop
+while (!SplashKit.WindowCloseRequested("Camera Movement Example"))
+{
+    SplashKit.ProcessEvents();
+
+    // Set target Camera position to be centered on Mouse Position
+    if (SplashKit.MouseClicked(MouseButton.LeftButton))
+    {
+        target = SplashKit.ToWorld(SplashKit.MousePosition());
+    }
+}
+```
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem label="Python">
+
+```python
+# Main game loop
+while (not quit_requested()):
+    process_events()
+
+    # Set target Camera position to be centered on Mouse Position
+    if mouse_clicked(MouseButton.left_button):
+        target = to_world(mouse_position())
+
+```
+</TabItem>
 </Tabs>
 
 In this part of code, the [MouseClicked](https://splashkit.io/api/input/#mouse-clicked) function detects when the left mouse button is clicked. When clicked, the mouse's screen position is changed to a position in the game world. This updates the target to the mouse's clicked location.
@@ -719,6 +1261,8 @@ if (camera_y() + screen_height() > target.y + screen_height() / 2)
 
 </TabItem>
 <TabItem label="C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 
@@ -744,7 +1288,45 @@ if (CameraY() + ScreenHeight() > target.Y + ScreenHeight() / 2)
 ```
 
 </TabItem>
+<TabItem label="Object-Oriented">
 
+```csharp
+// Move camera to center target position on screen
+if (SplashKit.CameraX() < target.X - SplashKit.ScreenWidth() / 2)
+{
+    SplashKit.MoveCameraBy(SPEED, 0);
+}
+if (SplashKit.CameraX() + SplashKit.ScreenWidth() > target.X + SplashKit.ScreenWidth() / 2)
+{
+    SplashKit.MoveCameraBy(-SPEED, 0);
+}
+if (SplashKit.CameraY() < target.Y - SplashKit.ScreenHeight() / 2)
+{
+    SplashKit.MoveCameraBy(0, SPEED);
+}
+if (SplashKit.CameraY() + SplashKit.ScreenHeight() > target.Y + SplashKit.ScreenHeight() / 2)
+{
+    SplashKit.MoveCameraBy(0, -SPEED);
+}
+```
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem label="Python">
+
+```python
+# Move camera to center target position on screen
+if camera_x() < target.x - screen_width() / 2:
+    move_camera_by(SPEED, 0)
+if camera_x() + screen_width() > target.x + screen_width() / 2:
+    move_camera_by(-SPEED, 0)
+if camera_y() < target.y - screen_height() / 2:
+    move_camera_by(0, SPEED)
+if camera_y() + screen_height() > target.y + screen_height() / 2:
+    move_camera_by(0, -SPEED)
+
+```
+</TabItem>
 </Tabs>
 
 This section checks if the camera's current position ([CameraX](https://splashkit.io/api/camera/#camera-x) and [CameraY](https://splashkit.io/api/camera/#camera-y)) is not centered on the target. The [Screen Width](https://splashkit.io/api/graphics/#screen-width) and [Screen Height](https://splashkit.io/api/graphics/#screen-height) functions are used to calculate half the screen's dimensions to ensure the target is centered. If the camera is off-center relative to the target, [MoveCameraBy](https://splashkit.io/api/camera/#move-camera-by-2) function moves the camera incrementally at the defined SPEED to adjust the position. This ensures that the target remains within the center of the visible screen.
@@ -768,6 +1350,8 @@ if (mouse_wheel_scroll().x < 0 || mouse_wheel_scroll().x > 0 || mouse_wheel_scro
 
 </TabItem>
 <TabItem label = "C#">
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
 ```csharp
 
@@ -782,7 +1366,31 @@ if (MouseWheelScroll().X < 0 || MouseWheelScroll().X > 0 || MouseWheelScroll().Y
 ```
 
 </TabItem>
+<TabItem label="Object-Oriented">
 
+```csharp
+// Allow scroll movement
+if (SplashKit.MouseWheelScroll().X < 0 || SplashKit.MouseWheelScroll().X > 0 || SplashKit.MouseWheelScroll().Y < 0 || SplashKit.MouseWheelScroll().Y > 0)
+{
+    SplashKit.MoveCameraBy(SPEED * SplashKit.MouseWheelScroll().X, 0);
+    SplashKit.MoveCameraBy(0, SPEED * -SplashKit.MouseWheelScroll().Y);
+    target = SplashKit.ScreenCenter();
+}
+```
+</TabItem>
+</Tabs>
+</TabItem>
+<TabItem label="Python">
+
+```python
+# Allow scroll movement
+if (mouse_wheel_scroll().x != 0 or mouse_wheel_scroll().y != 0):
+    move_camera_by(SPEED * mouse_wheel_scroll().x, 0)
+    move_camera_by(0, SPEED * -mouse_wheel_scroll().y)
+    target = screen_center()
+
+```
+</TabItem>
 </Tabs>
 
 This section detects scrolling through the [Mouse Wheel Scroll](https://splashkit.io/api/input/#mouse-wheel-scroll) function. If the user scrolls in any direction, the camera moves vertically based on the scroll input. The target is reset to the center of the screen after scrolling.
