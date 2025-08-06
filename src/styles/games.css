@@ -55,8 +55,8 @@
 }
 
 .game-header-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px #7996f7, 0 0 20px #5a9eec, 0 0 30px #51a8fa;
+  transform: scale(1.05);
+  box-shadow: 0 0 4px #7996f7, 0 0 8px #5a9eec, 0 0 12px #51a8fa;
 }
 
 .game-header-button:active {
