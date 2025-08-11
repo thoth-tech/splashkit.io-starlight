@@ -1,0 +1,1 @@
+Sun moving behind a house window (push_clip/pop_clip)
