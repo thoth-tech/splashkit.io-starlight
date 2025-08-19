@@ -288,13 +288,13 @@ BOX_SIZE = 100
 zoomed_in = False
 
 # Open window with specified dimensions
-open_window("Camera Zooming Example", 500, 550)
+win = open_window("Camera Zooming Example", 500, 550)
 
 # Load bitmap for the grid of colors
 load_bitmap("color_grid", "color-grid.png")
 color_grid = bitmap_named("color_grid")
 
-while (not quit_requested()):
+while (not window_close_requested(win)):
     process_events()
 
     # Zoom In
@@ -439,7 +439,7 @@ BOX_SIZE = 100
 zoomed_in = False
 
 # Open window with specified dimensions
-open_window("Camera Zooming Example", 500, 550)
+win = open_window("Camera Zooming Example", 500, 550)
 
 # Load bitmap for the grid of colors
 load_bitmap("color_grid", "color-grid.png")
@@ -534,7 +534,7 @@ while (!SplashKit.WindowCloseRequested("Camera Zooming Example"))
 <TabItem label="Python">
 
 ```python
-while (not quit_requested()):
+while (not window_close_requested(win)):
     process_events()
 
     # Zoom In
@@ -955,7 +955,7 @@ from splashkit import *
 SPEED = 4
 
 # Open a window
-open_window("Camera Movement Example", 800, 600)
+win = open_window("Camera Movement Example", 800, 600)
 
 # Load a 5x5 colored grid bitmap
 grid = load_bitmap("grid", "color-grid-5000.png")
@@ -971,7 +971,7 @@ set_camera_position(
 target = point_at(bitmap_width(grid) / 2, bitmap_height(grid) / 2)
 
 # Main game loop
-while (not quit_requested()):
+while (not window_close_requested(win)):
     process_events()
 
     # Set target Camera position to be centered on Mouse Position
@@ -1092,7 +1092,7 @@ from splashkit import *
 SPEED = 4
 
 # Open a window
-open_window("Camera Movement Example", 800, 600)
+win = open_window("Camera Movement Example", 800, 600)
 
 # Load a 5x5 colored grid bitmap
 grid = load_bitmap("grid", "color-grid-5000.png")
@@ -1219,7 +1219,7 @@ while (!SplashKit.WindowCloseRequested("Camera Movement Example"))
 
 ```python
 # Main game loop
-while (not quit_requested()):
+while (not window_close_requested(win)):
     process_events()
 
     # Set target Camera position to be centered on Mouse Position
