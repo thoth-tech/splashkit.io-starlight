@@ -462,12 +462,33 @@ ShapeModel* get_shape_at(vector<ShapeModel>& shapes, double x, double y)
 <TabItem label="Top-level Statements">
 
 ```csharp
-
+ShapeModel? GetShapeAt(List<ShapeModel> shapes, double x, double y)
+{
+    for (int i = 0; i < shapes.Count; i++)
+    {
+        if (shapes[i].type == "Rectangle" && x >= shapes[i].x && x <= (shapes[i].x + shapes[i].width) && y >= shapes[i].y && y <= (shapes[i].y + shapes[i].height))
+        {
+            return shapes[i];
+        }
+    }
+    return null;
+}
 ```
 </TabItem>
 <TabItem label="Object-Oriented">
 
 ```csharp
+public static ShapeModel? GetShapeAt(List<ShapeModel> shapes, double x, double y)
+{
+    for (int i = 0; i < shapes.Count; i++)
+    {
+        if (shapes[i].type == "Rectangle" && x >= shapes[i].x && x <= (shapes[i].x + shapes[i].width) && y >= shapes[i].y && y <= (shapes[i].y + shapes[i].height))
+        {
+            return shapes[i];
+        }
+    }
+    return null;
+}
 ```
 </TabItem>
 </Tabs>
@@ -476,6 +497,11 @@ ShapeModel* get_shape_at(vector<ShapeModel>& shapes, double x, double y)
 <TabItem label="Python">
 
 ```python
+def get_shape_at(shapes, x, y):
+    for i in range(len(shapes)):
+        if shapes[i].type == "Rectangle" and x >= shapes[i].x and x <= (shapes[i].x + shapes[i].width) and y >= shapes[i].y and y <= (shapes[i].y + shapes[i].height):
+            return shapes[i]
+    return None
 ```
 </TabItem>
 </Tabs>
@@ -501,12 +527,25 @@ if (is_moving && selected_shape != nullptr)
 <TabItem label="Top-level Statements">
 
 ```csharp
-
+if (is_moving && selected_shape != null)
+{
+    var s = selected_shape.Value;
+    s.x = MouseX() - s.width / 2;
+    s.y = MouseY() - s.height / 2;
+    for (int i = 0; i < shapes.Count; i++)
+        if (shapes[i].Equals(selected_shape.Value)) { shapes[i] = s; break; }
+    selected_shape = s;
+}
 ```
 </TabItem>
 <TabItem label="Object-Oriented">
 
 ```csharp
+if (is_moving && selected_shape != null)
+{
+    selected_shape.x = SplashKit.MouseX() - selected_shape.width / 2;
+    selected_shape.y = SplashKit.MouseY() - selected_shape.height / 2;
+}
 ```
 </TabItem>
 </Tabs>
@@ -515,6 +554,9 @@ if (is_moving && selected_shape != nullptr)
 <TabItem label="Python">
 
 ```python
+if is_moving and selected_shape is not None:
+    selected_shape.x = mouse_x() - selected_shape.width / 2
+    selected_shape.y = mouse_y() - selected_shape.height / 2
 ```
 </TabItem>
 </Tabs>
@@ -540,12 +582,25 @@ if (is_resizing && selected_shape != nullptr)
 <TabItem label="Top-level Statements">
 
 ```csharp
-
+if (is_resizing && selected_shape != null)
+{
+    var s = selected_shape.Value;
+    s.width = MouseX() - s.x;
+    s.height = MouseY() - s.y;
+    for (int i = 0; i < shapes.Count; i++)
+        if (shapes[i].Equals(selected_shape.Value)) { shapes[i] = s; break; }
+    selected_shape = s;
+}
 ```
 </TabItem>
 <TabItem label="Object-Oriented">
 
 ```csharp
+if (is_resizing && selected_shape != null)
+{
+    selected_shape.width = SplashKit.MouseX() - selected_shape.x;
+    selected_shape.height = SplashKit.MouseY() - selected_shape.y;
+}
 ```
 </TabItem>
 </Tabs>
@@ -554,6 +609,9 @@ if (is_resizing && selected_shape != nullptr)
 <TabItem label="Python">
 
 ```python
+if is_resizing and selected_shape is not None:
+    selected_shape.width = mouse_x() - selected_shape.x
+    selected_shape.height = mouse_y() - selected_shape.y
 ```
 </TabItem>
 </Tabs>
@@ -674,12 +732,225 @@ int main()
 <TabItem label="Top-level Statements">
 
 ```csharp
+using System.Collections.Generic;
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+ShapeModel? GetShapeAt(List<ShapeModel> shapes, double x, double y)
+{
+    for (int i = 0; i < shapes.Count; i++)
+    {
+        if (shapes[i].type == "Rectangle" && x >= shapes[i].x && x <= (shapes[i].x + shapes[i].width) && y >= shapes[i].y && y <= (shapes[i].y + shapes[i].height))
+        {
+            return shapes[i];
+        }
+    }
+    return null;
+}
+
+OpenWindow("Drawing Test", 800, 600);
+List<ShapeModel> shapes = new List<ShapeModel>();
+ShapeModel? selected_shape = null;
+bool is_moving = false;
+bool is_resizing = false;
+
+while (!WindowCloseRequested("Drawing Test"))
+{
+    ProcessEvents();
+
+    if (!is_moving && !is_resizing)
+    {
+        if (MouseDown(MouseButton.LeftButton))
+        {
+            selected_shape = GetShapeAt(shapes, MouseX(), MouseY());
+            if (selected_shape != null)
+            {
+                if (KeyDown(KeyCode.SpaceKey))
+                {
+                    is_resizing = true;
+                }
+                else
+                {
+                    is_moving = true;
+                }
+            }
+            else
+            {
+                ShapeModel newShape = new ShapeModel();
+                newShape.x = MouseX();
+                newShape.y = MouseY();
+                newShape.width = 100;
+                newShape.height = 100;
+                newShape.color = "Red";
+                newShape.type = "Rectangle";
+                shapes.Add(newShape);
+            }
+        }
+    }
+
+    if (is_moving && selected_shape != null)
+    {
+        var s = selected_shape.Value;
+        s.x = MouseX() - s.width / 2;
+        s.y = MouseY() - s.height / 2;
+        for (int i = 0; i < shapes.Count; i++)
+            if (shapes[i].Equals(selected_shape.Value)) { shapes[i] = s; break; }
+        selected_shape = s;
+    }
+
+    if (is_resizing && selected_shape != null)
+    {
+        var s = selected_shape.Value;
+        s.width = MouseX() - s.x;
+        s.height = MouseY() - s.y;
+        for (int i = 0; i < shapes.Count; i++)
+            if (shapes[i].Equals(selected_shape.Value)) { shapes[i] = s; break; }
+        selected_shape = s;
+    }
+
+    if (MouseUp(MouseButton.LeftButton))
+    {
+        is_moving = false;
+        is_resizing = false;
+        selected_shape = null;
+    }
+
+    ClearScreen(ColorWhite());
+
+    for (int i = 0; i < shapes.Count; i++)
+    {
+        if (shapes[i].type == "Rectangle")
+        {
+            FillRectangle(ColorRed(), shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height);
+        }
+    }
+
+    RefreshScreen(60);
+}
+
+CloseAllWindows();
+
+public struct ShapeModel
+{
+    public double x, y;
+    public double width, height;
+    public string color;
+    public double rotation;
+    public string type;
+}
 
 ```
 </TabItem>
 <TabItem label="Object-Oriented">
 
 ```csharp
+using System.Collections.Generic;
+using SplashKitSDK;
+
+namespace ShapeModelling
+{
+    public class ShapeModel
+    {
+        public double x, y;
+        public double width, height;
+        public string color = "";
+        public double rotation;
+        public string type = "";
+    }
+
+    public static class Program
+    {
+        public static ShapeModel? GetShapeAt(List<ShapeModel> shapes, double x, double y)
+        {
+            for (int i = 0; i < shapes.Count; i++)
+            {
+                if (shapes[i].type == "Rectangle" && x >= shapes[i].x && x <= (shapes[i].x + shapes[i].width) && y >= shapes[i].y && y <= (shapes[i].y + shapes[i].height))
+                {
+                    return shapes[i];
+                }
+            }
+            return null;
+        }
+
+        public static void Main()
+        {
+            SplashKit.OpenWindow("Drawing Test", 800, 600);
+            List<ShapeModel> shapes = new List<ShapeModel>();
+            ShapeModel? selected_shape = null;
+            bool is_moving = false;
+            bool is_resizing = false;
+
+            while (!SplashKit.WindowCloseRequested("Drawing Test"))
+            {
+                SplashKit.ProcessEvents();
+
+                if (!is_moving && !is_resizing)
+                {
+                    if (SplashKit.MouseDown(MouseButton.LeftButton))
+                    {
+                        selected_shape = GetShapeAt(shapes, SplashKit.MouseX(), SplashKit.MouseY());
+                        if (selected_shape != null)
+                        {
+                            if (SplashKit.KeyDown(KeyCode.SpaceKey))
+                            {
+                                is_resizing = true;
+                            }
+                            else
+                            {
+                                is_moving = true;
+                            }
+                        }
+                        else
+                        {
+                            ShapeModel newShape = new ShapeModel();
+                            newShape.x = SplashKit.MouseX();
+                            newShape.y = SplashKit.MouseY();
+                            newShape.width = 100;
+                            newShape.height = 100;
+                            newShape.color = "Red";
+                            newShape.type = "Rectangle";
+                            shapes.Add(newShape);
+                        }
+                    }
+                }
+
+                if (is_moving && selected_shape != null)
+                {
+                    selected_shape.x = SplashKit.MouseX() - selected_shape.width / 2;
+                    selected_shape.y = SplashKit.MouseY() - selected_shape.height / 2;
+                }
+
+                if (is_resizing && selected_shape != null)
+                {
+                    selected_shape.width = SplashKit.MouseX() - selected_shape.x;
+                    selected_shape.height = SplashKit.MouseY() - selected_shape.y;
+                }
+
+                if (SplashKit.MouseUp(MouseButton.LeftButton))
+                {
+                    is_moving = false;
+                    is_resizing = false;
+                    selected_shape = null;
+                }
+
+                SplashKit.ClearScreen(Color.White);
+
+                for (int i = 0; i < shapes.Count; i++)
+                {
+                    if (shapes[i].type == "Rectangle")
+                    {
+                        SplashKit.FillRectangle(Color.Red, shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height);
+                    }
+                }
+
+                SplashKit.RefreshScreen(60);
+            }
+
+            SplashKit.CloseAllWindows();
+        }
+    }
+}
+
 ```
 </TabItem>
 </Tabs>
@@ -688,6 +959,78 @@ int main()
 <TabItem label="Python">
 
 ```python
+from splashkit import *
+
+
+class ShapeModel:
+    def __init__(self):
+        self.x = 0.0
+        self.y = 0.0
+        self.width = 0.0
+        self.height = 0.0
+        self.color = ""
+        self.rotation = 0.0
+        self.type = ""
+
+
+def get_shape_at(shapes, x, y):
+    for i in range(len(shapes)):
+        if shapes[i].type == "Rectangle" and x >= shapes[i].x and x <= (shapes[i].x + shapes[i].width) and y >= shapes[i].y and y <= (shapes[i].y + shapes[i].height):
+            return shapes[i]
+    return None
+
+
+open_window("Drawing Test", 800, 600)
+shapes = []
+selected_shape = None
+is_moving = False
+is_resizing = False
+
+while not window_close_requested_named("Drawing Test"):
+    process_events()
+
+    if not is_moving and not is_resizing:
+        if mouse_down(MouseButton.left_button):
+            selected_shape = get_shape_at(shapes, mouse_x(), mouse_y())
+            if selected_shape is not None:
+                if key_down(KeyCode.space_key):
+                    is_resizing = True
+                else:
+                    is_moving = True
+            else:
+                newShape = ShapeModel()
+                newShape.x = mouse_x()
+                newShape.y = mouse_y()
+                newShape.width = 100
+                newShape.height = 100
+                newShape.color = "Red"
+                newShape.type = "Rectangle"
+                shapes.append(newShape)
+
+    if is_moving and selected_shape is not None:
+        selected_shape.x = mouse_x() - selected_shape.width / 2
+        selected_shape.y = mouse_y() - selected_shape.height / 2
+
+    if is_resizing and selected_shape is not None:
+        selected_shape.width = mouse_x() - selected_shape.x
+        selected_shape.height = mouse_y() - selected_shape.y
+
+    if mouse_up(MouseButton.left_button):
+        is_moving = False
+        is_resizing = False
+        selected_shape = None
+
+    clear_screen(rgb_color(255, 255, 255))
+
+    for i in range(len(shapes)):
+        if shapes[i].type == "Rectangle":
+            fill_rectangle(rgb_color(
+                255, 0, 0), shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height)
+
+    refresh_screen_with_target_fps(60)
+
+close_all_windows()
+
 ```
 </TabItem>
 </Tabs>
@@ -723,12 +1066,21 @@ if (key_down(C_KEY) && !is_connecting)
 <TabItem label="Top-level Statements">
 
 ```csharp
-
+if (KeyDown(KeyCode.CKey) && !is_connecting)
+{
+    is_connecting = true;
+    connection_start = null;
+}
 ```
 </TabItem>
 <TabItem label="Object-Oriented">
 
 ```csharp
+if (SplashKit.KeyDown(KeyCode.CKey) && !is_connecting)
+{
+    is_connecting = true;
+    connection_start = null;
+}
 ```
 </TabItem>
 </Tabs>
@@ -737,6 +1089,9 @@ if (key_down(C_KEY) && !is_connecting)
 <TabItem label="Python">
 
 ```python
+if key_down(KeyCode.c_key) and not is_connecting:
+        is_connecting = True
+        connection_start = None
 ```
 </TabItem>
 </Tabs>
@@ -776,12 +1131,53 @@ if (is_connecting)
 <TabItem label="Top-level Statements">
 
 ```csharp
-
+if (is_connecting)
+{
+    if (MouseDown(MouseButton.LeftButton))
+    {
+        if (connection_start == null)
+        {
+            connection_start = GetShapeAt(shapes, MouseX(), MouseY());
+        }
+        else
+        {
+            ShapeModel connection_end = GetShapeAt(shapes, MouseX(), MouseY());
+            if (connection_end != null && connection_end != connection_start)
+            {
+                Connection connection = new Connection { start = connection_start, end = connection_end };
+                connections.Add(connection);
+                is_connecting = false;
+                connection_start = null;
+            }
+        }
+    }
+}
 ```
 </TabItem>
 <TabItem label="Object-Oriented">
 
 ```csharp
+if (is_connecting)
+{
+    if (SplashKit.MouseDown(MouseButton.LeftButton))
+    {
+        if (connection_start == null)
+        {
+            connection_start = GetShapeAt(shapes, SplashKit.MouseX(), SplashKit.MouseY());
+        }
+        else
+        {
+            ShapeModel connection_end = GetShapeAt(shapes, SplashKit.MouseX(), SplashKit.MouseY());
+            if (connection_end != null && connection_end != connection_start)
+            {
+                Connection connection = new Connection { start = connection_start, end = connection_end };
+                connections.Add(connection);
+                is_connecting = false;
+                connection_start = null;
+            }
+        }
+    }
+}
 ```
 </TabItem>
 </Tabs>
@@ -790,6 +1186,17 @@ if (is_connecting)
 <TabItem label="Python">
 
 ```python
+if is_connecting:
+    if mouse_down(MouseButton.left_button):
+        if connection_start is None:
+            connection_start = get_shape_at(shapes, mouse_x(), mouse_y())
+        else:
+            connection_end = get_shape_at(shapes, mouse_x(), mouse_y())
+            if connection_end is not None and connection_end is not connection_start:
+                connection = Connection(connection_start, connection_end)
+                connections.append(connection)
+                is_connecting = False
+                connection_start = None
 ```
 </TabItem>
 </Tabs>
@@ -800,10 +1207,9 @@ Using the `draw_line` function, we draw lines between the center points of the t
 <TabItem label="C++">
 
 ```cpp
-for (const auto& conn : connections)
+for (int i = 0; i < connections.size(); i++)
 {
-    draw_line(COLOR_RED, conn.start->x + conn.start->width / 2, conn.start->y + conn.start->height / 2,
-                 conn.end->x + conn.end->width / 2, conn.end->y + conn.end->height / 2);
+    draw_line(COLOR_RED, connections[i].start->x + connections[i].start->width / 2, connections[i].start->y + connections[i].start->height / 2, connections[i].end->x + connections[i].end->width / 2, connections[i].end->y + connections[i].end->height / 2);
 }
 
 ```
@@ -814,12 +1220,19 @@ for (const auto& conn : connections)
 <TabItem label="Top-level Statements">
 
 ```csharp
-
+for (int i = 0; i < connections.Count; i++)
+{
+    DrawLine(ColorRed(), connections[i].start.x + connections[i].start.width / 2, connections[i].start.y + connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2);
+}
 ```
 </TabItem>
 <TabItem label="Object-Oriented">
 
 ```csharp
+for (int i = 0; i < connections.Count; i++)
+{
+    SplashKit.DrawLine(Color.Red, connections[i].start.x + connections[i].start.width / 2, connections[i].start.y + connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2);
+}
 ```
 </TabItem>
 </Tabs>
@@ -828,6 +1241,9 @@ for (const auto& conn : connections)
 <TabItem label="Python">
 
 ```python
+for i in range(len(connections)):
+    draw_line(rgb_color(255, 0, 0), connections[i].start.x + connections[i].start.width / 2, connections[i].start.y +
+                connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2)
 ```
 </TabItem>
 </Tabs>
@@ -996,12 +1412,305 @@ int main()
 <TabItem label="Top-level Statements">
 
 ```csharp
+using System.Collections.Generic;
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+ShapeModel GetShapeAt(List<ShapeModel> shapes, double x, double y)
+{
+    for (int i = 0; i < shapes.Count; i++)
+    {
+        if (shapes[i].type == "Rectangle" && x >= shapes[i].x && x <= (shapes[i].x + shapes[i].width) && y >= shapes[i].y && y <= (shapes[i].y + shapes[i].height))
+        {
+            return shapes[i];
+        }
+    }
+    return null;
+}
+
+OpenWindow("Drawing Test", 800, 600);
+List<ShapeModel> shapes = new List<ShapeModel>();
+List<Connection> connections = new List<Connection>();
+ShapeModel selected_shape = null;
+ShapeModel connection_start = null;
+bool is_moving = false;
+bool is_resizing = false;
+bool is_connecting = false;
+
+while (!WindowCloseRequested("Drawing Test"))
+{
+    ProcessEvents();
+
+    if (KeyDown(KeyCode.CKey) && !is_connecting)
+    {
+        is_connecting = true;
+        connection_start = null;
+    }
+
+    if (is_connecting)
+    {
+        if (MouseDown(MouseButton.LeftButton))
+        {
+            if (connection_start == null)
+            {
+                connection_start = GetShapeAt(shapes, MouseX(), MouseY());
+            }
+            else
+            {
+                ShapeModel connection_end = GetShapeAt(shapes, MouseX(), MouseY());
+                if (connection_end != null && connection_end != connection_start)
+                {
+                    Connection connection = new Connection { start = connection_start, end = connection_end };
+                    connections.Add(connection);
+                    is_connecting = false;
+                    connection_start = null;
+                }
+            }
+        }
+    }
+    else if (!is_moving && !is_resizing)
+    {
+        if (MouseDown(MouseButton.LeftButton))
+        {
+            selected_shape = GetShapeAt(shapes, MouseX(), MouseY());
+            if (selected_shape != null)
+            {
+                if (KeyDown(KeyCode.SpaceKey))
+                {
+                    is_resizing = true;
+                }
+                else
+                {
+                    is_moving = true;
+                }
+            }
+            else
+            {
+                ShapeModel newShape = new ShapeModel();
+                newShape.x = MouseX();
+                newShape.y = MouseY();
+                newShape.width = 100;
+                newShape.height = 100;
+                newShape.color = "Red";
+                newShape.type = "Rectangle";
+                shapes.Add(newShape);
+            }
+        }
+    }
+
+    if (is_moving && selected_shape != null)
+    {
+        selected_shape.x = MouseX() - selected_shape.width / 2;
+        selected_shape.y = MouseY() - selected_shape.height / 2;
+    }
+
+    if (is_resizing && selected_shape != null)
+    {
+        selected_shape.width = MouseX() - selected_shape.x;
+        selected_shape.height = MouseY() - selected_shape.y;
+    }
+
+    if (MouseUp(MouseButton.LeftButton))
+    {
+        is_moving = false;
+        is_resizing = false;
+        selected_shape = null;
+    }
+
+    ClearScreen(ColorWhite());
+
+    for (int i = 0; i < shapes.Count; i++)
+    {
+        if (shapes[i].type == "Rectangle")
+        {
+            FillRectangle(ColorRed(), shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height);
+        }
+    }
+
+    if (is_connecting && connection_start != null)
+    {
+        DrawLine(ColorBlack(), connection_start.x + connection_start.width / 2, connection_start.y + connection_start.height / 2, MouseX(), MouseY());
+    }
+
+    for (int i = 0; i < connections.Count; i++)
+    {
+        DrawLine(ColorRed(), connections[i].start.x + connections[i].start.width / 2, connections[i].start.y + connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2);
+    }
+
+    RefreshScreen(60);
+}
+
+public class ShapeModel
+{
+    public double x, y;
+    public double width, height;
+    public string color;
+    public double rotation;
+    public string type;
+}
+
+public class Connection
+{
+    public ShapeModel start;
+    public ShapeModel end;
+}
 
 ```
 </TabItem>
 <TabItem label="Object-Oriented">
 
 ```csharp
+using System.Collections.Generic;
+using SplashKitSDK;
+
+namespace ShapeModelling
+{
+    public class ShapeModel
+    {
+        public double x, y;
+        public double width, height;
+        public string color;
+        public double rotation;
+        public string type;
+    }
+
+    public class Connection
+    {
+        public ShapeModel start;
+        public ShapeModel end;
+    }
+
+    public static class Program
+    {
+        public static ShapeModel GetShapeAt(List<ShapeModel> shapes, double x, double y)
+        {
+            for (int i = 0; i < shapes.Count; i++)
+            {
+                if (shapes[i].type == "Rectangle" && x >= shapes[i].x && x <= (shapes[i].x + shapes[i].width) && y >= shapes[i].y && y <= (shapes[i].y + shapes[i].height))
+                {
+                    return shapes[i];
+                }
+            }
+            return null;
+        }
+
+        public static void Main()
+        {
+            SplashKit.OpenWindow("Drawing Test", 800, 600);
+            List<ShapeModel> shapes = new List<ShapeModel>();
+            List<Connection> connections = new List<Connection>();
+            ShapeModel selected_shape = null;
+            ShapeModel connection_start = null;
+            bool is_moving = false;
+            bool is_resizing = false;
+            bool is_connecting = false;
+
+            while (!SplashKit.WindowCloseRequested("Drawing Test"))
+            {
+                SplashKit.ProcessEvents();
+
+                if (SplashKit.KeyDown(KeyCode.CKey) && !is_connecting)
+                {
+                    is_connecting = true;
+                    connection_start = null;
+                }
+
+                if (is_connecting)
+                {
+                    if (SplashKit.MouseDown(MouseButton.LeftButton))
+                    {
+                        if (connection_start == null)
+                        {
+                            connection_start = GetShapeAt(shapes, SplashKit.MouseX(), SplashKit.MouseY());
+                        }
+                        else
+                        {
+                            ShapeModel connection_end = GetShapeAt(shapes, SplashKit.MouseX(), SplashKit.MouseY());
+                            if (connection_end != null && connection_end != connection_start)
+                            {
+                                Connection connection = new Connection { start = connection_start, end = connection_end };
+                                connections.Add(connection);
+                                is_connecting = false;
+                                connection_start = null;
+                            }
+                        }
+                    }
+                }
+                else if (!is_moving && !is_resizing)
+                {
+                    if (SplashKit.MouseDown(MouseButton.LeftButton))
+                    {
+                        selected_shape = GetShapeAt(shapes, SplashKit.MouseX(), SplashKit.MouseY());
+                        if (selected_shape != null)
+                        {
+                            if (SplashKit.KeyDown(KeyCode.SpaceKey))
+                            {
+                                is_resizing = true;
+                            }
+                            else
+                            {
+                                is_moving = true;
+                            }
+                        }
+                        else
+                        {
+                            ShapeModel newShape = new ShapeModel();
+                            newShape.x = SplashKit.MouseX();
+                            newShape.y = SplashKit.MouseY();
+                            newShape.width = 100;
+                            newShape.height = 100;
+                            newShape.color = "Red";
+                            newShape.type = "Rectangle";
+                            shapes.Add(newShape);
+                        }
+                    }
+                }
+
+                if (is_moving && selected_shape != null)
+                {
+                    selected_shape.x = SplashKit.MouseX() - selected_shape.width / 2;
+                    selected_shape.y = SplashKit.MouseY() - selected_shape.height / 2;
+                }
+
+                if (is_resizing && selected_shape != null)
+                {
+                    selected_shape.width = SplashKit.MouseX() - selected_shape.x;
+                    selected_shape.height = SplashKit.MouseY() - selected_shape.y;
+                }
+
+                if (SplashKit.MouseUp(MouseButton.LeftButton))
+                {
+                    is_moving = false;
+                    is_resizing = false;
+                    selected_shape = null;
+                }
+
+                SplashKit.ClearScreen(Color.White);
+
+                for (int i = 0; i < shapes.Count; i++)
+                {
+                    if (shapes[i].type == "Rectangle")
+                    {
+                        SplashKit.FillRectangle(Color.Red, shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height);
+                    }
+                }
+
+                if (is_connecting && connection_start != null)
+                {
+                    SplashKit.DrawLine(Color.Black, connection_start.x + connection_start.width / 2, connection_start.y + connection_start.height / 2, SplashKit.MouseX(), SplashKit.MouseY());
+                }
+
+                for (int i = 0; i < connections.Count; i++)
+                {
+                    SplashKit.DrawLine(Color.Red, connections[i].start.x + connections[i].start.width / 2, connections[i].start.y + connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2);
+                }
+
+                SplashKit.RefreshScreen(60);
+            }
+        }
+    }
+}
+
 ```
 </TabItem>
 </Tabs>
@@ -1010,6 +1719,108 @@ int main()
 <TabItem label="Python">
 
 ```python
+from splashkit import *
+
+
+class ShapeModel:
+    def __init__(self):
+        self.x = 0.0
+        self.y = 0.0
+        self.width = 0.0
+        self.height = 0.0
+        self.color = ""
+        self.rotation = 0.0
+        self.type = ""
+
+
+class Connection:
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+
+
+def get_shape_at(shapes, x, y):
+    for i in range(len(shapes)):
+        if shapes[i].type == "Rectangle" and x >= shapes[i].x and x <= (shapes[i].x + shapes[i].width) and y >= shapes[i].y and y <= (shapes[i].y + shapes[i].height):
+            return shapes[i]
+    return None
+
+
+open_window("Drawing Test", 800, 600)
+shapes = []
+connections = []
+selected_shape = None
+connection_start = None
+is_moving = False
+is_resizing = False
+is_connecting = False
+
+while not window_close_requested_named("Drawing Test"):
+    process_events()
+
+    if key_down(KeyCode.c_key) and not is_connecting:
+        is_connecting = True
+        connection_start = None
+
+    if is_connecting:
+        if mouse_down(MouseButton.left_button):
+            if connection_start is None:
+                connection_start = get_shape_at(shapes, mouse_x(), mouse_y())
+            else:
+                connection_end = get_shape_at(shapes, mouse_x(), mouse_y())
+                if connection_end is not None and connection_end is not connection_start:
+                    connection = Connection(connection_start, connection_end)
+                    connections.append(connection)
+                    is_connecting = False
+                    connection_start = None
+    elif not is_moving and not is_resizing:
+        if mouse_down(MouseButton.left_button):
+            selected_shape = get_shape_at(shapes, mouse_x(), mouse_y())
+            if selected_shape is not None:
+                if key_down(KeyCode.space_key):
+                    is_resizing = True
+                else:
+                    is_moving = True
+            else:
+                newShape = ShapeModel()
+                newShape.x = mouse_x()
+                newShape.y = mouse_y()
+                newShape.width = 100
+                newShape.height = 100
+                newShape.color = "Red"
+                newShape.type = "Rectangle"
+                shapes.append(newShape)
+
+    if is_moving and selected_shape is not None:
+        selected_shape.x = mouse_x() - selected_shape.width / 2
+        selected_shape.y = mouse_y() - selected_shape.height / 2
+
+    if is_resizing and selected_shape is not None:
+        selected_shape.width = mouse_x() - selected_shape.x
+        selected_shape.height = mouse_y() - selected_shape.y
+
+    if mouse_up(MouseButton.left_button):
+        is_moving = False
+        is_resizing = False
+        selected_shape = None
+
+    clear_screen(rgb_color(255, 255, 255))
+
+    for i in range(len(shapes)):
+        if shapes[i].type == "Rectangle":
+            fill_rectangle(rgb_color(
+                255, 0, 0), shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height)
+
+    if is_connecting and connection_start is not None:
+        draw_line(rgb_color(0, 0, 0), connection_start.x + connection_start.width / 2,
+                  connection_start.y + connection_start.height / 2, mouse_x(), mouse_y())
+
+    for i in range(len(connections)):
+        draw_line(rgb_color(255, 0, 0), connections[i].start.x + connections[i].start.width / 2, connections[i].start.y +
+                  connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2)
+
+    refresh_screen_with_target_fps(60)
+
 ```
 </TabItem>
 </Tabs>
