@@ -1,0 +1,72 @@
+---
+title: Linux 安装指南
+sidebar:
+  label: Linux 安装
+---
+
+# 在 Linux 上安装 SplashKit
+
+本指南将帮助您在各种 Linux 发行版上安装 SplashKit。
+
+## 支持的发行版
+
+- Ubuntu / Debian
+- Fedora / CentOS / RHEL
+- Arch Linux
+- openSUSE
+- 其他主流发行版
+
+## 通用安装步骤
+
+### 1. 更新系统
+
+**Ubuntu/Debian:**
+```bash
+sudo apt update && sudo apt upgrade
+```
+
+**Fedora:**
+```bash
+sudo dnf update
+```
+
+**Arch Linux:**
+```bash
+sudo pacman -Syu
+```
+
+### 2. 安装依赖项
+
+**Ubuntu/Debian:**
+```bash
+sudo apt install build-essential curl git
+```
+
+**Fedora:**
+```bash
+sudo dnf groupinstall "Development Tools"
+sudo dnf install curl git
+```
+
+**Arch Linux:**
+```bash
+sudo pacman -S base-devel curl git
+```
+
+### 3. 安装 SplashKit
+
+使用我们的一键安装脚本：
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
+```
+
+## 验证安装
+
+```bash
+skm --version
+```
+
+---
+
+*特定发行版的详细安装指南正在编写中，敬请期待。*

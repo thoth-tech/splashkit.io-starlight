@@ -1,0 +1,57 @@
+---
+title: macOS 安装指南
+sidebar:
+  label: macOS 安装
+---
+
+# 在 macOS 上安装 SplashKit
+
+本指南将帮助您在 macOS 系统上安装 SplashKit。
+
+## 系统要求
+
+- macOS 10.15 (Catalina) 或更高版本
+- 支持 Intel 和 Apple Silicon (M1/M2) Mac
+
+## 安装步骤
+
+### 1. 安装 Xcode 命令行工具
+
+```bash
+xcode-select --install
+```
+
+### 2. 安装 Homebrew（推荐）
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+### 3. 安装依赖项
+
+```bash
+brew install git curl
+```
+
+### 4. 安装 SplashKit
+
+使用我们的一键安装脚本：
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
+```
+
+## 验证安装
+
+```bash
+skm --version
+```
+
+## 常见问题
+
+- Apple Silicon Mac 用户请确保使用 Rosetta 兼容性
+- 如遇权限问题，请查看故障排除指南
+
+---
+
+*详细的 macOS 安装指南正在编写中，敬请期待。*
