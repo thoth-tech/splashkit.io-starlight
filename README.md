@@ -4,6 +4,8 @@
 
 Welcome to the official documentation website for the SplashKit SDK, using the Starlight (Astro) framework! This README will guide you through the installation process and provide an overview of the features and functionalities of the SDK.
 
+<!-- testing readme file -->
+
 [splashkit/splashkit.io-starlight](https://github.com/splashkit/splashkit.io-starlight)
 
 [![GitHub contributors](https://img.shields.io/github/contributors/splashkit/splashkit.io-starlight?label=Contributors&color=F5A623)](https://github.com/splashkit/splashkit.io-starlight/graphs/contributors)

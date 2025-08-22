@@ -1,0 +1,103 @@
+---
+import { Logo } from './Logo.astro';
+import MenuIcon from 'lucide-astro/icons/menu.astro';
+import XIcon from 'lucide-astro/icons/x.astro';
+import { Button } from './ui/Button.astro';
+
+const menuItems = [
+  { name: 'Features', href: '#link' },
+  { name: 'Pricing', href: '#link' },
+  { name: 'About', href: '#link' },
+];
+---
+
+<header>
+  <nav
+    id="hero-nav"
+    class="fixed z-20 w-full transition-all duration-300"
+  >
+    <div class="mx-auto max-w-5xl px-6">
+      <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0">
+        
+        <!-- Logo -->
+        <div class="flex w-full justify-between gap-6 lg:w-auto">
+          <a href="/" aria-label="home" class="flex items-center space-x-2">
+            <Logo />
+          </a>
+
+          <!-- Mobile menu toggle -->
+          <button
+            id="menu-toggle"
+            aria-label="Open Menu"
+            class="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
+          >
+            <MenuIcon class="size-6" />
+            <XIcon class="absolute inset-0 size-6 opacity-0 scale-0 duration-200" />
+          </button>
+
+          <!-- Desktop menu -->
+          <div class="m-auto hidden size-fit lg:block">
+            <ul class="flex gap-1">
+              {menuItems.map(item => (
+                <li>
+                  <Button variant="ghost" size="sm">
+                    <a href={item.href} class="text-base">{item.name}</a>
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mobile menu content -->
+        <div
+          id="mobile-menu"
+          class="hidden bg-background lg:flex mb-6 w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl lg:m-0 lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none"
+        >
+          <div class="lg:hidden">
+            <ul class="space-y-6 text-base">
+              {menuItems.map(item => (
+                <li>
+                  <a href={item.href} class="block duration-150 text-muted-foreground hover:text-accent-foreground">
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+            <Button variant="ghost" size="sm"><a href="#">Login</a></Button>
+            <Button size="sm"><a href="#">Sign Up</a></Button>
+            <Button size="sm" class="hidden lg:inline-flex"><a href="#">Get Started</a></Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script is:client>
+  const nav = document.getElementById('hero-nav');
+  const toggleBtn = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const [menuIcon, xIcon] = toggleBtn.querySelectorAll('svg');
+
+  let menuOpen = false;
+
+  toggleBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('hidden', !menuOpen);
+    menuIcon.classList.toggle('opacity-0', menuOpen);
+    menuIcon.classList.toggle('scale-0', menuOpen);
+    xIcon.classList.toggle('opacity-0', !menuOpen);
+    xIcon.classList.toggle('scale-100', menuOpen);
+  });
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('bg-background/75', 'border-b', 'border-black/5', 'backdrop-blur-lg');
+    } else {
+      nav.classList.remove('bg-background/75', 'border-b', 'border-black/5', 'backdrop-blur-lg');
+    }
+  });
+</script>
