@@ -57,14 +57,6 @@ The physical circuit is show in the below image, where we can see the physical i
 This code requires the `pigpio` daemon, so make sure it is running! For more information see: [Starting the Daemon](/guides/raspberry-gpio/0-blink-led/#starting-the-daemon)
 :::
 
-
-:::note[Remote GPIO Control]
-For remote operations, you need to start the SplashKit daemon on the Raspberry Pi. The default port is 8888. See the [Remote Access Guide](https://programmers.guide/book/appendix/0-installation/4-0-remote-access-pi/) for setup instructions.
-:::
-
-<Tabs syncKey="gpio-type">
-<TabItem label="Local">
-
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -136,13 +128,11 @@ while(!AnyKeyPressed())
         ledState = RaspiRead(ledPin);
         if(ledState == (GpioPinValue) 0)
         {
-
-          RaspiWrite(ledPin, GpioPinValue.GpioHigh);
+          RaspiWrite(ledPin, (GpioPinValue) 1);
         }
         else
         {
-          RaspiWrite(ledPin, GpioPinValue.GpioLow);
-
+          RaspiWrite(ledPin, (GpioPinValue) 0);
         }
     }
 }
@@ -200,190 +190,6 @@ namespace RaspberryPiButtonLED
 
 </TabItem>
 </Tabs>
-
-</TabItem>
-</Tabs>
-
-</TabItem>
-<TabItem label="Remote">
-
-<Tabs syncKey="code-language">
-<TabItem label="C++">
-
-```cpp
-#include "splashkit.h"
-
-int main()
-{
-    // Connect to remote Raspberry Pi
-    connection pi = remote_raspi_init("button_pi", "192.168.1.100", 8888);
-    gpio_pin button_pin = PIN_29;
-    gpio_pin led_pin = PIN_11;
-    gpio_pin_value led_state = GPIO_LOW;
-
-    remote_raspi_set_mode(pi, button_pin, GPIO_INPUT);
-    remote_raspi_set_mode(pi, led_pin, GPIO_OUTPUT);
-
-    remote_raspi_set_pull_up_down(pi, button_pin, PUD_DOWN);
-
-    open_window("dummy_window", 1, 1);
-    while(!any_key_pressed())
-    {
-        process_events();
-        if(remote_raspi_read(pi, button_pin) == GPIO_HIGH)
-        {
-            led_state = remote_raspi_read(pi, led_pin);
-            if(led_state == GPIO_LOW)
-            {
-                remote_raspi_write(pi, led_pin, GPIO_HIGH);
-            }
-            else
-            {
-                remote_raspi_write(pi, led_pin, GPIO_LOW);
-            }
-        }
-    }
-
-    close_all_windows();
-    remote_raspi_cleanup(pi);
-    return 0;
-}
-```
-
-</TabItem>
-<TabItem label="C#">
-
-<Tabs syncKey="csharp-style">
-<TabItem label="Top-level Statements">
-
-```csharp
-using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
-
-// Connect to remote Raspberry Pi
-Connection pi = RemoteRaspiInit("button_pi", "192.168.1.100", 8888);
-GpioPin buttonPin = GpioPin.Pin29;
-GpioPin ledPin = GpioPin.Pin11;
-GpioPinValue ledState = GpioPinValue.GpioLow;
-
-RemoteRaspiSetMode(pi, buttonPin, GpioPinMode.GpioInput);
-RemoteRaspiSetMode(pi, ledPin, GpioPinMode.GpioOutput);
-
-RemoteRaspiSetPullUpDown(pi, buttonPin, PullUpDown.PudDown);
-
-OpenWindow("dummy_window", 1, 1);
-while(!AnyKeyPressed())
-{
-    ProcessEvents();
-    if(RemoteRaspiRead(pi, buttonPin) == GpioPinValue.GpioHigh)
-    {
-        ledState = RemoteRaspiRead(pi, ledPin);
-        if(ledState == GpioPinValue.GpioLow)
-        {
-          RemoteRaspiWrite(pi, ledPin, GpioPinValue.GpioHigh);
-        }
-        else
-        {
-          RemoteRaspiWrite(pi, ledPin, GpioPinValue.GpioLow);
-        }
-    }
-}
-
-CloseAllWindows();
-RemoteRaspiCleanup(pi);
-```
-
-</TabItem>
-<TabItem label="Object-Oriented">
-
-```csharp
-using SplashKitSDK;
-
-namespace RaspberryPiButtonLED
-{
-    public class Program
-    {
-        public static void Main()
-        {
-            // Connect to remote Raspberry Pi
-            Connection pi = SplashKit.RemoteRaspiInit("button_pi", "192.168.1.100", 8888);
-            GpioPin buttonPin = GpioPin.Pin29;
-            GpioPin ledPin = GpioPin.Pin11;
-            GpioPinValue ledState = GpioPinValue.GpioLow;
-
-            SplashKit.RemoteRaspiSetMode(pi, buttonPin, GpioPinMode.GpioInput);
-            SplashKit.RemoteRaspiSetMode(pi, ledPin, GpioPinMode.GpioOutput);
-
-            SplashKit.RemoteRaspiSetPullUpDown(pi, buttonPin, PullUpDown.PudDown);
-
-            SplashKit.OpenWindow("dummy_window", 1, 1);
-            while (!SplashKit.AnyKeyPressed())
-            {
-                SplashKit.ProcessEvents();
-                if (SplashKit.RemoteRaspiRead(pi, buttonPin) == GpioPinValue.GpioHigh)
-                {
-                    ledState = SplashKit.RemoteRaspiRead(pi, ledPin);
-                    if (ledState == GpioPinValue.GpioLow)
-                    {
-                        SplashKit.RemoteRaspiWrite(pi, ledPin, GpioPinValue.GpioHigh);
-                    }
-                    else
-                    {
-                        SplashKit.RemoteRaspiWrite(pi, ledPin, GpioPinValue.GpioLow);
-                    }
-                }
-            }
-
-            SplashKit.CloseAllWindows();
-            SplashKit.RemoteRaspiCleanup(pi);
-        }
-    }
-}
-```
-
-</TabItem>
-</Tabs>
-
-```csharp
-public class Program
-{
-    public static void Main()
-    {
-        SplashKit.RaspiInit();
-        GpioPin buttonPin = GpioPin.Pin29;
-            GpioPin ledPin = GpioPin.Pin11;
-            GpioPinValue ledState = GpioPinValue.GpioLow;
-
-            SplashKit.RaspiSetMode(buttonPin, GpioPinMode.GpioInput);
-            SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
-
-            SplashKit.RaspiSetPullUpDown(buttonPin, PullUpDown.PudDown);
-
-            SplashKit.OpenWindow("dummy_window", 1, 1);
-            while (!SplashKit.AnyKeyPressed())
-            {
-                SplashKit.ProcessEvents();
-                if (SplashKit.RaspiRead(buttonPin) == GpioPinValue.GpioHigh)
-                {
-                    ledState = SplashKit.RaspiRead(ledPin);
-                    if (ledState == GpioPinValue.GpioLow)
-                    {
-                        SplashKit.RaspiWrite(ledPin, GpioPinValue.GpioHigh);
-                    }
-                    else
-                    {
-                        SplashKit.RaspiWrite(ledPin, GpioPinValue.GpioLow);
-                    }
-                }
-            }
-
-            SplashKit.CloseAllWindows();
-            SplashKit.RaspiCleanup();
-        }
-    }
-}
-```
-
 </TabItem>
 </Tabs>
 
