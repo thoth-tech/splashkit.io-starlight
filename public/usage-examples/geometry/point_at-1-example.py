@@ -1,44 +1,57 @@
-from splashkit import *
+import splashkit
 
-# Draw a flower at specific point
-def draw_flower(petal_color, location):
-    fill_circle(petal_color, location.x, location.y - 30, 20)
-    fill_circle(petal_color, location.x + 28, location.y - 10, 20)
-    fill_circle(petal_color, location.x - 28, location.y - 10, 20)
-    fill_circle(petal_color, location.x + 18, location.y + 25, 20)
-    fill_circle(petal_color, location.x - 18, location.y + 25, 20)
-    fill_circle(color_gold(), location.x, location.y, 20)
+def main():
+    # Open a window
+    splashkit.open_window("Point At Example", 800, 600)
+    
+    # Create various points using point_at function
+    center = splashkit.point_at(400, 300)
+    top_left = splashkit.point_at(100, 100)
+    top_right = splashkit.point_at(700, 100)
+    bottom_left = splashkit.point_at(100, 500)
+    bottom_right = splashkit.point_at(700, 500)
+    
+    splashkit.write_line("Point At Example")
+    splashkit.write_line("Creating and drawing points")
+    splashkit.write_line("Press any key to exit")
+    
+    while not splashkit.window_close_requested("Point At Example"):
+        # Clear the screen
+        splashkit.clear_screen(splashkit.COLOR_WHITE)
+        
+        # Draw the center point
+        splashkit.fill_circle(splashkit.COLOR_RED, center, 10)
+        splashkit.draw_text("Center", splashkit.COLOR_BLACK, center.x + 15, center.y - 10)
+        
+        # Draw corner points
+        splashkit.fill_circle(splashkit.COLOR_BLUE, top_left, 8)
+        splashkit.draw_text("Top Left", splashkit.COLOR_BLACK, top_left.x + 15, top_left.y - 10)
+        
+        splashkit.fill_circle(splashkit.COLOR_GREEN, top_right, 8)
+        splashkit.draw_text("Top Right", splashkit.COLOR_BLACK, top_right.x - 60, top_right.y - 10)
+        
+        splashkit.fill_circle(splashkit.COLOR_ORANGE, bottom_left, 8)
+        splashkit.draw_text("Bottom Left", splashkit.COLOR_BLACK, bottom_left.x + 15, bottom_left.y + 15)
+        
+        splashkit.fill_circle(splashkit.COLOR_PURPLE, bottom_right, 8)
+        splashkit.draw_text("Bottom Right", splashkit.COLOR_BLACK, bottom_right.x - 70, bottom_right.y + 15)
+        
+        # Draw lines connecting points
+        splashkit.draw_line(splashkit.COLOR_GRAY, top_left, top_right)
+        splashkit.draw_line(splashkit.COLOR_GRAY, top_right, bottom_right)
+        splashkit.draw_line(splashkit.COLOR_GRAY, bottom_right, bottom_left)
+        splashkit.draw_line(splashkit.COLOR_GRAY, bottom_left, top_left)
+        
+        # Refresh the screen
+        splashkit.refresh_screen()
+        
+        # Process events
+        splashkit.process_events()
+        
+        # Small delay
+        splashkit.delay(16)
+    
+    return 0
 
-
-open_window("Grid of Flowers", 600, 600)
-
-# Declare constants and variables
-GRID_SIZE = 5
-temp_x = 0
-temp_y = 0
-points = [[None for x in range(GRID_SIZE)] for y in range(GRID_SIZE)] 
-flower_colors = [[None for x in range(GRID_SIZE)] for y in range(GRID_SIZE)] 
-
-# Generate flower points in 5x5 grid pattern
-for x in range(GRID_SIZE):
-    for y in range(GRID_SIZE):
-        # Create a point using temp_x and temp_y
-        temp_x = 100 + (x * 100)
-        temp_y = 100 + (y * 100)
-        temp_point = point_at(temp_x, temp_y)
-
-        # Assign data to 2D arrays
-        points[x][y] = temp_point
-        flower_colors[x][y] = rgb_color(x * 50, 100, y * 50)
-
-while (not quit_requested()):
-    process_events()
-
-    # Draw grid of flowers with random colors
-    clear_screen_to_white()
-    for x in range(GRID_SIZE):
-        for y in range(GRID_SIZE):
-            draw_flower(flower_colors[x][y], points[x][y])
-    refresh_screen()
-
-close_all_windows()
+if __name__ == "__main__":
+    main()

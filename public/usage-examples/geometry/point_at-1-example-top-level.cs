@@ -1,56 +1,53 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
-// Draw a flower at specific point
-static void DrawFlower(Color petal_color, Point2D location)
+// Open a window
+SplashKit.OpenWindow("Point At Example", 800, 600);
+
+// Create various points using point_at function
+Point2D center = SplashKit.PointAt(400, 300);
+Point2D topLeft = SplashKit.PointAt(100, 100);
+Point2D topRight = SplashKit.PointAt(700, 100);
+Point2D bottomLeft = SplashKit.PointAt(100, 500);
+Point2D bottomRight = SplashKit.PointAt(700, 500);
+
+SplashKit.WriteLine("Point At Example");
+SplashKit.WriteLine("Creating and drawing points");
+SplashKit.WriteLine("Press any key to exit");
+
+while (!SplashKit.WindowCloseRequested("Point At Example"))
 {
-    FillCircle(petal_color, location.X, location.Y - 30, 20);
-    FillCircle(petal_color, location.X + 28, location.Y - 10, 20);
-    FillCircle(petal_color, location.X - 28, location.Y - 10, 20);
-    FillCircle(petal_color, location.X + 18, location.Y + 25, 20);
-    FillCircle(petal_color, location.X - 18, location.Y + 25, 20);
-    FillCircle(ColorGold(), location.X, location.Y, 20);
+    // Clear the screen
+    SplashKit.ClearScreen(Color.White);
+    
+    // Draw the center point
+    SplashKit.FillCircle(Color.Red, center, 10);
+    SplashKit.DrawText("Center", Color.Black, center.X + 15, center.Y - 10);
+    
+    // Draw corner points
+    SplashKit.FillCircle(Color.Blue, topLeft, 8);
+    SplashKit.DrawText("Top Left", Color.Black, topLeft.X + 15, topLeft.Y - 10);
+    
+    SplashKit.FillCircle(Color.Green, topRight, 8);
+    SplashKit.DrawText("Top Right", Color.Black, topRight.X - 60, topRight.Y - 10);
+    
+    SplashKit.FillCircle(Color.Orange, bottomLeft, 8);
+    SplashKit.DrawText("Bottom Left", Color.Black, bottomLeft.X + 15, bottomLeft.Y + 15);
+    
+    SplashKit.FillCircle(Color.Purple, bottomRight, 8);
+    SplashKit.DrawText("Bottom Right", Color.Black, bottomRight.X - 70, bottomRight.Y + 15);
+    
+    // Draw lines connecting points
+    SplashKit.DrawLine(Color.Gray, topLeft, topRight);
+    SplashKit.DrawLine(Color.Gray, topRight, bottomRight);
+    SplashKit.DrawLine(Color.Gray, bottomRight, bottomLeft);
+    SplashKit.DrawLine(Color.Gray, bottomLeft, topLeft);
+    
+    // Refresh the screen
+    SplashKit.RefreshScreen();
+    
+    // Process events
+    SplashKit.ProcessEvents();
+    
+    // Small delay
+    SplashKit.Delay(16);
 }
-
-OpenWindow("Grid of Flowers", 600, 600);
-
-// Declare constants and variables
-const int GRID_SIZE = 5;
-int temp_x = 0;
-int temp_y = 0;
-Point2D[,] points = new Point2D[GRID_SIZE, GRID_SIZE];
-Color[,] flower_colors = new Color[GRID_SIZE, GRID_SIZE];
-
-// Generate flower points in 5x5 grid pattern
-for (int x = 0; x < GRID_SIZE; x++)
-{
-    for (int y = 0; y < GRID_SIZE; y++)
-    {
-        // Create a point using temp_x and temp_y
-        temp_x = 100 + (x * 100);
-        temp_y = 100 + (y * 100);
-        Point2D temp_point = PointAt(temp_x, temp_y);
-
-        // Assign data to 2D arrays
-        points[x, y] = temp_point;
-        flower_colors[x, y] = RGBColor(x * 50, 100, y * 50);
-    }
-}
-
-while (!QuitRequested())
-{
-    ProcessEvents();
-
-    // Draw grid of flowers with random colors
-    ClearScreen();
-    for (int x = 0; x < GRID_SIZE; x++)
-    {
-        for (int y = 0; y < GRID_SIZE; y++)
-        {
-            DrawFlower(flower_colors[x, y], points[x, y]);
-        }
-    }
-    RefreshScreen();
-}
-
-CloseAllWindows();
