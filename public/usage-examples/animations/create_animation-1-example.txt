@@ -1,0 +1,7 @@
+Creating a Basic Animation
+
+This example demonstrates how to create a basic animation using the `create_animation()` function. The animation will display a simple sequence of frames to create movement.
+
+:::note
+To test this example code you can download these [**Resources**](/usage-examples/animations/create_animation-1-example-resources.zip).
+::: 

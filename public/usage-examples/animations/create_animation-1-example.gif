@@ -1,0 +1,12 @@
+# This is a placeholder for the GIF output file
+# You should create a GIF showing the animation running:
+# 
+# The GIF should show:
+# 1. A window opening with "Animation Example" title
+# 2. A sprite in the center displaying a walking animation
+# 3. The animation frames cycling through (4 frames)
+# 4. The sprite moving or the animation frames changing
+# 5. The window closing when the close button is clicked
+#
+# The actual GIF file should be created by recording the screen
+# while running this example program. 
