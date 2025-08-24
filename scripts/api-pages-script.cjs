@@ -79,15 +79,15 @@ function getAllFiles(dir, allFilesList = []) {
   try {
     const files = fs.readdirSync(dir);
     files.map(file => {
-      const name = path.join(dir, file);
-      if (fs.statSync(name).isDirectory()) { // Check if subdirectory is present
-        getAllFiles(name, allFilesList);     // Do recursive execution for subdirectory
+      const name = dir + '/' + file;
+      if (fs.statSync(name).isDirectory()) { // check if subdirectory is present
+        getAllFiles(name, allFilesList);     // do recursive execution for subdirectory
       } else {
-        allFilesList.push(name);             // Push full file path into the array
+        allFilesList.push(file);             // push filename into the array
       }
-    });
+    })
   } catch (err) {
-    console.error(kleur.yellow(`Warning: Unable to access directory or file ${dir}`), err);
+    console.error(kleur.yellow(`Warning: Unable to access directory ${dir}`), err);
   }
   return allFilesList;
 }
@@ -324,24 +324,13 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
   let categoryFilePath = './public/usage-examples/' + categoryKey;
 
   let exampleKey = functionKey.replaceAll(".txt", "");
-
-  // Check if functionKey is a file
-  let functionPath = path.join(categoryFilePath, functionKey);
-  if (fs.existsSync(functionPath) && fs.statSync(functionPath).isFile()) {
-    // Process the file directly
-    let exampleTxt = fs.readFileSync(functionPath);
-    mdxData += `**Example**: `;
-    mdxData += exampleTxt.toString();
-    mdxData += "\n\n";
-    return mdxData;
-  }
-
+  
   // Check if function directory exists (new structure)
   let functionDirectoryPath = path.join(categoryFilePath, functionKey);
   if (!fs.existsSync(functionDirectoryPath)) {
     return mdxData; // Return empty if no function directory
   }
-
+  
   const functionFiles = getAllFiles(functionDirectoryPath);
 
   if (functionFiles.length > 0) {
@@ -359,6 +348,97 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
         let exampleTxt = fs.readFileSync(path.join(functionDirectoryPath, exampleTxtKey));
         mdxData += exampleTxt.toString();
         mdxData += "\n\n";
+
+        // Code tabs
+        mdxData += "<Tabs syncKey=\"code-language\">\n";
+        languageOrder.forEach((lang) => {
+          const languageFiles = functionFiles.filter(file => file.startsWith(exampleKey)).filter(file => file.endsWith(languageFileExtensions[lang]));
+
+          if (languageFiles.length > 0) {
+            languageCodeAvailable[lang] = true;
+            // add code tab if available
+            if (languageCodeAvailable[lang]) {
+              const languageLabel = languageLabelMappings[lang] || lang;
+              mdxData += `  <TabItem label="${languageLabel}">\n`;
+
+              // Check if both top level and oop code has been found for current function
+              const csharpFiles = functionFiles.filter(file => file.endsWith("-top-level.cs") || file.endsWith("-oop.cs")).filter(file => file.includes(exampleKey));
+              const cppFiles = functionFiles.filter(file => file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp")).filter(file => file.includes(exampleKey));
+              functionTag = exampleKey.split("-")[0];
+              if (lang == "cpp") {
+                functionTag = groupName;
+              }
+              if (lang == "csharp") {
+                functionTag = groupName.split("_")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join("");
+              }
+              if (lang == "csharp" && csharpFiles.length > 0) {
+                mdxData += "\n  <Tabs syncKey=\"csharp-style\">\n";
+                // use reverse order to make Top level first
+                csharpFiles.slice().reverse().forEach(file => {
+                  if (file.includes(exampleKey)) {
+                    if (file.includes("-top-level")) {
+                      mdxData += `    <TabItem label="Top-level Statements">\n`;
+                      mdxData += `      <Code code={${importTitle}_top_level_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
+                      mdxData += "    </TabItem>\n";
+                    }
+                    if (file.includes("-oop")) {
+                      mdxData += `    <TabItem label="Object-Oriented">\n`;
+                      mdxData += `      <Code code={${importTitle}_oop_${lang}} lang="${lang}" mark={"SplashKit.${functionTag}"} />\n`;
+                      mdxData += "    </TabItem>\n";
+                    }
+                  }
+                });
+                mdxData += "  </Tabs>\n\n";
+                mdxData += "  </TabItem>\n";
+              }
+              // Check for cpp files and generate nested tabs
+              else if (lang == "cpp" && cppFiles.length > 0) {
+                mdxData += "  </TabItem>\n";
+              }
+              else {
+                mdxData += `    <Code code={${importTitle}_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
+                mdxData += "  </TabItem>\n";
+              }
+            }
+          }
+        });
+      }
+      mdxData += "</Tabs>\n\n";
+
+      // Image or gif output
+      mdxData += "**Output**:\n\n";
+
+      let outputFilePath = categoryPath + "/" + functionKey + "/" + exampleTxtKey;
+
+
+      const imageFiles = functionFiles.filter(file => file.endsWith(exampleKey + '.png'));
+      // Check for .png files
+      if (imageFiles.length > 0) {
+        outputFilePath = outputFilePath.replaceAll(".txt", ".png");
+        mdxData += `![${exampleKey} example](${outputFilePath})\n`
+      }
+      else {
+        const gifFiles = functionFiles.filter(file => file.endsWith('.gif')).filter(file => file.startsWith(exampleKey));
+        // Check for .gif files
+        if (gifFiles.length > 0) {
+          outputFilePath = outputFilePath.replaceAll(".txt", ".gif");
+          mdxData += `![${exampleKey} example](${outputFilePath})\n`
+        }
+        else {
+          const webmFiles = functionFiles.filter(file => file.endsWith('.webm'));
+          // Check for .webm files
+          if (webmFiles.length > 0) {
+            outputFilePath = outputFilePath.replaceAll(".txt", ".webm");
+            mdxData += `<video controls style="max-width:100%; margin:auto; margin-top:16px;">\n`
+            mdxData += `\t<source src="${outputFilePath}" type="video/webm" />\n`
+            mdxData += `</video>\n`
+          }
+          else {
+            console.log(kleur.red("\nError: No image, gif or webm (audio) files found for " + exampleKey + " usage example"));
+          }
+        }
       }
     });
   }
