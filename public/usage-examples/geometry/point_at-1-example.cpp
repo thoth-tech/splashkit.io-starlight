@@ -1,60 +1,58 @@
 #include "splashkit.h"
 
-// Draw a flower at specific point
-void draw_flower(color petal_color, point_2d location)
-{
-    fill_circle(petal_color, location.x, location.y - 30, 20);
-    fill_circle(petal_color, location.x + 28, location.y - 10, 20);
-    fill_circle(petal_color, location.x - 28, location.y - 10, 20);
-    fill_circle(petal_color, location.x + 18, location.y + 25, 20);
-    fill_circle(petal_color, location.x - 18, location.y + 25, 20);
-    fill_circle(COLOR_GOLD, location.x, location.y, 20);
-}
-
 int main()
 {
-    open_window("Grid of Flowers", 600, 600);
-
-    // Declare constants and variables
-    const int GRID_SIZE = 5;
-    int temp_x = 0;
-    int temp_y = 0;
-    point_2d points[GRID_SIZE][GRID_SIZE];
-    color flower_colors[GRID_SIZE][GRID_SIZE];
-
-    // Generate flower points in 5x5 grid pattern
-    for (int x = 0; x < GRID_SIZE; x++)
+    // Open a window
+    open_window("Point At Example", 800, 600);
+    
+    // Create various points using point_at function
+    point_2d center = point_at(400, 300);
+    point_2d top_left = point_at(100, 100);
+    point_2d top_right = point_at(700, 100);
+    point_2d bottom_left = point_at(100, 500);
+    point_2d bottom_right = point_at(700, 500);
+    
+    write_line("Point At Example");
+    write_line("Creating and drawing points");
+    write_line("Press any key to exit");
+    
+    while (!window_close_requested("Point At Example"))
     {
-        for (int y = 0; y < GRID_SIZE; y++)
-        {
-            // Create a point using temp_x and temp_y
-            temp_x = 100 + (x * 100);
-            temp_y = 100 + (y * 100);
-            point_2d temp_point = point_at(temp_x, temp_y);
-
-            // Assign data to 2D arrays
-            points[x][y] = temp_point;
-            flower_colors[x][y] = rgb_color(x * 50, 100, y * 50);
-        }
-    }
-
-    while (!quit_requested())
-    {
-        process_events();
-
-        // Draw grid of flowers with random colors
-        clear_screen();
-        for (int x = 0; x < GRID_SIZE; x++)
-        {
-            for (int y = 0; y < GRID_SIZE; y++)
-            {
-                draw_flower(flower_colors[x][y], points[x][y]);
-            }
-        }
+        // Clear the screen
+        clear_screen(COLOR_WHITE);
+        
+        // Draw the center point
+        fill_circle(COLOR_RED, center, 10);
+        draw_text("Center", COLOR_BLACK, center.x + 15, center.y - 10);
+        
+        // Draw corner points
+        fill_circle(COLOR_BLUE, top_left, 8);
+        draw_text("Top Left", COLOR_BLACK, top_left.x + 15, top_left.y - 10);
+        
+        fill_circle(COLOR_GREEN, top_right, 8);
+        draw_text("Top Right", COLOR_BLACK, top_right.x - 60, top_right.y - 10);
+        
+        fill_circle(COLOR_ORANGE, bottom_left, 8);
+        draw_text("Bottom Left", COLOR_BLACK, bottom_left.x + 15, bottom_left.y + 15);
+        
+        fill_circle(COLOR_PURPLE, bottom_right, 8);
+        draw_text("Bottom Right", COLOR_BLACK, bottom_right.x - 70, bottom_right.y + 15);
+        
+        // Draw lines connecting points
+        draw_line(COLOR_GRAY, top_left, top_right);
+        draw_line(COLOR_GRAY, top_right, bottom_right);
+        draw_line(COLOR_GRAY, bottom_right, bottom_left);
+        draw_line(COLOR_GRAY, bottom_left, top_left);
+        
+        // Refresh the screen
         refresh_screen();
+        
+        // Process events
+        process_events();
+        
+        // Small delay
+        delay(16);
     }
-
-    close_all_windows();
-
+    
     return 0;
 }
