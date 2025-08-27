@@ -2,7 +2,7 @@
 
 int main()
 {
-    open_window("Assign Animation Demo", 600, 400);
+    open_window("Character Animation Switcher", 600, 400);
     
     // Create a bitmap with different animation sequences
     bitmap sprite_bmp = create_bitmap("sprite", 240, 160);
@@ -35,7 +35,7 @@ int main()
     start_timer(frame_timer);
     int frame_index = 0;
     
-    while (!window_close_requested("Assign Animation Demo"))
+    while (!window_close_requested("Character Animation Switcher"))
     {
         process_events();
         

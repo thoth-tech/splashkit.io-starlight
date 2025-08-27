@@ -2,7 +2,7 @@
 
 int main()
 {
-    open_window("Load Animation Script Demo", 600, 400);
+    open_window("Animation Script Loading", 600, 400);
     
     // Create a simple bitmap to demonstrate script loading concept
     bitmap demo_bmp = create_bitmap("demo", 240, 80);
@@ -25,7 +25,7 @@ int main()
     int current_frame = 0;
     bool script_loaded = true; // Simulate successful loading
     
-    while (!window_close_requested("Load Animation Script Demo"))
+    while (!window_close_requested("Animation Script Loading"))
     {
         process_events();
         

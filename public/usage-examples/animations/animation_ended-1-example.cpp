@@ -2,7 +2,7 @@
 
 int main()
 {
-    open_window("Animation Ended Demo", 600, 400);
+    open_window("Animation Completion Check", 600, 400);
     
     // Create a simple bitmap with 3 frames
     bitmap demo_bmp = create_bitmap("demo", 240, 80);
@@ -27,7 +27,7 @@ int main()
     start_timer(frame_timer);
     int current_frame = 0;
     
-    while (!window_close_requested("Animation Ended Demo"))
+    while (!window_close_requested("Animation Completion Check"))
     {
         process_events();
         

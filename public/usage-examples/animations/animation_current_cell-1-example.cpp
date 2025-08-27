@@ -3,7 +3,7 @@
 int main()
 {
     // Setup animation window
-    window window = open_window("Animation Current Cell", 800, 600);
+    open_window("Animated Sprite Frames", 800, 600);
     
     // Create a simple bitmap programmatically for demonstration
     bitmap demo_bmp = create_bitmap("demo", 320, 64);
@@ -27,19 +27,25 @@ int main()
     start_timer(animation_timer);
     bool paused = false;
     
-    while (!window_close_requested(window))
+    while (!window_close_requested("Animated Sprite Frames"))
     {
         process_events();
         
         // Control animation with spacebar
         if (key_typed(SPACE_KEY))
+        {
             paused = !paused;
+        }
             
         // Manual frame control with arrow keys
         if (key_typed(LEFT_KEY) && current_frame > 0)
+        {
             current_frame--;
+        }
         if (key_typed(RIGHT_KEY) && current_frame < 7)
+        {
             current_frame++;
+        }
             
         // Auto-advance frame every 800ms
         if (!paused && timer_ticks(animation_timer) > 800)
@@ -112,7 +118,7 @@ int main()
     // Clean up resources
     free_bitmap(demo_bmp);
     free_timer(animation_timer);
-    close_window(window);
+    close_window("Animated Sprite Frames");
     
     return 0;
 }

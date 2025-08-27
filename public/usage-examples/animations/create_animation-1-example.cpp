@@ -2,7 +2,7 @@
 
 int main()
 {
-    open_window("Create Animation Demo", 600, 400);
+    open_window("Walking Character Animation", 600, 400);
     
     // Create a simple character bitmap with 4 walking frames
     bitmap character_bmp = create_bitmap("character", 320, 80);
@@ -37,13 +37,15 @@ int main()
     int current_frame = 0;
     bool animation_playing = true;
     
-    while (!window_close_requested("Create Animation Demo"))
+    while (!window_close_requested("Walking Character Animation"))
     {
         process_events();
         
         // Toggle animation with SPACE
         if (key_typed(SPACE_KEY))
+        {
             animation_playing = !animation_playing;
+        }
         
         // Simulate animation update every 500ms
         if (animation_playing && timer_ticks(update_timer) > 500)

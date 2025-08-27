@@ -3,7 +3,7 @@
 
 int main()
 {
-    open_window("Update Animation Demo", 600, 400);
+    open_window("Rotating Spinner Animation", 600, 400);
     
     // Create a spinner bitmap with 6 frames
     bitmap spinner_bmp = create_bitmap("spinner", 480, 80);
@@ -37,13 +37,15 @@ int main()
     bool auto_update = true;
     int update_count = 0;
     
-    while (!window_close_requested("Update Animation Demo"))
+    while (!window_close_requested("Rotating Spinner Animation"))
     {
         process_events();
         
         // Toggle auto-update with SPACE
         if (key_typed(SPACE_KEY))
+        {
             auto_update = !auto_update;
+        }
             
         // Manual update with ENTER
         if (key_typed(RETURN_KEY))
