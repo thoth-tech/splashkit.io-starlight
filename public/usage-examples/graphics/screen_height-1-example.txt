@@ -1,1 +1,1 @@
-A line is displayed which spans the height of the current window. Text also writes how many pixels tall it is
+Print window height and draw line of matching height
