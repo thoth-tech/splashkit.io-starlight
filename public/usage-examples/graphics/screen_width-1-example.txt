@@ -1,1 +1,1 @@
-A line is displayed which spans the width of the current window. Text also writes how many pixels wide it is
+Print window width and draw line of matching width
