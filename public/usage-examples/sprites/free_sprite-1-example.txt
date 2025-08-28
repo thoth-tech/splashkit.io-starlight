@@ -1,5 +1,0 @@
-Freeing a Sprite
-
-:::note
-To test this example code you can download these [**Resources**](/sprites/free_sprite-1-example-resources.zip).
-:::

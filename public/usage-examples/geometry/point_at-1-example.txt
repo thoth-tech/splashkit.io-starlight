@@ -1,7 +1,0 @@
-Creating Points with point_at Function
-
-This example demonstrates how to create 2D points using the `point_at()` function. The program will create various points and draw them on the screen to show how points work in SplashKit geometry.
-
-:::note
-To test this example code you can download these [**Resources**](/usage-examples/geometry/point_at-1-example-resources.zip).
-:::
