@@ -1,0 +1,20 @@
+# This is a placeholder for the PNG output file
+# You should create a screenshot showing:
+# 
+# 1. A window titled "JSON From String Example"
+# 2. White background
+# 3. "Person JSON:" section showing:
+#    - Name: John Doe (in blue)
+#    - Age: 30 (in blue)
+#    - City: New York (in blue)
+# 4. "Array JSON:" section showing:
+#    - Values: [1, 2, 3, 4, 5] (in green)
+#    - Count: 5 (in green)
+# 5. "Nested JSON:" section showing:
+#    - User ID: 123 (in red)
+#    - Active: true (in red)
+#    - Scores: [85, 92, 78] (in red)
+# 6. Instructions text at the bottom
+#
+# The actual PNG file should be created by taking a screenshot
+# of the window while running this example program. 
