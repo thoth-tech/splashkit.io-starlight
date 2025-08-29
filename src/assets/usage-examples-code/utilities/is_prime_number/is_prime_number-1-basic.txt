@@ -1,0 +1,1 @@
+I am reading an integer and printing whether it is prime using is_prime_number.
