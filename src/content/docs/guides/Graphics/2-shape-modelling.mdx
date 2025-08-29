@@ -96,12 +96,12 @@ The code simulates the user selecting a graphic and placing it on the canvas. Wh
 if (mouse_clicked(LEFT_BUTTON))
 {
     ShapeModel new_shape;
-    newShape.x = mouse_x();   // Get the X coordinate of the mouse
-    newShape.y = mouse_y();   // Get the Y coordinate of the mouse
-    newShape.width = 100;     // Set default width
-    newShape.height = 100;    // Set default height
-    newShape.color = "Red";   // Set default color
-    newShape.type = "Rectangle";  // Set default type to Rectangle
+    new_shape.x = mouse_x();   // Get the X coordinate of the mouse
+    new_shape.y = mouse_y();   // Get the Y coordinate of the mouse
+    new_shape.width = 100;     // Set default width
+    new_shape.height = 100;    // Set default height
+    new_shape.color = "Red";   // Set default color
+    new_shape.type = "Rectangle";  // Set default type to Rectangle
     shapes.push_back(new_shape);   // Add the new shape to the shapes container
 }
 ```
@@ -253,12 +253,12 @@ int main()
         if (mouse_clicked(LEFT_BUTTON))
         {
             ShapeModel new_shape;
-            newShape.x = mouse_x();
-            newShape.y = mouse_y();
-            newShape.width = 100;
-            newShape.height = 100;
-            newShape.color = "Red";
-            newShape.type = "Rectangle";
+            new_shape.x = mouse_x();
+            new_shape.y = mouse_y();
+            new_shape.width = 100;
+            new_shape.height = 100;
+            new_shape.color = "Red";
+            new_shape.type = "Rectangle";
             shapes.push_back(new_shape);
         }
 
@@ -297,7 +297,7 @@ public struct ShapeModel
 OpenWindow("Drawing Test", 800, 600);
 List<ShapeModel> shapes = new List<ShapeModel>();
 
-while (!window_close_requested())
+while (!WindowCloseRequested("Drawing Test"))
 {
     ProcessEvents();
 
@@ -351,7 +351,7 @@ namespace ShapeModelling
             SplashKit.OpenWindow("Drawing Test", 800, 600);
             List<ShapeModel> shapes = new List<ShapeModel>();
 
-            while (!SplashKit.WindowCloseRequested())
+            while (!SplashKit.WindowCloseRequested("Drawing Test"))
             {
                 SplashKit.ProcessEvents();
 
@@ -406,7 +406,7 @@ class ShapeModel:
 open_window("Drawing Test", 800, 600)
 shapes = []
 
-while not window_close_requested():
+while not window_close_requested_named("Drawing Test"):
     process_events()
 
     if mouse_clicked(MouseButton.left_button):
@@ -679,14 +679,14 @@ int main()
                 }
                 else
                 {
-                    ShapeModel newShape;
-                    newShape.x = mouse_x();
-                    newShape.y = mouse_y();
-                    newShape.width = 100;
-                    newShape.height = 100;
-                    newShape.color = "Red";
-                    newShape.type = "Rectangle";
-                    shapes.push_back(newShape);
+                    ShapeModel new_shape;
+                    new_shape.x = mouse_x();
+                    new_shape.y = mouse_y();
+                    new_shape.width = 100;
+                    new_shape.height = 100;
+                    new_shape.color = "Red";
+                    new_shape.type = "Rectangle";
+                    shapes.push_back(new_shape);
                 }
             }
         }
@@ -999,14 +999,14 @@ while not window_close_requested_named("Drawing Test"):
                 else:
                     is_moving = True
             else:
-                newShape = ShapeModel()
-                newShape.x = mouse_x()
-                newShape.y = mouse_y()
-                newShape.width = 100
-                newShape.height = 100
-                newShape.color = "Red"
-                newShape.type = "Rectangle"
-                shapes.append(newShape)
+                new_shape = ShapeModel()
+                new_shape.x = mouse_x()
+                new_shape.y = mouse_y()
+                new_shape.width = 100
+                new_shape.height = 100
+                new_shape.color = "Red"
+                new_shape.type = "Rectangle"
+                shapes.append(new_shape)
 
     if is_moving and selected_shape is not None:
         selected_shape.x = mouse_x() - selected_shape.width / 2
@@ -1243,7 +1243,7 @@ for (int i = 0; i < connections.Count; i++)
 
 ```python
 for i in range(len(connections)):
-    draw_line(rgb_color(255, 0, 0), connections[i].start.x + connections[i].start.width / 2, connections[i].start.y +
+    draw_line(color_red(), connections[i].start.x + connections[i].start.width / 2, connections[i].start.y +
                 connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2)
 ```
 </TabItem>
@@ -1349,14 +1349,14 @@ int main()
                 }
                 else
                 {
-                    ShapeModel newShape;
-                    newShape.x = mouse_x();
-                    newShape.y = mouse_y();
-                    newShape.width = 100;
-                    newShape.height = 100;
-                    newShape.color = "Red";
-                    newShape.type = "Rectangle";
-                    shapes.push_back(newShape);
+                    ShapeModel new_shape;
+                    new_shape.x = mouse_x();
+                    new_shape.y = mouse_y();
+                    new_shape.width = 100;
+                    new_shape.height = 100;
+                    new_shape.color = "Red";
+                    new_shape.type = "Rectangle";
+                    shapes.push_back(new_shape);
                 }
             }
         }
@@ -1805,19 +1805,18 @@ while not window_close_requested_named("Drawing Test"):
         is_resizing = False
         selected_shape = None
 
-    clear_screen(rgb_color(255, 255, 255))
+    clear_screen(color_white())
 
     for i in range(len(shapes)):
         if shapes[i].type == "Rectangle":
-            fill_rectangle(rgb_color(
-                255, 0, 0), shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height)
+            fill_rectangle(color_red(), shapes[i].x, shapes[i].y, shapes[i].width, shapes[i].height)
 
     if is_connecting and connection_start is not None:
-        draw_line(rgb_color(0, 0, 0), connection_start.x + connection_start.width / 2,
+        draw_line(color_black(), connection_start.x + connection_start.width / 2,
                   connection_start.y + connection_start.height / 2, mouse_x(), mouse_y())
 
     for i in range(len(connections)):
-        draw_line(rgb_color(255, 0, 0), connections[i].start.x + connections[i].start.width / 2, connections[i].start.y +
+        draw_line(color_red(), connections[i].start.x + connections[i].start.width / 2, connections[i].start.y +
                   connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2)
 
     refresh_screen_with_target_fps(60)
