@@ -6,7 +6,7 @@ import starlightLinksValidator from 'starlight-links-validator';
 import sitemap from "@astrojs/sitemap";
 import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax'
-import starlightBlog from 'starlight-blog'
+// import starlightBlog from 'starlight-blog'
 import starlightDocSearch from '@astrojs/starlight-docsearch';
 import remarkHeadingID from 'remark-heading-id';
 import { loadEnv } from "vite";
@@ -28,11 +28,12 @@ export default defineConfig({
       title: "SplashKit",
       description: 'SplashKit is a cross-platform game engine for C, C++ and Objective-C. It provides a simple API for 2D game development.',
       plugins: [
-        starlightBlog({
-          title: 'Announcements',
-          recentPostCount: 5,
-          prevNextLinksOrder: 'chronological',
-        }),
+        // Temporarily disabled due to virtual module resolution issues
+        // starlightBlog({
+        //   title: 'Announcements',
+        //   recentPostCount: 5,
+        //   prevNextLinksOrder: 'chronological',
+        // }),
         starlightLinksValidator({
           errorOnRelativeLinks: true,
         }),
@@ -107,6 +108,34 @@ export default defineConfig({
           autogenerate: { directory: "api", collapsed: false },
         },
         {
+          label: "Usage Examples",
+          collapsed: false,
+          items: [
+            { label: "Overview", link: "usage-examples/" },
+            { label: "Animations", link: "usage-examples/animations" },
+            { label: "Audio", link: "usage-examples/audio" },
+            { label: "Camera", link: "usage-examples/camera" },
+            { label: "Color", link: "usage-examples/color" },
+            { label: "Geometry", link: "usage-examples/geometry" },
+            { label: "Graphics", link: "usage-examples/graphics" },
+            { label: "Input", link: "usage-examples/input" },
+            { label: "Interface", link: "usage-examples/interface" },
+            { label: "JSON", link: "usage-examples/json" },
+            { label: "Logging", link: "usage-examples/logging" },
+            { label: "Networking", link: "usage-examples/networking" },
+            { label: "Physics", link: "usage-examples/physics" },
+            { label: "Raspberry", link: "usage-examples/raspberry" },
+            { label: "Resources", link: "usage-examples/resources" },
+            { label: "Resource Bundles", link: "usage-examples/resource_bundles" },
+            { label: "Sprites", link: "usage-examples/sprites" },
+            { label: "Terminal", link: "usage-examples/terminal" },
+            { label: "Timers", link: "usage-examples/timers" },
+            { label: "Utilities", link: "usage-examples/utilities" },
+            { label: "Windows", link: "usage-examples/windows" },
+            { label: "Contributing", link: "usage-examples/contributing" },
+          ],
+        },
+        {
           label: "Tutorials and Guides",
           collapsed: false,
           items: [
@@ -121,6 +150,7 @@ export default defineConfig({
                 { label: "Loading Resources with Bundles", link: "guides/resources/loading-resources-with-bundles" },
                 { label: "Getting Started With Audio", link: "guides/audio/getting-started-with-audio" },
                 { label: "Using Animations", link: "guides/animations/using-animations" },
+                { label: "Getting Started with Sprites", link: "guides/sprites/0-getting-started-with-sprites" },
                 { label: "SplashKit Camera", link: "guides/input/using-splashkit-camera" },
                 { label: "Useful Utilities", link: "guides/utilities/useful-utilities" },
                 { label: "Using JSON in SplashKit", link: "guides/json/getting-started-with-json" },
@@ -154,6 +184,28 @@ export default defineConfig({
   server: {
     host: true,
     port: 4321
+  },
+
+  // Configure Vite to handle virtual modules
+  vite: {
+    optimizeDeps: {
+      include: ['react', 'react-dom']
+    },
+    server: {
+      hmr: {
+        timeout: 120000 // Increase HMR timeout to 2 minutes
+      }
+    },
+    build: {
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        onwarn(warning, warn) {
+          // Suppress certain warnings that might be causing issues
+          if (warning.code === 'MODULE_LEVEL_DIRECTIVE') return;
+          warn(warning);
+        }
+      }
+    }
   },
 
   // Render mathematical equations using remark-math and rehype-mathjax
