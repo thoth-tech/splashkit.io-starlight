@@ -2,6 +2,3 @@ Moving Camera to a Specific Point
 
 This example demonstrates how to move the camera to a specific point using the `move_camera_to()` function. The camera will smoothly move to the target coordinates, creating a panning effect.
 
-:::note
-To test this example code you can download these [**Resources**](/usage-examples/camera/move_camera_to-1-example-resources.zip).
-::: 
