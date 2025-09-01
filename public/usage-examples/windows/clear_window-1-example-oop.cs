@@ -1,50 +1,53 @@
 ﻿using SplashKitSDK;
 
-public class Program
+namespace ClearWindowExample
 {
-    public static void Main()
+    public class Program
     {
-        // open a window
-        Window window = new Window("Clear Window", 600, 200);
-
-        // main loop
-        while (!window.CloseRequested)
+        public static void Main()
         {
-            // get user events
-            SplashKit.ProcessEvents();
+            // open a window
+            Window wind = SplashKit.OpenWindow("Colour Changer", 600, 200);
 
-            // clear screen
-            window.Clear(Color.White);
-
-            if (SplashKit.Button("Red!", SplashKit.RectangleFrom(75, 85, 100, 30)))
+            // main loop
+            while (!SplashKit.QuitRequested())
             {
-                SplashKit.ClearWindow(window, Color.Red);
-                window.Refresh();
-                SplashKit.Delay(1000);
-                continue;
+                // get user events
+                SplashKit.ProcessEvents();
+
+                // clear screen
+                SplashKit.ClearWindow(wind, Color.White);
+
+                if (SplashKit.Button("Red!", SplashKit.RectangleFrom(75, 85, 100, 30)))
+                {
+                    SplashKit.ClearWindow(wind, Color.Red);
+                    SplashKit.RefreshWindow(wind);
+                    SplashKit.Delay(1000);
+                    continue;
+                }
+
+                if (SplashKit.Button("Green!", SplashKit.RectangleFrom(250, 85, 100, 30)))
+                {
+                    SplashKit.ClearWindow(wind, Color.Green);
+                    SplashKit.RefreshWindow(wind);
+                    SplashKit.Delay(1000);
+                    continue;
+                }
+
+                if (SplashKit.Button("Blue!", SplashKit.RectangleFrom(425, 85, 100, 30)))
+                {
+                    SplashKit.ClearWindow(wind, Color.Blue);
+                    SplashKit.RefreshWindow(wind);
+                    SplashKit.Delay(1000);
+                    continue;
+                }
+                // finally draw interface, then refresh window
+                SplashKit.DrawInterface();
+                SplashKit.RefreshWindow(wind);
             }
 
-            if (SplashKit.Button("Green!", SplashKit.RectangleFrom(250, 85, 100, 30)))
-            {
-                SplashKit.ClearWindow(window, Color.Green);
-                window.Refresh();
-                SplashKit.Delay(1000);
-                continue;
-            }
-
-            if (SplashKit.Button("Blue!", SplashKit.RectangleFrom(425, 85, 100, 30)))
-            {
-                SplashKit.ClearWindow(window, Color.Blue);
-                window.Refresh();
-                SplashKit.Delay(1000);
-                continue;
-            }
-            // finally draw interface, then refresh screen
-            SplashKit.DrawInterface();
-            window.Refresh();
+            // close all open windows
+            SplashKit.CloseAllWindows();
         }
-
-        // close all open windows
-        SplashKit.CloseAllWindows();
     }
 }

@@ -2,43 +2,43 @@
 using static SplashKitSDK.SplashKit;
 
 // open a window
-Window window = new Window("Clear Window", 600, 200);
+Window wind = OpenWindow("Colour Changer", 600, 200);
 
 // main loop
-while (!window.CloseRequested)
+while (!QuitRequested())
 {
     // get user events
     ProcessEvents();
 
     // clear screen
-    window.Clear(Color.White);
+    ClearWindow(wind, Color.White);
 
     if (Button("Red!", RectangleFrom(75, 85, 100, 30)))
     {
-        ClearWindow(window, Color.Red);
-        window.Refresh();
+        ClearWindow(wind, Color.Red);
+        RefreshWindow(wind);
         Delay(1000);
         continue;
     }
 
     if (Button("Green!", RectangleFrom(250, 85, 100, 30)))
     {
-        ClearWindow(window, Color.Green);
-        window.Refresh();
+        ClearWindow(wind, Color.Green);
+        RefreshWindow(wind);
         Delay(1000);
         continue;
     }
 
     if (Button("Blue!", RectangleFrom(425, 85, 100, 30)))
     {
-        ClearWindow(window, Color.Blue);
-        window.Refresh();
+        ClearWindow(wind, Color.Blue);
+        RefreshWindow(wind);
         Delay(1000);
         continue;
     }
-    // finally draw interface, then refresh screen
+    // finally draw interface, then refresh window
     DrawInterface();
-    window.Refresh();
+    RefreshWindow(wind);
 }
 
 // close all open windows
