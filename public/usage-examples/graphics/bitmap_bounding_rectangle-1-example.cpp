@@ -4,49 +4,28 @@ int main()
 {
     open_window("Bitmap Bounding Rectangle", 800, 600);
 
-    int refresh_counter = 0;
-    point_2d vertical_bitmap_pos;
-    point_2d horizontal_bitmap_pos;
-    rectangle bitmap_rectangle;
     bitmap vertical_bitmap = load_bitmap("vertical_bitmap", "image1.jpeg");
     bitmap horizontal_bitmap = load_bitmap("horizontal_bitmap", "image2.png");
+    // Function used here ↓
+    rectangle vertical_rectangle = bitmap_bounding_rectangle(vertical_bitmap);
+    rectangle horizontal_rectangle = bitmap_bounding_rectangle(horizontal_bitmap);
 
-    while (!quit_requested())
-    {
-        process_events();
+    vertical_rectangle.x = 212;
+    vertical_rectangle.y = 50;
+    horizontal_rectangle.x = 150;
+    horizontal_rectangle.y = 400;
 
-        refresh_counter += 1;
-        if (refresh_counter <= 15000)
-        {
-            //Function used here ↓
-            bitmap_rectangle = bitmap_bounding_rectangle(vertical_bitmap);
-            vertical_bitmap_pos = point_at(200, 120);
-            horizontal_bitmap_pos = point_at(1000, 1000);
-            bitmap_rectangle.x = 450;
-            bitmap_rectangle.y = 120;
-        }
-        else if (refresh_counter > 15000 && refresh_counter <= 30000)
-        {
-            //Function used here ↓
-            bitmap_rectangle = bitmap_bounding_rectangle(horizontal_bitmap);
-            vertical_bitmap_pos = point_at(1000, 1000);
-            horizontal_bitmap_pos = point_at(150, 243);
-            bitmap_rectangle.x = 450;
-            bitmap_rectangle.y = 243;
-        }
-        else
-        {
-            refresh_counter = 0;
-        }
+    process_events();
 
-        clear_screen(color_white());
+    clear_screen(color_white());
+    draw_bitmap(vertical_bitmap, 450, 50);
+    draw_rectangle(color_black(), vertical_rectangle);
+    draw_bitmap(horizontal_bitmap, 450, 400);
+    draw_rectangle(color_black(), horizontal_rectangle);
+    refresh_screen();
 
-        draw_rectangle(color_black(), bitmap_rectangle);
-        draw_bitmap(vertical_bitmap, vertical_bitmap_pos.x, vertical_bitmap_pos.y);
-        draw_bitmap(horizontal_bitmap, horizontal_bitmap_pos.x, horizontal_bitmap_pos.y);
+    delay(5000);
 
-        refresh_screen();
-    }
     close_all_windows();
     return 0;
 }

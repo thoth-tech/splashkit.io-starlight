@@ -3,47 +3,26 @@ using static SplashKitSDK.SplashKit;
 
 OpenWindow("Bitmap Bounding Rectangle", 800, 600);
 
-int refreshCounter = 0;
-Point2D verticalBitmapPos = PointAt(0, 0);
-Point2D horizontalBitmapPos = PointAt(0, 0);
-Rectangle bitmapRectangle = RectangleFrom(0, 0, 0, 0); ;
-Bitmap verticalBitmap = LoadBitmap("verticalBitmap", "image1.jpeg");
-Bitmap horizontalBitmap = LoadBitmap("horizontalBitmap", "image2.png");
+Bitmap vertical_bitmap = LoadBitmap("vertical_bitmap", "image1.jpeg");
+Bitmap horizontal_bitmap = LoadBitmap("horizontal_bitmap", "image2.png");
+// Function used here ↓
+Rectangle vertical_rectangle = BitmapBoundingRectangle(vertical_bitmap);
+Rectangle horizontal_rectangle = BitmapBoundingRectangle(horizontal_bitmap);
 
-while (!QuitRequested())
-{
-    ProcessEvents();
+vertical_rectangle.X = 212;
+vertical_rectangle.Y = 50;
+horizontal_rectangle.X = 150;
+horizontal_rectangle.Y = 400;
 
-    refreshCounter += 1;
-    if (refreshCounter <= 15000)
-    {
-        //Function used here ↓
-        bitmapRectangle = BitmapBoundingRectangle(verticalBitmap);
-        verticalBitmapPos = PointAt(200, 120);
-        horizontalBitmapPos = PointAt(1000, 1000);
-        bitmapRectangle.X = 450;
-        bitmapRectangle.Y = 120;
-    }
-    else if (refreshCounter > 15000 && refreshCounter <= 30000)
-    {
-        //Function used here ↓
-        bitmapRectangle = BitmapBoundingRectangle(horizontalBitmap);
-        verticalBitmapPos = PointAt(1000, 1000);
-        horizontalBitmapPos = PointAt(150, 243);
-        bitmapRectangle.X = 450;
-        bitmapRectangle.Y = 243;
-    }
-    else
-    {
-        refreshCounter = 0;
-    }
+ProcessEvents();
 
-    ClearScreen(ColorWhite());
+ClearScreen(ColorWhite());
+DrawBitmap(vertical_bitmap, 450, 50);
+DrawRectangle(ColorBlack(), vertical_rectangle);
+DrawBitmap(horizontal_bitmap, 450, 400);
+DrawRectangle(ColorBlack(), horizontal_rectangle);
+RefreshScreen();
 
-    DrawRectangle(ColorBlack(), bitmapRectangle);
-    DrawBitmap(verticalBitmap, verticalBitmapPos.X, verticalBitmapPos.Y);
-    DrawBitmap(horizontalBitmap, horizontalBitmapPos.X, horizontalBitmapPos.Y);
+Delay(5000);
 
-    RefreshScreen();
-}
 CloseAllWindows();
