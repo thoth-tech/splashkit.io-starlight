@@ -8,11 +8,12 @@ namespace BitmapCenterExample
         {
             SplashKit.OpenWindow("Bitmap Center", 800, 600);
 
-            Bitmap image_bitmap = SplashKit.LoadBitmap("image_bitmap", "image1.jpg");
+            Bitmap imageBitmap = SplashKit.LoadBitmap("image_bitmap", "image1.jpg");
+            Point2D centerPoint = SplashKit.BitmapCenter(imageBitmap);
 
             SplashKit.ClearScreen(Color.White);
-            SplashKit.DrawBitmap(image_bitmap, 0, 0);
-            SplashKit.FillCircle(Color.Red, SplashKit.CircleAt(SplashKit.BitmapCenter(image_bitmap), 5));
+            SplashKit.DrawBitmap(imageBitmap, 0, 0);
+            SplashKit.FillCircle(Color.Red, SplashKit.CircleAt(centerPoint, 5));
             SplashKit.RefreshScreen();
 
             SplashKit.Delay(5000);
