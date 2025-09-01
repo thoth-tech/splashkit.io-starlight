@@ -3,7 +3,7 @@
 int main()
 {
     // open a window
-    window window_handle = open_window("Close Window Example", 400, 200);
+    window wind = open_window("DON'T CLICK THE BUTTON!", 400, 200);
 
     bool countdown_started = false;
     int countdown = 5;
@@ -15,7 +15,7 @@ int main()
         process_events();
 
         // clear screen
-        clear_screen(COLOR_WHITE);
+        clear_window(wind, COLOR_WHITE);
 
         if (!countdown_started)
         {
@@ -29,7 +29,7 @@ int main()
         else
         {
             // Display countdown
-            draw_text("This window will close in " + std::to_string(countdown), COLOR_BLACK, "arial", 18, 50, 85);
+            draw_text("This window will self destruct in " + std::to_string(countdown), COLOR_BLACK, "arial", 18, 50, 85);
 
             // Check if 1 second has passed
             if (timer_ticks(countdown_timer) > 1000)
@@ -39,17 +39,16 @@ int main()
 
                 if (countdown <= 0)
                 {
-                    close_window(window_handle);
+                    close_window(wind);
                     break;
                 }
             }
         }
 
         draw_interface();
-        refresh_screen();
+        refresh_window(wind);
     }
 
     // close all open windows
     close_all_windows();
-    return 0;
 }
