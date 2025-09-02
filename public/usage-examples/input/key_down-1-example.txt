@@ -1,0 +1,4 @@
+Checking Key States with key_down Function
+
+This example demonstrates how to check if a key is currently being held down using the `key_down()` function. The program will display which keys are currently pressed and show real-time key state monitoring.
+
