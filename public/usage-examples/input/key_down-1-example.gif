@@ -1,0 +1,15 @@
+# This is a placeholder for the GIF output file
+# You should create a GIF showing the key state changes:
+# 
+# The GIF should show:
+# 1. A window titled "Key Down Example"
+# 2. White background with gray circles and "Released" text
+# 3. Pressing SPACE key fills the left circle red and shows "PRESSED"
+# 4. Pressing LEFT arrow fills the center circle blue and shows "PRESSED"
+# 5. Pressing RIGHT arrow fills the right circle green and shows "PRESSED"
+# 6. Pressing UP arrow fills the bottom-left circle orange and shows "PRESSED"
+# 7. Pressing DOWN arrow fills the bottom-right circle purple and shows "PRESSED"
+# 8. Releasing keys returns circles to gray with "Released" text
+#
+# The actual GIF file should be created by recording the screen
+# while running this example program and pressing/releasing keys. 
