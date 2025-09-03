@@ -1,5 +1,6 @@
 #include "splashkit.h"
 
+
 int main()
 {
     // Open a window

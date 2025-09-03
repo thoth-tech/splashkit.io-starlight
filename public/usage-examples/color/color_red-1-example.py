@@ -1,5 +1,6 @@
 import splashkit
 
+
 def main():
     # Open a window
     splashkit.open_window("Color Red Example", 800, 600)
