@@ -1,5 +1,6 @@
 using SplashKitSDK;
 
+
 // Open a window
 SplashKit.OpenWindow("Color Red Example", 800, 600);
 
