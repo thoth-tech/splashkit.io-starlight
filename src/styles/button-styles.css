@@ -1,0 +1,38 @@
+/* src/styles/custom-buttons.css */
+
+/* Centering container styles */
+.centered-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Custom button styles */
+  .custom-button {
+    background-color: var(--sk-logo-blue);
+    border-radius: 16px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    font-family: "Inter UI", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    height: 3rem;
+    padding: 0 1.6rem;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .custom-button:hover {
+    box-shadow: inset 0 0 0 2px var(--sl-color-accent);
+    border-color: var(--sl-color-accent);
+  }
+  
+  @media (min-width: 768px) {
+    .custom-button {
+      padding: 0 2.6rem;
+    }
+  }
