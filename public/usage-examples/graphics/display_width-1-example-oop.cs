@@ -9,7 +9,7 @@ namespace DisplayWidthExample
             Display display = SplashKit.DisplayDetails(0);
             int width = SplashKit.DisplayWidth(display);
 
-            SplashKit.OpenWindow("Display Width", width, 600);
+            SplashKit.OpenWindow("How Wide is Your Screen?", width, 250);
 
             Font font = SplashKit.FontNamed("Century.ttf");
             string text = $"The display is {width} pixels wide";

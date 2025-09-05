@@ -1,10 +1,10 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Display display = SplashKit.DisplayDetails(0);
-int width = SplashKit.DisplayWidth(display);
+Display display = DisplayDetails(0);
+int width = DisplayWidth(display);
 
-OpenWindow("Display Width", width, 600);
+OpenWindow("How Wide is Your Screen?", width, 250);
 
 Font font = FontNamed("Century.ttf");
 string text = $"The display is {width} pixels wide";

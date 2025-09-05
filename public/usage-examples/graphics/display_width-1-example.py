@@ -3,7 +3,7 @@ from splashkit import *
 display = display_details(0)
 width = display_width(display)
     
-open_window("Display Width", width, 600)
+open_window("How Wide is Your Screen?", width, 250)
 
 font = font_named("Century.ttf")
 text = f"The display is {width} pixels wide"

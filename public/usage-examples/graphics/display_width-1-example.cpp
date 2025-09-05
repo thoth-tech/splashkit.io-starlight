@@ -5,7 +5,7 @@ int main()
     display display = display_details(0);
     int width = display_width(display);
 
-    open_window("Display Width", width, 600);
+    open_window("How Wide is Your Screen?", width, 250);
 
     font font = font_named("Century.ttf");
     string text = "The display is " + std::to_string(width) + " pixels wide";
