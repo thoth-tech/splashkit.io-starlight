@@ -1,0 +1,279 @@
+---
+// Popular Tutorials Component
+// Displays most popular SplashKit tutorials with sorting options
+// Uses mock data API endpoint for Phase 1 implementation
+---
+
+<div class="popular-tutorials">
+  <div class="header">
+    <h2>Most Popular Tutorials</h2>
+    <p>Discover what the SplashKit community is learning</p>
+  </div>
+
+  <div class="sort-controls">
+    <button class="sort-btn active" data-sort="views">
+      Most Viewed
+    </button>
+    <button class="sort-btn" data-sort="timeSpent">
+       Most Engaging
+    </button>
+  </div>
+
+  <div class="tutorials-grid" id="tutorials-container">
+    <!-- Tutorials will be loaded here via JavaScript -->
+  </div>
+
+  <div class="footer">
+    <a href="/guides/" class="view-all-link">
+      View All Tutorials →
+    </a>
+  </div>
+</div>
+
+<style>
+  .popular-tutorials {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border: 1px solid #e1e5e9;
+    border-radius: 12px;
+    background: #fafbfc;
+  }
+
+  .header h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: #1f2937;
+  }
+
+  .header p {
+    margin: 0 0 1rem 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+  }
+
+  .sort-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sort-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: white;
+    color: #374151;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sort-btn:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+  }
+
+  .sort-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+  }
+
+  .tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tutorial-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .tutorial-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+
+  .tutorial-rank {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .tutorial-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .tutorial-title a {
+    color: #1f2937;
+    text-decoration: none;
+  }
+
+  .tutorial-title a:hover {
+    color: #3b82f6;
+    text-decoration: underline;
+  }
+
+  .tutorial-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: #6b7280;
+  }
+
+  .tutorial-category {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: #e0e7ff;
+    color: #3730a3;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+  }
+
+  .footer {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .view-all-link {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .view-all-link:hover {
+    text-decoration: underline;
+  }
+
+  .loading {
+    text-align: center;
+    color: #6b7280;
+    padding: 2rem;
+  }
+
+  .error {
+    text-align: center;
+    color: #dc2626;
+    padding: 1rem;
+    background: #fef2f2;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 768px) {
+    .popular-tutorials {
+      padding: 1rem;
+    }
+    
+    .tutorials-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .sort-controls {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  // Tutorial data interface
+  interface TopDoc {
+    path: string;
+    title: string;
+    views: number;
+    avgTimeSpent: number;
+    category: string;
+  }
+
+  // Format view count for display
+  function formatViews(views: number): string {
+    if (views >= 1000) {
+      return `${(views / 1000).toFixed(1)}k`;
+    }
+    return views.toString();
+  }
+
+  // Format time duration for display
+  function formatTime(seconds: number): string {
+    const minutes = Math.round(seconds / 60);
+    return `${minutes}m`;
+  }
+
+  // Render tutorial cards
+  function renderTutorials(tutorials: TopDoc[]): string {
+    if (tutorials.length === 0) {
+      return '<div class="loading">No tutorials found</div>';
+    }
+
+    return tutorials.map((tutorial, index) => `
+      <div class="tutorial-card">
+        <div class="tutorial-rank">#${index + 1}</div>
+        <h3 class="tutorial-title">
+          <a href="${tutorial.path}">${tutorial.title}</a>
+        </h3>
+        <div class="tutorial-stats">
+          <span>Views: ${formatViews(tutorial.views)}</span>
+          <span>Time: ${formatTime(tutorial.avgTimeSpent)}</span>
+        </div>
+        <span class="tutorial-category">${tutorial.category}</span>
+      </div>
+    `).join('');
+  }
+
+  // Fetch and display tutorials
+  async function loadTutorials(sortBy: string = 'views'): Promise<void> {
+    const container = document.getElementById('tutorials-container');
+    if (!container) return;
+
+    try {
+      container.innerHTML = '<div class="loading">Loading popular tutorials...</div>';
+      
+      const response = await fetch(`/api/top-docs?sort=${sortBy}&limit=6`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      container.innerHTML = renderTutorials(data.items);
+      
+    } catch (error) {
+      console.error('Failed to load tutorials:', error);
+      container.innerHTML = '<div class="error">Failed to load tutorials. Please try again later.</div>';
+    }
+  }
+
+  // Handle sort button clicks
+  function handleSortChange(): void {
+    const sortButtons = document.querySelectorAll('.sort-btn');
+    
+    sortButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active state
+        sortButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        // Load new data
+        const sortBy = button.getAttribute('data-sort') || 'views';
+        loadTutorials(sortBy);
+      });
+    });
+  }
+
+  // Initialize component
+  document.addEventListener('DOMContentLoaded', () => {
+    loadTutorials('views'); // Load with default sort
+    handleSortChange();     // Setup sort controls
+  });
+</script>
