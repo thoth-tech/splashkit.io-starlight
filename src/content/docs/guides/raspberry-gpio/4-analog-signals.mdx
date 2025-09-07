@@ -1,10 +1,10 @@
 ---
-title: Reading Analog Signal
-description: Learn to read analog signals with an Analog-to-Digital converter to connect a joystick to the Raspberry Pi
-author: Jonathan Tynan
-lastupdated: Apr 27 2024
+title: Reading Analog Signals with ADC
+description: Learn to read analog signals using SplashKit's ADC functionality to connect analog sensors to the Raspberry Pi
+author: Ashen Tharuka
+lastupdated: September 4 2025
 sidebar:
-  hidden: true
+  hidden: false
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
@@ -15,57 +15,135 @@ _Last updated: {frontmatter.lastupdated}_
 
 ---
 
-In previous tutorials we've covered reading and writing digital signals, and emulating analog signals through the use of Pulse-Width Modulation. In this tutorial we are reading analog signals with the MCP3008 analog-to-digital converter. While it's relatively straightforward to emulate the sending of analog signals on the Raspberry Pi, to receive these signals requires additional hardware to do the conversions for us.
+In previ      {
+          WriteL      }
+      ```csharp
+
+    </Ta      ```cpp
+      x = r      x = ReadAdc      x = SplashKit.ReadAdc(adc, 0) -      ```cpp
+      close_adc(adc);
+      raspi_cleanup();
+      ```cpp
+
+    </TabItem>ffset;
+      y = SplashKit.ReadAdc(adc, 1) - axisOffset;
+      ```csharp
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
+    <TabItem label="Python">
+
+      ```python
+      x = read_adc(adc, 0) - axis_offset
+      y = read_adc(adc, 1) - axis_offsetisOffset;
+      y = ReadAdc(adc, 1) - axisOffset;
+      ```csharp
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+      ```csharp
+      x = SplashKit.ReadAdc(adc, 0) - axisOffset;
+      y = SplashKit.ReadAdc(adc, 1) - axisOffset;c, 0) - axis_offset;
+      y = read_adc(adc, 1) - axis_offset;
+      ```cpp
+
+    </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+      ```csharp
+      x = ReadAdc(adc, 0) - axisOffset;
+      y = ReadAdc(adc, 1) - axisOffset;
+      ```csharpabs>
+
+    </TabItem>
+    <TabItem label="Python">
+
+      ```python
+      adc = open_adc("joystick_adc", AdcType.ads7830) to open ADC device!");
+          return;
+      }
+      ```csharp
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+      ```csharp
+      AdcDevice adc = SplashKit.OpenAdc("joystick_adc", AdcType.Ads7830);ls we've covered reading and writing digital signals, and emulating analog signals through the use of Pulse-Width Modulation. In this tutorial we are reading analog signals using SplashKit's built-in ADC (Analog-to-Digital Converter) functionality. SplashKit now provides native support for I2C-based ADC devices, making it much easier to read analog values from sensors without manual SPI communication.
 
 ## Components
 
 - Breadboard
 - Jumper Wires
 
-- KY-023 Joystick Module
+- Analog Sensor (e.g., Potentiometer or Joystick Module)
 
-  This image shows a joystick module with two potentiometers and a push button. It features five pins: GND, +5V, VRx, VRy, and SW. VRx and VRy provide analog outputs for the X and Y axes, while SW is the digital output activated by pressing the joystick. GND serves as the ground connection, and +5V as the power supply. In this tutorial, we operate the module at 3.3V to ensure compatibility with the Raspberry Pi's 3.3V data pins and prevent hardware damage.
+  For this tutorial, we'll use a simple potentiometer or joystick module that provides analog output. These devices output a varying voltage that corresponds to their position or state. A potentiometer provides a single analog channel, while a joystick typically provides two analog channels (X and Y axes) plus a digital button.
 
-  ![KY-023 Image](./images/joystick_pinout.png)
+  ![KY-023 Joystick Image](./images/joystick_pinout.png)
 
-- MCP3008 Analog-Digital-Converter
+- ADS7830 or PCF8591 I2C ADC Module
 
-  This chip is the central component for reading analog signals. It has a side for device input and another for channel outputs. Below, we provide the pinout for this converter. In this tutorial, we guide you on how to select the reading channel and interpret the received data. Note the small semi-circle depression on the chip, shown in the picture, which indicates the correct orientation for installation. Proper orientation is crucial for successful operation.
+  SplashKit supports I2C-based ADC devices like the ADS7830 and PCF8591. These chips communicate via I2C protocol, making them easier to use than SPI-based alternatives. The ADS7830 is an 8-bit, 8-channel ADC, while the PCF8591 is an 8-bit, 4-channel ADC with additional DAC functionality.
 
-  ![Pinout diagram for the MCP3008 converter.](./images/mcp3008_pinout.png)
+  **ADS7830 Features:**
+  - 8-bit resolution (0-255 values)
+  - 8 analog input channels
+  - I2C interface
+  - Default address: 0x48
 
-  To connect this converter to the joystick we connect the VRx pin to CH0 and the VRy pin to CH1. It's important that we connect the Raspberry Pi correctly, and the table below indicates which pins on the converter to connect to which pins on the Raspberry Pi.
+  **PCF8591 Features:**
+  - 8-bit resolution (0-255 values)
+  - 4 analog input channels
+  - 1 analog output channel (DAC)
+  - I2C interface
+  - Default address: 0x48
 
-  | MCP3008 Pin | Raspbery Pi Pin |
-  |-------------|-----------------|
-  | VDD         | 3.3V            |
-  | V_REF       | 3.3V            |
-  | AGND        | GND             |
-  | CLK         | Pin 23 (SCLK)   |
-  | D_OUT       | Pin 21 (MISO)   |
-  | D_IN        | Pin 19 (MOSI)   |
-  | CS/SHDN     | Pin 24 (CE0)    |
-  | DGND        | GND             |
+  The wiring for I2C devices is much simpler than SPI:
 
-  To communicate with this device we must use SPI. SPI is a standard communication protocol in electronics and embedded devices. More information can be found at [Serial Peripheral Interface](https://en.wikipedia.org/wiki/Serial_Peripheral_Interface).
+  | ADC Pin | Raspberry Pi Pin |
+  |---------|------------------|
+  | VCC     | 3.3V             |
+  | GND     | GND              |
+  | SDA     | Pin 3 (SDA)      |
+  | SCL     | Pin 5 (SCL)      |
+
+  To communicate with these devices, we use I2C. I2C is a two-wire communication protocol that's simpler than SPI and allows multiple devices on the same bus. More information can be found at [I2C Communication Protocol](https://en.wikipedia.org/wiki/I%C2%B2C).
 
 ## The Circuit
 
-Below we can see the circuit diagram and photos for this project. We've connected the pins as described above, and the SW pin on the joystick is digital we can connect this directly to a pin on the Raspberry Pi, in this case we are using Pin 29.
+The circuit for this tutorial is much simpler than the previous SPI-based approach. We connect the I2C ADC device to the Raspberry Pi's I2C pins, and connect our analog sensor to one of the ADC's input channels.
 
-![Circuit Diagram for connecting a joystick to the Raspberry Pi](./images/circuits/joystick.png)
+**Basic Connections:**
 
-This circuit might look like the following image, reflecting our digital image above.
+1. Connect the ADC module's VCC to Raspberry Pi 3.3V
+2. Connect the ADC module's GND to Raspberry Pi GND  
+3. Connect the ADC module's SDA to Raspberry Pi Pin 3 (SDA)
+4. Connect the ADC module's SCL to Raspberry Pi Pin 5 (SCL)
+5. Connect your analog sensor's output to ADC Channel 0
+6. Connect your analog sensor's power and ground appropriately
 
-![Photograph of the previous circuit diagram](./images/circuits/joystick_circuit.png)
+**For a joystick module:**
+
+- Connect VRx to ADC Channel 0
+- Connect VRy to ADC Channel 1  
+- Connect SW to Raspberry Pi Pin 29 (for digital button input)
+- Connect joystick VCC to 3.3V and GND to ground
+
+The I2C connection allows multiple devices on the same bus, making expansion easier than SPI-based solutions.
 
 ## The Code
 
 :::caution[Before running the code.]
-This code requires the `pigpio` daemon, so make sure it is running! For more information see: [Starting the Daemon](/guides/raspberry-gpio/0-blink-led/#starting-the-daemon)
+This code requires GPIO permissions. Make sure you run the program with appropriate permissions (usually `sudo`) or ensure your user is in the `gpio` group.
 :::
 
-We have a lot of complex looking code below, but as in previous tutorials lets break this down to analyse the program and how it works.
+With SplashKit's built-in ADC support, reading analog values becomes much simpler. We no longer need to manually handle SPI communication or bit manipulation.
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
@@ -75,341 +153,623 @@ We have a lot of complex looking code below, but as in previous tutorials lets b
 
   using namespace std;
 
-  int read_adc(int spi_handle, int channel)
-  {
-      char send[3], recv[3];
-
-      send[0] = 0b00000001;
-
-      char ctrl_bits;
-      ctrl_bits = channel << 4;
-
-      ctrl_bits = 0b10000000 | ctrl_bits;
-
-      send[1] = ctrl_bits;
-      send[2] = 0b00000000;
-
-      raspi_spi_transfer(spi_handle, send, recv, 3);
-
-      int result = recv[1] << 8;
-      result = result | recv[2];
-      return result;
-  }
-
   int main()
   {
       const int button_read_interval = 100;
       unsigned long last_read = 0;
-
-      const int axis_offset = 512;
+      const int axis_offset = 128; // For 8-bit ADC (0-255), center is around 128
 
       int num_presses = 0;
       int x = 0, y = 0;
 
+      // Initialize Raspberry Pi GPIO
       raspi_init();
+      
+      // Set up digital button pin
       pins button_pin = PIN_29;
       raspi_set_mode(button_pin, GPIO_INPUT);
       raspi_set_pull_up_down(button_pin, PUD_UP);
 
-      int spi_handle = raspi_spi_open(0, 1000000, 0);
+      // Open ADC device (ADS7830 or PCF8591)
+      adc_device adc = open_adc("joystick_adc", ADS7830);
+      if (adc == nullptr) {
+          write_line("Failed to open ADC device!");
+          return -1;
+      }
 
-      intervalTimer = create_time("read_interval");
-      start_timer(intervalTimer);
+      // Create timer for button debouncing
+      timer interval_timer = create_timer("read_interval");
+      start_timer(interval_timer);
 
-      open_window("dummy_window", 1, 1);
+      // Create a minimal window for SplashKit event processing
+      open_window("ADC Reader", 1, 1);
+      
       while(!any_key_pressed())
       {
           process_events();
-          unsigned long curr_time = timer_ticks(intervalTimer);
+          unsigned long curr_time = timer_ticks(interval_timer);
 
+          // Button reading with debouncing
           if(curr_time - last_read > button_read_interval)
           {
               last_read = curr_time;
 
               if(raspi_read(button_pin) == GPIO_LOW)
               {
-              num_presses++;
+                  num_presses++;
               }
           }
 
-          x = read_adc(spi_handle, 0) - axis_offset;
-          y = read_adc(spi_handle, 1) - axis_offset;
+          // Read analog values from ADC channels
+          x = read_adc(adc, 0) - axis_offset;
+          y = read_adc(adc, 1) - axis_offset;
 
+          // Clear screen and display values
           write("\033[2J\033[H");
           write("X: ");
           write(x);
-          write(" Y: ")
+          write(" Y: ");
           write_line(y);
           write("Button Presses: ");
           write_line(num_presses);
 
+          delay(10); // Small delay to reduce CPU usage
       }
 
+      // Cleanup
       close_all_windows();
       free_all_timers();
-      raspi_spi_close(spi_handle);
+      close_adc(adc);
       raspi_cleanup();
       return 0;
   }
-  ```
+  ```cpp
+
+</TabItem>
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+```csharp
+using static SplashKitSDK.SplashKit;
+
+const int buttonReadInterval = 100;
+uint lastRead = 0;
+const int axisOffset = 128; // For 8-bit ADC (0-255), center is around 128
+
+int numPresses = 0;
+int x = 0, y = 0;
+
+// Initialize Raspberry Pi GPIO
+RaspiInit();
+
+// Set up digital button pin
+Pins buttonPin = Pins.Pin29;
+RaspiSetMode(buttonPin, PinModes.GpioInput);
+RaspiSetPullUpDown(buttonPin, PullUpDown.PudUp);
+
+// Open ADC device (ADS7830 or PCF8591)
+AdcDevice adc = OpenAdc("joystick_adc", AdcType.Ads7830);
+if (adc == null)
+{
+    WriteLine("Failed to open ADC device!");
+    return;
+}
+
+// Create timer for button debouncing
+Timer intervalTimer = CreateTimer("read_interval");
+StartTimer(intervalTimer);
+
+// Create a minimal window for SplashKit event processing
+OpenWindow("ADC Reader", 1, 1);
+
+while (!AnyKeyPressed())
+{
+    ProcessEvents();
+    uint currTime = TimerTicks(intervalTimer);
+
+    // Button reading with debouncing
+    if (currTime - lastRead > buttonReadInterval)
+    {
+        lastRead = currTime;
+
+        if (RaspiRead(buttonPin) == PinValues.GpioLow)
+        {
+            numPresses++;
+        }
+    }
+
+    // Read analog values from ADC channels
+    x = ReadAdc(adc, 0) - axisOffset;
+    y = ReadAdc(adc, 1) - axisOffset;
+
+    // Clear screen and display values
+    Write("\u001b[2J\u001b[H");
+    Write("X: ");
+    Write(x);
+    Write(" Y: ");
+    WriteLine(y);
+    Write("Button Presses: ");
+    WriteLine(numPresses);
+
+    Delay(10); // Small delay to reduce CPU usage
+}
+
+// Cleanup
+CloseAllWindows();
+FreeAllTimers();
+CloseAdc(adc);
+RaspiCleanup();
+```csharp
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharpcsharp
+using SplashKitSDK;
+
+namespace AdcReaderApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            const int buttonReadInterval = 100;
+            uint lastRead = 0;
+            const int axisOffset = 128; // For 8-bit ADC (0-255), center is around 128
+
+            int numPresses = 0;
+            int x = 0, y = 0;
+
+            // Initialize Raspberry Pi GPIO
+            SplashKit.RaspiInit();
+
+            // Set up digital button pin
+            Pins buttonPin = Pins.Pin29;
+            SplashKit.RaspiSetMode(buttonPin, PinModes.GpioInput);
+            SplashKit.RaspiSetPullUpDown(buttonPin, PullUpDown.PudUp);
+
+            // Open ADC device (ADS7830 or PCF8591)
+            AdcDevice adc = SplashKit.OpenAdc("joystick_adc", AdcType.Ads7830);
+            if (adc == null)
+            {
+                SplashKit.WriteLine("Failed to open ADC device!");
+                return;
+            }
+
+            // Create timer for button debouncing
+            Timer intervalTimer = SplashKit.CreateTimer("read_interval");
+            SplashKit.StartTimer(intervalTimer);
+
+            // Create a minimal window for SplashKit event processing
+            SplashKit.OpenWindow("ADC Reader", 1, 1);
+
+            while (!SplashKit.AnyKeyPressed())
+            {
+                SplashKit.ProcessEvents();
+                uint currTime = SplashKit.TimerTicks(intervalTimer);
+
+                // Button reading with debouncing
+                if (currTime - lastRead > buttonReadInterval)
+                {
+                    lastRead = currTime;
+
+                    if (SplashKit.RaspiRead(buttonPin) == PinValues.GpioLow)
+                    {
+                        numPresses++;
+                    }
+                }
+
+                // Read analog values from ADC channels
+                x = SplashKit.ReadAdc(adc, 0) - axisOffset;
+                y = SplashKit.ReadAdc(adc, 1) - axisOffset;
+
+                // Clear screen and display values
+                SplashKit.Write("\u001b[2J\u001b[H");
+                SplashKit.Write("X: ");
+                SplashKit.Write(x);
+                SplashKit.Write(" Y: ");
+                SplashKit.WriteLine(y);
+                SplashKit.Write("Button Presses: ");
+                SplashKit.WriteLine(numPresses);
+
+                SplashKit.Delay(10); // Small delay to reduce CPU usage
+            }
+
+            // Cleanup
+            SplashKit.CloseAllWindows();
+            SplashKit.FreeAllTimers();
+            SplashKit.CloseAdc(adc);
+            SplashKit.RaspiCleanup();
+        }
+    }
+}
+```csharp
 
 </TabItem>
 </Tabs>
 
-In this code we've got our `main()` function that drives the entire program, and we have the core component of this code - the `read_adc()` function.  
-Lets look at this later on, and begin by breaking down `main()`.
+</TabItem>
+<TabItem label="Python">
 
-### main() code - Break down
+```python
+from splashkit import *
 
-1.
+def main():
+    button_read_interval = 100
+    last_read = 0
+    axis_offset = 128  # For 8-bit ADC (0-255), center is around 128
+
+    num_presses = 0
+    x = 0
+    y = 0
+
+    # Initialize Raspberry Pi GPIO
+    raspi_init()
+
+    # Set up digital button pin
+    button_pin = Pins.pin_29
+    raspi_set_mode(button_pin, PinModes.gpio_input)
+    raspi_set_pull_up_down(button_pin, PullUpDown.pud_up)
+
+    # Open ADC device (ADS7830 or PCF8591)
+    adc = open_adc("joystick_adc", AdcType.ads7830)
+    if adc is None:
+        write_line("Failed to open ADC device!")
+        return
+
+    # Create timer for button debouncing
+    interval_timer = create_timer("read_interval")
+    start_timer(interval_timer)
+
+    # Create a minimal window for SplashKit event processing
+    open_window("ADC Reader", 1, 1)
+
+    while not any_key_pressed():
+        process_events()
+        curr_time = timer_ticks(interval_timer)
+
+        # Button reading with debouncing
+        if curr_time - last_read > button_read_interval:
+            last_read = curr_time
+
+            if raspi_read(button_pin) == PinValues.gpio_low:
+                num_presses += 1
+
+        # Read analog values from ADC channels
+        x = read_adc(adc, 0) - axis_offset
+        y = read_adc(adc, 1) - axis_offset
+
+        # Clear screen and display values
+        write("\033[2J\033[H")
+        write("X: ")
+        write(x)
+        write(" Y: ")
+        write_line(y)
+        write("Button Presses: ")
+        write_line(num_presses)
+
+        delay(10)  # Small delay to reduce CPU usage
+
+    # Cleanup
+    close_all_windows()
+    free_all_timers()
+    close_adc(adc)
+    raspi_cleanup()
+
+if __name__ == "__main__":
+    main()
+```python
+
+</TabItem>
+</Tabs>
+
+The code above demonstrates how much simpler it is to work with ADC devices using SplashKit's built-in support. Let's break down the key improvements and how the code works.
+
+### Key Improvements with SplashKit ADC
+
+**Simplified Setup:**
+
+- No manual SPI communication required
+- No bit manipulation for control bytes
+- Built-in device management
+
+**Error Handling:**
+
+- Automatic device detection and validation
+- Clear error reporting if ADC device fails to open
+
+**Cross-Language Support:**
+
+- Consistent API across C++, C#, and Python
+- Same functionality with language-appropriate naming conventions
+
+### Code Breakdown
+
+Let's examine the key parts of this implementation:
+
+1. **ADC Device Initialization**
+
     <Tabs syncKey="code-language">
     <TabItem label="C++">
 
       ```cpp
-      const int button_read_interval = 100;
-      unsigned long last_read = 0;
-
-      const int axis_offset = 512;
-
-      int num_presses = 0;
-      int x = 0, y = 0;
-      ```
+      adc_device adc = open_adc("joystick_adc", ADS7830);
+      if (adc == nullptr) {
+          write_line("Failed to open ADC device!");
+          return -1;
+      }
+      ```cpp
 
     </TabItem>
-    </Tabs>
+    <TabItem label="C#">
 
-    To start, we set the interval for button reads and store the last read time in last_read. We also define an offset for the joystick axes. This offset is necessary because the joystick's output ranges from 0 to 1023, with a neutral position output of 512. By subtracting this offset, we can determine both the magnitude and direction of the joystick's movement. For instance, a value of -512 indicates full movement in one direction, while +512 indicates the opposite.
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
 
-2.
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
-
-      ```cpp
-      raspi_init();
-      pins button_pin = PIN_29;
-      raspi_set_mode(button_pin, GPIO_INPUT);
-      raspi_set_pull_up_down(button_pin, PUD_UP);
-      ```
-
-    </TabItem>
-    </Tabs>
-
-    Next, we configure the GPIO pins as usual. While we typically use PUD_DOWN to detect when the button pin is GPIO_HIGH, I've switched to PUD_UP for this tutorial to detect GPIO_LOW instead. This change was necessary due to the specific configuration of my joystick module, which might differ between manufacturers. This setup was determined through experimentation. If you encounter issues with button press detection on your joystick, experiment with setting or disabling different resistors on the button pin.
-
-3.
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
-
-      ```cpp
-      int spi_handle = raspi_spi_open(0, 1000000);
-      ```
-
-    </TabItem>
-    </Tabs>
-
-    We initiate communication with our converter by calling `raspi_spi_open()` with two parameters, storing the return value in spi_handle. This value references the SPI connection and a negative value indicates an error. The first parameter specifies the device channel, we set it to zero as we use the `CE0` pin (pin 24) on the `CS/SHDN` line, though `CE1` pin (pin 26) can also be used with a value of one. The second parameter defines the SPI communication speed, set at 1,000,000 bits per second, adjustable between 32,000, and 32,000,000 bits per second.
-
-4.
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
-
-      ```cpp
-      intervalTimer = create_time("read_interval");
-      start_timer(intervalTimer);
-      ```
-
-    </TabItem>
-    </Tabs>
-
-    We create a timer and start it so we can correctly debounce our button presses.
-
-5.
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
-
-      ```cpp
-      while(!any_key_pressed())
+      ```csharp
+      AdcDevice adc = OpenAdc("joystick_adc", AdcType.Ads7830);
+      if (adc == null)
       {
-        process_events();
-        ...
+          WriteLine("Failed to open ADC device!");
+          return;
+      }
+      ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+      ```csharp
+      AdcDevice adc = SplashKit.OpenAdc("joystick_adc", AdcType.Ads7830);
+      if (adc == null)
+      {
+          SplashKit.WriteLine("Failed to open ADC device!");
+          return;
       }
       ```
 
     </TabItem>
     </Tabs>
 
-    As we've done in previous tutorials we run this code while no key has been pressed, and we process events at the start of the loop.
+    </TabItem>
+    <TabItem label="Python">
 
-6.
+      ```python
+      adc = open_adc("joystick_adc", AdcType.ads7830)
+      if adc is None:
+          write_line("Failed to open ADC device!")
+          return
+      ```python
+
+    </TabItem>
+    </Tabs>
+
+    We open the ADC device with a name and specify the type. SplashKit handles all the I2C communication setup automatically. The function returns a device handle we can use for reading, or `null`/`nullptr`/`None` if the device couldn't be opened.
+
+2. **Reading Analog Values**
+
     <Tabs syncKey="code-language">
     <TabItem label="C++">
 
       ```cpp
-      unsigned long curr_time = timer_ticks(intervalTimer);
-      if(curr_time - last_read > button_read_interval)
-      {
-          last_read = curr_time;
-          if(raspi_read(button_pin) == GPIO_LOW)
-          {
-          num_presses++;
-          }
-      }
+      x = read_adc(adc, 0) - axis_offset;
+      y = read_adc(adc, 1) - axis_offset;
+      ```
+
+    </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+      ```csharp
+      x = ReadAdc(adc, 0) - axisOffset;
+      y = ReadAdc(adc, 1) - axisOffset;
+      ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+      ```csharp
+      x = SplashKit.ReadAdc(adc, 0) - axisOffset;
+      y = SplashKit.ReadAdc(adc, 1) - axisOffset;
       ```
 
     </TabItem>
     </Tabs>
 
-    In this section we're just detecting if the button has been pressed and incrementing the `num_presses` variable if this is the case.
-7.
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+    </TabItem>
+    <TabItem label="Python">
 
-      ```cpp
-      x = read_adc(spi_handle, 0) - axis_offset;
-      y = read_adc(spi_handle, 1) - axis_offset;
-
-      write("\033[2J\033[H");
-      write("X: ");
-      write(x);
-      write(" Y: ")
-      write_line(y);
-      write("Button Presses: ");
-      write_line(num_presses);
-      ```
+      ```python
+      x = read_adc(adc, 0) - axis_offset
+      y = read_adc(adc, 1) - axis_offset
+      ```python
 
     </TabItem>
     </Tabs>
 
-    Then we read the values of the joystick position from our converter, apply our offset, clear the terminal, and finally we'll print out our joystick information.
+    Reading analog values is now a single function call. The `read_adc()` function returns an 8-bit value (0-255) representing the analog input. We subtract an offset to center the values around zero for joystick applications. The second parameter is the channel number (0-7 for ADS7830, 0-3 for PCF8591).
 
-    :::note[ANSI Escape Codes]
-    `\033[2J` and `\033[H` are examples of ANSI escape codes. The first code clears the terminal screen, and the second places the cursor on the top line on the far left ready for more output. We do this so that it's clear what the value of the joysticks are at any point in time.
+3. **Proper Cleanup**
 
-     These codes are not available on all platforms, but should work on the Raspberry Pi. For more information see [ANSI Escape Codes](https://en.wikipedia.org/wiki/ANSI_escape_code).
-    :::
-
-8.
     <Tabs syncKey="code-language">
     <TabItem label="C++">
 
       ```cpp
-      close_all_windows();
-      free_all_timers();
-      raspi_spi_close(spi_handle);
+      close_adc(adc);
       raspi_cleanup();
-      return 0;
+      ```
+
+    </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+      ```csharp
+      CloseAdc(adc);
+      RaspiCleanup();
+      ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+      ```csharp
+      SplashKit.CloseAdc(adc);
+      SplashKit.RaspiCleanup();
       ```
 
     </TabItem>
     </Tabs>
 
-    Once we exit this program we do the usual cleanup of the program, except must close the SPI connection that we've opened and used. We do this with the `raspi_spi_close()` and give it the handle that references this connection, `spi_handle`.
+    </TabItem>
+    <TabItem label="Python">
 
-### read_adc() code - Break down
-
-Okay, now lets have a look at the `read_adc()` function.
-
-1.
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
-
-      ```cpp
-      char send[3], recv[3];
-
-      send[0] = 0b00000001;
+      ```python
+      close_adc(adc)
+      raspi_cleanup()
       ```
 
     </TabItem>
     </Tabs>
 
-    To transfer data between our device and the converter, we create send (`send`) and receive (`recv`) buffers, each sized to three bytes. This aligns with the data transfer needs of the MCP3008 chip. The first byte of the send buffer is set to 0b00000001, initiating a start bit that signals the converter to begin transmitting data back to us. For more details, refer to [MCP Datasheet](#mcp-datasheet).
+    Always remember to close the ADC device when finished to free system resources.
 
-2.
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+### Expected Output
 
-      ```cpp
-      char ctrl_bits;
-      ctrl_bits = channel << 4;
+When you run this program, you should see output similar to:
 
-      ctrl_bits = 0b10000000 | ctrl_bits;
+```text
+X: -15 Y: 23
+Button Presses: 0
+```
 
-      send[1] = ctrl_bits;
-      send[2] = 0b00000000;
+The values will change as you move the joystick or adjust your analog sensor. The range is approximately -128 to +127 for an 8-bit ADC centered around 128.
 
-      ```
+### Alternative ADC Devices
 
-    </TabItem>
-    </Tabs>
+SplashKit supports multiple ADC types. You can easily switch between them by changing the ADC type parameter:
 
-    To configure the converter, we send a second byte containing control bits that specify the operating mode and the input channel. The format is `0bXYYYZZZZ`:
+<Tabs syncKey="code-language">
+<TabItem label="C++">
 
-    - `X` selects the mode (1 for single, 0 for differential—we use 1 for single mode)
-    - `YYY` represents the input channel in binary
-    - `ZZZZ` are 'don't care' bits that are ignored.
+```cpp
+// For ADS7830 (8-channel, 8-bit)
+adc_device adc = open_adc("my_adc", ADS7830);
 
-    For manipulation, we use bit-wise operations. We prepare the control bits in the following way:
+// For PCF8591 (4-channel, 8-bit with DAC)
+adc_device adc = open_adc("my_adc", PCF8591);
+```
 
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+</TabItem>
+<TabItem label="C#">
 
-      ```cpp
-      char ctrl_bits;
-      ctrl_bits = channel << 4;
-      ```
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
 
-    </TabItem>
-    </Tabs>
+```csharp
+// For ADS7830 (8-channel, 8-bit)
+AdcDevice adc = OpenAdc("my_adc", AdcType.Ads7830);
 
-    We first shift the bits of the channel number left by 4 and position it in the Y positions described above. This is a [bit-wise operation](https://en.wikipedia.org/wiki/Bitwise_operation) and to demonstrate, lets say `channel` is equal to 5 or `0b00000101` when we bit-shift we literally move each bit a number of spaces in a direction so we bit-shift left by 4 and this results in `0b01010000`.
+// For PCF8591 (4-channel, 8-bit with DAC)
+AdcDevice adc = OpenAdc("my_adc", AdcType.Pcf8591);
+```
 
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+</TabItem>
+<TabItem label="Object-Oriented">
 
-      ```cpp
-      ctrl_bits = 0b10000000 | ctrl_bits;
-      ```
+```csharp
+// For ADS7830 (8-channel, 8-bit)
+AdcDevice adc = SplashKit.OpenAdc("my_adc", AdcType.Ads7830);
 
-    </TabItem>
-    </Tabs>
+// For PCF8591 (4-channel, 8-bit with DAC)
+AdcDevice adc = SplashKit.OpenAdc("my_adc", AdcType.Pcf8591);
+```
 
-    We then set the mode by performing an OR operation with the mode bit set to 1. If we following the previous example, `ctrl_bits` would now hold `0b11010000`. The third byte isn't used so we just set it to 0. For more details, refer to [MCP Datasheet](#mcp-datasheet).
+</TabItem>
+</Tabs>
 
-3.
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+</TabItem>
+<TabItem label="Python">
 
-      ```cpp
-      raspi_spi_transfer(spi_handle, send, recv, 3);
+```python
+# For ADS7830 (8-channel, 8-bit)
+adc = open_adc("my_adc", AdcType.ads7830)
 
-      int result = recv[1] << 8;
-      result = result | recv[2];
-      return result;
-      ```
+# For PCF8591 (4-channel, 8-bit with DAC)
+adc = open_adc("my_adc", AdcType.pcf8591)
+```
 
-    </TabItem>
-    </Tabs>
-
-    Finally, we transfer the data using `raspi_spi_transfer()`. We pass our `spi_handle`, `send` and `recv` buffers, and specify three bytes for the transfer. Post-transfer, recv holds the converter's output. As detailed in the [MCP datasheet](#mcp-datasheet), the converter returns a 10-bit number split between the second and third bytes of the buffer.
-
-    To decode this, we shift the second byte (recv[1]) left by 8 bits to align the data, and then merge it with the third byte (recv[2]) using a bitwise OR operation. The combined result is returned as an integer. For more details, refer to [MCP Datasheet](#mcp-datasheet).
-
-Now that we've covered the entirety of this program, run it like we've been doing previously and your output should look something like this:
-
-![A GIF of the expected joystick output.](/gifs/guides/gpio-tutorial-gifs/joystick.gif)
+</TabItem>
+</Tabs>
 
 ### Further Information
 
-#### MCP Datasheet
+#### Benefits of SplashKit's ADC Support
 
-In this tutorial we have done some fairly advanced stuff. We've set control bits to command the converter, and we've extracted values from memory buffers. But how do we know what to set or extract and where?
+**Simplified Development:**
 
-This information comes from the datasheet for a particular device. If we have a look at the [MCP3008 Datasheet](https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP3004-MCP3008-Data-Sheet-DS20001295.pdf) we are able to find a huge amount of technical information, and graphs and diagrams about this chip. Most of this information we can safely ignore, but the relevant information we need appears on page 19 and page 21.
+- No need to understand low-level communication protocols
+- Automatic device detection and setup
+- Consistent API across different ADC types
+- Built-in error handling
 
-![An image of a table indicating the control bits for the MCP3008.](./images/ctrl-bit_table.png)
+**Improved Reliability:**
 
-On page 19 there's a table that tells us what control bits we must set for specific configuration. This table is provided above. If we then look at page 21 we are able to see a graph describing the transmission of data to and from the chip. If we look at the bottom section, reproduced below, we can see exactly what bits we must set, and what bits contain the received data.
+- Tested communication protocols
+- Proper resource management
+- Standardized device initialization
 
-![An image of a indicating the data transmission process for the MCP3008.](./images/transmit_details.png)
+**Better Code Maintainability:**
 
-This section first describes the transmitted data, and splits into bytes. We can see the start bit in the first byte, and the four control bits we've set in the second byte. It then describes the received data, and we can see that the start of the 10-bits of received data is at position 6 (B9), with the rest of the bits stored in the subsequent positions.
+- Less complex code to debug
+- Cross-language compatibility
+- Clear, readable function names
+
+#### Supported ADC Devices
+
+SplashKit currently supports several I2C-based ADC devices:
+
+**ADS7830:**
+
+- 8-bit resolution
+- 8 single-ended channels
+- I2C interface
+- Popular for multi-sensor applications
+
+**PCF8591:**
+
+- 8-bit resolution
+- 4 analog input channels
+- 1 analog output channel (DAC)
+- Good for basic analog I/O
+
+#### Migration from SPI-based ADCs
+
+If you're currently using SPI-based ADCs like the MCP3008, consider migrating to I2C-based solutions for the following benefits:
+
+1. **Simpler Wiring:** Only 4 wires needed (VCC, GND, SDA, SCL)
+2. **Multiple Devices:** Multiple I2C devices can share the same bus
+3. **Built-in Support:** Native SplashKit functions handle all communication
+4. **Better Integration:** Seamless integration with other SplashKit GPIO functions
+
+#### Troubleshooting
+
+**Device Not Found:**
+
+- Check I2C wiring connections
+- Verify device address (default 0x48 for most ADC devices)
+- Ensure I2C is enabled on your Raspberry Pi (`sudo raspi-config`)
+
+**Incorrect Readings:**
+
+- Verify sensor connections to ADC channels
+- Check power supply voltage (3.3V recommended)
+- Ensure proper grounding
+
+**Permission Issues:**
+
+- Run program with `sudo` or add user to `gpio` group
+- Check if I2C permissions are properly set
