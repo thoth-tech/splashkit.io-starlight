@@ -1,4 +1,0 @@
-Using the Red Color
-
-This example demonstrates how to use the `color_red()` function to create a red color for drawing operations. The program will draw various shapes in red to show how colors work in SplashKit.
-
