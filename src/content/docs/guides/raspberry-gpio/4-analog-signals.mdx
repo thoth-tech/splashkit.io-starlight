@@ -2,7 +2,7 @@
 title: Reading Analog Signals with ADC
 description: Learn to read analog signals using SplashKit's ADC functionality to connect analog sensors to the Raspberry Pi
 author: Ashen Tharuka
-lastupdated: September 4 2025
+lastupdated: September 8 2025
 sidebar:
   hidden: false
 ---
@@ -15,66 +15,7 @@ _Last updated: {frontmatter.lastupdated}_
 
 ---
 
-In previ      {
-          WriteL      }
-      ```csharp
-
-    </Ta      ```cpp
-      x = r      x = ReadAdc      x = SplashKit.ReadAdc(adc, 0) -      ```cpp
-      close_adc(adc);
-      raspi_cleanup();
-      ```cpp
-
-    </TabItem>ffset;
-      y = SplashKit.ReadAdc(adc, 1) - axisOffset;
-      ```csharp
-
-    </TabItem>
-    </Tabs>
-
-    </TabItem>
-    <TabItem label="Python">
-
-      ```python
-      x = read_adc(adc, 0) - axis_offset
-      y = read_adc(adc, 1) - axis_offsetisOffset;
-      y = ReadAdc(adc, 1) - axisOffset;
-      ```csharp
-
-    </TabItem>
-    <TabItem label="Object-Oriented">
-
-      ```csharp
-      x = SplashKit.ReadAdc(adc, 0) - axisOffset;
-      y = SplashKit.ReadAdc(adc, 1) - axisOffset;c, 0) - axis_offset;
-      y = read_adc(adc, 1) - axis_offset;
-      ```cpp
-
-    </TabItem>
-    <TabItem label="C#">
-
-    <Tabs syncKey="csharp-style">
-    <TabItem label="Top-level Statements">
-
-      ```csharp
-      x = ReadAdc(adc, 0) - axisOffset;
-      y = ReadAdc(adc, 1) - axisOffset;
-      ```csharpabs>
-
-    </TabItem>
-    <TabItem label="Python">
-
-      ```python
-      adc = open_adc("joystick_adc", AdcType.ads7830) to open ADC device!");
-          return;
-      }
-      ```csharp
-
-    </TabItem>
-    <TabItem label="Object-Oriented">
-
-      ```csharp
-      AdcDevice adc = SplashKit.OpenAdc("joystick_adc", AdcType.Ads7830);ls we've covered reading and writing digital signals, and emulating analog signals through the use of Pulse-Width Modulation. In this tutorial we are reading analog signals using SplashKit's built-in ADC (Analog-to-Digital Converter) functionality. SplashKit now provides native support for I2C-based ADC devices, making it much easier to read analog values from sensors without manual SPI communication.
+In previous tutorials we've covered reading and writing digital signals, and emulating analog signals through the use of Pulse-Width Modulation. In this tutorial we are reading analog signals using SplashKit's built-in ADC (Analog-to-Digital Converter) functionality. SplashKit now provides native support for I2C-based ADC devices, making it much easier to read analog values from sensors without manual SPI communication.
 
 ## Components
 
@@ -115,27 +56,89 @@ In previ      {
 
   To communicate with these devices, we use I2C. I2C is a two-wire communication protocol that's simpler than SPI and allows multiple devices on the same bus. More information can be found at [I2C Communication Protocol](https://en.wikipedia.org/wiki/I%C2%B2C).
 
+## Raspberry Pi Setup
+
+Before building the circuit, ensure your Raspberry Pi is properly configured for I2C communication:
+
+### Enable I2C Interface
+
+1. Open the Raspberry Pi configuration tool:
+   ```bash
+   sudo raspi-config
+   ```
+
+2. Navigate to **Interface Options** → **I2C** → **Yes**
+
+3. Reboot your Raspberry Pi:
+   ```bash
+   sudo reboot
+   ```
+
+### Verify I2C is Working
+
+After connecting your ADC device, you can verify it's detected:
+
+```bash
+# Install I2C tools (if not already installed)
+sudo apt update
+sudo apt install i2c-tools
+
+# Scan for I2C devices (most ADCs appear at address 0x48)
+i2cdetect -y 1
+```
+
+You should see your ADC device listed at its address (typically 0x48).
+
+### Install SplashKit
+
+If you haven't already, install SplashKit on your Raspberry Pi:
+
+```bash
+# Download and install SplashKit
+bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
+
+# Add SplashKit to your PATH (add to ~/.bashrc for permanent)
+export PATH=$PATH:~/.splashkit
+```
+
 ## The Circuit
 
 The circuit for this tutorial is much simpler than the previous SPI-based approach. We connect the I2C ADC device to the Raspberry Pi's I2C pins, and connect our analog sensor to one of the ADC's input channels.
 
-**Basic Connections:**
+![Joystick with ADC Circuit](./images/circuits/joystick_circuit.png)
 
-1. Connect the ADC module's VCC to Raspberry Pi 3.3V
-2. Connect the ADC module's GND to Raspberry Pi GND  
-3. Connect the ADC module's SDA to Raspberry Pi Pin 3 (SDA)
-4. Connect the ADC module's SCL to Raspberry Pi Pin 5 (SCL)
-5. Connect your analog sensor's output to ADC Channel 0
-6. Connect your analog sensor's power and ground appropriately
+**Basic I2C ADC Connections:**
 
-**For a joystick module:**
+| ADC Pin | Raspberry Pi Pin | Physical Pin | Function |
+|---------|------------------|--------------|----------|
+| VCC     | 3.3V             | Pin 1        | Power    |
+| GND     | Ground           | Pin 6        | Ground   |
+| SDA     | GPIO 2 (SDA)     | Pin 3        | Data     |
+| SCL     | GPIO 3 (SCL)     | Pin 5        | Clock    |
 
-- Connect VRx to ADC Channel 0
-- Connect VRy to ADC Channel 1  
-- Connect SW to Raspberry Pi Pin 29 (for digital button input)
-- Connect joystick VCC to 3.3V and GND to ground
+**For a joystick module connections:**
 
-The I2C connection allows multiple devices on the same bus, making expansion easier than SPI-based solutions.
+| Joystick Pin | Connection          | Purpose                    |
+|--------------|---------------------|----------------------------|
+| VRx          | ADC Channel 0       | X-axis analog reading     |
+| VRy          | ADC Channel 1       | Y-axis analog reading     |
+| SW           | Raspberry Pi Pin 29 | Digital button input      |
+| +5V or VCC   | Raspberry Pi 3.3V   | Power supply              |
+| GND          | Raspberry Pi GND    | Common ground             |
+
+:::tip[Wiring Tips]
+- Keep analog wires as short as possible to reduce noise
+- Use twisted pair cables for longer connections
+- Ensure all devices share a common ground connection
+- Double-check power supply voltage (3.3V for most sensors)
+:::
+
+**Key Advantages of I2C over SPI:**
+
+- **Fewer Wires:** Only 4 connections needed vs 6+ for SPI
+- **Multiple Devices:** Multiple ADCs can share the same I2C bus
+- **Addressing:** Each device has a unique address (no chip select pins)
+- **Built-in Protocol:** Error detection and acknowledgment built-in
 
 ## The Code
 
@@ -301,12 +304,12 @@ CloseAllWindows();
 FreeAllTimers();
 CloseAdc(adc);
 RaspiCleanup();
-```csharp
+```
 
 </TabItem>
 <TabItem label="Object-Oriented">
 
-```csharpcsharp
+```csharp
 using SplashKitSDK;
 
 namespace AdcReaderApp
@@ -540,7 +543,7 @@ Let's examine the key parts of this implementation:
       if adc is None:
           write_line("Failed to open ADC device!")
           return
-      ```python
+      ```
 
     </TabItem>
     </Tabs>
@@ -585,7 +588,7 @@ Let's examine the key parts of this implementation:
       ```python
       x = read_adc(adc, 0) - axis_offset
       y = read_adc(adc, 1) - axis_offset
-      ```python
+      ```
 
     </TabItem>
     </Tabs>
@@ -759,17 +762,160 @@ If you're currently using SPI-based ADCs like the MCP3008, consider migrating to
 
 **Device Not Found:**
 
-- Check I2C wiring connections
-- Verify device address (default 0x48 for most ADC devices)
-- Ensure I2C is enabled on your Raspberry Pi (`sudo raspi-config`)
+- Check I2C wiring connections (ensure SDA and SCL are not swapped)
+- Verify device address using `i2cdetect -y 1` command
+- Ensure I2C is enabled on your Raspberry Pi (`sudo raspi-config` → Interface Options → I2C)
+- Check if ADC module has correct power (3.3V, not 5V)
 
 **Incorrect Readings:**
 
-- Verify sensor connections to ADC channels
-- Check power supply voltage (3.3V recommended)
-- Ensure proper grounding
+- Verify sensor connections to correct ADC channels
+- Check power supply voltage (most sensors work with 3.3V reference)
+- Ensure proper grounding between all devices
+- Test with known voltage sources (e.g., potentiometer at mid-position)
+- Check if sensor output voltage range matches ADC input range
+
+**Noisy or Unstable Readings:**
+
+- Add small capacitors (0.1μF) between sensor output and ground
+- Use shorter wire connections when possible
+- Keep analog wires away from digital switching circuits
+- Consider using shielded cables for longer runs
 
 **Permission Issues:**
 
-- Run program with `sudo` or add user to `gpio` group
-- Check if I2C permissions are properly set
+- Run program with `sudo` or add user to `gpio` and `i2c` groups:
+  ```bash
+  sudo usermod -a -G gpio,i2c $USER
+  ```
+- Reboot after adding user to groups
+- Check I2C device permissions: `ls -la /dev/i2c*`
+
+**Performance Issues:**
+
+- Reduce polling frequency if CPU usage is high
+- Use interrupts or timers for more efficient reading
+- Consider averaging multiple readings for smoother values
+
+#### Advanced Usage Tips
+
+**Multiple ADC Devices:**
+
+You can connect multiple ADC devices on the same I2C bus by using different addresses:
+
+<Tabs syncKey="code-language">
+<TabItem label="C++">
+
+```cpp
+// First ADC at default address (0x48)
+adc_device adc1 = open_adc("sensors_adc", ADS7830);
+
+// Second ADC with different address (requires hardware configuration)
+adc_device adc2 = open_adc_at_address("additional_adc", ADS7830, 0x49);
+```
+
+</TabItem>
+<TabItem label="C#">
+
+```csharp
+// First ADC at default address (0x48)
+AdcDevice adc1 = OpenAdc("sensors_adc", AdcType.Ads7830);
+
+// Second ADC with different address
+AdcDevice adc2 = OpenAdcAtAddress("additional_adc", AdcType.Ads7830, 0x49);
+```
+
+</TabItem>
+<TabItem label="Python">
+
+```python
+# First ADC at default address (0x48)
+adc1 = open_adc("sensors_adc", AdcType.ads7830)
+
+# Second ADC with different address
+adc2 = open_adc_at_address("additional_adc", AdcType.ads7830, 0x49)
+```
+
+</TabItem>
+</Tabs>
+
+**Calibration and Scaling:**
+
+For better accuracy, calibrate your sensors:
+
+<Tabs syncKey="code-language">
+<TabItem label="C++">
+
+```cpp
+// Read raw ADC value
+int raw_value = read_adc(adc, 0);
+
+// Convert to voltage (assuming 3.3V reference, 8-bit ADC)
+float voltage = (raw_value / 255.0) * 3.3;
+
+// Convert to sensor-specific units (e.g., temperature)
+float temperature_c = (voltage - 0.5) * 100; // Example for TMP36 sensor
+```
+
+</TabItem>
+<TabItem label="C#">
+
+```csharp
+// Read raw ADC value
+int rawValue = ReadAdc(adc, 0);
+
+// Convert to voltage (assuming 3.3V reference, 8-bit ADC)
+float voltage = (rawValue / 255.0f) * 3.3f;
+
+// Convert to sensor-specific units
+float temperatureC = (voltage - 0.5f) * 100f; // Example for TMP36 sensor
+```
+
+</TabItem>
+<TabItem label="Python">
+
+```python
+# Read raw ADC value
+raw_value = read_adc(adc, 0)
+
+# Convert to voltage (assuming 3.3V reference, 8-bit ADC)
+voltage = (raw_value / 255.0) * 3.3
+
+# Convert to sensor-specific units
+temperature_c = (voltage - 0.5) * 100  # Example for TMP36 sensor
+```
+
+</TabItem>
+</Tabs>
+
+## Summary
+
+In this tutorial, you've learned how to read analog signals using SplashKit's built-in ADC functionality. Key takeaways include:
+
+- **Simplified Communication**: I2C-based ADCs are much easier to work with than SPI alternatives
+- **Native SplashKit Support**: Built-in functions handle all low-level communication
+- **Cross-Language Compatibility**: Same functionality available in C++, C#, and Python
+- **Easy Expansion**: Multiple devices can share the same I2C bus
+
+### What's Next?
+
+Now that you can read analog signals, consider these next projects:
+
+- **Environmental Monitor**: Combine temperature, humidity, and light sensors
+- **Data Logger**: Store sensor readings to files with timestamps
+- **Remote Monitoring**: Send sensor data over network connections
+- **Control Systems**: Use analog readings to control PWM outputs (closed-loop control)
+
+### Related Tutorials
+
+- [Blink LED](./0-blink-led): Basic GPIO output control
+- [Read Button Press](./1-read-button-press): Digital input handling
+- [PWM Control LED](./2-pwm-control-led): Analog output simulation
+- [PWM Button Control](./3-pwm-button-control): Combining digital and analog signals
+
+### Additional Resources
+
+- [SplashKit ADC API Documentation](/api/raspberry/#analog-to-digital-converters)
+- [I2C Protocol Overview](https://en.wikipedia.org/wiki/I%C2%B2C)
+- [Raspberry Pi I2C Configuration](https://www.raspberrypi.org/documentation/configuration/raspi-config.md)
+- [ADC Device Datasheets](https://www.ti.com/lit/ds/symlink/ads7830.pdf)
