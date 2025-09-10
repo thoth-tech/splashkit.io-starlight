@@ -1,6 +1,6 @@
 from splashkit import *
 
-open_window("Set Font Style", 800, 600)
+open_window("Choose Your Font", 800, 600)
 
 # Different fonts can be added to the fonts folder and used below ↓
 font = font_named("Century.ttf")

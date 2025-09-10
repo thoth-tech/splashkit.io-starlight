@@ -1,7 +1,7 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Set Font Style", 800, 600);
+OpenWindow("Choose Your Font", 800, 600);
 
 // Different fonts can be added to the fonts folder and used below ↓
 Font font = FontNamed("Century.ttf");

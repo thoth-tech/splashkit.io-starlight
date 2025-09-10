@@ -6,7 +6,7 @@ namespace SetFontStyleExample
     {
         public static void Main()
         {
-            SplashKit.OpenWindow("Set Font Style", 800, 600);
+            SplashKit.OpenWindow("Choose Your Font", 800, 600);
 
             // Different fonts can be added to the fonts folder and used below ↓
             Font font = SplashKit.FontNamed("Century.ttf");
