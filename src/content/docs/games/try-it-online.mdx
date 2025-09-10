@@ -1,0 +1,27 @@
+---
+title: Try the Games
+description: Test out the games showcased on our SplashKit Online IDE. 
+---
+
+import SKOTutorialButton from '../../../components/SKOTutorialButton.astro';
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+### Instructions on how to load the Games
+
+<Steps>
+      1. Click on `Test Games` button to get started.
+      2. Click on `Load Demo` on the to navigation bar.
+      3. Select the game you'd like to try.
+      4. Press the `Build and Run` button to begin.
+</Steps>
+
+<SKOTutorialButton
+      id="game-tester"
+      filePath=""
+      buttonText="Try Games"
+      iframeSrc="https://thoth-tech.github.io/SplashkitOnline/?language=C++"
+/>
+
+<Aside type="note">
+The SplashKit Online IDE only support C++ and JavaScript at this moment thus games built in C# are unable to be tested online. We thank you for your understanding.
+</Aside>
