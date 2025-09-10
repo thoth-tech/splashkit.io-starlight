@@ -1,13 +1,13 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Bitmap Width", 800, 600);
-
 Bitmap imageBitmap = LoadBitmap("imageBitmap", "image1.jpg");
 
+Window programWindow = OpenWindow("Bitmap Width", BitmapWidth(imageBitmap) + 200, BitmapHeight(imageBitmap) + 200);
+
 ClearScreen(ColorWhite());
-DrawBitmap(imageBitmap, 200, 155);
-DrawText($"The above bitmap is {BitmapWidth(imageBitmap)} pixels in width", ColorBlack(), 215, 450);
+DrawBitmap(imageBitmap, (WindowWidth(programWindow) - BitmapWidth(imageBitmap)) / 2, (WindowHeight(programWindow) - BitmapHeight(imageBitmap)) / 2);
+DrawText($"The above bitmap is {BitmapWidth(imageBitmap)} pixels in width", ColorBlack(), (WindowWidth(programWindow) - BitmapWidth(imageBitmap)) / 2, WindowHeight(programWindow) - 70);
 RefreshScreen();
 
 Delay(5000);
