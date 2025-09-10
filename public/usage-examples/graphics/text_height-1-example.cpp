@@ -8,7 +8,6 @@ int main()
     string text_string = "Example text";
     //Change the below value to affect the text's height
     int text_font_size = 100;
-    //Function used here ↓
     int height = text_height(text_string, text_font, text_font_size);
     line l = line_from(30, 200, 30, 200 + height);
     
