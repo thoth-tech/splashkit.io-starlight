@@ -1,0 +1,5 @@
+#### Translating 2D Points by Another 2D Point
+
+Create a translation matrix used to translate 2D points by another 2D point.
+
+Uses the [translation_matrix](/api/physics/#translation-matrix-1) function.
