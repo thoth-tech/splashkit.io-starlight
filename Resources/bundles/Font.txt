@@ -1,0 +1,3 @@
+FONT,FontA,Montserrat-Black.ttf,18
+FONT,FontB,Montserrat-Thin.ttf,18
+FONT,FontC,OpenSans_Condensed-Bold.ttf,18
