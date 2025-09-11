@@ -1,6 +1,7 @@
-﻿using static SplashKitSDK.SplashKit;
+﻿using SplashKitSDK
+using static SplashKitSDK.SplashKit;
 
-OpenWindow("Move Window Example", 300, 300);
+Window win = OpenWindow("Window Mover", 300, 300);
 while (!QuitRequested())
 {
     // Get user inputs
@@ -9,48 +10,48 @@ while (!QuitRequested())
     ClearScreen(ColorWhite());
 
     // Get position of the window
-    int currentX = WindowX("Move Window Example");
-    int currentY = WindowY("Move Window Example");
+    int currentX = WindowX(win);
+    int currentY = WindowY(win);
 
     // Move window buttons
     if (Button("NW", RectangleFrom(50, 50, 40, 40)))
     {
-        MoveWindowTo("Move Window Example", currentX - 10, currentY - 10);
+        MoveWindowTo(win, currentX - 10, currentY - 10);
     }
 
     if (Button("N", RectangleFrom(130, 50, 40, 40)))
     {
-        MoveWindowTo("Move Window Example", currentX, currentY - 10);
+        MoveWindowTo(win, currentX, currentY - 10);
     }
 
     if (Button("NE", RectangleFrom(210, 50, 40, 40)))
     {
-        MoveWindowTo("Move Window Example", currentX + 10, currentY - 10);
+        MoveWindowTo(win, currentX + 10, currentY - 10);
     }
 
     if (Button("W", RectangleFrom(50, 130, 40, 40)))
     {
-        MoveWindowTo("Move Window Example", currentX - 10, currentY);
+        MoveWindowTo(win, currentX - 10, currentY);
     }
 
     if (Button("E", RectangleFrom(210, 130, 40, 40)))
     {
-        MoveWindowTo("Move Window Example", currentX + 10, currentY);
+        MoveWindowTo(win, currentX + 10, currentY);
     }
 
     if (Button("SW", RectangleFrom(50, 210, 40, 40)))
     {
-        MoveWindowTo("Move Window Example", currentX - 10, currentY + 10);
+        MoveWindowTo(win, currentX - 10, currentY + 10);
     }
 
     if (Button("S", RectangleFrom(130, 210, 40, 40)))
     {
-        MoveWindowTo("Move Window Example", currentX, currentY + 10);
+        MoveWindowTo(win, currentX, currentY + 10);
     }
 
     if (Button("SE", RectangleFrom(210, 210, 40, 40)))
     {
-        MoveWindowTo("Move Window Example", currentX + 10, currentY + 10);
+        MoveWindowTo(win, currentX + 10, currentY + 10);
     }
 
     DrawInterface();
