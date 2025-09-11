@@ -11,11 +11,11 @@ while (!QuitRequested())
     ProcessEvents();
 
     // clear screen
-    ClearWindow(wind, Color.White);
+    ClearWindow(wind, ColorWhite());
 
     if (Button("Red!", RectangleFrom(75, 85, 100, 30)))
     {
-        ClearWindow(wind, Color.Red);
+        ClearWindow(wind, ColorRed());
         RefreshWindow(wind);
         Delay(1000);
         continue;
@@ -23,7 +23,7 @@ while (!QuitRequested())
 
     if (Button("Green!", RectangleFrom(250, 85, 100, 30)))
     {
-        ClearWindow(wind, Color.Green);
+        ClearWindow(wind, ColorGreen());
         RefreshWindow(wind);
         Delay(1000);
         continue;
@@ -31,7 +31,7 @@ while (!QuitRequested())
 
     if (Button("Blue!", RectangleFrom(425, 85, 100, 30)))
     {
-        ClearWindow(wind, Color.Blue);
+        ClearWindow(wind, ColorBlue());
         RefreshWindow(wind);
         Delay(1000);
         continue;
