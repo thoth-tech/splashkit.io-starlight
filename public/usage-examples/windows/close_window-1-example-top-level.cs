@@ -16,7 +16,7 @@ while (!QuitRequested())
     ProcessEvents();
 
     // clear screen
-    ClearWindow(wind, Color.White);
+    ClearWindow(wind, ColorWhite());
 
     if (!countdownStarted)
     {
@@ -30,7 +30,7 @@ while (!QuitRequested())
     else
     {
         // Display countdown
-        DrawText($"This window will self destruct in {countdown}", Color.Black, "arial", 18, 50, 85);
+        DrawText($"This window will self destruct in {countdown}", ColorBlack(), "arial", 18, 50, 85);
 
         // Check if 1 second has passed
         if (TimerTicks(countdownTimer) > 1000)
