@@ -1,0 +1,2 @@
+Opens a window of random width and displays a message about the width in pixels.
+
