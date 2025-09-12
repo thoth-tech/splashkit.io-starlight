@@ -1,22 +1,13 @@
 ---
 // Popular Tutorials Component
-// Displays most popular SplashKit tutorials with sorting options
+// Displays most popular SplashKit tutorials sorted by views
 // Uses mock data API endpoint for Phase 1 implementation
 ---
 
 <div class="popular-tutorials">
   <div class="header">
-    <h2>Most Popular Tutorials</h2>
-    <p>Discover what the SplashKit community is learning</p>
-  </div>
-
-  <div class="sort-controls">
-    <button class="sort-btn active" data-sort="views">
-      Most Viewed
-    </button>
-    <button class="sort-btn" data-sort="timeSpent">
-       Most Engaging
-    </button>
+    <h2>Popular Tutorials</h2>
+    <p>Top-rated learning content from our community</p>
   </div>
 
   <div class="tutorials-grid" id="tutorials-container">
@@ -32,85 +23,80 @@
 
 <style>
   .popular-tutorials {
-    margin: 2rem 0;
-    padding: 1.5rem;
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 12px;
-    background: var(--sl-color-gray-6);
+    margin: 3rem 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  .header {
+    text-align: left;
+    margin-bottom: 2rem;
   }
 
   .header h2 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
+    margin: 0 0 0.75rem 0;
+    font-size: 2rem;
+    font-weight: 600;
     color: var(--sl-color-text);
+    letter-spacing: -0.025em;
   }
 
   .header p {
-    margin: 0 0 1rem 0;
+    margin: 0;
     color: var(--sl-color-gray-2);
-    font-size: 0.9rem;
-  }
-
-  .sort-controls {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .sort-btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 6px;
-    background: var(--sl-color-bg);
-    color: var(--sl-color-text);
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .sort-btn:hover {
-    background: var(--sl-color-gray-6);
-    border-color: var(--sl-color-gray-4);
-  }
-
-  .sort-btn.active {
-    background: var(--sl-color-accent);
-    color: var(--sl-color-white);
-    border-color: var(--sl-color-accent);
+    font-size: 1rem;
+    opacity: 0.8;
   }
 
   .tutorials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .tutorial-card {
     background: var(--sl-color-bg);
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 8px;
-    padding: 1rem;
-    transition: all 0.2s ease;
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 160px;
   }
 
   .tutorial-card:hover {
-    border-color: var(--sl-color-accent);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
-    box-shadow: var(--sl-shadow-md);
   }
 
   .tutorial-rank {
-    font-size: 0.75rem;
-    color: var(--sl-color-gray-2);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    background: var(--sl-color-accent);
+    color: var(--sl-color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
   }
 
   .tutorial-title {
-    margin: 0 0 0.5rem 0;
-    font-size: 1rem;
+    margin: 0 0 0.75rem 0;
+    font-size: 1.125rem;
     font-weight: 600;
+    line-height: 1.4;
+    padding-right: 2rem;
+    flex-grow: 1;
   }
 
   .tutorial-title a {
@@ -120,42 +106,66 @@
 
   .tutorial-title a:hover {
     color: var(--sl-color-accent);
-    text-decoration: underline;
+  }
+
+  .tutorial-description {
+    color: var(--sl-color-gray-2);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  .tutorial-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  .tutorial-category {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background: var(--sl-color-accent-low);
+    color: var(--sl-color-accent);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: capitalize;
   }
 
   .tutorial-stats {
     display: flex;
     gap: 1rem;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--sl-color-gray-2);
-  }
-
-  .tutorial-category {
-    display: inline-block;
-    padding: 0.25rem 0.5rem;
-    background: var(--sl-color-accent-low);
-    color: var(--sl-color-accent);
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 500;
-    margin-top: 0.5rem;
   }
 
   .footer {
     text-align: center;
-    padding-top: 1rem;
-    border-top: 1px solid var(--sl-color-gray-5);
+    padding-top: 2rem;
   }
 
   .view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     color: var(--sl-color-accent);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--sl-color-accent);
+    border-radius: 8px;
+    transition: all 0.2s ease;
   }
 
   .view-all-link:hover {
-    text-decoration: underline;
+    background: var(--sl-color-accent);
+    color: var(--sl-color-white);
+    transform: translateY(-1px);
   }
 
   .loading {
@@ -173,16 +183,23 @@
   }
 
   @media (max-width: 768px) {
-    .popular-tutorials {
-      padding: 1rem;
-    }
-    
     .tutorials-grid {
       grid-template-columns: 1fr;
+      gap: 1rem;
     }
     
-    .sort-controls {
-      flex-direction: column;
+    .header h2 {
+      font-size: 1.75rem;
+    }
+    
+    .tutorial-card {
+      padding: 1.25rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .tutorials-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>
@@ -217,30 +234,48 @@
       return '<div class="loading">No tutorials found</div>';
     }
 
-    return tutorials.map((tutorial, index) => `
+    // Only show top 3 tutorials
+    const topTutorials = tutorials.slice(0, 3);
+
+    // Generate descriptions for tutorials
+    const descriptions = [
+      "Learn the fundamentals of creating visual elements and graphics in your SplashKit applications.",
+      "Set up your development environment with Visual Studio Code for SplashKit programming on Windows.",
+      "Master the basics of creating smooth animations and bringing your game objects to life."
+    ];
+
+    return topTutorials.map((tutorial, index) => `
       <div class="tutorial-card">
-        <div class="tutorial-rank">#${index + 1}</div>
+        <div class="tutorial-rank">${index + 1}</div>
+        
         <h3 class="tutorial-title">
           <a href="${tutorial.path}">${tutorial.title}</a>
         </h3>
-        <div class="tutorial-stats">
-          <span>Views: ${formatViews(tutorial.views)}</span>
-          <span>Time: ${formatTime(tutorial.avgTimeSpent)}</span>
+        
+        <p class="tutorial-description">
+          ${descriptions[index] || "Discover essential SplashKit concepts and techniques in this comprehensive tutorial."}
+        </p>
+        
+        <div class="tutorial-footer">
+          <div class="tutorial-category">${tutorial.category}</div>
+          <div class="tutorial-stats">
+            <span>${formatViews(tutorial.views)} views</span>
+            <span>${formatTime(tutorial.avgTimeSpent)} read</span>
+          </div>
         </div>
-        <span class="tutorial-category">${tutorial.category}</span>
       </div>
     `).join('');
   }
 
   // Fetch and display tutorials
-  async function loadTutorials(sortBy: string = 'views'): Promise<void> {
+  async function loadTutorials(): Promise<void> {
     const container = document.getElementById('tutorials-container');
     if (!container) return;
 
     try {
       container.innerHTML = '<div class="loading">Loading popular tutorials...</div>';
       
-      const response = await fetch(`/api/top-docs?sort=${sortBy}&limit=6`);
+      const response = await fetch('/api/top-docs?limit=3');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -254,26 +289,8 @@
     }
   }
 
-  // Handle sort button clicks
-  function handleSortChange(): void {
-    const sortButtons = document.querySelectorAll('.sort-btn');
-    
-    sortButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Update active state
-        sortButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        // Load new data
-        const sortBy = button.getAttribute('data-sort') || 'views';
-        loadTutorials(sortBy);
-      });
-    });
-  }
-
   // Initialize component
   document.addEventListener('DOMContentLoaded', () => {
-    loadTutorials('views'); // Load with default sort
-    handleSortChange();     // Setup sort controls
+    loadTutorials(); // Load tutorials sorted by views
   });
 </script>

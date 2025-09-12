@@ -16,7 +16,7 @@ export interface TopDoc {
 const mockTutorialData: TopDoc[] = [
   {
     path: '/guides/graphics/drawing-sprites/',
-    title: 'Drawing Sprites',
+    title: 'Drawing',
     views: 3247,
     avgTimeSpent: 145,
     category: 'guides'
@@ -72,30 +72,15 @@ const mockTutorialData: TopDoc[] = [
   }
 ];
 
-// Utility function to sort tutorials by different criteria
-function sortTutorials(tutorials: TopDoc[], sortBy: string): TopDoc[] {
-  const sortedTutorials = [...tutorials];
-  
-  switch (sortBy) {
-    case 'timeSpent':
-      return sortedTutorials.sort((a, b) => b.avgTimeSpent - a.avgTimeSpent);
-    case 'views':
-    default:
-      return sortedTutorials.sort((a, b) => b.views - a.views);
-  }
-}
-
 // API endpoint handler
 export async function GET({ url }: { url: URL }) {
   try {
     // Parse query parameters
-    const sortBy = url.searchParams.get('sort') || 'views';
     const limitParam = url.searchParams.get('limit');
     const limit = limitParam ? parseInt(limitParam, 10) : 6;
-    const days = url.searchParams.get('days'); // Reserved for future real analytics
     
-    // Sort and limit results
-    const sortedTutorials = sortTutorials(mockTutorialData, sortBy);
+    // Sort by views only (future: custom algorithm combining multiple factors)
+    const sortedTutorials = [...mockTutorialData].sort((a, b) => b.views - a.views);
     const limitedTutorials = sortedTutorials.slice(0, Math.max(1, Math.min(limit, 20)));
     
     // Return JSON response
@@ -104,7 +89,6 @@ export async function GET({ url }: { url: URL }) {
       meta: {
         total: mockTutorialData.length,
         returned: limitedTutorials.length,
-        sortBy,
         ismock: true // Phase 1 indicator
       }
     }), {
