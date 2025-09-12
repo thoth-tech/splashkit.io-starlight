@@ -1,74 +1,50 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-// import solidJs from "@astrojs/solid-js";
 import react from "@astrojs/react";
 import starlightLinksValidator from 'starlight-links-validator';
 import sitemap from "@astrojs/sitemap";
 import remarkMath from 'remark-math';
-import rehypeMathjax from 'rehype-mathjax'
-import starlightBlog from 'starlight-blog'
+import rehypeMathjax from 'rehype-mathjax';
+import starlightBlog from 'starlight-blog';
 import starlightDocSearch from '@astrojs/starlight-docsearch';
 import remarkHeadingID from 'remark-heading-id';
 import { loadEnv } from "vite";
 
-// Load env vars safely
-const DOCSEARCH_API_ID = process.env.DOCSEARCH_API_ID || "";
-const DOCSEARCH_API_SEARCH_KEY = process.env.DOCSEARCH_API_SEARCH_KEY || "";
-const DOCSEARCH_INDEX_NAME = process.env.DOCSEARCH_INDEX_NAME || "";
+// Load environment variables
+const env = loadEnv("", process.cwd(), "");
+const DOCSEARCH_API_ID = env.DOCSEARCH_API_ID;
+const DOCSEARCH_API_SEARCH_KEY = env.DOCSEARCH_API_SEARCH_KEY;
+const DOCSEARCH_INDEX_NAME = env.DOCSEARCH_INDEX_NAME;
 
-const isProd = process.env.NODE_ENV === "production";
-
-// Only enforce DocSearch env vars in production
-if (isProd && (!DOCSEARCH_API_ID || !DOCSEARCH_API_SEARCH_KEY || !DOCSEARCH_INDEX_NAME)) {
-  console.error("Algolia DocSearch env vars missing in production!");
-  process.exit(1);
+// Check if all DocSearch env vars are defined
+const hasDocSearch = DOCSEARCH_API_ID && DOCSEARCH_API_SEARCH_KEY && DOCSEARCH_INDEX_NAME;
+if (!hasDocSearch) {
+  console.warn("⚠️ Algolia DocSearch environment variables are invalid. Skipping DocSearch plugin.");
 }
 
-
-
-// https://astro.build/config
 export default defineConfig({
   site: 'https://splashkit.io/',
   integrations: [
     starlight({
       title: "SplashKit",
-      description: 'SplashKit is a cross-platform game engine for C, C++ and Objective-C. It provides a simple API for 2D game development.',
+      description: 'SplashKit is a cross-platform game engine for C, C++ and Objective-C...',
       plugins: [
-        starlightBlog({
-          title: 'Announcements',
-          recentPostCount: 5,
-          prevNextLinksOrder: 'chronological',
-        }),
-        starlightLinksValidator({
-          errorOnRelativeLinks: true,
-        }),
-        starlightDocSearch({
+        starlightBlog({ title: 'Announcements', recentPostCount: 5, prevNextLinksOrder: 'chronological' }),
+        starlightLinksValidator({ errorOnRelativeLinks: true }),
+        ...(hasDocSearch ? [starlightDocSearch({
           appId: DOCSEARCH_API_ID,
           apiKey: DOCSEARCH_API_SEARCH_KEY,
           indexName: DOCSEARCH_INDEX_NAME,
-        }),
+        })] : []), // ✅ Only include DocSearch if variables are defined
       ],
-      expressiveCode: {
-        // theme: ["github-dark", "github-light"],
-        // frames: {
-        //   showCopyToClipboardButton: true,
-        // },
-        styleOverrides: { borderRadius: '0.5rem' },
-        useDarkModeMediaQuery: true,
-      },
-      customCss: [
-        "/src/styles/custom.css",
-        "/src/styles/background.css",
-        "/src/styles/cards.css",
-      ],
+      expressiveCode: { styleOverrides: { borderRadius: '0.5rem' }, useDarkModeMediaQuery: true },
+      customCss: ["/src/styles/custom.css", "/src/styles/background.css", "/src/styles/cards.css"],
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/splashkit' },
         { icon: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@splashkit7674' },
       ],
       favicon: "/images/favicon.svg",
-      logo: {
-        src: "./src/assets/favicon.svg",
-      },
+      logo: { src: "./src/assets/favicon.svg" },
       sidebar: [
         {
           label: "Installation",
@@ -117,41 +93,43 @@ export default defineConfig({
           collapsed: false,
           items: [
             { label: "Overview", link: "guides/" },
-            { label: "Getting Started", autogenerate: { directory: "guides/getting-started" }, collapsed: false },
+            { 
+              label: "Getting Started",
+              collapsed: false,
+              items: [
+                { label: "Drawing with Procedures", link: "guides/graphics/drawing-using-procedures" },
+                { label: "Understanding Double Buffering", link: "guides/graphics/double-buffering" },
+                { label: "Graphical User Inputs", link: "guides/input/user-inputs-in-graphical-applications" },
+                { label: "Loading Resources with Bundles", link: "guides/resources/loading-resources-with-bundles" },
+                { label: "Getting Started With Audio", link: "guides/audio/getting-started-with-audio" },
+                { label: "Using Animations", link: "guides/animations/using-animations" },
+                { label: "SplashKit Camera", link: "guides/input/using-splashkit-camera" },
+                { label: "Useful Utilities", link: "guides/utilities/useful-utilities" },
+                { label: "Using JSON in SplashKit", link: "guides/json/getting-started-with-json" },
+                { label: "SplashKit Colors", link: "guides/color/splashkit-colors" },
+              ],
+            },
             { label: "Raspberry GPIO", autogenerate: { directory: "guides/raspberry-gpio" }, collapsed: true },
             { label: "Physics", autogenerate: { directory: "guides/physics" }, collapsed: true },
             { label: "Interface", autogenerate: { directory: "guides/interface" }, collapsed: true },
             { label: "Networking", autogenerate: { directory: "guides/networking" }, collapsed: true },
+            {
+              label: "Beyond SplashKit",
+              collapsed: true,
+              items: [
+                { label: "Overview", link: "guides/beyond-splashkit/" },
+                { label: "Using SDL2", autogenerate: { directory: "guides/beyond-splashkit/sdl2" }, collapsed: false },
+                { label: "Cryptography", autogenerate: { directory: "guides/beyond-splashkit/cryptography" }, collapsed: true },
+                { label: "Utilities", autogenerate: { directory: "guides/beyond-splashkit/utilities" }, collapsed: true },
+              ],
+            },
           ],
-          // autogenerate: { directory: "guides", collapsed: true },
-        },
-        {
-          label: "Beyond SplashKit",
-          collapsed: false,
-          items: [
-            { label: "Overview", link: "beyond-splashkit/" },
-            { label: "Using SDL2", autogenerate: { directory: "beyond-splashkit/getting-started-with-sdl" }, collapsed: false },
-            { label: "Cryptography", autogenerate: { directory: "beyond-splashkit/cryptography" }, collapsed: true },
-            { label: "Utilities", autogenerate: { directory: "beyond-splashkit/utilities" }, collapsed: true },
-          ],
-          // autogenerate: { directory: "beyond-splashkit", collapsed: true },
         },
       ],
-
     }),
-
     react(),
-    sitemap()
+    sitemap(),
   ],
-
-  server: {
-    host: true,
-    port: 4321
-  },
-
-  // Render mathematical equations using remark-math and rehype-mathjax
-  markdown: {
-    remarkPlugins: [remarkMath, remarkHeadingID],
-    rehypePlugins: [rehypeMathjax],
-  },
+  server: { host: true, port: 4321 },
+  markdown: { remarkPlugins: [remarkMath, remarkHeadingID], rehypePlugins: [rehypeMathjax] },
 });
