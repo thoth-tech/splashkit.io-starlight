@@ -1,0 +1,1 @@
+Display a dialog using a custom font at 28pt, then auto-close the window after ~1.2 seconds.
