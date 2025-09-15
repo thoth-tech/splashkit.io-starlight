@@ -2,15 +2,15 @@
 
 int main()
 {
-    open_window("Option Part Bmp", 800, 600);
+    open_window("Halved Image Generator", 800, 600);
 
     bitmap image_bitmap = load_bitmap("image_bitmap", "image1.jpg");
 
     clear_screen(color_white());
-    // Function used here ↓
-    draw_bitmap(image_bitmap, 200, 155, option_part_bmp(0, 0, 200, 249));
+    // A bitmap is drawn with the 'option_part_bmp' function included in its drawing options
+    draw_bitmap(image_bitmap, 200, 155, option_part_bmp(0, 0, bitmap_width(image_bitmap) / 2, bitmap_height(image_bitmap)));
     draw_text("A portion of this bitmap has been drawn", color_black(), 215, 450);
-    draw_text("In this case, exactly half of it width-wise", color_black(), 214, 465);
+    draw_text("In this example, half of the bitmap (width-wise)", color_black(), 214, 465);
     refresh_screen();
 
     delay(5000);
