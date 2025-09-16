@@ -284,7 +284,8 @@
     try {
       container.innerHTML = '<div class="loading">Loading popular tutorials...</div>';
       
-      const response = await fetch('/api/top-docs?limit=3');
+  const host = location.hostname;
+  const response = await fetch(`/api/top-docs?limit=3&host=${encodeURIComponent(host)}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -298,8 +299,44 @@
     }
   }
 
+  // Initialize GA4 gtag if measurement id is provided at build time
+  const MEASUREMENT_ID = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID as string | undefined;
+
+  function injectGtag() {
+    if (!MEASUREMENT_ID) return;
+    if ((window as any).dataLayer) return; // already injected (ga4 uses dataLayer)
+    // inject gtag
+    const gtagScript = document.createElement('script');
+    gtagScript.async = true;
+    gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
+    document.head.appendChild(gtagScript);
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    const gtag = (...args: any[]) => { (window as any).dataLayer.push(args); };
+    (window as any).gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', MEASUREMENT_ID, { send_page_view: true });
+  }
+
+  function bindClickTracking(container: HTMLElement) {
+    if (!MEASUREMENT_ID || !(window as any).gtag) return;
+    container.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement).closest('a');
+      if (!a) return;
+      const titleEl = (a.closest('.tutorial-card') as HTMLElement)?.querySelector('.tutorial-title');
+      const title = titleEl ? (titleEl.textContent || '').trim() : a.textContent || '';
+      (window as any).gtag('event', 'select_content', {
+        content_type: 'tutorial',
+        item_id: a.getAttribute('href'),
+        item_name: title,
+      });
+    });
+  }
+
   // Initialize component
   document.addEventListener('DOMContentLoaded', () => {
+    injectGtag();
     loadTutorials(); // Load tutorials sorted by views
+    const container = document.getElementById('tutorials-container');
+    if (container) bindClickTracking(container);
   });
 </script>

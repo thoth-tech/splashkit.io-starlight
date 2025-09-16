@@ -72,30 +72,104 @@ const mockTutorialData: TopDoc[] = [
   }
 ];
 
+// Attempt to load GA4 when env is present
+async function fetchFromGA4(limit: number, host?: string) {
+  const propertyId = process.env.GA4_PROPERTY_ID;
+  const clientEmail = process.env.GA4_CLIENT_EMAIL;
+  let privateKey = process.env.GA4_PRIVATE_KEY;
+
+  if (!propertyId || !clientEmail || !privateKey) {
+    return { items: null as TopDoc[] | null, reason: 'missing-env' as const };
+  }
+
+  // Handle escaped newlines in env var
+  privateKey = privateKey.replace(/\\n/g, '\n');
+
+  // Lazy import GA client so build works even if not configured locally
+  const { BetaAnalyticsDataClient } = await import('@google-analytics/data');
+  const analytics = new BetaAnalyticsDataClient({
+    credentials: {
+      client_email: clientEmail,
+      private_key: privateKey
+    }
+  });
+
+  // Request: last 30 days, by pagePath
+  const request: any = {
+    property: `properties/${propertyId}`,
+    dateRanges: [{ startDate: '30daysAgo', endDate: 'yesterday' }],
+    dimensions: [{ name: 'hostName' }, { name: 'pagePath' }, { name: 'pageTitle' }],
+    metrics: [{ name: 'screenPageViews' }, { name: 'userEngagementDuration' }],
+    orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
+    limit: BigInt(Math.max(1, Math.min(limit, 50)))
+  };
+
+  if (host) {
+    request.dimensionFilter = {
+      filter: {
+        fieldName: 'hostName',
+        stringFilter: { matchType: 'EXACT', value: host }
+      }
+    };
+  }
+
+  const [response] = await analytics.runReport(request);
+
+  const rows = (response.rows ?? []) as any[];
+  const items: TopDoc[] = rows.map((r: any) => {
+    const path = r.dimensionValues?.[1]?.value || '/';
+    const title = r.dimensionValues?.[2]?.value || 'Untitled';
+    const views = parseInt(r.metricValues?.[0]?.value ?? '0', 10) || 0;
+    const totalEngagement = parseFloat(r.metricValues?.[1]?.value ?? '0') || 0;
+    const avgTime = views > 0 ? Math.round(totalEngagement / views) : 0; // seconds
+    const category = path.split('/').filter(Boolean)[0] ?? 'site';
+    return { path, title, views, avgTimeSpent: avgTime, category };
+  });
+
+  return { items, reason: 'ok' as const };
+}
+
 // API endpoint handler
 export async function GET({ url }: { url: URL }) {
   try {
     // Parse query parameters
     const limitParam = url.searchParams.get('limit');
     const limit = limitParam ? parseInt(limitParam, 10) : 6;
-    
-    // Sort by views only (future: custom algorithm combining multiple factors)
+    const source = (url.searchParams.get('source') || 'auto').toLowerCase();
+
+    // Prefer GA4 if requested or auto and env is present
+    if (source === 'ga4' || source === 'auto') {
+      const host = url.searchParams.get('host') || undefined;
+      try {
+        const ga = await fetchFromGA4(limit, host);
+        if (ga.items && ga.items.length > 0) {
+          return new Response(JSON.stringify({
+            items: ga.items,
+            meta: { source: 'ga4', returned: ga.items.length, ismock: false, host: host ?? null }
+          }), { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=120' } });
+        }
+      } catch (e) {
+        console.warn('GA4 fetch failed, falling back to mock:', e);
+      }
+    }
+
+    // Fallback to mock data (Phase 1)
     const sortedTutorials = [...mockTutorialData].sort((a, b) => b.views - a.views);
     const limitedTutorials = sortedTutorials.slice(0, Math.max(1, Math.min(limit, 20)));
-    
-    // Return JSON response
+
     return new Response(JSON.stringify({
       items: limitedTutorials,
       meta: {
         total: mockTutorialData.length,
         returned: limitedTutorials.length,
-        ismock: true // Phase 1 indicator
+        source: 'mock',
+        ismock: true
       }
     }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Cache-Control': 'public, max-age=300' // 5 minute cache
+        'Cache-Control': 'public, max-age=60'
       }
     });
   } catch (error) {
