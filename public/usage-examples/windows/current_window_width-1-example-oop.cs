@@ -1,6 +1,6 @@
 ﻿using SplashKitSDK;
 
-namespace BitmapWidthExample
+namespace CurrentWindowWidthExample
 {
     public class Program
     {
