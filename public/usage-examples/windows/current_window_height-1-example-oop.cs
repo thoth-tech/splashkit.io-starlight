@@ -1,14 +1,14 @@
 ﻿using SplashKitSDK;
 
-namespace BitmapWidthExample
+namespace CurrentWindowHeightExample
 {
     public class Program
     {
         public static void Main()
         {
-            Random rnd = new Random();
+            int randomNumber = SplashKit.Rnd(100, 800);
 
-            SplashKit.OpenWindow("Random Window Height", 275, rnd.Next(100, 800));
+            SplashKit.OpenWindow("Random Window Height", 275, randomNumber);
 
             SplashKit.ClearScreen(Color.White);
 
