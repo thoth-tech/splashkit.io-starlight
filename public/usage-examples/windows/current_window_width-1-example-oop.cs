@@ -6,9 +6,9 @@ namespace BitmapWidthExample
     {
         public static void Main()
         {
-            Random rnd = new Random();
+            int randomNumber = SplashKit.Rnd(275, 800);
 
-            SplashKit.OpenWindow("Random Window Width", rnd.Next(275, 800), 100);
+            SplashKit.OpenWindow("Random Window Width", randomNumber, 100);
 
             SplashKit.ClearScreen(Color.White);
 

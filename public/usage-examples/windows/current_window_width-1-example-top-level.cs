@@ -1,9 +1,9 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Random rnd = new Random();
+int randomNumber = Rnd(275, 800);
 
-OpenWindow("Random Window Width", rnd.Next(275, 800), 100);
+OpenWindow("Random Window Width", randomNumber, 100);
 
 ClearScreen(ColorWhite());
 DrawText($"This window is {CurrentWindowWidth()} pixels wide", ColorBlack(), 20, 20);

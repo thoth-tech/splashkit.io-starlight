@@ -3,10 +3,8 @@
 
 int main()
 {
-    // Initiates a random number generator between two points
-    static std::mt19937 gen(std::random_device{}());
-    static std::uniform_int_distribution<> dist(275, 800);
-    open_window("Random Window Width", dist(gen), 100);
+    int random_number = rnd(275, 800);
+    open_window("Random Window Width", random_number, 100);
 
     clear_screen(color_white());
     draw_text("This window is " + std::to_string(current_window_width()) + " pixels wide", color_black(), 20, 20);
