@@ -1,0 +1,112 @@
+---
+title: 安装命令行工具
+description: 在 Linux 上安装命令行工具
+sidebar:
+  label: 1. 命令行工具
+  order: 1
+---
+
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+
+SplashKit 需要在您的系统上安装一些命令行工具，然后才能继续安装。请按照以下步骤安装这些工具，然后继续 SplashKit 的安装。
+
+## 安装步骤
+
+<Steps>
+
+1. **打开终端**  
+
+   在应用程序菜单中找到您的终端，或使用键盘快捷键（在大多数 Linux 系统上为 `Ctrl + Alt + T`）。
+
+   ![在 Linux 中打开终端](/gifs/linux/open-terminal.gif)
+
+2. **更新您的系统**  
+
+   在安装新软件包之前，保持系统最新以确保最新的安全性和稳定性改进非常重要。根据您的 Linux 发行版运行以下命令：
+
+   <Tabs syncKey="linux-distro">
+   <TabItem label="Ubuntu/Debian">
+
+   ```shell
+   sudo apt-get update && sudo apt-get upgrade
+   ```
+
+   </TabItem>
+   <TabItem label="Arch">
+   <Tabs syncKey="package-manager">
+   <TabItem label="使用 pacman">
+
+   ```shell
+   sudo pacman -Syu
+   ```
+
+   </TabItem>
+   <TabItem label="使用 yay">
+
+   ```shell
+   yay -Syu
+   ```
+
+   </TabItem>
+   </Tabs>
+   </TabItem>
+   <TabItem label="Fedora">
+
+   ```shell
+   sudo dnf update
+   ```
+
+   </TabItem>
+   </Tabs>
+
+3. **安装必需的命令行工具**  
+
+   要继续 SplashKit 安装，您需要安装 **curl** 和 **git**。使用您的包管理器安装这些工具：
+
+   <Tabs syncKey="linux-distro">
+   <TabItem label="Ubuntu/Debian">
+
+   ```shell
+   sudo apt-get install curl git
+   ```
+
+   </TabItem>
+   <TabItem label="Arch">
+   <Tabs syncKey="package-manager">
+   <TabItem label="使用 pacman">
+
+   ```shell
+   sudo pacman -S curl git
+   ```
+
+   </TabItem>
+   <TabItem label="使用 yay">
+
+   ```shell
+   yay -S curl git
+   ```
+
+   </TabItem>
+   </Tabs>
+   </TabItem>
+   <TabItem label="Fedora">
+
+   ```shell
+   sudo dnf install curl git
+   ```
+
+   </TabItem>
+   </Tabs>
+
+4. **验证安装（可选）**  
+
+   要确认工具安装成功，请运行：
+
+   ```shell
+   curl --version
+   git --version
+   ```
+
+   如果安装成功，这两个命令都应该输出版本信息。
+
+</Steps>

@@ -1,72 +1,49 @@
 ---
-title: Linux 安装指南
+title: Linux 安装概述
+description: SplashKit 在 Linux 上的安装指南
 sidebar:
-  label: Linux 安装
+  label: 概述
+  order: 0
+  attrs:
+    class: linux
 ---
 
-# 在 Linux 上安装 SplashKit
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
 
-本指南将帮助您在各种 Linux 发行版上安装 SplashKit。
+:::tip[正在使用《程序员实用指南》？]
 
-## 支持的发行版
+如果您正在使用《实用指南》，我们*强烈推荐*您按照其安装指南进行：
 
-- Ubuntu / Debian
-- Fedora / CentOS / RHEL
-- Arch Linux
-- openSUSE
-- 其他主流发行版
+- [设置我的 Linux 设备](https://programmers.guide/book/appendix/0-installation/2-0-setup-linux/)
+- [设置我的树莓派](https://programmers.guide/book/appendix/0-installation/2-3-setup-pi/#3-setup-raspberry-pi-os)（如果使用树莓派）
 
-## 通用安装步骤
+这些指南还包含自动化脚本，提供更简单的安装选项。
 
-### 1. 更新系统
+:::
 
-**Ubuntu/Debian:**
-```bash
-sudo apt update && sudo apt upgrade
-```
+要在 Linux 上安装 SplashKit，请按照以下四个步骤：
 
-**Fedora:**
-```bash
-sudo dnf update
-```
+<CardGrid>
+  <LinkCard
+    title="安装命令行工具"
+    description="步骤 1"
+    href="/zh-cn/installation/linux/1-command-line-tools/"
+  />
+  <LinkCard
+    title="安装特定语言工具"
+    description="步骤 2"
+    href="/zh-cn/installation/linux/2-language-tools/"
+  />
+  <LinkCard
+    title="安装 SplashKit"
+    description="步骤 3"
+    href="/zh-cn/installation/linux/3-splashkit/"
+  />
+  <LinkCard
+    title="安装 Visual Studio Code"
+    description="步骤 4"
+    href="/zh-cn/installation/linux/4-vscode/"
+  />
+</CardGrid>
 
-**Arch Linux:**
-```bash
-sudo pacman -Syu
-```
-
-### 2. 安装依赖项
-
-**Ubuntu/Debian:**
-```bash
-sudo apt install build-essential curl git
-```
-
-**Fedora:**
-```bash
-sudo dnf groupinstall "Development Tools"
-sudo dnf install curl git
-```
-
-**Arch Linux:**
-```bash
-sudo pacman -S base-devel curl git
-```
-
-### 3. 安装 SplashKit
-
-使用我们的一键安装脚本：
-
-```bash
-bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
-```
-
-## 验证安装
-
-```bash
-skm --version
-```
-
----
-
-*特定发行版的详细安装指南正在编写中，敬请期待。*
+完成所有这些步骤后，您就可以开始使用您选择的编程语言构建 SplashKit 应用程序了。
