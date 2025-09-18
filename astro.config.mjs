@@ -27,9 +27,9 @@ export default defineConfig({
     starlight({
       title: "SplashKit",
       description: 'SplashKit is a cross-platform game engine for C, C++ and Objective-C. It provides a simple API for 2D game development.',
-      defaultLocale: 'en',
+      defaultLocale: 'root',
       locales: {
-        en: {
+        root: {
           label: 'English',
           lang: 'en',
         },
@@ -37,6 +37,10 @@ export default defineConfig({
           label: '简体中文',
           lang: 'zh-CN',
         },
+      },
+      components: {
+        // Override the default language switcher
+        LanguageSelect: './src/components/LanguageSwitcher.astro',
       },
       plugins: [
         starlightBlog({
