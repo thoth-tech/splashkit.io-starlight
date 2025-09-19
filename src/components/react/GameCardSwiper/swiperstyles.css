@@ -1,0 +1,171 @@
+/* Import a cool font for the card titles */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Swiper container */
+.mySwiper {
+  background: transparent;
+  height: 340px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 0 60px; /* Padding to make space for buttons on both sides */
+}
+
+/* Swiper navigation buttons */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ff6600;
+  width: 45px;
+  height: 45px;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  padding: 5px;
+}
+
+.swiper-button-next {
+  right: 10px; /* Place it inside the Swiper, near the right edge */
+}
+
+.swiper-button-prev {
+  left: 10px; /* Place it inside the Swiper, near the left edge */
+}
+
+/* Swiper slide */
+.swiper-slide {
+  background-color: transparent;
+  border-radius: 10px;
+  box-shadow: none;
+  overflow: hidden;
+  display: flex;
+  justify-content: center; /* Centre the card inside the slide */
+  align-items: center;
+  height: 100%; /* Ensure slides take full height */
+  width: 100%; /* Let swiper control the width */
+}
+
+/* Gamecard styling */
+.gamecard {
+  position: relative;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out, height 0.3s ease-in-out, width 0.3s ease-in-out;
+  max-width: 300px; /* Set a max width for each card */
+  height: auto;
+  margin: 0 auto; /* Centre the cards when there are fewer than the max slides */
+}
+
+.gamecard:hover {
+  transform: scale(1);
+  background-color: var(--sl-color-gray-6); /* Improved contrast */
+  border: 1px solid #000000;
+}
+
+[data-theme="dark"] .gamecard:hover {
+  background-color: var(--sl-color-gray-6); /* Ensures contrast in dark mode */
+}
+
+/* Game image */
+.gamecard img {
+  width: 100%;
+  height: 120px;
+  border-radius: 5px;
+  object-fit: fill;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Game title */
+.gamecard h3 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+  color: #ff6600;
+  text-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+  margin-top: 2px;
+}
+
+/* Description text*/
+.gamecard p {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: var(--sl-color-gray-1); 
+  margin-top: 2px;
+}
+
+/* Style for active (middle) slide */
+.swiper-slide {
+  /* Removed transitions for testing */
+  /* transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; */
+}
+
+/* Removed scaling effect for center slide */
+.swiper-slide-next {
+  /* Temporarily removed */
+  /* transform: scale(1.1); */
+  /* z-index: 5; */
+}
+
+[data-theme="dark"] .gamecard p {
+  color: var(--sl-color-gray-1);
+}
+
+/* Removes hyperlink look on card */
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* For tablets */
+@media (max-width: 1024px) {
+  .mySwiper {
+    height: 300px;
+    padding: 0; /* Adjusted padding */
+  }
+  .gamecard {
+    max-width: 280px; /* Set max width for tablets */
+  }
+  .gamecard img {
+    height: 100px;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .mySwiper {
+    height: 250px;
+    padding: 0; /* Removed padding */
+  }
+  .swiper-slide {
+    width: 100%; /* Let swiper control the width */
+    padding: 0 10px;
+  }
+  .gamecard {
+    max-width: 250px; /* Set max width for mobile */
+    padding: 5px;
+  }
+  .gamecard img {
+    height: 80px;
+  }
+  .gamecard h3 {
+    font-size: 12px;
+  }
+  .gamecard p {
+    font-size: 12px;
+  }
+}
+
+/* Only shrink card size for very small screens */
+@media (max-width: 480px) {
+  .swiper-slide {
+    width: 100%; /* Allow the card to shrink slightly */
+  }
+  .gamecard {
+    max-width: 220px; /* Further restrict max width for very small screens */
+  }
+}
