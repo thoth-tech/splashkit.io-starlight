@@ -1,0 +1,4 @@
+SplashKit Animation
+
+//Walk animation with 2 frames
+f:[0-1]x2,250,walk
