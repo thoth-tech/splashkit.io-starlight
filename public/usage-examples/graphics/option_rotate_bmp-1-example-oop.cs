@@ -9,11 +9,11 @@ namespace OptionRotateBmpExample
             SplashKit.OpenWindow("Option Rotate Bmp", 800, 600);
 
             Bitmap imageBitmap = SplashKit.LoadBitmap("image_bitmap", "image1.jpg");
+            int bitmap_rotation = 10;
 
             SplashKit.ClearScreen(Color.White);
-            // Function used here ↓
-            SplashKit.DrawBitmap(imageBitmap, 200, 130, SplashKit.OptionRotateBmp(10));
-            SplashKit.DrawText("This bitmap has been rotated by +10 degrees", Color.Black, 215, 450);
+            SplashKit.DrawBitmap(imageBitmap, 200, 130, SplashKit.OptionRotateBmp(bitmap_rotation));
+            SplashKit.DrawText("This bitmap has been rotated by " + bitmap_rotation.ToString() + " degrees", Color.Black, 215, 450);
             SplashKit.RefreshScreen();
 
             SplashKit.Delay(5000);
