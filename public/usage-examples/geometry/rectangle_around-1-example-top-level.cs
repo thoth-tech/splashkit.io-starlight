@@ -42,10 +42,10 @@ while (!QuitRequested())
 
     ProcessEvents();
 
-    ClearScreen(Color.White);
+    ClearScreen(ColorWhite());
     // A rectangle is drawn which encompasses the circle. It shares the same height, width and position
-    DrawRectangle(Color.Black, RectangleAround(circle));
-    FillCircle(Color.Red, circle);
+    DrawRectangle(ColorBlack(), RectangleAround(circle));
+    FillCircle(ColorRed(), circle);
     RefreshScreen();
 }
 CloseAllWindows();

@@ -7,8 +7,8 @@ circle_size = 30
 rotation_degrees = 0
 circle_coordinates = 0
 growing = True
-timer_ass = create_timer("timer_ass")
-start_timer(timer_ass)
+main_timer = create_timer("main_timer")
+start_timer(main_timer)
 reverse_timer = create_timer("reverse_timer")
 start_timer(reverse_timer)
 
@@ -17,15 +17,15 @@ while (not quit_requested()):
     circle_coordinates = point_at((300 + 150 * cosine(rotation_degrees)), (300 + 150 * sine(rotation_degrees)))
     circle = circle_at(circle_coordinates, circle_size)
 
-    if timer_ticks(timer_ass) >= 40 and growing == True:
+    if timer_ticks(main_timer) >= 40 and growing == True:
         circle_size += 1
-        reset_timer(timer_ass)
+        reset_timer(main_timer)
     elif timer_ticks(reverse_timer) >= 3000:
         growing = False
 
-    if timer_ticks(timer_ass) >= 40 and growing == False:
+    if timer_ticks(main_timer) >= 40 and growing == False:
         circle_size -= 1
-        reset_timer(timer_ass)
+        reset_timer(main_timer)
     elif timer_ticks(reverse_timer) >= 6000:
         growing = True
         reset_timer(reverse_timer)

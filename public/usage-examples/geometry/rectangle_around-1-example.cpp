@@ -9,31 +9,31 @@ int main()
     float rotation_degrees = 0;
     point_2d circle_coordinates;
     bool growing = true;
-    timer timer_ass = create_timer("timer_ass");
-    start_timer(timer_ass);
+    timer main_timer = create_timer("main_timer");
+    start_timer(main_timer);
     timer reverse_timer = create_timer("reverse_timer");
     start_timer(reverse_timer);
 
     while (!quit_requested())
     {
-        rotation_degrees = rotation_degrees + 0.005;
+        rotation_degrees += 0.005;
         circle_coordinates = point_at((300 + 150 * cosine(rotation_degrees)), (300 + 150 * sine(rotation_degrees)));
         circle = circle_at(circle_coordinates, circle_size);
 
-        if (timer_ticks(timer_ass) >= 40 && growing == true)
+        if (timer_ticks(main_timer) >= 40 && growing == true)
         {
             circle_size += 1;
-            reset_timer(timer_ass);
+            reset_timer(main_timer);
         }
         else if (timer_ticks(reverse_timer) >= 3000)
         {
             growing = false;
         }
 
-        if (timer_ticks(timer_ass) >= 40 && growing == false)
+        if (timer_ticks(main_timer) >= 40 && growing == false)
         {
             circle_size -= 1;
-            reset_timer(timer_ass);
+            reset_timer(main_timer);
         }
         else if (timer_ticks(reverse_timer) >= 6000)
         {
