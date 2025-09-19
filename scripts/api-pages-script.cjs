@@ -75,15 +75,21 @@ const sk_colors = ["alice_blue", "antique_white", "aqua", "aquamarine", "azure",
 // ------------------------------------------------------------------------------
 // Get a list of all the files in a directory and it's subdirectories
 // ------------------------------------------------------------------------------
-function getAllFiles(dir, allFilesList = []) {
+function getAllFiles(dir, allFilesList = [], baseDir = null) {
+  if (baseDir === null) {
+    baseDir = dir; // Set the base directory on first call
+  }
+  
   try {
     const files = fs.readdirSync(dir);
     files.map(file => {
       const name = dir + '/' + file;
       if (fs.statSync(name).isDirectory()) { // check if subdirectory is present
-        getAllFiles(name, allFilesList);     // do recursive execution for subdirectory
+        getAllFiles(name, allFilesList, baseDir);     // do recursive execution for subdirectory
       } else {
-        allFilesList.push(file);             // push filename into the array
+        // Calculate relative path from base directory
+        const relativePath = path.relative(baseDir, name).replace(/\\/g, '/');
+        allFilesList.push(relativePath);             // push relative path into the array
       }
     })
   } catch (err) {
