@@ -1,0 +1,49 @@
+---
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+
+interface Frontmatter {
+  title: string;
+  description?: string;
+  featured?: boolean; // Add featured flag
+}
+
+let posts = await Astro.glob<Frontmatter>("../content/docs/games/*.mdx");
+posts = posts.filter((post) => !post.file.endsWith("index.mdx"));
+
+// Filter posts to include only those marked as featured
+posts = posts.filter((post) => post.frontmatter.featured !== false);
+
+function simplifyFilePath(filePath: string) {
+  // Remove leading and trailing slashes
+  filePath = filePath.replace(/^\/|\/$/g, "");
+
+  // Replace '%20' with '-' for URL compatibility
+  filePath = filePath.split("%20").join("-");
+
+  // Replace the base directory path with a relative path if necessary
+  filePath = filePath.replace(/^.*\/content\/docs\/games\//, "");
+
+  // Remove file extension
+  const pathParts = filePath.split(".");
+  if (pathParts.length > 1) {
+    pathParts.pop(); // Remove the file extension
+  }
+
+  // Join the parts back together
+  const simplifiedPath = pathParts.join(".");
+
+  return `/${simplifiedPath}`.toLowerCase(); // Convert to lowercase for consistency
+}
+---
+
+<CardGrid>
+  {
+    posts.map((post) => (
+      <LinkCard
+        title={post.frontmatter.title}
+        description={post.frontmatter.description}
+        href={`/games${simplifyFilePath(post.url?.toString() || "")}`}  
+      />
+    ))
+  }
+</CardGrid>
