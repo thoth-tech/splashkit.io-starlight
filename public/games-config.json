@@ -61,6 +61,12 @@
       "featured": true
     },
     {
+      "name": "Try the Games",
+      "description": "Test out the games showcased on our SplashKit Online IDE.",
+      "link": "try-it-online",
+      "featured": false
+    },
+    {
       "name": "Venture Adventure",
       "description": "Navigate puzzles, collect gems, and dodge giant ants in this thrilling box-pushing adventure!",
       "link": "venture-adventure",

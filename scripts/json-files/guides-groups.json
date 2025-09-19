@@ -11,6 +11,7 @@
   "networking",
   "physics",
   "raspberry-gpio",
+  "Resource-Bundles",
   "resources",
   "utilities"
 ]
