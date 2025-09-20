@@ -1,7 +1,3 @@
 Opening Network Connections with open_connection Function
 
-This example demonstrates how to open a network connection using the `open_connection()` function. The program will show how to establish a connection to a server and display connection information.
-
-:::note
-To test this example code you can download these [**Resources**](/usage-examples/networking/open_connection-1-example-resources.zip).
-::: 
+This example demonstrates how to open a network connection using the `open_connection()` function. The program will show how to establish a connection to a server and display connection information. 
