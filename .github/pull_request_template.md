@@ -65,12 +65,23 @@ _Please delete options that are not relevant._
 _Please list the folders and files added/modified with this pull request and delete options that are not relevant._
 
 - Added:
-  - [ ] folder/folder
-  - [ ] folder/folder
+  - [ ] New geometry example files
+  - [ ] Additional shape documentation
 - Modified:
-  - [ ] folder/file
-  - [ ] folder/file
+  - [x] public/usage-examples/geometry/
+  - [x] src/content/docs/ (geometry-related documentation)
+  - [x] Usage example files for geometry functions
+  - [x] Shape and mathematical operation examples
 
 ## Additional Notes
 
-_Please add any additional information that might be useful for the reviewers._
+This PR focuses specifically on improving the geometry section of the SplashKit documentation. The changes include:
+
+- Updated code examples for geometric shapes (rectangles, circles, triangles, etc.)
+- Improved function documentation for point, vector, and shape operations
+- Enhanced usage examples demonstrating practical geometric calculations
+- Better examples for collision detection and intersection methods
+- Consistent formatting and style across all geometry documentation
+- Mathematical accuracy verification for all geometric operations
+
+These changes will help developers better understand and utilize SplashKit's geometry functions, particularly useful for game development, graphics programming, and mathematical applications.
