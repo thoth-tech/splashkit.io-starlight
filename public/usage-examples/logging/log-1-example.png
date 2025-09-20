@@ -1,0 +1,16 @@
+# This is a placeholder for the PNG output file
+# You should create a screenshot showing:
+# 
+# 1. A window titled "Log Example"
+# 2. White background
+# 3. "Log Example - Check Console/Terminal" at the top
+# 4. "The following messages have been logged:" subtitle
+# 5. List of logged messages in different colors:
+#    - INFO messages in blue
+#    - DEBUG messages in green
+#    - WARNING messages in orange
+#    - ERROR messages in red
+# 6. Instructions at the bottom about checking console/terminal
+#
+# The actual PNG file should be created by taking a screenshot
+# of the window while running this example program. 
