@@ -48,6 +48,9 @@ const int PIPE_WIDTH = 60;
 const int PIPE_GAP = 150;
 const double PIPE_SPEED = 2.0;
 const int PIPE_SPACING = 250;
+
+// Font for text
+font game_font;
 ```
 </TabItem>
 </Tabs>
@@ -244,14 +247,14 @@ void draw_game(const GameState& game) {
     fill_circle(COLOR_YELLOW, BIRD_X, game.bird_y, BIRD_SIZE);
     
     // Draw score
-    draw_text("Score: " + std::to_string(game.score), COLOR_WHITE, 10, 10);
+    draw_text("Score: " + std::to_string(game.score), COLOR_WHITE, game_font, 24, 10, 10);
     
     // Draw instructions
     if (!game.started) {
-        draw_text("Press SPACE to start", COLOR_WHITE, WINDOW_WIDTH/2 - 100, WINDOW_HEIGHT/2);
+        draw_text("Press SPACE to start", COLOR_WHITE, game_font, 18, WINDOW_WIDTH/2 - 75, WINDOW_HEIGHT/2);
     } else if (game.game_over) {
-        draw_text("GAME OVER!", COLOR_RED, WINDOW_WIDTH/2 - 80, WINDOW_HEIGHT/2 - 50);
-        draw_text("Press Space to restart", COLOR_WHITE, WINDOW_WIDTH/2 - 80, WINDOW_HEIGHT/2);
+        draw_text("GAME OVER!", COLOR_RED, game_font, 32, WINDOW_WIDTH/2 - 85, WINDOW_HEIGHT/2 - 50);
+        draw_text("Press Space to restart", COLOR_WHITE, game_font, 18, WINDOW_WIDTH/2 - 85, WINDOW_HEIGHT/2);
     }
 }
 ```
@@ -272,6 +275,9 @@ Finally, let's put it all together in our main function that runs the entire gam
 // Main function
 int main() {
     open_window("Flappy Bird", WINDOW_WIDTH, WINDOW_HEIGHT);
+    
+    // Load font
+    game_font = load_font("GameFont", "DMSerifText.ttf");
     
     GameState game;
     
