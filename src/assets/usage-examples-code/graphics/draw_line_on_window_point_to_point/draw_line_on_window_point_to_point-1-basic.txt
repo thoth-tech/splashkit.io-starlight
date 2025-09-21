@@ -1,0 +1,1 @@
+I am drawing lines on the window by clicking a start point and then an end point, with a live preview between clicks.
