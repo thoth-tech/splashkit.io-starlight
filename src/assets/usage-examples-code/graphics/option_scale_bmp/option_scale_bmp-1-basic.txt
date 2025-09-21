@@ -1,0 +1,1 @@
+I am scaling a centered bitmap at draw time and I am letting you change the scale live with keys.
