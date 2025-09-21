@@ -1,0 +1,1 @@
+Interaction of line with a circle in the centre of the screen.
