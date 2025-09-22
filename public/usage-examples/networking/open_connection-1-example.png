@@ -1,0 +1,17 @@
+# This is a placeholder for the PNG output file
+# You should create a screenshot showing:
+# 
+# 1. A window titled "Open Connection Example"
+# 2. White background
+# 3. "Open Connection Example" at the top
+# 4. "Network Connection Test" subtitle
+# 5. Connection status (either "OPEN" in green or "FAILED" in red)
+# 6. Connection details:
+#    - Host: example.com
+#    - Port: 80
+#    - Connection IP and Port (if successful)
+#    - Note about expected failure (if failed)
+# 7. Instructions at the bottom
+#
+# The actual PNG file should be created by taking a screenshot
+# of the window while running this example program. 

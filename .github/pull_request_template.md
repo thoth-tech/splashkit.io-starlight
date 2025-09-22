@@ -1,62 +1,105 @@
-# Description
 
-_Please include a summary of the changes and the related issue. Please also include relevant
-motivation and context. List any dependencies that are required for this change._
+## Description
 
-## Type of change
+This PR updates the **geometry usage examples and documentation** in SplashKit to improve clarity, consistency, and functionality. It includes:
 
-_Please delete options that are not relevant._
+- Improved code samples for geometric shapes (rectangles, circles, triangles, etc.)
+- Enhanced documentation for point, vector, and shape operations
+- More practical examples for geometric calculations and collision detection
+- Consistent formatting and style across geometry documentation
+- Verified mathematical accuracy for all geometry-related operations
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as
-      expected)
-- [ ] Documentation (update or new)
+These changes aim to assist developers in better understanding and utilizing SplashKit's geometry functionality, especially for game development and graphics programming.
+
+---
+
+## Related Issue
+
+- Geometry functions usage examples update
+
+---
+
+## Motivation
+
+To enhance the developer experience by providing clearer and more comprehensive documentation and usage examples for geometry functions including shape creation, point/vector math, and collision detection.
+
+---
+
+## Context
+
+This work is part of the ongoing improvement of SplashKit documentation and usage examples. This particular PR focuses on geometric operations.
+
+---
+
+## Type of Change
+
+- [ ] Bug fix  
+- [ ] New feature  
+- [ ] Breaking change  
+- [x] Documentation update  
+
+---
 
 ## How Has This Been Tested?
 
-_Please describe the tests that you ran to verify your changes. Provide instructions so we can
-reproduce. Please also list any relevant details for your test configuration._
+1. **Manual Review** – Checked for clarity and accuracy in math operations  
+2. **Code Compilation** – Verified that all geometry code examples compile successfully  
+3. **Visual Testing** – Ensured geometric rendering (shapes, points) appears correctly  
+4. **Documentation Build** – Confirmed no build errors  
+5. **Cross-browser Testing** – Tested updated documentation in Chrome and Firefox
+
+### Test Configuration
+
+- **Operating System:** Windows  
+- **Node.js version:** Latest LTS  
+- **npm version:** Latest stable  
+- **Graphics Testing:** Verified rendering correctness of all shapes and operations
+
+---
 
 ## Testing Checklist
 
-- [ ] Tested in latest Chrome
-- [ ] Tested in latest Firefox
-- [ ] npm run build
-- [ ] npm run preview
+- [x] Tested in latest Chrome  
+- [x] Tested in latest Firefox  
+- [x] Ran `npm run build`  
+- [x] Ran `npm run preview`
 
-## Checklist
+---
 
-_Please delete options that are not relevant._
+## Developer Checklist
 
 ### If involving code
 
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
+- [x] Code follows the style guidelines of this project  
+- [x] Performed self-review of the code  
+- [x] Commented complex or non-obvious code areas  
+- [x] Updated corresponding documentation  
+- [x] No new warnings introduced  
 
 ### If modified config files
 
-- [ ] I have checked the following files for changes:
-  - [ ] package.json
-  - [ ] astro.config.mjs
-  - [ ] netlify.toml
-  - [ ] docker-compose.yml
-  - [ ] custom.css
+- [ ] Checked the following config files for any necessary changes:  
+  - [ ] `package.json`  
+  - [ ] `astro.config.mjs`  
+  - [ ] `netlify.toml`  
+  - [ ] `docker-compose.yml`  
+  - [ ] `custom.css`
 
-## Folders and Files Added/Modified
+---
 
-_Please list the folders and files added/modified with this pull request and delete options that are not relevant._
+## Files and Folders Added or Modified
 
-- Added:
-  - [ ] folder/folder
-  - [ ] folder/folder
-- Modified:
-  - [ ] folder/file
-  - [ ] folder/file
+### Added
 
-## Additional Notes
+- [ ] New geometry example files  
+- [ ] Additional shape documentation  
 
-_Please add any additional information that might be useful for the reviewers._
+### Modified
+
+- [x] `public/usage-examples/geometry/`  
+- [x] `src/content/docs/` (geometry-related documentation)  
+- [x] Usage example files for geometry functions  
+- [x] Shape and mathematical operation examples  
+
+
+---
