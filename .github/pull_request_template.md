@@ -1,87 +1,105 @@
-# Description
 
-This PR updates the geometry usage examples and documentation to improve clarity and functionality. The changes include updating geometric function examples, improving code samples for shapes, points, and mathematical operations, and ensuring consistency across all geometry-related documentation.
+## Description
 
-**Related Issue:** Updates to geometry functions usage examples
-**Motivation:** Enhance user experience by providing clearer, more comprehensive examples for geometry functions including shapes, collision detection, and mathematical calculations
-**Context:** Part of ongoing effort to improve SplashKit documentation and usage examples, specifically focusing on geometric operations
+This PR updates the **geometry usage examples and documentation** in SplashKit to improve clarity, consistency, and functionality. It includes:
 
-## Type of change
+- Improved code samples for geometric shapes (rectangles, circles, triangles, etc.)
+- Enhanced documentation for point, vector, and shape operations
+- More practical examples for geometric calculations and collision detection
+- Consistent formatting and style across geometry documentation
+- Verified mathematical accuracy for all geometry-related operations
 
-_Please delete options that are not relevant._
+These changes aim to assist developers in better understanding and utilizing SplashKit's geometry functionality, especially for game development and graphics programming.
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as
-      expected)
-- [x] Documentation (update or new)
+---
+
+## Related Issue
+
+- Geometry functions usage examples update
+
+---
+
+## Motivation
+
+To enhance the developer experience by providing clearer and more comprehensive documentation and usage examples for geometry functions including shape creation, point/vector math, and collision detection.
+
+---
+
+## Context
+
+This work is part of the ongoing improvement of SplashKit documentation and usage examples. This particular PR focuses on geometric operations.
+
+---
+
+## Type of Change
+
+- [ ] Bug fix  
+- [ ] New feature  
+- [ ] Breaking change  
+- [x] Documentation update  
+
+---
 
 ## How Has This Been Tested?
 
-The following testing has been performed to verify the changes:
+1. **Manual Review** – Checked for clarity and accuracy in math operations  
+2. **Code Compilation** – Verified that all geometry code examples compile successfully  
+3. **Visual Testing** – Ensured geometric rendering (shapes, points) appears correctly  
+4. **Documentation Build** – Confirmed no build errors  
+5. **Cross-browser Testing** – Tested updated documentation in Chrome and Firefox
 
-1. **Manual Review**: All updated geometry examples have been manually reviewed for mathematical accuracy
-2. **Code Compilation**: Verified that all geometry code examples compile successfully
-3. **Visual Testing**: Tested geometric rendering and calculations to ensure correct output
-4. **Documentation Build**: Confirmed that the documentation builds without errors
-5. **Cross-browser Testing**: Tested the updated documentation pages in multiple browsers
+### Test Configuration
 
-**Test Configuration:**
-- Operating System: Windows
-- Node.js version: Latest LTS
-- npm version: Latest stable
-- Graphics testing: Verified geometric shapes render correctly
+- **Operating System:** Windows  
+- **Node.js version:** Latest LTS  
+- **npm version:** Latest stable  
+- **Graphics Testing:** Verified rendering correctness of all shapes and operations
+
+---
 
 ## Testing Checklist
 
-- [x] Tested in latest Chrome
-- [x] Tested in latest Firefox
-- [x] npm run build
-- [x] npm run preview
+- [x] Tested in latest Chrome  
+- [x] Tested in latest Firefox  
+- [x] Ran `npm run build`  
+- [x] Ran `npm run preview`
 
-## Checklist
+---
 
-_Please delete options that are not relevant._
+## Developer Checklist
 
 ### If involving code
 
-- [x] My code follows the style guidelines of this project
-- [x] I have performed a self-review of my own code
-- [x] I have commented my code in hard-to-understand areas
-- [x] I have made corresponding changes to the documentation
-- [x] My changes generate no new warnings
+- [x] Code follows the style guidelines of this project  
+- [x] Performed self-review of the code  
+- [x] Commented complex or non-obvious code areas  
+- [x] Updated corresponding documentation  
+- [x] No new warnings introduced  
 
 ### If modified config files
 
-- [x] I have checked the following files for changes:
-  - [ ] package.json
-  - [ ] astro.config.mjs
-  - [ ] netlify.toml
-  - [ ] docker-compose.yml
-  - [ ] custom.css
+- [ ] Checked the following config files for any necessary changes:  
+  - [ ] `package.json`  
+  - [ ] `astro.config.mjs`  
+  - [ ] `netlify.toml`  
+  - [ ] `docker-compose.yml`  
+  - [ ] `custom.css`
 
-## Folders and Files Added/Modified
+---
 
-_Please list the folders and files added/modified with this pull request and delete options that are not relevant._
+## Files and Folders Added or Modified
 
-- Added:
-  - [ ] New geometry example files
-  - [ ] Additional shape documentation
-- Modified:
-  - [x] public/usage-examples/geometry/
-  - [x] src/content/docs/ (geometry-related documentation)
-  - [x] Usage example files for geometry functions
-  - [x] Shape and mathematical operation examples
+### Added
 
-## Additional Notes
+- [ ] New geometry example files  
+- [ ] Additional shape documentation  
 
-This PR focuses specifically on improving the geometry section of the SplashKit documentation. The changes include:
+### Modified
 
-- Updated code examples for geometric shapes (rectangles, circles, triangles, etc.)
-- Improved function documentation for point, vector, and shape operations
-- Enhanced usage examples demonstrating practical geometric calculations
-- Better examples for collision detection and intersection methods
-- Consistent formatting and style across all geometry documentation
-- Mathematical accuracy verification for all geometric operations
+- [x] `public/usage-examples/geometry/`  
+- [x] `src/content/docs/` (geometry-related documentation)  
+- [x] Usage example files for geometry functions  
+- [x] Shape and mathematical operation examples  
 
-These changes will help developers better understand and utilize SplashKit's geometry functions, particularly useful for game development, graphics programming, and mathematical applications.
+
+---
