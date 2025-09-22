@@ -1,33 +1,36 @@
 /* --- START: Link card styling ------*/
 .sl-markdown-content .sl-link-card {
   border: none;
-  outline: 1px solid var(--sk-logo-blue);
-  background-color: var(--sl-color-gray-5);
-
-  .description {
-    color: var(--sl-color-gray-2);
-  }
+  outline: 2px solid transparent; /* cleaner than a heavy outline */
+  background-color: var(--sl-color-gray-6);
+  border-radius: 1rem; /* softer rounded corners */
+  padding: 1.5rem;
+  transition: all 0.3s ease; /* smooth hover effect */
+  
+  /* subtle Apple-like shadow */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1),
+              0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 /* Hover effects */
+/*  */
+
 .sl-markdown-content .sl-link-card:hover {
-  border: none;
-  outline: 2px solid var(--sk-logo-orange);
+  outline: 2px solid var(--sk-logo-orange); /* accent color highlight */
   background-color: var(--sl-color-gray-7);
-
-  .description {
-    color: var(--sl-color-gray-1);
-  }
+  /* transform: translateY(-0.5px); subtle lift */
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15),
+              0 4px 10px rgba(0, 0, 0, 0.1);
 }
-
 /* --- END: Link card styling ------*/
 
 /* --- START: Card styling ------*/
 
 article.card {
   background: var(--sl-color-gray-6);
-  color: var(--sl-color-gray-2);
-  border: 1px solid var(--sk-logo-dark-blue);
+  color: var(--sl-color-yellow-4);
+  border: 1px solid var(--sk-logo-dark-green);
   border-radius: 0.5rem;
   width: 95%;
   box-shadow: var(--sl-shadow-md);
