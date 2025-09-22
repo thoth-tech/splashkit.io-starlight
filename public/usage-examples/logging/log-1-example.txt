@@ -1,0 +1,7 @@
+Logging Messages with log Function
+
+This example demonstrates how to log different types of messages using the `log()` function. The program will show various logging levels and message types to demonstrate SplashKit's logging capabilities.
+
+:::note
+To test this example code you can download these [**Resources**](/usage-examples/logging/log-1-example-resources.zip).
+::: 
