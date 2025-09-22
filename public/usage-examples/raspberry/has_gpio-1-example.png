@@ -1,0 +1,18 @@
+# This is a placeholder for the PNG output file
+# You should create a screenshot showing:
+# 
+# 1. A window titled "GPIO Check Example"
+# 2. White background
+# 3. "GPIO Check Example" at the top
+# 4. "Raspberry Pi GPIO Availability" subtitle
+# 5. GPIO status (either "AVAILABLE" in green or "NOT AVAILABLE" in red)
+# 6. Explanatory text about GPIO availability
+# 7. List of GPIO capabilities:
+#    - Control LED lights
+#    - Read button presses
+#    - Control motors and servos
+#    - Interface with sensors
+# 8. Instructions at the bottom
+#
+# The actual PNG file should be created by taking a screenshot
+# of the window while running this example program. 
