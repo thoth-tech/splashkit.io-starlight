@@ -1,78 +1,105 @@
-# Description
 
-This PR adds usage examples for the `open_connection` function in the networking category. The examples demonstrate how to use the function across different programming languages (C++, C#, Python) with both OOP and top-level implementations.
+## Description
 
-The examples include:
-- Code implementations in multiple languages
-- Visual demonstration (PNG screenshot)
-- Text description of the functionality
+This PR updates the **geometry usage examples and documentation** in SplashKit to improve clarity, consistency, and functionality. It includes:
 
-These examples will be automatically integrated into the API documentation through the build process.
+- Improved code samples for geometric shapes (rectangles, circles, triangles, etc.)
+- Enhanced documentation for point, vector, and shape operations
+- More practical examples for geometric calculations and collision detection
+- Consistent formatting and style across geometry documentation
+- Verified mathematical accuracy for all geometry-related operations
 
-## Type of change
+These changes aim to assist developers in better understanding and utilizing SplashKit's geometry functionality, especially for game development and graphics programming.
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as
-      expected)
-- [x] Documentation (update or new)
+---
+
+## Related Issue
+
+- Geometry functions usage examples update
+
+---
+
+## Motivation
+
+To enhance the developer experience by providing clearer and more comprehensive documentation and usage examples for geometry functions including shape creation, point/vector math, and collision detection.
+
+---
+
+## Context
+
+This work is part of the ongoing improvement of SplashKit documentation and usage examples. This particular PR focuses on geometric operations.
+
+---
+
+## Type of Change
+
+- [ ] Bug fix  
+- [ ] New feature  
+- [ ] Breaking change  
+- [x] Documentation update  
+
+---
 
 ## How Has This Been Tested?
 
-The examples have been tested by:
-1. Running the build process to ensure the examples are properly integrated
-2. Verifying that the API documentation generates correctly with the new examples
-3. Testing the example code in each supported language to ensure it compiles and runs correctly
+1. **Manual Review** – Checked for clarity and accuracy in math operations  
+2. **Code Compilation** – Verified that all geometry code examples compile successfully  
+3. **Visual Testing** – Ensured geometric rendering (shapes, points) appears correctly  
+4. **Documentation Build** – Confirmed no build errors  
+5. **Cross-browser Testing** – Tested updated documentation in Chrome and Firefox
 
-To reproduce testing:
-1. Run `npm install` to install dependencies
-2. Run `npm run build` to generate the API documentation
-3. Check that the networking API documentation includes the new `open_connection` examples
+### Test Configuration
+
+- **Operating System:** Windows  
+- **Node.js version:** Latest LTS  
+- **npm version:** Latest stable  
+- **Graphics Testing:** Verified rendering correctness of all shapes and operations
+
+---
 
 ## Testing Checklist
 
-- [x] Tested in latest Chrome
-- [ ] Tested in latest Firefox
-- [x] npm run build
-- [ ] npm run preview
+- [x] Tested in latest Chrome  
+- [x] Tested in latest Firefox  
+- [x] Ran `npm run build`  
+- [x] Ran `npm run preview`
 
-## Checklist
+---
+
+## Developer Checklist
 
 ### If involving code
 
-- [x] My code follows the style guidelines of this project
-- [x] I have performed a self-review of my own code
-- [ ] I have commented my code in hard-to-understand areas
-- [x] I have made corresponding changes to the documentation
-- [x] My changes generate no new warnings
+- [x] Code follows the style guidelines of this project  
+- [x] Performed self-review of the code  
+- [x] Commented complex or non-obvious code areas  
+- [x] Updated corresponding documentation  
+- [x] No new warnings introduced  
 
 ### If modified config files
 
-- [ ] I have checked the following files for changes:
-  - [ ] package.json
-  - [ ] astro.config.mjs
-  - [ ] netlify.toml
-  - [ ] docker-compose.yml
-  - [ ] custom.css
+- [ ] Checked the following config files for any necessary changes:  
+  - [ ] `package.json`  
+  - [ ] `astro.config.mjs`  
+  - [ ] `netlify.toml`  
+  - [ ] `docker-compose.yml`  
+  - [ ] `custom.css`
 
-## Folders and Files Added/Modified
+---
 
-- Added:
-  - [x] public/usage-examples/networking/open_connection-1-example-oop.cs
-  - [x] public/usage-examples/networking/open_connection-1-example-top-level.cs
-  - [x] public/usage-examples/networking/open_connection-1-example.cpp
-  - [x] public/usage-examples/networking/open_connection-1-example.png
-  - [x] public/usage-examples/networking/open_connection-1-example.py
-  - [x] public/usage-examples/networking/open_connection-1-example.txt
-- Modified:
-  - [ ] None
+## Files and Folders Added or Modified
 
-## Additional Notes
+### Added
 
-These usage examples follow the established pattern for SplashKit API documentation:
-- Each function has examples in C++, C# (both OOP and top-level), and Python
-- Visual demonstrations are provided via PNG screenshots
-- Text descriptions explain the functionality and usage
-- Files are organized in the standard naming convention: `function_name-example_number-example.extension`
+- [ ] New geometry example files  
+- [ ] Additional shape documentation  
 
-The examples will be automatically integrated into the API documentation website through the existing build pipeline.
+### Modified
+
+- [x] `public/usage-examples/geometry/`  
+- [x] `src/content/docs/` (geometry-related documentation)  
+- [x] Usage example files for geometry functions  
+- [x] Shape and mathematical operation examples  
+
+
+---
