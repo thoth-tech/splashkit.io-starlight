@@ -6,18 +6,48 @@ namespace OptionFlipXExample
     {
         public static void Main()
         {
-            SplashKit.OpenWindow("Option Flip X", 800, 600);
+            SplashKit.OpenWindow("Image Flipping Simulator", 800, 600);
 
-            Bitmap imageBitmap = SplashKit.LoadBitmap("image_bitmap", "image1.jpg");
+            int opacityValue = 255;
+            string displayedText = "This bitmap is not flipped along its X axis";
+            bool flipped = false;
+            Bitmap imageBitmap = SplashKit.LoadBitmap("imageBitmap", "image1.jpg");
 
-            SplashKit.ClearScreen(Color.White);
-            // Function used here ↓
-            SplashKit.DrawBitmap(imageBitmap, 200, 155, SplashKit.OptionFlipX());
-            SplashKit.DrawText("This bitmap has been flipped along it's X axis", Color.Black, 215, 450);
-            SplashKit.RefreshScreen();
+            while (!SplashKit.QuitRequested())
+            {
+                SplashKit.ProcessEvents();
+                if (SplashKit.Button("Click to invert X axis", SplashKit.RectangleFrom(320, 450, 160, 30)) && flipped == false)
+                {
+                    opacityValue = 0;
+                    displayedText = "This bitmap has been flipped along its X axis";
+                    flipped = true;
+                }
+                else if (SplashKit.Button("Click to invert X axis", SplashKit.RectangleFrom(320, 450, 160, 30)) && flipped == true)
+                {
+                    opacityValue = 0;
+                    displayedText = "This bitmap is not flipped along its X axis";
+                    flipped = false;
+                }
 
-            SplashKit.Delay(5000);
+                if (opacityValue != 255)
+                {
+                    opacityValue += 1;
+                }
 
+                SplashKit.ClearScreen();
+                if (flipped == false)
+                {
+                    SplashKit.DrawBitmap(imageBitmap, 200, 155);
+                }
+                else
+                {
+                    SplashKit.DrawBitmap(imageBitmap, 200, 155, SplashKit.OptionFlipX());
+                }
+                SplashKit.DrawText(displayedText, SplashKit.RGBAColor(0, 0, 0, opacityValue), 200, 100);
+                SplashKit.DrawInterface();
+
+                SplashKit.RefreshScreen();
+            }
             SplashKit.CloseAllWindows();
         }
     }
