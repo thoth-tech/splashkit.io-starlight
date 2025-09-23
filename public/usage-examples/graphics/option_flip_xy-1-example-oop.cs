@@ -9,7 +9,7 @@ namespace OptionFlipXyExample
             SplashKit.OpenWindow("Image Flipping Simulator", 800, 600);
 
             int opacityValue = 255;
-            string displayedText = "This bitmap is not flipped along it's X and Y axes";
+            string displayedText = "This bitmap is not flipped along its X and Y axes";
             bool flipped = false;
             Bitmap imageBitmap = SplashKit.LoadBitmap("imageBitmap", "image1.jpg");
 
@@ -19,13 +19,13 @@ namespace OptionFlipXyExample
                 if (SplashKit.Button("Click to invert XY axis", SplashKit.RectangleFrom(320, 450, 160, 30)) && flipped == false)
                 {
                     opacityValue = 0;
-                    displayedText = "This bitmap has been flipped along it's X and Y axes";
+                    displayedText = "This bitmap has been flipped along its X and Y axes";
                     flipped = true;
                 }
                 else if (SplashKit.Button("Click to invert XY axis", SplashKit.RectangleFrom(320, 450, 160, 30)) && flipped == true)
                 {
                     opacityValue = 0;
-                    displayedText = "This bitmap is not flipped along it's X and Y axes";
+                    displayedText = "This bitmap is not flipped along its X and Y axes";
                     flipped = false;
                 }
 
@@ -34,7 +34,7 @@ namespace OptionFlipXyExample
                     opacityValue += 1;
                 }
 
-                SplashKit.ClearScreen();
+                SplashKit.ClearScreen(Color.White);
                 if (flipped == false)
                 {
                     SplashKit.DrawBitmap(imageBitmap, 200, 155);
