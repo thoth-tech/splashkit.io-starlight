@@ -1,16 +1,46 @@
 ﻿using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-OpenWindow("Option Flip Y", 800, 600);
+OpenWindow("Image Flipping Simulator", 800, 600);
 
-Bitmap imageBitmap = LoadBitmap("image_bitmap", "image1.jpg");
+int opacityValue = 255;
+string displayedText = "This bitmap is not flipped along its Y axis";
+bool flipped = false;
+Bitmap imageBitmap = LoadBitmap("imageBitmap", "image1.jpg");
 
-ClearScreen(ColorWhite());
-// Function used here ↓
-DrawBitmap(imageBitmap, 200, 155, OptionFlipY());
-DrawText("This bitmap has been flipped along it's Y axis", ColorBlack(), 215, 450);
-RefreshScreen();
+while (!QuitRequested())
+{
+    ProcessEvents();
+    if (Button("Click to invert Y axis", RectangleFrom(320, 450, 160, 30)) && flipped == false)
+    {
+        opacityValue = 0;
+        displayedText = "This bitmap has been flipped along its Y axis";
+        flipped = true;
+    }
+    else if (Button("Click to invert Y axis", RectangleFrom(320, 450, 160, 30)) && flipped == true)
+    {
+        opacityValue = 0;
+        displayedText = "This bitmap is not flipped along its Y axis";
+        flipped = false;
+    }
 
-Delay(5000);
+    if (opacityValue != 255)
+    {
+        opacityValue += 1;
+    }
 
+    ClearScreen();
+    if (flipped == false)
+    {
+        DrawBitmap(imageBitmap, 200, 155);
+    }
+    else
+    {
+        DrawBitmap(imageBitmap, 200, 155, OptionFlipY());
+    }
+    DrawText(displayedText, RGBAColor(0, 0, 0, opacityValue), 200, 100);
+    DrawInterface();
+
+    RefreshScreen();
+}
 CloseAllWindows();
