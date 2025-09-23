@@ -8,7 +8,7 @@ Point2D p1 = PointAt(400, 200);
 Point2D p2 = PointAt(300, 400);
 Point2D p3 = PointAt(500, 400);
 Triangle house = TriangleFrom(p1, p2, p3);
-Point2D curosrPosition;
+Point2D cursorPosition;
 Circle intruder;
 Color flash = ColorRed();
 
@@ -17,8 +17,8 @@ while (!QuitRequested())
     ProcessEvents();
 
     // Get mouse position
-    curosrPosition = MousePosition();
-    intruder = CircleAt(curosrPosition, 20);
+    cursorPosition = MousePosition();
+    intruder = CircleAt(cursorPosition, 20);
 
     if (CircleTriangleIntersect(intruder, house))
     {
