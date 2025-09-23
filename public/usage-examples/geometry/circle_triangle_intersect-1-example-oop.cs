@@ -13,7 +13,7 @@ namespace CircleTriangleIntersectExample
             Point2D p2 = SplashKit.PointAt(300, 400);
             Point2D p3 = SplashKit.PointAt(500, 400);
             Triangle house = SplashKit.TriangleFrom(p1, p2, p3);
-            Point2D curosrPosition;
+            Point2D cursorPosition;
             Circle intruder;
             Color flash = Color.Red;
 
@@ -22,8 +22,8 @@ namespace CircleTriangleIntersectExample
                 SplashKit.ProcessEvents();
 
                 // Get mouse position
-                curosrPosition = SplashKit.MousePosition();
-                intruder = SplashKit.CircleAt(curosrPosition, 20);
+                cursorPosition = SplashKit.MousePosition();
+                intruder = SplashKit.CircleAt(cursorPosition, 20);
 
                 if (SplashKit.CircleTriangleIntersect(intruder, house))
                 {
