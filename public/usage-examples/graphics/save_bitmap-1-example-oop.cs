@@ -25,7 +25,7 @@ namespace SaveBitmapExample
                     opacityValue -= 1;
                 }
 
-                SplashKit.ClearScreen();
+                SplashKit.ClearScreen(Color.White);
                 SplashKit.DrawBitmap(imageBitmap, 200, 155);
                 SplashKit.DrawText("Press the 'Enter' key to save the above bitmap to desktop", Color.Black, 175, 450);
                 SplashKit.DrawText("Image saved to desktop!", SplashKit.RGBAColor(0, 0, 0, opacityValue), 310, 470);
