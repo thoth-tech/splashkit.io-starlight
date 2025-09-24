@@ -751,7 +751,8 @@ for (const categoryKey in jsonData) {
             const code = (Array.isArray(func.signatures[lang])) ? func.signatures[lang].join("\n") : func.signatures[lang];
             const languageLabel = languageLabelMappings[lang] || lang;
             mdxContent += `  <TabItem label="${languageLabel}">\n`;
-            mdxContent += "\n```" + lang + "\n" + code + '\n```\n\n';
+            mdxContent +=
+              "\n```" + lang + "\n" + code + '\n```\n\n";
             mdxContent += "  </TabItem>\n";
           } catch (e) {
             console.log(e + " " + lang + " " + func.name)
