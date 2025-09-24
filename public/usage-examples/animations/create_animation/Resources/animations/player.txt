@@ -1,0 +1,11 @@
+SplashKit Animation
+
+// Basic walk animation frames
+// f: frame_id, cell_id, duration, next_frame
+f: 0, 0, 15, 1
+f: 1, 1, 15, 2  
+f: 2, 2, 15, 3
+f: 3, 3, 15, 0
+
+// Animation identifier
+i: WalkFront, 0
