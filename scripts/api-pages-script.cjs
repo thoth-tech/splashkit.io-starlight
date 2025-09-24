@@ -264,9 +264,7 @@ function getApiCategories(jsonData) {
 // ------------------------------------------------------------------------------
 function getUsageExampleImports(categoryKey, functionKey) {
   let mdxData = "";
-  // Use a relative path from the generated MDX file (src/content/docs/api) to the public folder
-  // so that raw imports resolve correctly during the Astro/Vite build.
-  let categoryPath = '../../../public/usage-examples/' + categoryKey;
+  let categoryPath = '/usage-examples/' + categoryKey;
   let categoryFilePath = path.join('./public/usage-examples/', categoryKey);
 
   // Check if directory exists
@@ -296,16 +294,10 @@ function getUsageExampleImports(categoryKey, functionKey) {
               csharpFiles.forEach(file => {
                 if (file.includes(exampleKey)) {
                   if (file.includes("-top-level")) {
-                    const fullPath = path.join('./public/usage-examples/', categoryKey, exampleTxtKey.replace(/\.txt$/, "-top-level.cs"));
-                    if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 0) {
-                      mdxData += `import ${importTitle}_top_level_${lang} from '${codeFilePath.replace(/\.cs$/, "-top-level.cs")}?raw';\n`;
-                    }
+                    mdxData += `import ${importTitle}_top_level_${lang} from '${codeFilePath.replace(/\.cs$/, "-top-level.cs").replace("/usage", "/public/usage")}?raw';\n`;
                   }
                   if (file.includes("-oop")) {
-                    const fullPath = path.join('./public/usage-examples/', categoryKey, exampleTxtKey.replace(/\.txt$/, "-oop.cs"));
-                    if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 0) {
-                      mdxData += `import ${importTitle}_oop_${lang} from '${codeFilePath.replace(/\.cs$/, "-oop.cs")}?raw';\n`;
-                    }
+                    mdxData += `import ${importTitle}_oop_${lang} from '${codeFilePath.replace(/\.cs$/, "-oop.cs").replace("/usage", "/public/usage")}?raw';\n`;
                   }
                 }
               });
@@ -313,24 +305,15 @@ function getUsageExampleImports(categoryKey, functionKey) {
               cppFiles.forEach(file => {
                 if (file.includes(exampleKey)) {
                   if (file.includes("-sk")) {
-                    const fullPath = path.join('./public/usage-examples/', categoryKey, exampleTxtKey.replace(/\.txt$/, "-sk.cpp"));
-                    if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 0) {
-                      mdxData += `import ${importTitle}_sk_${lang} from '${codeFilePath.replace(/\.cpp$/, "-sk.cpp")}?raw';\n`;
-                    }
+                    mdxData += `import ${importTitle}_sk_${lang} from '${codeFilePath.replace(/\.cpp$/, "-sk.cpp").replace("/usage", "/public/usage")}?raw';\n`;
                   }
                   if (file.includes("-beyond")) {
-                    const fullPath = path.join('./public/usage-examples/', categoryKey, exampleTxtKey.replace(/\.txt$/, "-beyond.cpp"));
-                    if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 0) {
-                      mdxData += `import ${importTitle}_beyond_${lang} from '${codeFilePath.replace(/\.cpp$/, "-beyond.cpp")}?raw';\n`;
-                    }
+                    mdxData += `import ${importTitle}_beyond_${lang} from '${codeFilePath.replace(/\.cpp$/, "-beyond.cpp").replace("/usage", "/public/usage")}?raw';\n`;
                   }
                 }
               });
             } else {
-              const fullPath = path.join('./public/usage-examples/', categoryKey, exampleTxtKey.replace(/\.txt$/, languageFileExtensions[lang]));
-              if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 0) {
-                mdxData += `import ${importTitle}_${lang} from '${codeFilePath}?raw';\n`;
-              }
+              mdxData += `import ${importTitle}_${lang} from '${codeFilePath.replace("/usage", "/public/usage")}?raw';\n`;
             }
           }
         });
@@ -400,58 +383,29 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
             }
             
             if (lang == "csharp" && csharpFiles.length > 0) {
-              // Render csharp-style inner tabs only if at least one of the specific files exists and is non-empty
-              let csharpInner = "\n  <Tabs syncKey=\"csharp-style\">\n";
+              mdxData += "\n  <Tabs syncKey=\"csharp-style\">\n";
+              // use reverse order to make Top level first
               csharpFiles.slice().reverse().forEach(file => {
                 if (file.includes(exampleKey)) {
                   if (file.includes("-top-level")) {
-                    const fullPath = path.join('./public/usage-examples/', categoryKey, exampleTxtKey.replace(/\.txt$/, "-top-level.cs"));
-                    if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 0) {
-                      csharpInner += `    <TabItem label=\"Top-level Statements\">\n`;
-                      csharpInner += `      <Code code={${importTitle}_top_level_${lang}} lang=\"${lang}\" mark=\"${functionTag}\" />\n`;
-                      csharpInner += "    </TabItem>\n";
-                    }
+                    mdxData += `    <TabItem label="Top-level Statements">\n`;
+                    mdxData += `      <Code code={${importTitle}_top_level_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
+                    mdxData += "    </TabItem>\n";
                   }
                   if (file.includes("-oop")) {
-                    const fullPath = path.join('./public/usage-examples/', categoryKey, exampleTxtKey.replace(/\.txt$/, "-oop.cs"));
-                    if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 0) {
-                      csharpInner += `    <TabItem label=\"Object-Oriented\">\n`;
-                      csharpInner += `      <Code code={${importTitle}_oop_${lang}} lang=\"${lang}\" mark=\"SplashKit.${functionTag}\" />\n`;
-                      csharpInner += "    </TabItem>\n";
-                    }
+                    mdxData += `    <TabItem label="Object-Oriented">\n`;
+                    mdxData += `      <Code code={${importTitle}_oop_${lang}} lang="${lang}" mark={"SplashKit.${functionTag}"} />\n`;
+                    mdxData += "    </TabItem>\n";
                   }
                 }
               });
-              csharpInner += "  </Tabs>\n\n";
-              // Only append the inner tabs if they include at least one TabItem
-              if (csharpInner.includes("<TabItem label=")) {
-                mdxData += csharpInner;
-                mdxData += "  </TabItem>\n";
-              }
+              mdxData += "  </Tabs>\n\n";
+              mdxData += "  </TabItem>\n";
             } else if (lang == "cpp" && cppFiles.length > 0) {
-              // For cpp variants (-sk/-beyond), only include if the corresponding file exists and is non-empty
-              let cppIncluded = false;
-              cppFiles.forEach(file => {
-                if (file.includes(exampleKey)) {
-                  if (file.includes("-sk")) {
-                    const fullPath = path.join('./public/usage-examples/', categoryKey, exampleTxtKey.replace(/\.txt$/, "-sk.cpp"));
-                    if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 0) cppIncluded = true;
-                  }
-                  if (file.includes("-beyond")) {
-                    const fullPath = path.join('./public/usage-examples/', categoryKey, exampleTxtKey.replace(/\.txt$/, "-beyond.cpp"));
-                    if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 0) cppIncluded = true;
-                  }
-                }
-              });
-              if (cppIncluded) {
-                mdxData += "  </TabItem>\n";
-              }
+              mdxData += "  </TabItem>\n";
             } else {
-              const fullPath = path.join('./public/usage-examples/', categoryKey, exampleTxtKey.replace(/\.txt$/, languageFileExtensions[lang]));
-              if (fs.existsSync(fullPath) && fs.statSync(fullPath).size > 0) {
-                mdxData += `    <Code code={${importTitle}_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
-                mdxData += "  </TabItem>\n";
-              }
+              mdxData += `    <Code code={${importTitle}_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
+              mdxData += "  </TabItem>\n";
             }
           }
         });
