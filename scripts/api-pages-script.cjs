@@ -404,7 +404,11 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
             } else if (lang == "cpp" && cppFiles.length > 0) {
               mdxData += "  </TabItem>\n";
             } else {
-              mdxData += `    <Code code={${importTitle}_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
+              // Only add Code component if the language file actually exists
+              const hasLanguageFile = functionFiles.some(file => file.startsWith(exampleKey) && file.endsWith(languageFileExtensions[lang]));
+              if (hasLanguageFile) {
+                mdxData += `    <Code code={${importTitle}_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
+              }
               mdxData += "  </TabItem>\n";
             }
           }
