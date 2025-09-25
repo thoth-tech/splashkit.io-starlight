@@ -8,6 +8,7 @@ int circleSize = 30;
 float rotationDegrees = 0;
 Point2D circleCoordinates;
 bool growing = true;
+// SplashKitSDK.Timer needed to distinguish from System.Threading.Timer ↓
 SplashKitSDK.Timer mainTimer = CreateTimer("mainTimer");
 StartTimer(mainTimer);
 SplashKitSDK.Timer reverseTimer = CreateTimer("reverseTimer");
