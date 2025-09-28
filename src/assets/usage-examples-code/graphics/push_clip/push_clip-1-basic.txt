@@ -1,0 +1,1 @@
+Modern window (day/night): Demonstrates push_clip to clip drawing to the “glass” area; SPACE toggles day/night, frame is drawn after pop_clip.
