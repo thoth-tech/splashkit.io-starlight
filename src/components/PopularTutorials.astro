@@ -1,0 +1,342 @@
+---
+// Popular Tutorials Component
+// Displays most popular SplashKit tutorials sorted by views
+// Uses mock data API endpoint for Phase 1 implementation
+---
+
+<div id="popular-tutorials" class="popular-tutorials">
+  <div class="header">
+    <h2>Popular Tutorials</h2>
+    <p>Top-rated learning content from our community</p>
+  </div>
+
+  <div class="tutorials-grid" id="tutorials-container">
+    <!-- Tutorials will be loaded here via JavaScript -->
+  </div>
+
+  <div class="footer">
+    <a href="/guides/" class="view-all-link">
+      View All Tutorials →
+    </a>
+  </div>
+</div>
+
+<style>
+  /* IMPORTANT: Use :global selectors because tutorial cards are injected via innerHTML
+     and won't receive Astro's scoped attribute. We scope globally under #popular-tutorials
+     to avoid leaking styles site-wide. */
+
+  :global(#popular-tutorials) {
+    margin: 3rem 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+  }
+
+  :global(#popular-tutorials .header) {
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  :global(#popular-tutorials .header h2) {
+    margin: 0 0 0.75rem 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--sl-color-text);
+    letter-spacing: -0.025em;
+  }
+
+  :global(#popular-tutorials .header p) {
+    margin: 0;
+    color: var(--sl-color-gray-2);
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+
+  :global(#popular-tutorials .tutorials-grid) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  :global(#popular-tutorials .tutorial-card) {
+    background: var(--sl-color-bg);
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 160px;
+    overflow: hidden;
+  }
+
+  :global(#popular-tutorials .tutorial-card:hover) {
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--sl-color-accent) 30%, transparent);
+  }
+
+  :global(#popular-tutorials .tutorial-rank) {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, var(--sl-color-accent), color-mix(in oklab, var(--sl-color-accent) 70%, black));
+    color: var(--sl-color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+  }
+
+  :global(#popular-tutorials .tutorial-title) {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.4;
+    padding-right: 2rem;
+    flex-grow: 1;
+  }
+
+  :global(#popular-tutorials .tutorial-title a) {
+    color: var(--sl-color-text);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+
+  :global(#popular-tutorials .tutorial-title a:hover) {
+    color: var(--sl-color-accent);
+    border-color: var(--sl-color-accent);
+  }
+
+  :global(#popular-tutorials .tutorial-description) {
+    color: var(--sl-color-gray-2);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+  }
+
+  :global(#popular-tutorials .tutorial-footer) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  :global(#popular-tutorials .tutorial-category) {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background: color-mix(in oklab, var(--sl-color-accent) 12%, transparent);
+    color: var(--sl-color-accent);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  :global(#popular-tutorials .tutorial-stats) {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--sl-color-gray-2);
+  }
+
+  :global(#popular-tutorials .footer) {
+    text-align: center;
+    padding-top: 2rem;
+  }
+
+  :global(#popular-tutorials .view-all-link) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--sl-color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--sl-color-accent);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  :global(#popular-tutorials .view-all-link:hover) {
+    background: var(--sl-color-accent);
+    color: var(--sl-color-white);
+    transform: translateY(-1px);
+  }
+
+  :global(#popular-tutorials .loading) {
+    text-align: center;
+    color: var(--sl-color-gray-2);
+    padding: 2rem;
+  }
+
+  :global(#popular-tutorials .error) {
+    text-align: center;
+    color: var(--sl-color-red);
+    padding: 1rem;
+    background: var(--sl-color-red-low);
+    border-radius: 6px;
+  }
+
+  @media (max-width: 768px) {
+    :global(#popular-tutorials .tutorials-grid) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    :global(#popular-tutorials .header h2) {
+      font-size: 1.75rem;
+    }
+    
+    :global(#popular-tutorials .tutorial-card) {
+      padding: 1.25rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    :global(#popular-tutorials .tutorials-grid) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<script>
+  // Tutorial data interface
+  interface TopDoc {
+    path: string;
+    title: string;
+    views: number;
+    avgTimeSpent: number;
+    category: string;
+  }
+
+  // Format view count for display
+  function formatViews(views: number): string {
+    if (views >= 1000) {
+      return `${(views / 1000).toFixed(1)}k`;
+    }
+    return views.toString();
+  }
+
+  // Format time duration for display
+  function formatTime(seconds: number): string {
+    const minutes = Math.round(seconds / 60);
+    return `${minutes}m`;
+  }
+
+  // Render tutorial cards
+  function renderTutorials(tutorials: TopDoc[]): string {
+    if (tutorials.length === 0) {
+      return '<div class="loading">No tutorials found</div>';
+    }
+
+    // Only show top 3 tutorials
+    const topTutorials = tutorials.slice(0, 3);
+
+    // Generate descriptions for tutorials
+    const descriptions = [
+      "Learn the fundamentals of creating visual elements and graphics in your SplashKit applications.",
+      "Set up your development environment with Visual Studio Code for SplashKit programming on Windows.",
+      "Master the basics of creating smooth animations and bringing your game objects to life."
+    ];
+
+    return topTutorials.map((tutorial, index) => `
+      <div class="tutorial-card">
+        <div class="tutorial-rank">${index + 1}</div>
+        
+        <h3 class="tutorial-title">
+          <a href="${tutorial.path}">${tutorial.title}</a>
+        </h3>
+        
+        <p class="tutorial-description">
+          ${descriptions[index] || "Discover essential SplashKit concepts and techniques in this comprehensive tutorial."}
+        </p>
+        
+        <div class="tutorial-footer">
+          <div class="tutorial-category">${tutorial.category}</div>
+          <div class="tutorial-stats">
+            <span>${formatViews(tutorial.views)} views</span>
+            <span>${formatTime(tutorial.avgTimeSpent)} read</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Fetch and display tutorials
+  async function loadTutorials(): Promise<void> {
+    const container = document.getElementById('tutorials-container');
+    if (!container) return;
+
+    try {
+      container.innerHTML = '<div class="loading">Loading popular tutorials...</div>';
+      
+  const host = location.hostname;
+  const response = await fetch(`/api/top-docs?limit=3&host=${encodeURIComponent(host)}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      container.innerHTML = renderTutorials(data.items);
+      
+    } catch (error) {
+      console.error('Failed to load tutorials:', error);
+      container.innerHTML = '<div class="error">Failed to load tutorials. Please try again later.</div>';
+    }
+  }
+
+  // Initialize GA4 gtag if measurement id is provided at build time
+  const MEASUREMENT_ID = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID as string | undefined;
+
+  function injectGtag() {
+    if (!MEASUREMENT_ID) return;
+    if ((window as any).dataLayer) return; // already injected (ga4 uses dataLayer)
+    // inject gtag
+    const gtagScript = document.createElement('script');
+    gtagScript.async = true;
+    gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
+    document.head.appendChild(gtagScript);
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    const gtag = (...args: any[]) => { (window as any).dataLayer.push(args); };
+    (window as any).gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', MEASUREMENT_ID, { send_page_view: true });
+  }
+
+  function bindClickTracking(container: HTMLElement) {
+    if (!MEASUREMENT_ID || !(window as any).gtag) return;
+    container.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement).closest('a');
+      if (!a) return;
+      const titleEl = (a.closest('.tutorial-card') as HTMLElement)?.querySelector('.tutorial-title');
+      const title = titleEl ? (titleEl.textContent || '').trim() : a.textContent || '';
+      (window as any).gtag('event', 'select_content', {
+        content_type: 'tutorial',
+        item_id: a.getAttribute('href'),
+        item_name: title,
+      });
+    });
+  }
+
+  // Initialize component
+  document.addEventListener('DOMContentLoaded', () => {
+    injectGtag();
+    loadTutorials(); // Load tutorials sorted by views
+    const container = document.getElementById('tutorials-container');
+    if (container) bindClickTracking(container);
+  });
+</script>
