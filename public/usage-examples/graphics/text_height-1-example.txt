@@ -1,0 +1,1 @@
+Print height of example text with font and draw line of matching height
