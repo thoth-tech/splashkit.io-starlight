@@ -1,0 +1,1 @@
+The window is made to be the width of the user's display. A line that spans it's width is also shown, with text writing how many pixels wide it is
