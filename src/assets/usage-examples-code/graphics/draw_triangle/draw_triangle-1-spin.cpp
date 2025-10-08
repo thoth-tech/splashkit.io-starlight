@@ -1,7 +1,7 @@
 // Usage Example for: https://splashkit.io/api/graphics/#draw-triangle-3
 // Goal: I am drawing a spinning equilateral triangle and I am toggling between outline and fill with SPACE.
 // Why: I am showing how draw_triangle and fill_triangle render the same geometry differently.
-// Controls: I am pressing SPACE to toggle fill  •  I am pressing ESC to quit.
+// Controls: I am pressing SPACE to toggle fill | I am pressing ESC to quit.
 
 #include "splashkit.h"
 #include <cmath>
@@ -24,10 +24,16 @@ int main()
         process_events();
 
         // I am quitting when ESC is pressed.
-        if (key_typed(ESCAPE_KEY)) break;
+        if (key_typed(ESCAPE_KEY))
+        {
+            break;
+        }
 
         // I am toggling between outline and fill when SPACE is pressed.
-        if (key_typed(SPACE_KEY)) is_filled = !is_filled;
+        if (key_typed(SPACE_KEY))
+        {
+            is_filled = !is_filled;
+        }
 
         clear_screen(COLOR_WHITE);
 
@@ -41,8 +47,14 @@ int main()
         const double x3 = center_x + radius * std::cos(a2), y3 = center_y + radius * std::sin(a2);
 
         // I am drawing the triangle as filled or outlined.
-        if (is_filled) fill_triangle(COLOR_SKY_BLUE, x1, y1, x2, y2, x3, y3);
-        else           draw_triangle(COLOR_NAVY,     x1, y1, x2, y2, x3, y3);
+        if (is_filled)
+        {
+            fill_triangle(COLOR_SKY_BLUE, x1, y1, x2, y2, x3, y3);
+        }
+        else
+        {
+            draw_triangle(COLOR_NAVY, x1, y1, x2, y2, x3, y3);
+        }
 
         // I am drawing the on-screen help.
         draw_text("SPACE toggles fill | ESC quits", COLOR_BLACK, 16, 16);
@@ -51,5 +63,6 @@ int main()
         delay(16);      // I am pacing to ~60 FPS.
         angle += 0.02;  // I am rotating at a comfortable speed.
     }
+
     return 0;
 }
