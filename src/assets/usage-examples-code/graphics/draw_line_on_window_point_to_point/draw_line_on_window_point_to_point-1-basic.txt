@@ -1,0 +1,1 @@
+I am drawing lines on the window by clicking a start point and an end point. I am left-clicking once for start; I am left-clicking again for end; I am pressing C to clear; I am pressing ESC to quit.
