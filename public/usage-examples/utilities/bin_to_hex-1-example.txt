@@ -1,0 +1,2 @@
+This example demonstrates how to convert a binary string into a hexadecimal string
+using SplashKit's built-in bin_to_hex / BinToHex function in Python, C++, and C#.
