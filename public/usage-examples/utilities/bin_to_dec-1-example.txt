@@ -1,0 +1,2 @@
+This example demonstrates how to convert a binary string into a decimal number
+using SplashKit's built-in bin_to_dec / BinToDec function in Python, C++, and C#.
