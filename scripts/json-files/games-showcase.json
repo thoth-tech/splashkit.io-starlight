@@ -1,0 +1,231 @@
+{
+    "2D Racer": [
+        {
+            "title": "2D Racer",
+            "shortDesc": "A simple game where a car needs to avoid obstructions on the road!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/2dRacer",
+            "description": "2D Racer is a 2D game in which a car is controlled by a controller capable of moving in left-right directions. The car will move on the road and will be obstructed by vehicles that players must overtake.",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `dotnet run` through the MSYS2 terminal."
+            ],
+            "gameplay": "In Solo mode, players control their car with the joystick, navigating left and right to avoid slower vehicles. Colliding with obstacles reduces lives, and the game ends when all lives are lost. Accelerating boosts speed, but without it, the car drifts downward. At max speed, the car cannot navigate past screen edges. \n\n In Cooperative mode, two players work together, facing the same obstacles. Each player's life count decreases with collisions, and the game ends if either player loses all their lives. \n\n The game ends when all lives are lost due to collisions with obstacles. Players win by successfully navigating all obstacles within the target time.",
+            "dev": {
+                "DaGlobin": "https://github.com/DaGoblin"
+            },
+            "date": "16 Oct 23"
+        }
+    ],
+    "Asteroids": [
+        {
+            "title": "Asteroids",
+            "shortDesc": "Fly around and survive an onslaught of rocks and bosses!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/Asteroids/tree/d5149770d258873031cd474334e34208ce4c12c3",
+            "description": "Asteroids is a top-down single player or co-op shooter that has you, the player, flying around and surviving an onslaught of rocks, and if you survive long enough, even bosses! Aim for a high score, don't lose your hearts before your friend, and maneuver around dangers and rack up that score!",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `dotnet run` through the MSYS2 terminal."
+            ],
+            "gameplay": "Main menu controls assume player 1 controls for movement, selections, and actions unless otherwise stated. At any time an ESC key input will quit the game.\n\n### **Player 1**\n\n| Input | Description |\n| ----- | ----------- |\n| Up Arrow | Move Forward |\n| Left Arrow | Rotate Left |\n| Right Arrow | Rotate Right |\n| Ctrl | Fire |\n\n### **Player 2**\n\n| Input | Description |\n| ----- | ----------- |\n| S/R Key | Move Forward |\n| D Key | Rotate Left |\n| G Key | Rotate Right |\n| A Key | Fire |", 
+            "dev": {
+                "DaGlobin": "https://github.com/DaGoblin",
+                "Quackus": "https://github.com/Quackus",
+                "coskun-kilinc": "https://github.com/coskun-kilinc",
+                "DerDieDasDeakin": "https://github.com/DerDieDasDeakin",
+                "asdT001": "https://github.com/ashT001"
+            },
+            "date": "03 Dec 23"
+        }
+    ],
+    "Below the Surface": [
+        {
+            "title": "Below the Surface",
+            "shortDesc": "Repair the city's hidden pipes and save Thoth from disaster in this thrilling platform adventure!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/BelowTheSurface",
+            "description": "In Below the Surface, the once-immaculate city of Thoth faces an unseen threat. For over a century, Thoth—a futuristic haven renowned for its talented citizens—has been free from the perils of flooding, thanks to advanced systems designed to manage stormwater and sewage. However, beneath the city’s pristine surface, a dire situation unfolds.\n\n The pipes responsible for managing Thoth’s water infrastructure have either malfunctioned or vanished, leading to dangerous flooding that threatens the city's safety. To protect the citizens and avoid public panic, the city's leaders have kept this crisis under wraps, enlisting a select group of elite water company workers for a high-stakes mission. \n\n As a skilled technician, you must venture into the treacherous underground world of Thoth. Navigate through a maze of broken pipes, hazardous conditions, and hidden dangers. Your goal is to repair the damaged infrastructure, restore the city's safety, and uncover the mystery behind the missing pipes. \n\n In this thrilling platform game, you'll need to master precise jumps, solve intricate puzzles, and avoid deadly obstacles to ensure Thoth remains the beacon of prosperity it’s known to be. Dive into the depths, fix what’s broken, and save the city before it's too late!",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `skm g++ program.cpp -o game` through the MSYS2 terminal.",
+                "Enter the command `./game` to play!"
+            ],
+            "gameplay": "In Below the Surface, players navigate and repair the city’s underground infrastructure using precise platforming controls. Player 1 uses the arrow keys and left side controls, while Player 2 uses the right side controls, to jump, move, crouch, and interact with the environment, all while solving puzzles and avoiding hazards.\n\n### **Player 1**\n\n| Input | Description |\n| --- | ----------- |\n| Up Key or Left Alt| Jump |\n| Left Key | Move Left |\n| Right Key | Move Right |\n| Down Key | Crouch |\n| Left Crtl Key | Attack/Interact |\n\n### **Player 2**  \n\n| Input | Description |\n| --- | ----------- |\n| R Key or S Key| Jump |\n| D Key | Move Left |\n| G Key | Move Right |\n| F Key | Crouch |\n| A Key | Attack/Interact |\n\n### **Other Buttons**\n\n| Input | Description |\n| --- | ----------- |\n| Enter / P Key | Pause |\n| Enter / Left Ctrl Key | Selection |",
+            "dev": {
+                "MorgaineBarter": "https://github.com/MorgaineBarter",
+                "DaGoblin": "https://github.com/DaGoblin",
+                "RobTOsb": "https://github.com/RobTOsb",
+                "RileyOussoren": "https://github.com/RileyOussoren"
+            },
+            "date": "05 Sep 23"
+        }
+    ],
+    "Car Race": [
+        {
+            "title": "Car Race",
+            "shortDesc": "Avoid collisions and obstacles while navigating at high speed!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/car-race",
+            "description": "Car Race is a basic arcade-style car game where the player's objective is to navigate a car on a road while avoiding collisions with other cars.",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `skm clang++ program.cpp car.cpp game.cpp powerup.cpp barricade.cpp -o output` through the MSYS2 terminal.",
+                "Enter the command `./output` to play!"
+            ],
+            "gameplay": "The game features a car that is spawned on a road and needs to avoid other cars approaching it.\n\n| Input | Description |\n| --- | ----------- |\n| A Key | Car goes LEFT |\n| D Key | Car goes RIGHT |\n| R Key | Change The Car Colour Between The Game |",
+            "dev": {
+                "KhushiLaddi08": "https://github.com/KhushiLaddi08",
+                "MHLoppy": "https://github.com/MHLoppy",
+                "DerDieDasDeakin": "https://github.com/DerDieDasDeakin",
+                "AnotherNewName": "https://github.com/AnotherNewName"
+            },
+            "date": "10 Jun 24"
+        }
+    ],
+    "DX Ball Game": [
+        {
+            "title": "DX Ball Game",
+            "shortDesc": "Destroy bricks of a wall to proceed to the next level!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/DXBallGame/tree/0c6cc44255427fe7e8503134ce2a9f42f8f3a480",
+            "description": "The brick breakout game is a modern reimagining of the classic arcade games \"DX-Ball\" and \"Breakout,\" developed using C++ and the SplashKit SDK to showcase the framework's capabilities. Players control a paddle to bounce a ball and break bricks on the screen, advancing through four levels of increasing difficulty. Each level introduces new challenges, such as single collision bricks, dual collision bricks, and hidden bricks that become visible upon contact. The game features power-ups, like multiple balls and score multipliers, to enhance gameplay, while collision detection and physics-based ball movement create an engaging and dynamic experience. The project is designed to help future developers understand game development fundamentals and to explore SplashKit's versatility on various platforms, including Raspberry Pi and arcade machines.",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `skm g++ program.cpp -o game` through the MSYS2 terminal.",
+                "Enter the command `./game` to play!"
+            ],
+            "gameplay": "The game is a clone of the classic arcade games \"DX-Ball\" and \"Breakout,\" where the player controls a paddle at the bottom of the screen to prevent a bouncing ball from falling out of bounds. The main objective is to break all the bricks on the screen by directing the ball towards them. The player advances through four levels, each introducing new brick types and increasing difficulty. These bricks vary in strength, requiring multiple hits to break or appearing as hidden until struck by the ball. The game incorporates power-ups like multiple balls and score multipliers to aid the player, adding strategic depth to the gameplay. As the player progresses, they must use their skills to clear each level, leveraging the unique properties of different bricks and power-ups to achieve the highest score possible.\n\n| **Key**     | **Action**                                |\n| ----------- | ----------------------------------------- |\n| `Left`      | Move the paddle to the left.              |\n| `Right`     | Move the paddle to the right.             |\n| `1`         | Start the game.                           |\n| `2`         | Restart the game after winning or losing. |\n| `Left Ctrl` | Start level                               |",
+            "dev": {
+                "DaGoblin": "https://github.com/DaGoblin",
+                "Norman-Harty": "https://github.com/Norman-Harty",
+                "swanos": "https://github.com/swanos",
+                "Tanish-22": "https://github.com/Tanish-22",
+                "Hallzy-H": "https://github.com/Hallzy-H"
+            },
+            "date": "15 Nov 23"
+        }
+    ],
+    "Homemade Pong": [
+        {
+            "title": "Homemade Pong",
+            "shortDesc": "Challenge your reflexes in this fast-paced version of the classic arcade game, Pong!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/HomemadePong",
+            "description": "Experience the classic thrill of Pong with a modern twist! This homemade version brings back the timeless arcade gameplay of table tennis, featuring simple two-dimensional graphics that capture the essence of the original 1972 Atari release. Challenge yourself or a friend in fast-paced matches, where quick reflexes and sharp skills are your best allies. Whether you’re a longtime fan or new to the game, this version of Pong promises hours of fun and nostalgia!",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `skm clang++ program.cpp paddle.cpp -o output` through the MSYS2 terminal.",
+                "Enter the command `./output` to play!"
+            ],
+            "gameplay": "In this homemade version of Pong, players compete in a fast-paced table tennis match. The objective is simple: use your paddle to hit the ball past your opponent's side to score points. Quick reflexes and precise timing are essential to outmaneuver your opponent and claim victory in this classic arcade showdown!\n\n| Player        | Move Up   | Move Down   |\n|---------------|-----------|-------------|\n| **Player 1**  | W         | S           |\n| **Player 2**  | Up Arrow  | Down Arrow  |",
+            "dev": {
+                "studioant": "https://github.com/studioant"
+            },
+            "date": "28 Sep 22"
+        }
+    ],
+    "Ping Pong": [
+        {
+            "title": "Ping Pong",
+            "shortDesc": "Compete in fast-paced, air hockey-style action in a Ping Pong showdown!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/Pingpong",
+            "description": "Ping Pong is a fast-paced, C++-based game developed using the Splashkit SDK, inspired by the rules of Air Hockey. Designed for an HD screen resolution of 1280x720, it pits two players against each other in a competitive match where the cursor moves horizontally.\n\nThe game features a football-themed background and includes boundary obstacles, a centrally-spawning ball with random angles and speeds, and player assets designed as cursors or blocks. Key functionalities include collision detection, scoring, and in-game physics to ensure a dynamic and engaging gameplay experience.\n\nExtensive testing and debugging were conducted to refine the game, resulting in a polished final design with enhanced visual appeal through Canva backgrounds. Enjoy a classic arcade experience with modern design in Ping Pong!",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `skm clang++ program.cpp ball.cpp game.cpp obstacle.cpp player.cpp -o output` through the MSYS2 terminal.",
+                "Enter the command `./output` to play!"
+            ],
+            "gameplay": "Dive into the action with Ping Pong, where you and a friend can compete head-to-head in a fast-paced game inspired by Air Hockey. Use your paddle to hit the ball and score points by getting it past your opponent's side. Player 1 moves their paddle using the WASD keys, while Player 2 uses the arrow keys. The game features dynamic ball movement with random angles and speeds, and boundary obstacles to add to the challenge. With smooth controls and engaging physics, every match is an exciting test of skill and reflexes.\n\n| Player     | **Player 1** | **Player 2** |\n| ---------- | ------------ | ------------ |\n| Move Up    | W            | Up Arrow     |\n| Move Down  | S            | Down Arrow   |\n| Move Left  | A            | Left Arrow   |\n| Move Right | D            | Right Arrow  |",
+            "dev": {
+                "PrathammGupta": "https://github.com/PrathammGupta"
+            },
+            "date": "16 May 24"
+        }
+    ],
+    "Runner Dash": [
+        {
+            "title": "Runner Dash",
+            "shortDesc": "Navigate a dynamic grid using an arcade machine's joystick to collect gems and avoid a relentless enemy!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/Runner_Dash",
+            "description": "Runner Dash is an engaging arcade game originally created as a terminal game in C#. The game was revamped using C++ and SplashKit to bring it to life with vibrant graphics suitable for arcade machines.\n\nThe game transforms a simple terminal-based experience into a visually appealing arcade game, demonstrating the power of SplashKit in enhancing game development. Players navigate a grid, collecting gems and avoiding an advancing enemy, with the challenge intensifying as the game progresses. Designed to run on Raspberry Pi, Runner Dash highlights the integration of SplashKit for creating a compelling arcade game experience from a foundational codebase.",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `dotnet run` through the MSYS2 terminal."
+            ],
+            "gameplay": "In Runner Dash, players navigate a dynamic grid using an arcade machine's joystick to collect gems and avoid a relentless enemy. The goal is to gather as many gems as possible while dodging the enemy that chases you whenever you move. Each collected gem is replaced by a new gem appearing at a random location on the screen. The game continues endlessly, with the only way to lose being a collision with the enemy.",
+            "dev": {
+                "AnotherNewName": "https://github.com/AnotherNewName",
+                "DaGlobin": "https://github.com/DaGoblin",
+                "RileyOussoren": "https://github.com/RileyOussoren",
+                "Tanish-22": "https://github.com/Tanish-22",
+                "swanos":"https://github.com/swanos",
+                "Norman-Harty": "https://github.com/Norman-Harty",
+                "Himanshu-Himan": "https://github.com/Himanshu-Himan"
+            },
+            "date": "13 Dec 23"
+        }
+    ],
+    "Sky Surge": [
+        {
+            "title": "Sky Surge",
+            "shortDesc": " Navigate through challenges filled with waves of enemies, power-ups and intense battles!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/SkySurge",
+            "description": "Sky Surge is a top-down shooter which draws inspiration from classics such as Strikers 1945. In this game players take control of a powerful aircraft, navigating through challenging levels filled with waves of enemies, power-ups and intense boss battles. This twists conventional shooters through the incorporation of a unique mechanic which causes the player to grow in size and shoot in a larger radius, raising not only the stakes but increasing the sense of accomplishment for players through progression.",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `dotnet run` through the MSYS2 terminal."
+            ],
+            "gameplay": "In Sky Surge, players pilot a powerful aircraft in a top-down shooter experience reminiscent of classics like Strikers 1945. Navigate through challenging levels packed with enemy waves, power-ups, and intense boss battles. A unique mechanic sets this game apart, allowing your aircraft to grow in size and shoot in a larger radius as you progress. This feature not only intensifies the action but also amplifies the sense of accomplishment as you advance through the game.\n\n| Action       | Player 1 |\n|--------------|----------|\n| Move Up      | W        |\n| Move Down    | S        |\n| Move Left    | A        |\n| Move Right   | D        |\n| Shoot        | Space    |",
+            "dev": {
+                "ayanmasood": "https://github.com/ayanmasood"
+            },
+            "date": "16 May 24"
+        }
+    ],
+    "SplashKit Mario": [
+        {
+            "title": "SplashKit Mario",
+            "shortDesc": "Jump, collect coins, and navigate portals in this SplashKit-powered Mario-inspired adventure!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/splashkit%20mario",
+            "description": "SplashKit Mario is a lite version of a classic platformer inspired by Mario. In this game, players navigate through levels by jumping to avoid enemies, collecting coins, and using portals to change their position. Designed primarily to showcase SplashKit functions, SplashKit Mario offers an engaging way to experience key features of the SplashKit SDK.",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `skm g++ program.cpp -o game` through the MSYS2 terminal.",
+                "Enter the command `./game` to play!"
+            ],
+            "gameplay": "In SplashKit Mario, players navigate through vibrant levels using left and right arrows to move and the up arrow to jump. Avoid enemies, collect coins, and use portals to advance while demonstrating the capabilities of the SplashKit SDK.",
+            "dev": {
+                "kay-kaushik": "https://github.com/kay-kaushik"
+            },
+            "date": "07 Jun 24"
+        }
+    ],
+    "Venture Adventure": [
+        {
+            "title": "Venture Adventure",
+            "shortDesc": "Navigate puzzles, collect gems, and dodge giant ants in this thrilling box-pushing adventure!",
+            "download": "https://download-directory.github.io?url=https://github.com/thoth-tech/arcade-games/tree/main/games/VentureAdventure",
+            "description": "Venture Adventure is a thrilling puzzle game inspired by classic box-pushing mechanics. Navigate through challenging levels as you push boxes to collect gems while avoiding giant ants that threaten to end your adventure. Solve puzzles and strategize your moves to outwit the ants and gather all the gems to advance through each level.",
+            "installation": [
+                "Download the game files.",
+                "Navigate to the folder.",
+                "Execute `skm clang++ boxes.cpp enemy.cpp game.cpp gems.cpp player.cpp program.cpp -o output` through the MSYS2 terminal.",
+                "Enter the command `./output` to play!"
+            ],
+            "gameplay": "In Venture Adventure, players tackle intricate puzzles by pushing boxes through a maze-like environment. The goal is to strategically position boxes to collect gems scattered throughout each level while avoiding giant ants that roam the area. Players must carefully plan their moves to solve each puzzle and outmaneuver the ants, ensuring they gather all the gems and progress to increasingly complex levels. Success requires a blend of logic, strategy, and quick reflexes.\n\n| Action           | Player One Key | Player Two Key |\n|------------------|----------------|----------------|\n| Move Up          | W              | UP_ARROW       |\n| Move Left        | A              | LEFT_ARROW     |\n| Move Down        | S              | DOWN_ARROW     |\n| Move Right       | D              | RIGHT_ARROW    |",
+            "dev": {
+                "CastielM": "https://github.com/CastielM",
+                "MHLoppy": "https://github.com/MHLoppy",
+                "DaGoblin": "https://github.com/DaGoblin",
+                "RileyOussoren": "https://github.com/RileyOussoren",
+                "studioant":"https://github.com/studioant"
+            },
+            "date": "13 May 24"
+        }
+    ]
+}

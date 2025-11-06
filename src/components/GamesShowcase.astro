@@ -1,0 +1,100 @@
+---
+// Games Showcase component for displaying featured games in a swiper carousel
+---
+
+<section class="games-showcase-section">
+  <h2>Games Showcase</h2>
+  <p>Discover what's possible with SplashKit! Check out these amazing games created by our community:</p>
+  
+  <div class="games-showcase-container">
+    <div id="games-showcase-swiper"></div>
+  </div>
+  
+  <div class="games-showcase-cta">
+    <a href="/games/" class="view-all-games-btn">
+      View All Games
+    </a>
+  </div>
+</section>
+
+<script>
+  import GameCardSwiper from "../react/GameCardSwiper/index.jsx";
+  import { createRoot } from 'react-dom/client';
+  import { createElement } from 'react';
+
+  // Wait for the DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('games-showcase-swiper');
+    if (container) {
+      const root = createRoot(container);
+      root.render(createElement(GameCardSwiper));
+    }
+  });
+</script>
+
+<style>
+  .games-showcase-section {
+    margin: 2rem 0;
+    padding: 2rem 0;
+  }
+
+  .games-showcase-section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, var(--sl-color-accent), var(--sl-color-accent-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .games-showcase-section p {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    opacity: 0.8;
+  }
+
+  .games-showcase-container {
+    margin: 2rem 0;
+    min-height: 350px;
+  }
+
+  .games-showcase-cta {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .view-all-games-btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: var(--sl-color-accent);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .view-all-games-btn:hover {
+    background-color: var(--sl-color-accent-high);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  @media (max-width: 768px) {
+    .games-showcase-section h2 {
+      font-size: 2rem;
+    }
+
+    .games-showcase-section p {
+      font-size: 1rem;
+    }
+
+    .games-showcase-container {
+      min-height: 280px;
+    }
+  }
+</style>
