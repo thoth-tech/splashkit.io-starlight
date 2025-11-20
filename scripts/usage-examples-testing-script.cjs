@@ -329,11 +329,13 @@ categories.forEach((categoryKey) => {
             // Text file - check already done above
             testingOutput += kleur.green("\u2705 Text Description\t -> ") + kleur.white(fileNameToCheck + ".txt\n");
 
-            // Check for output file (.png or .gif)
+            // Check for output file (.png, .gif or .webm)
             if (exampleFiles.includes(fileNameToCheck + ".png")) {
               testingOutput += kleur.green("\u2705 Image\t\t -> ") + kleur.white(fileNameToCheck + ".png\n");
             } else if (exampleFiles.includes(fileNameToCheck + ".gif")) {
               testingOutput += kleur.green("\u2705 Image (Gif)\t\t -> ") + kleur.white(fileNameToCheck + ".gif\n");
+            } else if (exampleFiles.includes(fileNameToCheck + ".webm")) {
+              testingOutput += kleur.green("\u2705 Video (WebM)\t\t -> ") + kleur.white(fileNameToCheck + ".webm\n");
             } else {
               testingOutput += kleur.red("\u274C Image/Gif\t\t -> ") + kleur.white(fileNameToCheck + " .png or .gif file\n");
               testingSuccess = false;
@@ -358,7 +360,14 @@ categories.forEach((categoryKey) => {
           // -----------------------------------
 
           // Description
-          let txtFilePath = categoryFilePath + "/" + functionKey + "/" + exampleTxtKey;
+          // Support two layouts for usage examples:
+          // 1) nested: public/usage-examples/<category>/<function>/<files>
+          // 2) flat:   public/usage-examples/<category>/<files> (older examples)
+          let txtFilePath = path.join(categoryFilePath, functionKey, exampleTxtKey);
+          if (!fs.existsSync(txtFilePath)) {
+            // fallback to flat layout
+            txtFilePath = path.join(categoryFilePath, exampleTxtKey);
+          }
           let exampleTxt = fs.readFileSync(txtFilePath);
           mdxContent += "\n";
           mdxContent += exampleTxt.toString();
@@ -372,7 +381,11 @@ categories.forEach((categoryKey) => {
           };
 
           // import code
-          let codePath = categoryFilePath + "/" + functionKey;
+          // path for code files. Prefer nested function folder but fallback to category root.
+          let codePath = path.join(categoryFilePath, functionKey);
+          if (!fs.existsSync(codePath)) {
+            codePath = categoryFilePath; // fallback to flat layout
+          }
           const codeFiles = getAllFiles(codePath);
           let importTitle = exampleKey.replaceAll("-", "_");
           let functionTag = "";
