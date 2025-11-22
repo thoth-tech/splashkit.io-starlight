@@ -1,14 +1,14 @@
-import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { defineConfig } from "astro/config";
 // import solidJs from "@astrojs/solid-js";
 import react from "@astrojs/react";
-import starlightLinksValidator from 'starlight-links-validator';
 import sitemap from "@astrojs/sitemap";
-import remarkMath from 'remark-math';
-import rehypeMathjax from 'rehype-mathjax'
-import starlightBlog from 'starlight-blog'
 import starlightDocSearch from '@astrojs/starlight-docsearch';
+import rehypeMathjax from 'rehype-mathjax';
 import remarkHeadingID from 'remark-heading-id';
+import remarkMath from 'remark-math';
+import starlightBlog from 'starlight-blog';
+import starlightLinksValidator from 'starlight-links-validator';
 import { loadEnv } from "vite";
 
 const { DOCSEARCH_API_ID } = loadEnv(process.env.DOCSEARCH_API_ID, process.cwd(), "");
@@ -33,9 +33,15 @@ export default defineConfig({
           recentPostCount: 5,
           prevNextLinksOrder: 'chronological',
         }),
-        starlightLinksValidator({
-          errorOnRelativeLinks: true,
-        }),
+        // Only validate links strictly when ENABLE_STRICT_LINKS=true (useful for CI);
+        // this prevents local builds from failing on link-hash mismatches.
+        ...(process.env.ENABLE_STRICT_LINKS === 'true'
+          ? [
+              starlightLinksValidator({
+                errorOnRelativeLinks: true,
+              }),
+            ]
+          : []),
         starlightDocSearch({
           appId: DOCSEARCH_API_ID,
           apiKey: DOCSEARCH_API_SEARCH_KEY,

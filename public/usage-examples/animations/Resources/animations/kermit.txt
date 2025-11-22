@@ -1,0 +1,18 @@
+// kermit.txt — simplified example animation script used by usage-example runners
+// Format lines supported by the runners:
+//  i: <name>,<start_cell>           -> animation identifier
+//  s: <frame>,<id>,<filename>        -> sound on specific frame
+//  v: [range],<x>,<y>               -> vector entry (not used here)
+
+// WalkFront starts at frame 0 and has a sound on its first frame.
+i: WalkFront,0
+s: 0,walk_sound,comedy_boing.ogg
+
+// MoonWalkFront starts at frame 6 (used as another example identifier)
+i: MoonWalkFront,6
+
+// Dance starts later and includes a sound on its starting frame.
+i: Dance,12
+s: 12,dance_sound,drum_roll.ogg
+
+// End of file

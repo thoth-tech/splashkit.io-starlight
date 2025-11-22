@@ -329,11 +329,13 @@ categories.forEach((categoryKey) => {
             // Text file - check already done above
             testingOutput += kleur.green("\u2705 Text Description\t -> ") + kleur.white(fileNameToCheck + ".txt\n");
 
-            // Check for output file (.png or .gif)
+            // Check for output file (.png, .gif or .webm)
             if (exampleFiles.includes(fileNameToCheck + ".png")) {
               testingOutput += kleur.green("\u2705 Image\t\t -> ") + kleur.white(fileNameToCheck + ".png\n");
             } else if (exampleFiles.includes(fileNameToCheck + ".gif")) {
               testingOutput += kleur.green("\u2705 Image (Gif)\t\t -> ") + kleur.white(fileNameToCheck + ".gif\n");
+            } else if (exampleFiles.includes(fileNameToCheck + ".webm")) {
+              testingOutput += kleur.green("\u2705 Video (WebM)\t\t -> ") + kleur.white(fileNameToCheck + ".webm\n");
             } else {
               testingOutput += kleur.red("\u274C Image/Gif\t\t -> ") + kleur.white(fileNameToCheck + " .png or .gif file\n");
               testingSuccess = false;
@@ -358,7 +360,14 @@ categories.forEach((categoryKey) => {
           // -----------------------------------
 
           // Description
-          let txtFilePath = categoryFilePath + "/" + functionKey + "/" + exampleTxtKey;
+          // Support two layouts for usage examples:
+          // 1) nested: public/usage-examples/<category>/<function>/<files>
+          // 2) flat:   public/usage-examples/<category>/<files> (older examples)
+          let txtFilePath = path.join(categoryFilePath, functionKey, exampleTxtKey);
+          if (!fs.existsSync(txtFilePath)) {
+            // fallback to flat layout
+            txtFilePath = path.join(categoryFilePath, exampleTxtKey);
+          }
           let exampleTxt = fs.readFileSync(txtFilePath);
           mdxContent += "\n";
           mdxContent += exampleTxt.toString();
@@ -372,13 +381,26 @@ categories.forEach((categoryKey) => {
           };
 
           // import code
-          let codePath = categoryFilePath + "/" + functionKey;
+          // path for code files. Prefer nested function folder but fallback to category root.
+          let codePath = path.join(categoryFilePath, functionKey);
+          if (!fs.existsSync(codePath)) {
+            codePath = categoryFilePath; // fallback to flat layout
+          }
           const codeFiles = getAllFiles(codePath);
           let importTitle = exampleKey.replaceAll("-", "_");
           let functionTag = "";
           languageOrder.forEach((lang) => {
             const languageFiles = codeFiles.filter(file => file.startsWith(exampleKey)).filter(file => file.endsWith(languageFileExtensions[lang]));
-            let codeFilePath = categoryPath + "/" + functionKey + "/" + exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
+            // Build the import path depending on whether we are using nested or flat layout
+            const fileName = exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
+            let codeFilePath;
+            if (codePath === categoryFilePath) {
+              // flat layout: /usage-examples/<category>/<file>
+              codeFilePath = categoryPath + "/" + fileName;
+            } else {
+              // nested layout: /usage-examples/<category>/<function>/<file>
+              codeFilePath = categoryPath + "/" + functionKey + "/" + fileName;
+            }
 
             // import code if available
             if (languageFiles.length > 0) {
@@ -494,7 +516,15 @@ categories.forEach((categoryKey) => {
           mdxContent += "**Output**:\n\n";
 
           const imageFiles = categoryFiles.filter(file => file.endsWith(exampleKey + '.png'));
-          let outputFilePath = categoryPath + "/" + functionKey + "/" + exampleTxtKey;
+          // Build output path depending on layout
+          let outputFilePath;
+          if (codePath === categoryFilePath) {
+            // flat layout
+            outputFilePath = categoryPath + "/" + exampleTxtKey;
+          } else {
+            // nested layout
+            outputFilePath = categoryPath + "/" + functionKey + "/" + exampleTxtKey;
+          }
           // Check for .png files
           if (imageFiles.length > 0) {
             outputFilePath = outputFilePath.replaceAll(".txt", ".png");

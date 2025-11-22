@@ -1,0 +1,7 @@
+Free Animation — Dispose an Animation's resources
+
+Frees the resources used by a single Animation instance. Use this when you no
+longer need the animation, including when it's not used by any sprite.
+
+Usage (runner):
+py -3 public/usage-examples/animations/free_animation-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront
