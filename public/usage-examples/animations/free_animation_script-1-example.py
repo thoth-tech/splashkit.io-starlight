@@ -1,5 +1,6 @@
 from splashkit import *
 
+
 def main():
     script = load_animation_script("Resources/animations/kermit.txt")
 
@@ -8,4 +9,7 @@ def main():
     write_line("Animation script freed.")
 
 if __name__ == '__main__':
+    main()
+    main()
+    main()
     main()
