@@ -1,0 +1,7 @@
+Animation Script Named — load an animation script using a name
+
+This example demonstrates using `animation_script_named` to retrieve a previously loaded or named animation script (the examples use `WalkingScript` -> `kermit.txt`).
+
+To test (locally):
+
+py -3 public/usage-examples/animations/animation_script_named-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkingScript

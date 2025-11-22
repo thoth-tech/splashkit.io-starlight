@@ -1,0 +1,7 @@
+Assign Animation (with script) — attach an animation to a named script
+
+This example shows how to use `assign_animation` (script variant) to set an `Animation` to follow the frames for a named animation inside an `AnimationScript` (e.g., WalkFront).
+
+To test it locally:
+
+py -3 public/usage-examples/animations/assign_animation_with_script-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront

@@ -391,7 +391,16 @@ categories.forEach((categoryKey) => {
           let functionTag = "";
           languageOrder.forEach((lang) => {
             const languageFiles = codeFiles.filter(file => file.startsWith(exampleKey)).filter(file => file.endsWith(languageFileExtensions[lang]));
-            let codeFilePath = categoryPath + "/" + functionKey + "/" + exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
+            // Build the import path depending on whether we are using nested or flat layout
+            const fileName = exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
+            let codeFilePath;
+            if (codePath === categoryFilePath) {
+              // flat layout: /usage-examples/<category>/<file>
+              codeFilePath = categoryPath + "/" + fileName;
+            } else {
+              // nested layout: /usage-examples/<category>/<function>/<file>
+              codeFilePath = categoryPath + "/" + functionKey + "/" + fileName;
+            }
 
             // import code if available
             if (languageFiles.length > 0) {
@@ -507,7 +516,15 @@ categories.forEach((categoryKey) => {
           mdxContent += "**Output**:\n\n";
 
           const imageFiles = categoryFiles.filter(file => file.endsWith(exampleKey + '.png'));
-          let outputFilePath = categoryPath + "/" + functionKey + "/" + exampleTxtKey;
+          // Build output path depending on layout
+          let outputFilePath;
+          if (codePath === categoryFilePath) {
+            // flat layout
+            outputFilePath = categoryPath + "/" + exampleTxtKey;
+          } else {
+            // nested layout
+            outputFilePath = categoryPath + "/" + functionKey + "/" + exampleTxtKey;
+          }
           // Check for .png files
           if (imageFiles.length > 0) {
             outputFilePath = outputFilePath.replaceAll(".txt", ".png");

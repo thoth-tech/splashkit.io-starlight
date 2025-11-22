@@ -1,0 +1,7 @@
+Create Animation (index + sound) — create an Animation from a script using index and optionally play starting-frame audio
+
+This example demonstrates `create_animation(script, idx, with_sound)` — create a brand new `Animation` from an `AnimationScript` by integer index and optionally play audio attached to the starting frame.
+
+To test locally:
+
+py -3 public/usage-examples/animations/create_animation_from_index_with_sound-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt 0 True

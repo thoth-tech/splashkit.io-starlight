@@ -1,0 +1,7 @@
+Assign Animation (in current script) — switch an Animation to the named animation defined in its current script
+
+This example demonstrates calling `assign_animation(anim, "WalkFront")` where the `Animation` already has an animation_script associated and we switch to the named animation inside that same script.
+
+To test locally:
+
+py -3 public/usage-examples/animations/assign_animation-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront

@@ -1,0 +1,9 @@
+Free All Animation Scripts — free all loaded animation scripts
+
+This example demonstrates freeing all currently loaded animation scripts using the
+`free_all_animation_scripts()` API. In a running program this releases any resources
+used by animation scripts.
+
+To test locally (verification runner prints expected confirmation):
+
+py -3 public/usage-examples/animations/free_all_animation_scripts-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt
