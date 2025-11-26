@@ -1,0 +1,5 @@
+#### Rotation Matrices
+
+Create a rotation matrix that rotates 2D points by the provided angle. 
+
+Uses the [rotation_matrix](/api/physics/#rotation-matrix) function.
