@@ -1,4 +1,43 @@
 {
+    "audio": [
+        {
+            "funcKey": "play_music_named",
+            "title": "Music Playback",
+            "url": "/api/audio/#play-music-named",
+            "functions": [
+                "audio_ready",
+                "open_audio",
+                "load_music",
+                "delay",
+                "free_all_music"
+            ]
+        },
+        {
+            "funcKey": "resume_music",
+            "title": "Pausing and Resuming Game Music",
+            "url": "/api/audio/#resume-music",
+            "functions": [
+                "audio_ready",
+                "open_audio",
+                "load_music",
+                "play_music",
+                "open_window",
+                "quit_requested",
+                "process_events",
+                "key_typed",
+                "music_playing",
+                "pause_music",
+                "clear_window",
+                "color_white",
+                "music_paused",
+                "draw_text_on_window_no_font_no_size",
+                "color_black",
+                "refresh_window",
+                "free_all_music",
+                "close_all_windows"
+            ]
+        }
+    ],
     "geometry": [
         {
             "funcKey": "center_point",
@@ -8,7 +47,6 @@
                 "open_window",
                 "circle_at",
                 "screen_center",
-                "center_point",
                 "quit_requested",
                 "process_events",
                 "clear_screen",
@@ -31,7 +69,6 @@
                 "rectangle_from",
                 "circle_x",
                 "circle_y",
-                "circle_radius",
                 "window_close_requested",
                 "process_events",
                 "key_down",
@@ -73,7 +110,6 @@
                 "draw_circle_record",
                 "color_red",
                 "draw_text_no_font_no_size",
-                "circle_x",
                 "color_black",
                 "refresh_screen",
                 "delay",
@@ -94,7 +130,6 @@
                 "draw_circle_record",
                 "color_red",
                 "draw_text_no_font_no_size",
-                "circle_y",
                 "color_black",
                 "draw_line",
                 "screen_width",
@@ -107,7 +142,7 @@
         },
         {
             "funcKey": "closest_point_on_circle",
-            "title": "Closest Point to Mouse on Circle\r",
+            "title": "Closest Point to Mouse on Circle",
             "url": "/api/geometry/#closest-point-on-circle",
             "functions": [
                 "open_window",
@@ -116,7 +151,6 @@
                 "mouse_position",
                 "quit_requested",
                 "process_events",
-                "closest_point_on_circle",
                 "clear_screen_to_white",
                 "draw_circle_record",
                 "color_black",
@@ -128,22 +162,28 @@
             ]
         },
         {
-            "funcKey": "lines_intersect",
-            "title": "Simple Line Intersect Check",
-            "url": "/api/geometry/#lines-intersect",
+            "funcKey": "line_intersects_rect",
+            "title": "Avoid the Rectangle",
+            "url": "/api/geometry/#line-intersects-rect",
             "functions": [
                 "open_window",
-                "Point2D",
+                "point_at",
+                "rectangle_from",
+                "mouse_position",
                 "line_from_point_to_point",
+                "quit_requested",
+                "process_events",
+                "clear_screen",
+                "color_white",
                 "draw_line_record",
-                "color_red",
-                "draw_text_no_font_no_size",
                 "color_black",
-                "color_blue",
+                "draw_circle_record",
+                "circle_at",
+                "draw_rectangle_record",
+                "draw_text_no_font_no_size",
+                "color_red",
                 "color_green",
-                "lines_intersect",
                 "refresh_screen",
-                "delay",
                 "close_all_windows"
             ]
         },
@@ -157,7 +197,6 @@
                 "line_from_point_to_point",
                 "draw_line_record",
                 "color_red",
-                "line_length",
                 "draw_text_no_font_no_size",
                 "color_black",
                 "refresh_screen",
@@ -175,7 +214,6 @@
                 "line_from_point_to_point",
                 "draw_line_record",
                 "color_red",
-                "line_length_squared",
                 "draw_text_no_font_no_size",
                 "color_black",
                 "refresh_screen",
@@ -193,7 +231,6 @@
                 "line_from_point_to_point",
                 "draw_line_record",
                 "color_red",
-                "line_mid_point",
                 "draw_circle",
                 "color_black",
                 "draw_text_no_font_no_size",
@@ -212,9 +249,27 @@
                 "line_from_point_to_point",
                 "draw_line_record",
                 "color_red",
-                "line_to_string",
                 "draw_text_no_font_no_size",
                 "color_black",
+                "refresh_screen",
+                "delay",
+                "close_all_windows"
+            ]
+        },
+        {
+            "funcKey": "lines_intersect",
+            "title": "Simple Line Intersect Check",
+            "url": "/api/geometry/#lines-intersect",
+            "functions": [
+                "open_window",
+                "Point2D",
+                "line_from_point_to_point",
+                "draw_line_record",
+                "color_red",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "color_blue",
+                "color_green",
                 "refresh_screen",
                 "delay",
                 "close_all_windows"
@@ -229,7 +284,6 @@
                 "fill_circle",
                 "color_gold",
                 "open_window",
-                "point_at",
                 "rgb_color",
                 "quit_requested",
                 "process_events",
@@ -244,7 +298,6 @@
             "url": "/api/geometry/#point-at-origin",
             "functions": [
                 "open_window",
-                "point_at_origin",
                 "clear_screen_to_white",
                 "fill_circle",
                 "color_red",
@@ -266,7 +319,6 @@
                 "quit_requested",
                 "process_events",
                 "mouse_position",
-                "point_in_circle",
                 "color_red",
                 "color_green",
                 "clear_screen_to_white",
@@ -288,7 +340,6 @@
                 "quit_requested",
                 "process_events",
                 "mouse_position",
-                "point_in_rectangle",
                 "color_green",
                 "reset_timer",
                 "color_royal_blue",
@@ -314,7 +365,6 @@
                 "quit_requested",
                 "process_events",
                 "mouse_position",
-                "point_in_triangle",
                 "color_red",
                 "color_green",
                 "clear_screen_to_white",
@@ -336,7 +386,6 @@
                 "color_white",
                 "draw_line_record",
                 "color_black",
-                "point_on_line",
                 "mouse_position",
                 "draw_text_no_font_no_size",
                 "point_to_string",
@@ -363,7 +412,6 @@
                 "quit_requested",
                 "process_events",
                 "mouse_position",
-                "point_point_angle",
                 "round",
                 "clear_screen",
                 "color_white",
@@ -395,7 +443,6 @@
                 "quit_requested",
                 "process_events",
                 "mouse_position",
-                "point_point_distance",
                 "window",
                 "clear_screen_to_white",
                 "fill_circle",
@@ -417,7 +464,6 @@
                 "quit_requested",
                 "process_events",
                 "mouse_clicked",
-                "point_to_string",
                 "mouse_position",
                 "clear_screen",
                 "color_ghost_white",
@@ -435,7 +481,6 @@
                 "open_window",
                 "create_bitmap",
                 "triangle_from",
-                "random_bitmap_point",
                 "fill_triangle_on_bitmap_record",
                 "random_color",
                 "clear_screen",
@@ -454,7 +499,6 @@
                 "open_window",
                 "clear_screen",
                 "color_black",
-                "random_screen_point",
                 "draw_pixel_at_point",
                 "random_rgb_color",
                 "refresh_screen",
@@ -464,7 +508,7 @@
         },
         {
             "funcKey": "random_window_point",
-            "title": "Random Portals\r",
+            "title": "Random Portals",
             "url": "/api/geometry/#random-window-point",
             "functions": [
                 "open_window",
@@ -472,7 +516,6 @@
                 "create_sprite",
                 "bitmap_named",
                 "sprite_set_position",
-                "random_window_point",
                 "clear_window",
                 "color_black",
                 "draw_sprite",
@@ -495,19 +538,35 @@
                 "convert_to_double",
                 "point_at",
                 "main",
-                "inside",
-                "same_point"
+                "inside"
             ]
         }
     ],
     "graphics": [
+        {
+            "funcKey": "bitmap_bounding_circle",
+            "title": "Draw bitmaps surrounded by circles\r",
+            "url": "/api/graphics/#bitmap-bounding-circle",
+            "functions": [
+                "open_window",
+                "load_bitmap",
+                "point_at",
+                "quit_requested",
+                "process_events",
+                "clear_screen_to_white",
+                "draw_bitmap",
+                "draw_circle_record",
+                "color_black",
+                "refresh_screen",
+                "close_all_windows"
+            ]
+        },
         {
             "funcKey": "clear_screen",
             "title": "Background Color",
             "url": "/api/graphics/#clear-screen",
             "functions": [
                 "open_window",
-                "clear_screen",
                 "color_blue",
                 "refresh_screen",
                 "delay",
@@ -516,7 +575,7 @@
         },
         {
             "funcKey": "draw_bitmap_named",
-            "title": "SplashKit Logo\r",
+            "title": "SplashKit Logo",
             "url": "/api/graphics/#draw-bitmap-named",
             "functions": [
                 "open_window",
@@ -525,7 +584,6 @@
                 "process_events",
                 "clear_screen",
                 "rgb_color",
-                "draw_bitmap_named",
                 "refresh_screen",
                 "close_all_windows",
                 "download_sound_effect",
@@ -551,7 +609,6 @@
                 "color_red",
                 "fill_circle_on_bitmap",
                 "rgba_color",
-                "draw_circle_on_bitmap",
                 "rnd_range",
                 "window_close_requested",
                 "process_events",
@@ -571,7 +628,6 @@
                 "color_white",
                 "rnd_int",
                 "rgb_color",
-                "draw_circle_on_window",
                 "refresh_screen",
                 "delay",
                 "close_all_windows"
@@ -587,7 +643,6 @@
                 "screen_center",
                 "clear_screen",
                 "color_white",
-                "draw_circle_record",
                 "color_red",
                 "color_blue",
                 "color_orange",
@@ -605,7 +660,6 @@
                 "open_window",
                 "clear_screen",
                 "color_white",
-                "draw_ellipse",
                 "random_rgb_color",
                 "refresh_screen",
                 "delay",
@@ -620,7 +674,6 @@
                 "open_window",
                 "clear_screen",
                 "color_black",
-                "draw_line",
                 "color_yellow",
                 "color_green",
                 "color_teal",
@@ -644,7 +697,6 @@
                 "create_bitmap",
                 "clear_bitmap",
                 "color_white",
-                "draw_line_on_bitmap",
                 "color_green",
                 "point",
                 "fill_circle_on_bitmap",
@@ -665,7 +717,6 @@
                 "open_window",
                 "clear_screen",
                 "color_black",
-                "draw_line_on_window",
                 "color_yellow",
                 "color_green",
                 "color_teal",
@@ -711,7 +762,6 @@
                 "open_window",
                 "clear_screen",
                 "color_white",
-                "draw_quad",
                 "color_black",
                 "color_green",
                 "color_red",
@@ -732,7 +782,6 @@
                 "color_white",
                 "color_blue",
                 "quad_from",
-                "draw_quad_on_bitmap",
                 "draw_line_on_bitmap",
                 "window_close_requested",
                 "process_events",
@@ -753,7 +802,6 @@
                 "window_width",
                 "clear_screen",
                 "color_white",
-                "draw_quad_on_window",
                 "color_black",
                 "color_green",
                 "color_red",
@@ -771,7 +819,6 @@
                 "open_window",
                 "clear_screen",
                 "color_white",
-                "draw_rectangle",
                 "random_rgb_color",
                 "refresh_screen",
                 "delay",
@@ -785,7 +832,6 @@
             "functions": [
                 "open_window",
                 "clear_screen_to_white",
-                "draw_triangle",
                 "color_red",
                 "fill_circle",
                 "color_blue",
@@ -808,7 +854,6 @@
                 "clear_bitmap",
                 "color_light_blue",
                 "peak",
-                "draw_triangle_on_bitmap",
                 "color_gray",
                 "window_close_requested",
                 "process_events",
@@ -826,7 +871,6 @@
                 "open_window",
                 "clear_screen",
                 "color_white",
-                "draw_triangle_on_window",
                 "random_rgb_color",
                 "refresh_screen",
                 "delay",
@@ -841,7 +885,6 @@
                 "open_window",
                 "clear_screen",
                 "color_white",
-                "fill_circle",
                 "color_blue",
                 "refresh_screen",
                 "delay",
@@ -864,7 +907,6 @@
                 "color_blue",
                 "color_violet",
                 "enumerate",
-                "fill_circle_on_bitmap",
                 "eyes",
                 "color_black",
                 "window_close_requested",
@@ -883,7 +925,6 @@
                 "open_window",
                 "clear_screen",
                 "color_white",
-                "fill_circle_on_window",
                 "color_red",
                 "color_yellow",
                 "color_green",
@@ -900,7 +941,6 @@
                 "open_window",
                 "clear_screen",
                 "color_white",
-                "fill_ellipse",
                 "color_blue",
                 "draw_rectangle",
                 "color_red",
@@ -922,7 +962,6 @@
                 "clear_bitmap",
                 "rgba_color",
                 "ripples",
-                "fill_ellipse_on_bitmap",
                 "window_close_requested",
                 "process_events",
                 "draw_bitmap",
@@ -940,7 +979,6 @@
                 "open_window",
                 "clear_screen",
                 "color_white",
-                "fill_quad",
                 "color_black",
                 "color_green",
                 "color_red",
@@ -960,7 +998,6 @@
                 "clear_bitmap",
                 "rgba_color",
                 "quad_from",
-                "fill_quad_on_bitmap",
                 "color_white",
                 "window_close_requested",
                 "process_events",
@@ -980,7 +1017,6 @@
                 "window_width",
                 "clear_screen",
                 "color_white",
-                "fill_quad_on_window",
                 "color_black",
                 "color_green",
                 "color_red",
@@ -997,7 +1033,6 @@
             "functions": [
                 "open_window",
                 "clear_screen_to_white",
-                "fill_rectangle",
                 "color_blue",
                 "refresh_screen",
                 "delay",
@@ -1006,12 +1041,11 @@
         },
         {
             "funcKey": "fill_rectangle_on_bitmap",
-            "title": "Cityscape\r",
+            "title": "Cityscape",
             "url": "/api/graphics/#fill-rectangle-on-bitmap",
             "functions": [
                 "open_window",
                 "load_bitmap",
-                "fill_rectangle_on_bitmap",
                 "color_black",
                 "color_orange",
                 "color_yellow",
@@ -1036,7 +1070,6 @@
                 "rectangle_from",
                 "clear_window",
                 "color_white",
-                "fill_rectangle_on_window",
                 "color_blue",
                 "refresh_window",
                 "color_red",
@@ -1057,7 +1090,6 @@
                 "rectangle_from",
                 "clear_window",
                 "color_white",
-                "fill_rectangle_on_window_record",
                 "color_blue",
                 "refresh_window",
                 "color_red",
@@ -1072,7 +1104,6 @@
             "functions": [
                 "open_window",
                 "clear_screen_to_white",
-                "fill_triangle",
                 "color_red",
                 "refresh_screen",
                 "delay",
@@ -1081,7 +1112,7 @@
         },
         {
             "funcKey": "fill_triangle_on_bitmap",
-            "title": "Hooray! A Red Hat\r",
+            "title": "Hooray! A Red Hat",
             "url": "/api/graphics/#fill-triangle-on-bitmap",
             "functions": [
                 "open_window",
@@ -1092,7 +1123,6 @@
                 "draw_bitmap",
                 "refresh_screen",
                 "delay",
-                "fill_triangle_on_bitmap",
                 "color_red",
                 "draw_bitmap_with_options",
                 "option_rotate_bmp",
@@ -1112,7 +1142,6 @@
                 "window_y",
                 "clear_window",
                 "color_white",
-                "fill_triangle_on_window",
                 "color_blue",
                 "refresh_window",
                 "color_red",
@@ -1134,7 +1163,6 @@
                 "point_at",
                 "clear_window",
                 "color_white",
-                "fill_triangle_on_window_record",
                 "color_blue",
                 "refresh_window",
                 "color_red",
@@ -1144,7 +1172,7 @@
         },
         {
             "funcKey": "free_font",
-            "title": "Freeing Fonts\r",
+            "title": "Freeing Fonts",
             "url": "/api/graphics/#free-font",
             "functions": [
                 "open_window",
@@ -1158,7 +1186,6 @@
                 "get_system_font",
                 "refresh_screen",
                 "key_typed",
-                "free_font",
                 "close_all_windows"
             ]
         },
@@ -1168,7 +1195,6 @@
             "url": "/api/graphics/#has-font",
             "functions": [
                 "write",
-                "has_font",
                 "font_named",
                 "write_line",
                 "load_font"
@@ -1180,16 +1206,14 @@
             "url": "/api/graphics/#has-font-name-as-string",
             "functions": [
                 "load_font",
-                "has_font_name_as_string",
                 "write_line"
             ]
         },
         {
             "funcKey": "load_font",
-            "title": "Using Fonts\r",
+            "title": "Using Fonts",
             "url": "/api/graphics/#load-font",
             "functions": [
-                "load_font",
                 "open_window",
                 "draw_text",
                 "color_black",
@@ -1206,7 +1230,6 @@
                 "open_window",
                 "clear_screen",
                 "color_white",
-                "refresh_screen",
                 "delay",
                 "fill_ellipse",
                 "color_bright_green",
@@ -1219,7 +1242,7 @@
         },
         {
             "funcKey": "text_width_font_named",
-            "title": "Underline Text using Text Width\r",
+            "title": "Underline Text using Text Width",
             "url": "/api/graphics/#text-width-font-named",
             "functions": [
                 "open_window",
@@ -1229,7 +1252,6 @@
                 "set_font_style_name_as_string",
                 "draw_text_font_as_string",
                 "color_black",
-                "text_width_font_named",
                 "fill_rectangle",
                 "refresh_screen",
                 "delay",
@@ -1245,8 +1267,7 @@
             "functions": [
                 "write_line",
                 "read_line",
-                "convert_to_integer",
-                "dec_to_hex"
+                "convert_to_integer"
             ]
         },
         {
@@ -1255,8 +1276,7 @@
             "url": "/api/networking/#hex-to-dec-string",
             "functions": [
                 "write_line",
-                "read_line",
-                "hex_to_dec_string"
+                "read_line"
             ]
         },
         {
@@ -1266,8 +1286,7 @@
             "functions": [
                 "write_line",
                 "format",
-                "read_line",
-                "ipv4_to_dec"
+                "read_line"
             ]
         },
         {
@@ -1277,15 +1296,14 @@
             "functions": [
                 "write_line",
                 "format",
-                "read_line",
-                "ipv4_to_hex"
+                "read_line"
             ]
         }
     ],
     "physics": [
         {
             "funcKey": "sprite_bitmap_collision",
-            "title": "Does SplashKit have bugs?\r",
+            "title": "Does SplashKit have bugs?",
             "url": "/api/physics/#sprite-bitmap-collision",
             "functions": [
                 "open_window",
@@ -1297,7 +1315,6 @@
                 "color_white",
                 "draw_sprite",
                 "draw_bitmap",
-                "sprite_bitmap_collision",
                 "write_line",
                 "refresh_screen",
                 "delay",
@@ -1306,7 +1323,7 @@
         },
         {
             "funcKey": "sprite_collision",
-            "title": "Colliding Sprites\r",
+            "title": "Colliding Sprites",
             "url": "/api/physics/#sprite-collision",
             "functions": [
                 "open_window",
@@ -1317,7 +1334,6 @@
                 "clear_screen",
                 "color_white",
                 "draw_sprite",
-                "sprite_collision",
                 "write_line",
                 "refresh_screen",
                 "delay",
@@ -1326,7 +1342,7 @@
         },
         {
             "funcKey": "sprite_point_collision",
-            "title": "Determine Sprite Collisions with Points\r",
+            "title": "Determine Sprite Collisions with Points",
             "url": "/api/physics/#sprite-point-collision",
             "functions": [
                 "open_window",
@@ -1341,7 +1357,6 @@
                 "color_black",
                 "circle_at",
                 "color_red",
-                "sprite_point_collision",
                 "write_line",
                 "refresh_screen",
                 "delay",
@@ -1350,7 +1365,7 @@
         },
         {
             "funcKey": "sprite_rectangle_collision",
-            "title": "Detect Sprite Collisions with Rectangles\r",
+            "title": "Detect Sprite Collisions with Rectangles",
             "url": "/api/physics/#sprite-rectangle-collision",
             "functions": [
                 "open_window",
@@ -1365,7 +1380,6 @@
                 "fill_rectangle_record",
                 "color_black",
                 "color_red",
-                "sprite_rectangle_collision",
                 "write_line",
                 "refresh_screen",
                 "delay",
@@ -1373,15 +1387,31 @@
             ]
         }
     ],
+    "raspberry": [
+        {
+            "funcKey": "raspi_i2c_write_data",
+            "title": "LED Text Scrolling",
+            "url": "/api/raspberry/#raspi-i2c-write-data",
+            "functions": [
+                "write_line",
+                "raspi_init",
+                "raspi_i2c_open",
+                "raspi_i2c_write",
+                "len",
+                "get_alpha_font_14_seg",
+                "delay",
+                "raspi_cleanup"
+            ]
+        }
+    ],
     "sprites": [
         {
             "funcKey": "create_sprite",
-            "title": "Creating a Player Sprite\r",
+            "title": "Creating a Player Sprite",
             "url": "/api/sprites/#create-sprite",
             "functions": [
                 "open_window",
                 "load_bitmap",
-                "create_sprite",
                 "sprite_set_x",
                 "sprite_set_y",
                 "sprite_x",
@@ -1395,7 +1425,7 @@
         },
         {
             "funcKey": "draw_sprite",
-            "title": "Drawing a Player Sprite\r",
+            "title": "Drawing a Player Sprite",
             "url": "/api/sprites/#draw-sprite",
             "functions": [
                 "open_window",
@@ -1406,7 +1436,6 @@
                 "sprite_set_y",
                 "clear_screen",
                 "color_black",
-                "draw_sprite",
                 "refresh_screen",
                 "delay",
                 "close_all_windows"
@@ -1414,7 +1443,7 @@
         },
         {
             "funcKey": "free_sprite",
-            "title": "Freeing a Sprite\r",
+            "title": "Freeing a Sprite",
             "url": "/api/sprites/#free-sprite",
             "functions": [
                 "open_window",
@@ -1431,13 +1460,12 @@
                 "update_sprite",
                 "refresh_screen",
                 "key_typed",
-                "free_sprite",
                 "close_all_windows"
             ]
         },
         {
             "funcKey": "sprite_set_position",
-            "title": "Setting Sprite Position\r",
+            "title": "Setting Sprite Position",
             "url": "/api/sprites/#sprite-set-position",
             "functions": [
                 "open_window",
@@ -1452,13 +1480,12 @@
                 "refresh_screen",
                 "delay",
                 "point_at",
-                "sprite_set_position",
                 "close_all_windows"
             ]
         },
         {
             "funcKey": "sprite_set_velocity",
-            "title": "Setting Velocity of Sprite\r",
+            "title": "Setting Velocity of Sprite",
             "url": "/api/sprites/#sprite-set-velocity",
             "functions": [
                 "open_window",
@@ -1470,7 +1497,6 @@
                 "vector_to",
                 "quit_requested",
                 "process_events",
-                "sprite_set_velocity",
                 "update_sprite",
                 "clear_screen",
                 "color_black",
@@ -1481,14 +1507,13 @@
         },
         {
             "funcKey": "sprite_set_x",
-            "title": "Setting Sprite X-coordinate\r",
+            "title": "Setting Sprite X-coordinate",
             "url": "/api/sprites/#sprite-set-x",
             "functions": [
                 "open_window",
                 "load_bitmap",
                 "create_sprite",
                 "bitmap_named",
-                "sprite_set_x",
                 "clear_screen",
                 "color_black",
                 "draw_sprite",
@@ -1499,14 +1524,13 @@
         },
         {
             "funcKey": "sprite_set_y",
-            "title": "Setting Sprite Y-coordinate\r",
+            "title": "Setting Sprite Y-coordinate",
             "url": "/api/sprites/#sprite-set-y",
             "functions": [
                 "open_window",
                 "load_bitmap",
                 "create_sprite",
                 "bitmap_named",
-                "sprite_set_y",
                 "clear_screen",
                 "color_black",
                 "draw_sprite",
@@ -1517,7 +1541,7 @@
         },
         {
             "funcKey": "sprite_x",
-            "title": "Sprite x-coordinate\r",
+            "title": "Sprite x-coordinate",
             "url": "/api/sprites/#sprite-x",
             "functions": [
                 "open_window",
@@ -1525,7 +1549,6 @@
                 "create_sprite",
                 "bitmap_named",
                 "sprite_set_x",
-                "sprite_x",
                 "clear_screen",
                 "color_black",
                 "draw_sprite",
@@ -1538,7 +1561,7 @@
         },
         {
             "funcKey": "sprite_y",
-            "title": "Sprite y-coordinate\r",
+            "title": "Sprite y-coordinate",
             "url": "/api/sprites/#sprite-y",
             "functions": [
                 "open_window",
@@ -1547,7 +1570,6 @@
                 "bitmap_named",
                 "sprite_set_x",
                 "sprite_set_y",
-                "sprite_y",
                 "clear_screen",
                 "color_black",
                 "draw_sprite",
@@ -1566,7 +1588,6 @@
             "url": "/api/terminal/#write",
             "functions": [
                 "write_line",
-                "write",
                 "delay"
             ]
         },
@@ -1576,7 +1597,6 @@
             "url": "/api/terminal/#write-char",
             "functions": [
                 "write",
-                "write_char",
                 "write_line"
             ]
         },
@@ -1586,8 +1606,7 @@
             "url": "/api/terminal/#write-double",
             "functions": [
                 "write_line",
-                "write",
-                "write_double"
+                "write"
             ]
         },
         {
@@ -1596,34 +1615,28 @@
             "url": "/api/terminal/#write-int",
             "functions": [
                 "write_line",
-                "write",
-                "write_int"
+                "write"
             ]
         },
         {
             "funcKey": "write_line",
             "title": "Hello World string",
             "url": "/api/terminal/#write-line",
-            "functions": [
-                "write_line"
-            ]
+            "functions": []
         },
         {
             "funcKey": "write_line_empty",
             "title": "Adding Blank Lines",
             "url": "/api/terminal/#write-line-empty",
             "functions": [
-                "write_line",
-                "write_line_empty"
+                "write_line"
             ]
         },
         {
             "funcKey": "write_line_int",
             "title": "Printing Integers",
             "url": "/api/terminal/#write-line-int",
-            "functions": [
-                "write_line_int"
-            ]
+            "functions": []
         }
     ],
     "utilities": [
@@ -1632,8 +1645,7 @@
             "title": "Checking if a string contains a word",
             "url": "/api/utilities/#contains",
             "functions": [
-                "write_line",
-                "contains"
+                "write_line"
             ]
         },
         {
@@ -1646,7 +1658,6 @@
                 "read_line",
                 "rate",
                 "period",
-                "convert_to_double",
                 "delay"
             ]
         },
@@ -1657,17 +1668,15 @@
             "functions": [
                 "write_line",
                 "read_line",
-                "is_integer",
-                "convert_to_integer"
+                "is_integer"
             ]
         },
         {
             "funcKey": "current_ticks",
-            "title": "How many ticks?\r",
+            "title": "How many ticks?",
             "url": "/api/utilities/#current-ticks",
             "functions": [
                 "write_line",
-                "current_ticks",
                 "second",
                 "delay",
                 "seconds"
@@ -1681,7 +1690,6 @@
                 "write_with_delay",
                 "split",
                 "write",
-                "delay",
                 "write_line"
             ]
         },
@@ -1691,8 +1699,7 @@
             "url": "/api/utilities/#index-of",
             "functions": [
                 "write_line",
-                "read_line",
-                "index_of"
+                "read_line"
             ]
         },
         {
@@ -1701,7 +1708,6 @@
             "url": "/api/utilities/#is-double",
             "functions": [
                 "write",
-                "is_double",
                 "write_line"
             ]
         },
@@ -1713,7 +1719,6 @@
                 "write_line",
                 "read_line",
                 "valid",
-                "is_integer",
                 "convert_to_integer"
             ]
         },
@@ -1722,7 +1727,6 @@
             "title": "How long is a string?",
             "url": "/api/utilities/#length-of",
             "functions": [
-                "length_of",
                 "write_line"
             ]
         },
@@ -1733,7 +1737,6 @@
             "functions": [
                 "write_line",
                 "delay",
-                "rnd",
                 "choice",
                 "read_line"
             ]
@@ -1744,8 +1747,7 @@
             "url": "/api/utilities/#rnd-int",
             "functions": [
                 "write_line",
-                "delay",
-                "rnd_int"
+                "delay"
             ]
         },
         {
@@ -1754,8 +1756,7 @@
             "url": "/api/utilities/#rnd-range",
             "functions": [
                 "write_line",
-                "read_line",
-                "rnd_range"
+                "read_line"
             ]
         },
         {
@@ -1765,8 +1766,7 @@
             "functions": [
                 "write_line",
                 "CAPS",
-                "read_line",
-                "to_lowercase"
+                "read_line"
             ]
         },
         {
@@ -1776,7 +1776,6 @@
             "functions": [
                 "write",
                 "read_line",
-                "to_uppercase",
                 "write_line",
                 "len",
                 "word",
@@ -1788,8 +1787,7 @@
             "title": "Remove whitespace from a string",
             "url": "/api/utilities/#trim",
             "functions": [
-                "write_line",
-                "trim"
+                "write_line"
             ]
         }
     ]
