@@ -41,7 +41,7 @@ function getAvailableExamplesFunctionUsage(dir) {
                     const title = textFile.split("\n")[0];
                     const pyFileMatch = fileNameRegex.exec(pyFile);
                     try {
-                        
+
                         const folderKey = folder.toLowerCase();
                         const funcKey = pyFileMatch[1].toLowerCase();
 
@@ -60,11 +60,11 @@ function getAvailableExamplesFunctionUsage(dir) {
                             };
                             result[folderKey].push(funcEntry);
                         }
-                        
+
                         let match;
                         while ((match = functionCallRegex.exec(pythonFile)) !== null) {
                             const funcName = match[1];
-                            if (!funcEntry.functions.includes(funcName) && !ignoreKey.has(funcName)) {
+                            if (!funcEntry.functions.includes(funcName) && !ignoreKey.has(funcName) && funcKey != funcName) {
                                 funcEntry.functions.push(funcName)
                             }
                         }
@@ -75,8 +75,8 @@ function getAvailableExamplesFunctionUsage(dir) {
                     }
                 })
             } else {
-                if (folder != "CONTRIBUTING.mdx")
-                console.log(`${folder} is not a diectory`);
+                if (folder != "CONTRIBUTING.mdx" && folder != ".DS_Store")
+                    console.log(`${folder} is not a diectory`);
             }
         } catch (err) {
             console.log(`Error loading JSON in folder: ${folder}`);
@@ -107,9 +107,9 @@ function generateAvailableFunctionsInUsageExamples(srcDirectory, outputDirectory
 // ==============================================================================
 
 console.log(kleur.cyan('------------------------------------------------------------------------------'));
-console.log(kleur.magenta('Usage Example Scrapping:'));
+console.log(kleur.magenta('Usage Example Scraping:'));
 console.log(kleur.cyan('------------------------------------------------------------------------------\n'));
 
 generateAvailableFunctionsInUsageExamples(srcDirectory, outputDirectory);
 
-console.log(kleur.green("All examples have been scrapped successfully.\n"));
+console.log(kleur.green("All examples have been scraped successfully.\n"));
