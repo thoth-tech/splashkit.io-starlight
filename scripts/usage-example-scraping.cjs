@@ -7,7 +7,7 @@ const path = require('path'); // Handle and transform file paths
 
 
 const srcDirectory = "./public/usage-examples"; //directory to be scraped
-const outputDirectory = "./scripts/json-files/examples.json" //directory where "Usage Example" functions will be savedc
+const outputDirectory = "./scripts/json-files/usage-example-references.json" //directory where "Usage Example" functions will be savedc
 
 // ------------------------------------------------------------------------------
 // Scraping all of the folders in usage example and retrieving the functions and title 
