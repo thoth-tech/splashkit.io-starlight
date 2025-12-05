@@ -1,0 +1,77 @@
+---
+title: SplashKit
+description: 使用 SplashKit 开始构建您的游戏和应用程序。
+
+template: splash
+
+hero:
+  tagline: SplashKit 是一个面向初学者的全能软件工具包。
+  image:
+    file: ../../../assets/box.webp
+  actions:
+    - text: API 文档
+      link: /zh-cn/api/
+      icon: document
+      variant: secondary
+    - text: 教程指南
+      link: /zh-cn/guides/
+      icon: open-book
+      variant: minimal
+    - text: 安装指南
+      link: /zh-cn/installation/
+      icon: setting
+      variant: primary
+---
+
+import { Card, LinkCard, CardGrid } from "@astrojs/starlight/components";
+
+#### 要安装 SplashKit，请将以下命令复制并粘贴到您的终端中
+
+```shell
+bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
+```
+
+<center>查看 [安装指南](/zh-cn/installation/) 了解更多详情。</center>
+
+## 特性
+
+<CardGrid>
+  <Card title="简易集成" icon="carbon:ibm-cloud-pak-integration">
+    SplashKit SDK 提供与您现有开发环境的无缝集成，
+    让您轻松将强大的图形和游戏开发功能整合到您的项目中。
+  </Card>
+  <Card title="跨平台支持" icon="system-uicons:airplay">
+    使用 SplashKit SDK 开发在多个平台上运行的游戏和应用程序，
+    包括 Windows、macOS、Linux 等，支持单一代码库。
+    支持 **C++、C# 和 Python**。
+  </Card>
+  <Card title="丰富的图形和动画" icon="clarity:animation-solid">
+    使用 SplashKit 的综合图形和动画工具集创建令人惊叹的视觉效果和
+    引人入胜的动画。轻松将您的想法变为现实。
+  </Card>
+  <Card title="游戏开发变得简单" icon="icon-park-outline:game-two">
+    无论您是初学者还是经验丰富的游戏开发者，SplashKit SDK 
+    都提供用户友好的界面和广泛的功能来简化游戏开发过程。
+  </Card>
+  <Card title="详尽的文档" icon="iconoir:google-docs">
+    访问详细的文档和教程，帮助您快速上手并充分利用 
+    SplashKit SDK。按照自己的节奏学习，探索无限可能。
+  </Card>
+  <Card title="持续更新和支持" icon="grommet-icons:troubleshoot">
+    <LinkCard
+    title="故障排除"
+    icon="pencil"
+    description="MacOS、Windows、Linux 和 WSL 常见问题解答"
+    href="/zh-cn/troubleshoot/"
+    />
+  </Card>
+</CardGrid>
+
+<footer>
+<center>
+
+  SplashKit 是一个由 [核心团队](https://github.com/orgs/splashkit/people) 维护的开源项目，
+  得到了所有 [贡献者](https://github.com/orgs/splashkit/people) 的帮助。
+  除非另有说明，SplashKit 采用 [GPL](https://www.gnu.org/licenses/gpl-3.0.en.html#content) 许可证。
+</center>
+</footer>
