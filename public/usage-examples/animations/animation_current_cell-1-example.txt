@@ -1,0 +1,16 @@
+Animation Current Cell — Show the current animation cell
+
+Small example demonstrating how to retrieve the current cell index from an Animation and use it.
+
+:::note
+This example loads an animation script (kermit.txt), creates an Animation (WalkFront), and prints the current cell index while updating the animation.
+You can verify the resource script with the bundled resources zip below.
+:::
+
+Resources: /usage-examples/animations/animation_count-1-example-resources.zip
+
+To quickly verify this example locally without installing SplashKit, run the included verification script:
+
+```powershell
+py -3 public/usage-examples/animations/animation_current_cell-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt
+```

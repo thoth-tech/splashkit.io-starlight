@@ -1,0 +1,7 @@
+Has Animation Script — check if frames for a named animation are loaded globally
+
+Checks whether SplashKit has frames loaded for a given animation name. This will
+also succeed if frames were loaded without a specific script name (filename is used).
+
+Usage (runner):
+py -3 public/usage-examples/animations/has_animation_script-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront

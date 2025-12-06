@@ -1,0 +1,8 @@
+// explosion.txt — small example script for explosion animations
+// Contains a vector entry and a sound entry used by some examples.
+
+i: Explosion,0
+v: [0-10],-1.5,20
+s: 0,boom_sound,explosion.ogg
+
+// End of file

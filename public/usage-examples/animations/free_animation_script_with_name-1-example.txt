@@ -1,0 +1,7 @@
+Free Animation Script (by name) — Dispose named script resources
+
+Free a loaded Animation Script by its name. Use this when you tracked a
+script with an identifier and want to release its loaded frames by name.
+
+Usage (runner):
+py -3 public/usage-examples/animations/free_animation_script_with_name-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkingScript
