@@ -1,0 +1,29 @@
+---
+title: "Basic Sprite"
+description: "Load and draw a sprite on the screen using SplashKit."
+language: cpp
+---
+
+```cpp
+#include "splashkit.h"
+
+int main()
+{
+    open_window("Sprite Example", 800, 600);
+
+    // Load a bitmap and convert to a sprite
+    bitmap bmp = load_bitmap("player", "player.png");
+    sprite player = create_sprite(bmp);
+
+    while (!quit_requested())
+    {
+        process_events();
+        clear_screen(COLOR_WHITE);
+
+        draw_sprite(player);
+
+        refresh_screen();
+    }
+
+    return 0;
+}
