@@ -1,17 +1,33 @@
-using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-public class Program
+OpenWindow("Update Animation Example", 800, 600);
+
+// Load animation script and create animation
+var script = LoadAnimationScript("kermit", "kermit.txt");
+var anim = CreateAnimation(script, "SplashKitOnlineDemo");
+
+// Animation loop
+while (!QuitRequested() && !AnimationEnded(anim))
 {
-    public static void Main()
-    {
-        var script = SplashKit.LoadAnimationScript("WalkingScript", "kermit.txt");
-        var anim = SplashKit.CreateAnimation(script, "WalkFront");
+    ProcessEvents();
 
-        // Default update call
-        SplashKit.UpdateAnimation(anim);
-        SplashKit.WriteLine("Animation updated (default update).");
+    ClearScreen(ColorWhite());
 
-        SplashKit.FreeAnimation(anim);
-        SplashKit.FreeAnimationScript(script);
-    }
+    // Display current animation state
+    DrawText("Update Animation Demo", ColorBlack(), 300, 100);
+    DrawText($"Current Cell: {AnimationCurrentCell(anim)}", ColorBlue(), 300, 200);
+    DrawText($"Frame Time: {AnimationFrameTime(anim)}", ColorGreen(), 300, 250);
+    DrawText($"Animation Ended: {(AnimationEnded(anim) ? "Yes" : "No")}", ColorPurple(), 300, 300);
+    DrawText("Press ESC to exit", ColorGray(), 320, 500);
+
+    // Update the animation
+    UpdateAnimation(anim);
+
+    RefreshScreen(60);
 }
+
+// Free resources
+FreeAnimation(anim);
+FreeAnimationScript(script);
+
+CloseAllWindows();

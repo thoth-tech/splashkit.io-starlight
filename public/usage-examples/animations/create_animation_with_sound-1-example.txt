@@ -1,7 +1,0 @@
-Create Animation (by name + sound) — create an Animation from an AnimationScript using a name and optionally play starting-frame audio
-
-This example demonstrates `create_animation(script, "WalkFront", True)` — creating an Animation from a loaded AnimationScript using an identifier name, and optionally playing a sound defined at the starting frame.
-
-To test locally:
-
-py -3 public/usage-examples/animations/create_animation_with_sound-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront True

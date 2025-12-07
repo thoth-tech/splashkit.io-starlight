@@ -1,14 +1,23 @@
-using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-public class Program
+OpenWindow("Load Animation Script", 800, 600);
+
+// Load an animation script from file
+var kermitScript = LoadAnimationScript("kermit", "kermit.txt");
+
+// Check if the script was loaded successfully
+if (HasAnimationScript("kermit"))
 {
-    public static void Main()
-    {
-        // Register 'WalkingScript' from the kermit.txt file
-        var script = SplashKit.LoadAnimationScript("WalkingScript", "kermit.txt");
-        SplashKit.WriteLine("Loaded animation script -> name: WalkingScript");
-
-        // Cleanup when finished
-        SplashKit.FreeAnimationScript(script);
-    }
+    ClearScreen(ColorWhite());
+    DrawText("Animation Script Loaded Successfully!", ColorGreen(), 250, 280);
+    DrawText("Script Name: kermit", ColorBlack(), 300, 320);
+    DrawText($"Animation Count: {AnimationCount(kermitScript)}", ColorBlue(), 280, 360);
+    RefreshScreen();
 }
+
+Delay(5000);
+
+// Free the animation script when done
+FreeAnimationScript(kermitScript);
+
+CloseAllWindows();

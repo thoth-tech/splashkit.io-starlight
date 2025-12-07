@@ -1,14 +1,32 @@
 using SplashKitSDK;
 
-public class Program
+namespace LoadAnimationScriptExample
 {
-    public static void Main()
+    public class Program
     {
-        // Load the animation script under a name
-        var script = SplashKit.LoadAnimationScript("WalkingScript", "kermit.txt");
-        SplashKit.WriteLine("Loaded animation script -> name: WalkingScript");
+        public static void Main()
+        {
+            SplashKit.OpenWindow("Load Animation Script", 800, 600);
 
-        // Use instance method to clean up
-        script.Free();
+            // Load an animation script from file
+            AnimationScript kermitScript = SplashKit.LoadAnimationScript("kermit", "kermit.txt");
+
+            // Check if the script was loaded successfully
+            if (SplashKit.HasAnimationScript("kermit"))
+            {
+                SplashKit.ClearScreen(Color.White);
+                SplashKit.DrawText("Animation Script Loaded Successfully!", Color.Green, 250, 280);
+                SplashKit.DrawText("Script Name: kermit", Color.Black, 300, 320);
+                SplashKit.DrawText($"Animation Count: {SplashKit.AnimationCount(kermitScript)}", Color.Blue, 280, 360);
+                SplashKit.RefreshScreen();
+            }
+
+            SplashKit.Delay(5000);
+
+            // Free the animation script when done
+            SplashKit.FreeAnimationScript(kermitScript);
+
+            SplashKit.CloseAllWindows();
+        }
     }
 }

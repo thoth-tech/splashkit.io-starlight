@@ -1,8 +1,1 @@
-Update Animation — Advance animation time (default behavior)
-
-Updates an Animation by advancing its internal time and possibly moving to
-the next frame. Use the no-arg version when your game loop calls update
-without specifying the delta explicitly.
-
-Usage (runner):
-py -3 public/usage-examples/animations/update_animation-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront
+Animation Update Loop

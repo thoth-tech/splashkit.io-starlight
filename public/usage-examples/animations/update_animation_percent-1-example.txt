@@ -1,8 +1,0 @@
-Update Animation (percent) — advance by a specific delta time
-
-Updates an Animation by a given percent/delta amount. Use this when you have
-explicit control of the timestep, e.g. update_animation(anim, 0.25) advances
-the animation's frame time by 0.25 units.
-
-Usage (runner):
-py -3 public/usage-examples/animations/update_animation_percent-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront 0.25

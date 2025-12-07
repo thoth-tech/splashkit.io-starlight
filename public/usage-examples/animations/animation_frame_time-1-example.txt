@@ -1,15 +1,1 @@
-Animation Frame Time — How long has the animation been on the current frame
-
-Short example showing how to read the amount of time spent in the current frame (FrameTime).
-
-:::note
-This example uses the `explosion.txt` resource to demonstrate frame durations. The verification runner parses the script and reports the duration for the first frame of the `explosion` animation.
-:::
-
-Resources: /usage-examples/animations/Resources/animations/explosion.txt
-
-Verify locally (no SplashKit required):
-
-```powershell
-py -3 public/usage-examples/animations/animation_frame_time-1-example-runner.py public/usage-examples/animations/Resources/animations/explosion.txt
-```
+Animation Frame Time Display

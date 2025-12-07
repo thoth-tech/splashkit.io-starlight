@@ -1,15 +1,1 @@
-Animation Ended — Check whether an animation has finished
-
-Example showing how to check when an Animation has ended. Uses the `explosion.txt` resource which contains frames where some have no `next` frame (end) and others loop.
-
-:::note
-The verification runner below parses `explosion.txt` and determines whether a given animation's frames include a terminal frame (no `next` field).
-:::
-
-Resources: /usage-examples/animations/Resources/animations/explosion.txt
-
-Verify locally (no SplashKit required):
-
-```powershell
-py -3 public/usage-examples/animations/animation_ended-1-example-runner.py public/usage-examples/animations/Resources/animations/explosion.txt
-```
+Animation Ended Check

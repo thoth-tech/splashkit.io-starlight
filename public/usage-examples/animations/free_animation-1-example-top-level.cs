@@ -1,18 +1,61 @@
-using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-public class Program
+OpenWindow("Free Animation Example", 800, 600);
+
+// Load animation script
+var script = LoadAnimationScript("kermit", "kermit.txt");
+
+// Create animation
+var anim = CreateAnimation(script, "SplashKitOnlineDemo");
+bool animationExists = true;
+
+while (!QuitRequested())
 {
-    public static void Main()
+    ProcessEvents();
+
+    ClearScreen(ColorWhite());
+
+    // Display instructions
+    DrawText("Free Animation Demo", ColorBlack(), 300, 100);
+
+    if (animationExists)
     {
-        // Load animation script and create animation from the script name
-        var script = SplashKit.LoadAnimationScript("WalkingScript", "kermit.txt");
-        var anim = SplashKit.CreateAnimation(script, "WalkFront");
+        DrawText($"Current Cell: {AnimationCurrentCell(anim)}", ColorBlue(), 300, 200);
+        DrawText("Animation Status: Active", ColorGreen(), 300, 250);
+        DrawText("Press F to FREE the animation", ColorOrange(), 270, 400);
 
-        // Free the animation instance when no longer needed
-        SplashKit.FreeAnimation(anim);
-        SplashKit.WriteLine("Animation freed.");
-
-        // Clean up the script resource too
-        SplashKit.FreeAnimationScript(script);
+        UpdateAnimation(anim);
     }
+    else
+    {
+        DrawText("Animation Status: Freed", ColorRed(), 300, 250);
+        DrawText("Press C to CREATE new animation", ColorOrange(), 260, 400);
+    }
+
+    DrawText("Press ESC to exit", ColorGray(), 320, 500);
+
+    // Free animation when F is pressed
+    if (KeyTyped(KeyCode.FKey) && animationExists)
+    {
+        FreeAnimation(anim);
+        animationExists = false;
+    }
+
+    // Create new animation when C is pressed
+    if (KeyTyped(KeyCode.CKey) && !animationExists)
+    {
+        anim = CreateAnimation(script, "SplashKitOnlineDemo");
+        animationExists = true;
+    }
+
+    RefreshScreen(60);
 }
+
+// Final cleanup
+if (animationExists)
+{
+    FreeAnimation(anim);
+}
+FreeAnimationScript(script);
+
+CloseAllWindows();

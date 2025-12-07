@@ -1,0 +1,9 @@
+SplashKit Animation
+
+f:0,80,80,1
+
+i:WalkFront,0
+
+i:MoonWalkFront,0
+
+i:Dance,0

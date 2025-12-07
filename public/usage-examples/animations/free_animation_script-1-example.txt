@@ -1,7 +1,1 @@
-Free Animation Script — Dispose animation frames data
-
-Frees loaded animation frames data for an Animation Script. Use this when the
-script won't be used any further — for example when cleaning up program assets.
-
-Usage (runner):
-py -3 public/usage-examples/animations/free_animation_script-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt
+Free Animation Script Demo

@@ -1,7 +1,0 @@
-Assign Animation (by index) — attach an animation by index into the animation script
-
-This example demonstrates using `assign_animation` with an integer index (the position of the animation identifier in the script) so an animation can be attached to the script by index.
-
-To test locally:
-
-py -3 public/usage-examples/animations/assign_animation_index-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt 0

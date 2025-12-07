@@ -1,7 +1,0 @@
-Animation Script Name — retrieve the name of an animation script
-
-This example loads an animation script and prints its name.
-
-To test (locally):
-
-py -3 public/usage-examples/animations/animation_script_name-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt
