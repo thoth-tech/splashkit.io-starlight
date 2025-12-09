@@ -1,0 +1,53 @@
+---
+title: Windows (MSYS2) 安装指南
+sidebar:
+  label: MSYS2 安装
+---
+
+# 在 Windows 上使用 MSYS2 安装 SplashKit
+
+本指南将帮助您在 Windows 系统上使用 MSYS2 环境安装 SplashKit。
+
+## 前提条件
+
+在开始之前，请确保您的系统满足以下要求：
+- Windows 10 或更高版本
+- 管理员权限
+
+## 安装步骤
+
+### 1. 安装 MSYS2
+
+首先从 [MSYS2 官网](https://www.msys2.org/) 下载并安装 MSYS2。
+
+### 2. 更新包管理器
+
+```bash
+pacman -Syu
+```
+
+### 3. 安装开发工具
+
+```bash
+pacman -S base-devel mingw-w64-x86_64-toolchain
+```
+
+### 4. 安装 SplashKit
+
+使用我们的一键安装脚本：
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
+```
+
+## 验证安装
+
+安装完成后，验证 SplashKit 是否正确安装：
+
+```bash
+skm --version
+```
+
+---
+
+*详细的安装指南正在编写中，敬请期待。*

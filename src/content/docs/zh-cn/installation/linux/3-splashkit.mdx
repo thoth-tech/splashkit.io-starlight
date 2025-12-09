@@ -1,0 +1,64 @@
+---
+title: 安装 SplashKit
+description: 在 Linux 上安装 SplashKit
+sidebar:
+  label: 3. SplashKit
+  order: 3
+---
+
+import { Steps, Tabs, TabItem } from "@astrojs/starlight/components";
+
+[SplashKit](https://splashkit.io) 是一个面向初学者的全能软件工具包，可以让您更轻松地创建有趣且令人兴奋的程序，特别是图形用户界面（GUI）程序。
+
+按照以下步骤在 Linux 上设置 SplashKit，并开始快速轻松地构建交互式、视觉吸引人的应用程序！
+
+## 安装步骤
+
+<Steps>
+
+1. **运行 SplashKit 安装程序**
+
+    打开您的终端并粘贴以下命令来下载和安装 SplashKit：
+
+    ```shell
+    bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
+    ```
+
+2. **重启终端并测试安装**
+
+    重启终端后，运行以下命令来确认安装：
+
+    ```shell
+    skm
+    ```
+
+    您应该看到类似以下的消息：
+
+    ```shell
+    SplashKit is installed successfully!
+    Missing skm command. For help use 'skm help'
+    ```
+
+</Steps>
+
+:::note[可选安装命令]
+
+以下命令在初始安装脚本中运行，因此除非您遇到问题，否则不需要运行。
+
+- 要安装必要的依赖项并在 Linux 上本地构建 SplashKit 库，请使用：
+
+    ```shell
+    skm linux install
+    ```
+
+    :::caution[如果您遇到依赖项问题：]
+
+    请查看[安装依赖项时出错](/zh-cn/troubleshoot/linux/issue-3-error-installing-dependencies)故障排除页面。
+
+- 要将 SplashKit 安装到默认的全局位置，请使用：
+
+    ```shell
+    skm global install
+    ```
+
+:::
