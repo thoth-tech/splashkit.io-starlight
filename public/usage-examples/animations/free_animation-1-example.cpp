@@ -2,64 +2,48 @@
 
 int main()
 {
-    open_window("Free Animation Example", 800, 600);
-
+    write_line("=== Free Animation Example ===");
+    write_line("");
+    
     // Load animation script
-    animation_script script = load_animation_script("kermit", "kermit.txt");
+    write_line("Step 1: Loading animation script...");
+    animation_script script = load_animation_script("explosion", "explosion.txt");
+    write_line("✓ Script loaded");
+    write_line("");
 
     // Create animation
-    animation anim = create_animation(script, "SplashKitOnlineDemo");
-    bool animation_exists = true;
-
-    while (!quit_requested())
+    write_line("Step 2: Creating animation...");
+    animation anim = create_animation(script, "Explosion");
+    write_line("✓ Animation created");
+    write_line("  Name: " + animation_name(anim));
+    write_line("  Current Cell: " + std::to_string(animation_current_cell(anim)));
+    write_line("");
+    
+    // Use the animation
+    write_line("Step 3: Using animation (updating 5 times)...");
+    for (int i = 0; i < 5; i++)
     {
-        process_events();
-
-        clear_screen(COLOR_WHITE);
-
-        // Display instructions
-        draw_text("Free Animation Demo", COLOR_BLACK, 300, 100);
-
-        if (animation_exists)
-        {
-            draw_text("Current Cell: " + std::to_string(animation_current_cell(anim)), COLOR_BLUE, 300, 200);
-            draw_text("Animation Status: Active", COLOR_GREEN, 300, 250);
-            draw_text("Press F to FREE the animation", COLOR_ORANGE, 270, 400);
-
-            update_animation(anim);
-        }
-        else
-        {
-            draw_text("Animation Status: Freed", COLOR_RED, 300, 250);
-            draw_text("Press C to CREATE new animation", COLOR_ORANGE, 260, 400);
-        }
-
-        draw_text("Press ESC to exit", COLOR_GRAY, 320, 500);
-
-        // Free animation when F is pressed
-        if (key_typed(F_KEY) && animation_exists)
-        {
-            free_animation(anim);
-            animation_exists = false;
-        }
-
-        // Create new animation when C is pressed
-        if (key_typed(C_KEY) && !animation_exists)
-        {
-            anim = create_animation(script, "SplashKitOnlineDemo");
-            animation_exists = true;
-        }
-
-        refresh_screen(60);
+        update_animation(anim, 0.1f);
+        write_line("  Update " + std::to_string(i + 1) + ": Cell " + std::to_string(animation_current_cell(anim)));
     }
+    write_line("");
+    
+    // Free the animation
+    write_line("Step 4: Freeing animation...");
+    free_animation(anim);
+    write_line("✓ Animation freed (memory released)");
+    write_line("");
+    
+    write_line("Animation Status: FREED");
+    write_line("The animation memory has been properly cleaned up.");
+    write_line("");
 
-    // Final cleanup
-    if (animation_exists)
-    {
-        free_animation(anim);
-    }
+    // Cleanup script
+    write_line("Step 5: Freeing animation script...");
     free_animation_script(script);
+    write_line("✓ Script freed");
+    write_line("");
+    write_line("All resources cleaned up successfully!");
 
-    close_all_windows();
     return 0;
 }

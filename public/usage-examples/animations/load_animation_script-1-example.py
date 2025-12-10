@@ -1,21 +1,28 @@
 from splashkit import *
 
-open_window("Load Animation Script", 800, 600)
+write_line("=== Load Animation Script Example ===")
+write_line("")
 
 # Load an animation script from file
-kermit_script = load_animation_script("kermit", "kermit.txt")
+write_line("Loading animation script from file...")
+write_line("File: explosion.txt")
+write_line("")
+
+explosion_script = load_animation_script("explosion", "explosion.txt")
 
 # Check if the script was loaded successfully
-if has_animation_script("kermit"):
-    clear_screen(color_white())
-    draw_text_no_font_no_size("Animation Script Loaded Successfully!", color_green(), 250, 280)
-    draw_text_no_font_no_size("Script Name: kermit", color_black(), 300, 320)
-    draw_text_no_font_no_size(f"Animation Count: {animation_count(kermit_script)}", color_blue(), 280, 360)
-    refresh_screen()
+if has_animation_script("explosion"):
+    write_line("✓ Animation Script Loaded Successfully!")
+    write_line("")
+    write_line("Script Details:")
+    write_line(f"  Script Name: {animation_script_name(explosion_script)}")
+    write_line(f"  Animation Count: {animation_count(explosion_script)}")
+    write_line("  Has Script 'explosion': Yes")
+else:
+    write_line("✗ Failed to load animation script!")
 
-delay(5000)
-
-# Free the animation script when done
-free_animation_script(kermit_script)
-
-close_all_windows()
+# Cleanup
+write_line("")
+write_line("Cleaning up...")
+free_animation_script(explosion_script)
+write_line("✓ Script freed")

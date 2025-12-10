@@ -2,21 +2,24 @@
 
 int main()
 {
-    open_window("Animation Ended Example", 800, 600);
-
     // Load animation script and create animation
-    animation_script script = load_animation_script("kermit", "kermit.txt");
-    animation anim = create_animation(script, "SplashKitOnlineDemo");
+    animation_script script = load_animation_script("explosion", "explosion.txt");
+    animation anim = create_animation(script, "Explosion");
 
-    while (!quit_requested())
+    write_line("=== Animation Ended Example ===");
+    write_line("");
+    
+    // Check animation state initially
+    write_line("Initial State:");
+    write_line("Current Cell: " + std::to_string(animation_current_cell(anim)));
+    write_line("Animation Ended: " + string(animation_ended(anim) ? "Yes" : "No"));
+    write_line("");
+    
+    // Update animation multiple times to reach the end
+    write_line("Updating animation...");
+    for (int i = 0; i < 50; i++)
     {
-        process_events();
-
-        clear_screen(COLOR_WHITE);
-
-        // Display animation state
-        draw_text("Animation Ended Example", COLOR_BLACK, 280, 100);
-        draw_text("Current Cell: " + std::to_string(animation_current_cell(anim)), COLOR_BLUE, 300, 200);
+        update_animation(anim, 0.1f);
 
         // Check if animation has ended using animation_ended
         if (animation_ended(anim))

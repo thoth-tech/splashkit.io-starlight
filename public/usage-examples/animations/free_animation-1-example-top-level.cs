@@ -3,10 +3,10 @@ using static SplashKitSDK.SplashKit;
 OpenWindow("Free Animation Example", 800, 600);
 
 // Load animation script
-var script = LoadAnimationScript("kermit", "kermit.txt");
+var script = LoadAnimationScript("explosion", "explosion.txt");
 
 // Create animation
-var anim = CreateAnimation(script, "SplashKitOnlineDemo");
+var anim = CreateAnimation(script, "Explosion");
 bool animationExists = true;
 
 while (!QuitRequested())
@@ -44,7 +44,7 @@ while (!QuitRequested())
     // Create new animation when C is pressed
     if (KeyTyped(KeyCode.CKey) && !animationExists)
     {
-        anim = CreateAnimation(script, "SplashKitOnlineDemo");
+        anim = CreateAnimation(script, "Explosion");
         animationExists = true;
     }
 

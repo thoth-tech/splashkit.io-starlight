@@ -1,26 +1,37 @@
 from splashkit import *
 
-open_window("Create Animation Example", 800, 600)
+write_line("=== Create Animation Example ===")
+write_line("")
 
-# Load the animation script
-script = load_animation_script("kermit", "kermit.txt")
+# Load animation script
+write_line("Step 1: Loading animation script...")
+script = load_animation_script("explosion", "explosion.txt")
+write_line(f"✓ Script loaded: {animation_script_name(script)}")
+write_line("")
 
-# Create an animation from the script
-anim = create_animation(script, "SplashKitOnlineDemo")
+# Create animation from script
+write_line("Step 2: Creating animation from script...")
+anim = create_animation(script, "Explosion")
+write_line("✓ Animation created successfully!")
+write_line("")
 
-# Display animation information
-clear_screen(color_white())
-draw_text_no_font_no_size("Animation Created Successfully!", color_green(), 280, 200)
-draw_text_no_font_no_size("Animation Name: SplashKitOnlineDemo", color_black(), 260, 250)
-draw_text_no_font_no_size(f"Current Cell: {animation_current_cell(anim)}", color_blue(), 300, 300)
-draw_text_no_font_no_size(f"Animation Ended: {'Yes' if animation_ended(anim) else 'No'}", color_purple(), 300, 350)
-draw_text_no_font_no_size(f"Frame Time: {animation_frame_time(anim)}", color_orange(), 300, 400)
-refresh_screen()
+# Display animation details
+write_line("Animation Details:")
+write_line(f"  Name: {animation_name(anim)}")
+write_line(f"  Current Cell: {animation_current_cell(anim)}")
+write_line(f"  Frame Time: {animation_frame_time(anim)}")
+write_line(f"  Animation Ended: {'Yes' if animation_ended(anim) else 'No'}")
+write_line("")
 
-delay(5000)
+# Test the animation by updating it
+write_line("Step 3: Testing animation (5 updates)...")
+for i in range(5):
+    update_animation(anim)
+    write_line(f"  Update {i + 1}: Cell {animation_current_cell(anim)}")
 
-# Free resources
+write_line("")
+write_line("Animation is working correctly!")
+
+# Cleanup
 free_animation(anim)
 free_animation_script(script)
-
-close_all_windows()

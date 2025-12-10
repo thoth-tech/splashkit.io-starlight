@@ -3,8 +3,8 @@ using static SplashKitSDK.SplashKit;
 OpenWindow("Restart Animation Example", 800, 600);
 
 // Load animation script and create animation
-var script = LoadAnimationScript("kermit", "kermit.txt");
-var anim = CreateAnimation(script, "SplashKitOnlineDemo");
+var script = LoadAnimationScript("explosion", "explosion.txt");
+var anim = CreateAnimation(script, "Explosion");
 
 int restartCount = 0;
 

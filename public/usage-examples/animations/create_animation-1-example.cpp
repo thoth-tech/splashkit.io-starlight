@@ -2,24 +2,29 @@
 
 int main()
 {
-    open_window("Create Animation Example", 800, 600);
-
+    write_line("=== Create Animation Example ===");
+    write_line("");
+    
     // Load the animation script
-    animation_script script = load_animation_script("kermit", "kermit.txt");
+    write_line("Loading animation script...");
+    animation_script script = load_animation_script("explosion", "explosion.txt");
+    write_line("Script loaded successfully!");
+    write_line("");
 
     // Create an animation from the script
-    animation anim = create_animation(script, "SplashKitOnlineDemo");
-
+    write_line("Creating animation from script...");
+    animation anim = create_animation(script, "Explosion");
+    write_line("✓ Animation Created Successfully!");
+    write_line("");
+    
     // Display animation information
-    clear_screen(COLOR_WHITE);
-    draw_text("Animation Created Successfully!", COLOR_GREEN, 280, 200);
-    draw_text("Animation Name: SplashKitOnlineDemo", COLOR_BLACK, 260, 250);
-    draw_text("Current Cell: " + std::to_string(animation_current_cell(anim)), COLOR_BLUE, 300, 300);
-    draw_text("Animation Ended: " + string(animation_ended(anim) ? "Yes" : "No"), COLOR_PURPLE, 300, 350);
-    draw_text("Frame Time: " + std::to_string(animation_frame_time(anim)), COLOR_ORANGE, 300, 400);
-    refresh_screen();
-
-    delay(5000);
+    write_line("Animation Details:");
+    write_line("  Name: " + animation_name(anim));
+    write_line("  Current Cell: " + std::to_string(animation_current_cell(anim)));
+    write_line("  Animation Ended: " + string(animation_ended(anim) ? "Yes" : "No"));
+    write_line("  Frame Time: " + std::to_string(animation_frame_time(anim)));
+    write_line("  Script Name: " + animation_script_name(script));
+    write_line("  Total Animations in Script: " + std::to_string(animation_count(script)));
 
     // Free resources
     free_animation(anim);

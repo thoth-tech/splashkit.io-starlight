@@ -3,10 +3,10 @@ using static SplashKitSDK.SplashKit;
 OpenWindow("Free Animation Script Example", 800, 600);
 
 // Load animation script
-var script = LoadAnimationScript("kermit", "kermit.txt");
+var script = LoadAnimationScript("explosion", "explosion.txt");
 bool scriptLoaded = true;
 
-var anim = CreateAnimation(script, "SplashKitOnlineDemo");
+var anim = CreateAnimation(script, "Explosion");
 bool animationExists = true;
 
 while (!QuitRequested())
@@ -51,9 +51,9 @@ while (!QuitRequested())
 
         if (KeyTyped(KeyCode.LKey))
         {
-            script = LoadAnimationScript("kermit", "kermit.txt");
+            script = LoadAnimationScript("explosion", "explosion.txt");
             scriptLoaded = true;
-            anim = CreateAnimation(script, "SplashKitOnlineDemo");
+            anim = CreateAnimation(script, "Explosion");
             animationExists = true;
         }
     }

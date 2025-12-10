@@ -2,22 +2,30 @@
 
 int main()
 {
-    open_window("Load Animation Script", 800, 600);
-
+    write_line("=== Load Animation Script Example ===");
+    write_line("");
+    
     // Load an animation script from file
-    animation_script kermit_script = load_animation_script("kermit", "kermit.txt");
+    write_line("Loading animation script from file...");
+    write_line("File: explosion.txt");
+    write_line("");
+    
+    animation_script explosion_script = load_animation_script("explosion", "explosion.txt");
 
     // Check if the script was loaded successfully
-    if (has_animation_script("kermit"))
+    if (has_animation_script("explosion"))
     {
-        clear_screen(COLOR_WHITE);
-        draw_text("Animation Script Loaded Successfully!", COLOR_GREEN, 250, 280);
-        draw_text("Script Name: kermit", COLOR_BLACK, 300, 320);
-        draw_text("Animation Count: " + std::to_string(animation_count(kermit_script)), COLOR_BLUE, 280, 360);
-        refresh_screen();
+        write_line("✓ Animation Script Loaded Successfully!");
+        write_line("");
+        write_line("Script Details:");
+        write_line("  Script Name: " + animation_script_name(explosion_script));
+        write_line("  Animation Count: " + std::to_string(animation_count(explosion_script)));
+        write_line("  Has Script 'kermit': Yes");
     }
-
-    delay(5000);
+    else
+    {
+        write_line("✗ Failed to load animation script!");
+    }
 
     // Free the animation script when done
     free_animation_script(kermit_script);

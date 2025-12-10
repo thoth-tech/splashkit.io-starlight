@@ -9,8 +9,8 @@ namespace UpdateAnimationExample
             SplashKit.OpenWindow("Update Animation Example", 800, 600);
 
             // Load animation script and create animation
-            AnimationScript script = SplashKit.LoadAnimationScript("kermit", "kermit.txt");
-            Animation anim = SplashKit.CreateAnimation(script, "SplashKitOnlineDemo");
+            AnimationScript script = SplashKit.LoadAnimationScript("explosion", "explosion.txt");
+            Animation anim = SplashKit.CreateAnimation(script, "Explosion");
 
             // Animation loop
             while (!SplashKit.QuitRequested() && !SplashKit.AnimationEnded(anim))

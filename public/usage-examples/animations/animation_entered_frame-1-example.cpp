@@ -2,22 +2,18 @@
 
 int main()
 {
-    open_window("Animation Entered Frame Example", 800, 600);
-
     // Load animation script and create animation
-    animation_script script = load_animation_script("kermit", "kermit.txt");
-    animation anim = create_animation(script, "SplashKitOnlineDemo");
+    animation_script script = load_animation_script("explosion", "explosion.txt");
+    animation anim = create_animation(script, "Explosion");
 
+    write_line("=== Animation Entered Frame Example ===");
+    write_line("");
+    
     int frame_enter_count = 0;
-
-    while (!quit_requested())
-    {
-        process_events();
-
-        clear_screen(COLOR_WHITE);
-
-        // Display animation state
-        draw_text("Animation Entered Frame Example", COLOR_BLACK, 260, 100);
+    int updates = 0;
+    
+    write_line("Tracking frame transitions...");
+    write_line("");
         draw_text("Current Cell: " + std::to_string(animation_current_cell(anim)), COLOR_BLUE, 300, 200);
 
         // Check if animation entered a new frame using animation_entered_frame

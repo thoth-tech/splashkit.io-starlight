@@ -2,21 +2,14 @@
 
 int main()
 {
-    open_window("Animation Frame Time Example", 800, 600);
-
     // Load animation script and create animation
-    animation_script script = load_animation_script("kermit", "kermit.txt");
-    animation anim = create_animation(script, "SplashKitOnlineDemo");
+    animation_script script = load_animation_script("explosion", "explosion.txt");
+    animation anim = create_animation(script, "Explosion");
 
-    while (!quit_requested())
-    {
-        process_events();
-
-        clear_screen(COLOR_WHITE);
-
-        // Display animation frame time
-        draw_text("Animation Frame Time Example", COLOR_BLACK, 270, 100);
-        draw_text("Current Cell: " + std::to_string(animation_current_cell(anim)), COLOR_BLUE, 300, 200);
+    write_line("=== Animation Frame Time Example ===");
+    write_line("");
+    write_line("Tracking frame time during animation...");
+    write_line("");
 
         // Get and display frame time using animation_frame_time
         float frame_time = animation_frame_time(anim);

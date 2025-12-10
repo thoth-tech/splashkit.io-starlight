@@ -9,10 +9,10 @@ namespace FreeAnimationScriptExample
             SplashKit.OpenWindow("Free Animation Script Example", 800, 600);
 
             // Load animation script
-            AnimationScript script = SplashKit.LoadAnimationScript("kermit", "kermit.txt");
+            AnimationScript script = SplashKit.LoadAnimationScript("explosion", "explosion.txt");
             bool scriptLoaded = true;
 
-            Animation anim = SplashKit.CreateAnimation(script, "SplashKitOnlineDemo");
+            Animation anim = SplashKit.CreateAnimation(script, "Explosion");
             bool animationExists = true;
 
             while (!SplashKit.QuitRequested())
@@ -57,9 +57,9 @@ namespace FreeAnimationScriptExample
 
                     if (SplashKit.KeyTyped(KeyCode.LKey))
                     {
-                        script = SplashKit.LoadAnimationScript("kermit", "kermit.txt");
+                        script = SplashKit.LoadAnimationScript("explosion", "explosion.txt");
                         scriptLoaded = true;
-                        anim = SplashKit.CreateAnimation(script, "SplashKitOnlineDemo");
+                        anim = SplashKit.CreateAnimation(script, "Explosion");
                         animationExists = true;
                     }
                 }

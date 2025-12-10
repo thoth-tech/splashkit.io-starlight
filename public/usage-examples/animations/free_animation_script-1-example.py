@@ -1,58 +1,42 @@
 from splashkit import *
 
-open_window("Free Animation Script Example", 800, 600)
+write_line("=== Free Animation Script Example ===")
+write_line("")
 
 # Load animation script
-script = load_animation_script("kermit", "kermit.txt")
-script_loaded = True
+write_line("Step 1: Loading animation script...")
+script = load_animation_script("explosion", "explosion.txt")
+write_line(f"✓ Script loaded: {animation_script_name(script)}")
+write_line(f"  Animations in script: {animation_count(script)}")
+write_line("")
 
-anim = create_animation(script, "SplashKitOnlineDemo")
-animation_exists = True
+write_line("Step 2: Creating animation from script...")
+anim = create_animation(script, "Explosion")
+write_line(f"✓ Animation created: {animation_name(anim)}")
+write_line("")
 
-while not quit_requested():
-    process_events()
+# Use the animation
+write_line("Step 3: Using animation (updating 3 times)...")
+for i in range(3):
+    update_animation(anim)
+    write_line(f"  Update {i + 1}: Cell {animation_current_cell(anim)}")
 
-    clear_screen(color_white())
+write_line("")
 
-    # Display instructions
-    draw_text_no_font_no_size("Free Animation Script Demo", color_black(), 280, 100)
+# Free animation first
+write_line("Step 4: Freeing animation...")
+free_animation(anim)
+write_line("✓ Animation freed")
+write_line("")
 
-    if script_loaded:
-        draw_text_no_font_no_size("Script Status: LOADED", color_green(), 300, 200)
+# Free script after animation
+write_line("Step 5: Freeing animation script...")
+write_line("Note: Animation must be freed before freeing the script")
+free_animation_script(script)
+write_line("✓ Script freed")
+write_line("")
 
-        if animation_exists:
-            draw_text_no_font_no_size(f"Animation Cell: {animation_current_cell(anim)}", color_blue(), 300, 250)
-            update_animation(anim)
-
-        draw_text_no_font_no_size("Press F to free animation script", color_orange(), 260, 400)
-        draw_text_no_font_no_size("(Will also free the animation)", color_gray(), 280, 430)
-
-        if key_typed(KeyCode.f_key):
-            # First free the animation that uses this script
-            if animation_exists:
-                free_animation(anim)
-                animation_exists = False
-            # Then free the animation script
-            free_animation_script(script)
-            script_loaded = False
-    else:
-        draw_text_no_font_no_size("Script Status: FREED", color_red(), 300, 200)
-        draw_text_no_font_no_size("Press L to load new script", color_orange(), 280, 400)
-
-        if key_typed(KeyCode.l_key):
-            script = load_animation_script("kermit", "kermit.txt")
-            script_loaded = True
-            anim = create_animation(script, "SplashKitOnlineDemo")
-            animation_exists = True
-
-    draw_text_no_font_no_size("Press ESC to exit", color_gray(), 320, 500)
-
-    refresh_screen_with_target_fps(60)
-
-# Final cleanup
-if animation_exists:
-    free_animation(anim)
-if script_loaded:
-    free_animation_script(script)
-
-close_all_windows()
+write_line("Cleanup Summary:")
+write_line("  Animation: FREED")
+write_line("  Script: FREED")
+write_line("  All memory properly released!")

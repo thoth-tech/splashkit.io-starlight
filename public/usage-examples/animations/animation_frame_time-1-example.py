@@ -1,40 +1,35 @@
 from splashkit import *
 
-open_window("Animation Frame Time Example", 800, 600)
-
 # Load animation script and create animation
-script = load_animation_script("kermit", "kermit.txt")
-anim = create_animation(script, "SplashKitOnlineDemo")
+script = load_animation_script("explosion", "explosion.txt")
+anim = create_animation(script, "Explosion")
 
-while not quit_requested():
-    process_events()
+write_line("=== Animation Frame Time Example ===")
+write_line("")
+write_line("Tracking frame time during animation...")
+write_line("")
 
-    clear_screen(color_white())
-
-    # Display animation frame time
-    draw_text_no_font_no_size("Animation Frame Time Example", color_black(), 270, 100)
-    draw_text_no_font_no_size(f"Current Cell: {animation_current_cell(anim)}", color_blue(), 300, 200)
-
-    # Get and display frame time using animation_frame_time
-    frame_time = animation_frame_time(anim)
-    draw_text_no_font_no_size(f"Frame Time: {frame_time} ms", color_green(), 300, 250)
-
-    # Display instructions
-    draw_text_no_font_no_size("Frame time shows how long this frame lasts", color_purple(), 230, 350)
-    draw_text_no_font_no_size("Press R to restart animation", color_orange(), 280, 450)
-    draw_text_no_font_no_size("Press ESC to exit", color_gray(), 320, 500)
-
-    if key_typed(KeyCode.r_key):
+# Track frame time over several updates
+for i in range(10):
+    frame_time_before = animation_frame_time(anim)
+    cell_before = animation_current_cell(anim)
+    
+    update_animation(anim)
+    
+    frame_time_after = animation_frame_time(anim)
+    cell_after = animation_current_cell(anim)
+    
+    write_line(f"Update {i + 1}:")
+    write_line(f"  Before: Cell {cell_before}, Frame Time: {frame_time_before}")
+    write_line(f"  After:  Cell {cell_after}, Frame Time: {frame_time_after}")
+    write_line("")
+    
+    # Restart when animation ends
+    if animation_ended(anim):
+        write_line("  [Animation ended - restarting]")
         restart_animation(anim)
+        write_line("")
 
-    # Only update if animation hasn't ended
-    if not animation_ended(anim):
-        update_animation(anim)
-
-    refresh_screen_with_target_fps(60)
-
-# Free resources
+# Cleanup
 free_animation(anim)
 free_animation_script(script)
-
-close_all_windows()
