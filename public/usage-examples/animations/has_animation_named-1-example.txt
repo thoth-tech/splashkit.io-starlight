@@ -1,7 +1,0 @@
-Has Animation Named — check if an animation identifier exists in the script
-
-Use this when you want to know if a particular animation (by name) is present
-inside a loaded Animation Script.
-
-Usage (runner):
-py -3 public/usage-examples/animations/has_animation_named-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront

@@ -1,8 +1,7 @@
-// explosion.txt — small example script for explosion animations
-// Contains a vector entry and a sound entry used by some examples.
+SplashKit Animation
 
-i: Explosion,0
-v: [0-10],-1.5,20
-s: 0,boom_sound,explosion.ogg
+// Simple animation script for usage examples
+f: [0-3], [0-3], 5, 0
 
-// End of file
+i:Explosion,0
+

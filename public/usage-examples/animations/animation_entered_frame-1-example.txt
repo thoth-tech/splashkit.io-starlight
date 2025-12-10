@@ -1,15 +1,1 @@
-Animation Entered Frame — Detect when an animation moves to a new frame
-
-Short example that shows how to check whether an Animation "entered" a new frame on its last update.
-
-:::note
-This example uses `explosion.txt` resources where frames transition over time. The verification runner checks the script to see if updates will cause frame transitions for the animation (i.e. more than one frame / a next frame relationship).
-:::
-
-Resources: /usage-examples/animations/Resources/animations/explosion.txt
-
-Verify locally (no SplashKit required):
-
-```powershell
-py -3 public/usage-examples/animations/animation_entered_frame-1-example-runner.py public/usage-examples/animations/Resources/animations/explosion.txt
-```
+Animation Frame Entry Detection

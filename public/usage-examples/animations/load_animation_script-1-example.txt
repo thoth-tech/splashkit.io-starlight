@@ -1,7 +1,1 @@
-Load Animation Script — Load an animation script with a name
-
-Loads animation details from an animation frames file and registers it under
-the provided name. The example uses `WalkingScript` mapped to `kermit.txt`.
-
-Usage (runner):
-py -3 public/usage-examples/animations/load_animation_script-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkingScript
+Load Animation Script Demo

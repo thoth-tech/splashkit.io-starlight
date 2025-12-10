@@ -1,7 +1,0 @@
-Assign Animation (in-script + sound) — switch an Animation to a named animation inside its current script and optionally play first-frame audio
-
-This demonstrates `assign_animation(anim, "WalkFront", true)` where the `Animation` is already using an animation script and will optionally play a sound attached to the starting frame.
-
-To test locally:
-
-py -3 public/usage-examples/animations/assign_animation_with_sound-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront True

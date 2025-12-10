@@ -1,7 +1,0 @@
-Assign Animation (with script + sound) — attach an animation and optionally play the first-frame sound
-
-This example shows how to use `assign_animation` with a script and the `with_sound` flag. When `with_sound` is true, the animation will play the sound effect attached to the animation's first frame (if one exists in the script).
-
-To test locally:
-
-py -3 public/usage-examples/animations/assign_animation_with_script_and_sound-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront True

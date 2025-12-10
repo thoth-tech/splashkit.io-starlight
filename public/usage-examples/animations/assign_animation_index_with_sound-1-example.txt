@@ -1,7 +1,0 @@
-Assign Animation (by index + sound) — attach an animation by index and optionally play the first-frame sound
-
-This example demonstrates `assign_animation(anim, script, idx, with_sound)` — assigning an `Animation` to the script by integer index and optionally playing a sound attached to its first frame.
-
-To test locally:
-
-py -3 public/usage-examples/animations/assign_animation_index_with_sound-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt 0 True

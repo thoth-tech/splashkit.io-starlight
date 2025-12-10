@@ -1,7 +1,1 @@
-Restart Animation — restart an animation instance to start from its first frame
-
-Restarts an Animation so it begins from its starting frame again. This is
-useful when you want to replay an animation from the beginning.
-
-Usage (runner):
-py -3 public/usage-examples/animations/restart_animation-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront
+Restart Animation Demo
