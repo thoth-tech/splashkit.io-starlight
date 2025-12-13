@@ -671,50 +671,6 @@ Okay, now lets break down this code and look at its sections.
     </TabItem>
     </Tabs>
 
-        raspi_set_pull_up_down(increase_btn_pin, PUD_DOWN);
-        raspi_set_pull_up_down(decrease_btn_pin, PUD_DOWN);
-
-        timer run_timer = create_timer("run_timer");
-        start_timer(run_timer);
-        unsigned long current_time = 0;
-
-        open_window("dummy_window", 1, 1);
-        while(!any_key_pressed())
-        {
-            process_events();
-            current_time = timer_ticks(run_timer);
-            if(current_time - last_read_time > read_interval)
-            {
-                if(raspi_read(increase_btn_pin) == GPIO_HIGH)
-                {
-                    brightness += 25;
-                    if(brightness > max_brightness)
-                        brightness = max_brightness;
-                    raspi_set_pwm_dutycycle(led_pin, brightness);
-                    last_read_time = current_time;
-                }
-                if(raspi_read(decrease_btn_pin) == GPIO_HIGH)
-                {
-                    brightness -= 25;
-                    if(brightness < 0)
-                        brightness = 0;
-                    raspi_set_pwm_dutycycle(led_pin, brightness);
-                    last_read_time = current_time;
-                }
-            }
-        }
-
-        close_all_windows();
-        stop_timer(run_timer);
-        free_all_timers();
-        raspi_cleanup();
-        return 0;
-    }
-    ```
-
-    </TabItem>
-    </Tabs>
-
 2. **Initialise Hardware:**
 
     Now we do our GPIO setup, where we call `raspi_init` and define the pins we are using.
