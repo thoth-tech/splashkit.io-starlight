@@ -1,0 +1,9 @@
+Play a sound effect
+
+This example shows how to load a short sound effect and play it once.
+
+:::note
+You can provide your own small `.ogg` or `.wav` file in a resources zip and link it here:
+
+To test this example code you can download these [**Resources**](/usage-examples/audio/play_sound_effect-1-example-resources.zip).
+:::
