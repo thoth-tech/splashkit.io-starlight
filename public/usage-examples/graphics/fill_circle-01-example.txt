@@ -1,0 +1,1 @@
+Shows drawing basics in SplashKit: clear screen, fill_circle, fill_rectangle, draw_line; refresh each frame.
