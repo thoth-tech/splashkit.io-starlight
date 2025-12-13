@@ -78,5 +78,3 @@ Files included in this PR (top-level list; each example includes .cpp, .py, .txt
 
 - These examples are beginner-friendly and intentionally minimal (one-screen examples) to illustrate each SplashKit Animation function clearly.
 - Before merging: run `npm run setup` to regenerate MDX pages, and `node ./scripts/usage-examples-testing-script.cjs <example-key>` to validate any single example.
-
-If you want me to open the PR for you I can push this branch and create the pull request (I’ll need permission to push and create PRs). Otherwise this body is ready to paste into the GitHub PR editor.
