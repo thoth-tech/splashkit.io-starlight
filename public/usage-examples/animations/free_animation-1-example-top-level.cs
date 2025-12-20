@@ -1,61 +1,18 @@
-using static SplashKitSDK.SplashKit;
+using SplashKitSDK;
 
-OpenWindow("Free Animation Example", 800, 600);
-
-// Load animation script
-var script = LoadAnimationScript("explosion", "explosion.txt");
-
-// Create animation
-var anim = CreateAnimation(script, "Explosion");
-bool animationExists = true;
-
-while (!QuitRequested())
+public class Program
 {
-    ProcessEvents();
-
-    ClearScreen(ColorWhite());
-
-    // Display instructions
-    DrawText("Free Animation Demo", ColorBlack(), 300, 100);
-
-    if (animationExists)
+    public static void Main()
     {
-        DrawText($"Current Cell: {AnimationCurrentCell(anim)}", ColorBlue(), 300, 200);
-        DrawText("Animation Status: Active", ColorGreen(), 300, 250);
-        DrawText("Press F to FREE the animation", ColorOrange(), 270, 400);
+        // Load animation script and create animation from the script name
+        var script = SplashKit.LoadAnimationScript("WalkingScript", "kermit.txt");
+        var anim = SplashKit.CreateAnimation(script, "WalkFront");
 
-        UpdateAnimation(anim);
+        // Free the animation instance when no longer needed
+        SplashKit.FreeAnimation(anim);
+        SplashKit.WriteLine("Animation freed.");
+
+        // Clean up the script resource too
+        SplashKit.FreeAnimationScript(script);
     }
-    else
-    {
-        DrawText("Animation Status: Freed", ColorRed(), 300, 250);
-        DrawText("Press C to CREATE new animation", ColorOrange(), 260, 400);
-    }
-
-    DrawText("Press ESC to exit", ColorGray(), 320, 500);
-
-    // Free animation when F is pressed
-    if (KeyTyped(KeyCode.FKey) && animationExists)
-    {
-        FreeAnimation(anim);
-        animationExists = false;
-    }
-
-    // Create new animation when C is pressed
-    if (KeyTyped(KeyCode.CKey) && !animationExists)
-    {
-        anim = CreateAnimation(script, "Explosion");
-        animationExists = true;
-    }
-
-    RefreshScreen(60);
 }
-
-// Final cleanup
-if (animationExists)
-{
-    FreeAnimation(anim);
-}
-FreeAnimationScript(script);
-
-CloseAllWindows();

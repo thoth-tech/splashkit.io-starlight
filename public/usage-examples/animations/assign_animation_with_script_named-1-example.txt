@@ -1,0 +1,7 @@
+Assign Animation (script name) — attach an animation to a named script using script name + animation name
+
+This example shows how to use `assign_animation` with a script name and animation name (not a loaded script object). It looks up the script by name and assigns the animation to the named animation inside it.
+
+To test locally:
+
+py -3 public/usage-examples/animations/assign_animation_with_script_named-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkingScript WalkFront

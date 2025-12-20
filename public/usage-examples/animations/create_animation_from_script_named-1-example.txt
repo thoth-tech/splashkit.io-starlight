@@ -1,0 +1,7 @@
+Create Animation (from script name) — create an Animation using a script name and an animation identifier
+
+This example shows how to use `create_animation(script_name, "WalkFront")` — it looks up the animation script by its registered name and creates an Animation using the named animation within that script. Optionally this can play the audio for the starting frame.
+
+To test locally:
+
+py -3 public/usage-examples/animations/create_animation_from_script_named-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkingScript WalkFront

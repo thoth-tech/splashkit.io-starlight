@@ -1,0 +1,7 @@
+Update Animation (pct, with_sound) — advance by delta and optionally play sounds
+
+Updates an Animation by a given delta and, if with_sound is true, will play
+any audio attached to frames when they are entered.
+
+Usage (runner):
+py -3 public/usage-examples/animations/update_animation_percent_with_sound-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront 0.25 true

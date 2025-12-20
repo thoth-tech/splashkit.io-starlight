@@ -1,0 +1,7 @@
+Assign Animation (script name + sound) — assign an animation by script name & animation name and optionally play its starting-frame sound
+
+This example demonstrates `assign_animation(anim, script_name, name, with_sound)` — use a script name to locate the animation script, assign the requested animation inside it, and optionally play a sound defined on its first frame.
+
+To test locally:
+
+py -3 public/usage-examples/animations/assign_animation_with_script_named_and_sound-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkingScript WalkFront True

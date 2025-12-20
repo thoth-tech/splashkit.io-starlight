@@ -1,0 +1,7 @@
+Restart Animation (with sound) — restart an animation and optionally play audio
+
+Restarts an Animation and optionally triggers audio defined on the animation's
+first frame when `with_sound` is true.
+
+Usage (runner):
+py -3 public/usage-examples/animations/restart_animation_with_sound-1-example-runner.py public/usage-examples/animations/Resources/animations/kermit.txt WalkFront true
