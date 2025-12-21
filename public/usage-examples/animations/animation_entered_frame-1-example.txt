@@ -1,0 +1,5 @@
+Animation Frame Entry Detection
+
+:::note
+To test this example code you can download these [**Resources**](/resources/guides/animation/basics/BasicAnimationResources.zip).
+:::
