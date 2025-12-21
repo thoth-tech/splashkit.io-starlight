@@ -1,62 +1,51 @@
 # Description
 
-_Please include a summary of the changes and the related issue. Please also include relevant
-motivation and context. List any dependencies that are required for this change._
+**Category:** geometry
+
+**What this PR adds:**
+
+- Ensures the Geometry usage examples are complete and validate cleanly.
+- Improves the usage-example validator script so individual examples can be validated reliably with the repo's flat-file usage-example layout.
 
 ## Type of change
 
-_Please delete options that are not relevant._
-
+- [x] Documentation / examples (usage examples and supporting assets)
+- [x] Tooling / scripts (validation improvements)
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as
-      expected)
-- [ ] Documentation (update or new)
+- [ ] Breaking change
 
 ## How Has This Been Tested?
 
-_Please describe the tests that you ran to verify your changes. Provide instructions so we can
-reproduce. Please also list any relevant details for your test configuration._
+- `npm run build`
+- Validated a full pass over Geometry usage examples (27 example keys) using the validator script in single-example mode.
 
-## Testing Checklist
+## Testing Commands
 
-- [ ] Tested in latest Chrome
-- [ ] Tested in latest Firefox
-- [ ] npm run build
-- [ ] npm run preview
+**Single example**
+
+```sh
+node ./scripts/usage-examples-testing-script.cjs center_point-1-example
+```
+
+**All Geometry examples (PowerShell)**
+
+```powershell
+$dir = "public/usage-examples/geometry"; $examples = Get-ChildItem -Path $dir -Filter "*-example.txt" | Select-Object -ExpandProperty BaseName | Sort-Object -Unique; if (-not $examples) { Write-Error "No *-example.txt files found in $dir"; exit 1 }; $failed = @(); foreach ($ex in $examples) { Write-Host "`n=== Validating $ex ==="; node .\scripts\usage-examples-testing-script.cjs $ex; if ($LASTEXITCODE -ne 0) { $failed += $ex } }; if ($failed.Count -gt 0) { Write-Host "`nFAILED examples:"; $failed | ForEach-Object { Write-Host " - $_" }; exit 1 } else { Write-Host "`nAll Geometry examples validated successfully: $($examples.Count)" }
+```
 
 ## Checklist
 
-_Please delete options that are not relevant._
+- [x] I have performed a self-review of my changes
+- [x] `npm run build` completes successfully
+- [x] Usage examples follow repo conventions (C++, C# top-level, C# OOP, Python, .txt, and output image/gif)
+- [x] My changes generate no new warnings
 
-### If involving code
+## Files Modified/Added
 
-- [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
-- [ ] I have commented my code in hard-to-understand areas
-- [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
-
-### If modified config files
-
-- [ ] I have checked the following files for changes:
-  - [ ] package.json
-  - [ ] astro.config.mjs
-  - [ ] netlify.toml
-  - [ ] docker-compose.yml
-  - [ ] custom.css
-
-## Folders and Files Added/Modified
-
-_Please list the folders and files added/modified with this pull request and delete options that are not relevant._
-
-- Added:
-  - [ ] folder/folder
-  - [ ] folder/folder
-- Modified:
-  - [ ] folder/file
-  - [ ] folder/file
+- `public/usage-examples/geometry/` (validated example sets)
+- `scripts/usage-examples-testing-script.cjs` (single-example validation mode)
 
 ## Additional Notes
 
-_Please add any additional information that might be useful for the reviewers._
+- This PR uses the validator's single-example mode to avoid assumptions about nested example folders.
