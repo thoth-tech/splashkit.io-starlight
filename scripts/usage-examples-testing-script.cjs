@@ -169,6 +169,94 @@ if (process.argv[2] != null) {
   testing = true;
 }
 
+// ===============================================================================
+// Single-example validation mode
+// ===============================================================================
+// Many categories store usage examples as flat files directly under:
+//   public/usage-examples/<category>/<example-key>.*
+// The page-generation logic below expects an older nested folder structure.
+// When an example key is provided, validate only that example and exit early.
+if (testing) {
+  const usageExamplesRoot = path.join(__dirname, "..", "public", "usage-examples");
+  const categoriesOnDisk = fs
+    .readdirSync(usageExamplesRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
+
+  let exampleDir = "";
+  for (const category of categoriesOnDisk) {
+    const candidateDir = path.join(usageExamplesRoot, category);
+    const candidateTxt = path.join(candidateDir, `${fileNameToCheck}.txt`);
+    if (fs.existsSync(candidateTxt)) {
+      exampleDir = candidateDir;
+      break;
+    }
+  }
+
+  let output = "\n------------------------------------------------\n\n";
+  output += kleur.magenta("Testing") + kleur.cyan(" -> " + fileNameToCheck) + "\n\n";
+
+  if (!exampleDir) {
+    output += kleur.red("\u274C Not Found\t\t -> ") + kleur.white(fileNameToCheck + ".txt\n");
+    output += "\nCould not find a matching .txt file under public/usage-examples/<category>/.\n";
+    output += "Make sure the example files exist and are named correctly.\n";
+    output += "\n------------------------------------------------\n";
+    console.log(output);
+    process.exit(1);
+  }
+
+  const filesInDir = fs.readdirSync(exampleDir);
+  let ok = true;
+
+  // Text file
+  if (filesInDir.includes(fileNameToCheck + ".txt")) {
+    output += kleur.green("\u2705 Text Description\t -> ") + kleur.white(fileNameToCheck + ".txt\n");
+  } else {
+    output += kleur.red("\u274C Text Description\t -> ") + kleur.white(fileNameToCheck + ".txt\n");
+    ok = false;
+  }
+
+  // Output file (.png or .gif)
+  if (filesInDir.includes(fileNameToCheck + ".png")) {
+    output += kleur.green("\u2705 Image\t\t -> ") + kleur.white(fileNameToCheck + ".png\n");
+  } else if (filesInDir.includes(fileNameToCheck + ".gif")) {
+    output += kleur.green("\u2705 Image (Gif)\t\t -> ") + kleur.white(fileNameToCheck + ".gif\n");
+  } else {
+    output += kleur.red("\u274C Image/Gif\t\t -> ") + kleur.white(fileNameToCheck + " .png or .gif file\n");
+    ok = false;
+  }
+
+  // Required code files
+  const requiredCodeFiles = {
+    ".cpp": "C++\t\t",
+    "-top-level.cs": "C# (Top-Level)",
+    "-oop.cs": "C# (Object-Oriented)",
+    ".py": "Python\t",
+  };
+
+  Object.keys(requiredCodeFiles).forEach((extension) => {
+    if (filesInDir.includes(fileNameToCheck + extension)) {
+      output +=
+        kleur.green("\u2705 " + requiredCodeFiles[extension] + "\t -> ") +
+        kleur.white(fileNameToCheck + extension + "\n");
+    } else {
+      output +=
+        kleur.red("\u274C " + requiredCodeFiles[extension] + "\t -> ") +
+        kleur.white(fileNameToCheck + extension + "\n");
+      ok = false;
+    }
+  });
+
+  if (!ok) {
+    output += "\nSome files missing or incorrectly named (shown in red above).\n";
+    output += "Please update the example set and try again.\n";
+  }
+
+  output += "\n------------------------------------------------\n";
+  console.log(output);
+  process.exit(ok ? 0 : 1);
+}
+
 let apiJsonData = getJsonData();
 let categories = getApiCategories(apiJsonData);
 
