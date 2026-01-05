@@ -814,7 +814,10 @@ for (const categoryKey in jsonData) {
         if (allExamples.length > 0) {
           mdxContent += `**API Documentation Code Examples**:\n\n`
           allExamples.forEach((example) => {
-            const exampleName = getGroupName(jsonData, example.name);
+            let exampleName = getGroupName(jsonData, example.name);
+            if (!exampleName) {
+              exampleName = example.name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+            }
             mdxContent += `- [${exampleName}](${example.url}): ${example.title}\n`
           })
         }
