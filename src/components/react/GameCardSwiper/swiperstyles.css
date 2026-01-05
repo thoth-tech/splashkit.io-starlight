@@ -1,0 +1,17 @@
+.games-showcase-container {
+  padding: 20px 0;
+}
+
+.game-swiper {
+  padding-bottom: 40px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--sk-logo-blue);
+}
+
+.swiper-pagination-bullet-active {
+  background-color: var(--sk-logo-blue);
+}
+
