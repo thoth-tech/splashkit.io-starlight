@@ -1,0 +1,8 @@
+#### Set Font Style Example
+
+The following code shows examples of using [Set Font Style](/api/graphics#set-font-style-2) to show how to change font style to bold.
+
+:::note
+To test this example code you can download these [**Resources**](/usage-examples/graphics/set_font_style/SetFontStyle_BasicSetFontStyleResources.zip).
+:::
+
