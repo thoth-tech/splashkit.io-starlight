@@ -1,0 +1,5 @@
+Draws a bitmap and button that flips it along its X axis
+
+:::note
+To test this example code you can download these [**Resources**](/usage-examples/graphics/option_flip_x-1-example-resources.zip).
+:::
