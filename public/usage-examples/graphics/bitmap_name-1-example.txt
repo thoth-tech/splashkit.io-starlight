@@ -1,0 +1,7 @@
+This example demonstrates how to use the SplashKit function `bitmap_name()`.
+
+The program loads a bitmap from a file, retrieves its assigned name using the `bitmap_name()` function, and displays both the image and its name. The image is centered in the window, and the name is printed to the terminal.
+
+This function is helpful when debugging or when working with dynamically managed image resources, allowing developers to confirm the identity of loaded bitmaps during runtime.
+
+The example includes implementations in C++, Python, and C# (both top-level and OOP).
