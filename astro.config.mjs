@@ -1,68 +1,50 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-// import solidJs from "@astrojs/solid-js";
 import react from "@astrojs/react";
 import starlightLinksValidator from 'starlight-links-validator';
 import sitemap from "@astrojs/sitemap";
 import remarkMath from 'remark-math';
-import rehypeMathjax from 'rehype-mathjax'
-import starlightBlog from 'starlight-blog'
+import rehypeMathjax from 'rehype-mathjax';
+import starlightBlog from 'starlight-blog';
 import starlightDocSearch from '@astrojs/starlight-docsearch';
 import remarkHeadingID from 'remark-heading-id';
 import { loadEnv } from "vite";
 
-const { DOCSEARCH_API_ID } = loadEnv(process.env.DOCSEARCH_API_ID, process.cwd(), "");
-const { DOCSEARCH_API_SEARCH_KEY } = loadEnv(process.env.DOCSEARCH_API_SEARCH_KEY, process.cwd(), "");
-const { DOCSEARCH_INDEX_NAME } = loadEnv(process.env.DOCSEARCH_INDEX_NAME, process.cwd(), "");
+// Load environment variables
+const env = loadEnv("", process.cwd(), "");
+const DOCSEARCH_API_ID = env.DOCSEARCH_API_ID;
+const DOCSEARCH_API_SEARCH_KEY = env.DOCSEARCH_API_SEARCH_KEY;
+const DOCSEARCH_INDEX_NAME = env.DOCSEARCH_INDEX_NAME;
 
-if (!DOCSEARCH_API_ID || !DOCSEARCH_API_SEARCH_KEY || !DOCSEARCH_INDEX_NAME) {
-  console.error("Algolia DocSearch enviroment variables are invalid. Please check configuration!");
-  process.exit(1);
+// Check if all DocSearch env vars are defined
+const hasDocSearch = DOCSEARCH_API_ID && DOCSEARCH_API_SEARCH_KEY && DOCSEARCH_INDEX_NAME;
+if (!hasDocSearch) {
+  console.warn("⚠️ Algolia DocSearch environment variables are invalid. Skipping DocSearch plugin.");
 }
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://splashkit.io/',
   integrations: [
     starlight({
       title: "SplashKit",
-      description: 'SplashKit is a cross-platform game engine for C, C++ and Objective-C. It provides a simple API for 2D game development.',
+      description: 'SplashKit is a cross-platform game engine for C, C++ and Objective-C...',
       plugins: [
-        starlightBlog({
-          title: 'Announcements',
-          recentPostCount: 5,
-          prevNextLinksOrder: 'chronological',
-        }),
-        starlightLinksValidator({
-          errorOnRelativeLinks: true,
-        }),
-        starlightDocSearch({
+        starlightBlog({ title: 'Announcements', recentPostCount: 5, prevNextLinksOrder: 'chronological' }),
+        starlightLinksValidator({ errorOnRelativeLinks: true }),
+        ...(hasDocSearch ? [starlightDocSearch({
           appId: DOCSEARCH_API_ID,
           apiKey: DOCSEARCH_API_SEARCH_KEY,
           indexName: DOCSEARCH_INDEX_NAME,
-        }),
+        })] : []), // ✅ Only include DocSearch if variables are defined
       ],
-      expressiveCode: {
-        // theme: ["github-dark", "github-light"],
-        // frames: {
-        //   showCopyToClipboardButton: true,
-        // },
-        styleOverrides: { borderRadius: '0.5rem' },
-        useDarkModeMediaQuery: true,
-      },
-      customCss: [
-        "/src/styles/custom.css",
-        "/src/styles/background.css",
-        "/src/styles/cards.css",
-      ],
+      expressiveCode: { styleOverrides: { borderRadius: '0.5rem' }, useDarkModeMediaQuery: true },
+      customCss: ["/src/styles/custom.css", "/src/styles/background.css", "/src/styles/cards.css"],
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/splashkit' },
         { icon: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@splashkit7674' },
       ],
       favicon: "/images/favicon.svg",
-      logo: {
-        src: "./src/assets/favicon.svg",
-      },
+      logo: { src: "./src/assets/favicon.svg" },
       sidebar: [
         {
           label: "Installation",
@@ -144,21 +126,10 @@ export default defineConfig({
           ],
         },
       ],
-
     }),
-
     react(),
-    sitemap()
+    sitemap(),
   ],
-
-  server: {
-    host: true,
-    port: 4321
-  },
-
-  // Render mathematical equations using remark-math and rehype-mathjax
-  markdown: {
-    remarkPlugins: [remarkMath, remarkHeadingID],
-    rehypePlugins: [rehypeMathjax],
-  },
+  server: { host: true, port: 4321 },
+  markdown: { remarkPlugins: [remarkMath, remarkHeadingID], rehypePlugins: [rehypeMathjax] },
 });
