@@ -1,0 +1,47 @@
+using SplashKitSDK;
+
+namespace BitmapCollisionsDemo
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            // Open the window
+            SplashKit.OpenWindow("Bitmap Collisions", 315, 330);
+
+            // Load the bitmaps
+            Bitmap skBmp = SplashKit.LoadBitmap("skbox", "skbox.png");
+            Bitmap fileBmp = SplashKit.LoadBitmap("file", "file_image.png");
+            Bitmap bugBmp = SplashKit.LoadBitmap("bug", "bug_image.png");
+
+            // Set the bitmap locations using Point2D
+            Point2D skBmpLoc = new Point2D() { X = 50, Y = 50 };
+            Point2D fileBmpLoc = new Point2D() { X = 20, Y = 20 };
+            Point2D bugBmpLoc = new Point2D() { X = 200, Y = 150 };
+
+            // Clear the screen and draw the bitmaps
+            SplashKit.ClearScreen(Color.White);
+            SplashKit.DrawBitmap(skBmp, skBmpLoc.X, skBmpLoc.Y);
+            SplashKit.DrawBitmap(fileBmp, fileBmpLoc.X, fileBmpLoc.Y);
+            SplashKit.DrawBitmap(bugBmp, bugBmpLoc.X, bugBmpLoc.Y);
+
+            // Check for collisions
+            if (SplashKit.BitmapCollision(skBmp, 50, 50, 50, fileBmp, 20, 20, 20))
+            {
+                SplashKit.WriteLine("SplashKit got a new file!");
+            }
+
+            if (SplashKit.BitmapCollision(skBmp, 50, 50, 50, bugBmp, 200, 200, 150))
+            {
+                SplashKit.WriteLine("SplashKit has bugs!");
+            }
+
+            // Refresh the screen and wait
+            SplashKit.RefreshScreen();
+            SplashKit.Delay(4000);
+
+            // Close all windows
+            SplashKit.CloseAllWindows();
+        }
+    }
+}
