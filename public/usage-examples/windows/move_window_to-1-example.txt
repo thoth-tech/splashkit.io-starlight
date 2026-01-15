@@ -1,0 +1,1 @@
+Users press buttons to move the window around their screens.
