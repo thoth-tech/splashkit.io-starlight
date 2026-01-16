@@ -1,0 +1,7 @@
+#### Calculate the Squared Magnitude of a Vector
+
+Return the squared magnitude (or “length”) of the vector. 
+
+The vector magnitude squared is significant because it provides a measure of a vector's length without the computational cost of a square root, making it faster and more efficient for comparisons or calculations. It's commonly used in physics, computer graphics, and optimization where relative magnitudes or distances matter more than the exact value.
+
+Uses the [vector_magnitude_sqared](/api/physics/#vector-magnitude-sqared) function.
