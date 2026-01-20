@@ -2,7 +2,7 @@
     "audio": [
         {
             "funcKey": "play_music_named",
-            "title": "Music Playback",
+            "title": "Music Playback\r",
             "url": "/api/audio/#play-music-named",
             "functions": [
                 "audio_ready",
@@ -14,7 +14,7 @@
         },
         {
             "funcKey": "resume_music",
-            "title": "Pausing and Resuming Game Music",
+            "title": "Pausing and Resuming Game Music\r",
             "url": "/api/audio/#resume-music",
             "functions": [
                 "audio_ready",
@@ -142,7 +142,7 @@
         },
         {
             "funcKey": "closest_point_on_circle",
-            "title": "Closest Point to Mouse on Circle",
+            "title": "Closest Point to Mouse on Circle\r",
             "url": "/api/geometry/#closest-point-on-circle",
             "functions": [
                 "open_window",
@@ -158,6 +158,25 @@
                 "color_blue",
                 "color_red",
                 "refresh_screen",
+                "close_all_windows"
+            ]
+        },
+        {
+            "funcKey": "lines_intersect",
+            "title": "Simple Line Intersect Check",
+            "url": "/api/geometry/#lines-intersect",
+            "functions": [
+                "open_window",
+                "Point2D",
+                "line_from_point_to_point",
+                "draw_line_record",
+                "color_red",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "color_blue",
+                "color_green",
+                "refresh_screen",
+                "delay",
                 "close_all_windows"
             ]
         },
@@ -251,25 +270,6 @@
                 "color_red",
                 "draw_text_no_font_no_size",
                 "color_black",
-                "refresh_screen",
-                "delay",
-                "close_all_windows"
-            ]
-        },
-        {
-            "funcKey": "lines_intersect",
-            "title": "Simple Line Intersect Check",
-            "url": "/api/geometry/#lines-intersect",
-            "functions": [
-                "open_window",
-                "Point2D",
-                "line_from_point_to_point",
-                "draw_line_record",
-                "color_red",
-                "draw_text_no_font_no_size",
-                "color_black",
-                "color_blue",
-                "color_green",
                 "refresh_screen",
                 "delay",
                 "close_all_windows"
@@ -508,7 +508,7 @@
         },
         {
             "funcKey": "random_window_point",
-            "title": "Random Portals",
+            "title": "Random Portals\r",
             "url": "/api/geometry/#random-window-point",
             "functions": [
                 "open_window",
@@ -522,6 +522,32 @@
                 "refresh_screen",
                 "delay",
                 "close_window"
+            ]
+        },
+        {
+            "funcKey": "rectangle_around",
+            "title": "A perpetually moving circle which increases and decreases in size, surrounded by a rectangle shape",
+            "url": "/api/geometry/#rectangle-around",
+            "functions": [
+                "open_window",
+                "create_timer",
+                "start_timer",
+                "quit_requested",
+                "point_at",
+                "cosine",
+                "sine",
+                "circle_at",
+                "timer_ticks",
+                "reset_timer",
+                "process_events",
+                "clear_screen_to_white",
+                "draw_rectangle_record",
+                "color_black",
+                "rectangle_around_circle",
+                "fill_circle_record",
+                "color_red",
+                "refresh_screen",
+                "close_all_windows"
             ]
         },
         {
@@ -562,6 +588,24 @@
             ]
         },
         {
+            "funcKey": "bitmap_center",
+            "title": "Draw a bitmap with a red dot at its center\r",
+            "url": "/api/graphics/#bitmap-center",
+            "functions": [
+                "open_window",
+                "load_bitmap",
+                "clear_screen",
+                "color_white",
+                "draw_bitmap",
+                "fill_circle_record",
+                "color_red",
+                "circle_at",
+                "refresh_screen",
+                "delay",
+                "close_all_windows"
+            ]
+        },
+        {
             "funcKey": "clear_screen",
             "title": "Background Color",
             "url": "/api/graphics/#clear-screen",
@@ -575,7 +619,7 @@
         },
         {
             "funcKey": "draw_bitmap_named",
-            "title": "SplashKit Logo",
+            "title": "SplashKit Logo\r",
             "url": "/api/graphics/#draw-bitmap-named",
             "functions": [
                 "open_window",
@@ -1041,7 +1085,7 @@
         },
         {
             "funcKey": "fill_rectangle_on_bitmap",
-            "title": "Cityscape",
+            "title": "Cityscape\r",
             "url": "/api/graphics/#fill-rectangle-on-bitmap",
             "functions": [
                 "open_window",
@@ -1112,7 +1156,7 @@
         },
         {
             "funcKey": "fill_triangle_on_bitmap",
-            "title": "Hooray! A Red Hat",
+            "title": "Hooray! A Red Hat\r",
             "url": "/api/graphics/#fill-triangle-on-bitmap",
             "functions": [
                 "open_window",
@@ -1172,7 +1216,7 @@
         },
         {
             "funcKey": "free_font",
-            "title": "Freeing Fonts",
+            "title": "Freeing Fonts\r",
             "url": "/api/graphics/#free-font",
             "functions": [
                 "open_window",
@@ -1211,7 +1255,7 @@
         },
         {
             "funcKey": "load_font",
-            "title": "Using Fonts",
+            "title": "Using Fonts\r",
             "url": "/api/graphics/#load-font",
             "functions": [
                 "open_window",
@@ -1242,7 +1286,7 @@
         },
         {
             "funcKey": "text_width_font_named",
-            "title": "Underline Text using Text Width",
+            "title": "Underline Text using Text Width\r",
             "url": "/api/graphics/#text-width-font-named",
             "functions": [
                 "open_window",
@@ -1303,7 +1347,7 @@
     "physics": [
         {
             "funcKey": "sprite_bitmap_collision",
-            "title": "Does SplashKit have bugs?",
+            "title": "Does SplashKit have bugs?\r",
             "url": "/api/physics/#sprite-bitmap-collision",
             "functions": [
                 "open_window",
@@ -1323,7 +1367,7 @@
         },
         {
             "funcKey": "sprite_collision",
-            "title": "Colliding Sprites",
+            "title": "Colliding Sprites\r",
             "url": "/api/physics/#sprite-collision",
             "functions": [
                 "open_window",
@@ -1342,7 +1386,7 @@
         },
         {
             "funcKey": "sprite_point_collision",
-            "title": "Determine Sprite Collisions with Points",
+            "title": "Determine Sprite Collisions with Points\r",
             "url": "/api/physics/#sprite-point-collision",
             "functions": [
                 "open_window",
@@ -1365,7 +1409,7 @@
         },
         {
             "funcKey": "sprite_rectangle_collision",
-            "title": "Detect Sprite Collisions with Rectangles",
+            "title": "Detect Sprite Collisions with Rectangles\r",
             "url": "/api/physics/#sprite-rectangle-collision",
             "functions": [
                 "open_window",
@@ -1390,7 +1434,7 @@
     "raspberry": [
         {
             "funcKey": "raspi_i2c_write_data",
-            "title": "LED Text Scrolling",
+            "title": "LED Text Scrolling\r",
             "url": "/api/raspberry/#raspi-i2c-write-data",
             "functions": [
                 "write_line",
@@ -1407,7 +1451,7 @@
     "sprites": [
         {
             "funcKey": "create_sprite",
-            "title": "Creating a Player Sprite",
+            "title": "Creating a Player Sprite\r",
             "url": "/api/sprites/#create-sprite",
             "functions": [
                 "open_window",
@@ -1425,7 +1469,7 @@
         },
         {
             "funcKey": "draw_sprite",
-            "title": "Drawing a Player Sprite",
+            "title": "Drawing a Player Sprite\r",
             "url": "/api/sprites/#draw-sprite",
             "functions": [
                 "open_window",
@@ -1443,7 +1487,7 @@
         },
         {
             "funcKey": "free_sprite",
-            "title": "Freeing a Sprite",
+            "title": "Freeing a Sprite\r",
             "url": "/api/sprites/#free-sprite",
             "functions": [
                 "open_window",
@@ -1465,7 +1509,7 @@
         },
         {
             "funcKey": "sprite_set_position",
-            "title": "Setting Sprite Position",
+            "title": "Setting Sprite Position\r",
             "url": "/api/sprites/#sprite-set-position",
             "functions": [
                 "open_window",
@@ -1485,7 +1529,7 @@
         },
         {
             "funcKey": "sprite_set_velocity",
-            "title": "Setting Velocity of Sprite",
+            "title": "Setting Velocity of Sprite\r",
             "url": "/api/sprites/#sprite-set-velocity",
             "functions": [
                 "open_window",
@@ -1507,7 +1551,7 @@
         },
         {
             "funcKey": "sprite_set_x",
-            "title": "Setting Sprite X-coordinate",
+            "title": "Setting Sprite X-coordinate\r",
             "url": "/api/sprites/#sprite-set-x",
             "functions": [
                 "open_window",
@@ -1524,7 +1568,7 @@
         },
         {
             "funcKey": "sprite_set_y",
-            "title": "Setting Sprite Y-coordinate",
+            "title": "Setting Sprite Y-coordinate\r",
             "url": "/api/sprites/#sprite-set-y",
             "functions": [
                 "open_window",
@@ -1541,7 +1585,7 @@
         },
         {
             "funcKey": "sprite_x",
-            "title": "Sprite x-coordinate",
+            "title": "Sprite x-coordinate\r",
             "url": "/api/sprites/#sprite-x",
             "functions": [
                 "open_window",
@@ -1561,7 +1605,7 @@
         },
         {
             "funcKey": "sprite_y",
-            "title": "Sprite y-coordinate",
+            "title": "Sprite y-coordinate\r",
             "url": "/api/sprites/#sprite-y",
             "functions": [
                 "open_window",
@@ -1641,6 +1685,14 @@
     ],
     "utilities": [
         {
+            "funcKey": "base64_encode",
+            "title": "Base64 Encode Example",
+            "url": "/api/utilities/#base64-encode",
+            "functions": [
+                "write_line"
+            ]
+        },
+        {
             "funcKey": "contains",
             "title": "Checking if a string contains a word",
             "url": "/api/utilities/#contains",
@@ -1673,7 +1725,7 @@
         },
         {
             "funcKey": "current_ticks",
-            "title": "How many ticks?",
+            "title": "How many ticks?\r",
             "url": "/api/utilities/#current-ticks",
             "functions": [
                 "write_line",
@@ -1788,6 +1840,31 @@
             "url": "/api/utilities/#trim",
             "functions": [
                 "write_line"
+            ]
+        }
+    ],
+    "windows": [
+        {
+            "funcKey": "close_window",
+            "title": "Starts a countdown to close the window at the push of a button.",
+            "url": "/api/windows/#close-window",
+            "functions": [
+                "open_window",
+                "create_timer",
+                "quit_requested",
+                "process_events",
+                "clear_window",
+                "color_white",
+                "button_at_position",
+                "rectangle_from",
+                "start_timer",
+                "draw_text_font_as_string",
+                "color_black",
+                "timer_ticks",
+                "reset_timer",
+                "draw_interface",
+                "refresh_window",
+                "close_all_windows"
             ]
         }
     ]

@@ -579,6 +579,7 @@ for (const categoryKey in jsonData) {
       const hasSymbol = (hasExampleInGroup || hasGuideInGroup || hasExampleReferenceInGroup) ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;` : "";
       const formattedGroupLink = `${formattedLink}-functions`;
 
+      mdxContent += `\n<span id="${formattedLink}"></span>\n`;
       mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink})${hasSymbol} \\{#${formattedGroupLink}\\}\n\n`;
 
       mdxContent += ":::note\n\n";

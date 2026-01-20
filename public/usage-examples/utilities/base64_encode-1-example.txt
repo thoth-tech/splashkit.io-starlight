@@ -1,0 +1,2 @@
+Base64 Encode Example
+Encodes a string to Base64 format.
