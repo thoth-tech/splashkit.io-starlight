@@ -525,6 +525,33 @@
             ]
         },
         {
+            "funcKey": "rectangle_around_circle",
+            "title": "A perpetually moving circle which increases and decreases in size, surrounded by a rectangle shape",
+            "url": "/api/geometry/#rectangle-around-functions",
+            "functions": [
+                "open_window",
+                "point_at",
+                "cosine",
+                "sine",
+                "circle_at",
+                "create_timer",
+                "start_timer",
+                "quit_requested",
+                "timer_ticks",
+                "reset_timer",
+                "process_events",
+                "clear_screen",
+                "draw_rectangle",
+                "rectangle_around_circle",
+                "rectangle_around_line",
+                "rectangle_around_quad",
+                "rectangle_around_triangle",
+                "fill_circle",
+                "refresh_screen",
+                "close_all_windows"
+            ]
+        },
+        {
             "funcKey": "same_point",
             "title": "Point 2D Guessing Game",
             "url": "/api/geometry/#same-point",

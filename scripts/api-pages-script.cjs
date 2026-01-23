@@ -317,6 +317,12 @@ function getGroupName(jsonData, uniqueName) {
       }
     });
   }
+
+  // Fallback to formatting the uniqueName if no match is found
+  if (funcGroupName == "") {
+    funcGroupName = uniqueName.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+  }
+
   return funcGroupName;
 }
 
