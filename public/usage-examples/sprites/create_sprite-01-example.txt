@@ -1,0 +1,1 @@
+Loads a bitmap, creates a sprite, and draws it each frame. Requires Resources/images/player.png (see resources zip).
