@@ -317,6 +317,12 @@ function getGroupName(jsonData, uniqueName) {
       }
     });
   }
+
+  // Fallback to formatting the uniqueName if no match is found
+  if (funcGroupName == "") {
+    funcGroupName = uniqueName.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+  }
+
   return funcGroupName;
 }
 
@@ -667,13 +673,16 @@ for (const categoryKey in jsonData) {
 
       mdxContent += "\n\n";
 
-      for (const names of functionNames) {
+      const uniqueFunctionNames = [...new Set(functionNames)];
+
+      for (const names of uniqueFunctionNames) {
         const normalName = names
           .split("_")
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(" ");
-        const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-        const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+        const isOverloadedInside = functionGroups[names].length > 1;
+        const formattedLinkInside = isOverloadedInside ? `${normalName.toLowerCase().replace(/\s+/g, "-")}-functions` : normalName.toLowerCase().replace(/\s+/g, "-");
+        const link = `[\`${normalName}\`](/api/${input}/#${formattedLinkInside})`
         description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
         description = description.replaceAll("\n", " ");
       }
@@ -704,13 +713,14 @@ for (const categoryKey in jsonData) {
             );
           }
 
-          for (const names of functionNames) {
+          for (const names of uniqueFunctionNames) {
             const normalName = names
               .split("_")
               .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
               .join(" ");
-            const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-            const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+            const isOverloadedInside = functionGroups[names].length > 1;
+            const formattedLinkInside = isOverloadedInside ? `${normalName.toLowerCase().replace(/\s+/g, "-")}-functions` : normalName.toLowerCase().replace(/\s+/g, "-");
+            const link = `[\`${normalName}\`](/api/${input}/#${formattedLinkInside})`
             description2 = description2.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
             description2 = description2.replaceAll("\n", " ");
           }
