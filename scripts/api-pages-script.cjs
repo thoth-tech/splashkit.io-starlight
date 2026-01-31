@@ -134,6 +134,8 @@ function getAllFinishedExamples() {
 // ------------------------------------------------------------------------------
 // Type Mappings
 // ------------------------------------------------------------------------------
+const globalFunctionGroups = {};
+
 function Mappings(jsonData) {
   //generate mappings from API
   for (const categoryKey in jsonData) {
@@ -312,10 +314,11 @@ function getGroupName(jsonData, uniqueName) {
     const category = jsonData[categoryKey];
     const categoryFunctions = category.functions;
     categoryFunctions.forEach((func) => {
-      if (func.unique_global_name == uniqueName) {
-        funcGroupName = func.name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");;
+      if (func.unique_global_name == uniqueName || func.name == uniqueName) {
+        funcGroupName = func.name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
       }
     });
+    if (funcGroupName) break;
   }
   return funcGroupName;
 }
@@ -480,6 +483,18 @@ let mdxContent = "";
 let success = true;
 const jsonData = getJsonData("api.json");
 const jsonColors = getJsonData("colors.json");
+
+// Pre-calculate global function counts after jsonData is loaded
+for (const categoryKey in jsonData) {
+  if (categoryKey !== "types") {
+    jsonData[categoryKey].functions.forEach((f) => {
+      if (!globalFunctionGroups[f.name]) {
+        globalFunctionGroups[f.name] = 0;
+      }
+      globalFunctionGroups[f.name]++;
+    });
+  }
+}
 let guidesJson = getJsonData("guides.json");
 let usageExamplesJson = getJsonData("usage-example-references.json");
 let guidesCategories = getApiCategories(guidesJson);
@@ -642,7 +657,7 @@ for (const categoryKey in jsonData) {
       // Put {</>} symbol at the end of headers of overloaded functions with usage example or else just keep empty
       const formattedName = isOverloaded
         ? `\n#### [${functionName2}](#${formattedUniqueLink})${hasSymbol} \\{#${formattedUniqueLink}\\}`
-        : `\n### [${functionName2}](#${formattedLink})${hasSymbol}`;
+        : `\n### [${functionName2}](#${formattedLink})${hasSymbol} \\{#${formattedLink}\\}`;
 
       // Replace type names in the description with formatted versions
       let description = func.description || "";
@@ -672,8 +687,11 @@ for (const categoryKey in jsonData) {
           .split("_")
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(" ");
-        const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-        const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+        let formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
+        if (functionGroups[names] && functionGroups[names].length > 1) {
+          formattedLink += "-functions";
+        }
+        const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
         description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
         description = description.replaceAll("\n", " ");
       }
@@ -709,8 +727,11 @@ for (const categoryKey in jsonData) {
               .split("_")
               .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
               .join(" ");
-            const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-            const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+            let formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
+            if (functionGroups[names] && functionGroups[names].length > 1) {
+              formattedLink += "-functions";
+            }
+            const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
             description2 = description2.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
             description2 = description2.replaceAll("\n", " ");
           }
@@ -736,6 +757,20 @@ for (const categoryKey in jsonData) {
             new RegExp(`\`\\b${typeName}\\b\``, "g"),
             typeMapping
           );
+        }
+
+        for (const names of functionNames) {
+          const normalName = names
+            .split("_")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          let formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
+          if (functionGroups[names] && functionGroups[names].length > 1) {
+            formattedLink += "-functions";
+          }
+          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
+          returnDescription = returnDescription.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
+          returnDescription = returnDescription.replaceAll("\n", " ");
         }
 
         mdxContent += `${returnDescription}\n\n`;
@@ -785,7 +820,7 @@ for (const categoryKey in jsonData) {
           example.functions.forEach((used) => {
             if (func.unique_global_name == used && limit < 4) {
               allExamples.push({
-                name: example.funcKey,
+                funcKey: example.funcKey,
                 title: example.title,
                 url: example.url
               })
@@ -814,8 +849,19 @@ for (const categoryKey in jsonData) {
         if (allExamples.length > 0) {
           mdxContent += `**API Documentation Code Examples**:\n\n`
           allExamples.forEach((example) => {
-            const exampleName = getGroupName(jsonData, example.name);
-            mdxContent += `- [${exampleName}](${example.url}): ${example.title}\n`
+            let exampleName = getGroupName(jsonData, example.funcKey);
+            if (exampleName == "" && example.funcKey) {
+              exampleName = example.funcKey.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+            }
+            if (exampleName == "") exampleName = "Example";
+
+            let exampleUrl = example.url;
+            if (example.funcKey && globalFunctionGroups[example.funcKey] > 1) {
+              const hash = example.funcKey.toLowerCase().replace(/_/g, "-");
+              exampleUrl = exampleUrl.replace(/#.*$/, `#${hash}-functions`);
+            }
+
+            mdxContent += `- [${exampleName}](${exampleUrl}): ${example.title}\n`
           })
         }
 
@@ -887,8 +933,11 @@ for (const categoryKey in jsonData) {
             .split("_")
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
-          const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+          let formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
+          if (functionGroups[names] && functionGroups[names].length > 1) {
+            formattedLink += "-functions";
+          }
+          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
 
           description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
         }
@@ -917,9 +966,12 @@ for (const categoryKey in jsonData) {
                 .split("_")
                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(" ");
-              const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-              const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
-              description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
+              let formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
+              if (functionGroups[names] && functionGroups[names].length > 1) {
+                formattedLink += "-functions";
+              }
+              const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
+              fieldDescription = fieldDescription.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
             }
 
             mdxContent += `| ${fieldName} | ${fieldType} | ${fieldDescription.replace(/\n/g, '')} |\n`;
@@ -937,8 +989,11 @@ for (const categoryKey in jsonData) {
             .split("_")
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
-          const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+          let formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
+          if (functionGroups[names] && functionGroups[names].length > 1) {
+            formattedLink += "-functions";
+          }
+          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
           description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
         }
         description = description.replaceAll("\n\n\n", "\n\n");

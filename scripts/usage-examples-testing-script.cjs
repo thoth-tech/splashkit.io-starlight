@@ -159,14 +159,99 @@ console.log("\nGenerating MDX files for Usage Examples pages...\n");
 let name;
 let success = true;
 let testing = false;
-let testingSuccess = true;
-let testingOutput = "";
 let fileNameToCheck = "";
-// let simpleExample = false;
 
 if (process.argv[2] != null) {
   fileNameToCheck = process.argv[2];
   testing = true;
+}
+
+// ===============================================================================
+// Single-example validation mode
+// ===============================================================================
+// Many categories store usage examples as flat files directly under:
+//   public/usage-examples/<category>/<example-key>.*
+// The page-generation logic below expects an older nested folder structure.
+// When an example key is provided, validate only that example and exit early.
+if (testing) {
+  const usageExamplesRoot = path.join(__dirname, "..", "public", "usage-examples");
+  const categoriesOnDisk = fs
+    .readdirSync(usageExamplesRoot, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
+
+  let exampleDir = "";
+  for (const category of categoriesOnDisk) {
+    const candidateDir = path.join(usageExamplesRoot, category);
+    const candidateTxt = path.join(candidateDir, `${fileNameToCheck}.txt`);
+    if (fs.existsSync(candidateTxt)) {
+      exampleDir = candidateDir;
+      break;
+    }
+  }
+
+  let output = "\n------------------------------------------------\n\n";
+  output += kleur.magenta("Testing") + kleur.cyan(" -> " + fileNameToCheck) + "\n\n";
+
+  if (!exampleDir) {
+    output += kleur.red("\u274C Not Found\t\t -> ") + kleur.white(fileNameToCheck + ".txt\n");
+    output += "\nCould not find a matching .txt file under public/usage-examples/<category>/.\n";
+    output += "Make sure the example files exist and are named correctly.\n";
+    output += "\n------------------------------------------------\n";
+    console.log(output);
+    process.exit(1);
+  }
+
+  const filesInDir = fs.readdirSync(exampleDir);
+  let ok = true;
+
+  // Text file
+  if (filesInDir.includes(fileNameToCheck + ".txt")) {
+    output += kleur.green("\u2705 Text Description\t -> ") + kleur.white(fileNameToCheck + ".txt\n");
+  } else {
+    output += kleur.red("\u274C Text Description\t -> ") + kleur.white(fileNameToCheck + ".txt\n");
+    ok = false;
+  }
+
+  // Output file (.png or .gif)
+  if (filesInDir.includes(fileNameToCheck + ".png")) {
+    output += kleur.green("\u2705 Image\t\t -> ") + kleur.white(fileNameToCheck + ".png\n");
+  } else if (filesInDir.includes(fileNameToCheck + ".gif")) {
+    output += kleur.green("\u2705 Image (Gif)\t\t -> ") + kleur.white(fileNameToCheck + ".gif\n");
+  } else {
+    output += kleur.red("\u274C Image/Gif\t\t -> ") + kleur.white(fileNameToCheck + " .png or .gif file\n");
+    ok = false;
+  }
+
+  // Required code files
+  const requiredCodeFiles = {
+    ".cpp": "C++\t\t",
+    "-top-level.cs": "C# (Top-Level)",
+    "-oop.cs": "C# (Object-Oriented)",
+    ".py": "Python\t",
+  };
+
+  Object.keys(requiredCodeFiles).forEach((extension) => {
+    if (filesInDir.includes(fileNameToCheck + extension)) {
+      output +=
+        kleur.green("\u2705 " + requiredCodeFiles[extension] + "\t -> ") +
+        kleur.white(fileNameToCheck + extension + "\n");
+    } else {
+      output +=
+        kleur.red("\u274C " + requiredCodeFiles[extension] + "\t -> ") +
+        kleur.white(fileNameToCheck + extension + "\n");
+      ok = false;
+    }
+  });
+
+  if (!ok) {
+    output += "\nSome files missing or incorrectly named (shown in red above).\n";
+    output += "Please update the example set and try again.\n";
+  }
+
+  output += "\n------------------------------------------------\n";
+  console.log(output);
+  process.exit(ok ? 0 : 1);
 }
 
 let apiJsonData = getJsonData();
@@ -306,56 +391,6 @@ categories.forEach((categoryKey) => {
         functionExampleFiles.forEach((exampleTxtKey) => {
           let exampleKey = exampleTxtKey.replaceAll(".txt", "");
 
-          // -----------------------------------
-          // ========= TESTING =================
-          // -----------------------------------
-          // Testing that all files are included for filename (terminal argument)
-          if (fileNameToCheck == exampleKey) {
-
-            // Define required code files
-            const requiredCodeFiles = {
-              ".cpp": "C++\t\t",
-              "-top-level.cs": "C# (Top-Level)",
-              "-oop.cs": "C# (Object-Oriented)",
-              ".py": "Python\t",
-              // ".pas": "Pascal",
-            };
-
-            let exampleFiles = categoryFiles.filter(file => file.startsWith(exampleKey));
-
-            testingOutput += "\n------------------------------------------------\n\n";
-            testingOutput += kleur.magenta("Testing") + kleur.cyan(" -> " + fileNameToCheck) + "\n\n";
-
-            // Text file - check already done above
-            testingOutput += kleur.green("\u2705 Text Description\t -> ") + kleur.white(fileNameToCheck + ".txt\n");
-
-            // Check for output file (.png or .gif)
-            if (exampleFiles.includes(fileNameToCheck + ".png")) {
-              testingOutput += kleur.green("\u2705 Image\t\t -> ") + kleur.white(fileNameToCheck + ".png\n");
-            } else if (exampleFiles.includes(fileNameToCheck + ".gif")) {
-              testingOutput += kleur.green("\u2705 Image (Gif)\t\t -> ") + kleur.white(fileNameToCheck + ".gif\n");
-            } else {
-              testingOutput += kleur.red("\u274C Image/Gif\t\t -> ") + kleur.white(fileNameToCheck + " .png or .gif file\n");
-              testingSuccess = false;
-            }
-
-            // Check code files
-            Object.keys(requiredCodeFiles).forEach(function (extension) {
-              if (exampleFiles.includes(fileNameToCheck + extension)) {
-                testingOutput += kleur.green("\u2705 " + requiredCodeFiles[extension] + "\t -> ") + kleur.white(fileNameToCheck + extension + "\n");
-              } else {
-                testingOutput += kleur.red("\u274C " + requiredCodeFiles[extension] + "\t -> ") + kleur.white(fileNameToCheck + extension + "\n");
-                testingSuccess = false;
-              }
-            });
-
-            if (!testingSuccess) {
-              testingOutput += "\nSome files missing or incorrectly named (shown in red above).\nPlease update to make sure you have all files listed above and try again.\n"
-            }
-
-            testingOutput += "\n------------------------------------------------\n";
-          }
-          // -----------------------------------
 
           // Description
           let txtFilePath = categoryFilePath + "/" + functionKey + "/" + exampleTxtKey;
@@ -401,16 +436,16 @@ categories.forEach((categoryKey) => {
               } // Check for cpp files for standard SK and Beyond SK
               else if (lang == "cpp" && cppFiles.length > 0) {
                 cppFiles.forEach(file => {
-                  if (file.includes(exampleKey)){
-                    if (file.includes("-sk")){
+                  if (file.includes(exampleKey)) {
+                    if (file.includes("-sk")) {
                       mdxContent += `import ${importTitle}_sk_${lang} from '${codeFilePath.replaceAll(".cpp", "-sk.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
                     }
-                    if (file.includes("-beyond")){
+                    if (file.includes("-beyond")) {
                       mdxContent += `import ${importTitle}_beyond_${lang} from '${codeFilePath.replaceAll(".cpp", "-beyond.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
                     }
                   }
-              });
-            }
+                });
+              }
               else {
                 mdxContent += `import ${importTitle}_${lang} from '${codeFilePath.replaceAll("/usage", "/public/usage")}?raw';\n`;
               }
@@ -544,8 +579,4 @@ categories.forEach((categoryKey) => {
 // Check if all MDX files generated successfully
 if (success) {
   console.log(kleur.green("\nAll Usage Example MDX files generated successfully."));
-}
-// Output information when checking filename
-if (testing) {
-  console.log(testingOutput);
 }
