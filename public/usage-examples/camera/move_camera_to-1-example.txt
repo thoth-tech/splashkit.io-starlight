@@ -1,0 +1,1 @@
+This example demonstrates how to move the camera to a specific point using SplashKit. The camera centers on a player sprite when the spacebar is pressed, showing the camera's position on screen.
