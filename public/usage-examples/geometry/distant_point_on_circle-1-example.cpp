@@ -4,7 +4,7 @@ int main()
 {
     // Create the circle and window used to demonstrate the distant point
     circle demo_circle = circle_at(400, 300, 120);
-    window demo_window = open_window("Opposite Point to Mouse on Circle", 800, 600);
+    open_window("Opposite Point to Mouse on Circle", 800, 600);
 
     while (!quit_requested())
     {

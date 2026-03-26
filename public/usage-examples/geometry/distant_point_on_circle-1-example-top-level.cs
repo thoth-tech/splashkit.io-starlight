@@ -3,7 +3,7 @@ using static SplashKitSDK.SplashKit;
 
 // Create the circle and window used to demonstrate the distant point
 Circle demoCircle = CircleAt(400, 300, 120);
-Window demoWindow = OpenWindow("Opposite Point to Mouse on Circle", 800, 600);
+OpenWindow("Opposite Point to Mouse on Circle", 800, 600);
 
 while (!QuitRequested())
 {
@@ -28,7 +28,7 @@ while (!QuitRequested())
     FillCircle(ColorBlue(), CenterPoint(demoCircle).X, CenterPoint(demoCircle).Y, 5);
 
     // Display instructions and labels on the window
-    DrawText("Move the mouse to test from a new point", ColorBlack(), 20, 20);
+    DrawText("Move the mouse to change the test point", ColorBlack(), 20, 20);
     DrawText("Red = test point", ColorRed(), 20, 50);
     DrawText("Green = distant point on circle", ColorGreen(), 20, 80);
     DrawText("Blue = circle center", ColorBlue(), 20, 110);
