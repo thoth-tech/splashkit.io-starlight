@@ -34,3 +34,4 @@ src/content/docs/usage-examples/*.mdx
 !src/content/docs/api/index.mdx
 !src/content/docs/usage-examples/index.mdx
 !src/content/docs/usage-examples/CONTRIBUTING.mdx
+.env.local
