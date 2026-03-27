@@ -1,0 +1,2 @@
+Opens a window of random height and displays a message about the height in pixels.
+
