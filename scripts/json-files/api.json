@@ -53364,6 +53364,15 @@
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
     "functions": [
       {
+        "signature": "json data_driven_dungeon();",
+        "name": "data_driven_dungeon",
+        "description": "Demonstrates loading a dungeon level from a JSON file, including parsing arrays of objects for spawn points and loot items.",
+        "brief": "Data-Driven Dungeon Integration Example",
+        "unique_global_name": "data_driven_dungeon",
+        "group": "json",
+        "static": "json"
+      },
+      {
         "signature": "json create_json();",
         "name": "create_json",
         "method_name": null,
