@@ -1,1 +1,1 @@
-Mouse in a Circle
+Green circular button in the center of the screen which reacts to the mouse cursor.

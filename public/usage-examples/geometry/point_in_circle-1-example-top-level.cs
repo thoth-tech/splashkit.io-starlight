@@ -1,33 +1,48 @@
 using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
-Window window = OpenWindow("Point In Circle", 800, 600);
-Circle circle = CircleAt(400, 300, 100);
-Point2D mousePt;
+OpenWindow("Circular Toggle Button", 800, 600);
+
+//Declaring the variables
+Color circleColor;
+Color textColor;
+Color bgColor = ColorWhite();
 string text;
-Color circleClr;
+Point2D cursorPos;
+Circle circle = CircleAt(400, 300, 80);
 
 while (!QuitRequested())
 {
     ProcessEvents();
 
-    mousePt = MousePosition();
+    cursorPos = MousePosition();
 
-    // Update text and circle colour based on the mouse position in relation to the circle
-    if (PointInCircle(mousePt, circle))
+    // Check for mouse position in relation to circle
+    if (PointInCircle(cursorPos, circle))
     {
-        circleClr = ColorRed();
-        text = "Point in the Circle!";
+        circleColor = ColorGreen();
+        textColor = ColorGreen();
+        text = "Point is in the circle";
+        circle.Radius = 90;
+        if (MouseClicked(MouseButton.LeftButton))
+        {
+            bgColor = RandomColor();
+        }
     }
     else
     {
-        circleClr = ColorGreen();
-        text = "Point not in the Circle!";
+        circleColor = ColorBrightGreen();
+        textColor = ColorRed();
+        text = "Point is not in the circle";
+        circle.Radius = 80;
     }
 
-    ClearScreen();
-    DrawCircle(circleClr, circle);
-    DrawText(text, ColorRed(), 100, 100);
+    // Display the button and results
+    ClearScreen(bgColor);
+    DrawText("Click the button to change colour of the Screen", ColorBlack(), 200, 100);
+    DrawText(text, textColor, 300, 150);
+    FillCircle(circleColor, circle);
+    DrawText("Button", ColorBlack(), 375, 300);
     RefreshScreen();
 }
-CloseWindow(window);
+CloseAllWindows();
