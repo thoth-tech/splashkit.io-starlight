@@ -1,8 +1,1 @@
-Measuring the Distance from a Ray to a Circle
-
-This example demonstrates how the ray_circle_intersect_distance function calculates the distance from a ray to the point where it first touches a 
-circle. A ray is aimed directly at the circle so the result is easy to understand. The program then prints the distance returned by the function.
-
-This function can be useful in game development, for example when checking if a bullet, laser, or line of sight hits an object. It helps 
-developers detect collisions and understand how far an object is from another. This example makes it clearer by using simple values so the result 
-can be easily verified.
+Ray Circle Intersect Distance
