@@ -1,10 +1,14 @@
+# Set up a ray that points directly at the circle so the returned distance is easy to check
+# Calculate the distance from the ray origin to the point where it first touches the circle
+# Print the result so the function output can be verified clearly
+
 from splashkit import *  # importing SplashKit so we can use its functions
 
 # here I am creating a ray starting from (100,100)
 ray_origin = point_at(100, 100)
 
 # this is the direction of the ray, going to the right side
-ray_heading = vector_from(1, 0)
+ray_heading = vector_to(1, 0)
 
 # here I am creating a circle at (250,100) with radius 50
 target_circle = circle_at(250, 100, 50)
