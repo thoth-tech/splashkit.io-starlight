@@ -1,21 +1,17 @@
-# Set up a ray that points directly at the circle so the returned distance is easy to check
-# Calculate the distance from the ray origin to the point where it first touches the circle
-# Print the result so the function output can be verified clearly
+from splashkit import *  # needed to use SplashKit functions
 
-from splashkit import *  # importing SplashKit so we can use its functions
-
-# here I am creating a ray starting from (100,100)
+# set up a ray pointing to the right so the result is easy to predict and verify
 ray_origin = point_at(100, 100)
-
-# this is the direction of the ray, going to the right side
 ray_heading = vector_to(1, 0)
 
-# here I am creating a circle at (250,100) with radius 50
+# place the circle directly in the path of the ray so an intersection will happen
 target_circle = circle_at(250, 100, 50)
 
-# this function checks how far the ray travels before touching the circle
+# calculate how far the ray travels before it first touches the circle
 hit_distance = ray_circle_intersect_distance(ray_origin, ray_heading, target_circle)
 
-# printing the result so we can see what distance we get
+# print the result so we can clearly see and check the returned distance
 write("Ray hit distance: ")
 write_line(hit_distance)
+
+
