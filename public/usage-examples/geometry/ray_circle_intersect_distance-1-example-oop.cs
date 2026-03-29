@@ -1,26 +1,25 @@
-using SplashKitSDK; // importing SplashKit library
+using SplashKitSDK;
 
-namespace RayCircleIntersectDistanceExample // naming the example properly
+namespace RayCircleIntersectDistanceExample
 {
-    public class Program // main class of the program
+    public class Program
     {
-        public static void Main() // starting point of the program
+        public static void Main()
         {
-            // here I am creating a ray starting from (100,100)
+            // set up a ray pointing to the right so the result is easy to predict and verify
             Point2D rayOrigin = SplashKit.PointAt(100, 100);
+            Vector2D rayHeading = SplashKit.VectorTo(1, 0);
 
-            // this is the direction of the ray, going to the right side
-            Vector2D rayHeading = SplashKit.VectorFrom(1, 0);
-
-            // here I am creating a circle at (250,100) with radius 50
+            // place the circle directly in the path of the ray so an intersection will happen
             Circle targetCircle = SplashKit.CircleAt(250, 100, 50);
 
-            // this function checks how far the ray travels before touching the circle
+            // calculate how far the ray travels before it first touches the circle
             double hitDistance = SplashKit.RayCircleIntersectDistance(rayOrigin, rayHeading, targetCircle);
 
-            // printing the result so we can see what distance we get
+            // print the result so we can clearly see and check the returned distance
             SplashKit.Write("Ray hit distance: ");
             SplashKit.WriteLine(hitDistance);
         }
     }
 }
+
