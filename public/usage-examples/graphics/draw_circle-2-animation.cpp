@@ -1,7 +1,5 @@
 #include "splashkit.h"
 
-using namespace splashkit;
-
 int main()
 {
     open_window("Circle Animation", 800, 600);

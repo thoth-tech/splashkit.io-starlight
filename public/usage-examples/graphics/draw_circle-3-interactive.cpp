@@ -1,7 +1,4 @@
-// Move a circle using arrow keys
 #include "splashkit.h"
-
-using namespace splashkit;
 
 int main()
 {

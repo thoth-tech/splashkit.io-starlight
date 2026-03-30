@@ -1,25 +1,23 @@
-# Move a circle using arrow keys
-
 from splashkit import *
 
-open_window("Interactive Circle", 800, 600)
+window = open_window("Interactive Circle", 800, 600)
 
 x = 400
 y = 300
 
-while not window_close_requested("Interactive Circle"):
+while not window_close_requested(window):
     process_events()
-    clear_screen(Color.WHITE)
+    clear_screen_to_white()
 
-    if key_down(KeyCode.LEFT_KEY):
+    if key_down(left_key()):
         x -= 5
-    if key_down(KeyCode.RIGHT_KEY):
+    if key_down(right_key()):
         x += 5
-    if key_down(KeyCode.UP_KEY):
+    if key_down(up_key()):
         y -= 5
-    if key_down(KeyCode.DOWN_KEY):
+    if key_down(down_key()):
         y += 5
 
-    draw_circle(Color.BLUE, x, y, 50)
+    draw_circle(color_blue(), x, y, 50)
 
-    refresh_screen(60)
+    refresh_screen_with_target_fps(60)
