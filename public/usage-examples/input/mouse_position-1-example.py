@@ -16,6 +16,6 @@ while not quit_requested():
     fill_circle(color_blue(), mouse_point.x, mouse_point.y, 8)
     draw_circle(color_black(), mouse_point.x, mouse_point.y, 8)
 
-    refresh_screen(60)
+    refresh_screen_with_target_fps(60)
 
 close_all_windows()
