@@ -6,7 +6,7 @@ int main()
 
     double x = 0;
 
-    while (!window_close_requested("Circle Animation"))
+    while (!quit_requested())
     {
         process_events();
         clear_screen(COLOR_WHITE);

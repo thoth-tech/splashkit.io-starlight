@@ -4,7 +4,7 @@ window = open_window("Circle Animation", 800, 600)
 
 x = 0
 
-while not window_close_requested(window):
+while not quit_requested():
     process_events()
     clear_screen_to_white()
 

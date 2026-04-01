@@ -5,17 +5,17 @@ window = open_window("Interactive Circle", 800, 600)
 x = 400
 y = 300
 
-while not window_close_requested(window):
+while not quit_requested():
     process_events()
     clear_screen_to_white()
 
-    if key_down(left_key()):
+    if key_down(KeyCode.left_key):
         x -= 5
-    if key_down(right_key()):
+    if key_down(KeyCode.right_key):
         x += 5
-    if key_down(up_key()):
+    if key_down(KeyCode.up_key):
         y -= 5
-    if key_down(down_key()):
+    if key_down(KeyCode.down_key):
         y += 5
 
     draw_circle(color_blue(), x, y, 50)

@@ -7,7 +7,7 @@ int main()
     double x = 400;
     double y = 300;
 
-    while (!window_close_requested("Interactive Circle"))
+    while (!quit_requested())
     {
         process_events();
         clear_screen(COLOR_WHITE);
