@@ -1,8 +1,7 @@
 from splashkit import *
 
-# Replace all occurrences of "foo" with "bar" in a sentence.
-text = "foo is fun, and foo is useful."
-updated = replace_all(text, "foo", "bar")
+sentence = "foo fighters say foo is fun"
+updated_sentence = replace_all(sentence, "foo", "bar")
 
-print("Original:", text)
-print("Updated:", updated)
+write_line("Original: " + sentence)
+write_line("Updated: " + updated_sentence)

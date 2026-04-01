@@ -1,8 +1,7 @@
-using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-// Replace all occurrences of "foo" with "bar" in a sentence.
-string text = "foo is fun, and foo is useful.";
-string updated = SplashKit.ReplaceAll(text, "foo", "bar");
+string sentence = "foo fighters say foo is fun";
+string updatedSentence = ReplaceAll(sentence, "foo", "bar");
 
-Console.WriteLine("Original: " + text);
-Console.WriteLine("Updated: " + updated);
+WriteLine("Original: " + sentence);
+WriteLine("Updated: " + updatedSentence);

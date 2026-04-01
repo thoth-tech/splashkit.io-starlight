@@ -1,14 +1,16 @@
 using SplashKitSDK;
 
-public class Program
+namespace ReplaceAllExample
 {
-    // Replace all occurrences of "foo" with "bar" in a sentence.
-    public static void Main()
+    public class Program
     {
-        string text = "foo is fun, and foo is useful.";
-        string updated = SplashKit.ReplaceAll(text, "foo", "bar");
+        public static void Main()
+        {
+            string sentence = "foo fighters say foo is fun";
+            string updatedSentence = SplashKit.ReplaceAll(sentence, "foo", "bar");
 
-        Console.WriteLine("Original: " + text);
-        Console.WriteLine("Updated: " + updated);
+            SplashKit.WriteLine("Original: " + sentence);
+            SplashKit.WriteLine("Updated: " + updatedSentence);
+        }
     }
 }

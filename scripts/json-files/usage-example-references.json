@@ -1877,7 +1877,7 @@
                 "read_line"
             ]
         },
-        {
+                {
             "funcKey": "to_uppercase",
             "title": "Case-insensitive string comparison",
             "url": "/api/utilities/#to-uppercase",
@@ -1895,6 +1895,15 @@
             "title": "Remove whitespace from a string",
             "url": "/api/utilities/#trim",
             "functions": [
+                "write_line"
+            ]
+        },
+        {
+            "funcKey": "replace_all",
+            "title": "Replacing all occurrences of a word in a sentence",
+            "url": "/api/utilities/#replace-all",
+            "functions": [
+                "replace_all",
                 "write_line"
             ]
         }

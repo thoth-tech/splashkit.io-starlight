@@ -1,16 +1,12 @@
 #include "splashkit.h"
-#include <iostream>
 
-using namespace std;
-
-// Replace all occurrences of "foo" with "bar" in a sentence.
 int main()
 {
-    string text = "foo is fun, and foo is useful.";
-    string updated = replace_all(text, "foo", "bar");
+    string sentence = "foo fighters say foo is fun";
+    string updated_sentence = replace_all(sentence, "foo", "bar");
 
-    cout << "Original: " << text << endl;
-    cout << "Updated: " << updated << endl;
+    write_line("Original: " + sentence);
+    write_line("Updated: " + updated_sentence);
 
     return 0;
 }
