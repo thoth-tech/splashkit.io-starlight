@@ -17,7 +17,7 @@ int main()
         "Light Purple"
     };
 
-    while (!window_close_requested("Purple Shade Brightness"))
+    while (!quit_requested())
     {
         process_events();
 
@@ -38,5 +38,6 @@ int main()
         refresh_screen(60);
     }
 
+    close_all_windows();
     return 0;
 }
