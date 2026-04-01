@@ -38,6 +38,9 @@
             ]
         }
     ],
+    "color": [
+        
+    ],
     "geometry": [
         {
             "funcKey": "center_point",
@@ -524,6 +527,7 @@
                 "close_window"
             ]
         },
+        
         {
             "funcKey": "same_point",
             "title": "Point 2D Guessing Game",
@@ -561,6 +565,7 @@
                 "close_all_windows"
             ]
         },
+        
         {
             "funcKey": "clear_screen",
             "title": "Background Color",
@@ -597,6 +602,7 @@
                 "SplashKit"
             ]
         },
+        
         {
             "funcKey": "draw_circle_on_bitmap",
             "title": "Creating a Red Planet",
@@ -1189,6 +1195,7 @@
                 "close_all_windows"
             ]
         },
+        
         {
             "funcKey": "has_font",
             "title": "Checking for Font using Variable",
@@ -1764,22 +1771,15 @@
             "title": "Convert text to lowercase",
             "url": "/api/utilities/#to-lowercase",
             "functions": [
-                "write_line",
-                "CAPS",
-                "read_line"
+                "write_line"
             ]
         },
         {
             "funcKey": "to_uppercase",
-            "title": "Case-insensitive string comparison",
+            "title": "Convert text to uppercase",
             "url": "/api/utilities/#to-uppercase",
             "functions": [
-                "write",
-                "read_line",
-                "write_line",
-                "len",
-                "word",
-                "to_lowercase"
+                "write_line"
             ]
         },
         {
@@ -1789,6 +1789,24 @@
             "functions": [
                 "write_line"
             ]
+        },
+        {
+            "funcKey": "replace_all",
+            "title": "Replacing all occurrences of a word in a sentence",
+            "url": "/api/utilities/#replace-all",
+            "usage_examples": [
+                {
+                    "name": "Replacing all occurrences of a word",
+                    "path": "utilities/replace_all-1-example"
+                }
+            ],
+            "functions": [
+                "replace_all",
+                "write_line"
+            ]
         }
+    ],
+    "windows": [
+        
     ]
 }

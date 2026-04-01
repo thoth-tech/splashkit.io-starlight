@@ -1,10 +1,10 @@
 [
+  "camera",
+  "graphics",
   "animations",
   "audio",
   "beyond-splashkit",
-  "camera",
   "color",
-  "graphics",
   "input",
   "interface",
   "json",
