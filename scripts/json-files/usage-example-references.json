@@ -2,7 +2,7 @@
     "audio": [
         {
             "funcKey": "play_music_named",
-            "title": "Music Playback",
+            "title": "Music Playback\r",
             "url": "/api/audio/#play-music-named",
             "functions": [
                 "audio_ready",
@@ -14,7 +14,7 @@
         },
         {
             "funcKey": "resume_music",
-            "title": "Pausing and Resuming Game Music",
+            "title": "Pausing and Resuming Game Music\r",
             "url": "/api/audio/#resume-music",
             "functions": [
                 "audio_ready",
@@ -34,6 +34,31 @@
                 "color_black",
                 "refresh_window",
                 "free_all_music",
+                "close_all_windows"
+            ]
+        }
+    ],
+    "color": [
+        {
+            "funcKey": "saturation_of",
+            "title": "Draws a rectangle in a random colour. The colour's saturation value is displayed on screen",
+            "url": "/api/color/#saturation-of",
+            "functions": [
+                "open_window",
+                "random_rgb_color",
+                "round",
+                "rectangle_from",
+                "clear_screen",
+                "color_white",
+                "fill_rectangle_record",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "red_of",
+                "green_of",
+                "blue_of",
+                "alpha_of",
+                "refresh_screen",
+                "delay",
                 "close_all_windows"
             ]
         }
@@ -142,7 +167,7 @@
         },
         {
             "funcKey": "closest_point_on_circle",
-            "title": "Closest Point to Mouse on Circle",
+            "title": "Closest Point to Mouse on Circle\r",
             "url": "/api/geometry/#closest-point-on-circle",
             "functions": [
                 "open_window",
@@ -158,6 +183,25 @@
                 "color_blue",
                 "color_red",
                 "refresh_screen",
+                "close_all_windows"
+            ]
+        },
+        {
+            "funcKey": "lines_intersect",
+            "title": "Simple Line Intersect Check",
+            "url": "/api/geometry/#lines-intersect",
+            "functions": [
+                "open_window",
+                "Point2D",
+                "line_from_point_to_point",
+                "draw_line_record",
+                "color_red",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "color_blue",
+                "color_green",
+                "refresh_screen",
+                "delay",
                 "close_all_windows"
             ]
         },
@@ -257,25 +301,6 @@
             ]
         },
         {
-            "funcKey": "lines_intersect",
-            "title": "Simple Line Intersect Check",
-            "url": "/api/geometry/#lines-intersect",
-            "functions": [
-                "open_window",
-                "Point2D",
-                "line_from_point_to_point",
-                "draw_line_record",
-                "color_red",
-                "draw_text_no_font_no_size",
-                "color_black",
-                "color_blue",
-                "color_green",
-                "refresh_screen",
-                "delay",
-                "close_all_windows"
-            ]
-        },
-        {
             "funcKey": "point_at",
             "title": "Flower Grid",
             "url": "/api/geometry/#point-at",
@@ -312,7 +337,7 @@
         {
             "funcKey": "point_in_circle",
             "title": "Mouse in a Circle",
-            "url": "/api/geometry/#point-in-circle",
+            "url": "/api/geometry/#point-in-circle-functions",
             "functions": [
                 "open_window",
                 "circle_at_from_points",
@@ -331,7 +356,7 @@
         {
             "funcKey": "point_in_rectangle",
             "title": "Cursor Jail",
-            "url": "/api/geometry/#point-in-rectangle",
+            "url": "/api/geometry/#point-in-rectangle-functions",
             "functions": [
                 "rectangle_from",
                 "create_timer",
@@ -377,7 +402,7 @@
         {
             "funcKey": "point_on_line",
             "title": "Mouse Point On Line?",
-            "url": "/api/geometry/#point-on-line",
+            "url": "/api/geometry/#point-on-line-functions",
             "functions": [
                 "line_from",
                 "open_window",
@@ -508,7 +533,7 @@
         },
         {
             "funcKey": "random_window_point",
-            "title": "Random Portals",
+            "title": "Random Portals\r",
             "url": "/api/geometry/#random-window-point",
             "functions": [
                 "open_window",
@@ -522,6 +547,32 @@
                 "refresh_screen",
                 "delay",
                 "close_window"
+            ]
+        },
+        {
+            "funcKey": "rectangle_around",
+            "title": "A perpetually moving circle which increases and decreases in size, surrounded by a rectangle shape",
+            "url": "/api/geometry/#rectangle-around-functions",
+            "functions": [
+                "open_window",
+                "create_timer",
+                "start_timer",
+                "quit_requested",
+                "point_at",
+                "cosine",
+                "sine",
+                "circle_at",
+                "timer_ticks",
+                "reset_timer",
+                "process_events",
+                "clear_screen_to_white",
+                "draw_rectangle_record",
+                "color_black",
+                "rectangle_around_circle",
+                "fill_circle_record",
+                "color_red",
+                "refresh_screen",
+                "close_all_windows"
             ]
         },
         {
@@ -562,9 +613,27 @@
             ]
         },
         {
+            "funcKey": "bitmap_center",
+            "title": "Draw a bitmap with a red dot at its center\r",
+            "url": "/api/graphics/#bitmap-center",
+            "functions": [
+                "open_window",
+                "load_bitmap",
+                "clear_screen",
+                "color_white",
+                "draw_bitmap",
+                "fill_circle_record",
+                "color_red",
+                "circle_at",
+                "refresh_screen",
+                "delay",
+                "close_all_windows"
+            ]
+        },
+        {
             "funcKey": "clear_screen",
             "title": "Background Color",
-            "url": "/api/graphics/#clear-screen",
+            "url": "/api/graphics/#clear-screen-functions",
             "functions": [
                 "open_window",
                 "color_blue",
@@ -575,7 +644,7 @@
         },
         {
             "funcKey": "draw_bitmap_named",
-            "title": "SplashKit Logo",
+            "title": "SplashKit Logo\r",
             "url": "/api/graphics/#draw-bitmap-named",
             "functions": [
                 "open_window",
@@ -598,9 +667,29 @@
             ]
         },
         {
+            "funcKey": "draw_circle",
+            "title": "Circle Showcase\r",
+            "url": "/api/graphics/#draw-circle-functions",
+            "functions": [
+                "open_window",
+                "clear_screen",
+                "color_white",
+                "fill_circle",
+                "color_red",
+                "color_blue",
+                "color_green",
+                "color_orange",
+                "color_purple",
+                "random_rgb_color",
+                "refresh_screen",
+                "delay",
+                "close_all_windows"
+            ]
+        },
+        {
             "funcKey": "draw_circle_on_bitmap",
             "title": "Creating a Red Planet",
-            "url": "/api/graphics/#draw-circle-on-bitmap",
+            "url": "/api/graphics/#draw-circle-on-bitmap-functions",
             "functions": [
                 "open_window",
                 "create_bitmap",
@@ -621,7 +710,7 @@
         {
             "funcKey": "draw_circle_on_window",
             "title": "Bubbles",
-            "url": "/api/graphics/#draw-circle-on-window",
+            "url": "/api/graphics/#draw-circle-on-window-functions",
             "functions": [
                 "open_window",
                 "clear_screen",
@@ -655,7 +744,7 @@
         {
             "funcKey": "draw_ellipse",
             "title": "Radiating Wave",
-            "url": "/api/graphics/#draw-ellipse",
+            "url": "/api/graphics/#draw-ellipse-functions",
             "functions": [
                 "open_window",
                 "clear_screen",
@@ -669,7 +758,7 @@
         {
             "funcKey": "draw_line",
             "title": "Colourful Starburst",
-            "url": "/api/graphics/#draw-line",
+            "url": "/api/graphics/#draw-line-functions",
             "functions": [
                 "open_window",
                 "clear_screen",
@@ -691,7 +780,7 @@
         {
             "funcKey": "draw_line_on_bitmap",
             "title": "Drawing a Route on a Map",
-            "url": "/api/graphics/#draw-line-on-bitmap",
+            "url": "/api/graphics/#draw-line-on-bitmap-functions",
             "functions": [
                 "open_window",
                 "create_bitmap",
@@ -712,7 +801,7 @@
         {
             "funcKey": "draw_line_on_window",
             "title": "Basic Line Drawing",
-            "url": "/api/graphics/#draw-line-on-window",
+            "url": "/api/graphics/#draw-line-on-window-functions",
             "functions": [
                 "open_window",
                 "clear_screen",
@@ -734,7 +823,7 @@
         {
             "funcKey": "draw_pixel",
             "title": "Cursor Trail",
-            "url": "/api/graphics/#draw-pixel",
+            "url": "/api/graphics/#draw-pixel-functions",
             "functions": [
                 "point_at",
                 "color_blue",
@@ -756,7 +845,7 @@
         {
             "funcKey": "draw_quad",
             "title": "Ninja Star",
-            "url": "/api/graphics/#draw-quad",
+            "url": "/api/graphics/#draw-quad-functions",
             "functions": [
                 "quad_from",
                 "open_window",
@@ -774,7 +863,7 @@
         {
             "funcKey": "draw_quad_on_bitmap",
             "title": "3D Cube",
-            "url": "/api/graphics/#draw-quad-on-bitmap",
+            "url": "/api/graphics/#draw-quad-on-bitmap-functions",
             "functions": [
                 "open_window",
                 "create_bitmap",
@@ -794,7 +883,7 @@
         {
             "funcKey": "draw_quad_on_window",
             "title": "Halved Ninja Star",
-            "url": "/api/graphics/#draw-quad-on-window",
+            "url": "/api/graphics/#draw-quad-on-window-functions",
             "functions": [
                 "quad_from",
                 "open_window",
@@ -814,7 +903,7 @@
         {
             "funcKey": "draw_rectangle",
             "title": "Rectangle Staircase",
-            "url": "/api/graphics/#draw-rectangle",
+            "url": "/api/graphics/#draw-rectangle-functions",
             "functions": [
                 "open_window",
                 "clear_screen",
@@ -828,7 +917,7 @@
         {
             "funcKey": "draw_triangle",
             "title": "Triangle Coordinates",
-            "url": "/api/graphics/#draw-triangle",
+            "url": "/api/graphics/#draw-triangle-functions",
             "functions": [
                 "open_window",
                 "clear_screen_to_white",
@@ -847,7 +936,7 @@
         {
             "funcKey": "draw_triangle_on_bitmap",
             "title": "Mountain Peaks",
-            "url": "/api/graphics/#draw-triangle-on-bitmap",
+            "url": "/api/graphics/#draw-triangle-on-bitmap-functions",
             "functions": [
                 "open_window",
                 "create_bitmap",
@@ -866,7 +955,7 @@
         {
             "funcKey": "draw_triangle_on_window",
             "title": "Colourful Bunting Flags",
-            "url": "/api/graphics/#draw-triangle-on-window",
+            "url": "/api/graphics/#draw-triangle-on-window-functions",
             "functions": [
                 "open_window",
                 "clear_screen",
@@ -880,7 +969,7 @@
         {
             "funcKey": "fill_circle",
             "title": "Basic Blue Circle",
-            "url": "/api/graphics/#fill-circle",
+            "url": "/api/graphics/#fill-circle-functions",
             "functions": [
                 "open_window",
                 "clear_screen",
@@ -894,7 +983,7 @@
         {
             "funcKey": "fill_circle_on_bitmap",
             "title": "Rainbow Caterpillar",
-            "url": "/api/graphics/#fill-circle-on-bitmap",
+            "url": "/api/graphics/#fill-circle-on-bitmap-functions",
             "functions": [
                 "open_window",
                 "create_bitmap",
@@ -920,7 +1009,7 @@
         {
             "funcKey": "fill_circle_on_window",
             "title": "Traffic Lights",
-            "url": "/api/graphics/#fill-circle-on-window",
+            "url": "/api/graphics/#fill-circle-on-window-functions",
             "functions": [
                 "open_window",
                 "clear_screen",
@@ -936,7 +1025,7 @@
         {
             "funcKey": "fill_ellipse",
             "title": "Basic Blue Ellipse",
-            "url": "/api/graphics/#fill-ellipse",
+            "url": "/api/graphics/#fill-ellipse-functions",
             "functions": [
                 "open_window",
                 "clear_screen",
@@ -955,7 +1044,7 @@
         {
             "funcKey": "fill_ellipse_on_bitmap",
             "title": "Water Ripples",
-            "url": "/api/graphics/#fill-ellipse-on-bitmap",
+            "url": "/api/graphics/#fill-ellipse-on-bitmap-functions",
             "functions": [
                 "open_window",
                 "create_bitmap",
@@ -973,7 +1062,7 @@
         {
             "funcKey": "fill_quad",
             "title": "Coloured Star",
-            "url": "/api/graphics/#fill-quad",
+            "url": "/api/graphics/#fill-quad-functions",
             "functions": [
                 "quad_from",
                 "open_window",
@@ -991,7 +1080,7 @@
         {
             "funcKey": "fill_quad_on_bitmap",
             "title": "Microsoft Windows Logo",
-            "url": "/api/graphics/#fill-quad-on-bitmap",
+            "url": "/api/graphics/#fill-quad-on-bitmap-functions",
             "functions": [
                 "open_window",
                 "create_bitmap",
@@ -1009,7 +1098,7 @@
         {
             "funcKey": "fill_quad_on_window",
             "title": "Halved Coloured Star",
-            "url": "/api/graphics/#fill-quad-on-window",
+            "url": "/api/graphics/#fill-quad-on-window-functions",
             "functions": [
                 "quad_from",
                 "open_window",
@@ -1029,7 +1118,7 @@
         {
             "funcKey": "fill_rectangle",
             "title": "Basic Blue Rectangle",
-            "url": "/api/graphics/#fill-rectangle",
+            "url": "/api/graphics/#fill-rectangle-functions",
             "functions": [
                 "open_window",
                 "clear_screen_to_white",
@@ -1041,8 +1130,8 @@
         },
         {
             "funcKey": "fill_rectangle_on_bitmap",
-            "title": "Cityscape",
-            "url": "/api/graphics/#fill-rectangle-on-bitmap",
+            "title": "Cityscape\r",
+            "url": "/api/graphics/#fill-rectangle-on-bitmap-functions",
             "functions": [
                 "open_window",
                 "load_bitmap",
@@ -1060,7 +1149,7 @@
         {
             "funcKey": "fill_rectangle_on_window",
             "title": "Filled Rectangles on Separate Windows",
-            "url": "/api/graphics/#fill-rectangle-on-window",
+            "url": "/api/graphics/#fill-rectangle-on-window-functions",
             "functions": [
                 "open_window",
                 "move_window_to",
@@ -1100,7 +1189,7 @@
         {
             "funcKey": "fill_triangle",
             "title": "Basic Red Triangle",
-            "url": "/api/graphics/#fill-triangle",
+            "url": "/api/graphics/#fill-triangle-functions",
             "functions": [
                 "open_window",
                 "clear_screen_to_white",
@@ -1112,8 +1201,8 @@
         },
         {
             "funcKey": "fill_triangle_on_bitmap",
-            "title": "Hooray! A Red Hat",
-            "url": "/api/graphics/#fill-triangle-on-bitmap",
+            "title": "Hooray! A Red Hat\r",
+            "url": "/api/graphics/#fill-triangle-on-bitmap-functions",
             "functions": [
                 "open_window",
                 "emojis",
@@ -1133,7 +1222,7 @@
         {
             "funcKey": "fill_triangle_on_window",
             "title": "Filled Triangles on Separate Windows",
-            "url": "/api/graphics/#fill-triangle-on-window",
+            "url": "/api/graphics/#fill-triangle-on-window-functions",
             "functions": [
                 "open_window",
                 "move_window_to",
@@ -1172,7 +1261,7 @@
         },
         {
             "funcKey": "free_font",
-            "title": "Freeing Fonts",
+            "title": "Freeing Fonts\r",
             "url": "/api/graphics/#free-font",
             "functions": [
                 "open_window",
@@ -1190,9 +1279,28 @@
             ]
         },
         {
+            "funcKey": "get_font_style",
+            "title": "The program automatically cycles through font styles for a given font (also displaying example text), with the numerical value of each style being shown on screen\r",
+            "url": "/api/graphics/#get-font-style-functions",
+            "functions": [
+                "open_window",
+                "font_named",
+                "quit_requested",
+                "process_events",
+                "set_font_style",
+                "clear_screen_to_white",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "draw_text",
+                "refresh_screen",
+                "delay",
+                "close_all_windows"
+            ]
+        },
+        {
             "funcKey": "has_font",
             "title": "Checking for Font using Variable",
-            "url": "/api/graphics/#has-font",
+            "url": "/api/graphics/#has-font-functions",
             "functions": [
                 "write",
                 "font_named",
@@ -1211,7 +1319,7 @@
         },
         {
             "funcKey": "load_font",
-            "title": "Using Fonts",
+            "title": "Using Fonts\r",
             "url": "/api/graphics/#load-font",
             "functions": [
                 "open_window",
@@ -1225,7 +1333,7 @@
         {
             "funcKey": "refresh_screen",
             "title": "House Drawing",
-            "url": "/api/graphics/#refresh-screen",
+            "url": "/api/graphics/#refresh-screen-functions",
             "functions": [
                 "open_window",
                 "clear_screen",
@@ -1242,7 +1350,7 @@
         },
         {
             "funcKey": "text_width_font_named",
-            "title": "Underline Text using Text Width",
+            "title": "Underline Text using Text Width\r",
             "url": "/api/graphics/#text-width-font-named",
             "functions": [
                 "open_window",
@@ -1255,6 +1363,38 @@
                 "fill_rectangle",
                 "refresh_screen",
                 "delay",
+                "close_all_windows"
+            ]
+        }
+    ],
+    "json": [
+        {
+            "funcKey": "data_driven_dungeon",
+            "title": "Data-Driven Dungeon Integration Example\r",
+            "url": "/api/json/#data-driven-dungeon",
+            "functions": [
+                "main",
+                "json_from_file",
+                "json_read_string",
+                "json_read_integer",
+                "open_window",
+                "quit_requested",
+                "process_events",
+                "clear_screen",
+                "color_black",
+                "draw_text",
+                "color_white",
+                "json_read_array",
+                "json_array_size",
+                "json_read_object_at_index",
+                "json_read_number",
+                "color_green",
+                "color_red",
+                "fill_rectangle",
+                "fill_circle",
+                "color_gold",
+                "refresh_screen_with_target_fps",
+                "free_json",
                 "close_all_windows"
             ]
         }
@@ -1303,8 +1443,8 @@
     "physics": [
         {
             "funcKey": "sprite_bitmap_collision",
-            "title": "Does SplashKit have bugs?",
-            "url": "/api/physics/#sprite-bitmap-collision",
+            "title": "Does SplashKit have bugs?\r",
+            "url": "/api/physics/#sprite-bitmap-collision-functions",
             "functions": [
                 "open_window",
                 "load_bitmap",
@@ -1323,7 +1463,7 @@
         },
         {
             "funcKey": "sprite_collision",
-            "title": "Colliding Sprites",
+            "title": "Colliding Sprites\r",
             "url": "/api/physics/#sprite-collision",
             "functions": [
                 "open_window",
@@ -1342,7 +1482,7 @@
         },
         {
             "funcKey": "sprite_point_collision",
-            "title": "Determine Sprite Collisions with Points",
+            "title": "Determine Sprite Collisions with Points\r",
             "url": "/api/physics/#sprite-point-collision",
             "functions": [
                 "open_window",
@@ -1365,7 +1505,7 @@
         },
         {
             "funcKey": "sprite_rectangle_collision",
-            "title": "Detect Sprite Collisions with Rectangles",
+            "title": "Detect Sprite Collisions with Rectangles\r",
             "url": "/api/physics/#sprite-rectangle-collision",
             "functions": [
                 "open_window",
@@ -1390,7 +1530,7 @@
     "raspberry": [
         {
             "funcKey": "raspi_i2c_write_data",
-            "title": "LED Text Scrolling",
+            "title": "LED Text Scrolling\r",
             "url": "/api/raspberry/#raspi-i2c-write-data",
             "functions": [
                 "write_line",
@@ -1407,8 +1547,8 @@
     "sprites": [
         {
             "funcKey": "create_sprite",
-            "title": "Creating a Player Sprite",
-            "url": "/api/sprites/#create-sprite",
+            "title": "Creating a Player Sprite\r",
+            "url": "/api/sprites/#create-sprite-functions",
             "functions": [
                 "open_window",
                 "load_bitmap",
@@ -1425,8 +1565,8 @@
         },
         {
             "funcKey": "draw_sprite",
-            "title": "Drawing a Player Sprite",
-            "url": "/api/sprites/#draw-sprite",
+            "title": "Drawing a Player Sprite\r",
+            "url": "/api/sprites/#draw-sprite-functions",
             "functions": [
                 "open_window",
                 "load_bitmap",
@@ -1443,7 +1583,7 @@
         },
         {
             "funcKey": "free_sprite",
-            "title": "Freeing a Sprite",
+            "title": "Freeing a Sprite\r",
             "url": "/api/sprites/#free-sprite",
             "functions": [
                 "open_window",
@@ -1465,7 +1605,7 @@
         },
         {
             "funcKey": "sprite_set_position",
-            "title": "Setting Sprite Position",
+            "title": "Setting Sprite Position\r",
             "url": "/api/sprites/#sprite-set-position",
             "functions": [
                 "open_window",
@@ -1485,7 +1625,7 @@
         },
         {
             "funcKey": "sprite_set_velocity",
-            "title": "Setting Velocity of Sprite",
+            "title": "Setting Velocity of Sprite\r",
             "url": "/api/sprites/#sprite-set-velocity",
             "functions": [
                 "open_window",
@@ -1507,7 +1647,7 @@
         },
         {
             "funcKey": "sprite_set_x",
-            "title": "Setting Sprite X-coordinate",
+            "title": "Setting Sprite X-coordinate\r",
             "url": "/api/sprites/#sprite-set-x",
             "functions": [
                 "open_window",
@@ -1524,7 +1664,7 @@
         },
         {
             "funcKey": "sprite_set_y",
-            "title": "Setting Sprite Y-coordinate",
+            "title": "Setting Sprite Y-coordinate\r",
             "url": "/api/sprites/#sprite-set-y",
             "functions": [
                 "open_window",
@@ -1541,7 +1681,7 @@
         },
         {
             "funcKey": "sprite_x",
-            "title": "Sprite x-coordinate",
+            "title": "Sprite x-coordinate\r",
             "url": "/api/sprites/#sprite-x",
             "functions": [
                 "open_window",
@@ -1561,7 +1701,7 @@
         },
         {
             "funcKey": "sprite_y",
-            "title": "Sprite y-coordinate",
+            "title": "Sprite y-coordinate\r",
             "url": "/api/sprites/#sprite-y",
             "functions": [
                 "open_window",
@@ -1585,7 +1725,7 @@
         {
             "funcKey": "write",
             "title": "Progress Bar Simulation",
-            "url": "/api/terminal/#write",
+            "url": "/api/terminal/#write-functions",
             "functions": [
                 "write_line",
                 "delay"
@@ -1621,7 +1761,7 @@
         {
             "funcKey": "write_line",
             "title": "Hello World string",
-            "url": "/api/terminal/#write-line",
+            "url": "/api/terminal/#write-line-functions",
             "functions": []
         },
         {
@@ -1673,7 +1813,7 @@
         },
         {
             "funcKey": "current_ticks",
-            "title": "How many ticks?",
+            "title": "How many ticks?\r",
             "url": "/api/utilities/#current-ticks",
             "functions": [
                 "write_line",
@@ -1733,7 +1873,7 @@
         {
             "funcKey": "rnd",
             "title": "Coin Flip",
-            "url": "/api/utilities/#rnd",
+            "url": "/api/utilities/#rnd-functions",
             "functions": [
                 "write_line",
                 "delay",
@@ -1788,6 +1928,31 @@
             "url": "/api/utilities/#trim",
             "functions": [
                 "write_line"
+            ]
+        }
+    ],
+    "windows": [
+        {
+            "funcKey": "close_window",
+            "title": "Starts a countdown to close the window at the push of a button.",
+            "url": "/api/windows/#close-window-functions",
+            "functions": [
+                "open_window",
+                "create_timer",
+                "quit_requested",
+                "process_events",
+                "clear_window",
+                "color_white",
+                "button_at_position",
+                "rectangle_from",
+                "start_timer",
+                "draw_text_font_as_string",
+                "color_black",
+                "timer_ticks",
+                "reset_timer",
+                "draw_interface",
+                "refresh_window",
+                "close_all_windows"
             ]
         }
     ]

@@ -43,7 +43,7 @@ def main():
             fill_circle(color_gold(), x, y, 8)
             draw_text(item_name, color_gold(), x - 20, y - 20)
 
-        refresh_screen(60)
+        refresh_screen_with_target_fps(60)
 
     # Note: free_json(level_info) is implicitly handled in splashkit-python wrapper but explicit cleanup is good practice
     close_all_windows()

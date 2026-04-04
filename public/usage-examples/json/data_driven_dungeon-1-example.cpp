@@ -2,16 +2,8 @@
 
 int main()
 {
-    // Load the JSON file directly
-    json level_info = json_from_file("public/usage-examples/json/level_data.json");
-
-    // Check if JSON loaded successfully
-    if (!json_has_key(level_info, "level_name"))
-    {
-        // Fallback for local execution if path above fails
-        free_json(level_info);
-        level_info = json_from_file("level_data.json");
-    }
+    // Load the dungeon room data from the JSON file
+    json level_info = json_from_file("level_data.json");
 
     // Reading top-level strings and integers
     string level_name = json_read_string(level_info, "level_name");
@@ -36,16 +28,16 @@ int main()
         for (int i = 0; i < spawn_points.size(); i++)
         {
             json entry = spawn_points[i];
-            string type = json_read_string(entry, "type");
+            string entity_type = json_read_string(entry, "type");
             double x = json_read_number(entry, "x");
             double y = json_read_number(entry, "y");
 
-            color draw_color = (type == "Player") ? color_green() : color_red();
+            color draw_color = (entity_type == "Player") ? color_green() : color_red();
             fill_rectangle(draw_color, x, y, 32, 32);
-            draw_text(type, color_white(), x, y - 15);
+            draw_text(entity_type, color_white(), x, y - 15);
         }
 
-        // Accessing the 'loot' array
+        // Create loot sprites based on the loot array in the JSON
         vector<json> loot_list;
         json_read_array(level_info, "loot", loot_list);
         for (int i = 0; i < loot_list.size(); i++)

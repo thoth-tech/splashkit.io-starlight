@@ -8,12 +8,46 @@ const path = require('path'); // Handle and transform file paths
 
 const srcDirectory = "./public/usage-examples"; //directory to be scraped
 const outputDirectory = "./scripts/json-files/usage-example-references.json" //directory where "Usage Example" functions will be savedc
+const apiJsonPath = "./scripts/json-files/api.json";
+
+function getApiJsonData() {
+    try {
+        const apiJsonFile = fs.readFileSync(apiJsonPath, "utf8");
+        return JSON.parse(apiJsonFile);
+    } catch (err) {
+        console.warn(kleur.yellow("Warning: unable to load api.json for usage example URL mapping. Falling back to default anchors."));
+        return {};
+    }
+}
+
+function getUsageExampleApiUrl(folderKey, funcKey, apiJsonData) {
+    const defaultUrl = `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}`;
+    const category = apiJsonData[folderKey];
+    if (!category || !Array.isArray(category.functions)) {
+        return defaultUrl;
+    }
+
+    const matches = category.functions.filter(func => func.name === funcKey);
+
+    // Overloaded functions are grouped under a "-functions" section anchor.
+    if (matches.length > 1) {
+        return `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}-functions`;
+    }
+
+    if (matches.length === 1) {
+        const anchor = (matches[0].unique_global_name || funcKey).replaceAll("_", "-");
+        return `/api/${folderKey}/#${anchor}`;
+    }
+
+    return defaultUrl;
+}
 
 // ------------------------------------------------------------------------------
 // Scraping all of the folders in usage example and retrieving the functions and title 
 // ------------------------------------------------------------------------------
 function getAvailableExamplesFunctionUsage(dir) {
     const result = {};
+    const apiJsonData = getApiJsonData();
     const fileNameRegex = /^([a-zA-Z_][a-zA-Z0-9_]*)-/;
 
     const ignoreKey = new Set(["if", "else", "elif", "while", "for", "range", "int", "str", "match"]);
@@ -55,7 +89,7 @@ function getAvailableExamplesFunctionUsage(dir) {
                             funcEntry = {
                                 funcKey: funcKey,
                                 title: title,
-                                url: `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}`,
+                                url: getUsageExampleApiUrl(folderKey, funcKey, apiJsonData),
                                 functions: []
                             };
                             result[folderKey].push(funcEntry);
