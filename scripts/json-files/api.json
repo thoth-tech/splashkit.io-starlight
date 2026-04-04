@@ -63275,17 +63275,6 @@
     "description": "",
     "functions": [
       {
-        "signature": "void celestial_mechanics();",
-        "name": "celestial_mechanics",
-        "unique_global_name": "celestial_mechanics",
-        "description": "Integrated example showing N-body gravity simulation using Sprites and Vectors.",
-        "signatures": {
-          "cpp": ["void celestial_mechanics()"],
-          "python": ["def celestial_mechanics():"],
-          "csharp": ["public static void SplashKit.CelestialMechanics();"]
-        }
-      },
-      {
         "signature": "bool bitmap_circle_collision(bitmap bmp,const point_2d &pt,const circle &circ);",
         "name": "bitmap_circle_collision",
         "method_name": "circle_collision",

@@ -27,7 +27,7 @@ int main()
     sprite_set_x(planet, WINDOW_WIDTH / 2 + 150);
     sprite_set_y(planet, WINDOW_HEIGHT / 2 - 10);
     sprite_set_mass(planet, 10.0);
-    sprite_set_velocity(planet, vector_to(0, 8)); // Horizontal tangent velocity
+    sprite_set_velocity(planet, vector_to(0, 8)); // Vertical tangent velocity
 
     // Moon-like mass
     sprite moon = create_sprite(planet_bmp);

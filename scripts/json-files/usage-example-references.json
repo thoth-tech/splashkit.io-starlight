@@ -1385,6 +1385,31 @@
                 "delay",
                 "close_all_windows"
             ]
+        },
+        {
+            "funcKey": "sprite_set_velocity",
+            "title": "Celestial Mechanics Integration Example",
+            "url": "/api/physics/#sprite-set-velocity",
+            "usage_examples": [
+                {
+                    "name": "Celestial Mechanics Integration Example",
+                    "path": "physics/celestial_mechanics-1-example"
+                }
+            ],
+            "functions": [
+                "sprite_set_velocity",
+                "sprite_set_mass",
+                "vector_to",
+                "vector_magnitude",
+                "unit_vector",
+                "vector_multiply",
+                "vector_add",
+                "sprite_position",
+                "sprite_velocity",
+                "sprite_mass",
+                "create_sprite",
+                "create_bitmap"
+            ]
         }
     ],
     "raspberry": [
