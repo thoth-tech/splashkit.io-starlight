@@ -40,7 +40,8 @@ function getExampleUrl(folderKey, funcKey, apiFunctionLookup)
         return `/api/${categoryPath}/#${anchor}`;
     }
 
-    return `/usage-examples/${categoryPath}/`;
+    // Fallback for integrated/non-API examples: link to the API category page.
+    return `/api/${categoryPath}/`;
 }
 
 // ------------------------------------------------------------------------------

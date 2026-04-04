@@ -552,7 +552,7 @@
         {
             "funcKey": "rectangle_around",
             "title": "A perpetually moving circle which increases and decreases in size, surrounded by a rectangle shape",
-            "url": "/usage-examples/geometry/",
+            "url": "/api/geometry/",
             "functions": [
                 "open_window",
                 "create_timer",
@@ -633,7 +633,7 @@
         {
             "funcKey": "bitmap_layer_studio",
             "title": "Parallax Alley at Dusk",
-            "url": "/usage-examples/graphics/",
+            "url": "/api/graphics/",
             "functions": [
                 "open_window",
                 "load_bitmap",
