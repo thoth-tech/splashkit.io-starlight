@@ -8,6 +8,45 @@ const path = require('path'); // Handle and transform file paths
 
 const srcDirectory = "./public/usage-examples"; //directory to be scraped
 const outputDirectory = "./scripts/json-files/usage-example-references.json" //directory where "Usage Example" functions will be savedc
+const apiJsonPath = "./scripts/json-files/api.json";
+
+const functionKeyOverrides = {
+    celestial_mechanics: "sprite_set_velocity",
+    rectangle_around: "rectangle_around_circle"
+};
+
+function buildApiFunctionIndex(filePath) {
+    const apiData = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    const functionIndex = new Map();
+
+    Object.entries(apiData).forEach(([categoryKey, categoryValue]) => {
+        if (categoryKey === "types" || !categoryValue || !Array.isArray(categoryValue.functions)) return;
+
+        categoryValue.functions.forEach((func) => {
+            if (func && typeof func.unique_global_name === "string") {
+                functionIndex.set(func.unique_global_name, categoryKey);
+            }
+        });
+    });
+
+    return functionIndex;
+}
+
+function resolvePrimaryFunctionKey(rawFuncKey, calledFunctions, apiFunctionIndex) {
+    const candidateKeys = [];
+
+    if (functionKeyOverrides[rawFuncKey]) {
+        candidateKeys.push(functionKeyOverrides[rawFuncKey]);
+    }
+
+    candidateKeys.push(rawFuncKey, ...calledFunctions);
+
+    for (const key of candidateKeys) {
+        if (apiFunctionIndex.has(key)) return key;
+    }
+
+    return rawFuncKey;
+}
 
 // ------------------------------------------------------------------------------
 // Scraping all of the folders in usage example and retrieving the functions and title 
@@ -15,6 +54,7 @@ const outputDirectory = "./scripts/json-files/usage-example-references.json" //d
 function getAvailableExamplesFunctionUsage(dir) {
     const result = {};
     const fileNameRegex = /^([a-zA-Z_][a-zA-Z0-9_]*)-/;
+    const apiFunctionIndex = buildApiFunctionIndex(apiJsonPath);
 
     const ignoreKey = new Set(["if", "else", "elif", "while", "for", "range", "int", "str", "match"]);
 
@@ -36,38 +76,50 @@ function getAvailableExamplesFunctionUsage(dir) {
                 pythonFiles.forEach(pyFile => {
                     const fileName = path.join(folderPath, pyFile);
                     const fileName2 = fileName.replace('.py', '.txt')
-                    const pythonFile = fs.readFileSync(fileName);
+                    const pythonFile = fs.readFileSync(fileName, "utf8");
                     const textFile = fs.readFileSync(fileName2, "utf8");
-                    const title = textFile.split("\n")[0];
+                    const title = textFile.split(/\r?\n/)[0].trim();
                     const pyFileMatch = fileNameRegex.exec(pyFile);
                     try {
 
                         const folderKey = folder.toLowerCase();
                         const funcKey = pyFileMatch[1].toLowerCase();
+                        const calledFunctions = [];
+
+                        let match;
+                        while ((match = functionCallRegex.exec(pythonFile)) !== null) {
+                            const funcName = match[1];
+                            if (!calledFunctions.includes(funcName) && !ignoreKey.has(funcName) && funcKey != funcName) {
+                                calledFunctions.push(funcName)
+                            }
+                        }
+
+                        const resolvedFuncKey = resolvePrimaryFunctionKey(funcKey, calledFunctions, apiFunctionIndex);
+                        const apiCategory = apiFunctionIndex.get(resolvedFuncKey);
 
                         if (!result[folderKey]) {
                             result[folderKey] = []
                         }
 
-                        let funcEntry = result[folderKey].find(entry => entry.funcKey === funcKey);
+                        let funcEntry = result[folderKey].find(entry => entry.funcKey === resolvedFuncKey);
 
                         if (!funcEntry) {
                             funcEntry = {
-                                funcKey: funcKey,
+                                funcKey: resolvedFuncKey,
                                 title: title,
-                                url: `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}`,
+                                url: apiCategory
+                                    ? `/api/${apiCategory}/#${resolvedFuncKey.replaceAll("_", "-")}`
+                                    : `/usage-examples/${folderKey}`,
                                 functions: []
                             };
                             result[folderKey].push(funcEntry);
                         }
 
-                        let match;
-                        while ((match = functionCallRegex.exec(pythonFile)) !== null) {
-                            const funcName = match[1];
-                            if (!funcEntry.functions.includes(funcName) && !ignoreKey.has(funcName) && funcKey != funcName) {
+                        calledFunctions.forEach((funcName) => {
+                            if (!funcEntry.functions.includes(funcName)) {
                                 funcEntry.functions.push(funcName)
                             }
-                        }
+                        });
 
                     } catch (error) {
                         console.error(`Error parsing JSON in file: ${pythonFiles}`);
