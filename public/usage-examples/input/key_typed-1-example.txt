@@ -1,0 +1,3 @@
+Last Typed Key
+
+Press a supported key to display the most recently typed key on screen.
