@@ -1,4 +1,3 @@
-using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 namespace DrawLineExample
