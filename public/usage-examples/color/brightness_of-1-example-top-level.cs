@@ -1,3 +1,4 @@
+using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 // Open the window for the usage example
@@ -24,7 +25,6 @@ while (!QuitRequested())
     for (int i = 0; i < 3; i++)
     {
         double value = BrightnessOf(shades[i]);
-
         FillCircle(shades[i], 150 + i * 240, 180, 55);
         DrawText(names[i], Color.Black, 105 + i * 240, 260);
         DrawText("Brightness: " + value.ToString(), Color.Black, 75 + i * 240, 300);
