@@ -1,7 +1,7 @@
 from splashkit import *
 
 # Open the window for the usage example
-window = open_window("Purple Shade Brightness", 800, 400)
+open_window("Purple Shade Brightness", 800, 400)
 
 shades = [
     rgba_color(70, 30, 100, 255),
@@ -11,7 +11,7 @@ shades = [
 
 names = ["Dark Purple", "Medium Purple", "Light Purple"]
 
-while not window_close_requested(window):
+while not quit_requested():
     process_events()
 
     # Draw the background and instructions
@@ -21,11 +21,10 @@ while not window_close_requested(window):
     # Draw each shade and its brightness value
     for i in range(3):
         value = brightness_of(shades[i])
-
         fill_circle(shades[i], 150 + i * 240, 180, 55)
         draw_text_no_font_no_size(names[i], color_black(), 105 + i * 240, 260)
         draw_text_no_font_no_size("Brightness: " + str(value), color_black(), 75 + i * 240, 300)
 
-    refresh_screen()
+    refresh_screen_with_target_fps(60)
 
-close_window(window)
+close_all_windows()
