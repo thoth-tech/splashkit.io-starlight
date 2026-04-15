@@ -1,13 +1,17 @@
 using System;
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-class Program
+namespace RectangleToStringExample
 {
-    static void Main()
+    public class Program
     {
-        Rectangle rect = SplashKit.RectangleFrom(10, 20, 100, 50);
-        string result = SplashKit.RectangleToString(rect);
+        public static void Main()
+        {
+            Rectangle rect = RectangleFrom(10, 20, 100, 50);
+            string result = RectangleToString(rect);
 
-        Console.WriteLine(result);
+            Console.WriteLine(result);
+        }
     }
 }

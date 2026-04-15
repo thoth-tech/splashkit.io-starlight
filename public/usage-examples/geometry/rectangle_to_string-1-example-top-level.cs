@@ -1,6 +1,7 @@
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-var rect = SplashKit.RectangleFrom(10, 20, 100, 50);
-string result = SplashKit.RectangleToString(rect);
+Rectangle rect = RectangleFrom(10, 20, 100, 50);
+string result = RectangleToString(rect);
 
 Console.WriteLine(result);
