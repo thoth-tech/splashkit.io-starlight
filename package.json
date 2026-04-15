@@ -11,7 +11,7 @@
     "setup": "node ./scripts/json-files-script.cjs && node ./scripts/usage-example-scraping.cjs && node ./scripts/api-pages-script.cjs",
     "generate-mdx": "node ./scripts/api-pages-script.cjs",
     "generate-json": "node ./scripts/json-files-script.cjs && node ./scripts/usage-example-scraping.cjs",
-    "check-links": "SET CHECK_LINKS=true && npm run build && SET CHECK_LINKS=false"
+    "check-links": "node -e \"const { spawnSync } = require('node:child_process'); const cmd = process.platform === 'win32' ? 'npm.cmd' : 'npm'; const result = spawnSync(cmd, ['run', 'build'], { stdio: 'inherit', env: { ...process.env, CHECK_LINKS: 'true' } }); process.exit(result.status ?? 1);\""
   },
   "dependencies": {
     "@astrojs/react": "^4.2.7",
