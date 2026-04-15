@@ -1,1 +1,4 @@
-Using the Circle Radius
+Splashkit Function: CircleRadius
+
+Overview of example functionality:
+This example demonstrates how to use the CircleRadius function to retrieve the radius of a circle. The program allows the user to enter a radius value and then draws a circle based on that input, displaying the radius on the screen.
