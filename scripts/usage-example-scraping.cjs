@@ -8,6 +8,7 @@ const path = require('path'); // Handle and transform file paths
 
 const srcDirectory = "./public/usage-examples"; //directory to be scraped
 const outputDirectory = "./scripts/json-files/usage-example-references.json" //directory where "Usage Example" functions will be savedc
+const apiJsonPath = "./scripts/json-files/api.json"; // Path to api.json
 
 // ------------------------------------------------------------------------------
 // Scraping all of the folders in usage example and retrieving the functions and title 
@@ -17,6 +18,14 @@ function getAvailableExamplesFunctionUsage(dir) {
     const fileNameRegex = /^([a-zA-Z_][a-zA-Z0-9_]*)-/;
 
     const ignoreKey = new Set(["if", "else", "elif", "while", "for", "range", "int", "str", "match"]);
+
+    // Load api.json
+    let apiJson = {};
+    try {
+        apiJson = JSON.parse(fs.readFileSync(apiJsonPath, 'utf8'));
+    } catch (err) {
+        console.error("Error reading api.json:", err);
+    }
 
     const folders = fs.readdirSync(dir);
     folders.forEach(folder => {
@@ -52,10 +61,19 @@ function getAvailableExamplesFunctionUsage(dir) {
                         let funcEntry = result[folderKey].find(entry => entry.funcKey === funcKey);
 
                         if (!funcEntry) {
+                            let urlHash = funcKey.replaceAll("_", "-");
+                            // Check for overload
+                            if (apiJson[folderKey] && apiJson[folderKey].functions) {
+                                const overloads = apiJson[folderKey].functions.filter(f => f.name === funcKey);
+                                if (overloads.length > 1) {
+                                    urlHash += "-functions";
+                                }
+                            }
+
                             funcEntry = {
                                 funcKey: funcKey,
                                 title: title,
-                                url: `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}`,
+                                url: `/api/${folderKey}/#${urlHash}`,
                                 functions: []
                             };
                             result[folderKey].push(funcEntry);
