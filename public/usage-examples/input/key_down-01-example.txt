@@ -1,0 +1,2 @@
+Demonstrates how to detect keyboard input using key_down() in SplashKit.
+The example displays a message when the space key is pressed.
