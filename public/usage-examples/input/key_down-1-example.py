@@ -2,15 +2,20 @@ from splashkit import *
 
 def draw_key_status(label, key, x, y):
     pressed = key_down(key)
-    indicator = color_green() if pressed else color_gray()
-    state = "Pressed" if pressed else "Released"
+
+    if pressed:
+        indicator = color_green()
+        state = "Pressed"
+    else:
+        indicator = color_gray()
+        state = "Released"
 
     fill_circle(indicator, x, y, 25)
     draw_text(label + ": " + state, color_black(), None, 16, x + 40, y - 10)
 
-window = open_window("Keyboard State Display", 800, 400)
+open_window("Keyboard State Display", 800, 400)
 
-while not window_close_requested(window):
+while not quit_requested():
     process_events()
 
     clear_screen(color_white())
@@ -32,4 +37,4 @@ while not window_close_requested(window):
 
     refresh_screen_with_target_fps(60)
 
-close_window(window)
+close_all_windows()
