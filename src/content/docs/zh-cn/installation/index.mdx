@@ -1,0 +1,65 @@
+---
+title: 安装指南
+sidebar:
+  label: 安装概述
+---
+
+import { Card, LinkCard, CardGrid } from "@astrojs/starlight/components";
+
+:::note[已经安装过 SplashKit？]
+如果您之前已经安装过 SplashKit，请查看下面的 [更新 SplashKit](#更新-splashkit) 部分。
+:::
+
+:::tip[正在使用程序员实地指南？]
+
+如果您正在使用实地指南，我们 *强烈建议* 您遵循这些 [**安装指南**](https://programmers.guide/book/appendix/0-installation/0-overview/) 获取更详细的说明。  
+大多数指南还包含自动化脚本，提供更简单的安装选项。
+
+:::
+
+<CardGrid>
+  <Card title="Windows" icon="seti:windows">
+    {/* TODO: 在这里添加关于 Windows 的简短文字 */}
+    <LinkCard
+      title="安装指南 (MSYS2)"
+      href="/zh-cn/installation/windows-msys2/"
+    />
+    <LinkCard
+      title="安装指南 (WSL)"
+      href="/zh-cn/installation/windows-wsl/"
+    />
+  </Card>
+  <Card title="MacOS" icon="apple">
+    {/* TODO: 在这里添加关于 MacOS 的简短文字 */}
+    <LinkCard
+      title="安装指南"
+      href="/zh-cn/installation/macos/"
+    />
+  </Card>
+  <Card title="Linux" icon="linux">
+    {/* TODO: 在这里添加关于 Linux 的简短文字 */}
+    <LinkCard
+      title="安装指南"
+      href="/zh-cn/installation/linux/"
+    />
+  </Card>
+  <Card title="虚拟机" icon="cloud-download">
+    {/* TODO: 在这里添加关于虚拟机的简短文字 */}
+    <LinkCard
+      title="安装指南"
+      href="/zh-cn/installation/virtual-machine/"
+    />
+  </Card>
+</CardGrid>
+
+## 更新 SplashKit
+
+SplashKit SDK 定期更新，以提供与最新功能、增强功能和错误修复的兼容性。如果您遇到问题或注意到您的 SDK 与最新文档之间存在差异，更新 SplashKit 可能会解决这些问题。
+
+---
+
+要将系统上的 SplashKit 更新到最新版本，请在终端中使用以下命令：
+
+```shell
+skm update
+```
