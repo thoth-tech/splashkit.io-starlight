@@ -2,14 +2,19 @@
 
 int main()
 {
-    open_window("Draw Line Example", 800, 600);
+    open_window("Circle Animation", 800, 600);
+
+    double x = 0;
 
     while (!quit_requested())
     {
         process_events();
         clear_screen(COLOR_WHITE);
 
-        draw_line(COLOR_RED, 100, 100, 700, 500);
+        draw_circle(COLOR_RED, x, 300, 50);
+
+        x += 2;
+        if (x > 800) x = 0;
 
         refresh_screen(60);
     }
