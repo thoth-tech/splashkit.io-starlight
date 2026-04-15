@@ -42,6 +42,26 @@ export default defineConfig({
           indexName: DOCSEARCH_INDEX_NAME,
         }),
       ],
+
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            async: true,
+            src: `https://www.googletagmanager.com/gtag/js?id=G-6DBXQ3VQ8T`,
+          },
+        },
+        {
+          tag: 'script',
+          content: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-6DBXQ3VQ8T');
+      `,
+        },
+      ],
+
       expressiveCode: {
         // theme: ["github-dark", "github-light"],
         // frames: {
@@ -111,7 +131,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { label: "Overview", link: "guides/" },
-            { 
+            {
               label: "Getting Started",
               collapsed: false,
               items: [
