@@ -1,0 +1,3 @@
+Click to Place Markers
+
+Left click anywhere in the window to place a red marker at the clicked position.
