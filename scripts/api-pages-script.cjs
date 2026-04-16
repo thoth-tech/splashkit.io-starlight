@@ -837,7 +837,7 @@ for (const categoryKey in jsonData) {
           mdxContent += getUsageExampleImports(categoryKey, example.replace(".txt", ""));
           if (!linked) {
             // Import code files
-            mdxContent += `<Accordion title="See Code Examples" uniqueID={${JSON.stringify(func.unique_global_name + "_example")}} customButton="usageExamplesAccordion">\n\n`;
+            mdxContent += `<Accordion title="See Implementations" uniqueID={${JSON.stringify(func.unique_global_name + "_example")}} customButton="guidesAccordion">\n\n`;
             linked = true;
           }
 
