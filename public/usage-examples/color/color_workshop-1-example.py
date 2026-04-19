@@ -40,7 +40,7 @@ while not quit_requested():
         # Show channel values in the HUD every fourth segment.
         if i % 4 == 0:
             label = f"[{i}] R{red} G{green} B{blue}"
-            draw_text(label, color_white(), x, strip_y + strip_height + 14)
+            draw_text_no_font_no_size(label, color_white(), x, strip_y + strip_height + 14)
 
     selected_index = (frame_count // 20) % segment_count
     selected_t = selected_index / (segment_count - 1)
@@ -56,14 +56,14 @@ while not quit_requested():
     draw_rectangle(color_white(), selected_x - 2, strip_y - 2, segment_width + 4, strip_height + 4)
     draw_rectangle(selected_color, selected_x, strip_y, segment_width, strip_height)
 
-    formula_text = "value = start + t(end - start)"
+    formula_text = "value = start + t * (end - start)"
     hud_text = f"Segment {selected_index} -> R {selected_red}, G {selected_green}, B {selected_blue}"
 
-    draw_text("Color Workshop - Gradient Composer", color_white(), 40, 36)
-    draw_text(formula_text, color_white(), 40, 346)
-    draw_text(hud_text, color_white(), 40, 378)
+    draw_text_no_font_no_size("Color Workshop - Gradient Composer", color_white(), 40, 36)
+    draw_text_no_font_no_size(formula_text, color_white(), 40, 346)
+    draw_text_no_font_no_size(hud_text, color_white(), 40, 378)
 
-    refresh_screen(60)
+    refresh_screen_with_target_fps(60)
     frame_count += 1
 
 close_all_windows()
