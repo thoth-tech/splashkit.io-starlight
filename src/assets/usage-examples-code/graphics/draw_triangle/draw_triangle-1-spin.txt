@@ -1,0 +1,1 @@
+I am drawing a spinning equilateral triangle using Draw Triangle; press ESC to quit.
