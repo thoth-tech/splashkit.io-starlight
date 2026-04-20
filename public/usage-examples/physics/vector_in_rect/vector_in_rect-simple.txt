@@ -1,0 +1,5 @@
+#### Detect Vectors Ending in Rectangles
+
+Determine if a resulting vector would end in a rectangle if placed at the origin.
+
+Uses the [vector_in_rect](/api/physics/#vector-in-rect) function.

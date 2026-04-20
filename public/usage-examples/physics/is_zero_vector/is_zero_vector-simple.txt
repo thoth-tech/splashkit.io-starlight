@@ -1,0 +1,5 @@
+#### Determinng Zero Vectors
+
+Returns if the vector is a null/zero vector — having no size or direction.
+
+Uses the [is_zero_vector](/api/physics/#is-zero-vector) function.

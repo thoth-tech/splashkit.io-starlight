@@ -1,0 +1,5 @@
+#### Vector Multiplication
+
+Multiply a vector by another value.
+
+Uses the [vector_multiply](/api/physics/#vector-multiply) function.
