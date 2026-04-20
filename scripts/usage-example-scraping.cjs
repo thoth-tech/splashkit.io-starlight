@@ -8,6 +8,41 @@ const path = require('path'); // Handle and transform file paths
 
 const srcDirectory = "./public/usage-examples"; //directory to be scraped
 const outputDirectory = "./scripts/json-files/usage-example-references.json" //directory where "Usage Example" functions will be savedc
+const apiJsonPath = "./scripts/json-files/api.json"; // Path to API JSON for checking overloads
+
+// ------------------------------------------------------------------------------
+// Load API JSON and build a set of overloaded function names
+// ------------------------------------------------------------------------------
+function getOverloadedFunctions() {
+    try {
+        const apiData = JSON.parse(fs.readFileSync(apiJsonPath, 'utf8'));
+        const overloadedFunctions = new Set();
+        const functionCounts = {};
+
+        // Count occurrences of each function name across all categories
+        Object.values(apiData).forEach(category => {
+            if (category && category.functions && Array.isArray(category.functions)) {
+                category.functions.forEach(func => {
+                    if (func.name) {
+                        functionCounts[func.name] = (functionCounts[func.name] || 0) + 1;
+                    }
+                });
+            }
+        });
+
+        // Add functions that appear more than once (overloaded)
+        Object.entries(functionCounts).forEach(([name, count]) => {
+            if (count > 1) {
+                overloadedFunctions.add(name);
+            }
+        });
+
+        return overloadedFunctions;
+    } catch (error) {
+        console.error('Error loading API JSON:', error);
+        return new Set();
+    }
+}
 
 // ------------------------------------------------------------------------------
 // Scraping all of the folders in usage example and retrieving the functions and title 
@@ -17,6 +52,7 @@ function getAvailableExamplesFunctionUsage(dir) {
     const fileNameRegex = /^([a-zA-Z_][a-zA-Z0-9_]*)-/;
 
     const ignoreKey = new Set(["if", "else", "elif", "while", "for", "range", "int", "str", "match"]);
+    const overloadedFunctions = getOverloadedFunctions();
 
     const folders = fs.readdirSync(dir);
     folders.forEach(folder => {
@@ -52,10 +88,17 @@ function getAvailableExamplesFunctionUsage(dir) {
                         let funcEntry = result[folderKey].find(entry => entry.funcKey === funcKey);
 
                         if (!funcEntry) {
+                            // Check if this function is overloaded
+                            const funcKeyUrlPart = funcKey.replaceAll("_", "-");
+                            const isOverloaded = overloadedFunctions.has(funcKey);
+                            const url = isOverloaded 
+                                ? `/api/${folderKey}/#${funcKeyUrlPart}-functions`
+                                : `/api/${folderKey}/#${funcKeyUrlPart}`;
+                            
                             funcEntry = {
                                 funcKey: funcKey,
                                 title: title,
-                                url: `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}`,
+                                url: url,
                                 functions: []
                             };
                             result[folderKey].push(funcEntry);
