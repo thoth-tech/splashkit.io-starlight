@@ -1,0 +1,3 @@
+This example demonstrates how to test if integers are prime using SplashKit's
+built-in is_prime_number / IsPrimeNumber function in Python, C++, and C#.
+It shows output such as "17 is prime" and "18 is not prime."
