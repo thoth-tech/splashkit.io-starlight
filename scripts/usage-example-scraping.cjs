@@ -9,12 +9,48 @@ const path = require('path'); // Handle and transform file paths
 const srcDirectory = "./public/usage-examples"; //directory to be scraped
 const outputDirectory = "./scripts/json-files/usage-example-references.json" //directory where "Usage Example" functions will be savedc
 
+function getApiFunctionLookup()
+{
+    const apiData = JSON.parse(fs.readFileSync("./scripts/json-files/api.json", "utf8"));
+    const lookup = {};
+
+    for (const categoryKey in apiData)
+    {
+        if (categoryKey === "types") continue;
+
+        const category = apiData[categoryKey];
+        if (!category || !Array.isArray(category.functions)) continue;
+
+        lookup[categoryKey] = new Set(
+            category.functions.map((func) => func.unique_global_name.toLowerCase())
+        );
+    }
+
+    return lookup;
+}
+
+function getExampleUrl(folderKey, funcKey, apiFunctionLookup)
+{
+    const categoryPath = folderKey.replaceAll("_", "-");
+    const anchor = funcKey.replaceAll("_", "-");
+    const apiFunctions = apiFunctionLookup[folderKey];
+
+    if (apiFunctions && apiFunctions.has(funcKey))
+    {
+        return `/api/${categoryPath}/#${anchor}`;
+    }
+
+    // Fallback for integrated/non-API examples: link to the API category page.
+    return `/api/${categoryPath}/`;
+}
+
 // ------------------------------------------------------------------------------
 // Scraping all of the folders in usage example and retrieving the functions and title 
 // ------------------------------------------------------------------------------
 function getAvailableExamplesFunctionUsage(dir) {
     const result = {};
     const fileNameRegex = /^([a-zA-Z_][a-zA-Z0-9_]*)-/;
+    const apiFunctionLookup = getApiFunctionLookup();
 
     const ignoreKey = new Set(["if", "else", "elif", "while", "for", "range", "int", "str", "match"]);
 
@@ -55,7 +91,7 @@ function getAvailableExamplesFunctionUsage(dir) {
                             funcEntry = {
                                 funcKey: funcKey,
                                 title: title,
-                                url: `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}`,
+                                url: getExampleUrl(folderKey, funcKey, apiFunctionLookup),
                                 functions: []
                             };
                             result[folderKey].push(funcEntry);
