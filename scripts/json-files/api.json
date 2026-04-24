@@ -53364,6 +53364,38 @@
     "description": "Splashkit's JSON library allows you to easily create or read JSON objects and\nmanipulate them to/from a JSON string or from a file containing a JSON\nstring. Create a new JSON object with a call to `create_json()` and\nread or write data to it by calling methods like\n`json_add_string(json j, string key, string value)` and\n`json_read_string(json j, string key)`.",
     "functions": [
       {
+        "signature": "json data_driven_dungeon();",
+        "name": "data_driven_dungeon",
+        "description": "Demonstrates loading a dungeon level from a JSON file, including parsing arrays of objects for spawn points and loot items.",
+        "brief": "Data-Driven Dungeon Integration Example",
+        "unique_global_name": "data_driven_dungeon",
+        "group": "json",
+        "static": "json",
+        "parameters": {},
+        "return": {
+          "type": "json",
+          "description": "Returns a json object.",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "attributes": {
+          "group": "json",
+          "static": "json"
+        },
+        "signatures": {
+          "python": [
+            "def data_driven_dungeon();"
+          ],
+          "cpp": [
+            "json data_driven_dungeon()"
+          ],
+          "csharp": [],
+          "pascal": []
+        }
+      },
+      {
         "signature": "json create_json();",
         "name": "create_json",
         "method_name": null,
@@ -63274,6 +63306,38 @@
     "brief": "SplashKit Collisions library allow you to perform tests between\nbitmaps, sprites and shapes to determin if a collision has occured.Provides matrix functions to work on 2d coordinates.Provides vector functions to work on vectors.",
     "description": "",
     "functions": [
+      {
+        "signature": "void celestial_mechanics();",
+        "name": "celestial_mechanics",
+        "description": "Orbital mechanics example demonstrating N-body gravity simulation with planetary bodies.",
+        "brief": "Celestial Mechanics Integration Example",
+        "unique_global_name": "celestial_mechanics",
+        "group": "physics",
+        "static": "physics",
+        "parameters": {},
+        "return": {
+          "type": "void",
+          "description": "N/A",
+          "is_pointer": false,
+          "is_reference": false,
+          "is_vector": false,
+          "type_parameter": null
+        },
+        "attributes": {
+          "group": "physics",
+          "static": "physics"
+        },
+        "signatures": {
+          "python": [
+            "def celestial_mechanics():"
+          ],
+          "cpp": [
+            "void celestial_mechanics()"
+          ],
+          "csharp": [],
+          "pascal": []
+        }
+      },
       {
         "signature": "bool bitmap_circle_collision(bitmap bmp,const point_2d &pt,const circle &circ);",
         "name": "bitmap_circle_collision",
