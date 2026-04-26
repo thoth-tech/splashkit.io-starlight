@@ -1,0 +1,91 @@
+<button
+  id="theme-toggle"
+  class="theme-toggle"
+  type="button"
+  aria-label="Toggle dark and light theme"
+>
+  <span class="theme-toggle-track">
+    <span class="theme-toggle-thumb"></span>
+  </span>
+</button>
+
+<script>
+  const toggle = document.getElementById("theme-toggle");
+  const root = document.documentElement;
+
+  function getCurrentTheme() {
+    if (root.dataset.theme === "dark") return "dark";
+    if (root.classList.contains("dark")) return "dark";
+    return "light";
+  }
+
+  function setTheme(theme) {
+    root.dataset.theme = theme;
+    root.classList.remove("light", "dark");
+    root.classList.add(theme);
+    localStorage.setItem("starlight-theme", theme);
+    localStorage.setItem("theme", theme);
+
+    if (toggle) {
+      toggle.setAttribute("data-theme", theme);
+      toggle.setAttribute(
+        "aria-label",
+        `Switch to ${theme === "dark" ? "light" : "dark"} theme`
+      );
+    }
+  }
+
+  const savedTheme =
+    localStorage.getItem("starlight-theme") ||
+    localStorage.getItem("theme") ||
+    getCurrentTheme();
+
+  setTheme(savedTheme === "dark" ? "dark" : "light");
+
+  toggle?.addEventListener("click", () => {
+    const currentTheme = getCurrentTheme();
+    const nextTheme = currentTheme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+  });
+</script>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+
+  .theme-toggle-track {
+    position: relative;
+    width: 2.6rem;
+    height: 1.4rem;
+    border-radius: 999px;
+    background: #ccc;
+    transition: background 0.2s ease;
+  }
+
+  .theme-toggle-thumb {
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s ease;
+  }
+
+  .theme-toggle[data-theme="dark"] .theme-toggle-track {
+    background: #222;
+  }
+
+  .theme-toggle[data-theme="dark"] .theme-toggle-thumb {
+    transform: translateX(1.2rem);
+    background: #fff;
+  }
+</style>
