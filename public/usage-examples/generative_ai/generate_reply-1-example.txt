@@ -1,0 +1,3 @@
+Interactive AI Terminal (Single-Turn AI)
+
+A simple terminal-driven AI example that opens a window, reads a user prompt with read_line, generates a reply with generate_reply, then prints and displays the response.
