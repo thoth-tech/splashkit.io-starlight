@@ -20,6 +20,6 @@ while not quit_requested():
     draw_text_font_as_string("Press and hold [SPACE], then release it", color_black(), "Arial", 18, 200, 220)
     draw_text_font_as_string("Status: " + status, color_dark_gray(), "Arial", 18, 200, 270)
     draw_text_font_as_string("Times released: " + str(release_count), color_blue(), "Arial", 24, 200, 320)
-    refresh_screen(60)
+    refresh_screen_with_target_fps(60)
 
 close_all_windows()
