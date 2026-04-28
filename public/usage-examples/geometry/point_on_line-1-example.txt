@@ -1,1 +1,4 @@
-Mouse Point On Line?
+Splashkit Function: PointOnLine1
+
+Overview of example functionality:
+This example demonstrates how to use the PointOnLine function to check whether a point lies on a line. The program displays a line and shows the coordinates of the point when it is positioned on the line.

@@ -1,3 +1,4 @@
-Closest Point to Mouse on Circle
+Splashkit Function: ClosestPointOnCircle
 
-Note: The blue dot represents the "Mouse" point.
+Overview of example functionality:
+This example demonstrates how to use the ClosestPointOnCircle function to find the closest point on a circle from the mouse position. The program displays a circle, shows the mouse position as a blue dot, and highlights the closest point on the circle in red.

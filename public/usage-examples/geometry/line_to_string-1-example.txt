@@ -1,1 +1,4 @@
-Display Line Information
+Splashkit Function: LineToString
+
+Overview of example functionality:
+This example demonstrates how to use the LineToString function to convert a line into a string representation. The program displays a line and shows its start and end point values as text on the screen.

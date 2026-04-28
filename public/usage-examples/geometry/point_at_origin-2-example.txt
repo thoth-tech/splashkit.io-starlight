@@ -1,1 +1,4 @@
-Hot Summer Sun
+Splashkit Function: PointAtOrigin2
+
+Overview of example functionality:
+This example demonstrates how to use the PointAtOrigin function to position a shape at the origin (0, 0). The program displays a coloured circle anchored at the top-left corner, helping show how the origin is used as a reference point for drawing in SplashKit.

@@ -1,1 +1,4 @@
-Mouse in a Triangle
+Splashkit Function: PointInTriangle
+
+Overview of example functionality:
+This example demonstrates how to use the PointInTriangle function to check whether a point is inside a triangle. The program displays a triangle and updates the message to show if the point is inside or outside based on its position.

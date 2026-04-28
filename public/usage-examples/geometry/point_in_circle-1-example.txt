@@ -1,1 +1,4 @@
-Mouse in a Circle
+Splashkit Function: PointInCircle
+
+Overview of example functionality:
+This example demonstrates how to use the PointInCircle function to determine if a point lies within a circle. The program updates the message on the screen to show whether the point is inside or outside the circle.

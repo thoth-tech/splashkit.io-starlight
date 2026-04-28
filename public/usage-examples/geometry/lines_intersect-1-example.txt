@@ -1,1 +1,4 @@
-Simple Line Intersect Check
+Splashkit Function: LinesIntersect
+
+Overview of example functionality:
+This example demonstrates how to use the LinesIntersect function to check if two lines intersect. The program displays multiple lines and shows whether they intersect or not on the screen.
