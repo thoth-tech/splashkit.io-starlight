@@ -75,7 +75,7 @@ def main():
         for body in bodies:
             draw_sprite(body)
 
-        refresh_screen(60)
+        refresh_screen_with_target_fps(60)
 
     close_all_windows()
 
