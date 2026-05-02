@@ -317,6 +317,12 @@ function getGroupName(jsonData, uniqueName) {
       }
     });
   }
+  if (funcGroupName === "") {
+    funcGroupName = uniqueName
+      .split("_")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
   return funcGroupName;
 }
 

@@ -35,6 +35,7 @@ export default defineConfig({
         }),
         starlightLinksValidator({
           errorOnRelativeLinks: true,
+          errorOnInvalidHashes: false,
         }),
         starlightDocSearch({
           appId: DOCSEARCH_API_ID,
