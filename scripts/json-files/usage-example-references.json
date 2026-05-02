@@ -39,7 +39,7 @@
         },
         {
             "funcKey": "stop_music",
-            "title": "Stop/Start Music",
+            "title": "Stop/Start Music\r",
             "url": "/api/audio/#stop-music",
             "functions": [
                 "audio_ready",
@@ -62,28 +62,6 @@
     ],
     "color": [
         {
-            "funcKey": "string_to_color",
-            "title": "Color from Hex Code",
-            "url": "/api/color/#string-to-color",
-            "functions": [
-                "open_window",
-                "rectangle_from",
-                "clear_screen",
-                "color_white",
-                "fill_rectangle_record",
-                "draw_text_no_font_no_size",
-                "color_black",
-                "red_of",
-                "green_of",
-                "blue_of",
-                "refresh_screen",
-                "delay",
-                "close_all_windows"
-            ]
-        }
-    ],
-    "color": [
-        {
             "funcKey": "saturation_of",
             "title": "Draws a rectangle in a random colour. The colour's saturation value is displayed on screen",
             "url": "/api/color/#saturation-of",
@@ -101,6 +79,26 @@
                 "green_of",
                 "blue_of",
                 "alpha_of",
+                "refresh_screen",
+                "delay",
+                "close_all_windows"
+            ]
+        },
+        {
+            "funcKey": "string_to_color",
+            "title": "Color from Hex Code",
+            "url": "/api/color/#string-to-color",
+            "functions": [
+                "open_window",
+                "rectangle_from",
+                "clear_screen",
+                "color_white",
+                "fill_rectangle_record",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "red_of",
+                "green_of",
+                "blue_of",
                 "refresh_screen",
                 "delay",
                 "close_all_windows"
