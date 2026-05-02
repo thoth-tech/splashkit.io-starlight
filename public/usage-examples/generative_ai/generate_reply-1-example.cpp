@@ -1,7 +1,5 @@
 #include "splashkit.h"
 
-using namespace splashkit;
-
 int main()
 {
     open_window("Interactive AI Terminal", 900, 600);
@@ -29,5 +27,6 @@ int main()
         refresh_screen(60);
     }
 
+    close_all_windows();
     return 0;
 }
