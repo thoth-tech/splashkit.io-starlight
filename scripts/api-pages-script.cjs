@@ -268,25 +268,33 @@ function getUsageExampleImports(categoryKey, functionKey) {
             const csharpFiles = functionFiles.filter(file => file.endsWith("-top-level.cs") || file.endsWith("-oop.cs")).filter(file => file.includes(exampleKey));
             const cppFiles = functionFiles.filter(file => file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp")).filter(file => file.includes(exampleKey));
             if (lang == "csharp" && csharpFiles.length > 0) {
+              let addedTopLevel = false;
+              let addedOop = false;
               csharpFiles.forEach(file => {
                 if (file.includes(exampleKey)) {
-                  if (file.includes("-top-level")) {
+                  if (file.includes("-top-level") && !addedTopLevel) {
                     mdxData += `import ${importTitle}_top_level_${lang} from '${codeFilePath.replaceAll(".cs", "-top-level.cs").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                    addedTopLevel = true;
                   }
-                  if (file.includes("-oop")) {
+                  if (file.includes("-oop") && !addedOop) {
                     mdxData += `import ${importTitle}_oop_${lang} from '${codeFilePath.replaceAll(".cs", "-oop.cs").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                    addedOop = true;
                   }
                 }
               });
             } // Check for cpp files for standard SK and Beyond SK
             else if (lang == "cpp" && cppFiles.length > 0) {
+              let addedSk = false;
+              let addedBeyond = false;
               cppFiles.forEach(file => {
                 if (file.includes(exampleKey)) {
-                  if (file.includes("-sk")) {
+                  if (file.includes("-sk") && !addedSk) {
                     mdxData += `import ${importTitle}_sk_${lang} from '${codeFilePath.replaceAll(".cpp", "-sk.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                    addedSk = true;
                   }
-                  if (file.includes("-beyond")) {
+                  if (file.includes("-beyond") && !addedBeyond) {
                     mdxData += `import ${importTitle}_beyond_${lang} from '${codeFilePath.replaceAll(".cpp", "-beyond.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                    addedBeyond = true;
                   }
                 }
               });
@@ -311,11 +319,24 @@ function getGroupName(jsonData, uniqueName) {
   for (const categoryKey in jsonData) {
     const category = jsonData[categoryKey];
     const categoryFunctions = category.functions;
+    
+    // Check for unique global name match
     categoryFunctions.forEach((func) => {
       if (func.unique_global_name == uniqueName) {
-        funcGroupName = func.name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");;
+        funcGroupName = func.name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
       }
     });
+    
+    if (funcGroupName) break;
+
+    // Check for function group name match (for overloaded functions)
+    categoryFunctions.forEach((func) => {
+      if (func.name == uniqueName) {
+        funcGroupName = func.name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+      }
+    });
+    
+    if (funcGroupName) break;
   }
   return funcGroupName;
 }
@@ -609,7 +630,7 @@ for (const categoryKey in jsonData) {
           paramNumber++;
         }
         const formattedUniqueLink = func.unique_global_name.toLowerCase().replace(/_/g, "-");
-        mdxContent += `)](/api/${input}/#${formattedUniqueLink})`;
+        mdxContent += `)](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedUniqueLink})`;
 
         // Put bolded {</>} symbol at the end of heading link if function has a usage example
         const hasExample = usageExamples.some(example => example.startsWith(func.unique_global_name + "-1-example.txt"));
@@ -676,7 +697,7 @@ for (const categoryKey in jsonData) {
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(" ");
         const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-        const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+        const link = `[\`${normalName}\`](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedLink})`
         description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
         description = description.replaceAll("\n", " ");
       }
@@ -713,7 +734,7 @@ for (const categoryKey in jsonData) {
               .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
               .join(" ");
             const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-            const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+            const link = `[\`${normalName}\`](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedLink})`
             description2 = description2.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
             description2 = description2.replaceAll("\n", " ");
           }
@@ -815,10 +836,21 @@ for (const categoryKey in jsonData) {
             mdxContent += "\n"
         }
         if (allExamples.length > 0) {
-          mdxContent += `**API Documentation Code Examples**:\n\n`
           allExamples.forEach((example) => {
             const exampleName = getGroupName(jsonData, example.name);
-            mdxContent += `- [${exampleName}](${example.url}): ${example.title}\n`
+            let finalUrl = example.url;
+            
+            // Check if this is an overloaded function and needs -functions suffix
+            for (const catKey in jsonData) {
+              const cat = jsonData[catKey];
+              const overloads = cat.functions.filter(f => f.name === example.name);
+              if (overloads.length > 1) {
+                finalUrl = finalUrl.replace(/#([a-z0-9-]+)$/, "#$1-functions");
+                break;
+              }
+            }
+
+            mdxContent += `- [${exampleName}](${finalUrl}): ${example.title}\n`
           })
         }
 
@@ -891,7 +923,7 @@ for (const categoryKey in jsonData) {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
           const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+          const link = `[\`${normalName}\`](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedLink})`
 
           description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
         }
@@ -921,7 +953,7 @@ for (const categoryKey in jsonData) {
                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(" ");
               const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-              const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+              const link = `[\`${normalName}\`](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedLink})`
               description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
             }
 
@@ -941,7 +973,7 @@ for (const categoryKey in jsonData) {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
           const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+          const link = `[\`${normalName}\`](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedLink})`
           description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
         }
         description = description.replaceAll("\n\n\n", "\n\n");

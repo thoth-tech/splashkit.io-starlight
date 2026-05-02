@@ -388,25 +388,33 @@ categories.forEach((categoryKey) => {
               const csharpFiles = codeFiles.filter(file => file.endsWith("-top-level.cs") || file.endsWith("-oop.cs")).filter(file => file.includes(exampleKey));
               const cppFiles = codeFiles.filter(file => file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp")).filter(file => file.includes(exampleKey));
               if (lang == "csharp" && csharpFiles.length > 0) {
+                let addedTopLevel = false;
+                let addedOop = false;
                 csharpFiles.forEach(file => {
                   if (file.includes(exampleKey)) {
-                    if (file.includes("-top-level")) {
+                    if (file.includes("-top-level") && !addedTopLevel) {
                       mdxContent += `import ${importTitle}_top_level_${lang} from '${codeFilePath.replaceAll(".cs", "-top-level.cs").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                      addedTopLevel = true;
                     }
-                    if (file.includes("-oop")) {
+                    if (file.includes("-oop") && !addedOop) {
                       mdxContent += `import ${importTitle}_oop_${lang} from '${codeFilePath.replaceAll(".cs", "-oop.cs").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                      addedOop = true;
                     }
                   }
                 });
               } // Check for cpp files for standard SK and Beyond SK
               else if (lang == "cpp" && cppFiles.length > 0) {
+                let addedSk = false;
+                let addedBeyond = false;
                 cppFiles.forEach(file => {
                   if (file.includes(exampleKey)){
-                    if (file.includes("-sk")){
+                    if (file.includes("-sk") && !addedSk){
                       mdxContent += `import ${importTitle}_sk_${lang} from '${codeFilePath.replaceAll(".cpp", "-sk.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                      addedSk = true;
                     }
-                    if (file.includes("-beyond")){
+                    if (file.includes("-beyond") && !addedBeyond){
                       mdxContent += `import ${importTitle}_beyond_${lang} from '${codeFilePath.replaceAll(".cpp", "-beyond.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                      addedBeyond = true;
                     }
                   }
               });
@@ -444,17 +452,21 @@ categories.forEach((categoryKey) => {
               if (lang == "csharp" && csharpFiles.length > 0) {
                 mdxContent += "\n  <Tabs syncKey=\"csharp-style\">\n";
                 // use reverse order to make Top level first
+                let addedTopLevelTab = false;
+                let addedOopTab = false;
                 csharpFiles.slice().reverse().forEach(file => {
                   if (file.includes(exampleKey)) {
-                    if (file.includes("-top-level")) {
+                    if (file.includes("-top-level") && !addedTopLevelTab) {
                       mdxContent += `    <TabItem label="Top-level Statements">\n`;
                       mdxContent += `      <Code code={${importTitle}_top_level_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
                       mdxContent += "    </TabItem>\n";
+                      addedTopLevelTab = true;
                     }
-                    if (file.includes("-oop")) {
+                    if (file.includes("-oop") && !addedOopTab) {
                       mdxContent += `    <TabItem label="Object-Oriented">\n`;
                       mdxContent += `      <Code code={${importTitle}_oop_${lang}} lang="${lang}" mark={"SplashKit.${functionTag}"} />\n`;
                       mdxContent += "    </TabItem>\n";
+                      addedOopTab = true;
                     }
                   }
                 });
@@ -463,18 +475,22 @@ categories.forEach((categoryKey) => {
               } // Check for cpp files and generate nested tabs
               else if (lang == "cpp" && cppFiles.length > 0) {
                 mdxContent += "\n <Tabs syncKey=\"cpp-style\">\n";
+                let addedSkTab = false;
+                let addedBeyondTab = false;
                 cppFiles.slice().reverse().forEach(file => {
                   if (file.includes(exampleKey)) {
-                    if (file.includes("-sk")) {
+                    if (file.includes("-sk") && !addedSkTab) {
                       mdxContent += `    <TabItem label="SplashKit">\n`;
                       mdxContent += `      <Code code={${importTitle}_sk_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
                       mdxContent += "    </TabItem>\n";
+                      addedSkTab = true;
                     }
-                    if (file.includes("-beyond")) {
+                    if (file.includes("-beyond") && !addedBeyondTab) {
                       mdxContent += `    <TabItem label="Beyond SplashKit">\n`;
                       mdxContent += `      See the [Graphics](https://splashkit.io/beyond-splashkit/graphics/0-getting-started-with-graphics/#getting-started-without-splashkit) or [Audio](https://splashkit.io/beyond-splashkit/audio/0-sound-effects/#getting-started-without-splashkit) Beyond SplashKit guides for help compiling without SplashKit.\n`;
                       mdxContent += `      <Code code={${importTitle}_beyond_${lang}} lang="${lang}" mark={"SplashKit.${functionTag}"} />\n`;
                       mdxContent += "    </TabItem>\n";
+                      addedBeyondTab = true;
                     }
                   }
                 });
