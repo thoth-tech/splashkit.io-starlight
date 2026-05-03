@@ -1,1 +1,4 @@
-Distance To Center
+Splashkit Function: PointPointDistance
+
+Overview of example functionality:
+This example demonstrates how to find the distance between two points. As the mouse moves, the distance from the center to the mouse position is updated and displayed.

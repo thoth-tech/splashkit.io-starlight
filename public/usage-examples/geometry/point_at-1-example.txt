@@ -1,1 +1,4 @@
-Flower Grid
+Splashkit Function: PointAt
+
+Overview of example functionality:
+This example demonstrates how to use the PointAt function to position shapes at specific coordinates. The program displays a grid of flowers arranged across the screen, helping show how points are used to control placement in SplashKit.

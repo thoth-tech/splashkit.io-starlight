@@ -1,1 +1,4 @@
-Simple Line Length
+Splashkit Function: LineLength
+
+Overview of example functionality:
+This example demonstrates how to use the LineLength function to calculate the length of a line. The program displays a line on the screen and shows its length value in real time.

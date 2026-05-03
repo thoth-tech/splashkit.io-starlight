@@ -1,1 +1,4 @@
-Cursor Jail
+Splashkit Function: PointInRectangle
+
+Overview of example functionality:
+This example demonstrates how to use the PointInRectangle function to determine if a point lies within a rectangle. The program updates the screen colour when the mouse moves in and out of the rectangle, making it easy to visualise the detection.

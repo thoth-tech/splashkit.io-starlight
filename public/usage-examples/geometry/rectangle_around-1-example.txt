@@ -1,1 +1,4 @@
-A perpetually moving circle which increases and decreases in size, surrounded by a rectangle shape
+Splashkit Function: RectangleAround
+
+Overview of example functionality:
+This example demonstrates how to create a rectangle that surrounds a shape (in this case, a circle). The rectangle adjusts its size and position to fully enclose the object.

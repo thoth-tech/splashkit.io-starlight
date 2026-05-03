@@ -1,1 +1,4 @@
-Avoid the Rectangle
+Splashkit Function: LineIntersectsRect
+
+Overview of example functionality:
+This example demonstrates how to use the LineIntersectsRect function to check if a line intersects with a rectangle. The program displays a line controlled by the mouse and a rectangle, and shows when the line intersects the rectangle.

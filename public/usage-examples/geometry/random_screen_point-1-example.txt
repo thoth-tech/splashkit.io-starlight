@@ -1,1 +1,4 @@
-Stars in the Sky
+Splashkit Function: RandomScreenPoint
+
+Overview of example functionality:
+This example demonstrates how to generate random points on the screen. The program uses these points to create a night sky effect with randomly placed coloured dots.
