@@ -1,0 +1,3 @@
+Press B to Toggle Border
+
+Press B to toggle the current window border and display the current border state.
