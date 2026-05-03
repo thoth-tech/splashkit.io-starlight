@@ -1,15 +1,17 @@
 ---
 title: AI Prompt Helper for SplashKit Game Ideas
 description: Learn how to use AI tools responsibly to generate game ideas, debug code, and understand SplashKit concepts.
+author: Janki Luitel
+lastupdated: 2026-05-03
 ---
 
-# AI Prompt Helper for SplashKit Game Ideas
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+**{frontmatter.description}**  
+Written by: {frontmatter.author}  
+_Last updated: {frontmatter.lastupdated}_
 
 Artificial Intelligence (AI) tools can support your learning journey when building games with SplashKit. AI should be used as a learning assistant — not as a replacement for your own problem-solving, coding, and creativity.
-
-This guide demonstrates how students can use AI responsibly while still understanding and writing their own code.
-
----
 
 ## Why Use AI with SplashKit?
 
@@ -22,11 +24,7 @@ AI tools can help you:
 - Generate pseudocode before implementation
 - Learn programming concepts faster
 
----
-
 ## Example Prompt 1: Game Idea Generation
-
-Try asking AI:
 
 > "Give me 5 beginner game ideas using SplashKit in C++."
 
@@ -38,13 +36,7 @@ Example outputs may include:
 - Bouncing Ball Physics Game
 - Platform Adventure
 
-After getting ideas, choose one and design it yourself.
-
----
-
 ## Example Prompt 2: Understanding SplashKit Functions
-
-Try asking:
 
 > "Explain how draw_circle works in SplashKit with a simple example."
 
@@ -56,13 +48,7 @@ AI can help explain:
 - Radius
 - Real-world use cases
 
-Always test the example yourself.
-
----
-
 ## Example Prompt 3: Debugging
-
-Try asking:
 
 > "Why am I getting includePath errors in SplashKit C++?"
 
@@ -72,13 +58,7 @@ AI may help identify:
 - Incorrect compiler settings
 - VS Code configuration issues
 
-Always verify fixes before applying them.
-
----
-
 ## Example Prompt 4: Pseudocode Planning
-
-Try asking:
 
 > "Help me design pseudocode for a SplashKit bouncing ball game."
 
@@ -89,9 +69,15 @@ This can help you plan:
 - Collision detection
 - Game loop structure
 
-Then convert the pseudocode into your own implementation.
+## Bad Prompt vs Good Prompt
 
----
+Bad prompt:
+
+> "Fix my SplashKit code."
+
+Good prompt:
+
+> "I am using SplashKit in C++. My goal is to draw a circle in a window, but the window closes immediately. Explain why this happens and suggest how to fix it without rewriting the whole program."
 
 ## Responsible Use of AI
 
@@ -108,8 +94,6 @@ Avoid:
 ❌ Submitting AI-generated work as your own  
 ❌ Relying on AI without testing your code  
 
----
-
 ## Final Checklist
 
 Before using AI-generated ideas or code:
@@ -120,7 +104,5 @@ Before using AI-generated ideas or code:
 - Does it follow SplashKit style guidelines?
 
 If yes, you are using AI responsibly.
-
----
 
 Happy learning with SplashKit and AI!
