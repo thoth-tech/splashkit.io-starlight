@@ -1,0 +1,3 @@
+Live Window Position Monitor
+
+Move the window to see current_window_position, current_window_x, and current_window_y update in real time.
