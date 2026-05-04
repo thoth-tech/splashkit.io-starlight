@@ -1,0 +1,1 @@
+Show Whether the Window Has Focus
