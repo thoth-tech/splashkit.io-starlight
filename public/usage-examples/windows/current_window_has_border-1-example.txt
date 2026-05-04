@@ -1,0 +1,1 @@
+Show Whether the Current Window Has a Border
