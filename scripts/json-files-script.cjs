@@ -30,8 +30,10 @@ function getDirNames(directory) {
     return fs.readdirSync(directory, { withFileTypes: true })
         // Filter out only the directories from the list of files and directories
         .filter(dirent => dirent.isDirectory())
-        // Map the directory names to lowercase to standardise them
-        .map(dirent => dirent.name);
+        // Convert directory names to lowercase so the generated grouping stays consistent
+        .map(dirent => dirent.name.toLowerCase())
+        // Sort the names so the output is stable and easier to compare
+        .sort();
 }
 
 // ------------------------------------------------------------------------------
