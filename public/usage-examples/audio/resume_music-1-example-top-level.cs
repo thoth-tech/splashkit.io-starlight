@@ -10,6 +10,7 @@ if (!AudioReady())
 // Load music file and start playing
 Music music = LoadMusic("Adventure", "time_for_adventure.mp3");
 PlayMusic(music);
+bool musicPlaying = true;
 
 Window window = OpenWindow("Pause/Resume", 300, 200);
 
@@ -21,27 +22,29 @@ while (!QuitRequested())
     if (KeyTyped(KeyCode.SpaceKey))
     {
         // Check if music is paused or not
-        if (MusicPlaying())
+        if (musicPlaying)
         {
             // Pause if playing
             PauseMusic();
+            musicPlaying = false;
         }
         else
         {
             // Play if paused
             ResumeMusic();
+            musicPlaying = true;
         }
     }
 
     // Display text showing if music is playing or not
     ClearWindow(window, ColorWhite());
-    if (MusicPaused())
+    if (musicPlaying)
     {
-        DrawTextOnWindow(window, "Paused...", ColorBlack(), 100, 100);
+        DrawTextOnWindow(window, "Playing", ColorBlack(), 100, 100);
     }
     else
     {
-        DrawTextOnWindow(window, "Playing", ColorBlack(), 100, 100);
+        DrawTextOnWindow(window, "Paused...", ColorBlack(), 100, 100);
     }
     RefreshWindow(window);
 }

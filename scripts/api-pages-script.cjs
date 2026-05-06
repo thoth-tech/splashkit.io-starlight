@@ -101,7 +101,7 @@ function getAllFinishedExamples() {
     var apiData = fs.readFileSync(`${__dirname}/json-files/api.json`);
     apiJsonData = JSON.parse(apiData);
   } catch (error) {
-    console.error(kleur.red("Error occurred when trying to parse API Json data: ", error));
+    console.error(kluer.red("Error occurred when trying to parse API Json data: ", error));
   }
 
   const categories = []
@@ -144,7 +144,7 @@ function Mappings(jsonData) {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
 
-      typeMappings[typedef.name] = `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
+      typeMappings[typedef.name] = `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/\s+/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
     });
     category.structs.forEach((struct) => {
       // Add structs to typeMappings
@@ -152,7 +152,7 @@ function Mappings(jsonData) {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
 
-      typeMappings[struct.name] = `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/\s+/g, "-").replace(/_/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
+      typeMappings[struct.name] = `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/\s+/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
     });
     category.enums.forEach((enumm) => {
       // Add structs to typeMappings
@@ -160,7 +160,7 @@ function Mappings(jsonData) {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
 
-      typeMappings[enumm.name] = `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/\s+/g, "-").replace(/_/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
+      typeMappings[enumm.name] = `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/\s+/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
     });
   }
 }
@@ -268,33 +268,25 @@ function getUsageExampleImports(categoryKey, functionKey) {
             const csharpFiles = functionFiles.filter(file => file.endsWith("-top-level.cs") || file.endsWith("-oop.cs")).filter(file => file.includes(exampleKey));
             const cppFiles = functionFiles.filter(file => file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp")).filter(file => file.includes(exampleKey));
             if (lang == "csharp" && csharpFiles.length > 0) {
-              let addedTopLevel = false;
-              let addedOop = false;
               csharpFiles.forEach(file => {
                 if (file.includes(exampleKey)) {
-                  if (file.includes("-top-level") && !addedTopLevel) {
+                  if (file.includes("-top-level")) {
                     mdxData += `import ${importTitle}_top_level_${lang} from '${codeFilePath.replaceAll(".cs", "-top-level.cs").replaceAll("/usage", "/public/usage")}?raw';\n`;
-                    addedTopLevel = true;
                   }
-                  if (file.includes("-oop") && !addedOop) {
+                  if (file.includes("-oop")) {
                     mdxData += `import ${importTitle}_oop_${lang} from '${codeFilePath.replaceAll(".cs", "-oop.cs").replaceAll("/usage", "/public/usage")}?raw';\n`;
-                    addedOop = true;
                   }
                 }
               });
             } // Check for cpp files for standard SK and Beyond SK
             else if (lang == "cpp" && cppFiles.length > 0) {
-              let addedSk = false;
-              let addedBeyond = false;
               cppFiles.forEach(file => {
                 if (file.includes(exampleKey)) {
-                  if (file.includes("-sk") && !addedSk) {
+                  if (file.includes("-sk")) {
                     mdxData += `import ${importTitle}_sk_${lang} from '${codeFilePath.replaceAll(".cpp", "-sk.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
-                    addedSk = true;
                   }
-                  if (file.includes("-beyond") && !addedBeyond) {
+                  if (file.includes("-beyond")) {
                     mdxData += `import ${importTitle}_beyond_${lang} from '${codeFilePath.replaceAll(".cpp", "-beyond.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
-                    addedBeyond = true;
                   }
                 }
               });
@@ -309,36 +301,6 @@ function getUsageExampleImports(categoryKey, functionKey) {
   }
   mdxData += "\n";
   return mdxData;
-}
-
-// ------------------------------------------------------------------------------
-// Get group name (C++ function name) from unique global name
-// ------------------------------------------------------------------------------
-function getGroupName(jsonData, uniqueName) {
-  var funcGroupName = ""
-  for (const categoryKey in jsonData) {
-    const category = jsonData[categoryKey];
-    const categoryFunctions = category.functions;
-    
-    // Check for unique global name match
-    categoryFunctions.forEach((func) => {
-      if (func.unique_global_name == uniqueName) {
-        funcGroupName = func.name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
-      }
-    });
-    
-    if (funcGroupName) break;
-
-    // Check for function group name match (for overloaded functions)
-    categoryFunctions.forEach((func) => {
-      if (func.name == uniqueName) {
-        funcGroupName = func.name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
-      }
-    });
-    
-    if (funcGroupName) break;
-  }
-  return funcGroupName;
 }
 
 // ------------------------------------------------------------------------------
@@ -502,26 +464,21 @@ let success = true;
 const jsonData = getJsonData("api.json");
 const jsonColors = getJsonData("colors.json");
 let guidesJson = getJsonData("guides.json");
-let usageExamplesJson = getJsonData("usage-example-references.json");
 let guidesCategories = getApiCategories(guidesJson);
-let examplesCategories = getApiCategories(usageExamplesJson);
 const usageExamples = getAllFinishedExamples();
 
 Mappings(jsonData);
 console.log(`\nGenerating MDX files for API Documentation pages...\n`);
 
-// Please select an option: "animations, audio, camera, color, generative_ai, geometry, graphics, input, json, networking, physics, resource_bundles, resources, sprites, terminal, timers, types, utilities, windows"
+// Please select an option: "animations, audio, camera, color, geometry, graphics, input, json, networking, physics, resource_bundles, resources, sprites, terminal, timers, types, utilities, windows"
 for (const categoryKey in jsonData) {
   const category = jsonData[categoryKey];
-  let input = categoryKey.replace(/_/g, "-");
+  let input = categoryKey;
   const categoryFunctions = category.functions;
   let mdxContent = "";
-  name = input.split("-")
+  name = input.split("_")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" "); //name of the category
-  if (name == "Generative Ai") {
-    name = "Generative AI";
-  }
   const functionNames = category.functions.map((func) => func.name);
 
   mdxContent += "---\n";
@@ -569,30 +526,20 @@ for (const categoryKey in jsonData) {
     const overloads = functionGroups[functionName];
     const isOverloaded = overloads.length > 1;
 
-    const hasExampleInGroup = functionGroups[functionName].some((func) =>
-      usageExamples.some((example) =>
-        example.startsWith(func.unique_global_name + "-1-example.txt")
-      )
-    );
-
-    const hasExampleReferenceInGroup = functionGroups[functionName].some((func) =>
-      examplesCategories.some((category) =>
-        category.some((example) =>
-          example.functions.includes(func.unique_global_name)
-        )
-      )
-    );
-
-    const hasGuideInGroup = functionGroups[functionName].some((func) =>
-      guidesCategories.some((category) =>
-        category.some((guide) =>
-          guide.functions.includes(func.unique_global_name)
-        )
-      )
-    );
-
     // Create a section for overloaded functions
     if (isOverloaded) {
+      const hasExampleInGroup = functionGroups[functionName].some((func) =>
+        usageExamples.some((example) => example.endsWith(func.unique_global_name + "-1-example.txt"))
+      );
+
+      const hasGuideInGroup = functionGroups[functionName].some((func) =>
+        guidesCategories.some((category) =>
+          category.some((guide) =>
+            guide.functions.includes(func.unique_global_name)
+          )
+        )
+      );
+
       const formattedFunctionName = functionName
         .split("_")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -600,7 +547,7 @@ for (const categoryKey in jsonData) {
       const formattedLink = formattedFunctionName.toLowerCase().replace(/\s+/g, "-");
 
       // Put {</>} symbol at the end of header if function has a usage example
-      const hasSymbol = (hasExampleInGroup || hasGuideInGroup || hasExampleReferenceInGroup) ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;` : "";
+      const hasSymbol = (hasExampleInGroup || hasGuideInGroup) ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;` : "";
       const formattedGroupLink = `${formattedLink}-functions`;
 
       mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink})${hasSymbol} \\{#${formattedGroupLink}\\}\n\n`;
@@ -630,14 +577,13 @@ for (const categoryKey in jsonData) {
           paramNumber++;
         }
         const formattedUniqueLink = func.unique_global_name.toLowerCase().replace(/_/g, "-");
-        mdxContent += `)](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedUniqueLink})`;
+        mdxContent += `)](/api/${input}/#${formattedUniqueLink})`;
 
         // Put bolded {</>} symbol at the end of heading link if function has a usage example
-        const hasExample = usageExamples.some(example => example.startsWith(func.unique_global_name + "-1-example.txt"));
+        const hasExample = usageExamples.some(example => example.endsWith(func.unique_global_name + "-1-example.txt"));
         const hasGuide = guidesCategories.some((category) => category.some((guide) => guide.functions.includes(func.unique_global_name)));
-        const hasExampleReference = examplesCategories.some((category) => category.some((example) => example.functions.includes(func.unique_global_name)));
 
-        if (hasExample || hasGuide || hasExampleReference) {
+        if (hasExample || hasGuide) {
           mdxContent += "&nbsp;&nbsp;<strong>&lcub;&lt;/&gt;&rcub;</strong>";
         }
 
@@ -659,14 +605,13 @@ for (const categoryKey in jsonData) {
 
       const formattedLink = formattedName3.toLowerCase().replace(/\s+/g, "-");
       const formattedUniqueLink = func.unique_global_name.toLowerCase().replace(/_/g, "-");
-      const hasExample = usageExamples.some(example => example.startsWith(func.unique_global_name + "-1-example.txt"));
+      const hasExample = usageExamples.some(example => example.endsWith(func.unique_global_name + "-1-example.txt"));
       const hasGuide = guidesCategories.some((category) => category.some((guide) => guide.functions.includes(func.unique_global_name)));
-      const hasExampleReference = examplesCategories.some((category) => category.some((example) => example.functions.includes(func.unique_global_name)));
-      const hasSymbol = (hasExample || hasGuide || hasExampleReference) ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;` : "";
+
       // Put {</>} symbol at the end of headers of overloaded functions with usage example or else just keep empty
       const formattedName = isOverloaded
-        ? `\n#### [${functionName2}](#${formattedUniqueLink})${hasSymbol} \\{#${formattedUniqueLink}\\}`
-        : `\n### [${functionName2}](#${formattedLink})${hasSymbol}`;
+        ? `\n#### [${functionName2}](#${formattedUniqueLink})${(hasExample || hasGuide) ? '&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;' : ''} \\{#${formattedUniqueLink}\\}`
+        : `\n### [${functionName2}](#${formattedLink})${(hasExample || hasGuide) ? '&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;' : ''}`;
 
       // Replace type names in the description with formatted versions
       let description = func.description || "";
@@ -697,7 +642,7 @@ for (const categoryKey in jsonData) {
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(" ");
         const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-        const link = `[\`${normalName}\`](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedLink})`
+        const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
         description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
         description = description.replaceAll("\n", " ");
       }
@@ -734,7 +679,7 @@ for (const categoryKey in jsonData) {
               .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
               .join(" ");
             const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-            const link = `[\`${normalName}\`](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedLink})`
+            const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
             description2 = description2.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
             description2 = description2.replaceAll("\n", " ");
           }
@@ -802,59 +747,19 @@ for (const categoryKey in jsonData) {
         })
       })
 
-      var limit = 0;
-      let allExamples = [];
-      examplesCategories.forEach((category) => {
-        category.forEach((example) => {
-          example.functions.forEach((used) => {
-            if (func.unique_global_name == used && limit < 4) {
-              allExamples.push({
-                name: example.funcKey,
-                title: example.title,
-                url: example.url
-              })
-              limit++
-            }
-          })
-        })
-      })
-
-      if ((allGuides.length > 0) || (allExamples.length > 0)) {
+      if (allGuides.length > 0) {
 
         if (!usageHeading) {
           mdxContent += "**Usage:&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;**\n\n";
           usageHeading = true;
         }
-        mdxContent += `<Accordion title="See Implementations" uniqueID={${JSON.stringify(func.unique_global_name + "_guides")}} customButton="guidesAccordion">\n\n`
+        mdxContent += `<Accordion title="See Implementations in Guides" uniqueID={${JSON.stringify(func.unique_global_name + "_guides")}} customButton="guidesAccordion">\n\n`
 
-        if (allGuides.length > 0) {
-          mdxContent += `**Tutorials and Guides**:\n\n`
-          allGuides.forEach((guide) => {
-            mdxContent += `- [${guide.name}](${guide.url})\n`
-          })
-          if (allExamples.length > 0)
-            mdxContent += "\n"
-        }
-        if (allExamples.length > 0) {
-          allExamples.forEach((example) => {
-            const exampleName = getGroupName(jsonData, example.name);
-            let finalUrl = example.url;
-            
-            // Check if this is an overloaded function and needs -functions suffix
-            for (const catKey in jsonData) {
-              const cat = jsonData[catKey];
-              const overloads = cat.functions.filter(f => f.name === example.name);
-              if (overloads.length > 1) {
-                finalUrl = finalUrl.replace(/#([a-z0-9-]+)$/, "#$1-functions");
-                break;
-              }
-            }
-
-            mdxContent += `- [${exampleName}](${finalUrl}): ${example.title}\n`
-          })
-        }
-
-        mdxContent += `\n`
+        mdxContent += `<ul>`
+        allGuides.forEach((guide) => {
+          mdxContent += `<li> [${guide.name}](${guide.url}) </li>`
+        })
+        mdxContent += `</ul>\n\n`
 
         mdxContent += `</Accordion>\n\n`
       }
@@ -923,7 +828,7 @@ for (const categoryKey in jsonData) {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
           const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-          const link = `[\`${normalName}\`](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedLink})`
+          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
 
           description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
         }
@@ -953,7 +858,7 @@ for (const categoryKey in jsonData) {
                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(" ");
               const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-              const link = `[\`${normalName}\`](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedLink})`
+              const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
               description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
             }
 
@@ -973,7 +878,7 @@ for (const categoryKey in jsonData) {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
           const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-          const link = `[\`${normalName}\`](/api/${input.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${formattedLink})`
+          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
           description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
         }
         description = description.replaceAll("\n\n\n", "\n\n");

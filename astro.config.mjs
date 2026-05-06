@@ -11,18 +11,13 @@ import starlightBlog from 'starlight-blog';
 import starlightLinksValidator from 'starlight-links-validator';
 import { loadEnv } from "vite";
 
-const env = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
-const DOCSEARCH_API_ID = env.DOCSEARCH_API_ID;
-const DOCSEARCH_API_SEARCH_KEY = env.DOCSEARCH_API_SEARCH_KEY;
-const DOCSEARCH_INDEX_NAME = env.DOCSEARCH_INDEX_NAME;
-const hasDocSearchConfig = Boolean(
-  DOCSEARCH_API_ID && DOCSEARCH_API_SEARCH_KEY && DOCSEARCH_INDEX_NAME
-);
+const { DOCSEARCH_API_ID } = loadEnv(process.env.DOCSEARCH_API_ID, process.cwd(), "");
+const { DOCSEARCH_API_SEARCH_KEY } = loadEnv(process.env.DOCSEARCH_API_SEARCH_KEY, process.cwd(), "");
+const { DOCSEARCH_INDEX_NAME } = loadEnv(process.env.DOCSEARCH_INDEX_NAME, process.cwd(), "");
 
-if (!hasDocSearchConfig) {
-  console.warn(
-    "Algolia DocSearch environment variables are missing; building without DocSearch integration."
-  );
+if (!DOCSEARCH_API_ID || !DOCSEARCH_API_SEARCH_KEY || !DOCSEARCH_INDEX_NAME) {
+  console.error("Algolia DocSearch enviroment variables are invalid. Please check configuration!");
+  process.exit(1);
 }
 
 // https://astro.build/config
@@ -37,14 +32,6 @@ export default defineConfig({
           title: 'Announcements',
           recentPostCount: 5,
           prevNextLinksOrder: 'chronological',
-          authors: {
-            sk: {
-              name: 'SplashKit',
-              title: 'SplashKit Team',
-              url: 'https://splashkit.io',
-              image_url: 'https://splashkit.io/favicon.svg',
-            },
-          },
         }),
         // Only validate links strictly when ENABLE_STRICT_LINKS=true (useful for CI);
         // this prevents local builds from failing on link-hash mismatches.
