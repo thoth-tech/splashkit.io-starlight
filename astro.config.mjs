@@ -1,9 +1,8 @@
-import starlight from "@astrojs/starlight";
-import { defineConfig } from "astro/config";
-// import solidJs from "@astrojs/solid-js";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import starlight from "@astrojs/starlight";
 import starlightDocSearch from '@astrojs/starlight-docsearch';
+import { defineConfig } from "astro/config";
 import rehypeMathjax from 'rehype-mathjax';
 import remarkHeadingID from 'remark-heading-id';
 import remarkMath from 'remark-math';
@@ -11,14 +10,16 @@ import starlightBlog from 'starlight-blog';
 import starlightLinksValidator from 'starlight-links-validator';
 import { loadEnv } from "vite";
 
-const { DOCSEARCH_API_ID } = loadEnv(process.env.DOCSEARCH_API_ID, process.cwd(), "");
-const { DOCSEARCH_API_SEARCH_KEY } = loadEnv(process.env.DOCSEARCH_API_SEARCH_KEY, process.cwd(), "");
-const { DOCSEARCH_INDEX_NAME } = loadEnv(process.env.DOCSEARCH_INDEX_NAME, process.cwd(), "");
+
+const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), "");
+const DOCSEARCH_API_ID = env.DOCSEARCH_API_ID || process.env.DOCSEARCH_API_ID;
+const DOCSEARCH_API_SEARCH_KEY = env.DOCSEARCH_API_SEARCH_KEY || process.env.DOCSEARCH_API_SEARCH_KEY;
+const DOCSEARCH_INDEX_NAME = env.DOCSEARCH_INDEX_NAME || process.env.DOCSEARCH_INDEX_NAME;
 
 if (!DOCSEARCH_API_ID || !DOCSEARCH_API_SEARCH_KEY || !DOCSEARCH_INDEX_NAME) {
-  console.error("Algolia DocSearch enviroment variables are invalid. Please check configuration!");
-  process.exit(1);
+  console.warn("Algolia DocSearch environment variables are missing. Search may not function correctly.");
 }
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -49,13 +50,10 @@ export default defineConfig({
         }),
       ],
       expressiveCode: {
-        // theme: ["github-dark", "github-light"],
-        // frames: {
-        //   showCopyToClipboardButton: true,
-        // },
         styleOverrides: { borderRadius: '0.5rem' },
         useDarkModeMediaQuery: true,
       },
+
       customCss: [
         "/src/styles/custom.css",
         "/src/styles/background.css",
@@ -106,8 +104,8 @@ export default defineConfig({
             { label: "MacOS", autogenerate: { directory: "troubleshoot/MacOS" }, collapsed: true },
             { label: "Linux", autogenerate: { directory: "troubleshoot/Linux" }, collapsed: true },
           ],
-          // autogenerate: { directory: "troubleshoot", collapsed: true },
         },
+
         {
           label: "API Documentation",
           autogenerate: { directory: "api", collapsed: false },

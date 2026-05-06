@@ -64,24 +64,24 @@ function getAvailableExamplesFunctionUsage(dir) {
         const functionCallRegex = /\b([a-zA-Z_][a-zA-Z0-9_]*)\s*\(/g;
 
         try {
-            const stats = fs.statSync(folderPath);
-
-            // Checking if the path is a directory
-            if (stats.isDirectory()) {
+            if (fs.statSync(folderPath).isDirectory()) {
                 const files = fs.readdirSync(folderPath);
-                // Filtering for JSON files
-                pythonFiles = files.filter(file => path.extname(file).toLowerCase() === '.py');
-                textFiles = files.filter(file => path.extname(file).toLowerCase() === '.txt');
+                const pythonFiles = files.filter(file => path.extname(file).toLowerCase() === '.py');
 
                 pythonFiles.forEach(pyFile => {
                     const fileName = path.join(folderPath, pyFile);
-                    const fileName2 = fileName.replace('.py', '.txt')
+                    const fileName2 = fileName.replace('.py', '.txt');
+                    
+                    if (!fs.existsSync(fileName2)) return;
+
                     const pythonFile = fs.readFileSync(fileName, "utf8");
                     const textFile = fs.readFileSync(fileName2, "utf8");
-                    const title = textFile.split(/\r?\n/)[0].trim();
+                    const title = textFile.split(/\r?\n/)[0].replace(/[\r\n]/g, "").trim();
                     const pyFileMatch = fileNameRegex.exec(pyFile);
-                    try {
+                    
+                    if (!pyFileMatch) return;
 
+                    try {
                         const folderKey = folder.toLowerCase();
                         const funcKey = pyFileMatch[1].toLowerCase();
                         const calledFunctions = [];
@@ -96,12 +96,13 @@ function getAvailableExamplesFunctionUsage(dir) {
 
                         const resolvedFuncKey = resolvePrimaryFunctionKey(funcKey, calledFunctions, apiFunctionIndex);
                         const apiCategory = apiFunctionIndex.get(resolvedFuncKey);
+                        const targetCategory = apiCategory || folderKey;
 
-                        if (!result[folderKey]) {
-                            result[folderKey] = []
+                        if (!result[targetCategory]) {
+                            result[targetCategory] = [];
                         }
 
-                        let funcEntry = result[folderKey].find(entry => entry.funcKey === resolvedFuncKey);
+                        let funcEntry = result[targetCategory].find(entry => entry.funcKey === resolvedFuncKey && entry.title === title);
 
                         if (!funcEntry) {
                             funcEntry = {
@@ -112,30 +113,35 @@ function getAvailableExamplesFunctionUsage(dir) {
                                     : `/usage-examples/${folderKey}`,
                                 functions: []
                             };
-                            result[folderKey].push(funcEntry);
+                            result[targetCategory].push(funcEntry);
                         }
 
                         calledFunctions.forEach((funcName) => {
                             if (!funcEntry.functions.includes(funcName)) {
-                                funcEntry.functions.push(funcName)
+                                funcEntry.functions.push(funcName);
                             }
                         });
+                        funcEntry.functions.sort();
 
                     } catch (error) {
-                        console.error(`Error parsing JSON in file: ${pythonFiles}`);
-                        console.error(error.message);
+                        console.error(`Error processing file ${pyFile}:`, error.message);
                     }
-                })
-            } else {
-                if (folder != "CONTRIBUTING.mdx" && folder != ".DS_Store")
-                    console.log(`${folder} is not a diectory`);
+                });
             }
         } catch (err) {
-            console.log(`Error loading JSON in folder: ${folder}`);
+            // Skip non-directories or permission errors
         }
-    })
-    return result;
+    });
+
+    // Sort the root categories
+    const sortedResult = {};
+    Object.keys(result).sort().forEach(key => {
+        sortedResult[key] = result[key].sort((a, b) => a.funcKey.localeCompare(b.funcKey));
+    });
+
+    return sortedResult;
 }
+
 
 // ------------------------------------------------------------------------------
 // Writing to the output JSON file
