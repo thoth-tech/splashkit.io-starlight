@@ -32,6 +32,14 @@ export default defineConfig({
           title: 'Announcements',
           recentPostCount: 5,
           prevNextLinksOrder: 'chronological',
+          authors: {
+            sk: {
+              name: 'SplashKit',
+              title: 'SplashKit Team',
+              url: 'https://splashkit.io',
+              image_url: 'https://splashkit.io/favicon.svg',
+            },
+          },
         }),
         starlightLinksValidator({
           errorOnRelativeLinks: true,
