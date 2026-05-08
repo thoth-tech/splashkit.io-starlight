@@ -1,5 +1,4 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
 namespace BoatBuoyancyExample
 {
@@ -7,107 +6,88 @@ namespace BoatBuoyancyExample
     {
         public static void Main()
         {
-            // This example demonstrates a simple buoyancy simulation.
-            // The boat first falls because of gravity.
-            // Once the bottom of the boat goes below the water surface,
-            // buoyancy pushes it upward based on how deep it is submerged.
-            // Damping is also used so the boat settles instead of bouncing forever.
+            SplashKit.OpenWindow("Boat Buoyancy", 800, 600);
 
-            OpenWindow("Boat Buoyancy", 800, 600);
+            // Create a simple boat shape for the simulation
+            Bitmap boatBitmap = SplashKit.CreateBitmap("boat_bitmap", 120, 50);
+            SplashKit.ClearBitmap(boatBitmap, SplashKit.Color.Transparent);
 
-            // Create a bitmap for the boat so the program is self-contained
-            Bitmap boatBitmap = CreateBitmap("boat_bitmap", 120, 50);
-            ClearBitmap(boatBitmap, Color.Transparent);
+            SplashKit.FillRectangleOnBitmap(boatBitmap, SplashKit.Color.Brown, 10, 20, 100, 20);
+            SplashKit.FillTriangleOnBitmap(boatBitmap, SplashKit.Color.Red, 20, 20, 60, 0, 100, 20);
 
-            // Draw a simple boat shape so the motion is easy to see
-            FillRectangleOnBitmap(boatBitmap, Color.Brown, 10, 20, 100, 20);
-            FillTriangleOnBitmap(boatBitmap, Color.Red, 20, 20, 60, 0, 100, 20);
+            Sprite boat = SplashKit.CreateSprite(boatBitmap);
 
-            // Create a sprite from the bitmap so it can be moved around the screen
-            Sprite boat = CreateSprite(boatBitmap);
+            // Position the boat above the water
+            SplashKit.SpriteSetX(boat, 340);
+            SplashKit.SpriteSetY(boat, 20);
 
-            // Start the boat well above the water so the falling motion is clearly visible
-            SpriteSetX(boat, 340);
-            SpriteSetY(boat, 20);
-
-            // Define the water area
-            Rectangle waterArea = RectangleFrom(0, 350, 800, 250);
+            // Define the water area and surface level
+            Rectangle waterArea = SplashKit.RectangleFrom(0, 350, 800, 250);
             double waterSurface = waterArea.Y;
 
-            // These values are tuned so the boat sinks a little, then rises and settles
             double gravityStrength = 0.7;
             double dampingStrength = 0.05;
             double buoyancyScale = 0.05;
 
-            // Track vertical motion manually
             double verticalVelocity = 0;
 
-            while (!QuitRequested())
+            while (!SplashKit.QuitRequested())
             {
-                ProcessEvents();
+                SplashKit.ProcessEvents();
 
-                // Gravity always pulls the boat downward
-                // This makes the boat fall naturally before water begins pushing back
+                // Apply gravity to pull the boat downward
                 verticalVelocity += gravityStrength;
 
-                // Find the bottom of the boat
-                // Using the bottom gives a more believable buoyancy trigger than a collision circle
-                double boatBottom = SpriteY(boat) + SpriteHeight(boat);
+                double boatBottom = SplashKit.SpriteY(boat) + SplashKit.SpriteHeight(boat);
 
-                // Only apply buoyancy after the boat has actually gone below the water surface
-                // This allows the boat to sink slightly first instead of floating too early
+                // Check how much of the boat is underwater
                 if (boatBottom > waterSurface)
                 {
-                    // Calculate how deep the boat is below the water surface
                     double submergedDepth = boatBottom - waterSurface;
 
-                    // Limit the depth so the upward push does not become unrealistically strong
-                    if (submergedDepth > SpriteHeight(boat))
+                    // Limit buoyancy so the force stays stable
+                    if (submergedDepth > SplashKit.SpriteHeight(boat))
                     {
-                        submergedDepth = SpriteHeight(boat);
+                        submergedDepth = SplashKit.SpriteHeight(boat);
                     }
 
-                    // The deeper the boat goes, the stronger the upward buoyancy becomes
+                    // Apply upward force based on submerged depth
                     double upwardForce = submergedDepth * buoyancyScale;
+                    Vector2D buoyancy = SplashKit.VectorFromAngle(270, upwardForce);
 
-                    // Use VectorFromAngle so the example still demonstrates upward vector creation
-                    Vector2D buoyancy = VectorFromAngle(270, upwardForce);
-
-                    // Apply the vertical part of the buoyancy vector
                     verticalVelocity += buoyancy.Y;
                 }
 
-                // Damping reduces repeated bouncing and helps the boat stabilise
+                // Reduce movement over time for smoother floating
                 verticalVelocity *= (1.0 - dampingStrength);
 
-                // Move the boat using the current vertical speed
-                SpriteSetY(boat, SpriteY(boat) + verticalVelocity);
+                // Update the boat position using velocity
+                SplashKit.SpriteSetY(boat, SplashKit.SpriteY(boat) + verticalVelocity);
 
-                ClearScreen(Color.White);
+                SplashKit.ClearScreen(SplashKit.Color.White);
 
-                // Create the water shape as a quad because DrawQuad needs a quad object
-                Quad waterQuad = QuadFrom(
-                    PointAt(0, 350),
-                    PointAt(800, 350),
-                    PointAt(0, 600),
-                    PointAt(800, 600)
+                // Draw the water area and surface
+                Quad waterQuad = SplashKit.QuadFrom(
+                    SplashKit.PointAt(0, 350),
+                    SplashKit.PointAt(800, 350),
+                    SplashKit.PointAt(0, 600),
+                    SplashKit.PointAt(800, 600)
                 );
 
-                // Draw the water so it is clear where buoyancy begins
-                DrawQuad(Color.DeepSkyBlue, waterQuad);
+                SplashKit.DrawQuad(SplashKit.Color.DeepSkyBlue, waterQuad);
+                SplashKit.DrawLine(SplashKit.Color.Blue, 0, 350, 800, 350);
 
-                // Draw the water surface line
-                DrawLine(Color.Blue, 0, 350, 800, 350);
+                // Display the boat sprite
+                SplashKit.DrawSprite(boat);
 
-                // Draw the boat
-                DrawSprite(boat);
+                // Show the current movement speed
+                SplashKit.DrawText("Boat floats using vector based buoyancy.", SplashKit.Color.Black, 20, 20);
+                SplashKit.DrawText("Vertical Velocity: " + verticalVelocity, SplashKit.Color.Black, 20, 50);
 
-                // Show motion information so the effect is easier to understand
-                DrawText("Boat falls, sinks slightly, then floats.", Color.Black, 20, 20);
-                DrawText("Vertical Velocity: " + verticalVelocity, Color.Black, 20, 50);
-
-                RefreshScreen(60);
+                SplashKit.RefreshScreen(60);
             }
+
+            SplashKit.CloseAllWindows();
         }
     }
 }
