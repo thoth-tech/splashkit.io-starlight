@@ -3,6 +3,7 @@
 int main()
 {
     // Define a prompt to send to the AI
+    // Note: Requires a local AI model to be set up via SplashKit
     string prompt = "What is the capital of France?";
     write_line("Prompt: " + prompt);
 

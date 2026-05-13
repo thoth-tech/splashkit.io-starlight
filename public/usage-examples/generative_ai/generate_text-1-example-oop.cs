@@ -1,15 +1,19 @@
 using SplashKitSDK;
 
-class Program
+namespace GenerateTextExample
 {
-    static void Main(string[] args)
+    public class Program
     {
-        // Define a prompt to send to the AI
-        string prompt = "What is the capital of France?";
-        SplashKit.WriteLine("Prompt: " + prompt);
+        public static void Main()
+        {
+            // Define a prompt to send to the AI
+            // Note: Requires a local AI model to be set up via SplashKit
+            string prompt = "What is the capital of France?";
+            SplashKit.WriteLine("Prompt: " + prompt);
 
-        // Generate a text response from the AI
-        string response = SplashKit.GenerateText(prompt);
-        SplashKit.WriteLine("Response: " + response);
+            // Generate a text response from the AI
+            string response = SplashKit.GenerateText(prompt);
+            SplashKit.WriteLine("Response: " + response);
+        }
     }
 }
