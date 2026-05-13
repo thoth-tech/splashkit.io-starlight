@@ -128,11 +128,12 @@ export default defineConfig({
               ],
             },
             { label: "Raspberry GPIO", autogenerate: { directory: "guides/raspberry-gpio" }, collapsed: true },
-            { label: "Physics", autogenerate: { directory: "guides/physics" }, collapsed: true },
-            { label: "Interface", autogenerate: { directory: "guides/interface" }, collapsed: true },
-            { label: "Networking", autogenerate: { directory: "guides/networking" }, collapsed: true },
-            {
-              label: "Beyond SplashKit",
+{ label: "Physics", autogenerate: { directory: "guides/physics" }, collapsed: true },
+{ label: "Interface", autogenerate: { directory: "guides/interface" }, collapsed: true },
+{ label: "Networking", autogenerate: { directory: "guides/networking" }, collapsed: true },
+{ label: "Generative AI", autogenerate: { directory: "guides/generative-ai" }, collapsed: true },
+{
+  label: "Beyond SplashKit",
               collapsed: true,
               items: [
                 { label: "Overview", link: "guides/beyond-splashkit/" },
