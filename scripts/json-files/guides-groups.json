@@ -1,10 +1,11 @@
 [
+  "Camera",
+  "Graphics",
   "animations",
   "audio",
   "beyond-splashkit",
-  "camera",
   "color",
-  "graphics",
+  "generative-ai",
   "input",
   "interface",
   "json",
