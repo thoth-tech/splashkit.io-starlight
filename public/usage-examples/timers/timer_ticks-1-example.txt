@@ -1,0 +1,7 @@
+timer_ticks Usage Example
+
+This example demonstrates how to use timer_ticks to read the elapsed time of a timer in SplashKit.
+
+The program creates a timer, starts it, and displays the current timer value in milliseconds in a window.
+
+This helps show how timer_ticks changes over time while the program is running.
