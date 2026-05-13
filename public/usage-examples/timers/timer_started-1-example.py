@@ -1,6 +1,6 @@
 from splashkit import *
 
-open_window("Timer Started", 600, 300)
+open_window("Start-Stop Stopwatch", 600, 300)
 
 # Create a named timer - it is not started until start_timer is called
 game_timer = create_timer("game_timer")

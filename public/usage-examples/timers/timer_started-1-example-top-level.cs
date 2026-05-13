@@ -3,7 +3,7 @@
 using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
-OpenWindow("Timer Started", 600, 300);
+OpenWindow("Start-Stop Stopwatch", 600, 300);
 
 // SplashKitSDK.Timer needed to distinguish from System.Threading.Timer
 // Create a named timer - it is not started until StartTimer is called

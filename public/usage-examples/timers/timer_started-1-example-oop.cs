@@ -6,7 +6,7 @@ namespace TimerStarted
     {
         public static void Main()
         {
-            SplashKit.OpenWindow("Timer Started", 600, 300);
+            SplashKit.OpenWindow("Start-Stop Stopwatch", 600, 300);
 
             // SplashKitSDK.Timer needed to distinguish from System.Threading.Timer
             // Create a named timer - it is not started until StartTimer is called
