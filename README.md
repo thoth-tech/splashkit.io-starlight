@@ -29,17 +29,14 @@ Thoth Tech is a people-focused educational technology company within Deakin Univ
 
 ## Installation
 
-If needed:
+To work on the SplashKit website locally:
 
-1. Install and open Docker: Ensure Docker is installed and running on your machine.
-2. Fork and clone this repository: This allows you to make your own changes and submit them if needed.
-3. Reopen the cloned repository in a container: You may get a prompt to open it in a container in VS Code; select "Reopen in Container."
+1. Fork and clone this repository.
+2. Open the project in VS Code or your preferred editor.
+3. Install dependencies:
 
-- Install the necessary dependencies. Make sure you have the following installed:
-
-    ```shell
-    npm install
-    ```
+   ```shell
+   npm install
 
 ## 🚀 Project Structure
 
@@ -78,21 +75,25 @@ Inside of your Astro + Starlight project, you'll see the following folders and f
 
 ## 🧞 Commands
 
-All commands are run from the root of the project, from a terminal:
+All commands are run from the root of the project in a terminal:
 
-| Command                                 | Action                                                                                                      |
-| :-------------------------------------- | :---------------------------------------------------------------------------------------------------------- |
-| `npm install`                           | Installs dependencies                                                                                       |
-| `npm run dev`                           | Starts local dev server at `localhost:4322`                                                                 |
-| `npm run build`                         | Builds your production site to `./dist/`                                                                    |
-| `npm run preview`                       | Previews your build locally, before deploying                                                               |
-| `npm run astro ...`                     | Runs CLI commands like `astro add`, `astro check`                                                           |
-| `npm run astro -- --help`               | Gets help using the Astro CLI                                                                               |
-| `npm run generate-mdx`                  | Generates an MDX file *(for functions)* from JSON data in the `test` folder                                 |
-| `npm run generate-usage-examples-pages` | Runs the script to generate usage example pages from the `./scripts/usage-example-page-generation.cjs` file |
-| `npm run generate-usage-examples-pages write_line-1-simple` | Runs the script to generate usage example pages from the `./scripts/usage-example-page-generation.cjs` file and prints the testing output for the `write_line-1-simple` example |
-| `npm run check-links`                   | Sets `CHECK_LINKS=true`, runs `npm run build`, then resets `CHECK_LINKS=false`                              |
+| Command                   | Action                                                                 |
+| :------------------------ | :--------------------------------------------------------------------- |
+| `npm install`             | Installs project dependencies                                          |
+| `npm run dev`             | Runs setup scripts, then starts the local dev server at `localhost:4321` |
+| `npm run start`           | Runs setup scripts, then starts the local dev server                   |
+| `npm run build`           | Runs setup scripts, then builds the production site to `./dist/`       |
+| `npm run preview`         | Previews the built site locally                                        |
+| `npm run astro ...`       | Runs Astro CLI commands                                                |
+| `npm run astro -- --help` | Shows help for the Astro CLI                                           |
+| `npm run setup`           | Generates JSON files, usage example data, and API pages                |
+| `npm run generate-mdx`    | Generates API page content                                             |
+| `npm run generate-json`   | Generates JSON and usage example data                                  |
+| `npm run check-links`     | Enables link checking during build                                     |
 
+### Notes
+
+The project runs setup scripts before `npm run dev`, `npm run start`, and `npm run build`. These scripts prepare generated content such as JSON files, usage examples, and API pages.
 ## Contributing
 
 We welcome contributions from the community to enhance the SplashKit SDK on the Starlight framework. If you would like to contribute, please follow the guidelines outlined in the [CONTRIBUTE.md](./CONTRIBUTE.md) file.
