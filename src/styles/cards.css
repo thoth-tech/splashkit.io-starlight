@@ -1,11 +1,20 @@
 /* --- START: Link card styling ------*/
+
 .sl-markdown-content .sl-link-card {
   border: none;
   outline: 1px solid var(--sk-logo-blue);
   background-color: var(--sl-color-gray-5);
+  border-radius: 0.75rem;
+  transition:
+    background-color 0.2s ease,
+    outline 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: var(--sl-shadow-sm);
 
   .description {
     color: var(--sl-color-gray-2);
+    transition: color 0.2s ease;
   }
 }
 
@@ -14,6 +23,8 @@
   border: none;
   outline: 2px solid var(--sk-logo-orange);
   background-color: var(--sl-color-gray-7);
+  transform: translateY(-2px);
+  box-shadow: var(--sl-shadow-md);
 
   .description {
     color: var(--sl-color-gray-1);
@@ -22,15 +33,40 @@
 
 /* --- END: Link card styling ------*/
 
+
 /* --- START: Card styling ------*/
 
 article.card {
   background: var(--sl-color-gray-6);
   color: var(--sl-color-gray-2);
   border: 1px solid var(--sk-logo-dark-blue);
-  border-radius: 0.5rem;
-  width: 95%;
+  border-radius: 0.75rem;
+  width: 100%;
+  padding: 1rem;
   box-shadow: var(--sl-shadow-md);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Card hover interaction */
+article.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--sk-logo-blue);
+  box-shadow: var(--sl-shadow-lg);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  article.card {
+    width: 100%;
+    padding: 0.875rem;
+  }
+
+  .sl-markdown-content .sl-link-card {
+    border-radius: 0.5rem;
+  }
 }
 
 /* --- END: Card styling ------*/
