@@ -20,7 +20,7 @@ namespace MoveMouse
             {
                 SplashKit.ProcessEvents();
 
-                // MoveMouse repositions the cursor to the given Point2D location
+                // MoveMouse (C#'s equivalent of move_mouse_to_point) repositions the cursor to the given Point2D location
                 // Each key press snaps the mouse to the corresponding target point
                 if (SplashKit.KeyTyped(KeyCode.QKey))
                     SplashKit.MoveMouse(topLeft);
@@ -49,7 +49,7 @@ namespace MoveMouse
                 SplashKit.DrawText("[D]",     Color.Orange, "Arial", 16, bottomRight.X - 12, bottomRight.Y + 18);
                 SplashKit.DrawText("[SPACE]", Color.Purple, "Arial", 16, center.X - 28,      center.Y + 18);
 
-                SplashKit.DrawText("Press a key to move the mouse to that point", Color.Black, "Arial", 18, 185, 260);
+                SplashKit.DrawText("Press Q/E/A/D/SPACE to move the mouse to a target point", Color.Black, "Arial", 18, 145, 260);
 
                 SplashKit.RefreshScreen(60);
             }

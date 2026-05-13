@@ -33,16 +33,16 @@ while not quit_requested():
     fill_circle(color_blue(),   top_right.x,    top_right.y,    12)
     fill_circle(color_green(),  bottom_left.x,  bottom_left.y,  12)
     fill_circle(color_orange(), bottom_right.x, bottom_right.y, 12)
-    fill_circle(color_purple(), center.x,        center.y,        12)
+    fill_circle(color_purple(), center.x,       center.y,       12)
 
     # Label each target with its corresponding key
     draw_text_font_as_string("[Q]",     color_red(),    "Arial", 16, top_left.x - 12,     top_left.y + 18)
     draw_text_font_as_string("[E]",     color_blue(),   "Arial", 16, top_right.x - 12,    top_right.y + 18)
     draw_text_font_as_string("[A]",     color_green(),  "Arial", 16, bottom_left.x - 12,  bottom_left.y + 18)
     draw_text_font_as_string("[D]",     color_orange(), "Arial", 16, bottom_right.x - 12, bottom_right.y + 18)
-    draw_text_font_as_string("[SPACE]", color_purple(), "Arial", 16, center.x - 28,        center.y + 18)
+    draw_text_font_as_string("[SPACE]", color_purple(), "Arial", 16, center.x - 28,       center.y + 18)
 
-    draw_text_font_as_string("Press a key to move the mouse to that point", color_black(), "Arial", 18, 185, 260)
+    draw_text_font_as_string("Press Q/E/A/D/SPACE to move the mouse to a target point", color_black(), "Arial", 18, 145, 260)
 
     refresh_screen_with_target_fps(60)
 

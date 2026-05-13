@@ -17,7 +17,7 @@ while (!QuitRequested())
 {
     ProcessEvents();
 
-    // MoveMouse repositions the cursor to the given Point2D location
+    // MoveMouse (C#'s equivalent of move_mouse_to_point) repositions the cursor to the given Point2D location
     // Each key press snaps the mouse to the corresponding target point
     if (KeyTyped(KeyCode.QKey))
         MoveMouse(topLeft);
@@ -46,7 +46,7 @@ while (!QuitRequested())
     DrawText("[D]",     ColorOrange(), "Arial", 16, bottomRight.X - 12, bottomRight.Y + 18);
     DrawText("[SPACE]", ColorPurple(), "Arial", 16, center.X - 28,      center.Y + 18);
 
-    DrawText("Press a key to move the mouse to that point", ColorBlack(), "Arial", 18, 185, 260);
+    DrawText("Press Q/E/A/D/SPACE to move the mouse to a target point", ColorBlack(), "Arial", 18, 145, 260);
 
     RefreshScreen(60);
 }

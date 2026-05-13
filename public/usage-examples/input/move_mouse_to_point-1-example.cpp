@@ -16,7 +16,7 @@ int main()
     {
         process_events();
 
-        // move_mouse repositions the cursor to the given point_2d location
+        // move_mouse_to_point (called as move_mouse in C++) repositions the cursor to the given point_2d location
         // Each key press snaps the mouse to the corresponding target point
         if (key_typed(Q_KEY))
             move_mouse(top_left);
@@ -36,16 +36,16 @@ int main()
         fill_circle(COLOR_BLUE,   top_right.x,    top_right.y,    12);
         fill_circle(COLOR_GREEN,  bottom_left.x,  bottom_left.y,  12);
         fill_circle(COLOR_ORANGE, bottom_right.x, bottom_right.y, 12);
-        fill_circle(COLOR_PURPLE, center.x,        center.y,        12);
+        fill_circle(COLOR_PURPLE, center.x,       center.y,       12);
 
         // Label each target with its corresponding key
         draw_text("[Q]",     COLOR_RED,    "Arial", 16, top_left.x - 12,     top_left.y + 18);
         draw_text("[E]",     COLOR_BLUE,   "Arial", 16, top_right.x - 12,    top_right.y + 18);
         draw_text("[A]",     COLOR_GREEN,  "Arial", 16, bottom_left.x - 12,  bottom_left.y + 18);
         draw_text("[D]",     COLOR_ORANGE, "Arial", 16, bottom_right.x - 12, bottom_right.y + 18);
-        draw_text("[SPACE]", COLOR_PURPLE, "Arial", 16, center.x - 28,        center.y + 18);
+        draw_text("[SPACE]", COLOR_PURPLE, "Arial", 16, center.x - 28,       center.y + 18);
 
-        draw_text("Press a key to move the mouse to that point", COLOR_BLACK, "Arial", 18, 185, 260);
+        draw_text("Press Q/E/A/D/SPACE to move the mouse to a target point", COLOR_BLACK, "Arial", 18, 145, 260);
 
         refresh_screen(60);
     }
