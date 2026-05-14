@@ -1,0 +1,3 @@
+Open window
+
+Opens a simple window and displays a welcome message on the screen.
