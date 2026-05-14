@@ -1,4 +1,33 @@
 {
+    "animations": [
+        {
+            "funcKey": "update_animation",
+            "title": "Color Cycle Animation",
+            "url": "/api/animations/#update-animation",
+            "functions": [
+                "open_window",
+                "memory",
+                "create_bitmap",
+                "fill_rectangle_on_bitmap",
+                "color_red",
+                "color_green",
+                "color_blue",
+                "color_yellow",
+                "bitmap_set_cell_details",
+                "load_animation_script",
+                "create_animation",
+                "quit_requested",
+                "process_events",
+                "clear_screen_to_white",
+                "draw_bitmap_with_options",
+                "option_with_animation",
+                "refresh_screen_with_target_fps",
+                "free_animation",
+                "free_animation_script",
+                "close_all_windows"
+            ]
+        }
+    ],
     "audio": [
         {
             "funcKey": "play_music_named",
