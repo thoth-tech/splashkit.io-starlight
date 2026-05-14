@@ -1,0 +1,121 @@
+---
+---
+
+<starlight-theme-select>
+  <div class="theme-toggle" role="group" aria-label={Astro.locals.t('themeSelect.accessibleLabel')}>
+    <button type="button" class="theme-option" data-value="dark" aria-pressed="false" aria-label={Astro.locals.t('themeSelect.dark')}>
+      <span class="theme-icon">☾</span>
+      <span>{Astro.locals.t('themeSelect.dark')}</span>
+    </button>
+    <button type="button" class="theme-option" data-value="light" aria-pressed="false" aria-label={Astro.locals.t('themeSelect.light')}>
+      <span class="theme-icon">☀</span>
+      <span>{Astro.locals.t('themeSelect.light')}</span>
+    </button>
+  </div>
+
+  <select class="theme-toggle-select" aria-hidden="true" tabindex="-1">
+    <option value="dark">{Astro.locals.t('themeSelect.dark')}</option>
+    <option value="light">{Astro.locals.t('themeSelect.light')}</option>
+  </select>
+</starlight-theme-select>
+
+<script is:inline>
+  StarlightThemeProvider.updatePickers();
+</script>
+
+<script>
+  const storageKey = 'starlight-theme';
+
+  const getPreferredColorScheme = () =>
+    matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+
+  const parseTheme = (theme) =>
+    theme === 'dark' || theme === 'light' ? theme : getPreferredColorScheme();
+
+  const loadTheme = () => parseTheme(typeof localStorage !== 'undefined' && localStorage.getItem(storageKey));
+
+  function storeTheme(theme) {
+    if (typeof localStorage !== 'undefined') {
+      if (theme === 'light' || theme === 'dark') {
+        localStorage.setItem(storageKey, theme);
+      } else {
+        localStorage.removeItem(storageKey);
+      }
+    }
+  }
+
+  function onThemeChange(theme) {
+    const normalizedTheme = parseTheme(theme);
+    StarlightThemeProvider.updatePickers(normalizedTheme);
+    document.documentElement.dataset.theme = normalizedTheme;
+    storeTheme(normalizedTheme);
+  }
+
+  function patchThemeProvider() {
+    const provider = window.StarlightThemeProvider;
+    if (!provider || provider.__themeSelectPatched) return;
+
+    const originalUpdatePickers = provider.updatePickers.bind(provider);
+    provider.updatePickers = (theme = getPreferredColorScheme()) => {
+      originalUpdatePickers(theme);
+      document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+        if (typeof picker.updateButtons === 'function') {
+          picker.updateButtons(theme);
+        }
+      });
+    };
+    provider.__themeSelectPatched = true;
+  }
+
+  class StarlightThemeSelect extends HTMLElement {
+    constructor() {
+      super();
+      this.handleButtonClick = this.handleButtonClick.bind(this);
+    }
+
+    connectedCallback() {
+      this.buttons = Array.from(this.querySelectorAll('.theme-option'));
+      this.select = this.querySelector('select');
+      this.buttons.forEach((button) => button.addEventListener('click', this.handleButtonClick));
+      this.select?.addEventListener('change', (event) => {
+        if (event.currentTarget instanceof HTMLSelectElement) {
+          const theme = parseTheme(event.currentTarget.value);
+          this.updateButtons(theme);
+        }
+      });
+
+      patchThemeProvider();
+      const initialTheme = loadTheme();
+      this.updateButtons(initialTheme);
+
+      if (!window.StarlightThemeProvider.__themeSelectInitialized) {
+        onThemeChange(initialTheme);
+        window.StarlightThemeProvider.__themeSelectInitialized = true;
+      }
+    }
+
+    disconnectedCallback() {
+      this.buttons.forEach((button) => button.removeEventListener('click', this.handleButtonClick));
+    }
+
+    handleButtonClick(event) {
+      const button = event.currentTarget;
+      if (!(button instanceof HTMLButtonElement)) return;
+      onThemeChange(parseTheme(button.dataset.value));
+    }
+
+    updateButtons(theme) {
+      this.buttons.forEach((button) => {
+        const value = button.dataset.value;
+        const isActive = value === theme;
+        button.setAttribute('aria-pressed', String(isActive));
+        button.classList.toggle('active', isActive);
+      });
+      if (this.select) {
+        this.select.value = theme;
+      }
+    }
+  }
+
+  customElements.define('starlight-theme-select', StarlightThemeSelect);
+</script>

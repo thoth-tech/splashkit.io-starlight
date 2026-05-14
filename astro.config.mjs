@@ -10,6 +10,7 @@ import starlightBlog from 'starlight-blog'
 import starlightDocSearch from '@astrojs/starlight-docsearch';
 import remarkHeadingID from 'remark-heading-id';
 import { loadEnv } from "vite";
+import { fileURLToPath } from 'url';
 
 const { DOCSEARCH_API_ID } = loadEnv(process.env.DOCSEARCH_API_ID, process.cwd(), "");
 const { DOCSEARCH_API_SEARCH_KEY } = loadEnv(process.env.DOCSEARCH_API_SEARCH_KEY, process.cwd(), "");
@@ -150,6 +151,14 @@ export default defineConfig({
     react(),
     sitemap()
   ],
+
+  vite: {
+    resolve: {
+      alias: {
+        'virtual:starlight/components/ThemeSelect': fileURLToPath(new URL('./src/components/starlight/ThemeSelect.astro', import.meta.url)),
+      },
+    },
+  },
 
   server: {
     host: true,
