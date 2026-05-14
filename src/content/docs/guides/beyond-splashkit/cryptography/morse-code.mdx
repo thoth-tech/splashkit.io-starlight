@@ -32,9 +32,10 @@ Encoding text to Morse code involves converting each character into its correspo
 ### Steps for Encoding
 
 <Steps>
-1. Convert the text to uppercase to ensure proper dictionary matching.
-2. Loop through each character in the text and find its Morse code equivalent.
-3. Combine the Morse code sequences into a single string, separating characters with spaces and words with `/`.
+  1. Convert the text to uppercase to ensure proper dictionary matching. 2. Loop
+  through each character in the text and find its Morse code equivalent. 3.
+  Combine the Morse code sequences into a single string, separating characters
+  with spaces and words with `/`.
 </Steps>
 
 ### Implementing the Encoding Program
@@ -169,7 +170,7 @@ using System.Text;
 
 class Program
 {
-    
+
     static Dictionary<string, char> morseCodeDict = new Dictionary<string, char>
     {
         { ".-", 'A' }, { "-...", 'B' }, { "-.-.", 'C' }, { "-..", 'D' },
@@ -236,17 +237,17 @@ class Program
 ```python
 # Morse Code Dictionary
 MORSE_CODE_DICT = {
-    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 
+    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
     'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
     'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---',
     'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
     'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--',
-    'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-', 
-    '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', 
-    '0': '-----', ',': '--..--', '.': '.-.-.-', '?': '..--..', 
-    "'": '.----.', '!': '-.-.--', '/': '-..-.', '(': '-.--.', 
-    ')': '-.--.-', '&': '.-...', ':': '---...', ';': '-.-.-.', 
-    '=': '-...-', '+': '.-.-.', '-': '-....-', '_': '..--.-', 
+    'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
+    '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
+    '0': '-----', ',': '--..--', '.': '.-.-.-', '?': '..--..',
+    "'": '.----.', '!': '-.-.--', '/': '-..-.', '(': '-.--.',
+    ')': '-.--.-', '&': '.-...', ':': '---...', ';': '-.-.-.',
+    '=': '-...-', '+': '.-.-.', '-': '-....-', '_': '..--.-',
     '"': '.-..-.', '$': '...-..-', '@': '.--.-.', ' ': '/'
 }
 
@@ -296,9 +297,9 @@ Decoding Morse code back to text requires reversing the process. The Morse code 
 ### Steps for Decoding
 
 <Steps>
-1. Split the Morse code input into individual sequences using spaces.
-2. Map each sequence to its corresponding character from the reversed dictionary.
-3. Combine the characters to form the decoded text, handling `/` as spaces.
+  1. Split the Morse code input into individual sequences using spaces. 2. Map
+  each sequence to its corresponding character from the reversed dictionary. 3.
+  Combine the characters to form the decoded text, handling `/` as spaces.
 </Steps>
 
 ### Implementing the Decoding Program
@@ -316,17 +317,17 @@ Here is how you can implement a program to decode Morse code back into text:
 using namespace std;
 
 unordered_map<string, char> morse_code_dict = {
-    {".-", 'A'}, {"-...", 'B'}, {"-.-.", 'C'}, {"-..", 'D'}, {".", 'E'}, 
+    {".-", 'A'}, {"-...", 'B'}, {"-.-.", 'C'}, {"-..", 'D'}, {".", 'E'},
     {"..-.", 'F'}, {"--.", 'G'}, {"....", 'H'}, {"..", 'I'}, {".---", 'J'},
     {"-.-", 'K'}, {".-..", 'L'}, {"--", 'M'}, {"-.", 'N'}, {"---", 'O'},
     {".--.", 'P'}, {"--.-", 'Q'}, {".-.", 'R'}, {"...", 'S'}, {"-", 'T'},
     {"..-", 'U'}, {"...-", 'V'}, {".--", 'W'}, {"-..-", 'X'}, {"-.--", 'Y'},
-    {"--..", 'Z'}, {".----", '1'}, {"..---", '2'}, {"...--", '3'}, {"....-", '4'}, 
-    {".....", '5'}, {"-....", '6'}, {"--...", '7'}, {"---..", '8'}, {"----.", '9'}, 
-    {"-----", '0'}, {"--..--", ','}, {".-.-.-", '.'}, {"..--..", '?'}, 
-    {".----.", '\''}, {"-.-.--", '!'}, {"-..-.", '/'}, {"-.--.", '('}, 
-    {"-.--.-", ')'}, {".-...", '&'}, {"---...", ':'}, {"-.-.-.", ';'}, 
-    {"-...-", '='}, {".-.-.", '+'}, {"-....-", '-'}, {"..--.-", '_'}, 
+    {"--..", 'Z'}, {".----", '1'}, {"..---", '2'}, {"...--", '3'}, {"....-", '4'},
+    {".....", '5'}, {"-....", '6'}, {"--...", '7'}, {"---..", '8'}, {"----.", '9'},
+    {"-----", '0'}, {"--..--", ','}, {".-.-.-", '.'}, {"..--..", '?'},
+    {".----.", '\''}, {"-.-.--", '!'}, {"-..-.", '/'}, {"-.--.", '('},
+    {"-.--.-", ')'}, {".-...", '&'}, {"---...", ':'}, {"-.-.-.", ';'},
+    {"-...-", '='}, {".-.-.", '+'}, {"-....-", '-'}, {"..--.-", '_'},
     {".-..-.", '"'}, {"...-..-", '$'}, {".--.-.", '@'}, {"/", ' '}
 };
 
@@ -426,7 +427,7 @@ using System.Collections.Generic;
 
 class Program
 {
-    
+
     static Dictionary<string, char> morseCodeDict = new Dictionary<string, char>
     {
         { ".-", 'A' }, { "-...", 'B' }, { "-.-.", 'C' }, { "-..", 'D' },
@@ -490,17 +491,17 @@ class Program
 ```python
 # Morse Code Dictionary
 MORSE_CODE_DICT = {
-    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 
+    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
     'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
     'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---',
     'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
     'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--',
-    'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-', 
-    '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', 
-    '0': '-----', ',': '--..--', '.': '.-.-.-', '?': '..--..', 
-    "'": '.----.', '!': '-.-.--', '/': '-..-.', '(': '-.--.', 
-    ')': '-.--.-', '&': '.-...', ':': '---...', ';': '-.-.-.', 
-    '=': '-...-', '+': '.-.-.', '-': '-....-', '_': '..--.-', 
+    'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
+    '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
+    '0': '-----', ',': '--..--', '.': '.-.-.-', '?': '..--..',
+    "'": '.----.', '!': '-.-.--', '/': '-..-.', '(': '-.--.',
+    ')': '-.--.-', '&': '.-...', ':': '---...', ';': '-.-.-.',
+    '=': '-...-', '+': '.-.-.', '-': '-....-', '_': '..--.-',
     '"': '.-..-.', '$': '...-..-', '@': '.--.-.', ' ': '/'
 }
 

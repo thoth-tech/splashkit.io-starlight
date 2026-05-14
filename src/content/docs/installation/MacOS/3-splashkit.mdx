@@ -5,7 +5,7 @@ sidebar:
   label: 3. SplashKit
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps } from "@astrojs/starlight/components";
 
 [SplashKit](https://splashkit.io) is a beginner’s all-purpose software toolkit that will allow you to create fun and exciting programs more easily, especially for Graphical User Interface (GUI) programs.
 
@@ -25,7 +25,7 @@ Follow these steps to set up SplashKit on macOS and begin building interactive, 
 
    :::tip[Fingerprint Authentication]
 
-   If you want to use fingerprint authentication when the installation needs elevated permissions, rather than typing your password each time, run the following command in your terminal *(**before running the command above**)*:
+   If you want to use fingerprint authentication when the installation needs elevated permissions, rather than typing your password each time, run the following command in your terminal _(**before running the command above**)_:
 
    ```shell
    sed "s/^#auth/auth/" /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local
@@ -48,7 +48,7 @@ Follow these steps to set up SplashKit on macOS and begin building interactive, 
    Missing skm command. For help, use 'skm help'
    ```
 
-   *Tip:* Use `skm help` to explore additional commands for managing SplashKit.
+   _Tip:_ Use `skm help` to explore additional commands for managing SplashKit.
 
 </Steps>
 
@@ -58,14 +58,14 @@ The commands below are run in the initial installation script, and therefore are
 
 - To install the necessary dependencies and build the SplashKit library natively on macOS, use:
 
-   ```shell
-   skm macos install
-   ```
+  ```shell
+  skm macos install
+  ```
 
 - To install SplashKit into the system global directories, use:
 
-   ```shell
-   skm global install
-   ```
+  ```shell
+  skm global install
+  ```
 
 :::

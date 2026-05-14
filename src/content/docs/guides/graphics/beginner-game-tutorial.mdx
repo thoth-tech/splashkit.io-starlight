@@ -18,10 +18,9 @@ _Last updated: {frontmatter.lastupdated}_
 In this tutorial, we'll build a beginner friendly Flappy Bird remake using SplashKit. By the end of this tutorial, you'll have a working game that you can play and share with friends. Our Flappy Bird game will have a yellow bird that falls with gravity, green pipes that scroll from right to left, score tracking when you pass through pipes, and a game over screen when you hit pipes or the ground. The controls are simple - just press SPACE to make the bird jump!
 ![Flappy Bird Program Screenshot](./images/beginner_game/flappy.png)
 :::note
-You can download and play the game in this tutorial using the complete code file here: 
+You can download and play the game in this tutorial using the complete code file here:
 [**Download Code**](/resources/guides/graphics/basics/BeginnerGameTutorialCode.zip)
 :::
-
 
 ## Step 1: Setting Up Our Game Window
 
@@ -52,9 +51,9 @@ const int PIPE_SPACING = 250;
 // Font for text
 font game_font;
 ```
+
 </TabItem>
 </Tabs>
-
 
 **What's happening here?**
 We include SplashKit to access all our game functions, define constants for our window size (400x600 pixels), set up properties for our bird including where it sits horizontally, how big it is, how gravity affects it, and how strong its jump is. We also define pipe properties like width, gap size, how fast they move, and how far apart they are.
@@ -72,18 +71,18 @@ struct GameState {
     // Bird position and movement
     double bird_y;
     double bird_velocity;
-    
+
     // Pipe positions (x, gap_y)
     double pipe1_x, pipe1_gap_y;
     double pipe2_x, pipe2_gap_y;
-    
+
     // Game status
     int score;
     bool game_over;
     bool started;
     bool pipe1_passed;
     bool pipe2_passed;
-    
+
     // Constructor
     GameState() {
         bird_y = WINDOW_HEIGHT / 2;
@@ -100,6 +99,7 @@ struct GameState {
     }
 };
 ```
+
 </TabItem>
 </Tabs>
 
@@ -124,7 +124,7 @@ void handle_input(GameState& game) {
             game.bird_velocity = JUMP_STRENGTH;
         }
     }
-    
+
     if (key_typed(SPACE_KEY) && game.game_over) {
         // Reset game
         game.bird_y = WINDOW_HEIGHT / 2;
@@ -141,6 +141,7 @@ void handle_input(GameState& game) {
     }
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -160,15 +161,15 @@ void update_game(GameState& game) {
     if (!game.started || game.game_over) {
         return;
     }
-    
+
     // Apply gravity to bird
     game.bird_velocity += GRAVITY;
     game.bird_y += game.bird_velocity;
-    
+
     // Move pipes
     game.pipe1_x -= PIPE_SPEED;
     game.pipe2_x -= PIPE_SPEED;
-    
+
     // Reset pipes when they go off screen
     if (game.pipe1_x < -PIPE_WIDTH) {
         game.pipe1_x = WINDOW_WIDTH;
@@ -190,32 +191,33 @@ void update_game(GameState& game) {
         game.score++;
         game.pipe2_passed = true;
     }
-    
+
     // Check collisions
     // Ground and ceiling
     if (game.bird_y < 0 || game.bird_y > WINDOW_HEIGHT - BIRD_SIZE) {
         game.game_over = true;
     }
-    
+
     // Pipe 1 collision
-    if (game.bird_y + BIRD_SIZE > game.pipe1_gap_y + PIPE_GAP/2 || 
+    if (game.bird_y + BIRD_SIZE > game.pipe1_gap_y + PIPE_GAP/2 ||
         game.bird_y < game.pipe1_gap_y - PIPE_GAP/2) {
-        if (BIRD_X + BIRD_SIZE > game.pipe1_x && 
+        if (BIRD_X + BIRD_SIZE > game.pipe1_x &&
             BIRD_X < game.pipe1_x + PIPE_WIDTH) {
             game.game_over = true;
         }
     }
-    
+
     // Pipe 2 collision
-    if (game.bird_y + BIRD_SIZE > game.pipe2_gap_y + PIPE_GAP/2 || 
+    if (game.bird_y + BIRD_SIZE > game.pipe2_gap_y + PIPE_GAP/2 ||
         game.bird_y < game.pipe2_gap_y - PIPE_GAP/2) {
-        if (BIRD_X + BIRD_SIZE > game.pipe2_x && 
+        if (BIRD_X + BIRD_SIZE > game.pipe2_x &&
             BIRD_X < game.pipe2_x + PIPE_WIDTH) {
             game.game_over = true;
         }
     }
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -233,22 +235,22 @@ Now let's make our game visible! We'll draw the bird, pipes, score, and messages
 // Draw everything
 void draw_game(const GameState& game) {
     clear_screen(COLOR_SKY_BLUE);
-    
+
     // Draw pipes
     // Pipe 1
     fill_rectangle(COLOR_GREEN, game.pipe1_x, 0, PIPE_WIDTH, game.pipe1_gap_y - PIPE_GAP/2);
     fill_rectangle(COLOR_GREEN, game.pipe1_x, game.pipe1_gap_y + PIPE_GAP/2, PIPE_WIDTH, WINDOW_HEIGHT);
-    
+
     // Pipe 2
     fill_rectangle(COLOR_GREEN, game.pipe2_x, 0, PIPE_WIDTH, game.pipe2_gap_y - PIPE_GAP/2);
     fill_rectangle(COLOR_GREEN, game.pipe2_x, game.pipe2_gap_y + PIPE_GAP/2, PIPE_WIDTH, WINDOW_HEIGHT);
-    
+
     // Draw bird
     fill_circle(COLOR_YELLOW, BIRD_X, game.bird_y, BIRD_SIZE);
-    
+
     // Draw score
     draw_text("Score: " + std::to_string(game.score), COLOR_WHITE, game_font, 24, 10, 10);
-    
+
     // Draw instructions
     if (!game.started) {
         draw_text("Press SPACE to start", COLOR_WHITE, game_font, 18, WINDOW_WIDTH/2 - 75, WINDOW_HEIGHT/2);
@@ -258,6 +260,7 @@ void draw_game(const GameState& game) {
     }
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -275,12 +278,12 @@ Finally, let's put it all together in our main function that runs the entire gam
 // Main function
 int main() {
     open_window("Flappy Bird", WINDOW_WIDTH, WINDOW_HEIGHT);
-    
+
     // Load font
     game_font = load_font("GameFont", "DMSerifText.ttf");
-    
+
     GameState game;
-    
+
     while (!quit_requested()) {
         process_events();
         handle_input(game);
@@ -288,11 +291,12 @@ int main() {
         draw_game(game);
         refresh_screen(60);
     }
-    
+
     close_all_windows();
     return 0;
 }
 ```
+
 </TabItem>
 </Tabs>
 

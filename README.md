@@ -14,7 +14,7 @@ Welcome to the official documentation website for the SplashKit SDK, using the S
 ![Forks](https://img.shields.io/github/forks/splashkit/splashkit.io-starlight?label=Forks&color=F5A623)
 ![Stars](https://img.shields.io/github/stars/splashkit/splashkit.io-starlight?label=Stars&color=F5A623)
 
-[thoth-tech/splashkit.io-starlight](https://github.com/thoth-tech/splashkit.io-starlight) *
+[thoth-tech/splashkit.io-starlight](https://github.com/thoth-tech/splashkit.io-starlight) \*
 
 [![GitHub contributors](https://img.shields.io/github/contributors/thoth-tech/splashkit.io-starlight?label=Contributors&color=F5A623)](https://github.com/thoth-tech/splashkit.io-starlight/graphs/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/thoth-tech/splashkit.io-starlight?label=Issues&color=F5A623)](https://github.com/thoth-tech/splashkit.io-starlight/issues)
@@ -37,9 +37,9 @@ If needed:
 
 - Install the necessary dependencies. Make sure you have the following installed:
 
-    ```shell
-    npm install
-    ```
+  ```shell
+  npm install
+  ```
 
 ## 🚀 Project Structure
 
@@ -80,18 +80,18 @@ Inside of your Astro + Starlight project, you'll see the following folders and f
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                                 | Action                                                                                                      |
-| :-------------------------------------- | :---------------------------------------------------------------------------------------------------------- |
-| `npm install`                           | Installs dependencies                                                                                       |
-| `npm run dev`                           | Starts local dev server at `localhost:4322`                                                                 |
-| `npm run build`                         | Builds your production site to `./dist/`                                                                    |
-| `npm run preview`                       | Previews your build locally, before deploying                                                               |
-| `npm run astro ...`                     | Runs CLI commands like `astro add`, `astro check`                                                           |
-| `npm run astro -- --help`               | Gets help using the Astro CLI                                                                               |
-| `npm run generate-mdx`                  | Generates an MDX file *(for functions)* from JSON data in the `test` folder                                 |
-| `npm run generate-usage-examples-pages` | Runs the script to generate usage example pages from the `./scripts/usage-example-page-generation.cjs` file |
+| Command                                                     | Action                                                                                                                                                                          |
+| :---------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `npm install`                                               | Installs dependencies                                                                                                                                                           |
+| `npm run dev`                                               | Starts local dev server at `localhost:4322`                                                                                                                                     |
+| `npm run build`                                             | Builds your production site to `./dist/`                                                                                                                                        |
+| `npm run preview`                                           | Previews your build locally, before deploying                                                                                                                                   |
+| `npm run astro ...`                                         | Runs CLI commands like `astro add`, `astro check`                                                                                                                               |
+| `npm run astro -- --help`                                   | Gets help using the Astro CLI                                                                                                                                                   |
+| `npm run generate-mdx`                                      | Generates an MDX file _(for functions)_ from JSON data in the `test` folder                                                                                                     |
+| `npm run generate-usage-examples-pages`                     | Runs the script to generate usage example pages from the `./scripts/usage-example-page-generation.cjs` file                                                                     |
 | `npm run generate-usage-examples-pages write_line-1-simple` | Runs the script to generate usage example pages from the `./scripts/usage-example-page-generation.cjs` file and prints the testing output for the `write_line-1-simple` example |
-| `npm run check-links`                   | Sets `CHECK_LINKS=true`, runs `npm run build`, then resets `CHECK_LINKS=false`                              |
+| `npm run check-links`                                       | Sets `CHECK_LINKS=true`, runs `npm run build`, then resets `CHECK_LINKS=false`                                                                                                  |
 
 ## Contributing
 

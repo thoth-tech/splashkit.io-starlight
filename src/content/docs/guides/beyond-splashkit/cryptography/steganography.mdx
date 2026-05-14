@@ -57,9 +57,12 @@ In this guide, we will demonstrate how to use steganography to hide messages wit
 To hide a message:
 
 <Steps>
-1. **Choose an Image:** Any bitmap image can be used, but high-resolution images provide more space for hiding data. For this guide, we'll use a bitmap image of a cat.
-2. **Prepare the Message:** The message will be encoded in Base64 before embedding to ensure compatibility and readability.
-3. **Embed the Message:** Using LSB steganography, replace the least significant bits of the image's pixel data with bits from the encoded message.
+  1. **Choose an Image:** Any bitmap image can be used, but high-resolution
+  images provide more space for hiding data. For this guide, we'll use a bitmap
+  image of a cat. 2. **Prepare the Message:** The message will be encoded in
+  Base64 before embedding to ensure compatibility and readability. 3. **Embed
+  the Message:** Using LSB steganography, replace the least significant bits of
+  the image's pixel data with bits from the encoded message.
 </Steps>
 
 Here is the cat image we'll use! (right-click to save the image)
@@ -209,7 +212,7 @@ int main()
     string path = "PATH TO YOUR FOLDER HERE";
     string input_file_path = path + "/cat.bmp";
     string output_file_path = path + "/hiddencat.bmp";
-    
+
     FILE *input_file = fopen(input_file_path.c_str(), "rb");
     if (!input_file) {
         cout << "Error opening input file." << endl;
@@ -612,13 +615,13 @@ def base64_encode(input_string):
         while bits >= 0:
             encoded_string += BASE64_CHARS[(value >> bits) & base64_mask]
             bits -= 6
-    
+
     if bits > -6:
         encoded_string += BASE64_CHARS[((value << 8) >> (bits + 8)) & base64_mask]
-    
+
     while len(encoded_string) % 4:
         encoded_string += "="
-    
+
     return encoded_string
 
 # This will allow us to highlight the differences in the binary data
@@ -707,7 +710,7 @@ print(f"Message embedded successfully in Base64! Encoded image saved as {output_
 After embedding the message, you'll see an output like:
 
 ```plaintext
-Enter the message to embed: 
+Enter the message to embed:
 im a cat
 Base64-encoded message: aW0gYSBjYXQ=
 Base64 length (in characters): 12
@@ -729,10 +732,12 @@ The comparison between the original and modified binary data highlights the subt
 To retrieve the hidden message, the recipient must reverse the embedding process. This involves:
 
 <Steps>
-1. **Load the Image:** Open the image containing the hidden message.
-2. **Extract the Message Length:** Retrieve the length of the hidden message from the least significant bits of the image's pixel data.
-3. **Extract the Message:** Using the message length, extract the hidden message from the least significant bits of the image's pixel data.
-4. **Decode the Message:** Decode the extracted message from Base64 to reveal the original content.
+  1. **Load the Image:** Open the image containing the hidden message. 2.
+  **Extract the Message Length:** Retrieve the length of the hidden message from
+  the least significant bits of the image's pixel data. 3. **Extract the
+  Message:** Using the message length, extract the hidden message from the least
+  significant bits of the image's pixel data. 4. **Decode the Message:** Decode
+  the extracted message from Base64 to reveal the original content.
 </Steps>
 
 ### Code Example
@@ -816,7 +821,7 @@ int main()
 {
     string path = "PATH TO YOUR FOLDER HERE";
     string encoded_file_path = path + "/hiddencat.bmp";
-    
+
     ifstream input_file(encoded_file_path, ios::binary);
     vector<char> data;
     char ch;
@@ -1047,14 +1052,14 @@ def base64_decode(input_string):
             if character == "=":
                 break
             continue
-        
+
         value = (value << 6) + BASE64_CHARS.index(character)
         bits += 6
 
         if bits >= 0:
             decoded_string.append((value >> bits) & 0xFF)
             bits -= 8
-    
+
     return decoded_string.decode()
 
 def extract_message(data, offset):
@@ -1123,17 +1128,20 @@ To decrypt a Caesar Cipher message, the recipient simply shifts the letters in t
 Here’s how the process works:
 
 <Steps>
-1. **Plaintext Message:** Start with the original message (e.g., `"im a cat"`).
-2. **Apply Caesar Cipher:** Obfuscate the message using a chosen shift value (e.g., `3`). The message `"im a cat"` might become `"lp d fdw"`.
-3. **Encode in Base64:** Convert the obfuscated message into Base64, producing a string of printable characters.
-4. **Embed in Image:** Use LSB steganography to embed the Base64-encoded string into the image.
+  1. **Plaintext Message:** Start with the original message (e.g., `"im a
+  cat"`). 2. **Apply Caesar Cipher:** Obfuscate the message using a chosen shift
+  value (e.g., `3`). The message `"im a cat"` might become `"lp d fdw"`. 3.
+  **Encode in Base64:** Convert the obfuscated message into Base64, producing a
+  string of printable characters. 4. **Embed in Image:** Use LSB steganography
+  to embed the Base64-encoded string into the image.
 </Steps>
 
 To extract and interpret the message, the reverse process is followed:
 
 <Steps>
-1. **Extract the Base64 Message:** Decode the embedded Base64 string from the image.
-2. **Decrypt Caesar Cipher:** Apply the inverse Caesar Cipher shift to recover the original plaintext message.
+  1. **Extract the Base64 Message:** Decode the embedded Base64 string from the
+  image. 2. **Decrypt Caesar Cipher:** Apply the inverse Caesar Cipher shift to
+  recover the original plaintext message.
 </Steps>
 
 By combining Caesar Cipher obfuscation with LSB steganography, you can enhance the security of your hidden messages while exploring the principles of encryption and steganography. Here is how you can implement this in your code:
@@ -1301,7 +1309,7 @@ int main()
     string path = "PATH TO YOUR FOLDER HERE";
     string input_file_path = path + "/cat.bmp";
     string output_file_path = path + "/hiddencat.bmp";
-    
+
     FILE *input_file = fopen(input_file_path.c_str(), "rb");
     if (!input_file) {
         cout << "Error opening input file." << endl;
@@ -1500,7 +1508,7 @@ List<byte> EmbedMessage(List<byte> data, string message, int offset)
 
     Console.WriteLine("\nModified binary data at embedding positions (truncated):");
     Console.WriteLine(TruncateBinary(highlightedModified));
-    
+
     return modifiedData;
 }
 
@@ -1565,7 +1573,7 @@ class Program
         }
         return encodedString;
     }
-    
+
     static string Base64Encode(string input)
     {
         string BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -1777,13 +1785,13 @@ def base64_encode(input_string):
         while bits >= 0:
             encoded_string += BASE64_CHARS[(value >> bits) & base64_mask]
             bits -= 6
-    
+
     if bits > -6:
         encoded_string += BASE64_CHARS[((value << 8) >> (bits + 8)) & base64_mask]
-    
+
     while len(encoded_string) % 4:
         encoded_string += "="
-    
+
     return encoded_string
 
 # This will allow us to highlight the differences in the binary data
@@ -1833,7 +1841,7 @@ def embed_message(data, message, offset, shift):
     modified_binary = "".join(format(modified_data[offset + i], '08b') for i in range(len(length_bits + binary_message)))
 
     highlighted_original, highlighted_modified = highlight_changes(original_binary, modified_binary)
-    
+
     # Truncate for readability
     def truncate_binary(binary_str, show_bits=64):
         if len(binary_str) > show_bits * 2:
@@ -1876,9 +1884,9 @@ print(f"Message embedded successfully in Base64! Encoded image saved as {output_
 After extracting the message and decrypting it using the Caesar Cipher, you'll see an output like:
 
 ```plaintext
-Enter the message to embed: 
-im a cat  
-Enter the Caesar cipher shift value: 
+Enter the message to embed:
+im a cat
+Enter the Caesar cipher shift value:
 8
 Caesar cipher shifted message: qu i kib
 Base64-encoded message: cXUgaSBraWI=

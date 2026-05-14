@@ -585,8 +585,8 @@ For a number $n$, finding the sum of its divisors involves:
 
 1. Iterating through numbers from 1 to $\sqrt{n}$
 2. For each divisor $d$, if $n$ is divisible by $d$:
-    - If $d^2 = n$, add $d$ once
-    - Otherwise, add both $d$ and $\frac{n}{d}$
+   - If $d^2 = n$, add $d$ once
+   - Otherwise, add both $d$ and $\frac{n}{d}$
 
 For example, for $n=12$:
 
@@ -945,7 +945,7 @@ This function relies on the `greatest_common_divisor` function defined above.
 <TabItem label="C++">
 
 ```cpp
-bool are_coprime(int a, int b) 
+bool are_coprime(int a, int b)
 {
     return greatest_common_divisor(a, b) == 1;
 }
@@ -955,7 +955,7 @@ bool are_coprime(int a, int b)
 <TabItem label="C#">
 
 ```csharp
-bool AreCoprime(int a, int b) 
+bool AreCoprime(int a, int b)
 {
     return GreatestCommonDivisor(a, b) == 1;
 }
@@ -1035,14 +1035,14 @@ This function relies on the `are_coprime` function defined above.
 <TabItem label="C++">
 
 ```cpp
-void find_coprimes_up_to(int n, int max) 
+void find_coprimes_up_to(int n, int max)
 {
     std::cout << "Numbers coprime to " << n << " up to " << max << ":";
 
     // Check all numbers up to the maximum
-    for (int i = 1; i <= max; i++) 
+    for (int i = 1; i <= max; i++)
     {
-        if (are_coprime(n, i)) 
+        if (are_coprime(n, i))
         {
             std::cout << i << " ";
         }
@@ -1055,14 +1055,14 @@ void find_coprimes_up_to(int n, int max)
 <TabItem label="C#">
 
 ```csharp
-void FindCoprimesUpTo(int n, int max) 
+void FindCoprimesUpTo(int n, int max)
 {
     Console.WriteLine($"Numbers coprime to {n} up to {max}:");
 
     // Check all numbers up to the maximum
-    for (int i = 1; i <= max; i++) 
+    for (int i = 1; i <= max; i++)
     {
-        if (AreCoprime(n, i)) 
+        if (AreCoprime(n, i))
         {
             Console.Write($"{i} ");
         }
@@ -1300,14 +1300,14 @@ The following function finds all factors of a given number by checking all poten
 <TabItem label="C++">
 
 ```cpp
-void find_factors(int n) 
+void find_factors(int n)
 {
     std::cout << "Factors of " << n << ": ";
 
     // Check all potential divisors up to n
-    for (int i = 1; i <= n; i++) 
+    for (int i = 1; i <= n; i++)
     {
-        if (n % i == 0) 
+        if (n % i == 0)
         {
             std::cout << i << " ";
         }
@@ -1320,14 +1320,14 @@ void find_factors(int n)
 <TabItem label="C#">
 
 ```csharp
-void FindFactors(int n) 
+void FindFactors(int n)
 {
     Console.WriteLine($"Factors of {n}:");
 
     // Check all potential divisors up to n
-    for (int i = 1; i <= n; i++) 
+    for (int i = 1; i <= n; i++)
     {
-        if (n % i == 0) 
+        if (n % i == 0)
         {
             Console.Write($"{i} ");
         }
@@ -1412,31 +1412,31 @@ The prime factorisation of a number is its decomposition into a product of prime
 <TabItem label="C++">
 
 ```cpp
-void find_prime_factors(int n) 
+void find_prime_factors(int n)
 {
     std::cout << "Prime factors of " << n << ": ";
-    
+
     // Extract all factors of 2
-    while (n % 2 == 0) 
+    while (n % 2 == 0)
     {
         std::cout << "2 ";
         n /= 2;
     }
-    
+
     // Check odd numbers up to square root
-    for (int i = 3; i * i <= n; i += 2) 
+    for (int i = 3; i * i <= n; i += 2)
     {
-        while (n % i == 0) 
+        while (n % i == 0)
         {
             std::cout << i << " ";
             n /= i;
         }
     }
-    
+
     // If n is still greater than 2, it's a prime factor
     if (n > 2)
         std::cout << n;
-        
+
     std::cout << std::endl;
 }
 ```
@@ -1445,31 +1445,31 @@ void find_prime_factors(int n)
 <TabItem label="C#">
 
 ```csharp
-void FindPrimeFactors(int n) 
+void FindPrimeFactors(int n)
 {
     Console.WriteLine($"Prime factors of {n}:");
-    
+
     // Extract all factors of 2
-    while (n % 2 == 0) 
+    while (n % 2 == 0)
     {
         Write("2 ");
         n /= 2;
     }
-    
+
     // Check odd numbers up to square root
-    for (int i = 3; i * i <= n; i += 2) 
+    for (int i = 3; i * i <= n; i += 2)
     {
-        while (n % i == 0) 
+        while (n % i == 0)
         {
             Write($"{i} ");
             n /= i;
         }
     }
-    
+
     // If n is still greater than 2, it's a prime factor
     if (n > 2)
         Write(n);
-        
+
     Console.WriteLine("");
 }
 ```
@@ -1480,22 +1480,22 @@ void FindPrimeFactors(int n)
 ```python
 def find_prime_factors(n):
     print(f"Prime factors of {n}:")
-    
+
     # Extract all factors of 2
     while n % 2 == 0:
         write("2 ")
         n //= 2
-    
+
     # Check odd numbers up to square root
     for i in range(3, int(n**0.5) + 1, 2):
         while n % i == 0:
             write(f"{i} ")
             n //= i
-    
+
     # If n is still greater than 2, it's a prime factor
     if n > 2:
         write(str(n))
-        
+
     print("")
 ```
 

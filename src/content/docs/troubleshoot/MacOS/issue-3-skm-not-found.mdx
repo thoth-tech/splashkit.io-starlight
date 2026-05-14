@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps } from "@astrojs/starlight/components";
 
 :::caution[Issue:]
 
@@ -25,26 +25,26 @@ When trying to use `skm` in the terminal, you may encounter the error `zsh: comm
 
 1. To add SplashKit to your PATH, run the following command:
 
-    ```shell
-    echo "export PATH=\"$HOME/.splashkit:\$PATH\"" >> ~/.zshrc
-    source ~/.zshrc
-    ```
+   ```shell
+   echo "export PATH=\"$HOME/.splashkit:\$PATH\"" >> ~/.zshrc
+   source ~/.zshrc
+   ```
 
 2. Open a new terminal, and run the following command to install SplashKit in the default global locations:
 
-    ```shell
-    skm global install
-    ```
+   ```shell
+   skm global install
+   ```
 
-    :::note[Using OSX version older than 12.3?]
+   :::note[Using OSX version older than 12.3?]
 
-    If using an OSX version pre-12.3, you will need to build the library locally. You can do this by running:
+   If using an OSX version pre-12.3, you will need to build the library locally. You can do this by running:
 
-    ```shell
-    skm macos install
-    ```
+   ```shell
+   skm macos install
+   ```
 
-    :::
+   :::
 
 </Steps>
 

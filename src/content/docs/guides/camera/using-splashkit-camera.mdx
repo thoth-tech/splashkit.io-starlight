@@ -283,7 +283,7 @@ namespace SplashKitCamera
             while (!window.CloseRequested)
             {
                 SplashKit.ProcessEvents();
-                
+
                 // Handle input
                 if (SplashKit.KeyDown(KeyCode.LeftKey))
                     playerX -= 3;
@@ -331,7 +331,7 @@ from splashkit import *
 SCREEN_BORDER = 100
 
 def update_camera_position(player_x, player_y):
-    
+
     # Test edge of screen boundaries to adjust the camera
     left_edge = camera_x() + SCREEN_BORDER
     right_edge = left_edge + screen_width() - 2 * SCREEN_BORDER
@@ -353,7 +353,7 @@ def update_camera_position(player_x, player_y):
         move_camera_by(player_x - left_edge, 0)
     elif player_x > right_edge:
         move_camera_by(player_x - right_edge, 0)
-        
+
 # Start of "main" code
 open_window("Camera Test", 800, 800)
 
@@ -389,7 +389,7 @@ while not quit_requested():
     fill_rectangle(color_white(), 400, 200, 10, 10)
 
     refresh_screen_with_target_fps(60)
-    
+
 close_all_windows()
 ```
 

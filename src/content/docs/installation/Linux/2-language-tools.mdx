@@ -6,7 +6,12 @@ sidebar:
   order: 2
 ---
 
-import { Steps, Tabs, TabItem, LinkButton } from "@astrojs/starlight/components";
+import {
+  Steps,
+  Tabs,
+  TabItem,
+  LinkButton,
+} from "@astrojs/starlight/components";
 
 SplashKit supports multiple programming languages, each with its own set of tools. Follow the instructions below to install the required tools for your language of choice.
 
@@ -19,8 +24,20 @@ To develop with C# in SplashKit, you’ll need to install .NET:
 <Tabs syncKey="linux-distro">
 <TabItem label="Ubuntu/Debian">
 
-<LinkButton icon="external" href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu" target="_blank">Install .NET SDK or .NET Runtime on Ubuntu</LinkButton>
-<LinkButton icon="external" href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian" target="_blank">Install .NET SDK or .NET Runtime on Debian</LinkButton>
+<LinkButton
+  icon="external"
+  href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu"
+  target="_blank"
+>
+  Install .NET SDK or .NET Runtime on Ubuntu
+</LinkButton>
+<LinkButton
+  icon="external"
+  href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian"
+  target="_blank"
+>
+  Install .NET SDK or .NET Runtime on Debian
+</LinkButton>
 
 </TabItem>
 <TabItem label="Arch">
@@ -40,7 +57,13 @@ yay -S dotnet-runtime
 </TabItem>
 <TabItem label="Fedora">
 
-<LinkButton icon="external" href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-fedora" target="_blank">Install the .NET SDK or the .NET Runtime on Fedora</LinkButton>
+<LinkButton
+  icon="external"
+  href="https://learn.microsoft.com/en-us/dotnet/core/install/linux-fedora"
+  target="_blank"
+>
+  Install the .NET SDK or the .NET Runtime on Fedora
+</LinkButton>
 
 </TabItem>
 </Tabs>
@@ -59,55 +82,55 @@ Most Linux distributions include Python pre-installed. If Python isn’t install
 
 1. **Installing Python**
 
-    Install Python 3 and `pip` (Python package installer) using the following commands based on your Linux distribution:
+   Install Python 3 and `pip` (Python package installer) using the following commands based on your Linux distribution:
 
-    <Tabs syncKey="linux-distro">
-    <TabItem label="Ubuntu/Debian">
+   <Tabs syncKey="linux-distro">
+<TabItem label="Ubuntu/Debian">
 
-    ```shell
-    sudo apt install python3 python3-pip
-    ```
+   ```shell
+   sudo apt install python3 python3-pip
+   ```
 
-    </TabItem>
+   </TabItem>
 
-    <TabItem label="Arch">
-    <Tabs syncKey="package-manager">
-    <TabItem label="With pacman">
+   <TabItem label="Arch">
+<Tabs syncKey="package-manager">
+<TabItem label="With pacman">
 
-    ```shell
-    sudo pacman -S python python-pip
-    ```
+   ```shell
+   sudo pacman -S python python-pip
+   ```
 
-    </TabItem>
-    <TabItem label="With yay">
+   </TabItem>
+<TabItem label="With yay">
 
-    ```shell
-    yay -S python python-pip
-    ```
+   ```shell
+   yay -S python python-pip
+   ```
 
-    </TabItem>
-    </Tabs>
-    </TabItem>
+   </TabItem>
+</Tabs>
+</TabItem>
 
-    <TabItem label="Fedora">
+   <TabItem label="Fedora">
 
-    ```shell
-    sudo dnf install python3 python3-pip
-    ```
+   ```shell
+   sudo dnf install python3 python3-pip
+   ```
 
-    </TabItem>
-    </Tabs>
+   </TabItem>
+</Tabs>
 
 2. **Verify Installation (Optional)**
 
-    To confirm that Python and `pip` are successfully installed, check the versions:
+   To confirm that Python and `pip` are successfully installed, check the versions:
 
-    ```shell
-    python3 --version
-    pip3 --version
-    ```
+   ```shell
+   python3 --version
+   pip3 --version
+   ```
 
-    Both commands should output version information if the installation was successful.
+   Both commands should output version information if the installation was successful.
 
 </Steps>
 

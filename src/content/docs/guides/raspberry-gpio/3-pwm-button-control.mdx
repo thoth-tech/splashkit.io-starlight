@@ -31,7 +31,7 @@ See [Read Button Press Tutorial](/guides/raspberry-gpio/1-read-button-press/#com
 
 ## The Circuit
 
-Below we can see the circuit diagram for this project. First we have the Raspberry Pi ground connected to the ground rail of the breadboard and a 3.3V pin connected to the power rail of the bread board. We then have an LED which is connected to the ground rail and to Pin 11 through a 220 Ω  resistor. Next we have 2 buttons, where both are connected to the powered rail on the breadboard and the otherside of the buttons are connected to pins 13 and 29.
+Below we can see the circuit diagram for this project. First we have the Raspberry Pi ground connected to the ground rail of the breadboard and a 3.3V pin connected to the power rail of the bread board. We then have an LED which is connected to the ground rail and to Pin 11 through a 220 Ω resistor. Next we have 2 buttons, where both are connected to the powered rail on the breadboard and the otherside of the buttons are connected to pins 13 and 29.
 
 ![Circuit Diagram for using button presses to modify PWM.](./images/circuits/pwm_buttons.png)
 
@@ -53,10 +53,10 @@ Below is an example program that will detect button presses to increase or decre
 
 int main()
 {
-    int brightness = 128;
-    const int max_brightness = 255;
-    unsigned long last_read_time = 0;
-    const unsigned long read_interval = 400;
+int brightness = 128;
+const int max_brightness = 255;
+unsigned long last_read_time = 0;
+const unsigned long read_interval = 400;
 
     raspi_init();
     gpio_pin led_pin = PIN_11;
@@ -107,8 +107,10 @@ int main()
     free_all_timers();
     raspi_cleanup();
     return 0;
+
 }
-```
+
+````
 
 </TabItem>
 </Tabs>
@@ -566,3 +568,4 @@ If we run this we should see an output like the following GIF.
 ### Modifying PWM Range
 
 As described in the previous tutorial, we can change the range of possible PWM values and have finer control over the brightness of the LED. In this tutorial, we use the typical PWM range of 0-255, but we could expand this to a higher resolution, like 1023, for more precise control of the exact brightness levels. Experiment with adjustments to the PWM range, modifying the parameters in your code, and observe how these changes affect the LED's response to button presses. Each step increase in the PWM range will allow for more nuanced adjustments and provide smoother transitions between light levels. Conversely, a decrease in the PWM range will limit these transitions, and make each button press cause a more noticeable change in brightness.
+````

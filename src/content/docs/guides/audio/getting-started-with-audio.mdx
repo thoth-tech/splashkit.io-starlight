@@ -486,7 +486,7 @@ load_font("arial", "arial.ttf")
 
 while not (quit_requested() or key_typed(KeyCode.escape_key or key_typed(KeyCode.q_key))):
     process_events()
-    
+
     if key_down(KeyCode.right_ctrl_key) or key_down(KeyCode.left_ctrl_key):
         if key_typed(KeyCode.num_1_key):
             snd_effect = sound_effect_named("chipmunk")

@@ -135,163 +135,163 @@ Lets break down this code and look at it in sections.
 
 1. **Initialise GPIO Hardware and values:**
 
-    When using `pigpiod`, we can actually set the sample rate for the daemon, which is a value determining how many times it can read a pin in a second. Each sample rate has a set of available frequencies, with the values defined in freqs array being the available frequencies for the default sample rate (more information can be found at [Pigpio library -`set_PWM_frequency`](https://abyz.me.uk/rpi/pigpio/pdif2.html#set_PWM_frequency)).
+   When using `pigpiod`, we can actually set the sample rate for the daemon, which is a value determining how many times it can read a pin in a second. Each sample rate has a set of available frequencies, with the values defined in freqs array being the available frequencies for the default sample rate (more information can be found at [Pigpio library -`set_PWM_frequency`](https://abyz.me.uk/rpi/pigpio/pdif2.html#set_PWM_frequency)).
 
-    So, we define these values in an array and as a constant as these we don't want them changing during the running of the program. We then define a standard range for our PWM, also as a constant, and then we do the usual initialisation of the Raspberry Pi Pins.
+   So, we define these values in an array and as a constant as these we don't want them changing during the running of the program. We then define a standard range for our PWM, also as a constant, and then we do the usual initialisation of the Raspberry Pi Pins.
 
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+   <Tabs syncKey="code-language">
+<TabItem label="C++">
 
-    ```cpp {5-10}
-    #include "splashkit.h"
+   ```cpp {5-10}
+   #include "splashkit.h"
 
-    int main()
-    {
-        const int freqs[] = {10, 20, 40, 50, 80, 100, 160, 200, 250,
-                            320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
-        const int pwm_range = 255;
-        raspi_init();
-        gpio_pin led_pin = PIN_11;
-        raspi_set_mode(led_pin, GPIO_OUTPUT);
+   int main()
+   {
+       const int freqs[] = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                           320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
+       const int pwm_range = 255;
+       raspi_init();
+       gpio_pin led_pin = PIN_11;
+       raspi_set_mode(led_pin, GPIO_OUTPUT);
 
-        raspi_set_pwm_range(led_pin, pwm_range);
-        raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
+       raspi_set_pwm_range(led_pin, pwm_range);
+       raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
 
-        for(int i = 0; i < 18; i++)
-        {
-            write("At Frequency: ");
-            write_line(freqs[i]);
-            raspi_set_pwm_frequency(led_pin, freqs[i]);
-            delay(1000);
-        }
+       for(int i = 0; i < 18; i++)
+       {
+           write("At Frequency: ");
+           write_line(freqs[i]);
+           raspi_set_pwm_frequency(led_pin, freqs[i]);
+           delay(1000);
+       }
 
-        raspi_cleanup();
-        return 0;
-    }
-    ```
+       raspi_cleanup();
+       return 0;
+   }
+   ```
 
-    </TabItem>
-    </Tabs>
+   </TabItem>
+</Tabs>
 
 2. **Set PWM Range and Duty Cycle:**
 
-    In this section we set the PWM range and duty cycles that we are using. We are setting the duty cycle to be half the PWM range, or in other words we're setting it to 50%. We are not changing these values so we can specifically see the effects of changing frequency.
+   In this section we set the PWM range and duty cycles that we are using. We are setting the duty cycle to be half the PWM range, or in other words we're setting it to 50%. We are not changing these values so we can specifically see the effects of changing frequency.
 
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+   <Tabs syncKey="code-language">
+<TabItem label="C++">
 
-    ```cpp {12-13}
-    #include "splashkit.h"
+   ```cpp {12-13}
+   #include "splashkit.h"
 
-    int main()
-    {
-        const int freqs[] = {10, 20, 40, 50, 80, 100, 160, 200, 250,
-                            320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
-        const int pwm_range = 255;
-        raspi_init();
-        gpio_pin led_pin = PIN_11;
-        raspi_set_mode(led_pin, GPIO_OUTPUT);
+   int main()
+   {
+       const int freqs[] = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                           320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
+       const int pwm_range = 255;
+       raspi_init();
+       gpio_pin led_pin = PIN_11;
+       raspi_set_mode(led_pin, GPIO_OUTPUT);
 
-        raspi_set_pwm_range(led_pin, pwm_range);
-        raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
+       raspi_set_pwm_range(led_pin, pwm_range);
+       raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
 
-        for(int i = 0; i < 18; i++)
-        {
-            write("At Frequency: ");
-            write_line(freqs[i]);
-            raspi_set_pwm_frequency(led_pin, freqs[i]);
-            delay(1000);
-        }
+       for(int i = 0; i < 18; i++)
+       {
+           write("At Frequency: ");
+           write_line(freqs[i]);
+           raspi_set_pwm_frequency(led_pin, freqs[i]);
+           delay(1000);
+       }
 
-        raspi_cleanup();
-        return 0;
-    }
-    ```
+       raspi_cleanup();
+       return 0;
+   }
+   ```
 
-    </TabItem>
-    </Tabs>
+   </TabItem>
+</Tabs>
 
 3. **Change the PWM Frequency:**
 
-    This part is the main component of the code. We iterate over the previously defined frequencies and write where we're at to the terminal. We then set the PWM to the particular frequency and wait for one second. This delay allows us to see the changes in the LED as the frequency increases. At the beginning there is a noticeable flicker, before the flickering stabilises to full illumination as the frequency increases.
+   This part is the main component of the code. We iterate over the previously defined frequencies and write where we're at to the terminal. We then set the PWM to the particular frequency and wait for one second. This delay allows us to see the changes in the LED as the frequency increases. At the beginning there is a noticeable flicker, before the flickering stabilises to full illumination as the frequency increases.
 
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+   <Tabs syncKey="code-language">
+<TabItem label="C++">
 
-    ```cpp {15-21}
-    #include "splashkit.h"
+   ```cpp {15-21}
+   #include "splashkit.h"
 
-    int main()
-    {
-        const int freqs[] = {10, 20, 40, 50, 80, 100, 160, 200, 250,
-                            320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
-        const int pwm_range = 255;
-        raspi_init();
-        gpio_pin led_pin = PIN_11;
-        raspi_set_mode(led_pin, GPIO_OUTPUT);
+   int main()
+   {
+       const int freqs[] = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                           320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
+       const int pwm_range = 255;
+       raspi_init();
+       gpio_pin led_pin = PIN_11;
+       raspi_set_mode(led_pin, GPIO_OUTPUT);
 
-        raspi_set_pwm_range(led_pin, pwm_range);
-        raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
+       raspi_set_pwm_range(led_pin, pwm_range);
+       raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
 
-        for(int i = 0; i < 18; i++)
-        {
-            write("At Frequency: ");
-            write_line(freqs[i]);
-            raspi_set_pwm_frequency(led_pin, freqs[i]);
-            delay(1000);
-        }
+       for(int i = 0; i < 18; i++)
+       {
+           write("At Frequency: ");
+           write_line(freqs[i]);
+           raspi_set_pwm_frequency(led_pin, freqs[i]);
+           delay(1000);
+       }
 
-        raspi_cleanup();
-        return 0;
-    }
-    ```
+       raspi_cleanup();
+       return 0;
+   }
+   ```
 
-    </TabItem>
-    </Tabs>
+   </TabItem>
+</Tabs>
 
-    :::note[Flicking at low frequencies]
-    When running this program, you may be able to see a noticeable flicker when the frequency is at a low value but it quickly stabilises as it increases.
+   :::note[Flicking at low frequencies]
+   When running this program, you may be able to see a noticeable flicker when the frequency is at a low value but it quickly stabilises as it increases.
 
-    This happens due to the way our eyes perceive light, specifically the [Persistence of Vision](https://en.wikipedia.org/wiki/Persistence_of_vision). If the frequency is faster than the time that images remain in our vision, then we do not notice the times when the LED is unlit.
-    :::
+   This happens due to the way our eyes perceive light, specifically the [Persistence of Vision](https://en.wikipedia.org/wiki/Persistence_of_vision). If the frequency is faster than the time that images remain in our vision, then we do not notice the times when the LED is unlit.
+   :::
 
 4. **Clean Up Memory:**
 
-    Finally we clean up and exit the program.
+   Finally we clean up and exit the program.
 
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+   <Tabs syncKey="code-language">
+<TabItem label="C++">
 
-    ```cpp {23}
-    #include "splashkit.h"
+   ```cpp {23}
+   #include "splashkit.h"
 
-    int main()
-    {
-        const int freqs[] = {10, 20, 40, 50, 80, 100, 160, 200, 250,
-                            320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
-        const int pwm_range = 255;
-        raspi_init();
-        gpio_pin led_pin = PIN_11;
-        raspi_set_mode(led_pin, GPIO_OUTPUT);
+   int main()
+   {
+       const int freqs[] = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                           320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
+       const int pwm_range = 255;
+       raspi_init();
+       gpio_pin led_pin = PIN_11;
+       raspi_set_mode(led_pin, GPIO_OUTPUT);
 
-        raspi_set_pwm_range(led_pin, pwm_range);
-        raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
+       raspi_set_pwm_range(led_pin, pwm_range);
+       raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
 
-        for(int i = 0; i < 18; i++)
-        {
-            write("At Frequency: ");
-            write_line(freqs[i]);
-            raspi_set_pwm_frequency(led_pin, freqs[i]);
-            delay(1000);
-        }
+       for(int i = 0; i < 18; i++)
+       {
+           write("At Frequency: ");
+           write_line(freqs[i]);
+           raspi_set_pwm_frequency(led_pin, freqs[i]);
+           delay(1000);
+       }
 
-        raspi_cleanup();
-        return 0;
-    }
-    ```
+       raspi_cleanup();
+       return 0;
+   }
+   ```
 
-    </TabItem>
-    </Tabs>
+   </TabItem>
+</Tabs>
 
 </Steps>
 
@@ -302,9 +302,9 @@ We can build this program with the following command:
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  ```shell
-  g++ pwm_frequency.cpp -l SplashKit -o pwm_frequency
-  ```
+```shell
+g++ pwm_frequency.cpp -l SplashKit -o pwm_frequency
+```
 
 </TabItem>
 
@@ -315,9 +315,9 @@ We can then run the program with the following command:
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  ```shell
-  ./pwm_frequency
-  ```
+```shell
+./pwm_frequency
+```
 
 </TabItem>
 </Tabs>
@@ -374,179 +374,179 @@ Lets break down this code and look at the sections that are different.
 
 1. **Initialise GPIO Hardware and values:**
 
-    Like before we set our PWM range to a constant value. We are using **255** as a general default, but it is important to know that the real range of PWM is dependant on the frequency that we set. More information can be found at [Pigpio library - `set_pwm_range`](https://abyz.me.uk/rpi/pigpio/pdif2.html#set_PWM_range).
+   Like before we set our PWM range to a constant value. We are using **255** as a general default, but it is important to know that the real range of PWM is dependant on the frequency that we set. More information can be found at [Pigpio library - `set_pwm_range`](https://abyz.me.uk/rpi/pigpio/pdif2.html#set_PWM_range).
 
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+   <Tabs syncKey="code-language">
+<TabItem label="C++">
 
-    ```cpp {5,7-9}
-    #include "splashkit.h"
+   ```cpp {5,7-9}
+   #include "splashkit.h"
 
-    int main()
-    {
-        const int pwm_range = 255;
+   int main()
+   {
+       const int pwm_range = 255;
 
-        raspi_init();
-        pin led_pin = PIN_11;
-        raspi_set_mode(led_pin, GPIO_OUTPUT);
+       raspi_init();
+       pin led_pin = PIN_11;
+       raspi_set_mode(led_pin, GPIO_OUTPUT);
 
-        raspi_set_pwm_frequency(led_pin, 1000);
-        raspi_set_pwm_range(led_pin, pwm_range);
+       raspi_set_pwm_frequency(led_pin, 1000);
+       raspi_set_pwm_range(led_pin, pwm_range);
 
-        for(int i = 0; i <= pwm_range; i += 10)
-        {
-            write("At Duty Cycle: ");
-            write_line(i);
-            raspi_set_pwm_dutycycle(led_pin, i);
-            delay(1000);
-        }
-        for(int i = pwm_range; i >= 0; i -= 10)
-        {
-            write("At Duty Cycle: ");
-            write_line(i);
-            raspi_set_pwm_dutycycle(led_pin, i);
-            delay(1000);
-        }
+       for(int i = 0; i <= pwm_range; i += 10)
+       {
+           write("At Duty Cycle: ");
+           write_line(i);
+           raspi_set_pwm_dutycycle(led_pin, i);
+           delay(1000);
+       }
+       for(int i = pwm_range; i >= 0; i -= 10)
+       {
+           write("At Duty Cycle: ");
+           write_line(i);
+           raspi_set_pwm_dutycycle(led_pin, i);
+           delay(1000);
+       }
 
-        raspi_cleanup();
-        return 0;
-    }
-    ```
+       raspi_cleanup();
+       return 0;
+   }
+   ```
 
-    </TabItem>
-    </Tabs>
+   </TabItem>
+</Tabs>
 
 2. **Set PWM Range and Duty Cycle:**
 
-    When we set our frequency, we're are using 1000Hz (which cycles at 1000 times per second). We then set our predefined PWM range, and if we refer back to the Pigpiod library we can see that a frequency of 1000 is the 14th available frequency at the default sample rate. This means that at this frequency we really have a range of 2500 and so our PWM range of 255 is valid.
-  
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+   When we set our frequency, we're are using 1000Hz (which cycles at 1000 times per second). We then set our predefined PWM range, and if we refer back to the Pigpiod library we can see that a frequency of 1000 is the 14th available frequency at the default sample rate. This means that at this frequency we really have a range of 2500 and so our PWM range of 255 is valid.
 
-    ```cpp {11-12}
-    #include "splashkit.h"
+   <Tabs syncKey="code-language">
+<TabItem label="C++">
 
-    int main()
-    {
-        const int pwm_range = 255;
+   ```cpp {11-12}
+   #include "splashkit.h"
 
-        raspi_init();
-        pin led_pin = PIN_11;
-        raspi_set_mode(led_pin, GPIO_OUTPUT);
+   int main()
+   {
+       const int pwm_range = 255;
 
-        raspi_set_pwm_frequency(led_pin, 1000);
-        raspi_set_pwm_range(led_pin, pwm_range);
+       raspi_init();
+       pin led_pin = PIN_11;
+       raspi_set_mode(led_pin, GPIO_OUTPUT);
 
-        for(int i = 0; i <= pwm_range; i += 10)
-        {
-            write("At Duty Cycle: ");
-            write_line(i);
-            raspi_set_pwm_dutycycle(led_pin, i);
-            delay(1000);
-        }
-        for(int i = pwm_range; i >= 0; i -= 10)
-        {
-            write("At Duty Cycle: ");
-            write_line(i);
-            raspi_set_pwm_dutycycle(led_pin, i);
-            delay(1000);
-        }
+       raspi_set_pwm_frequency(led_pin, 1000);
+       raspi_set_pwm_range(led_pin, pwm_range);
 
-        raspi_cleanup();
-        return 0;
-    }
-    ```
+       for(int i = 0; i <= pwm_range; i += 10)
+       {
+           write("At Duty Cycle: ");
+           write_line(i);
+           raspi_set_pwm_dutycycle(led_pin, i);
+           delay(1000);
+       }
+       for(int i = pwm_range; i >= 0; i -= 10)
+       {
+           write("At Duty Cycle: ");
+           write_line(i);
+           raspi_set_pwm_dutycycle(led_pin, i);
+           delay(1000);
+       }
 
-    </TabItem>
-    </Tabs>
+       raspi_cleanup();
+       return 0;
+   }
+   ```
+
+   </TabItem>
+</Tabs>
 
 3. **Change the PWM Duty Cycle:**
 
-    In this section we have the main functionality of this program. We iterate over the range that we've set in increments of 10, and at each step we print out the duty cycle we're currently on. We then set the duty cycle to this value and wait for a second so we can see the changes. We then reverse the loop and iterate back down to zero.
+   In this section we have the main functionality of this program. We iterate over the range that we've set in increments of 10, and at each step we print out the duty cycle we're currently on. We then set the duty cycle to this value and wait for a second so we can see the changes. We then reverse the loop and iterate back down to zero.
 
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+   <Tabs syncKey="code-language">
+<TabItem label="C++">
 
-    ```cpp {14-27}
-    #include "splashkit.h"
+   ```cpp {14-27}
+   #include "splashkit.h"
 
-    int main()
-    {
-        const int pwm_range = 255;
+   int main()
+   {
+       const int pwm_range = 255;
 
-        raspi_init();
-        pin led_pin = PIN_11;
-        raspi_set_mode(led_pin, GPIO_OUTPUT);
+       raspi_init();
+       pin led_pin = PIN_11;
+       raspi_set_mode(led_pin, GPIO_OUTPUT);
 
-        raspi_set_pwm_frequency(led_pin, 1000);
-        raspi_set_pwm_range(led_pin, pwm_range);
+       raspi_set_pwm_frequency(led_pin, 1000);
+       raspi_set_pwm_range(led_pin, pwm_range);
 
-        for(int i = 0; i <= pwm_range; i += 10)
-        {
-            write("At Duty Cycle: ");
-            write_line(i);
-            raspi_set_pwm_dutycycle(led_pin, i);
-            delay(1000);
-        }
-        for(int i = pwm_range; i >= 0; i -= 10)
-        {
-            write("At Duty Cycle: ");
-            write_line(i);
-            raspi_set_pwm_dutycycle(led_pin, i);
-            delay(1000);
-        }
+       for(int i = 0; i <= pwm_range; i += 10)
+       {
+           write("At Duty Cycle: ");
+           write_line(i);
+           raspi_set_pwm_dutycycle(led_pin, i);
+           delay(1000);
+       }
+       for(int i = pwm_range; i >= 0; i -= 10)
+       {
+           write("At Duty Cycle: ");
+           write_line(i);
+           raspi_set_pwm_dutycycle(led_pin, i);
+           delay(1000);
+       }
 
-        raspi_cleanup();
-        return 0;
-    }
-    ```
+       raspi_cleanup();
+       return 0;
+   }
+   ```
 
-    </TabItem>
-    </Tabs>
+   </TabItem>
+</Tabs>
 
 4. **Clean Up Memory:**
 
-    Like usual, we clean up and exit the program.
+   Like usual, we clean up and exit the program.
 
-    <Tabs syncKey="code-language">
-    <TabItem label="C++">
+   <Tabs syncKey="code-language">
+<TabItem label="C++">
 
-    ```cpp {29}
-    #include "splashkit.h"
+   ```cpp {29}
+   #include "splashkit.h"
 
-    int main()
-    {
-        const int pwm_range = 255;
+   int main()
+   {
+       const int pwm_range = 255;
 
-        raspi_init();
-        pin led_pin = PIN_11;
-        raspi_set_mode(led_pin, GPIO_OUTPUT);
+       raspi_init();
+       pin led_pin = PIN_11;
+       raspi_set_mode(led_pin, GPIO_OUTPUT);
 
-        raspi_set_pwm_frequency(led_pin, 1000);
-        raspi_set_pwm_range(led_pin, pwm_range);
+       raspi_set_pwm_frequency(led_pin, 1000);
+       raspi_set_pwm_range(led_pin, pwm_range);
 
-        for(int i = 0; i <= pwm_range; i += 10)
-        {
-            write("At Duty Cycle: ");
-            write_line(i);
-            raspi_set_pwm_dutycycle(led_pin, i);
-            delay(1000);
-        }
-        for(int i = pwm_range; i >= 0; i -= 10)
-        {
-            write("At Duty Cycle: ");
-            write_line(i);
-            raspi_set_pwm_dutycycle(led_pin, i);
-            delay(1000);
-        }
+       for(int i = 0; i <= pwm_range; i += 10)
+       {
+           write("At Duty Cycle: ");
+           write_line(i);
+           raspi_set_pwm_dutycycle(led_pin, i);
+           delay(1000);
+       }
+       for(int i = pwm_range; i >= 0; i -= 10)
+       {
+           write("At Duty Cycle: ");
+           write_line(i);
+           raspi_set_pwm_dutycycle(led_pin, i);
+           delay(1000);
+       }
 
-        raspi_cleanup();
-        return 0;
-    }
-    ```
+       raspi_cleanup();
+       return 0;
+   }
+   ```
 
-    </TabItem>
-    </Tabs>
+   </TabItem>
+</Tabs>
 
 </Steps>
 
@@ -560,7 +560,7 @@ We can build this program with the following command:
 ```shell
 g++ pwm_dutycycle.cpp -l SplashKit -o pwm_dutycycle
 ```
-  
+
 </TabItem>
 </Tabs>
 

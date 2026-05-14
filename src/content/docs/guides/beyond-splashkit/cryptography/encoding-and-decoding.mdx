@@ -8,7 +8,7 @@ sidebar:
 ---
 
 import { Tabs, TabItem } from "@astrojs/starlight/components";
-import { Aside } from '@astrojs/starlight/components';
+import { Aside } from "@astrojs/starlight/components";
 
 **{frontmatter.description}**  
 Written by: {frontmatter.author}  
@@ -29,7 +29,10 @@ const string BASE64_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxy
 ```
 
 <Aside type="tip" title="Common Uses of Base64 Encoding">
-Base64 encoding is widely used to safely transmit binary data, such as images or files, over text-based protocols like HTTP, email, or JSON. It is also essential for embedding assets directly in HTML or converting binary data for use in web development.
+  Base64 encoding is widely used to safely transmit binary data, such as images
+  or files, over text-based protocols like HTTP, email, or JSON. It is also
+  essential for embedding assets directly in HTML or converting binary data for
+  use in web development.
 </Aside>
 
 ### Encoding with Base64
@@ -128,13 +131,13 @@ def base64_encode(input_string):
         while bits >= 0:
             encoded_string += BASE64_CHARS[(value >> bits) & base64_mask]
             bits -= 6
-    
+
     if bits > -6:
         encoded_string += BASE64_CHARS[((value << 8) >> (bits + 8)) & base64_mask]
-    
+
     while len(encoded_string) % 4:
         encoded_string += "="
-    
+
     return encoded_string
 ```
 
@@ -262,14 +265,14 @@ def base64_decode(input_string):
             if character == "=":
                 break
             continue
-        
+
         value = (value << 6) + BASE64_CHARS.index(character)
         bits += 6
 
         if bits >= 0:
             decoded_string.append((value >> bits) & 0xFF)
             bits -= 8
-    
+
     return decoded_string.decode()
 ```
 
@@ -358,7 +361,12 @@ where:
 - $n$ is the number of positions to shift (the key).
 
 <Aside type="tip" title="Common Uses of Ciphers">
-Ciphers are widely used in various applications to ensure secure communication and data protection. They are essential in modern cryptography for encrypting sensitive information, securing online transactions, protecting personal data, and ensuring the confidentiality of communications. Ciphers are also used in digital signatures, authentication protocols, and solving cryptographic puzzles.
+  Ciphers are widely used in various applications to ensure secure communication
+  and data protection. They are essential in modern cryptography for encrypting
+  sensitive information, securing online transactions, protecting personal data,
+  and ensuring the confidentiality of communications. Ciphers are also used in
+  digital signatures, authentication protocols, and solving cryptographic
+  puzzles.
 </Aside>
 
 ### Encoding with the Caesar Cipher
@@ -439,7 +447,7 @@ Here is an example of how you can use the `caesar_cipher_encode` function to enc
 
 ```cpp
 string message = "Hello, World!";
-int shift = 3;  
+int shift = 3;
 string encoded_message = caesar_cipher_encode(message, shift);
 std::cout << "Original: " << message << std::endl;
 std::cout << "Encoded: " << encoded_message << std::endl;
@@ -533,7 +541,6 @@ std::cout << "Decoded: " << caesar_cipher_decode(encoded_message, shift) << std:
 
 </TabItem>
 <TabItem label="C#">
-
 
 ```csharp
 string encodedMessage = "Khoor, Zruog!";
@@ -650,7 +657,7 @@ caesar_cipher_brute_force(encoded_message)
 The brute-force method should display all possible decrypted messages for each shift value.
 
 ```plaintext
-Enter the encoded message: 
+Enter the encoded message:
 Khoor Zruog!
 Shift 0=> Khoor Zruog!
 Shift 1=> Jgnnq Yqtnf!
@@ -963,7 +970,12 @@ Decoded: "Hello, World!"
 URL transformations are used to encode and decode URLs to ensure that they are safe for use in web applications. URLs may contain special characters that need to be encoded to prevent errors and security vulnerabilities. The most common encoding scheme used for URLs is percent-encoding, which replaces special characters with a percent sign followed by two hexadecimal digits. This ensures that the URL is correctly interpreted by web browsers and servers.
 
 <Aside type="tip" title="Common Uses of URL Encoding and Decoding">
-URL encoding and decoding are essential for ensuring that URLs are correctly interpreted by web browsers and servers. They are commonly used in web development to handle special characters in query parameters, form submissions, and API requests. Proper URL encoding helps prevent errors and security vulnerabilities, ensuring reliable and secure communication between clients and servers.
+  URL encoding and decoding are essential for ensuring that URLs are correctly
+  interpreted by web browsers and servers. They are commonly used in web
+  development to handle special characters in query parameters, form
+  submissions, and API requests. Proper URL encoding helps prevent errors and
+  security vulnerabilities, ensuring reliable and secure communication between
+  clients and servers.
 </Aside>
 
 ### Encoding URLs

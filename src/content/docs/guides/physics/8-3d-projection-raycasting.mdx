@@ -6,7 +6,7 @@ lastupdated: 08 Dec 24
 ---
 
 import { Tabs, TabItem, Aside, Steps } from "@astrojs/starlight/components";
-import SKOTutorialButton from '../../../../components/SKOTutorialButton.astro';
+import SKOTutorialButton from "../../../../components/SKOTutorialButton.astro";
 
 **{frontmatter.description}**  
 Written by: {frontmatter.authors}  
@@ -18,7 +18,7 @@ _Full C# and Python code for this tutorial is still in development._
 
 ## Introduction to 2D to 3D Projection Using Raycasting
 
-Raycasting is a powerful technique in game development that allows us to simulate how rays of light or vision interact with objects in a virtual environment. While it is commonly used for simple collision detection or line-of-sight mechanics, it also serves as the foundation for more advanced applications, such as creating 3D effects in 2D environments. By projecting a 2D map into a first-person 3D perspective, we can simulate a 3D world using only 2D assets—a technique famously used in early 3D games like [Doom](https://en.wikipedia.org/wiki/Doom_(1993_video_game)) and [Wolfenstein 3D](https://en.wikipedia.org/wiki/Wolfenstein_3D).
+Raycasting is a powerful technique in game development that allows us to simulate how rays of light or vision interact with objects in a virtual environment. While it is commonly used for simple collision detection or line-of-sight mechanics, it also serves as the foundation for more advanced applications, such as creating 3D effects in 2D environments. By projecting a 2D map into a first-person 3D perspective, we can simulate a 3D world using only 2D assets—a technique famously used in early 3D games like [Doom](<https://en.wikipedia.org/wiki/Doom_(1993_video_game)>) and [Wolfenstein 3D](https://en.wikipedia.org/wiki/Wolfenstein_3D).
 
 In this tutorial, we’ll explore how to use SplashKit to build a 2D to 3D raycasting system. You’ll learn how to:
 
@@ -31,7 +31,11 @@ This approach is ideal if you are looking to take your games to the next level. 
 ![2D to 3D Projection](/gifs/guides/physics/2d-3d-projection.gif)
 
 <Aside type="caution" title="Checkpoint!">
-We recommend you first familiarise yourself with the [Raycasting Basics](/guides/physics/6-raycasting-basics/) tutorial before proceeding with this one. This will provide you with a solid understanding of the fundamental principles of raycasting and how to effectively make use of the SplashKit functions.
+  We recommend you first familiarise yourself with the [Raycasting
+  Basics](/guides/physics/6-raycasting-basics/) tutorial before proceeding with
+  this one. This will provide you with a solid understanding of the fundamental
+  principles of raycasting and how to effectively make use of the SplashKit
+  functions.
 </Aside>
 
 ### Important SplashKit Functions Used in This Tutorial
@@ -164,11 +168,20 @@ if (distance > MAX_RAY_DISTANCE)
 At its core, raycasting reduces the complex task of simulating a 3D environment to drawing a series of lines with mathematical precision. Each ray serves as a "scanner," collecting data about the environment and translating it into a visually coherent projection.
 
 <Steps>
-1. **Determine the Ray Angle** - Calculate the angle of each ray relative to the player's FOV. This determines the direction in which the ray will "travel" across the virtual environment.
-2. **Iterate Across the Screen** - Create a loop that corresponds to the width of the screen. Each iteration represents a vertical column of the screen and a specific ray within the FOV.
-3. **Calculate Wall Height** - Use the inverse of the distance to determine the wall’s height on the screen. Divide a constant (e.g., half the screen height) by the distance to achieve this.
-4. **Draw the World** - Render a line for the ceiling (top of the screen to the top of the wall height), for the wall (corresponding to the calculated wall height), and the floor (bottom of the wall to the bottom of the screen) to draw the world.
-5. **Repeat for All Rays** - Repeat this process for every ray, effectively rendering each column of the screen. The result is a projection that simulates depth and perspective in the environment.
+  1. **Determine the Ray Angle** - Calculate the angle of each ray relative to
+  the player's FOV. This determines the direction in which the ray will "travel"
+  across the virtual environment. 2. **Iterate Across the Screen** - Create a
+  loop that corresponds to the width of the screen. Each iteration represents a
+  vertical column of the screen and a specific ray within the FOV. 3.
+  **Calculate Wall Height** - Use the inverse of the distance to determine the
+  wall’s height on the screen. Divide a constant (e.g., half the screen height)
+  by the distance to achieve this. 4. **Draw the World** - Render a line for the
+  ceiling (top of the screen to the top of the wall height), for the wall
+  (corresponding to the calculated wall height), and the floor (bottom of the
+  wall to the bottom of the screen) to draw the world. 5. **Repeat for All
+  Rays** - Repeat this process for every ray, effectively rendering each column
+  of the screen. The result is a projection that simulates depth and perspective
+  in the environment.
 </Steps>
 
 ![Basic 3D Projection](/images/guides/physics/2d-3d-projection-4.png)
@@ -186,9 +199,13 @@ Match the number of rays to the screen width for a 1:1 mapping (e.g., 600 rays f
 :::
 
 <Steps>
-1. **Start with the Player’s FOV**: Define the total field of view (e.g., 60 degrees) and determine how many rays will be cast.
-2. **Divide the FOV**: Calculate the angular step between rays by dividing the FOV by the total number of rays. This ensures equal spacing.
-3. **Iterate Through Rays**: Begin at the left edge of the FOV and incrementally step through each ray until the rightmost edge is reached. Each ray's angle will determine its direction in the virtual environment.
+  1. **Start with the Player’s FOV**: Define the total field of view (e.g., 60
+  degrees) and determine how many rays will be cast. 2. **Divide the FOV**:
+  Calculate the angular step between rays by dividing the FOV by the total
+  number of rays. This ensures equal spacing. 3. **Iterate Through Rays**: Begin
+  at the left edge of the FOV and incrementally step through each ray until the
+  rightmost edge is reached. Each ray's angle will determine its direction in
+  the virtual environment.
 </Steps>
 
 :::note
@@ -237,6 +254,7 @@ double corrected_distance = distances[i] * cos(degree_to_radians(i * (PLAYER_FOV
 ```
 
 This correction ensures that walls maintain consistent proportions, regardless of their angle within the player’s field of view (FOV).
+
 </Aside>
 
 The height of the wall on the screen is inversely proportional to the corrected distance. This means that closer walls occupy more vertical screen space, while farther walls take up less:
@@ -313,23 +331,23 @@ Try modifying the map, field of view, or the number of rays cast to see how thes
       filePath="/guides/physics-code-files/raycasting-2d.cpp"
       buttonText="Test 2D Code in SplashKit Online"
       iframeSrc="https://thoth-tech.github.io/SplashkitOnline/?language=C++"
-    />  
+    />
   </TabItem>
   <TabItem label="3D">
-  <SKOTutorialButton
+    <SKOTutorialButton
       id="raycasting-3d"
       filePath="/guides/physics-code-files/raycasting-3d.cpp"
       buttonText="Test 3D Code in SplashKit Online"
       iframeSrc="https://thoth-tech.github.io/SplashkitOnline/?language=C++"
-    />  
+    />
   </TabItem>
   <TabItem label="2D + 3D">
-  <SKOTutorialButton
+    <SKOTutorialButton
       id="raycasting-2d-3d"
       filePath="/guides/physics-code-files/raycasting-2d-3d.cpp"
       buttonText="Test 2D + 3D Code in SplashKit Online"
       iframeSrc="https://thoth-tech.github.io/SplashkitOnline/?language=C++"
-    />  
+    />
   </TabItem>
 </Tabs>
 

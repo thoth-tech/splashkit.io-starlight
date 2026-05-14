@@ -10,14 +10,14 @@
 // ------------------------------------------------------------------------------
 const fs = require("fs");
 const kleur = require("kleur");
-const path = require('path');
+const path = require("path");
 
 // ------------------------------------------------------------------------------
 // Constants
 // ------------------------------------------------------------------------------
 // For cleaning files from usage-examples folder
-const directoryToClean = 'src/content/docs/api';
-const filesToKeep = ['index.mdx'];
+const directoryToClean = "src/content/docs/api";
+const filesToKeep = ["index.mdx"];
 
 // Define type mappings
 const typeMappings = {
@@ -42,7 +42,7 @@ const guidesAvailable = {
   networking: false,
   physics: false,
   sprites: false,
-  utilities: false
+  utilities: false,
 };
 
 // Define language label mappings
@@ -59,14 +59,158 @@ const languageFileExtensions = {
   cpp: ".cpp",
   csharp: ".cs",
   python: ".py",
-  pascal: ".pas"
+  pascal: ".pas",
 };
 
 // Define language order
 const languageOrder = ["cpp", "csharp", "python", "pascal"];
 var name = "";
 
-const sk_colors = ["alice_blue", "antique_white", "aqua", "aquamarine", "azure", "beige", "bisque", "black", "blanched_almond", "blue", "blue_violet", "bright_green", "brown", "burly_wood", "cadet_blue", "chartreuse", "chocolate", "coral", "cornflower_blue", "cornsilk", "crimson", "cyan", "dark_blue", "dark_cyan", "dark_goldenrod", "dark_gray", "dark_green", "dark_khaki", "dark_magenta", "dark_olive_green", "dark_orange", "dark_orchid", "dark_red", "dark_salmon", "dark_sea_green", "dark_slate_blue", "dark_slate_gray", "dark_turquoise", "dark_violet", "deep_pink", "deep_sky_blue", "dim_gray", "dodger_blue", "firebrick", "floral_white", "forest_green", "fuchsia", "gainsboro", "ghost_white", "gold", "goldenrod", "gray", "green", "green_yellow", "honeydew", "hot_pink", "indian_red", "indigo", "ivory", "khaki", "lavender", "lavender_blush", "lawn_green", "lemon_chiffon", "light_blue", "light_coral", "light_cyan", "light_goldenrod_yellow", "light_gray", "light_green", "light_pink", "light_salmon", "light_sea_green", "light_sky_blue", "light_slate_gray", "light_steel_blue", "light_yellow", "lime", "lime_green", "linen", "magenta", "maroon", "medium_aquamarine", "medium_blue", "medium_orchid", "medium_purple", "medium_sea_green", "medium_slate_blue", "medium_spring_green", "medium_turquoise", "medium_violet_red", "midnight_blue", "mint_cream", "misty_rose", "moccasin", "navajo_white", "navy", "old_lace", "olive", "olive_drab", "orange", "orange_red", "orchid", "pale_goldenrod", "pale_green", "pale_turquoise", "pale_violet_red", "papaya_whip", "peach_puff", "peru", "pink", "plum", "powder_blue", "purple", "red", "rosy_brown", "royal_blue", "saddle_brown", "salmon", "sandy_brown", "sea_green", "sea_shell", "sienna", "silver", "sky_blue", "slate_blue", "slate_gray", "snow", "spring_green", "steel_blue", "swinburne_red", "tan", "teal", "thistle", "tomato", "transparent", "turquoise", "violet", "wheat", "white", "white_smoke", "yellow", "yellow_green"];
+const sk_colors = [
+  "alice_blue",
+  "antique_white",
+  "aqua",
+  "aquamarine",
+  "azure",
+  "beige",
+  "bisque",
+  "black",
+  "blanched_almond",
+  "blue",
+  "blue_violet",
+  "bright_green",
+  "brown",
+  "burly_wood",
+  "cadet_blue",
+  "chartreuse",
+  "chocolate",
+  "coral",
+  "cornflower_blue",
+  "cornsilk",
+  "crimson",
+  "cyan",
+  "dark_blue",
+  "dark_cyan",
+  "dark_goldenrod",
+  "dark_gray",
+  "dark_green",
+  "dark_khaki",
+  "dark_magenta",
+  "dark_olive_green",
+  "dark_orange",
+  "dark_orchid",
+  "dark_red",
+  "dark_salmon",
+  "dark_sea_green",
+  "dark_slate_blue",
+  "dark_slate_gray",
+  "dark_turquoise",
+  "dark_violet",
+  "deep_pink",
+  "deep_sky_blue",
+  "dim_gray",
+  "dodger_blue",
+  "firebrick",
+  "floral_white",
+  "forest_green",
+  "fuchsia",
+  "gainsboro",
+  "ghost_white",
+  "gold",
+  "goldenrod",
+  "gray",
+  "green",
+  "green_yellow",
+  "honeydew",
+  "hot_pink",
+  "indian_red",
+  "indigo",
+  "ivory",
+  "khaki",
+  "lavender",
+  "lavender_blush",
+  "lawn_green",
+  "lemon_chiffon",
+  "light_blue",
+  "light_coral",
+  "light_cyan",
+  "light_goldenrod_yellow",
+  "light_gray",
+  "light_green",
+  "light_pink",
+  "light_salmon",
+  "light_sea_green",
+  "light_sky_blue",
+  "light_slate_gray",
+  "light_steel_blue",
+  "light_yellow",
+  "lime",
+  "lime_green",
+  "linen",
+  "magenta",
+  "maroon",
+  "medium_aquamarine",
+  "medium_blue",
+  "medium_orchid",
+  "medium_purple",
+  "medium_sea_green",
+  "medium_slate_blue",
+  "medium_spring_green",
+  "medium_turquoise",
+  "medium_violet_red",
+  "midnight_blue",
+  "mint_cream",
+  "misty_rose",
+  "moccasin",
+  "navajo_white",
+  "navy",
+  "old_lace",
+  "olive",
+  "olive_drab",
+  "orange",
+  "orange_red",
+  "orchid",
+  "pale_goldenrod",
+  "pale_green",
+  "pale_turquoise",
+  "pale_violet_red",
+  "papaya_whip",
+  "peach_puff",
+  "peru",
+  "pink",
+  "plum",
+  "powder_blue",
+  "purple",
+  "red",
+  "rosy_brown",
+  "royal_blue",
+  "saddle_brown",
+  "salmon",
+  "sandy_brown",
+  "sea_green",
+  "sea_shell",
+  "sienna",
+  "silver",
+  "sky_blue",
+  "slate_blue",
+  "slate_gray",
+  "snow",
+  "spring_green",
+  "steel_blue",
+  "swinburne_red",
+  "tan",
+  "teal",
+  "thistle",
+  "tomato",
+  "transparent",
+  "turquoise",
+  "violet",
+  "wheat",
+  "white",
+  "white_smoke",
+  "yellow",
+  "yellow_green",
+];
 
 // ------------------------------------------------------------------------------
 // Functions
@@ -78,16 +222,20 @@ const sk_colors = ["alice_blue", "antique_white", "aqua", "aquamarine", "azure",
 function getAllFiles(dir, allFilesList = []) {
   try {
     const files = fs.readdirSync(dir);
-    files.map(file => {
-      const name = dir + '/' + file;
-      if (fs.statSync(name).isDirectory()) { // check if subdirectory is present
-        getAllFiles(name, allFilesList);     // do recursive execution for subdirectory
+    files.map((file) => {
+      const name = dir + "/" + file;
+      if (fs.statSync(name).isDirectory()) {
+        // check if subdirectory is present
+        getAllFiles(name, allFilesList); // do recursive execution for subdirectory
       } else {
-        allFilesList.push(file);             // push filename into the array
+        allFilesList.push(file); // push filename into the array
       }
-    })
+    });
   } catch (err) {
-    console.error(kleur.yellow(`Warning: Unable to access directory ${dir}`), err);
+    console.error(
+      kleur.yellow(`Warning: Unable to access directory ${dir}`),
+      err,
+    );
   }
   return allFilesList;
 }
@@ -101,10 +249,12 @@ function getAllFinishedExamples() {
     var apiData = fs.readFileSync(`${__dirname}/json-files/api.json`);
     apiJsonData = JSON.parse(apiData);
   } catch (error) {
-    console.error(kleur.red("Error occurred when trying to parse API Json data: ", error));
+    console.error(
+      kleur.red("Error occurred when trying to parse API Json data: ", error),
+    );
   }
 
-  const categories = []
+  const categories = [];
   for (const categoryKey in apiJsonData) {
     if (categoryKey != "types") {
       categories.push(categoryKey);
@@ -114,11 +264,16 @@ function getAllFinishedExamples() {
   const allExamples = [];
 
   categories.forEach((categoryKey) => {
-    const categoryFilePath = path.join(path.dirname(__dirname), "public", "usage-examples", categoryKey);
+    const categoryFilePath = path.join(
+      path.dirname(__dirname),
+      "public",
+      "usage-examples",
+      categoryKey,
+    );
     const categoryFiles = getAllFiles(categoryFilePath);
 
     // Filter for .txt files
-    const txtFiles = categoryFiles.filter(file => file.endsWith('.txt'));
+    const txtFiles = categoryFiles.filter((file) => file.endsWith(".txt"));
 
     // Extract the portion before the first '-'
     if (txtFiles.length > 0) {
@@ -140,27 +295,33 @@ function Mappings(jsonData) {
     const category = jsonData[categoryKey];
     category.typedefs.forEach((typedef) => {
       // Add typedef to typeMappings
-      const name = typedef.name.split("_")
+      const name = typedef.name
+        .split("_")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
 
-      typeMappings[typedef.name] = `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
+      typeMappings[typedef.name] =
+        `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/_/g, "-").replace(/\s+/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
     });
     category.structs.forEach((struct) => {
       // Add structs to typeMappings
-      const name = struct.name.split("_")
+      const name = struct.name
+        .split("_")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
 
-      typeMappings[struct.name] = `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/\s+/g, "-").replace(/_/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
+      typeMappings[struct.name] =
+        `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/\s+/g, "-").replace(/_/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
     });
     category.enums.forEach((enumm) => {
       // Add structs to typeMappings
-      const name = enumm.name.split("_")
+      const name = enumm.name
+        .split("_")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
 
-      typeMappings[enumm.name] = `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/\s+/g, "-").replace(/_/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
+      typeMappings[enumm.name] =
+        `[\`${name}\`](/api/${categoryKey.toLowerCase().replace(/\s+/g, "-").replace(/_/g, "-")}/#${name.toLowerCase().replace(/\s+/g, "-")})`;
     });
   }
 }
@@ -172,14 +333,14 @@ function extractEnumValues(signature, language) {
   const details = [];
   let regex;
 
-  if (language === 'cpp') {
+  if (language === "cpp") {
     regex = /(\w+)\s*=\s*/g; // Handles the cpp pattern which has no dot in the name
   } else {
     regex = /(\w+\.\w+)\s*=\s*/g; // Handles the other languages which have a dot in the name
   }
 
   let match;
-  while (match = regex.exec(signature)) {
+  while ((match = regex.exec(signature))) {
     details.push(match[1]);
   }
   return details;
@@ -192,7 +353,7 @@ function getColorRGBValues(colorName, jsonData) {
   const simplifiedName = colorName.replace("color_", "");
 
   const colorData = jsonData[simplifiedName];
-  let rgbValues = '( 0, 0, 0)';
+  let rgbValues = "( 0, 0, 0)";
   if (colorData != undefined) {
     rgbValues = colorData.rgb;
   }
@@ -244,12 +405,14 @@ function getUsageExampleImports(categoryKey, functionKey) {
     // pascal: false
   };
   let mdxData = "";
-  let categoryPath = '/usage-examples/' + categoryKey;
-  let categoryFilePath = './public/usage-examples/' + categoryKey;
+  let categoryPath = "/usage-examples/" + categoryKey;
+  let categoryFilePath = "./public/usage-examples/" + categoryKey;
 
-  const functionFiles = getAllFiles(categoryFilePath).filter(file => file.startsWith(functionKey));
+  const functionFiles = getAllFiles(categoryFilePath).filter((file) =>
+    file.startsWith(functionKey),
+  );
   if (functionFiles.length > 0) {
-    const txtFiles = functionFiles.filter(file => file.endsWith('.txt'))
+    const txtFiles = functionFiles.filter((file) => file.endsWith(".txt"));
     if (txtFiles.length > 0) {
       txtFiles.forEach((exampleTxtKey) => {
         let exampleKey = exampleTxtKey.replaceAll(".txt", "");
@@ -257,18 +420,33 @@ function getUsageExampleImports(categoryKey, functionKey) {
         let importTitle = exampleKey.replaceAll("-", "_");
 
         languageOrder.forEach((lang) => {
-          const languageFiles = functionFiles.filter(file => file.endsWith(languageFileExtensions[lang]));
-          let codeFilePath = categoryPath + "/" + exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
+          const languageFiles = functionFiles.filter((file) =>
+            file.endsWith(languageFileExtensions[lang]),
+          );
+          let codeFilePath =
+            categoryPath +
+            "/" +
+            exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
 
           // import code if available
           if (languageFiles.length > 0) {
             languageCodeAvailable[lang] = true;
 
             // Check if both top level and oop code has been found for current function
-            const csharpFiles = functionFiles.filter(file => file.endsWith("-top-level.cs") || file.endsWith("-oop.cs")).filter(file => file.includes(exampleKey));
-            const cppFiles = functionFiles.filter(file => file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp")).filter(file => file.includes(exampleKey));
+            const csharpFiles = functionFiles
+              .filter(
+                (file) =>
+                  file.endsWith("-top-level.cs") || file.endsWith("-oop.cs"),
+              )
+              .filter((file) => file.includes(exampleKey));
+            const cppFiles = functionFiles
+              .filter(
+                (file) =>
+                  file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp"),
+              )
+              .filter((file) => file.includes(exampleKey));
             if (lang == "csharp" && csharpFiles.length > 0) {
-              csharpFiles.forEach(file => {
+              csharpFiles.forEach((file) => {
                 if (file.includes(exampleKey)) {
                   if (file.includes("-top-level")) {
                     mdxData += `import ${importTitle}_top_level_${lang} from '${codeFilePath.replaceAll(".cs", "-top-level.cs").replaceAll("/usage", "/public/usage")}?raw';\n`;
@@ -280,7 +458,7 @@ function getUsageExampleImports(categoryKey, functionKey) {
               });
             } // Check for cpp files for standard SK and Beyond SK
             else if (lang == "cpp" && cppFiles.length > 0) {
-              cppFiles.forEach(file => {
+              cppFiles.forEach((file) => {
                 if (file.includes(exampleKey)) {
                   if (file.includes("-sk")) {
                     mdxData += `import ${importTitle}_sk_${lang} from '${codeFilePath.replaceAll(".cpp", "-sk.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
@@ -290,8 +468,7 @@ function getUsageExampleImports(categoryKey, functionKey) {
                   }
                 }
               });
-            }
-            else {
+            } else {
               mdxData += `import ${importTitle}_${lang} from '${codeFilePath.replaceAll("/usage", "/public/usage")}?raw';\n`;
             }
           }
@@ -307,13 +484,16 @@ function getUsageExampleImports(categoryKey, functionKey) {
 // Get group name (C++ function name) from unique global name
 // ------------------------------------------------------------------------------
 function getGroupName(jsonData, uniqueName) {
-  var funcGroupName = ""
+  var funcGroupName = "";
   for (const categoryKey in jsonData) {
     const category = jsonData[categoryKey];
     const categoryFunctions = category.functions;
     categoryFunctions.forEach((func) => {
       if (func.unique_global_name == uniqueName) {
-        funcGroupName = func.name.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");;
+        funcGroupName = func.name
+          .split("_")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
       }
     });
   }
@@ -331,32 +511,38 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
     // pascal: false
   };
   let mdxData = "";
-  let categoryPath = '/usage-examples/' + categoryKey;
-  let categoryFilePath = './public/usage-examples/' + categoryKey;
+  let categoryPath = "/usage-examples/" + categoryKey;
+  let categoryFilePath = "./public/usage-examples/" + categoryKey;
 
   let exampleKey = functionKey.replaceAll(".txt", "");
-  const functionFiles = getAllFiles(categoryFilePath).filter(file => file.startsWith(exampleKey));
+  const functionFiles = getAllFiles(categoryFilePath).filter((file) =>
+    file.startsWith(exampleKey),
+  );
 
   if (functionFiles.length > 0) {
-
-    const functionExampleFiles = functionFiles.filter(file => file.endsWith(".txt"));
+    const functionExampleFiles = functionFiles.filter((file) =>
+      file.endsWith(".txt"),
+    );
     functionExampleFiles.forEach((exampleTxtKey) => {
-
       // import code if available
       if (functionFiles.length > 0) {
         let importTitle = exampleKey.replaceAll("-", "_");
 
         // Description
-        let exampleNum = exampleKey.replace(/\D/g, '');
+        let exampleNum = exampleKey.replace(/\D/g, "");
         mdxData += `**Example ${exampleNum}**: `;
-        let exampleTxt = fs.readFileSync(categoryFilePath + "/" + exampleTxtKey);
+        let exampleTxt = fs.readFileSync(
+          categoryFilePath + "/" + exampleTxtKey,
+        );
         mdxData += exampleTxt.toString();
         mdxData += "\n\n";
 
         // Code tabs
-        mdxData += "<Tabs syncKey=\"code-language\">\n";
+        mdxData += '<Tabs syncKey="code-language">\n';
         languageOrder.forEach((lang) => {
-          const languageFiles = functionFiles.filter(file => file.startsWith(exampleKey)).filter(file => file.endsWith(languageFileExtensions[lang]));
+          const languageFiles = functionFiles
+            .filter((file) => file.startsWith(exampleKey))
+            .filter((file) => file.endsWith(languageFileExtensions[lang]));
 
           if (languageFiles.length > 0) {
             languageCodeAvailable[lang] = true;
@@ -366,42 +552,55 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
               mdxData += `  <TabItem label="${languageLabel}">\n`;
 
               // Check if both top level and oop code has been found for current function
-              const csharpFiles = functionFiles.filter(file => file.endsWith("-top-level.cs") || file.endsWith("-oop.cs")).filter(file => file.includes(exampleKey));
-              const cppFiles = functionFiles.filter(file => file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp")).filter(file => file.includes(exampleKey));
+              const csharpFiles = functionFiles
+                .filter(
+                  (file) =>
+                    file.endsWith("-top-level.cs") || file.endsWith("-oop.cs"),
+                )
+                .filter((file) => file.includes(exampleKey));
+              const cppFiles = functionFiles
+                .filter(
+                  (file) =>
+                    file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp"),
+                )
+                .filter((file) => file.includes(exampleKey));
               functionTag = exampleKey.split("-")[0];
               if (lang == "cpp") {
                 functionTag = groupName;
               }
               if (lang == "csharp") {
-                functionTag = groupName.split("_")
+                functionTag = groupName
+                  .split("_")
                   .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                   .join("");
               }
               if (lang == "csharp" && csharpFiles.length > 0) {
-                mdxData += "\n  <Tabs syncKey=\"csharp-style\">\n";
+                mdxData += '\n  <Tabs syncKey="csharp-style">\n';
                 // use reverse order to make Top level first
-                csharpFiles.slice().reverse().forEach(file => {
-                  if (file.includes(exampleKey)) {
-                    if (file.includes("-top-level")) {
-                      mdxData += `    <TabItem label="Top-level Statements">\n`;
-                      mdxData += `      <Code code={${importTitle}_top_level_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
-                      mdxData += "    </TabItem>\n";
+                csharpFiles
+                  .slice()
+                  .reverse()
+                  .forEach((file) => {
+                    if (file.includes(exampleKey)) {
+                      if (file.includes("-top-level")) {
+                        mdxData += `    <TabItem label="Top-level Statements">\n`;
+                        mdxData += `      <Code code={${importTitle}_top_level_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
+                        mdxData += "    </TabItem>\n";
+                      }
+                      if (file.includes("-oop")) {
+                        mdxData += `    <TabItem label="Object-Oriented">\n`;
+                        mdxData += `      <Code code={${importTitle}_oop_${lang}} lang="${lang}" mark={"SplashKit.${functionTag}"} />\n`;
+                        mdxData += "    </TabItem>\n";
+                      }
                     }
-                    if (file.includes("-oop")) {
-                      mdxData += `    <TabItem label="Object-Oriented">\n`;
-                      mdxData += `      <Code code={${importTitle}_oop_${lang}} lang="${lang}" mark={"SplashKit.${functionTag}"} />\n`;
-                      mdxData += "    </TabItem>\n";
-                    }
-                  }
-                });
+                  });
                 mdxData += "  </Tabs>\n\n";
                 mdxData += "  </TabItem>\n";
               }
               // Check for cpp files and generate nested tabs
               else if (lang == "cpp" && cppFiles.length > 0) {
                 mdxData += "  </TabItem>\n";
-              }
-              else {
+              } else {
                 mdxData += `    <Code code={${importTitle}_${lang}} lang="${lang}" mark={"${functionTag}"} />\n`;
                 mdxData += "  </TabItem>\n";
               }
@@ -416,31 +615,39 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
 
       let outputFilePath = categoryPath + "/" + exampleTxtKey;
 
-
-      const imageFiles = functionFiles.filter(file => file.endsWith(exampleKey + '.png'));
+      const imageFiles = functionFiles.filter((file) =>
+        file.endsWith(exampleKey + ".png"),
+      );
       // Check for .png files
       if (imageFiles.length > 0) {
         outputFilePath = outputFilePath.replaceAll(".txt", ".png");
-        mdxData += `![${exampleKey} example](${outputFilePath})\n`
-      }
-      else {
-        const gifFiles = functionFiles.filter(file => file.endsWith('.gif')).filter(file => file.startsWith(exampleKey));
+        mdxData += `![${exampleKey} example](${outputFilePath})\n`;
+      } else {
+        const gifFiles = functionFiles
+          .filter((file) => file.endsWith(".gif"))
+          .filter((file) => file.startsWith(exampleKey));
         // Check for .gif files
         if (gifFiles.length > 0) {
           outputFilePath = outputFilePath.replaceAll(".txt", ".gif");
-          mdxData += `![${exampleKey} example](${outputFilePath})\n`
-        }
-        else {
-          const webmFiles = functionFiles.filter(file => file.endsWith('.webm'));
+          mdxData += `![${exampleKey} example](${outputFilePath})\n`;
+        } else {
+          const webmFiles = functionFiles.filter((file) =>
+            file.endsWith(".webm"),
+          );
           // Check for .webm files
           if (webmFiles.length > 0) {
             outputFilePath = outputFilePath.replaceAll(".txt", ".webm");
-            mdxData += `<video controls style="max-width:100%; margin:auto; margin-top:16px;">\n`
-            mdxData += `\t<source src="${outputFilePath}" type="video/webm" />\n`
-            mdxData += `</video>\n`
-          }
-          else {
-            console.log(kleur.red("\nError: No image, gif or webm (audio) files found for " + exampleKey + " usage example"));
+            mdxData += `<video controls style="max-width:100%; margin:auto; margin-top:16px;">\n`;
+            mdxData += `\t<source src="${outputFilePath}" type="video/webm" />\n`;
+            mdxData += `</video>\n`;
+          } else {
+            console.log(
+              kleur.red(
+                "\nError: No image, gif or webm (audio) files found for " +
+                  exampleKey +
+                  " usage example",
+              ),
+            );
           }
         }
       }
@@ -454,12 +661,12 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
 // ------------------------------------------------------------------------------
 function cleanDirectory(directory, exclusions) {
   const files = fs.readdirSync(directory, { withFileTypes: true });
-  files.forEach(file => {
+  files.forEach((file) => {
     const fullPath = path.join(directory, file.name);
     if (file.isDirectory()) {
-      cleanDirectory(fullPath, exclusions);  // Recursively clean directories
+      cleanDirectory(fullPath, exclusions); // Recursively clean directories
     } else if (!exclusions.includes(file.name)) {
-      fs.unlinkSync(fullPath);  // Delete file if not in exclusions
+      fs.unlinkSync(fullPath); // Delete file if not in exclusions
       console.log(kleur.red(`  Deleted: `) + kleur.dim(`${fullPath}`));
     }
   });
@@ -469,11 +676,19 @@ function cleanDirectory(directory, exclusions) {
 // ========================= START of main script ===============================
 // ==============================================================================
 
-console.log(kleur.cyan('------------------------------------------------------------------------------'));
-console.log(kleur.magenta('API Documentation mdx pages Generation:'));
-console.log(kleur.cyan('------------------------------------------------------------------------------\n'));
+console.log(
+  kleur.cyan(
+    "------------------------------------------------------------------------------",
+  ),
+);
+console.log(kleur.magenta("API Documentation mdx pages Generation:"));
+console.log(
+  kleur.cyan(
+    "------------------------------------------------------------------------------\n",
+  ),
+);
 
-console.log('Cleaning up directory for API Documentation pages...');
+console.log("Cleaning up directory for API Documentation pages...");
 cleanDirectory(directoryToClean, filesToKeep);
 
 let mdxContent = "";
@@ -495,7 +710,8 @@ for (const categoryKey in jsonData) {
   let input = categoryKey.replace(/_/g, "-");
   const categoryFunctions = category.functions;
   let mdxContent = "";
-  name = input.split("-")
+  name = input
+    .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" "); //name of the category
   if (name == "Generative Ai") {
@@ -505,20 +721,22 @@ for (const categoryKey in jsonData) {
 
   mdxContent += "---\n";
   mdxContent += `title: ${name}\n`;
-  if (category.brief != "") { mdxContent += `description: ${category.brief.replace(/\n/g, '')}\n`; }
-  else { mdxContent += `description: Some description....\n`; }
+  if (category.brief != "") {
+    mdxContent += `description: ${category.brief.replace(/\n/g, "")}\n`;
+  } else {
+    mdxContent += `description: Some description....\n`;
+  }
 
   mdxContent += "---\n\n";
   if (category.brief != "") {
     if (categoryFunctions.description != null) {
       mdxContent += `:::tip[${category.brief}]\n`;
-      mdxContent += `${category.description}\n`
-      mdxContent += `:::\n`
-    }
-    else {
+      mdxContent += `${category.description}\n`;
+      mdxContent += `:::\n`;
+    } else {
       mdxContent += `:::tip[${name}]\n`;
-      mdxContent += `${category.brief}\n`
-      mdxContent += `:::\n`
+      mdxContent += `${category.brief}\n`;
+      mdxContent += `:::\n`;
     }
   }
   mdxContent += `\nimport { Code, Tabs, TabItem, LinkCard, CardGrid, LinkButton } from "@astrojs/starlight/components";\nimport Accordion from '../../../components/Accordion.astro'\n`;
@@ -543,31 +761,31 @@ for (const categoryKey in jsonData) {
     functionGroups[functionName].push(func);
   });
 
-
   for (const functionName in functionGroups) {
     const overloads = functionGroups[functionName];
     const isOverloaded = overloads.length > 1;
 
     const hasExampleInGroup = functionGroups[functionName].some((func) =>
       usageExamples.some((example) =>
-        example.startsWith(func.unique_global_name + "-1-example.txt")
-      )
+        example.startsWith(func.unique_global_name + "-1-example.txt"),
+      ),
     );
 
-    const hasExampleReferenceInGroup = functionGroups[functionName].some((func) =>
-      examplesCategories.some((category) =>
-        category.some((example) =>
-          example.functions.includes(func.unique_global_name)
-        )
-      )
+    const hasExampleReferenceInGroup = functionGroups[functionName].some(
+      (func) =>
+        examplesCategories.some((category) =>
+          category.some((example) =>
+            example.functions.includes(func.unique_global_name),
+          ),
+        ),
     );
 
     const hasGuideInGroup = functionGroups[functionName].some((func) =>
       guidesCategories.some((category) =>
         category.some((guide) =>
-          guide.functions.includes(func.unique_global_name)
-        )
-      )
+          guide.functions.includes(func.unique_global_name),
+        ),
+      ),
     );
 
     // Create a section for overloaded functions
@@ -576,16 +794,22 @@ for (const categoryKey in jsonData) {
         .split("_")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
-      const formattedLink = formattedFunctionName.toLowerCase().replace(/\s+/g, "-");
+      const formattedLink = formattedFunctionName
+        .toLowerCase()
+        .replace(/\s+/g, "-");
 
       // Put {</>} symbol at the end of header if function has a usage example
-      const hasSymbol = (hasExampleInGroup || hasGuideInGroup || hasExampleReferenceInGroup) ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;` : "";
+      const hasSymbol =
+        hasExampleInGroup || hasGuideInGroup || hasExampleReferenceInGroup
+          ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;`
+          : "";
       const formattedGroupLink = `${formattedLink}-functions`;
 
       mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink})${hasSymbol} \\{#${formattedGroupLink}\\}\n\n`;
 
       mdxContent += ":::note\n\n";
-      mdxContent += "This function is overloaded. The following versions exist:\n\n";
+      mdxContent +=
+        "This function is overloaded. The following versions exist:\n\n";
 
       overloads.forEach((func, index) => {
         mdxContent += `- [**${formattedFunctionName}** (`;
@@ -604,17 +828,29 @@ for (const categoryKey in jsonData) {
 
           mdxContent += `${paramName}: ${paramType}`;
           if (paramNumber < paramCount) {
-            mdxContent += ", "
+            mdxContent += ", ";
           }
           paramNumber++;
         }
-        const formattedUniqueLink = func.unique_global_name.toLowerCase().replace(/_/g, "-");
+        const formattedUniqueLink = func.unique_global_name
+          .toLowerCase()
+          .replace(/_/g, "-");
         mdxContent += `)](/api/${input}/#${formattedUniqueLink})`;
 
         // Put bolded {</>} symbol at the end of heading link if function has a usage example
-        const hasExample = usageExamples.some(example => example.startsWith(func.unique_global_name + "-1-example.txt"));
-        const hasGuide = guidesCategories.some((category) => category.some((guide) => guide.functions.includes(func.unique_global_name)));
-        const hasExampleReference = examplesCategories.some((category) => category.some((example) => example.functions.includes(func.unique_global_name)));
+        const hasExample = usageExamples.some((example) =>
+          example.startsWith(func.unique_global_name + "-1-example.txt"),
+        );
+        const hasGuide = guidesCategories.some((category) =>
+          category.some((guide) =>
+            guide.functions.includes(func.unique_global_name),
+          ),
+        );
+        const hasExampleReference = examplesCategories.some((category) =>
+          category.some((example) =>
+            example.functions.includes(func.unique_global_name),
+          ),
+        );
 
         if (hasExample || hasGuide || hasExampleReference) {
           mdxContent += "&nbsp;&nbsp;<strong>&lcub;&lt;/&gt;&rcub;</strong>";
@@ -628,7 +864,8 @@ for (const categoryKey in jsonData) {
 
     overloads.forEach((func, index) => {
       // Format the header based on whether it's overloaded or not
-      let functionName2 = functionName.split("_")
+      let functionName2 = functionName
+        .split("_")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
       const formattedName3 = func.name
@@ -637,11 +874,26 @@ for (const categoryKey in jsonData) {
         .join(" ");
 
       const formattedLink = formattedName3.toLowerCase().replace(/\s+/g, "-");
-      const formattedUniqueLink = func.unique_global_name.toLowerCase().replace(/_/g, "-");
-      const hasExample = usageExamples.some(example => example.startsWith(func.unique_global_name + "-1-example.txt"));
-      const hasGuide = guidesCategories.some((category) => category.some((guide) => guide.functions.includes(func.unique_global_name)));
-      const hasExampleReference = examplesCategories.some((category) => category.some((example) => example.functions.includes(func.unique_global_name)));
-      const hasSymbol = (hasExample || hasGuide || hasExampleReference) ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;` : "";
+      const formattedUniqueLink = func.unique_global_name
+        .toLowerCase()
+        .replace(/_/g, "-");
+      const hasExample = usageExamples.some((example) =>
+        example.startsWith(func.unique_global_name + "-1-example.txt"),
+      );
+      const hasGuide = guidesCategories.some((category) =>
+        category.some((guide) =>
+          guide.functions.includes(func.unique_global_name),
+        ),
+      );
+      const hasExampleReference = examplesCategories.some((category) =>
+        category.some((example) =>
+          example.functions.includes(func.unique_global_name),
+        ),
+      );
+      const hasSymbol =
+        hasExample || hasGuide || hasExampleReference
+          ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;`
+          : "";
       // Put {</>} symbol at the end of headers of overloaded functions with usage example or else just keep empty
       const formattedName = isOverloaded
         ? `\n#### [${functionName2}](#${formattedUniqueLink})${hasSymbol} \\{#${formattedUniqueLink}\\}`
@@ -653,18 +905,20 @@ for (const categoryKey in jsonData) {
         const typeMapping = typeMappings[typeName];
         description = description.replace(
           new RegExp(`\`\\b${typeName}\\b\``, "g"),
-          typeMapping
+          typeMapping,
         );
       }
 
       // Color boxes next to heading
-      if (functionName.startsWith("color_") && sk_colors.includes(functionName.replace("color_", ""))) {
-        mdxContent += `\n#### <span style="display:none;">${functionName2}</span>\n` // Added to fix links validator issue
+      if (
+        functionName.startsWith("color_") &&
+        sk_colors.includes(functionName.replace("color_", ""))
+      ) {
+        mdxContent += `\n#### <span style="display:none;">${functionName2}</span>\n`; // Added to fix links validator issue
         mdxContent += `${formattedName}`;
         const rgbValues = getColorRGBValues(functionName, jsonColors);
-        mdxContent += ` <div class='color-box' style="background:rgba${rgbValues}"></div>`
-      }
-      else {
+        mdxContent += ` <div class='color-box' style="background:rgba${rgbValues}"></div>`;
+      } else {
         mdxContent += `${formattedName}`;
       }
 
@@ -676,8 +930,11 @@ for (const categoryKey in jsonData) {
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(" ");
         const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-        const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
-        description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
+        const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
+        description = description.replace(
+          new RegExp(`\`\\b${names}\\b\``, "g"),
+          link,
+        );
         description = description.replaceAll("\n", " ");
       }
       mdxContent += description ? `${description}\n\n` : "";
@@ -694,7 +951,7 @@ for (const categoryKey in jsonData) {
         for (const paramName in func.parameters) {
           const param = func.parameters[paramName];
           let paramType = typeMappings[param.type] || param.type;
-          if (paramType == 'unsigned int') {
+          if (paramType == "unsigned int") {
             paramType = "`Unsigned Integer`";
           }
           let description2 = param.description || "";
@@ -703,7 +960,7 @@ for (const categoryKey in jsonData) {
 
             description2 = description2.replace(
               new RegExp(`\`\\b${typeName}\\b\``, "g"),
-              typeMapping
+              typeMapping,
             );
           }
 
@@ -713,8 +970,11 @@ for (const categoryKey in jsonData) {
               .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
               .join(" ");
             const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-            const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
-            description2 = description2.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
+            const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
+            description2 = description2.replace(
+              new RegExp(`\`\\b${names}\\b\``, "g"),
+              link,
+            );
             description2 = description2.replaceAll("\n", " ");
           }
 
@@ -724,11 +984,11 @@ for (const categoryKey in jsonData) {
         mdxContent += "\n";
         mdxContent += `</div>\n\n`;
       }
-      if (func.return.type == 'unsigned int') {
+      if (func.return.type == "unsigned int") {
         mdxContent += "**Return Type:** Unsigned Integer\n\n";
-      }
-      else if (func.return.type != 'void') {
-        mdxContent += "**Return Type:** " + typeMappings[func.return.type] + "\n\n";
+      } else if (func.return.type != "void") {
+        mdxContent +=
+          "**Return Type:** " + typeMappings[func.return.type] + "\n\n";
 
         mdxContent += "*Returns:* ";
         let returnDescription = func.return.description || "";
@@ -737,7 +997,7 @@ for (const categoryKey in jsonData) {
 
           returnDescription = returnDescription.replace(
             new RegExp(`\`\\b${typeName}\\b\``, "g"),
-            typeMapping
+            typeMapping,
           );
         }
 
@@ -745,21 +1005,24 @@ for (const categoryKey in jsonData) {
       }
 
       mdxContent += "**Signatures:**\n\n";
-      mdxContent += "<Tabs syncKey=\"code-language\">\n";
+      mdxContent += '<Tabs syncKey="code-language">\n';
 
       // Reorder Code tabs
       languageOrder.forEach((lang) => {
-        if (func.signatures[lang].length > 0 && func.signatures[lang] != undefined) {
+        if (
+          func.signatures[lang].length > 0 &&
+          func.signatures[lang] != undefined
+        ) {
           try {
-
-            const code = (Array.isArray(func.signatures[lang])) ? func.signatures[lang].join("\n") : func.signatures[lang];
+            const code = Array.isArray(func.signatures[lang])
+              ? func.signatures[lang].join("\n")
+              : func.signatures[lang];
             const languageLabel = languageLabelMappings[lang] || lang;
             mdxContent += `  <TabItem label="${languageLabel}">\n`;
-            mdxContent +=
-              "\n```" + lang + "\n" + code + '\n```\n\n';
+            mdxContent += "\n```" + lang + "\n" + code + "\n```\n\n";
             mdxContent += "  </TabItem>\n";
           } catch (e) {
-            console.log(e + " " + lang + " " + func.name)
+            console.log(e + " " + lang + " " + func.name);
           }
         }
       });
@@ -774,12 +1037,12 @@ for (const categoryKey in jsonData) {
             if (func.unique_global_name == used) {
               allGuides.push({
                 name: guide.name,
-                url: guide.url
+                url: guide.url,
               });
             }
-          })
-        })
-      })
+          });
+        });
+      });
 
       var limit = 0;
       let allExamples = [];
@@ -790,60 +1053,65 @@ for (const categoryKey in jsonData) {
               allExamples.push({
                 name: example.funcKey,
                 title: example.title,
-                url: example.url
-              })
-              limit++
+                url: example.url,
+              });
+              limit++;
             }
-          })
-        })
-      })
+          });
+        });
+      });
 
-      if ((allGuides.length > 0) || (allExamples.length > 0)) {
-
+      if (allGuides.length > 0 || allExamples.length > 0) {
         if (!usageHeading) {
           mdxContent += "**Usage:&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;**\n\n";
           usageHeading = true;
         }
-        mdxContent += `<Accordion title="See Implementations" uniqueID={${JSON.stringify(func.unique_global_name + "_guides")}} customButton="guidesAccordion">\n\n`
+        mdxContent += `<Accordion title="See Implementations" uniqueID={${JSON.stringify(func.unique_global_name + "_guides")}} customButton="guidesAccordion">\n\n`;
 
         if (allGuides.length > 0) {
-          mdxContent += `**Tutorials and Guides**:\n\n`
+          mdxContent += `**Tutorials and Guides**:\n\n`;
           allGuides.forEach((guide) => {
-            mdxContent += `- [${guide.name}](${guide.url})\n`
-          })
-          if (allExamples.length > 0)
-            mdxContent += "\n"
+            mdxContent += `- [${guide.name}](${guide.url})\n`;
+          });
+          if (allExamples.length > 0) mdxContent += "\n";
         }
         if (allExamples.length > 0) {
-          mdxContent += `**API Documentation Code Examples**:\n\n`
+          mdxContent += `**API Documentation Code Examples**:\n\n`;
           allExamples.forEach((example) => {
             const exampleName = getGroupName(jsonData, example.name);
-            mdxContent += `- [${exampleName}](${example.url}): ${example.title}\n`
-          })
+            mdxContent += `- [${exampleName}](${example.url}): ${example.title}\n`;
+          });
         }
 
-        mdxContent += `\n`
+        mdxContent += `\n`;
 
-        mdxContent += `</Accordion>\n\n`
+        mdxContent += `</Accordion>\n\n`;
       }
 
       let linked = false;
       usageExamples.forEach((example) => {
-        if (func.unique_global_name == example.split('-')[0]) {
+        if (func.unique_global_name == example.split("-")[0]) {
           if (!usageHeading) {
             mdxContent += "**Usage:&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;**\n\n";
             usageHeading = true;
           }
-          mdxContent += getUsageExampleImports(categoryKey, example.replace(".txt", ""));
+          mdxContent += getUsageExampleImports(
+            categoryKey,
+            example.replace(".txt", ""),
+          );
           if (!linked) {
             // Import code files
             mdxContent += `<Accordion title="See Code Examples" uniqueID={${JSON.stringify(func.unique_global_name + "_example")}} customButton="usageExamplesAccordion">\n\n`;
             linked = true;
           }
 
-          mdxContent += getUsageExampleContent(jsonData, categoryKey, func.name, example);
+          mdxContent += getUsageExampleContent(
+            jsonData,
+            categoryKey,
+            func.name,
+            example,
+          );
           mdxContent += `\n`;
-
         }
       });
       if (linked) {
@@ -852,7 +1120,6 @@ for (const categoryKey in jsonData) {
       }
 
       mdxContent += "---\n"; // Add --- after each function ends
-
     });
   }
   let allTypes = [];
@@ -882,7 +1149,10 @@ for (const categoryKey in jsonData) {
         let description = type.description || "";
         for (const typeName in typeMappings) {
           const typeMapping = typeMappings[typeName];
-          description = description.replace(new RegExp(`\`\\b${typeName}\\b\``, "g"), typeMapping);
+          description = description.replace(
+            new RegExp(`\`\\b${typeName}\\b\``, "g"),
+            typeMapping,
+          );
         }
 
         for (const names of functionNames) {
@@ -891,9 +1161,12 @@ for (const categoryKey in jsonData) {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
           const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
+          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
 
-          description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
+          description = description.replace(
+            new RegExp(`\`\\b${names}\\b\``, "g"),
+            link,
+          );
         }
 
         // If it's a struct, add a table for its fields
@@ -912,7 +1185,7 @@ for (const categoryKey in jsonData) {
               const typeMapping = typeMappings[typeName];
               fieldDescription = fieldDescription.replace(
                 new RegExp(`\`\\b${typeName}\\b\``, "g"),
-                typeMapping
+                typeMapping,
               );
             }
             for (const names of functionNames) {
@@ -920,12 +1193,17 @@ for (const categoryKey in jsonData) {
                 .split("_")
                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(" ");
-              const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-              const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
-              description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
+              const formattedLink = normalName
+                .toLowerCase()
+                .replace(/\s+/g, "-");
+              const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
+              description = description.replace(
+                new RegExp(`\`\\b${names}\\b\``, "g"),
+                link,
+              );
             }
 
-            mdxContent += `| ${fieldName} | ${fieldType} | ${fieldDescription.replace(/\n/g, '')} |\n`;
+            mdxContent += `| ${fieldName} | ${fieldType} | ${fieldDescription.replace(/\n/g, "")} |\n`;
           }
 
           mdxContent += "\n";
@@ -933,7 +1211,10 @@ for (const categoryKey in jsonData) {
 
         for (const typeName in typeMappings) {
           const typeMapping = typeMappings[typeName];
-          description = description.replace(new RegExp(`\`\\b${typeName}\\b\``, "g"), typeMapping);
+          description = description.replace(
+            new RegExp(`\`\\b${typeName}\\b\``, "g"),
+            typeMapping,
+          );
         }
         for (const names of functionNames) {
           const normalName = names
@@ -941,29 +1222,35 @@ for (const categoryKey in jsonData) {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ");
           const formattedLink = normalName.toLowerCase().replace(/\s+/g, "-");
-          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`
-          description = description.replace(new RegExp(`\`\\b${names}\\b\``, "g"), link);
+          const link = `[\`${normalName}\`](/api/${input}/#${formattedLink})`;
+          description = description.replace(
+            new RegExp(`\`\\b${names}\\b\``, "g"),
+            link,
+          );
         }
         description = description.replaceAll("\n\n\n", "\n\n");
         mdxContent += `${description}\n\n`;
 
         // If it's an enum, add a table for its constants
         if (type.constants) {
-          mdxContent += "<Tabs syncKey=\"code-language\">\n";
+          mdxContent += '<Tabs syncKey="code-language">\n';
 
           // Build constantsData from type.constants so that they remain the same in all tabs
           const constantsData = {};
           Object.keys(type.constants).forEach((constantName) => {
             const constant = type.constants[constantName];
             constantsData[constantName] = {
-              description: constant.description.replace(/\n/g, '') || "No description" // If description is undefined, display "No description"
+              description:
+                constant.description.replace(/\n/g, "") || "No description", // If description is undefined, display "No description"
             };
           });
 
           // Iterate over each language
-          languageOrder.forEach(lang => {
+          languageOrder.forEach((lang) => {
             if (type.signatures[lang]) {
-              const signature = Array.isArray(type.signatures[lang]) ? type.signatures[lang].join("\n") : type.signatures[lang];
+              const signature = Array.isArray(type.signatures[lang])
+                ? type.signatures[lang].join("\n")
+                : type.signatures[lang];
               const enumValues = extractEnumValues(signature, lang);
 
               // Build the mapping so that each constant has its own name, but the description remains the same
@@ -996,14 +1283,15 @@ for (const categoryKey in jsonData) {
     });
   }
 
-
   // Replace spaces with underscores in the name
-  const formattedName = name.replace(/\s+/g, '-');
+  const formattedName = name.replace(/\s+/g, "-");
 
   // Write the MDX file
   try {
     fs.writeFileSync(`./src/content/docs/api/${formattedName}.mdx`, mdxContent);
-    console.log(kleur.yellow('  Generated: ') + kleur.green(`${formattedName}.mdx`));
+    console.log(
+      kleur.yellow("  Generated: ") + kleur.green(`${formattedName}.mdx`),
+    );
   } catch (err) {
     success = false;
     console.log(kleur.red(`Error writing ${input} MDX file: ${err.message}`));
@@ -1012,5 +1300,7 @@ for (const categoryKey in jsonData) {
 }
 // Check if all MDX files generated successfully
 if (success) {
-  console.log(kleur.green("\nAll API Documentation MDX files generated successfully.\n"));
+  console.log(
+    kleur.green("\nAll API Documentation MDX files generated successfully.\n"),
+  );
 }

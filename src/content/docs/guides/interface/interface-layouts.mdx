@@ -165,9 +165,10 @@ close_all_windows()
 Let's add a panel now! Adding a panel takes two lines of code:
 
 1. First we begin the panel with [Start Panel](/api/interface/#start-panel), which takes a name for the panel, and a rectangle for its _initial_ position.
-    For example `start_panel("My panel", rectangle_from(50,50,200,100))` creates a panel with the title "My panel", that appears close to the top-left corner (50,50), and a width and height of 200 by 100.
+   For example `start_panel("My panel", rectangle_from(50,50,200,100))` creates a panel with the title "My panel", that appears close to the top-left corner (50,50), and a width and height of 200 by 100.
 
-    After this we can place all the UI elements that should go on the panel, just like we were!
+   After this we can place all the UI elements that should go on the panel, just like we were!
+
 2. Then once we're done, we need to end the panel with [End Panel](/api/interface/#end-panel), where we just give it the same name (so for example `end_panel("My panel")`).
 
 One **really important** thing to note here is that [Start Panel](/api/interface/#start-panel) _returns_ whether the panel is visible or not, so we need to make sure to check this as well, and only create elements and end the panel `if` the panel is open, like so:
@@ -243,10 +244,10 @@ Just testing the code above will give us this! We can already drag around and re
 Most of the layout elements, like [Panel](/api/interface/#start-panel), [Popup](/api/interface/#start-popup), and [Treenode](/api/interface/#start-treenode) work the same way.
 
 1. We _start_ them, and possibly check if they're open or closed. We also give them a _name_.
-    (e.g `if (start_panel("myPanel", ...))`, `if (start_treenode("myTreenode", ...))`)
+   (e.g `if (start_panel("myPanel", ...))`, `if (start_treenode("myTreenode", ...))`)
 2. We add our elements
 3. Finally we _end_ them, using the same name.
-    (e.g `end_panel("myPanel")`, `end_treenode("myTreenode")`)
+   (e.g `end_panel("myPanel")`, `end_treenode("myTreenode")`)
 
 :::
 
@@ -444,9 +445,9 @@ while (not quit_requested()):
         # create the elements, just like last tutorial!
         if button("Write To Terminal!"):
             write_line(user_message)
-            
+
         user_message = text_box(user_message)
-        
+
         # end the panel
         end_panel("My panel")
 
@@ -473,14 +474,14 @@ Another useful thing you can do now is add _labels_ to your elements. You can do
 :::note[SplashKit Interfaces]
 Here's a quick rundown of common element functions:
 
-| Without Label                 | With Label                              |
-|-------------------------------|-----------------------------------------|
-|boolean button(text)           | boolean button("Label:", text)          |
-|boolean checkbox(text, state)  | boolean checkbox("Label:", text, state) |
-|number slider(value, min, max) | number slider("Label:", value, min, max)|
-|string text_box(text)          | string text_box("Label:", text)         |
+| Without Label                  | With Label                               |
+| ------------------------------ | ---------------------------------------- |
+| boolean button(text)           | boolean button("Label:", text)           |
+| boolean checkbox(text, state)  | boolean checkbox("Label:", text, state)  |
+| number slider(value, min, max) | number slider("Label:", value, min, max) |
+| string text_box(text)          | string text_box("Label:", text)          |
 
--------------------------------------------
+---
 
 See the [API](/api/interface/) for more functions!
 :::
@@ -697,7 +698,7 @@ if (start_treenode("Some more buttons!"))
 
       end_treenode("Some more buttons!");
   }
-  ```
+```
 
 </TabItem>
 <TabItem label="C#">
@@ -781,13 +782,13 @@ if start_treenode("Some buttons!"):
     if (button("Button 3!")):
         write_line("Button 3 clicked!")
     end_treenode("Some buttons!")
-        
+
 if start_treenode("Some more buttons!"):
     if (button("Button 4!")):
         write_line("Button 4 clicked!")
     if (button("Button 5!")):
         write_line("Button 5 clicked!")
-    
+
     if start_treenode("Buttons in buttons!!"):
         if (button("Button 6!")):
             write_line("Button 6 clicked!")
@@ -811,14 +812,14 @@ To start, we need to call [Start Custom Layout](/api/interface/#start-custom-lay
 :::note[SplashKit Interfaces]
 Here's a rundown of common layout functions:
 
-| Name | Description|
-|---------------|-----------|
-|[Split Into Columns](/api/interface/#split-into-columns)(count) | Splits the current row into equal sized columns - this is how many elements you can place on the one row |
-|[Single Line Layout](/api/interface/#single-line-layout)() | Just place _all_ elements on a single row with their default size |
-|[Add Column](/api/interface/#add-column)(width) | Adds a single column of a specific width in pixels |
-|[Add Column Relative](/api/interface/#add-column-relative)(width) | Adds a single column of a specific width _relative_ to the total width (a value between 0 and 1)|
+| Name                                                              | Description                                                                                              |
+| ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [Split Into Columns](/api/interface/#split-into-columns)(count)   | Splits the current row into equal sized columns - this is how many elements you can place on the one row |
+| [Single Line Layout](/api/interface/#single-line-layout)()        | Just place _all_ elements on a single row with their default size                                        |
+| [Add Column](/api/interface/#add-column)(width)                   | Adds a single column of a specific width in pixels                                                       |
+| [Add Column Relative](/api/interface/#add-column-relative)(width) | Adds a single column of a specific width _relative_ to the total width (a value between 0 and 1)         |
 
--------------------------------------------
+---
 
 You'll usually want to use the first two, while the bottom two can be used for more custom layouts.
 

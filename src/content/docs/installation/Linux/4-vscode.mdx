@@ -6,7 +6,12 @@ sidebar:
   order: 4
 ---
 
-import { Steps, Tabs, TabItem, LinkButton } from "@astrojs/starlight/components";
+import {
+  Steps,
+  Tabs,
+  TabItem,
+  LinkButton,
+} from "@astrojs/starlight/components";
 
 [Visual Studio Code](https://code.visualstudio.com/) is a versatile, user-friendly source code editor that supports extensions for multiple languages, including C#, C++ and python. Follow these steps to install Visual Studio Code on Linux and set up the necessary extensions.
 
@@ -19,32 +24,31 @@ import { Steps, Tabs, TabItem, LinkButton } from "@astrojs/starlight/components"
 
 1. **Download Visual Studio Code**
 
-    Visit the [Visual Studio Code download page](https://code.visualstudio.com/) and select the `.deb` package for Ubuntu/Debian systems. This will download the installer to your default `Downloads` folder.
+   Visit the [Visual Studio Code download page](https://code.visualstudio.com/) and select the `.deb` package for Ubuntu/Debian systems. This will download the installer to your default `Downloads` folder.
 
-    ![Downloading Visual Studio Code for Ubuntu](/gifs/linux/download-vsc.gif)
+   ![Downloading Visual Studio Code for Ubuntu](/gifs/linux/download-vsc.gif)
 
 2. **Open a Terminal**
 
-    Open a terminal on your system:
-
-    - Use the application menu to find "Terminal."
-    - Or press `Ctrl + Alt + T` as a shortcut on most Ubuntu systems.
+   Open a terminal on your system:
+   - Use the application menu to find "Terminal."
+   - Or press `Ctrl + Alt + T` as a shortcut on most Ubuntu systems.
 
 3. **Navigate to the Download Location**
 
-    By default, downloaded files are saved in the `~/Downloads` directory. Navigate there using:
+   By default, downloaded files are saved in the `~/Downloads` directory. Navigate there using:
 
-    ```shell
-    cd ~/Downloads
-    ```
+   ```shell
+   cd ~/Downloads
+   ```
 
-    Then run the following command to install Visual Studio Code:
+   Then run the following command to install Visual Studio Code:
 
-    ```shell
-    sudo dpkg -i code_1.*.deb
-    ```
+   ```shell
+   sudo dpkg -i code_1.*.deb
+   ```
 
-    ![Installing Visual Studio Code on Ubuntu](/gifs/linux/install-vsc.gif)
+   ![Installing Visual Studio Code on Ubuntu](/gifs/linux/install-vsc.gif)
 
 </Steps>
 
@@ -57,23 +61,23 @@ For Arch Linux, you have two primary installation options:
 
 1. **Install the Proprietary Visual Studio Code Binary from the AUR (preferred option)**
 
-    This version includes Microsoft branding and telemetry, it's maintained by the Arch User Repository (AUR). Install it with:
+   This version includes Microsoft branding and telemetry, it's maintained by the Arch User Repository (AUR). Install it with:
 
-    ```shell
-    yay -S visual-studio-code-bin
-    ```
+   ```shell
+   yay -S visual-studio-code-bin
+   ```
 
-    *Note:* If `yay` is not installed, you can use another AUR helper (such as `paru`) or follow the [AUR manual installation instructions](https://wiki.archlinux.org/title/Arch_User_Repository#Installing_and_upgrading_packages).
+   _Note:_ If `yay` is not installed, you can use another AUR helper (such as `paru`) or follow the [AUR manual installation instructions](https://wiki.archlinux.org/title/Arch_User_Repository#Installing_and_upgrading_packages).
 
 2. **Install the Official Open-Source Version (Code - OSS)**
 
-    The open-source version of Visual Studio Code is available directly from the Arch community repositories.
+   The open-source version of Visual Studio Code is available directly from the Arch community repositories.
 
-    Install it using:
+   Install it using:
 
-    ```shell
-    sudo pacman -S code
-    ```
+   ```shell
+   sudo pacman -S code
+   ```
 
 </Steps>
 
@@ -84,34 +88,34 @@ For Arch Linux, you have two primary installation options:
 
 1. **Add the Repository**
 
-    Open a terminal and add the Visual Studio Code repository and GPG key using the following commands:
+   Open a terminal and add the Visual Studio Code repository and GPG key using the following commands:
 
-    ```shell
-    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-    echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
-    ```
+   ```shell
+   sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+   echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+   ```
 
 2. **Update the Package Cache**
 
-    Update the package cache to ensure your system recognizes the new repository:
+   Update the package cache to ensure your system recognizes the new repository:
 
-    ```shell
-    dnf check-update
-    ```
+   ```shell
+   dnf check-update
+   ```
 
 3. **Install Visual Studio Code**
 
-    For Fedora 22 and newer, install Visual Studio Code using:
+   For Fedora 22 and newer, install Visual Studio Code using:
 
-    ```shell
-    sudo dnf install code
-    ```
+   ```shell
+   sudo dnf install code
+   ```
 
-    For older systems, use:
+   For older systems, use:
 
-    ```shell
-    sudo yum install code
-    ```
+   ```shell
+   sudo yum install code
+   ```
 
 </Steps>
 
@@ -153,8 +157,20 @@ To add these extensions within Visual Studio Code:
 
 Install the following C# extensions directly from the Visual Studio Marketplace:
 
-<LinkButton icon="external" href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" target="_blank">C#</LinkButton>
-<LinkButton icon="external" href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit" target="_blank">C# Dev Kit</LinkButton>
+<LinkButton
+  icon="external"
+  href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp"
+  target="_blank"
+>
+  C#
+</LinkButton>
+<LinkButton
+  icon="external"
+  href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit"
+  target="_blank"
+>
+  C# Dev Kit
+</LinkButton>
 
 </TabItem>
 </Tabs>
@@ -185,7 +201,13 @@ To add the C++ extension within Visual Studio Code:
 
 Install the C++ Extension Pack for comprehensive C++ support:
 
-<LinkButton icon="external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack" target="_blank">C++ Extension Pack</LinkButton>
+<LinkButton
+  icon="external"
+  href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack"
+  target="_blank"
+>
+  C++ Extension Pack
+</LinkButton>
 
 </TabItem>
 </Tabs>
@@ -216,7 +238,13 @@ To install the Python extension within Visual Studio Code:
 
 For Python support, install the Python extension from the Visual Studio Marketplace:
 
-<LinkButton icon="external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank">Python</LinkButton>
+<LinkButton
+  icon="external"
+  href="https://marketplace.visualstudio.com/items?itemName=ms-python.python"
+  target="_blank"
+>
+  Python
+</LinkButton>
 
 </TabItem>
 </Tabs>
@@ -229,6 +257,8 @@ Congratulations! You've completed the setup of everything you need to get starte
 
 You can find more information about compiling and running SplashKit programs in the link below:
 
-<LinkButton icon="open-book" href="/guides#using-splashkit">Using SplashKit</LinkButton>
+<LinkButton icon="open-book" href="/guides#using-splashkit">
+  Using SplashKit
+</LinkButton>
 
 :::

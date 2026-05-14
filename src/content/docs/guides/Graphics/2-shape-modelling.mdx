@@ -16,13 +16,14 @@ _Last updated: {frontmatter.lastupdated}_
 
 In this guide, you’ll learn how to create and manage graphics in SplashKit, including shape creation, movement, resizing, and connecting shapes with lines.
 
-
 ## Graphics creation and Management
+
 In this section, we'll detail how to implement the shape creation and management functionality using design patterns and code examples.
 
-
 ### Model Design
+
 We start by defining a ShapeModel structure to represent various basic shapes. This model holds attributes like position, size, color, and shape type.
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -36,6 +37,7 @@ struct ShapeModel
     string type;          // Shape type (Rectangle, Circle, Triangle, etc.)
 };
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -52,6 +54,7 @@ public struct ShapeModel
     public string type;            // Shape type (Rectangle, Circle, Triangle, etc.)
 }
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -65,6 +68,7 @@ public struct ShapeModel
     public string type;            // Shape type (Rectangle, Circle, Triangle, etc.)
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -83,12 +87,15 @@ class ShapeModel:
         self.type = ""          # Shape type (Rectangle, Circle, Triangle, etc.)
 
 ```
+
 </TabItem>
 </Tabs>
 The `ShapeModel` can represent various shapes like rectangles, triangles, etc. The `type` field is used to distinguish between different shapes, allowing the correct drawing function to be called during rendering.
 
 ### Shape Creation
+
 The code simulates the user selecting a graphic and placing it on the canvas. When the user clicks on the canvas, the code creates a new graphic at the mouse position based on the preset shape type
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -105,6 +112,7 @@ if (mouse_clicked(LEFT_BUTTON))
     shapes.push_back(new_shape);   // Add the new shape to the shapes container
 }
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -125,6 +133,7 @@ if (MouseClicked(MouseButton.LeftButton))
     shapes.Add(newShape);   // Add the new shape to the shapes container
 }
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -142,6 +151,7 @@ if (SplashKit.MouseClicked(MouseButton.LeftButton))
     shapes.Add(newShape);   // Add the new shape to the shapes container
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -159,11 +169,14 @@ if mouse_clicked(left_button):
     new_shape.type = "Rectangle"  # Set default type to Rectangle
     shapes.append(new_shape)   # Add the new shape to the shapes container
 ```
+
 </TabItem>
 </Tabs>
 
 ### Shape Management and Rendering
+
 We can manage rendering by iterating through the shape collection and calling the appropriate drawing function based on the shape’s type.
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -177,6 +190,7 @@ for (int i = 0; i < shapes.size(); i++)
 
 refresh_screen(60);
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -193,6 +207,7 @@ for (int i = 0; i < shapes.Count; i++)
 
 RefreshScreen(60);
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -206,6 +221,7 @@ for (int i = 0; i < shapes.Count; i++)
 
 SplashKit.RefreshScreen(60);
 ```
+
 </TabItem>
 </Tabs>
 
@@ -221,10 +237,12 @@ for i in range(len(shapes)):
 
 refresh_screen(60)
 ```
+
 </TabItem>
 </Tabs>
 
-###  Code example
+### Code example
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -275,6 +293,7 @@ int main()
     return 0;
 }
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -328,6 +347,7 @@ CloseAllWindows();
 
 
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -383,6 +403,7 @@ namespace ShapeModelling
 }
 
 ```
+
 </TabItem>
 </Tabs>
 
@@ -429,15 +450,17 @@ while not window_close_requested_named("Drawing Test"):
 close_all_windows()
 
 ```
+
 </TabItem>
 </Tabs>
 
+## Graphical operations
 
-## Graphical operations 
 In this section, we’ll discuss how to handle the selection and movement of shapes. The code is designed to allow users to select shapes, move them around the canvas, and resize them. This approach makes the code more modular, easier to maintain, and extend.
 
 ### Detect Shape Selection
-  First, we need to determine which shape the user has clicked on. This is achieved by checking if the mouse click position falls within the bounds of any existing shape. The `get_shape_at()` function is used to detect whether the mouse click is within a shape, allowing the program to identify which shape, if any, the user has selected.
+
+First, we need to determine which shape the user has clicked on. This is achieved by checking if the mouse click position falls within the bounds of any existing shape. The `get_shape_at()` function is used to detect whether the mouse click is within a shape, allowing the program to identify which shape, if any, the user has selected.
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
@@ -452,9 +475,10 @@ ShapeModel* get_shape_at(vector<ShapeModel>& shapes, double x, double y)
             return &shapes[i];
         }
     }
-    return nullptr; 
+    return nullptr;
 }
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -474,6 +498,7 @@ ShapeModel? GetShapeAt(List<ShapeModel> shapes, double x, double y)
     return null;
 }
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -490,6 +515,7 @@ public static ShapeModel? GetShapeAt(List<ShapeModel> shapes, double x, double y
     return null;
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -503,12 +529,13 @@ def get_shape_at(shapes, x, y):
             return shapes[i]
     return None
 ```
+
 </TabItem>
 </Tabs>
 
-
 ### Dragging Shapes
-  Once a shape is selected, the user can drag it by moving the mouse. This is done by updating the shape's x and y coordinates to follow the mouse's movement. The `is_moving` flag is used to distinguish between creating a new shape and moving an existing shape.
+
+Once a shape is selected, the user can drag it by moving the mouse. This is done by updating the shape's x and y coordinates to follow the mouse's movement. The `is_moving` flag is used to distinguish between creating a new shape and moving an existing shape.
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
@@ -520,6 +547,7 @@ if (is_moving && selected_shape != nullptr)
     selected_shape->y = mouse_y() - selected_shape->height / 2;
 }
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -537,6 +565,7 @@ if (isMoving && selectedShape != null)
     selectedShape = s;
 }
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -547,6 +576,7 @@ if (isMoving && selectedShape != null)
     selectedShape.y = SplashKit.MouseY() - selectedShape.height / 2;
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -558,6 +588,7 @@ if is_moving and selected_shape is not None:
     selected_shape.x = mouse_x() - selected_shape.width / 2
     selected_shape.y = mouse_y() - selected_shape.height / 2
 ```
+
 </TabItem>
 </Tabs>
   
@@ -575,6 +606,7 @@ if (is_resizing && selected_shape != nullptr)
 }
 
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -592,6 +624,7 @@ if (isResizing && selectedShape != null)
     selectedShape = s;
 }
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -602,6 +635,7 @@ if (isResizing && selectedShape != null)
     selectedShape.height = SplashKit.MouseY() - selectedShape.y;
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -613,13 +647,16 @@ if is_resizing and selected_shape is not None:
     selected_shape.width = mouse_x() - selected_shape.x
     selected_shape.height = mouse_y() - selected_shape.y
 ```
+
 </TabItem>
 </Tabs>
 
 ### Final Shape Position
- When the user releases the mouse button, the dragging or resizing operation stops, and the shape's final position or size is confirmed.
 
-###  Code example
+When the user releases the mouse button, the dragging or resizing operation stops, and the shape's final position or size is confirmed.
+
+### Code example
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -725,6 +762,7 @@ int main()
     return 0;
 }
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -840,6 +878,7 @@ public struct ShapeModel
 }
 
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -952,6 +991,7 @@ namespace ShapeModelling
 }
 
 ```
+
 </TabItem>
 </Tabs>
 
@@ -1032,23 +1072,28 @@ while not window_close_requested_named("Drawing Test"):
 close_all_windows()
 
 ```
+
 </TabItem>
 </Tabs>
 
-## Wiring function 
+## Wiring function
 
 In this section, we’ll add connection lines so users can visually link two shapes. Here’s how to implement it.
 
 In this feature, we use the `state mode` to handle the connections between shapes. State mode allows us to perform different operations in different states, such as connection mode and normal mode. Encapsulating the connection state in a class or function makes the process clearer and allows easy switching between modes.
 
 ### Define the Shape Model
+
 We first define a basic shape structure `ShapeModel`, which contains properties such as `x`, `y` coordinates, `width`, `height`, color, and type.
 
 ### Mouse Interaction with Shapes
+
 We use the `get_shape_at` function to detect whether the mouse is over a shape. It loops through the list of shapes and checks if the mouse coordinates fall within any shape's boundaries.
 
 ### Activate Connection Mode
+
 To start connecting shapes, we press the **C key**. This switches the program into connection mode, allowing the user to choose two shapes to connect with a line.
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -1059,6 +1104,7 @@ if (key_down(C_KEY) && !is_connecting)
     connection_start = nullptr;
 }
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -1072,6 +1118,7 @@ if (KeyDown(KeyCode.CKey) && !isConnecting)
     connectionStart = null;
 }
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -1082,6 +1129,7 @@ if (SplashKit.KeyDown(KeyCode.CKey) && !isConnecting)
     connectionStart = null;
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -1093,10 +1141,12 @@ if key_down(KeyCode.c_key) and not is_connecting:
         is_connecting = True
         connection_start = None
 ```
+
 </TabItem>
 </Tabs>
 
 ### Set Start and End Points for Connection
+
 While in connection mode, when the user clicks on a shape, it records the starting point (`connection_start`). The next click sets the end point (`connection_end`). Once both are selected, a connection is stored.
 
 <Tabs syncKey="code-language">
@@ -1124,6 +1174,7 @@ if (is_connecting)
     }
 }
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -1153,6 +1204,7 @@ if (isConnecting)
     }
 }
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -1179,6 +1231,7 @@ if (isConnecting)
     }
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -1198,11 +1251,14 @@ if is_connecting:
                 is_connecting = False
                 connection_start = None
 ```
+
 </TabItem>
 </Tabs>
 
 ### Draw Lines between Shapes
+
 Using the `draw_line` function, we draw lines between the center points of the two selected shapes. This line is visually updated in real time during the connection process.
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -1213,6 +1269,7 @@ for (int i = 0; i < connections.size(); i++)
 }
 
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -1225,6 +1282,7 @@ for (int i = 0; i < connections.Count; i++)
     DrawLine(ColorRed(), connections[i].start.x + connections[i].start.width / 2, connections[i].start.y + connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2);
 }
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -1234,6 +1292,7 @@ for (int i = 0; i < connections.Count; i++)
     SplashKit.DrawLine(Color.Red, connections[i].start.x + connections[i].start.width / 2, connections[i].start.y + connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2);
 }
 ```
+
 </TabItem>
 </Tabs>
 
@@ -1245,15 +1304,18 @@ for i in range(len(connections)):
     draw_line(color_red(), connections[i].start.x + connections[i].start.width / 2, connections[i].start.y +
                 connections[i].start.height / 2, connections[i].end.x + connections[i].end.width / 2, connections[i].end.y + connections[i].end.height / 2)
 ```
+
 </TabItem>
 </Tabs>
 
 ### Exit Connection Mode
+
 After a connection is drawn, the program exits connection mode and returns to normal interaction.
 
 This implementation creates an intuitive and interactive way for users to connect shapes, simulating links between objects.
 
-###  Code example
+### Code example
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -1405,6 +1467,7 @@ int main()
     return 0;
 }
 ```
+
 </TabItem>
 <TabItem label="C#">
 
@@ -1556,6 +1619,7 @@ public class Connection
 }
 
 ```
+
 </TabItem>
 <TabItem label="Object-Oriented">
 
@@ -1712,6 +1776,7 @@ namespace ShapeModelling
 }
 
 ```
+
 </TabItem>
 </Tabs>
 
@@ -1821,7 +1886,6 @@ while not window_close_requested_named("Drawing Test"):
     refresh_screen_with_target_fps(60)
 
 ```
+
 </TabItem>
 </Tabs>
-
-

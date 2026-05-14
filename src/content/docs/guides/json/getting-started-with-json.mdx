@@ -213,7 +213,7 @@ int main()
     }
 
     free_json(game_data);
-    
+
     return 0;
 }
 ```
@@ -572,7 +572,7 @@ int main()
         write("Got level: ");
         write_line(levels[i]);
     }
-    
+
     // Extract the nested JSON objects
     json game_screen_size = json_read_object(game_data, "screenSize");
     int width = json_read_number_as_int(game_screen_size, "width");
@@ -860,7 +860,8 @@ json_set_number(screen_size_data, "width", 800);
 json_set_number(screen_size_data, "height", 600);
 
 json_set_object(new_game_data, "screenSize", screen_size_data);
-```
+
+````
 
 </TabItem>
 <TabItem label="C#">
@@ -875,7 +876,7 @@ JsonSetNumber(screenSizeData, "width", 800);
 JsonSetNumber(screenSizeData, "height", 600);
 
 JsonSetObject(newGameData, "screenSize", screenSizeData);
-```
+````
 
 </TabItem>
 <TabItem label="Object-Oriented">
@@ -963,7 +964,7 @@ By combining all these examples we can create the full program shown below.
 ```cpp
 #include "splashkit.h"
 
-int main() 
+int main()
 {
     json new_game_data = create_json();
 
@@ -1109,18 +1110,14 @@ Running this program results in a file named `new_game_data.json` being written 
 
 ```json
 {
-    "numPlayers": 1,
-    "fullScreenMode": false,
-    "gameTitle": "My New Game",
-    "levels": [
-        "level1",
-        "level2",
-        "level3"
-    ],
-    "screenSize": {
-        "height": 600,
-        "width": 800
-    }
+  "numPlayers": 1,
+  "fullScreenMode": false,
+  "gameTitle": "My New Game",
+  "levels": ["level1", "level2", "level3"],
+  "screenSize": {
+    "height": 600,
+    "width": 800
+  }
 }
 ```
 
@@ -1254,26 +1251,22 @@ Next we load the game data we saved previously, add our `player_data` object to 
 
 ```json
 {
-    "character": {
-        "name": "Hero",
-        "stats": {
-            "health": 100,
-            "mana": 50,
-            "strength": 75
-        }
-    },
-    "fullScreenMode": false,
-    "numPlayers": 1,
-    "gameTitle": "My New Game",
-    "levels": [
-        "levels1",
-        "levels2",
-        "levels3"
-    ],
-    "screenSize": {
-        "height": 600,
-        "width": 800
+  "character": {
+    "name": "Hero",
+    "stats": {
+      "health": 100,
+      "mana": 50,
+      "strength": 75
     }
+  },
+  "fullScreenMode": false,
+  "numPlayers": 1,
+  "gameTitle": "My New Game",
+  "levels": ["levels1", "levels2", "levels3"],
+  "screenSize": {
+    "height": 600,
+    "width": 800
+  }
 }
 ```
 

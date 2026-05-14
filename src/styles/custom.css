@@ -6,7 +6,7 @@
 :root {
   --purple-hsl: 255, 60%, 60%;
   --overlay-blurple: hsla(var(--purple-hsl), 0.2);
-  --sk-logo-dark-blue: #3E50B1;
+  --sk-logo-dark-blue: #3e50b1;
   /* --sk-logo-blue: #03ACC2; */
   --sk-logo-blue: rgba(1, 172, 194, 1);
   --sk-logo-blue-transparent: rgba(1, 172, 194, 0.18);
@@ -16,8 +16,8 @@
 }
 
 /* Light mode colors. */
-:root[data-theme='light'] {
-  --sl-color-accent: #3D50f5;
+:root[data-theme="light"] {
+  --sl-color-accent: #3d50f5;
 }
 
 .hero {
@@ -30,9 +30,12 @@
 }
 
 [data-has-hero] .page {
-  background: linear-gradient(215deg, var(--overlay-blurple), transparent 40%),
-    radial-gradient(var(--overlay-blurple), transparent 40%) no-repeat -60vw -40vh / 105vw 200vh,
-    radial-gradient(var(--overlay-blurple), transparent 65%) no-repeat 50% calc(100% + 20rem) / 60rem 30rem;
+  background:
+    linear-gradient(215deg, var(--overlay-blurple), transparent 40%),
+    radial-gradient(var(--overlay-blurple), transparent 40%)
+      no-repeat -60vw -40vh / 105vw 200vh,
+    radial-gradient(var(--overlay-blurple), transparent 65%) no-repeat 50%
+      calc(100% + 20rem) / 60rem 30rem;
 }
 
 [data-has-hero] header {
@@ -42,7 +45,7 @@
   backdrop-filter: blur(16px);
 }
 
-[data-has-hero] .hero>img {
+[data-has-hero] .hero > img {
   filter: drop-shadow(0 0 3rem var(--overlay-blurple));
 }
 
@@ -51,7 +54,7 @@ iframe[id="stackblitz-iframe"] {
   min-height: 600px;
 }
 
-[data-has-hero] .hero>div.sl-flex {
+[data-has-hero] .hero > div.sl-flex {
   align-self: flex-start;
 }
 
@@ -327,7 +330,9 @@ code {
   color: var(--icon-color);
   /* Use the defined icon color */
   font-weight: bold;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
   /* Smooth transition for icon change */
 }
 

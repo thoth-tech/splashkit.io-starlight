@@ -4,5 +4,5 @@
 //       console.log("hihihi");
 //     });
 export function abc() {
-    console.log("hihihi");
+  console.log("hihihi");
 }

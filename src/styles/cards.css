@@ -11,24 +11,23 @@
     transform 0.2s ease,
     box-shadow 0.2s ease;
   box-shadow: var(--sl-shadow-sm);
-
-  .description {
-    color: var(--sl-color-gray-2);
-    transition: color 0.2s ease;
-  }
 }
 
-/* Hover effects */
+.sl-markdown-content .sl-link-card .description {
+  color: var(--sl-color-gray-2);
+  transition: color 0.2s ease;
+}
+
 .sl-markdown-content .sl-link-card:hover {
   border: none;
   outline: 2px solid var(--sk-logo-orange);
   background-color: var(--sl-color-gray-7);
   transform: translateY(-2px);
   box-shadow: var(--sl-shadow-md);
+}
 
-  .description {
-    color: var(--sl-color-gray-1);
-  }
+.sl-markdown-content .sl-link-card:hover .description {
+  color: var(--sl-color-gray-1);
 }
 
 /* --- END: Link card styling ------*/
@@ -43,7 +42,6 @@ article.card {
   width: 100%;
   padding: 1rem;
   box-shadow: var(--sl-shadow-md);
-
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,

@@ -3,69 +3,59 @@
 Follow these steps to contribute to the SplashKit website repository:
 
 1. **Fork the Repository:**
-
    - Visit the SplashKit repository on GitHub.
    - Click on the "Fork" button in the top-right corner of the page. This will create a copy of the repository under your GitHub account.
 
 2. **Clone Your Fork:**
-
    - Open your terminal or Git client.
    - Clone your forked repository to your local machine using the following command:
 
-    ```shell
-    git clone https://github.com/YOUR_USERNAME/splashkit.git
-    ```
+   ```shell
+   git clone https://github.com/YOUR_USERNAME/splashkit.git
+   ```
 
 3. **Checkout new branch:**
-
    - Open your terminal or Git client.
    - Create a new branch on your forked repository using the following command (replace `<new-branch>` with your chosen name):
 
-    ```shell
-    git checkout -b ＜new-branch＞
-    ```
+   ```shell
+   git checkout -b ＜new-branch＞
+   ```
 
 4. **Make Your Changes:**
-
    - Navigate to the project directory on your local machine.
    - Make your respective changes, ensuring high-quality contributions.
 
 5. **Commit Your Changes:**
-
    - After making changes, commit them with meaningful commit messages.
 
-    ```shell
-    git add .
-    git commit -m "Your descriptive commit message"
-    ```
+   ```shell
+   git add .
+   git commit -m "Your descriptive commit message"
+   ```
 
 6. **Push Changes to Your Fork:**
-
    - Push your changes to your forked repository on GitHub.
 
-    ```shell
-    git push origin master
-    ```
+   ```shell
+   git push origin master
+   ```
 
 7. **Create a Pull Request (PR):**
-
    - Visit your forked repository on GitHub.
    - Click on the "New Pull Request" button.
    - Ensure the base and head repositories have been set correctly.
    - Click on "Create Pull Request."
 
 8. **Wait for Review:**
-
    - The maintainers will review your PR. Be patient, and be ready to respond to any feedback or comments.
    - If changes are requested, make the necessary updates and push them to your forked repository.
 
 9. **Follow Up to Comments:**
-
    - Engage with any comments or questions from the maintainers.
    - If additional changes are needed, repeat steps 4-7.
 
 10. **PR Approval/Rejection:**
-
     - Once your changes are approved, the maintainers will merge your PR into the main repository.
     - If your changes are rejected, understand the feedback and consider making improvements before submitting another PR.
 

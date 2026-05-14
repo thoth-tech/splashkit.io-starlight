@@ -6,7 +6,7 @@ lastupdated: 08 Dec 24
 ---
 
 import { Tabs, TabItem, Aside, Steps } from "@astrojs/starlight/components";
-import SKOTutorialButton from '../../../../components/SKOTutorialButton.astro';
+import SKOTutorialButton from "../../../../components/SKOTutorialButton.astro";
 
 **{frontmatter.description}**  
 Written by: {frontmatter.authors}  
@@ -18,14 +18,14 @@ _Full C# and Python code for this tutorial is still in development._
 
 ## Introduction to Raycasting
 
-Raycasting is a technique used in computer graphics and game development to simulate how light or vision interacts with objects in a virtual environment. By casting an imaginary ray from a source point (like a player's position in a game), we can determine what the ray intersects with, how far away the object is, and how to represent that interaction visually.  
+Raycasting is a technique used in computer graphics and game development to simulate how light or vision interacts with objects in a virtual environment. By casting an imaginary ray from a source point (like a player's position in a game), we can determine what the ray intersects with, how far away the object is, and how to represent that interaction visually.
 
 Think of raycasting as shining a flashlight in a dark room. As the beam travels forward, it reveals objects in its path. In programming, this concept allows us to calculate collisions, detect objects, or render 3D scenes in a 2D space.
 
 Raycasting is often used in:
 
 - 2D games: To determine if a player can "see" an enemy or if a projectile hits a wall.
-- 3D rendering: Simulating 3D environments, as seen in classic games like [Doom](https://en.wikipedia.org/wiki/Doom_(1993_video_game)) or [Wolfenstein 3D](https://en.wikipedia.org/wiki/Wolfenstein_3D).
+- 3D rendering: Simulating 3D environments, as seen in classic games like [Doom](<https://en.wikipedia.org/wiki/Doom_(1993_video_game)>) or [Wolfenstein 3D](https://en.wikipedia.org/wiki/Wolfenstein_3D).
 - Physics simulations: Calculating line-of-sight or detecting where a ray intersects a surface
 
 At its core, raycasting is about using mathematics to track the path of a ray, calculate where it hits, and decide what happens next. It’s simpler than full 3D rendering techniques, making it an excellent starting point for understanding game development concepts like collision detection, shading, and spatial relationships.
@@ -46,6 +46,7 @@ At its core, raycasting is about using mathematics to track the path of a ray, c
 <p>[Vector Angles](/guides/physics/3-vector-geometry-angles/)</p>
 
 These will provide you with a solid understanding of the fundamental principles of vectors and how to effectively make use of the SplashKit physics functions.
+
 </Aside>
 
 ## Key Raycasting Concepts
@@ -70,24 +71,24 @@ The `vector_from_angle` function generates a vector from the provided angle and 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  ```cpp
-  vector_2d vector_from_angle(double angle, double magnitude)
-  ```
+```cpp
+vector_2d vector_from_angle(double angle, double magnitude)
+```
 
 </TabItem>
 <TabItem label="C#">
 
-  ```csharp
-  public static Vector2D Vector2D.VectorFromAngle(double angle, double magnitude);
-  public static Vector2D SplashKit.VectorFromAngle(double angle, double magnitude);
-  ```
+```csharp
+public static Vector2D Vector2D.VectorFromAngle(double angle, double magnitude);
+public static Vector2D SplashKit.VectorFromAngle(double angle, double magnitude);
+```
 
 </TabItem>
 <TabItem label="Python">
 
-  ```python
-  def vector_from_angle(angle, magnitude):
-  ```
+```python
+def vector_from_angle(angle, magnitude):
+```
 
 </TabItem>
 </Tabs>
@@ -100,10 +101,14 @@ An intersection (or collision) occurs when a ray collides with an object in the 
 You'll be able to use the concepts and apply them in your program in some way:
 
 <Steps>
-1. Represent the ray by defining the origin and the direction
-2. Represent the object you want to test for collisions, such as a `rectangle`. While this tutorial will focus on rectangles first, SplashKit offers other objects such as `triangle`, `circle`, `bitmap` and `sprite`.
-3. Calculate the intersection. There are different algorithms for different objects, however they all determine if the ray intersects the object and calculate the intersection point and distance from the origin.
-4. Use the intersection data to trigger the next part of your program.
+  1. Represent the ray by defining the origin and the direction 2. Represent the
+  object you want to test for collisions, such as a `rectangle`. While this
+  tutorial will focus on rectangles first, SplashKit offers other objects such
+  as `triangle`, `circle`, `bitmap` and `sprite`. 3. Calculate the intersection.
+  There are different algorithms for different objects, however they all
+  determine if the ray intersects the object and calculate the intersection
+  point and distance from the origin. 4. Use the intersection data to trigger
+  the next part of your program.
 </Steps>
 
 ![Key Raycasting Concepts](/gifs/guides/physics/raycasting-basics-1.gif)
@@ -140,24 +145,24 @@ The `point_offset_by` calculates another `point_2d` that is offset from a point 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  ```cpp
-  point_2d point_offset_by(const point_2d &start_point, const vector_2d &offset)
-  ```
+```cpp
+point_2d point_offset_by(const point_2d &start_point, const vector_2d &offset)
+```
 
 </TabItem>
 <TabItem label="C#">
 
-  ```csharp
-  public static Point2D Geometry.PointOffsetBy(Point2D startPoint, Vector2D offset);
-  public static Point2D SplashKit.PointOffsetBy(Point2D startPoint, Vector2D offset);
-  ```
+```csharp
+public static Point2D Geometry.PointOffsetBy(Point2D startPoint, Vector2D offset);
+public static Point2D SplashKit.PointOffsetBy(Point2D startPoint, Vector2D offset);
+```
 
 </TabItem>
 <TabItem label="Python">
 
-  ```python
-  def point_offset_by(start_point, offset):
-  ```
+```python
+def point_offset_by(start_point, offset):
+```
 
 </TabItem>
 </Tabs>
@@ -180,24 +185,24 @@ The `vector_multiply` function multiplies a vector by a passed in value. In this
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  ```cpp
-  vector_2d vector_multiply(const vector_2d &v1, double s)
-  ```
+```cpp
+vector_2d vector_multiply(const vector_2d &v1, double s)
+```
 
 </TabItem>
 <TabItem label="C#">
 
-  ```csharp
-  public static Vector2D Vector2D.VectorMultiply(Vector2D v1, double s);
-  public static Vector2D SplashKit.VectorMultiply(Vector2D v1, double s);
-  ```
+```csharp
+public static Vector2D Vector2D.VectorMultiply(Vector2D v1, double s);
+public static Vector2D SplashKit.VectorMultiply(Vector2D v1, double s);
+```
 
 </TabItem>
 <TabItem label="Python">
 
-  ```python
-  def vector_multiply(v1, s):
-  ```
+```python
+def vector_multiply(v1, s):
+```
 
 </TabItem>
 </Tabs>

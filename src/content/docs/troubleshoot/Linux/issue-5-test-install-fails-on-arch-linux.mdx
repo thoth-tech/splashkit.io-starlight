@@ -5,7 +5,7 @@ sidebar:
   order: 5
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps } from "@astrojs/starlight/components";
 
 :::caution[Issue:]
 
@@ -31,44 +31,44 @@ Follow the steps below to resolve the issue by upgrading dependencies or linking
 
 1. **Step 1: Update System Repositories**
 
-    Ensure your system's package repositories are up-to-date by running the following command:
+   Ensure your system's package repositories are up-to-date by running the following command:
 
-    ```shell
-    sudo pacman -Syu
-    ```
+   ```shell
+   sudo pacman -Syu
+   ```
 
-    This will synchronize your system with the latest versions of all installed packages.
+   This will synchronize your system with the latest versions of all installed packages.
 
 2. **Step 2: Use `pamac` to Update Without AUR Packages**
 
-    If the issue persists due to `SDL2_image` dependencies (e.g., `libjxl`), use `pamac` to update the package cache and repositories linked to newer dependency versions:
+   If the issue persists due to `SDL2_image` dependencies (e.g., `libjxl`), use `pamac` to update the package cache and repositories linked to newer dependency versions:
 
-    ```shell
-    pamac update --no-aur
-    ```
+   ```shell
+   pamac update --no-aur
+   ```
 
-    This command ensures that your system links to updated repositories and fetches the latest dependencies for `SDL2_image`.
+   This command ensures that your system links to updated repositories and fetches the latest dependencies for `SDL2_image`.
 
 3. **Step 3: Verify Installation of `SDL2_image` Dependencies**
 
-    To manually check if `libjxl` and other related dependencies are installed, run:
+   To manually check if `libjxl` and other related dependencies are installed, run:
 
-    ```shell
-    pamac install libjxl
-    sudo pacman -S sdl2_image
-    ```
+   ```shell
+   pamac install libjxl
+   sudo pacman -S sdl2_image
+   ```
 
-    These commands will ensure that the necessary libraries for SplashKit are correctly installed.
+   These commands will ensure that the necessary libraries for SplashKit are correctly installed.
 
 4. **Step 4: Run `skm global install`**
 
-    After updating the dependencies, run the SplashKit global installation:
+   After updating the dependencies, run the SplashKit global installation:
 
-    ```shell
-    skm global install
-    ```
+   ```shell
+   skm global install
+   ```
 
-    If the dependencies were resolved correctly, the installation should now complete without errors.
+   If the dependencies were resolved correctly, the installation should now complete without errors.
 
 </Steps>
 

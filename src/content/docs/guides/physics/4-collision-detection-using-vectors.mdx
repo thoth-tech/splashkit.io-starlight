@@ -6,7 +6,7 @@ lastupdated: 08 Dec 24
 ---
 
 import { Tabs, TabItem, Aside, Steps } from "@astrojs/starlight/components";
-import SKOTutorialButton from '../../../../components/SKOTutorialButton.astro';
+import SKOTutorialButton from "../../../../components/SKOTutorialButton.astro";
 
 **{frontmatter.description}**  
 Written by: {frontmatter.authors}  
@@ -37,6 +37,7 @@ In this tutorial, we'll explore how to detect and resolve collisions between mov
 <p>[Vector Angles](/guides/physics/3-vector-geometry-angles/)</p>
 
 These will provide you with a solid understanding of the fundamental principles of vectors and how to effectively make use of the SplashKit physics functions.
+
 </Aside>
 
 ## A Quick Background on Physics
@@ -74,9 +75,12 @@ struct ball
 Let's see how applying a force affects the movement of a ball. To do this:
 
 <Steps>
-1. **Select a Ball**: Click on a ball to select it. This will allow you to apply a force to this specific ball.
-2. **Adjust the Force**: Move the mouse around the window to adjust the magnitude and angle of the force. The direction and length of the vector from the ball's center to the mouse position determine the force's direction and magnitude.
-3. **Apply the Force**: Click the mouse again to apply the force to the selected ball.
+  1. **Select a Ball**: Click on a ball to select it. This will allow you to
+  apply a force to this specific ball. 2. **Adjust the Force**: Move the mouse
+  around the window to adjust the magnitude and angle of the force. The
+  direction and length of the vector from the ball's center to the mouse
+  position determine the force's direction and magnitude. 3. **Apply the
+  Force**: Click the mouse again to apply the force to the selected ball.
 </Steps>
 
 We use SplashKit's `vector_point_to_point` function to create a force vector from the ball’s center to the mouse cursor. This vector is then added to the ball's velocity vector, adjusting its movement. To keep the movement within a reasonable range, we apply a scaling factor.
@@ -114,8 +118,11 @@ By integrating these calculations, you ensure that the ball’s movement is infl
 To ensure that the balls remain within the visible area of the window, we need to check that they do not extend beyond the window edges. If a ball reaches the boundary, we reposition it within the window and reverse its velocity to simulate a bounce.
 
 <Steps>
-1. **Check Boundary Conditions**: Verify if the ball's position plus its radius extends beyond the window's edges. If it does, adjust its position to ensure it stays within the window.
-2. **Reverse Velocity**: To create a bouncing effect, reverse the velocity component that is responsible for pushing the ball out of bounds.
+  1. **Check Boundary Conditions**: Verify if the ball's position plus its
+  radius extends beyond the window's edges. If it does, adjust its position to
+  ensure it stays within the window. 2. **Reverse Velocity**: To create a
+  bouncing effect, reverse the velocity component that is responsible for
+  pushing the ball out of bounds.
 </Steps>
 
 ```cpp
@@ -254,6 +261,7 @@ To calculate the velocities after collision, we must also factor in the mass of 
 $$ v_1 = \frac{u_1 (m_1 - m_2) + 2 m_2 u_2}{m_1 + m_2} $$
 
 $$ v_2 = \frac{u_2 (m_2 - m_1) + 2 m_1 u_1}{m_1 + m_2} $$
+
 </Aside>
 
 ```cpp

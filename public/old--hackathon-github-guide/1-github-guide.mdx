@@ -14,23 +14,23 @@ Capstone guides and videos [here](https://verdant-raindrop-f3e404.netlify.app/ca
 
    [GitHub - thoth-tech/arcade-hackathon-project](https://github.com/thoth-tech/arcade-hackathon-project): For use in the Arcade Games "Hackathon-in-a-box" event.
 
-    :::tip
-    If you are not signed in to GitHub, sign in, if you don’t have an account, sign up.
-    :::
+   :::tip
+   If you are not signed in to GitHub, sign in, if you don’t have an account, sign up.
+   :::
 
 2. **Fork the Repository:** Click the ***Fork*** button located at the top-right of the page (shown with red arrow). If prompted, select your personal account as the destination.
 
-    ![Image showing GitHub Fork button](./images/github-guide/fork.png)
+   ![Image showing GitHub Fork button](./images/github-guide/fork.png)
 
-    On the **Create a new fork** page, deselect the option *"Copy the main branch only"* (shown with yellow arrow below).
+   On the **Create a new fork** page, deselect the option _"Copy the main branch only"_ (shown with yellow arrow below).
 
-    ![Image showing GitHub Create new fork page](./images/github-guide/createnewfork.png)
+   ![Image showing GitHub Create new fork page](./images/github-guide/createnewfork.png)
 
-    Then click **Create fork** (shown with red arrow above).
+   Then click **Create fork** (shown with red arrow above).
 
 3. **Fork Confirmation:** You’ll now have your own fork of the repository in your GitHub account, ready for your contributions.
 
-    ![Image showing GitHub arcade-hackathon-project repo page](./images/github-guide/forkconfirmation.png)
+   ![Image showing GitHub arcade-hackathon-project repo page](./images/github-guide/forkconfirmation.png)
 
 ### Cloning a Repository
 
@@ -38,26 +38,26 @@ Once the files are in your account you must download them to your device.
 
 1. **Locate the Repository:** On GitHub, go to your profile with the forked repository and clone the repository (and its files) to your device by clicking the "Code" button (shown with red arrow below), then copy the Copy button (shown with yellow arrow).
 
-    ![Image showing GitHub clone buttons on arcade-hackathon-project repo page](./images/github-guide/cloneforkedrepo.png)
+   ![Image showing GitHub clone buttons on arcade-hackathon-project repo page](./images/github-guide/cloneforkedrepo.png)
 
 2. **Prepare to Clone:** Click **Code** (shown with red arrow in image above) and under “Clone with HTTPS”, copy the provided URL (shown with yellow arrow above).
 
 3. **Open Your Terminal:** Launch the terminal within VS Code or your preferred environment (such as MSYS2 MinGW x64 if on Windows, GitBash, Terminal on macOS, or GitHub Desktop Application).
 
-    *Note: The example images in this guide will be using the Git Bash terminal.*
+   _Note: The example images in this guide will be using the Git Bash terminal._
 
 4. **Navigate to Your Directory:** Use `cd` to change to the directory where you want the cloned directory.
 
-    Example: `cd Documents/GitHub/HackathonProject`
+   Example: `cd Documents/GitHub/HackathonProject`
 
-    :::caution[Ensure you’re cloning into an empty folder for a smooth process.]
-    :::
+   :::caution[Ensure you’re cloning into an empty folder for a smooth process.]
+   :::
 
-    ![Image showing terminal cd command](./images/github-guide/navigateToFolder.png)
+   ![Image showing terminal cd command](./images/github-guide/navigateToFolder.png)
 
 5. **Clone:** Type `git clone`, then paste the URL you copied. Press enter to create your local clone.
 
-    Eg: `git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY`
+   Eg: `git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY`
 
 ---
 
@@ -67,15 +67,15 @@ Once the files are in your account you must download them to your device.
 
 1. **Coding Language:**
 
-    Choose whether to use C++ or C# as your programming language.
+   Choose whether to use C++ or C# as your programming language.
 
-    *The whole team must choose the same language.*
+   _The whole team must choose the same language._
 
 2. **Team Name:**
 
-    Choose a **team name** or think of a new name for the game to use for your teams project.
+   Choose a **team name** or think of a new name for the game to use for your teams project.
 
-    *This will be used for the folder name of your files to ensure the original files are not changed, and teams' projects remain separate.*
+   _This will be used for the folder name of your files to ensure the original files are not changed, and teams' projects remain separate._
 
 :::
 
@@ -93,23 +93,23 @@ Add the new project files to the Team Leader's fork on GitHub with the following
 
 1. Use `git status` to check the current state of the working directory and staging area.
 
-    ![Image showing terminal git status command before staging](./images/github-guide/gitstatus-init.png)
+   ![Image showing terminal git status command before staging](./images/github-guide/gitstatus-init.png)
 
 2. Use `git add .` to add all of the new files in the current working directory to the staging area.
 
-    ![Image showing terminal git add command](./images/github-guide/gitadd.png)
+   ![Image showing terminal git add command](./images/github-guide/gitadd.png)
 
 3. Use `git status` again to see files added to staging area.
 
-    ![Image showing terminal git status command after staging](./images/github-guide/gitstatusstaged.png)
+   ![Image showing terminal git status command after staging](./images/github-guide/gitstatusstaged.png)
 
 4. Use `git commit -m "new project files"` to commit your new files.
 
-    ![Image showing terminal committing files](./images/github-guide/prepairingthecommitofnewgame.png)
+   ![Image showing terminal committing files](./images/github-guide/prepairingthecommitofnewgame.png)
 
 5. Use `git push` to push the files to the fork on GitHub.
 
-    ![Image showing terminal committing files](./images/github-guide/gitpushnewgame.png)
+   ![Image showing terminal committing files](./images/github-guide/gitpushnewgame.png)
 
 The team leader's fork should now have the new folder showing on their profile, and can share this URL with other team members.
 
@@ -121,7 +121,7 @@ Go to the Team Leader's fork on [github.com](https://github.com/), and check tha
 
 Adding team members as collaborators allows all team members to make changes directly on the same repository, which means that team members can make contributions more quickly.
 
-To add collaborators using the GitHub Web UI, follow the steps below on the ***Team Leader's fork***:
+To add collaborators using the GitHub Web UI, follow the steps below on the **_Team Leader's fork_**:
 
 1. Click the **Settings** tab across the top of the screen.
 2. Click on **Collaborators** in the left sidebar.
@@ -174,27 +174,27 @@ Why do we need to use branches?
 
 - **Feature Development:** Isolate new feature development from the stable codebase.
 - **Bug Fixes:** Address and fix issues without disrupting the main development flow.
-- **Experimentation:** Try out new ideas in a sandboxed environment without risk to the main project. *This is particularly important when working in a team.*
+- **Experimentation:** Try out new ideas in a sandboxed environment without risk to the main project. _This is particularly important when working in a team._
 
 ### Using the Command Line
 
-*Note: This is the recommended way of creating new branches.*
+_Note: This is the recommended way of creating new branches._
 
 Follow these steps to create a new branch using the command line:
 
 1. **Navigate to Your Repository:** In your terminal, go to your local GitHub repository folder where you wish to create a new branch.
 
-    ![Image showing terminal cd to repo folder](./images/github-guide/navigatetoclonedfiles.png)
+   ![Image showing terminal cd to repo folder](./images/github-guide/navigatetoclonedfiles.png)
 
 2. **Create new branch:** Use the command: `git checkout -b <new-branch-name>` to create a new branch on your local clone.
 
-    ![Image showing GitHub webpage of arcade-hackathon-project branches](./images/github-guide/addbranchandswitchtoitlocally.png)
+   ![Image showing GitHub webpage of arcade-hackathon-project branches](./images/github-guide/addbranchandswitchtoitlocally.png)
 
-    This command switches to your new branch and creates it if it doesn’t already exist.
+   This command switches to your new branch and creates it if it doesn’t already exist.
 
 3. **Push Your New Branch:** Use `git push origin <new-branch-name>` to push your new branch to your remote fork.
 
-    ![Image showing GitHub webpage of arcade-hackathon-project repo and branch button](./images/github-guide/pushbranch.png)
+   ![Image showing GitHub webpage of arcade-hackathon-project repo and branch button](./images/github-guide/pushbranch.png)
 
 ### Using the GitHub Web UI
 
@@ -203,18 +203,17 @@ Alternatively, follow these steps to create a new branch in the GitHub Web UI:
 1. **Navigate to Your Repository's Branches:** Go to your GitHub repository (online) where you wish to create a new branch.
 2. **Go to the "Branches" page:** Click the branch button (shown with red arrow below).
 
-    ![Image showing GitHub webpage of arcade-hackathon-project repo and branch button](./images/github-guide/clickbranchbutton.png)
+   ![Image showing GitHub webpage of arcade-hackathon-project repo and branch button](./images/github-guide/clickbranchbutton.png)
 
 3. **Create new Branch:** Click the **New Branch** button (shown with yellow arrow below).
 
-    ![Image showing GitHub webpage of arcade-hackathon-project branches](./images/github-guide/clicknewbranch.png)
+   ![Image showing GitHub webpage of arcade-hackathon-project branches](./images/github-guide/clicknewbranch.png)
+   - Add the name of the new branch in the text box under the **New branch name** heading.
+   - Then click the drop-down menu under the **Source** heading if you need to update which branch the new branch will be created from.
 
-    - Add the name of the new branch in the text box under the **New branch name** heading.
-    - Then click the drop-down menu under the **Source** heading if you need to update which branch the new branch will be created from.
+   ![Image showing create new branch pop-up](./images/github-guide/createnewbranch.png)
 
-    ![Image showing create new branch pop-up](./images/github-guide/createnewbranch.png)
-
-4. **Pull Your New Branch:**  Open your terminal, navigate to the cloned project folder, and then run `git pull` to pull down your newly created branch to your local clone.
+4. **Pull Your New Branch:** Open your terminal, navigate to the cloned project folder, and then run `git pull` to pull down your newly created branch to your local clone.
 5. **Switch to Your New Branch:** In the same directory, run the command `git checkout <new-branch-name>` to switch to your new branch.
 
 Now that you’ve created a branch, you’re ready to start making changes. Remember, the modifications you make on this branch are isolated from the main line of development. This isolation allows you to develop features, fix bugs, or experiment freely.
@@ -230,15 +229,15 @@ Now that you've cloned your repo, you can follow these steps to start making cha
 1. Open Visual Studio Code (or whatever you prefer to use for writing code).
 2. Open the cloned folder by clicking **File**, then **Open Folder**.
 
-    ![Image showing VS Code open new folder](./images/github-guide/open-cloned-repo-folder.png)
+   ![Image showing VS Code open new folder](./images/github-guide/open-cloned-repo-folder.png)
 
 3. Navigate to the folder where your local clone was saved and select the game folder with your team name.
 
-    ![Image showing File explore open new folder](./images/github-guide/select-folder.png)
+   ![Image showing File explore open new folder](./images/github-guide/select-folder.png)
 
 4. Once it opens, click **Yes, I trust the authors**.
 
-*Now you're ready to start coding!*
+_Now you're ready to start coding!_
 
 Once you've made your changes, look at the next section for how to commit these changes.
 
@@ -276,15 +275,15 @@ The images below show what it looks like when you run `git status`:
 
 1. Before making any changes.
 
-    ![Image showing terminal git status before making changes](./images/github-guide/gitstatus-beforechanges.png)
+   ![Image showing terminal git status before making changes](./images/github-guide/gitstatus-beforechanges.png)
 
 2. After making changes, but before staging any changes.
 
-    ![Image showing terminal git status before staging changes](./images/github-guide/gitstatus-beforestaging.png)
+   ![Image showing terminal git status before staging changes](./images/github-guide/gitstatus-beforestaging.png)
 
 3. After staging all your changes.
 
-    ![Image showing terminal git status after staging changes](./images/github-guide/gitstatus-afterstaging.png)
+   ![Image showing terminal git status after staging changes](./images/github-guide/gitstatus-afterstaging.png)
 
 ### Committing Your Changes
 
@@ -351,7 +350,7 @@ If a team member has cloned their own fork, rather than the leader's fork, they 
 
 **In Team Leader Fork:** Follow the steps in the [Review Team Member PRs](#review-team-member-prs) section to **review** the pull request.  
 Then push the new branch to the team leader's fork using `git push origin <branch_name>` with the name of the branch created when reviewing the PR as the `<branch_name>`.  
-*Note: This can be done by a team member if added as a collaborator.*
+_Note: This can be done by a team member if added as a collaborator._
 
 ---
 
@@ -391,15 +390,15 @@ For team member contributions that have been made on their own fork with a PR to
 
 1. In the local clone folder of the leader's fork, run the following command to check for remote branches:
 
-    ```shell
-    git remote -v
-    ```
+   ```shell
+   git remote -v
+   ```
 
 2. Add the remote repositories:
 
-    ```shell
-    git remote add upstream https://github.com/<username>/<repo-name>.git
-    ```
+   ```shell
+   git remote add upstream https://github.com/<username>/<repo-name>.git
+   ```
 
 3. Run the first command again to see the upstream branches added.
 
@@ -415,15 +414,15 @@ To fetch the changes in a pull request to your local clone, open the PR in the G
 
 - For reviewing a pull request in the same repository, you can use `origin` as seen below:
 
-    ```shell
-    git fetch origin pull/<PR#>/head:<PR-branch-name>
-    ```
+  ```shell
+  git fetch origin pull/<PR#>/head:<PR-branch-name>
+  ```
 
 - For reviewing a pull request in an upstream repository, from your forked repo:
 
-    ```shell
-    git fetch upstream pull/<PR#>/head:<PR-branch-name>
-    ```
+  ```shell
+  git fetch upstream pull/<PR#>/head:<PR-branch-name>
+  ```
 
 Replace `<PR#>` with the ID number of the PR, and replace `<PR-branch-name>` with the name you want to use for the new branch containing the PR changes.
 
@@ -443,26 +442,25 @@ Once your team has finished making changes, and has finalised all team member co
 
 2. **Open Pull Request:** There are multiple ways to do this.
 
-    Firstly, change the branch to the one to be used for the PR using the drop-down list of branches. Then follow the steps in one of the options below:
+   Firstly, change the branch to the one to be used for the PR using the drop-down list of branches. Then follow the steps in one of the options below:
+   1. Click on the “Pull Requests” tab near the top of the repository’s GitHub page, then click the “New Pull Request” button.
+   2. Click on the "**Contribute**" button (shown with yellow arrow in image below), then click the "Open pull request" button.
+   3. Click "Compare and pull request" button (shown with red arrow in image below) if it shows up.
 
-    1. Click on the “Pull Requests” tab near the top of the repository’s GitHub page, then click the “New Pull Request” button.
-    2. Click on the "**Contribute**" button (shown with yellow arrow in image below), then click the "Open pull request" button.
-    3. Click "Compare and pull request" button (shown with red arrow in image below) if it shows up.
-
-    ![Image showing GitHub Open pull request details](./images/github-guide/Compare-and-pull-request.png)
+   ![Image showing GitHub Open pull request details](./images/github-guide/Compare-and-pull-request.png)
 
 3. **Choose the Base and Compare:** Select the base branch and the compare branch (under "Comparing changes"). You can see an example of this at the top of the image under step 5.
 
-    :::tip[Which is which?]
-    - The **base** branch is the one you want your changes pulled into.
-    - The **compare** branch is the branch containing your changes.
-    :::
+   :::tip[Which is which?]
+   - The **base** branch is the one you want your changes pulled into.
+   - The **compare** branch is the branch containing your changes.
+     :::
 
 4. **Review Your Changes:** GitHub will display the differences between your branch and the base branch. Review these changes to ensure accuracy. You can see an example of this at the bottom of the image in the step below.
 
 5. **Add Pull Request Details:** Give your pull request a title and a description that explains the changes you’ve made, why you’ve made them, and any other relevant details.
 
-    ![Image showing GitHub Open pull request details](./images/github-guide/createPullrequest.png)
+   ![Image showing GitHub Open pull request details](./images/github-guide/createPullrequest.png)
 
 6. **Create Pull Request:** After reviewing, click “Create Pull Request.”
 

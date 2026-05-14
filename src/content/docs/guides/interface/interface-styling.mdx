@@ -47,7 +47,7 @@ int main()
 
     // close all open windows
     close_all_windows();
-    
+
     return 0;
 }
 ```
@@ -144,7 +144,7 @@ while (not quit_requested()):
     clear_screen_to_white()
 
     button_at_position("My Button!", rectangle_from(300, 260, 200, 24))
-    
+
     draw_interface()
 
     refresh_screen()
@@ -157,71 +157,80 @@ close_all_windows()
 </Tabs>
 
 You can choose from any of the styles in [Interface Style](/api/types/#interface-style). Here's how they look with a more complex interface:
+
 <table>
-    <tr>
-        <td width="50%">
-            ![Several controls shown in a panel with the shaded dark style preset.](./images/styles/shadeddark.png)
-        </td>
-        <td>
-            ![Several controls shown in a panel with the flat dark style preset](./images/styles/flatdark.png)
-        </td>
-    </tr>
-    <tr>
-        <td width="50%">
-            `SHADED_DARK_STYLE` - A dark-mode interface with shadows and depth. **(Default)**
-        </td>
-        <td>
-            `FLAT_DARK_STYLE` - A flat, dark-mode interface.
-        </td>
-    </tr>
-    <tr>
-        <td>
-            ![Several controls shown in a panel with the shaded light style preset](./images/styles/shadedlight.png)
-        </td>
-        <td>
-            ![Several controls shown in a panel with the flat light style preset](./images/styles/flatlight.png)
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `SHADED_LIGHT_STYLE` - A light-mode interface with shadows and depth.
-        </td>
-        <td>
-            `FLAT_LIGHT_STYLE` - A flat, light-mode interface.
-        </td>
-    </tr>
-    <tr>
-        <td>
-            ![Several controls shown in a panel with the bubble style preset](./images/styles/bubble.png)
-        </td>
-        <td>
-            ![Several controls shown in a panel with the bubble multi-coloured style preset](./images/styles/bubble_multicolored.png)
-        </td>
-    </tr>
-    <tr>
-        <td>
-            `BUBBLE` - A light-mode interface with a semi-transparent bubbly look.
-        </td>
-        <td>
-            `BUBBLE_MULTICOLORED` - A light-mode interface with a semi-transparent bubbly look - gives a multi-coloured result when provided a color.
-        </td>
-    </tr>
+  <tr>
+    <td width="50%">
+      ![Several controls shown in a panel with the shaded dark style
+      preset.](./images/styles/shadeddark.png)
+    </td>
+    <td>
+      ![Several controls shown in a panel with the flat dark style
+      preset](./images/styles/flatdark.png)
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      `SHADED_DARK_STYLE` - A dark-mode interface with shadows and depth.
+      **(Default)**
+    </td>
+    <td>`FLAT_DARK_STYLE` - A flat, dark-mode interface.</td>
+  </tr>
+  <tr>
+    <td>
+      ![Several controls shown in a panel with the shaded light style
+      preset](./images/styles/shadedlight.png)
+    </td>
+    <td>
+      ![Several controls shown in a panel with the flat light style
+      preset](./images/styles/flatlight.png)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      `SHADED_LIGHT_STYLE` - A light-mode interface with shadows and depth.
+    </td>
+    <td>`FLAT_LIGHT_STYLE` - A flat, light-mode interface.</td>
+  </tr>
+  <tr>
+    <td>
+      ![Several controls shown in a panel with the bubble style
+      preset](./images/styles/bubble.png)
+    </td>
+    <td>
+      ![Several controls shown in a panel with the bubble multi-coloured style
+      preset](./images/styles/bubble_multicolored.png)
+    </td>
+  </tr>
+  <tr>
+    <td>
+      `BUBBLE` - A light-mode interface with a semi-transparent bubbly look.
+    </td>
+    <td>
+      `BUBBLE_MULTICOLORED` - A light-mode interface with a semi-transparent
+      bubbly look - gives a multi-coloured result when provided a color.
+    </td>
+  </tr>
 </table>
 
 You can also customize a preset a little by providing an optional color that it can use -
 for instance, `set_interface_style(SHADED_DARK_STYLE , hsb_color(0.6, 0.4, 1.0))` (using light blue) provides the following results:
+
 <table>
-    <tr>
-        <td>
-            ![Several controls shown in a panel with the shaded dark style preset, tinted slightly blue](./images/styles/shadeddark_colored.png)
-        </td>
-        <td>
-            ![Several controls shown in a panel with the shaded light style preset, tinted slightly blue](./images/styles/shadedlight_colored.png)
-        </td>
-        <td>
-            ![Several controls shown in a panel with the bubble style preset, tinted slightly blue](./images/styles/bubble_colored.png)
-        </td>
-    </tr>
+  <tr>
+    <td>
+      ![Several controls shown in a panel with the shaded dark style preset,
+      tinted slightly blue](./images/styles/shadeddark_colored.png)
+    </td>
+    <td>
+      ![Several controls shown in a panel with the shaded light style preset,
+      tinted slightly blue](./images/styles/shadedlight_colored.png)
+    </td>
+    <td>
+      ![Several controls shown in a panel with the bubble style preset, tinted
+      slightly blue](./images/styles/bubble_colored.png)
+    </td>
+  </tr>
 </table>
 
 ### Custom Styles

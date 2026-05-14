@@ -5,7 +5,7 @@ author: Shaun Ratcliff
 lastupdated: 08 Dec 24
 ---
 
-import { Tabs, TabItem , Aside } from "@astrojs/starlight/components";
+import { Tabs, TabItem, Aside } from "@astrojs/starlight/components";
 
 **{frontmatter.description}**  
 Written by: {frontmatter.authors}  
@@ -62,7 +62,7 @@ def vector_magnitude(v):
 If a vector represents velocity, the magnitude indicates the speed; if it represents force, the magnitude shows the strength of the force applied. For a 2D vector `(x, y)`, the magnitude is calculated using the formula:
 
 <Aside type="note" title="Maths">
-$$ \text{Magnitude} = \sqrt{x^2 + y^2} $$
+  $$ \text{Magnitude} = \sqrt{x ^ (2 + y) ^ 2} $$
 </Aside>
 
 The magnitude provides a scalar value that reflects how "intense" or "strong" the vector is, without considering its direction.
@@ -75,24 +75,24 @@ The `vector_magnitude_squared` function returns the squared magnitude (or “len
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  ```cpp
-  double vector_magnitude_squared(const vector_2d &v)
-  ```
+```cpp
+double vector_magnitude_squared(const vector_2d &v)
+```
 
 </TabItem>
 <TabItem label="C#">
 
-  ```csharp
-  public static double Vector2D.VectorMagnitudeSquared(Vector2D v);
-  public static double SplashKit.VectorMagnitudeSquared(Vector2D v);
-  ```
+```csharp
+public static double Vector2D.VectorMagnitudeSquared(Vector2D v);
+public static double SplashKit.VectorMagnitudeSquared(Vector2D v);
+```
 
 </TabItem>
 <TabItem label="Python">
 
-  ```python
-  def vector_magnitude_squared(v):
-  ```
+```python
+def vector_magnitude_squared(v):
+```
 
 </TabItem>
 </Tabs>
@@ -120,24 +120,24 @@ The `vector_invert` function returns a new vector that is the inverse (or negati
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
-  ```cpp
-  vector_2d vector_invert(const vector_2d &v)
-  ```
+```cpp
+vector_2d vector_invert(const vector_2d &v)
+```
 
 </TabItem>
 <TabItem label="C#">
 
-  ```csharp
-  public static Vector2D Vector2D.VectorInvert(Vector2D v);
-  public static Vector2D SplashKit.VectorInvert(Vector2D v);
-  ```
+```csharp
+public static Vector2D Vector2D.VectorInvert(Vector2D v);
+public static Vector2D SplashKit.VectorInvert(Vector2D v);
+```
 
 </TabItem>
 <TabItem label="Python">
 
-  ```python
-  def vector_invert(v):
-  ```
+```python
+def vector_invert(v):
+```
 
 </TabItem>
 </Tabs>

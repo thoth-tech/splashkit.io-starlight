@@ -216,7 +216,7 @@ string DecToBin(uint decimalValue)
 def dec_to_bin(decimal_value):
     if decimal_value == 0:
         return "0"
-    
+
     binary_string = ""
     while decimal_value > 0:
         binary_string = ("1" if decimal_value & 1 else "0") + binary_string
@@ -470,17 +470,17 @@ string HexToBin(string hexString)
 def hex_to_bin(hex_string):
     if not is_hex(hex_string):
         return ""
-    
+
     binary_string = ""
     for hex_character in hex_string:
         hex_value = int(hex_character, 16)
         for i in range(3, -1, -1):
             binary_string += "1" if (hex_value >> i) & 1 else "0"
-    
+
     if len(hex_string) == 1:
         first_one = binary_string.find('1')
         return "0" if first_one == -1 else binary_string[first_one:]
-    
+
     return binary_string
 ```
 
@@ -616,11 +616,11 @@ string BinToHex(string binaryString)
 def bin_to_hex(binary_string):
     if not is_binary(binary_string):
         return ""
-    
+
     length = len(binary_string)
     padding = (4 - (length % 4)) % 4
     padded_binary_string = "0" * padding + binary_string
-    
+
     hex_string = ""
     for i in range(0, len(padded_binary_string), 4):
         hex_value = int(padded_binary_string[i:i+4], 2)
@@ -731,7 +731,7 @@ string DecToOct(uint decimalValue)
 def dec_to_oct(decimal_value):
     if decimal_value == 0:
         return "0"
-    
+
     octal_string = ""
     while decimal_value > 0:
         octal_string = str(decimal_value % 8) + octal_string
@@ -963,13 +963,13 @@ string OctToBin(string octalString)
 def oct_to_bin(octal_string):
     if not is_octal(octal_string):
         return ""
-    
+
     binary_string = ""
     for octal_character in octal_string:
         octal_value = int(octal_character)
         for i in range(2, -1, -1):
             binary_string += "1" if (octal_value >> i) & 1 else "0"
-    
+
     first_one = binary_string.find('1')
     return "0" if first_one == -1 else binary_string[first_one:]
 
@@ -1101,15 +1101,15 @@ string BinToOct(string binaryString)
 def bin_to_oct(binary_string):
     if not is_binary(binary_string):
         return ""
-    
+
     padding = (3 - (len(binary_string) % 3)) % 3
     padded_binary_string = "0" * padding + binary_string
-    
+
     octal_string = ""
     for i in range(0, len(padded_binary_string), 3):
         octal_value = int(padded_binary_string[i:i+3], 2)
         octal_string += str(octal_value)
-    
+
     first_non_zero = octal_string.find('1')
     return "0" if first_non_zero == -1 else octal_string[first_non_zero:]
 ```
@@ -1207,7 +1207,7 @@ string HexToOct(string hexString) => BinToOct(HexToBin(hexString));
 def hex_to_oct(hex_string):
     if not is_hex(hex_string):
         return ""
-    
+
     binary_string = hex_to_bin(hex_string)
     return bin_to_oct(binary_string)
 ```
@@ -1305,7 +1305,7 @@ string OctToHex(string octalString) => BinToHex(OctToBin(octalString));
 def oct_to_hex(octal_string):
     if not is_octal(octal_string):
         return ""
-    
+
     binary_string = oct_to_bin(octal_string)
     return bin_to_hex(binary_string)
 ```
