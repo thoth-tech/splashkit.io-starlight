@@ -55,7 +55,7 @@ function getAvailableExamplesFunctionUsage(dir) {
                             funcEntry = {
                                 funcKey: funcKey,
                                 title: title,
-                                url: `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}`,
+                                url: `/api/${folderKey.replaceAll("_", "-")}/#${funcKey.replaceAll("_", "-")}`,
                                 functions: []
                             };
                             result[folderKey].push(funcEntry);
