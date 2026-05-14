@@ -1,3 +1,4 @@
+using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
 
 // Create a conversation instance
