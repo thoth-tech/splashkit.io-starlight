@@ -45,6 +45,9 @@ int main()
     // Number of rays to cast around the lantern
     const int NUM_RAYS = 360;
 
+    // Max ray distance based on window diagonal for scalability
+    const double MAX_RAY_DIST = sqrt(WINDOW_WIDTH * WINDOW_WIDTH + WINDOW_HEIGHT * WINDOW_HEIGHT);
+
     while (!quit_requested())
     {
         process_events();
@@ -63,8 +66,7 @@ int main()
             // Create a direction vector for this ray
             vector_2d heading = vector_from_angle(angle, 1.0);
 
-            // Max ray distance based on window diagonal for scalability
-            double closest_dist = sqrt(WINDOW_WIDTH * WINDOW_WIDTH + WINDOW_HEIGHT * WINDOW_HEIGHT);
+            double closest_dist = MAX_RAY_DIST;
             point_2d closest_pt = point_at(
                 lantern_pos.x + heading.x * closest_dist,
                 lantern_pos.y + heading.y * closest_dist
