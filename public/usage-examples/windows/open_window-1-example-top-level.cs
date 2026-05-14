@@ -1,17 +1,22 @@
+using static SplashKitSDK.SplashKit;
 using SplashKitSDK;
 
-Window wind = SplashKit.OpenWindow("Simple Welcome Screen", 800, 600);
+// Open a new window
+Window wind = OpenWindow("Simple Welcome Screen", 800, 600);
 
-while (!SplashKit.QuitRequested())
+// Keep the program running until the user closes the window
+while (!QuitRequested())
 {
-    SplashKit.ProcessEvents();
+    ProcessEvents();
 
-    SplashKit.ClearWindow(wind, Color.SkyBlue);
-    SplashKit.FillRectangle(Color.White, 220, 230, 360, 120);
-    SplashKit.DrawText("Welcome to SplashKit!", Color.Black, 290, 270);
-    SplashKit.DrawText("This window was opened using OpenWindow.", Color.Black, 245, 305);
+    // Draw content on the screen
+    ClearWindow(wind, ColorSkyBlue());
+    FillRectangle(ColorWhite(), 220, 230, 360, 120);
+    DrawText("Welcome to SplashKit!", ColorBlack(), 290, 270);
+    DrawText("This window was opened using OpenWindow.", ColorBlack(), 245, 305);
 
-    SplashKit.RefreshWindow(wind);
+    RefreshWindow(wind);
 }
 
-SplashKit.CloseAllWindows();
+// Close all open windows
+CloseAllWindows();
