@@ -1853,5 +1853,23 @@
                 "write_line"
             ]
         }
+    ],
+    "generative_ai": [
+        {
+            "funcKey": "free_conversation",
+            "title": "Freeing a Single AI Conversation Resource",
+            "url": "/api/ai/#free-conversation",
+            "usage_examples": [
+                {
+                    "name": "Freeing a Single AI Conversation Resource",
+                    "path": "generative_ai/free_conversation-1-example"
+                }
+            ],
+            "functions": [
+                "free_conversation",
+                "create_conversation",
+                "write_line"
+            ]
+        }
     ]
 }
