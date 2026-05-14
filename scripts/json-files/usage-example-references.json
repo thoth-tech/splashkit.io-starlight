@@ -118,7 +118,7 @@
                 "write",
                 "delay",
                 "conversation_is_replying",
-                "reply",
+                "conversation_get_reply_piece",
                 "free_conversation"
             ]
         }

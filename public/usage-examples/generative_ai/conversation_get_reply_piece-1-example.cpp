@@ -24,14 +24,7 @@ int main()
     }
 
     // Move to a new line after thinking dots
-    if (!conversation_is_replying(chat))
-    {
-        write_line("");
-    }
-    else
-    {
-        write_line("");
-    }
+    write_line("");
 
     write("AI: ");
 
