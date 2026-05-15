@@ -15,12 +15,12 @@ namespace OpenWindowExample
                 SplashKit.ProcessEvents();
 
                 // Draw content on the screen
-                SplashKit.ClearWindow(wind, SplashKit.ColorSkyBlue());
-                SplashKit.FillRectangle(SplashKit.ColorWhite(), 220, 230, 360, 120);
-                SplashKit.DrawText("Welcome to SplashKit!", SplashKit.ColorBlack(), 290, 270);
-                SplashKit.DrawText("This window was opened using OpenWindow.", SplashKit.ColorBlack(), 245, 305);
+                wind.Clear(SplashKit.ColorSkyBlue());
+                wind.FillRectangle(SplashKit.ColorWhite(), 220, 230, 360, 120);
+                wind.DrawText("Welcome to SplashKit!", SplashKit.ColorBlack(), 290, 270);
+                wind.DrawText("This window was opened using OpenWindow.", SplashKit.ColorBlack(), 245, 305);
 
-                SplashKit.RefreshWindow(wind);
+                wind.Refresh();
             }
 
             // Close all open windows

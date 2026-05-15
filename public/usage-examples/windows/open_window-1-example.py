@@ -10,8 +10,8 @@ while not quit_requested():
     # Draw content on the screen
     clear_screen(color_sky_blue())
     fill_rectangle(color_white(), 220, 230, 360, 120)
-    draw_text("Welcome to SplashKit!", color_black(), 290, 270)
-    draw_text("This window was opened using open_window.", color_black(), 245, 305)
+    draw_text("Welcome to SplashKit!", color_black(), "Arial", 24, 290, 270)
+    draw_text("This window was opened using open_window.", color_black(), "Arial", 18, 245, 305)
 
     refresh_screen_with_target_fps(60)
 
