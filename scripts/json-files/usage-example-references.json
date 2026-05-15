@@ -1322,6 +1322,26 @@
             ]
         }
     ],
+    "interface": [
+        {
+            "funcKey": "label_element",
+            "title": "Label Element",
+            "url": "/api/interface/#label-element",
+            "functions": [
+                "open_window",
+                "set_interface_style",
+                "quit_requested",
+                "process_events",
+                "clear_screen",
+                "color_white",
+                "label_element",
+                "rectangle_from",
+                "draw_interface",
+                "refresh_screen",
+                "close_all_windows"
+            ]
+        }
+    ],
     "networking": [
         {
             "funcKey": "dec_to_hex",
