@@ -45,10 +45,11 @@ if roboto_has_64:
 
 while not quit_requested():
     process_events()
+
     clear_screen(color_white())
 
     draw_text(
-        "FontHasSize can be used to compare supported font sizes.",
+        "FontHasSize checks if a font has already been loaded at a selected size.",
         color_black(),
         arial_font,
         24,
@@ -61,13 +62,13 @@ while not quit_requested():
     draw_text("Size 32: " + arial_result_32, color_black(), arial_font, 20, 40, 155)
     draw_text("Size 64: " + arial_result_64, color_black(), arial_font, 20, 40, 190)
 
-    draw_text("Font: Roboto", color_red(), arial_font, 22, 20, 280)
-    draw_text("Size 16: " + roboto_result_16, color_black(), arial_font, 20, 40, 320)
-    draw_text("Size 32: " + roboto_result_32, color_black(), arial_font, 20, 40, 355)
-    draw_text("Size 64: " + roboto_result_64, color_black(), arial_font, 20, 40, 390)
+    draw_text("Font: Roboto", color_red(), roboto_font, 22, 20, 280)
+    draw_text("Size 16: " + roboto_result_16, color_black(), roboto_font, 20, 40, 320)
+    draw_text("Size 32: " + roboto_result_32, color_black(), roboto_font, 20, 40, 355)
+    draw_text("Size 64: " + roboto_result_64, color_black(), roboto_font, 20, 40, 390)
 
     draw_text(
-        "Different fonts may support different sizes.",
+        "The results show whether each font is available at the checked sizes.",
         color_black(),
         arial_font,
         20,
