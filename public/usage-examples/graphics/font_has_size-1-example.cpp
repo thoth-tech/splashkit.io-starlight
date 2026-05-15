@@ -28,36 +28,60 @@ int main()
     std::string roboto_result_32 = "Not Available";
     std::string roboto_result_64 = "Not Available";
 
-    if (arial_has_16) arial_result_16 = "Available";
-    if (arial_has_32) arial_result_32 = "Available";
-    if (arial_has_64) arial_result_64 = "Available";
+    if (arial_has_16)
+    {
+        arial_result_16 = "Available";
+    }
 
-    if (roboto_has_16) roboto_result_16 = "Available";
-    if (roboto_has_32) roboto_result_32 = "Available";
-    if (roboto_has_64) roboto_result_64 = "Available";
+    if (arial_has_32)
+    {
+        arial_result_32 = "Available";
+    }
+
+    if (arial_has_64)
+    {
+        arial_result_64 = "Available";
+    }
+
+    if (roboto_has_16)
+    {
+        roboto_result_16 = "Available";
+    }
+
+    if (roboto_has_32)
+    {
+        roboto_result_32 = "Available";
+    }
+
+    if (roboto_has_64)
+    {
+        roboto_result_64 = "Available";
+    }
 
     while (!quit_requested())
     {
         process_events();
+
         clear_screen(COLOR_WHITE);
 
-        draw_text("FontHasSize can be used to compare supported font sizes.", COLOR_BLACK, arial_font, 24, 20, 20);
+        draw_text("FontHasSize checks if a font has already been loaded at a selected size.", COLOR_BLACK, arial_font, 24, 20, 20);
 
         draw_text("Font: Arial", COLOR_BLUE, arial_font, 22, 20, 80);
         draw_text("Size 16: " + arial_result_16, COLOR_BLACK, arial_font, 20, 40, 120);
         draw_text("Size 32: " + arial_result_32, COLOR_BLACK, arial_font, 20, 40, 155);
         draw_text("Size 64: " + arial_result_64, COLOR_BLACK, arial_font, 20, 40, 190);
 
-        draw_text("Font: Roboto", COLOR_RED, arial_font, 22, 20, 280);
-        draw_text("Size 16: " + roboto_result_16, COLOR_BLACK, arial_font, 20, 40, 320);
-        draw_text("Size 32: " + roboto_result_32, COLOR_BLACK, arial_font, 20, 40, 355);
-        draw_text("Size 64: " + roboto_result_64, COLOR_BLACK, arial_font, 20, 40, 390);
+        draw_text("Font: Roboto", COLOR_RED, roboto_font, 22, 20, 280);
+        draw_text("Size 16: " + roboto_result_16, COLOR_BLACK, roboto_font, 20, 40, 320);
+        draw_text("Size 32: " + roboto_result_32, COLOR_BLACK, roboto_font, 20, 40, 355);
+        draw_text("Size 64: " + roboto_result_64, COLOR_BLACK, roboto_font, 20, 40, 390);
 
-        draw_text("Different fonts may support different sizes.", COLOR_DARK_GRAY, arial_font, 20, 20, 500);
+        draw_text("The results show whether each font is available at the checked sizes.", COLOR_DARK_GRAY, arial_font, 20, 20, 500);
 
         refresh_screen(60);
     }
 
     close_all_windows();
+
     return 0;
 }
