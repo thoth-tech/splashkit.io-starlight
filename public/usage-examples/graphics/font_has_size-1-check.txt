@@ -1,1 +1,0 @@
-Check whether different fonts support specific sizes.
