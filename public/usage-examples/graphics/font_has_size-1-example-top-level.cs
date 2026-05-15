@@ -26,32 +26,55 @@ string robotoResult16 = "Not Available";
 string robotoResult32 = "Not Available";
 string robotoResult64 = "Not Available";
 
-if (arialHas16) arialResult16 = "Available";
-if (arialHas32) arialResult32 = "Available";
-if (arialHas64) arialResult64 = "Available";
+if (arialHas16)
+{
+    arialResult16 = "Available";
+}
 
-if (robotoHas16) robotoResult16 = "Available";
-if (robotoHas32) robotoResult32 = "Available";
-if (robotoHas64) robotoResult64 = "Available";
+if (arialHas32)
+{
+    arialResult32 = "Available";
+}
+
+if (arialHas64)
+{
+    arialResult64 = "Available";
+}
+
+if (robotoHas16)
+{
+    robotoResult16 = "Available";
+}
+
+if (robotoHas32)
+{
+    robotoResult32 = "Available";
+}
+
+if (robotoHas64)
+{
+    robotoResult64 = "Available";
+}
 
 while (!QuitRequested())
 {
     ProcessEvents();
+
     ClearScreen(ColorWhite());
 
-    DrawText("FontHasSize can be used to compare supported font sizes.", ColorBlack(), arialFont, 24, 20, 20);
+    DrawText("FontHasSize checks if a font has already been loaded at a selected size.", ColorBlack(), arialFont, 24, 20, 20);
 
     DrawText("Font: Arial", ColorBlue(), arialFont, 22, 20, 80);
     DrawText("Size 16: " + arialResult16, ColorBlack(), arialFont, 20, 40, 120);
     DrawText("Size 32: " + arialResult32, ColorBlack(), arialFont, 20, 40, 155);
     DrawText("Size 64: " + arialResult64, ColorBlack(), arialFont, 20, 40, 190);
 
-    DrawText("Font: Roboto", ColorRed(), arialFont, 22, 20, 280);
-    DrawText("Size 16: " + robotoResult16, ColorBlack(), arialFont, 20, 40, 320);
-    DrawText("Size 32: " + robotoResult32, ColorBlack(), arialFont, 20, 40, 355);
-    DrawText("Size 64: " + robotoResult64, ColorBlack(), arialFont, 20, 40, 390);
+    DrawText("Font: Roboto", ColorRed(), robotoFont, 22, 20, 280);
+    DrawText("Size 16: " + robotoResult16, ColorBlack(), robotoFont, 20, 40, 320);
+    DrawText("Size 32: " + robotoResult32, ColorBlack(), robotoFont, 20, 40, 355);
+    DrawText("Size 64: " + robotoResult64, ColorBlack(), robotoFont, 20, 40, 390);
 
-    DrawText("Different fonts may support different sizes.", ColorBlack(), arialFont, 20, 20, 500);
+    DrawText("The results show whether each font is available at the checked sizes.", ColorBlack(), arialFont, 20, 20, 500);
 
     RefreshScreen(60);
 }
