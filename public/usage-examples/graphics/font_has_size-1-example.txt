@@ -1,1 +1,1 @@
-Check whether different fonts support specific sizes.
+Font Has Size Example
