@@ -43,6 +43,12 @@ function getAvailableExamplesFunctionUsage(dir) {
                     try {
 
                         const folderKey = folder.toLowerCase();
+                        
+                        // Skip generative_ai examples (no API docs yet)
+                        if (folderKey === "generative_ai") {
+                            return;
+                        }
+                        
                         const funcKey = pyFileMatch[1].toLowerCase();
 
                         if (!result[folderKey]) {

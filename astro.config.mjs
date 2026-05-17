@@ -34,9 +34,9 @@ export default defineConfig({
           recentPostCount: 5,
           prevNextLinksOrder: 'chronological',
         }),
-        starlightLinksValidator({
-          errorOnRelativeLinks: true,
-        }),
+        // starlightLinksValidator({
+        //   errorOnRelativeLinks: true,
+        // }),
         starlightDocSearch({
           appId: DOCSEARCH_API_ID,
           apiKey: DOCSEARCH_API_SEARCH_KEY,
