@@ -1324,9 +1324,9 @@
     ],
     "interface": [
         {
-            "funcKey": "label_element",
-            "title": "Label Element",
-            "url": "/api/interface/#label-element",
+            "funcKey": "label_element_at_position",
+            "title": "Label Element at Position",
+            "url": "/api/interface/#label-element-at-position",
             "functions": [
                 "open_window",
                 "set_interface_style",
