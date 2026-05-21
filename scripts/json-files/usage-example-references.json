@@ -1322,6 +1322,33 @@
             ]
         }
     ],
+    "interface": [
+        {
+            "funcKey": "reset_layout",
+            "title": "Resetting Interface Layout",
+            "url": "/api/interface/#reset-layout",
+            "functions": [
+                "open_window",
+                "set_interface_style",
+                "quit_requested",
+                "process_events",
+                "clear_screen",
+                "color_white",
+                "start_panel",
+                "rectangle_from",
+                "start_custom_layout",
+                "label_element",
+                "split_into_columns",
+                "set_layout_height",
+                "button",
+                "reset_layout",
+                "end_panel",
+                "draw_interface",
+                "refresh_screen",
+                "close_all_windows"
+            ]
+        }
+    ],
     "networking": [
         {
             "funcKey": "dec_to_hex",
