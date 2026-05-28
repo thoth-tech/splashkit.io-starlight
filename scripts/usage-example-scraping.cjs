@@ -9,12 +9,41 @@ const path = require('path'); // Handle and transform file paths
 const srcDirectory = "./public/usage-examples"; //directory to be scraped
 const outputDirectory = "./scripts/json-files/usage-example-references.json" //directory where "Usage Example" functions will be savedc
 
+function getApiFunctionKeyMap() {
+    const apiFunctionKeyMap = {};
+
+    try {
+        const apiJsonRaw = fs.readFileSync("./scripts/json-files/api.json", "utf8");
+        const apiJson = JSON.parse(apiJsonRaw);
+
+        for (const categoryKey in apiJson) {
+            const category = apiJson[categoryKey];
+            const keySet = new Set();
+
+            if (category && Array.isArray(category.functions)) {
+                category.functions.forEach((func) => {
+                    if (func && func.unique_global_name) {
+                        keySet.add(func.unique_global_name.toLowerCase());
+                    }
+                });
+            }
+
+            apiFunctionKeyMap[categoryKey.toLowerCase()] = keySet;
+        }
+    } catch (error) {
+        console.error(kleur.red("Error reading/parsing api.json:"), error.message);
+    }
+
+    return apiFunctionKeyMap;
+}
+
 // ------------------------------------------------------------------------------
 // Scraping all of the folders in usage example and retrieving the functions and title 
 // ------------------------------------------------------------------------------
 function getAvailableExamplesFunctionUsage(dir) {
     const result = {};
     const fileNameRegex = /^([a-zA-Z_][a-zA-Z0-9_]*)-/;
+    const apiFunctionKeyMap = getApiFunctionKeyMap();
 
     const ignoreKey = new Set(["if", "else", "elif", "while", "for", "range", "int", "str", "match"]);
 
@@ -36,9 +65,9 @@ function getAvailableExamplesFunctionUsage(dir) {
                 pythonFiles.forEach(pyFile => {
                     const fileName = path.join(folderPath, pyFile);
                     const fileName2 = fileName.replace('.py', '.txt')
-                    const pythonFile = fs.readFileSync(fileName);
+                    const pythonFile = fs.readFileSync(fileName, "utf8");
                     const textFile = fs.readFileSync(fileName2, "utf8");
-                    const title = textFile.split("\n")[0];
+                    const title = textFile.split("\n")[0].trim();
                     const pyFileMatch = fileNameRegex.exec(pyFile);
                     try {
 
@@ -52,10 +81,15 @@ function getAvailableExamplesFunctionUsage(dir) {
                         let funcEntry = result[folderKey].find(entry => entry.funcKey === funcKey);
 
                         if (!funcEntry) {
+                            const categoryApiKeys = apiFunctionKeyMap[folderKey] || new Set();
+                            const hasApiAnchor = categoryApiKeys.has(funcKey);
+
                             funcEntry = {
                                 funcKey: funcKey,
                                 title: title,
-                                url: `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}`,
+                                url: hasApiAnchor
+                                    ? `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}`
+                                    : `/api/${folderKey}/`,
                                 functions: []
                             };
                             result[folderKey].push(funcEntry);

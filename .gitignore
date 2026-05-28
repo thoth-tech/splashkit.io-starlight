@@ -4,8 +4,8 @@ dist/
 .astro/
 
 # vscode settings
-.vscode/
 
+.vscode/
 *.sln
 
 # dependencies

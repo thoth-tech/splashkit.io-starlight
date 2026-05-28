@@ -82,6 +82,49 @@
             ]
         }
     ],
+    "color": [
+        {
+            "funcKey": "color_workshop",
+            "title": "Sunset Gradient Workshop",
+            "url": "/api/color/",
+            "functions": [
+                "open_window",
+                "quit_requested",
+                "process_events",
+                "clear_screen",
+                "color_black",
+                "rgb_color",
+                "draw_rectangle",
+                "draw_text_no_font_no_size",
+                "color_white",
+                "refresh_screen_with_target_fps",
+                "close_all_windows"
+            ]
+        },
+        {
+            "funcKey": "saturation_of",
+            "title": "Draws a rectangle in a random colour. The colour's saturation value is displayed on screen",
+            "url": "/api/color/#saturation-of",
+            "functions": [
+                "open_window",
+                "random_rgb_color",
+                "round",
+                "rectangle_from",
+                "clear_screen",
+                "color_white",
+                "fill_rectangle_record",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "red_of",
+                "green_of",
+                "blue_of",
+                "alpha_of",
+                "refresh_screen",
+                "delay",
+                "close_all_windows"
+            ]
+        }
+    ],
     "geometry": [
         {
             "funcKey": "center_point",
@@ -206,6 +249,25 @@
             ]
         },
         {
+            "funcKey": "lines_intersect",
+            "title": "Simple Line Intersect Check",
+            "url": "/api/geometry/#lines-intersect",
+            "functions": [
+                "open_window",
+                "Point2D",
+                "line_from_point_to_point",
+                "draw_line_record",
+                "color_red",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "color_blue",
+                "color_green",
+                "refresh_screen",
+                "delay",
+                "close_all_windows"
+            ]
+        },
+        {
             "funcKey": "line_intersects_rect",
             "title": "Avoid the Rectangle",
             "url": "/api/geometry/#line-intersects-rect",
@@ -295,25 +357,6 @@
                 "color_red",
                 "draw_text_no_font_no_size",
                 "color_black",
-                "refresh_screen",
-                "delay",
-                "close_all_windows"
-            ]
-        },
-        {
-            "funcKey": "lines_intersect",
-            "title": "Simple Line Intersect Check",
-            "url": "/api/geometry/#lines-intersect",
-            "functions": [
-                "open_window",
-                "Point2D",
-                "line_from_point_to_point",
-                "draw_line_record",
-                "color_red",
-                "draw_text_no_font_no_size",
-                "color_black",
-                "color_blue",
-                "color_green",
                 "refresh_screen",
                 "delay",
                 "close_all_windows"
@@ -569,6 +612,32 @@
             ]
         },
         {
+            "funcKey": "rectangle_around",
+            "title": "A perpetually moving circle which increases and decreases in size, surrounded by a rectangle shape",
+            "url": "/api/geometry/",
+            "functions": [
+                "open_window",
+                "create_timer",
+                "start_timer",
+                "quit_requested",
+                "point_at",
+                "cosine",
+                "sine",
+                "circle_at",
+                "timer_ticks",
+                "reset_timer",
+                "process_events",
+                "clear_screen_to_white",
+                "draw_rectangle_record",
+                "color_black",
+                "rectangle_around_circle",
+                "fill_circle_record",
+                "color_red",
+                "refresh_screen",
+                "close_all_windows"
+            ]
+        },
+        {
             "funcKey": "same_point",
             "title": "Point 2D Guessing Game",
             "url": "/api/geometry/#same-point",
@@ -589,7 +658,7 @@
     "graphics": [
         {
             "funcKey": "bitmap_bounding_circle",
-            "title": "Draw bitmaps surrounded by circles\r",
+            "title": "Draw bitmaps surrounded by circles",
             "url": "/api/graphics/#bitmap-bounding-circle",
             "functions": [
                 "open_window",
@@ -602,6 +671,24 @@
                 "draw_circle_record",
                 "color_black",
                 "refresh_screen",
+                "close_all_windows"
+            ]
+        },
+        {
+            "funcKey": "bitmap_center",
+            "title": "Draw a bitmap with a red dot at its center",
+            "url": "/api/graphics/#bitmap-center",
+            "functions": [
+                "open_window",
+                "load_bitmap",
+                "clear_screen",
+                "color_white",
+                "draw_bitmap",
+                "fill_circle_record",
+                "color_red",
+                "circle_at",
+                "refresh_screen",
+                "delay",
                 "close_all_windows"
             ]
         },
@@ -639,6 +726,26 @@
                 "color_black",
                 "delay",
                 "SplashKit"
+            ]
+        },
+        {
+            "funcKey": "draw_circle",
+            "title": "Circle Showcase",
+            "url": "/api/graphics/#draw-circle",
+            "functions": [
+                "open_window",
+                "clear_screen",
+                "color_white",
+                "fill_circle",
+                "color_red",
+                "color_blue",
+                "color_green",
+                "color_orange",
+                "color_purple",
+                "random_rgb_color",
+                "refresh_screen",
+                "delay",
+                "close_all_windows"
             ]
         },
         {
@@ -1230,6 +1337,25 @@
                 "get_system_font",
                 "refresh_screen",
                 "key_typed",
+                "close_all_windows"
+            ]
+        },
+        {
+            "funcKey": "get_font_style",
+            "title": "The program automatically cycles through font styles for a given font (also displaying example text), with the numerical value of each style being shown on screen",
+            "url": "/api/graphics/#get-font-style",
+            "functions": [
+                "open_window",
+                "font_named",
+                "quit_requested",
+                "process_events",
+                "set_font_style",
+                "clear_screen_to_white",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "draw_text",
+                "refresh_screen",
+                "delay",
                 "close_all_windows"
             ]
         },
@@ -1851,6 +1977,31 @@
             "url": "/api/utilities/#trim",
             "functions": [
                 "write_line"
+            ]
+        }
+    ],
+    "windows": [
+        {
+            "funcKey": "close_window",
+            "title": "Starts a countdown to close the window at the push of a button.",
+            "url": "/api/windows/#close-window",
+            "functions": [
+                "open_window",
+                "create_timer",
+                "quit_requested",
+                "process_events",
+                "clear_window",
+                "color_white",
+                "button_at_position",
+                "rectangle_from",
+                "start_timer",
+                "draw_text_font_as_string",
+                "color_black",
+                "timer_ticks",
+                "reset_timer",
+                "draw_interface",
+                "refresh_window",
+                "close_all_windows"
             ]
         }
     ]
