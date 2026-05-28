@@ -260,33 +260,37 @@ function getUsageExampleImports(categoryKey, functionKey) {
           const languageFiles = functionFiles.filter(file => file.endsWith(languageFileExtensions[lang]));
           let codeFilePath = categoryPath + "/" + exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
 
-          // import code if available
           if (languageFiles.length > 0) {
-            languageCodeAvailable[lang] = true;
-
-            // Check if both top level and oop code has been found for current function
             const csharpFiles = functionFiles.filter(file => file.endsWith("-top-level.cs") || file.endsWith("-oop.cs")).filter(file => file.includes(exampleKey));
             const cppFiles = functionFiles.filter(file => file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp")).filter(file => file.includes(exampleKey));
+            
             if (lang == "csharp" && csharpFiles.length > 0) {
+              let addedTopLevel = false;
+              let addedOop = false;
               csharpFiles.forEach(file => {
                 if (file.includes(exampleKey)) {
-                  if (file.includes("-top-level")) {
+                  if (file.includes("-top-level") && !addedTopLevel) {
                     mdxData += `import ${importTitle}_top_level_${lang} from '${codeFilePath.replaceAll(".cs", "-top-level.cs").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                    addedTopLevel = true;
                   }
-                  if (file.includes("-oop")) {
+                  if (file.includes("-oop") && !addedOop) {
                     mdxData += `import ${importTitle}_oop_${lang} from '${codeFilePath.replaceAll(".cs", "-oop.cs").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                    addedOop = true;
                   }
                 }
               });
-            } // Check for cpp files for standard SK and Beyond SK
-            else if (lang == "cpp" && cppFiles.length > 0) {
+            } else if (lang == "cpp" && cppFiles.length > 0) {
+              let addedSk = false;
+              let addedBeyond = false;
               cppFiles.forEach(file => {
                 if (file.includes(exampleKey)) {
-                  if (file.includes("-sk")) {
+                  if (file.includes("-sk") && !addedSk) {
                     mdxData += `import ${importTitle}_sk_${lang} from '${codeFilePath.replaceAll(".cpp", "-sk.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                    addedSk = true;
                   }
-                  if (file.includes("-beyond")) {
+                  if (file.includes("-beyond") && !addedBeyond) {
                     mdxData += `import ${importTitle}_beyond_${lang} from '${codeFilePath.replaceAll(".cpp", "-beyond.cpp").replaceAll("/usage", "/public/usage")}?raw';\n`;
+                    addedBeyond = true;
                   }
                 }
               });
