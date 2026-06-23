@@ -1,0 +1,6 @@
+This example demonstrates how to use the base64_decode function in SplashKit.
+
+The program takes a Base64-encoded string (e.g. "SGVsbG8gU3BsYXNoS2l0")
+and decodes it back into its original plain text ("Hello SplashKit").
+
+This is useful when converting serialized or encoded data back into a readable format.
