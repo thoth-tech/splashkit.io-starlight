@@ -1,0 +1,8 @@
+Function: base64_encode
+Category: Utilities
+Purpose: Demonstrates how to encode a plain string ("Hello SplashKit") into Base64 using SplashKit.
+Languages: C++, Python, C# (OOP), C# (Top-level)
+
+Expected Output:
+Original: Hello SplashKit
+Base64: SGVsbG8gU3BsYXNoS2l0
