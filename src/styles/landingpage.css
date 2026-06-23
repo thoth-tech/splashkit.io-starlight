@@ -1,0 +1,112 @@
+/* Container max width and padding */
+.container {
+    max-width: 1360px; /* ~85rem */
+    padding: 2.5rem 1rem; /* py-10 px-4 */
+    margin: 0 auto;
+  }
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* sm:px-6 */
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* lg:px-8 */
+      padding-right: 2rem;
+      padding-top: 3.5rem; /* lg:py-14 */
+      padding-bottom: 3.5rem;
+    }
+  }
+
+  /* Grid layout */
+  .grid {
+    display: grid;
+    gap: 3rem; /* gap-12 */
+    align-items: center;
+  }
+  @media (min-width: 640px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr); /* sm:grid-cols-2 */
+    }
+  }
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr); /* lg:grid-cols-4 */
+    }
+  }
+
+  /* Icon block */
+  .icon-block {
+    text-align: center;
+  }
+
+  /* Icon container with gradient border and background */
+  .icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem; /* 12 x 0.25rem */
+    height: 3rem;
+    background-color: white;
+    border-radius: 0.75rem; /* rounded-xl */
+    z-index: 0;
+  }
+
+  /* Gradient border effect using before pseudo element */
+  .icon-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px; right: -1px; bottom: -1px;
+    border-radius: 0.75rem;
+    z-index: -1;
+    background: linear-gradient(135deg, #2563eb, transparent, #8b5cf6);
+  }
+
+  /* Dark mode styles */
+  @media (prefers-color-scheme: dark) {
+    .icon-wrapper {
+      background-color: #18181b; /* neutral-900 */
+    }
+    .icon-wrapper::before {
+      /* Optional: you can adjust gradient colors for dark mode */
+      background: linear-gradient(135deg, #3b82f6, transparent, #a78bfa);
+    }
+    .icon-title {
+      color: white;
+    }
+    .icon-desc {
+      color: #a3a3a3; /* neutral-400 */
+    }
+  }
+
+  /* SVG icon styles */
+  .icon-svg {
+    width: 1.5rem; /* 6 x 0.25rem */
+    height: 1.5rem;
+    stroke: #2563eb; /* blue-600 */
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @media (prefers-color-scheme: dark) {
+    .icon-svg {
+      stroke: #3b82f6; /* blue-500 */
+    }
+  }
+
+  /* Title and description */
+  .icon-title {
+    margin-top: 1.25rem; /* mt-5 */
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: #1f2937; /* gray-800 */
+  }
+  .icon-desc {
+    margin-top: 0.25rem; /* mt-1 */
+    color: #4b5563; /* gray-600 */
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }

@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@import "preline/variants.css";
+@source "../../node_modules/preline/dist/*.js";
+/* Resize Starlight navbar logo with Tailwind utility classes */
+nav .starlight__logo img {
+  height: 1 ;
+}
+
+
+
+/* Optional Preline UI Datepicker Plugin */
+/* @import "preline/src/plugins/datepicker/styles.css"; */
+
+/* Plugins */
+/* @plugin "@tailwindcss/forms"; */
