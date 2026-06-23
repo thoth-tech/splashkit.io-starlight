@@ -1,0 +1,5 @@
+#### Sine Example
+
+The following code shows examples of using [Sine](/api/geometry#sine) to show how we can calculate the sine of an angle.
+
+

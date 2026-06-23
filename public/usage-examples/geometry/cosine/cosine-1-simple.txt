@@ -1,0 +1,5 @@
+#### Cosine Example
+
+The following code shows examples of using [Cosine](/api/geometry#cosine) to show how we can calculate the cosine of an angle.
+
+
