@@ -54,6 +54,8 @@ export default defineConfig({
         "/src/styles/custom.css",
         "/src/styles/background.css",
         "/src/styles/cards.css",
+        "/src/styles/button-styles.css",
+        "/src/styles/games.css",
       ],
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/splashkit' },
@@ -64,6 +66,10 @@ export default defineConfig({
         src: "./src/assets/favicon.svg",
       },
       sidebar: [
+        {
+          label: "Try Games",
+          autogenerate: { directory: "games" },
+        },
         {
           label: "Installation",
           collapsed: false,
