@@ -1,0 +1,1 @@
+Draws five rectangles of the same colour at increasing alpha values. The alpha of each colour is read using alpha_of and displayed below its rectangle.
