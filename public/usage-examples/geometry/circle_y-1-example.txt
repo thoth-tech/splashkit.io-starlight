@@ -1,1 +1,4 @@
-Using the Circle Y-coordinate
+Splashkit Function: CircleY
+
+Overview of example functionality:
+This example demonstrates how to use the CircleY function to retrieve the Y position of a circle. The program displays the circle on the screen and shows its vertical position value.

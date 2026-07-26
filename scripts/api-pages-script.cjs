@@ -75,20 +75,32 @@ const sk_colors = ["alice_blue", "antique_white", "aqua", "aquamarine", "azure",
 // ------------------------------------------------------------------------------
 // Get a list of all the files in a directory and it's subdirectories
 // ------------------------------------------------------------------------------
-function getAllFiles(dir, allFilesList = []) {
-  try {
+function getAllFiles(dir, allFilesList = [], rootDir = dir)
+{
+  try
+  {
     const files = fs.readdirSync(dir);
-    files.map(file => {
-      const name = dir + '/' + file;
-      if (fs.statSync(name).isDirectory()) { // check if subdirectory is present
-        getAllFiles(name, allFilesList);     // do recursive execution for subdirectory
-      } else {
-        allFilesList.push(file);             // push filename into the array
+
+    files.forEach(file =>
+    {
+      const fullPath = path.join(dir, file);
+
+      if (fs.statSync(fullPath).isDirectory())
+      {
+        getAllFiles(fullPath, allFilesList, rootDir);
       }
-    })
-  } catch (err) {
+      else
+      {
+        const relativePath = path.relative(rootDir, fullPath).replaceAll("\\", "/");
+        allFilesList.push(relativePath);
+      }
+    });
+  }
+  catch (err)
+  {
     console.error(kleur.yellow(`Warning: Unable to access directory ${dir}`), err);
   }
+
   return allFilesList;
 }
 
@@ -247,18 +259,19 @@ function getUsageExampleImports(categoryKey, functionKey) {
   let categoryPath = '/usage-examples/' + categoryKey;
   let categoryFilePath = './public/usage-examples/' + categoryKey;
 
-  const functionFiles = getAllFiles(categoryFilePath).filter(file => file.startsWith(functionKey));
+  const functionFiles = getAllFiles(categoryFilePath).filter(file => path.basename(file).startsWith(functionKey));
   if (functionFiles.length > 0) {
     const txtFiles = functionFiles.filter(file => file.endsWith('.txt'))
     if (txtFiles.length > 0) {
-      txtFiles.forEach((exampleTxtKey) => {
+      txtFiles.forEach((exampleTxtPath) => {
+        let exampleTxtKey = path.basename(exampleTxtPath);
         let exampleKey = exampleTxtKey.replaceAll(".txt", "");
 
         let importTitle = exampleKey.replaceAll("-", "_");
 
         languageOrder.forEach((lang) => {
           const languageFiles = functionFiles.filter(file => file.endsWith(languageFileExtensions[lang]));
-          let codeFilePath = categoryPath + "/" + exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
+          let codeFilePath = categoryPath + "/" + exampleTxtPath.replaceAll(".txt", languageFileExtensions[lang]);
 
           // import code if available
           if (languageFiles.length > 0) {
@@ -335,12 +348,13 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
   let categoryFilePath = './public/usage-examples/' + categoryKey;
 
   let exampleKey = functionKey.replaceAll(".txt", "");
-  const functionFiles = getAllFiles(categoryFilePath).filter(file => file.startsWith(exampleKey));
+  const functionFiles = getAllFiles(categoryFilePath).filter(file => path.basename(file).startsWith(exampleKey));
 
   if (functionFiles.length > 0) {
 
     const functionExampleFiles = functionFiles.filter(file => file.endsWith(".txt"));
-    functionExampleFiles.forEach((exampleTxtKey) => {
+    functionExampleFiles.forEach((exampleTxtPath) => {
+      const exampleTxtKey = path.basename(exampleTxtPath);
 
       // import code if available
       if (functionFiles.length > 0) {
@@ -349,14 +363,14 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
         // Description
         let exampleNum = exampleKey.replace(/\D/g, '');
         mdxData += `**Example ${exampleNum}**: `;
-        let exampleTxt = fs.readFileSync(categoryFilePath + "/" + exampleTxtKey);
-        mdxData += exampleTxt.toString();
+        let exampleText = fs.readFileSync(path.join(categoryFilePath, exampleTxtPath));
+        mdxData += exampleText.toString();
         mdxData += "\n\n";
 
         // Code tabs
         mdxData += "<Tabs syncKey=\"code-language\">\n";
         languageOrder.forEach((lang) => {
-          const languageFiles = functionFiles.filter(file => file.startsWith(exampleKey)).filter(file => file.endsWith(languageFileExtensions[lang]));
+          const languageFiles = functionFiles.filter(file => path.basename(file).startsWith(exampleKey)).filter(file => file.endsWith(languageFileExtensions[lang]));
 
           if (languageFiles.length > 0) {
             languageCodeAvailable[lang] = true;

@@ -1,1 +1,4 @@
-Glowing Circle
+Splashkit Function: CenterPoint
+
+Overview of example functionality:
+This example demonstrates how to use the CenterPoint function to calculate the center of a circle. The program then uses this point to draw a glowing blue circle positioned in the middle of the window.
