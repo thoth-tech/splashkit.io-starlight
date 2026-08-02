@@ -39,6 +39,9 @@ while (!QuitRequested())
     DrawText("Blue clicks: " + blueCount.ToString(), ColorBlue(), 300, 130);
     DrawText("Green clicks: " + greenCount.ToString(), ColorGreen(), 300, 160);
 
+    // Draw the interface elements to the window
+    DrawInterface();
+
     RefreshScreen(60);
 }
 

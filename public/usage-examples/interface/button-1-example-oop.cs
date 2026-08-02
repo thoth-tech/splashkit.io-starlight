@@ -45,6 +45,9 @@ namespace ButtonExample
                 SplashKit.DrawText("Blue clicks: " + blueCount.ToString(), Color.Blue, 300, 130);
                 SplashKit.DrawText("Green clicks: " + greenCount.ToString(), Color.Green, 300, 160);
 
+                // Draw the interface elements to the window
+                SplashKit.DrawInterface();
+
                 SplashKit.RefreshScreen(60);
             }
 

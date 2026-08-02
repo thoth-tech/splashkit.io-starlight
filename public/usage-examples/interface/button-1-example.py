@@ -30,6 +30,9 @@ while not quit_requested():
     draw_text_no_font_no_size("Blue clicks: " + str(blue_count), color_blue(), 300, 130)
     draw_text_no_font_no_size("Green clicks: " + str(green_count), color_green(), 300, 160)
 
+    # Draw the interface elements to the window
+    draw_interface()
+
     refresh_screen_with_target_fps(60)
 
 close_all_windows()

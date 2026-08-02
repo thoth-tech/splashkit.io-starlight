@@ -41,6 +41,9 @@ int main()
         draw_text("Blue clicks: " + std::to_string(blue_count), COLOR_BLUE, 300, 130);
         draw_text("Green clicks: " + std::to_string(green_count), COLOR_GREEN, 300, 160);
 
+        // Draw the interface elements to the window
+        draw_interface();
+
         refresh_screen(60);
     }
 
