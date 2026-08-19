@@ -569,30 +569,6 @@
             ]
         },
         {
-            "funcKey": "rectangles_intersect",
-            "title": "Rectangles Intersect",
-            "url": "/api/geometry/#rectangles-intersect",
-            "functions": [
-                "open_window",
-                "rectangle_from",
-                "quit_requested",
-                "process_events",
-                "mouse_x",
-                "mouse_y",
-                "rectangles_intersect",
-                "clear_screen",
-                "color_white",
-                "fill_rectangle",
-                "color_red",
-                "draw_text_no_font_no_size",
-                "color_black",
-                "color_blue",
-                "color_green",
-                "refresh_screen",
-                "close_all_windows"
-            ]
-        },
-        {
             "funcKey": "same_point",
             "title": "Point 2D Guessing Game",
             "url": "/api/geometry/#same-point",

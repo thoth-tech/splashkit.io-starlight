@@ -21,25 +21,25 @@ while not quit_requested():
         movable_rectangle
     )
 
-    clear_screen(COLOR_WHITE)
+    clear_screen(color_white())
 
     if is_intersecting:
-        fill_rectangle(COLOR_RED, fixed_rectangle)
-        fill_rectangle(COLOR_RED, movable_rectangle)
+        fill_rectangle_record(color_red(), fixed_rectangle)
+        fill_rectangle_record(color_red(), movable_rectangle)
 
-        draw_text(
+        draw_text_no_font_no_size(
             "Rectangles are intersecting.",
-            COLOR_BLACK,
+            color_black(),
             240,
             60
         )
     else:
-        fill_rectangle(COLOR_BLUE, fixed_rectangle)
-        fill_rectangle(COLOR_GREEN, movable_rectangle)
+        fill_rectangle_record(color_blue(), fixed_rectangle)
+        fill_rectangle_record(color_green(), movable_rectangle)
 
-        draw_text(
+        draw_text_no_font_no_size(
             "Move the green rectangle with the mouse.",
-            COLOR_BLACK,
+            color_black(),
             185,
             60
         )
