@@ -1,39 +1,40 @@
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-SplashKit.OpenWindow("Triangle Ray Intersection", 800, 600);
+OpenWindow("Triangle Ray Intersection", 800, 600);
 
-Point2D rayOrigin = SplashKit.PointAt(120, 300);
+Point2D rayOrigin = PointAt(120, 300);
 
-Triangle tri = SplashKit.TriangleFrom(
-    SplashKit.PointAt(500, 180),
-    SplashKit.PointAt(650, 420),
-    SplashKit.PointAt(420, 420)
+Triangle tri = TriangleFrom(
+    PointAt(500, 180),
+    PointAt(650, 420),
+    PointAt(420, 420)
 );
 
-while (!SplashKit.QuitRequested())
+while (!QuitRequested())
 {
-    SplashKit.ProcessEvents();
+    ProcessEvents();
 
-    Point2D mouse = SplashKit.MousePosition();
+    Point2D mouse = MousePosition();
 
-    Vector2D heading = SplashKit.VectorTo(
+    Vector2D heading = VectorTo(
         mouse.X - rayOrigin.X,
         mouse.Y - rayOrigin.Y
     );
 
-    bool intersects = SplashKit.TriangleRayIntersection(
+    bool intersects = TriangleRayIntersection(
         rayOrigin,
         heading,
         tri
     );
 
-    SplashKit.ClearScreen(Color.White);
+    ClearScreen(Color.White);
 
     if (intersects)
     {
-        SplashKit.FillTriangle(Color.Green, tri);
+        FillTriangle(Color.Green, tri);
 
-        SplashKit.DrawText(
+        DrawText(
             "Ray intersects the triangle",
             Color.Green,
             20,
@@ -42,9 +43,9 @@ while (!SplashKit.QuitRequested())
     }
     else
     {
-        SplashKit.FillTriangle(Color.Red, tri);
+        FillTriangle(Color.Red, tri);
 
-        SplashKit.DrawText(
+        DrawText(
             "Ray does not intersect the triangle",
             Color.Red,
             20,
@@ -52,9 +53,9 @@ while (!SplashKit.QuitRequested())
         );
     }
 
-    SplashKit.DrawTriangle(Color.Black, tri);
+    DrawTriangle(Color.Black, tri);
 
-    SplashKit.DrawCircle(
+    DrawCircle(
         Color.Blue,
         rayOrigin.X,
         rayOrigin.Y,
@@ -63,12 +64,12 @@ while (!SplashKit.QuitRequested())
 
     double rayLength = 1000;
 
-    Point2D rayEnd = SplashKit.PointAt(
+    Point2D rayEnd = PointAt(
         rayOrigin.X + heading.X * rayLength,
         rayOrigin.Y + heading.Y * rayLength
     );
 
-    SplashKit.DrawLine(
+    DrawLine(
         Color.Blue,
         rayOrigin.X,
         rayOrigin.Y,
@@ -76,14 +77,14 @@ while (!SplashKit.QuitRequested())
         rayEnd.Y
     );
 
-    SplashKit.DrawText(
+    DrawText(
         "Move the mouse to change the ray direction",
         Color.Black,
         20,
         550
     );
 
-    SplashKit.RefreshScreen(60);
+    RefreshScreen(60);
 }
 
-SplashKit.CloseAllWindows();
+CloseAllWindows();
