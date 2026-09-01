@@ -1,66 +1,67 @@
 using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
 
-SplashKit.OpenWindow("Triangle Quad Intersect", 800, 600);
+OpenWindow("Triangle Quad Intersect", 800, 600);
 
 // Create a fixed quad
-Quad targetQuad = SplashKit.QuadFrom(
+Quad targetQuad = QuadFrom(
     450, 180,
     650, 180,
     450, 380,
     650, 380
 );
 
-while (!SplashKit.QuitRequested())
+while (!QuitRequested())
 {
-    SplashKit.ProcessEvents();
+    ProcessEvents();
 
     // Get current mouse position
-    Point2D mousePoint = SplashKit.MousePosition();
+    Point2D mousePoint = MousePosition();
     double mx = mousePoint.X;
     double my = mousePoint.Y;
 
     // Create a triangle that follows the mouse
-    Triangle movingTriangle = SplashKit.TriangleFrom(
+    Triangle movingTriangle = TriangleFrom(
         mx, my - 60,
         mx - 60, my + 50,
         mx + 60, my + 50
     );
 
     // Check whether the triangle intersects the quad
-    bool intersects = SplashKit.TriangleQuadIntersect(
+    bool intersects = TriangleQuadIntersect(
         movingTriangle,
         targetQuad
     );
 
-    SplashKit.ClearScreen(Color.White);
+    ClearScreen(ColorWhite());
 
-    SplashKit.FillQuad(Color.LightGray, targetQuad);
-    SplashKit.DrawQuad(Color.Black, targetQuad);
+    FillQuad(ColorLightGray(), targetQuad);
+    DrawQuad(ColorBlack(), targetQuad);
 
     if (intersects)
     {
-        SplashKit.FillTriangle(Color.Red, movingTriangle);
-        SplashKit.DrawText(
+        FillTriangle(ColorRed(), movingTriangle);
+        DrawText(
             "Triangle intersects the quad!",
-            Color.Red,
+            ColorRed(),
             20,
             20
         );
     }
     else
     {
-        SplashKit.FillTriangle(Color.Blue, movingTriangle);
-        SplashKit.DrawText(
+        FillTriangle(ColorBlue(), movingTriangle);
+        DrawText(
             "Move the triangle into the quad",
-            Color.Black,
+            ColorBlack(),
             20,
             20
         );
     }
 
-    SplashKit.DrawTriangle(Color.Black, movingTriangle);
+    DrawTriangle(ColorBlack(), movingTriangle);
 
-    SplashKit.RefreshScreen(60);
+    RefreshScreen(60);
 }
 
-SplashKit.CloseAllWindows();
+CloseAllWindows();
