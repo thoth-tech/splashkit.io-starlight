@@ -18,24 +18,14 @@ while not quit_requested():
     mx = mouse_pt.x
     my = mouse_pt.y
 
-    # Triangle coordinates
-    x1 = mx
-    y1 = my - 60
-
-    x2 = mx - 60
-    y2 = my + 50
-
-    x3 = mx + 60
-    y3 = my + 50
-
-    # Create the moving triangle
+    # Create a triangle that follows the mouse
     moving_triangle = triangle_from_coordinates(
-        x1, y1,
-        x2, y2,
-        x3, y3
+        mx, my - 60,
+        mx - 60, my + 50,
+        mx + 60, my + 50
     )
 
-    # Test whether the triangle intersects the quad
+    # Check whether the triangle intersects the quad
     intersects = triangle_quad_intersect(
         moving_triangle,
         target_quad
@@ -49,11 +39,9 @@ while not quit_requested():
 
     # Change triangle colour depending on intersection
     if intersects:
-        fill_triangle(
+        fill_triangle_record(
             color_red(),
-            x1, y1,
-            x2, y2,
-            x3, y3
+            moving_triangle
         )
 
         draw_text_no_font_no_size(
@@ -63,11 +51,9 @@ while not quit_requested():
             20
         )
     else:
-        fill_triangle(
+        fill_triangle_record(
             color_blue(),
-            x1, y1,
-            x2, y2,
-            x3, y3
+            moving_triangle
         )
 
         draw_text_no_font_no_size(
@@ -77,12 +63,9 @@ while not quit_requested():
             20
         )
 
-    # Draw triangle outline
-    draw_triangle(
+    draw_triangle_record(
         color_black(),
-        x1, y1,
-        x2, y2,
-        x3, y3
+        moving_triangle
     )
 
     refresh_screen()
