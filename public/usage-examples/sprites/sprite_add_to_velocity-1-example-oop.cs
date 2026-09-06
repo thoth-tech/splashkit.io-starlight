@@ -25,19 +25,19 @@ namespace SpriteAddToVelocityExample
                 // Add a small amount of velocity in the direction of whichever arrow key is held
                 if (SplashKit.KeyDown(KeyCode.UpKey))
                 {
-                    SplashKit.SpriteAddToVelocity(ball, SplashKit.VectorTo(0, -0.05));
+                    ball.AddToVelocity(SplashKit.VectorTo(0, -0.05));
                 }
                 if (SplashKit.KeyDown(KeyCode.DownKey))
                 {
-                    SplashKit.SpriteAddToVelocity(ball, SplashKit.VectorTo(0, 0.05));
+                    ball.AddToVelocity(SplashKit.VectorTo(0, 0.05));
                 }
                 if (SplashKit.KeyDown(KeyCode.LeftKey))
                 {
-                    SplashKit.SpriteAddToVelocity(ball, SplashKit.VectorTo(-0.05, 0));
+                    ball.AddToVelocity(SplashKit.VectorTo(-0.05, 0));
                 }
                 if (SplashKit.KeyDown(KeyCode.RightKey))
                 {
-                    SplashKit.SpriteAddToVelocity(ball, SplashKit.VectorTo(0.05, 0));
+                    ball.AddToVelocity(SplashKit.VectorTo(0.05, 0));
                 }
 
                 SplashKit.UpdateSprite(ball);
