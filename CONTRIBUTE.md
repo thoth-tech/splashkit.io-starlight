@@ -71,6 +71,8 @@ Follow these steps to contribute to the SplashKit website repository:
 
 By following these steps, you contribute effectively to the SplashKit website. Remember to adhere to the project's guidelines and maintain a collaborative and respectful environment.
 
+Team leads and mentors looking after the PR queue each trimester should also read [`MAINTAINING.md`](/MAINTAINING.md).
+
 ## Website Guide
 
 This guide provides information on the structure and organization of the SplashKit website, which is built on the Starlight framework. Follow these instructions to navigate through the project and make necessary updates effectively.
