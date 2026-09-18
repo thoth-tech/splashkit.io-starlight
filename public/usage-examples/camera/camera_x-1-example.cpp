@@ -1,0 +1,33 @@
+#include "splashkit.h"
+
+int main()
+{
+    open_window("Camera X Example", 800, 600);
+
+    while (!quit_requested())
+    {
+        process_events();
+
+        if (key_down(LEFT_KEY))
+            move_camera_by(-5, 0);
+
+        if (key_down(RIGHT_KEY))
+            move_camera_by(5, 0);
+
+        clear_screen(COLOR_WHITE);
+
+        fill_rectangle(COLOR_RED, 100, 200, 100, 100);
+        fill_rectangle(COLOR_GREEN, 1000, 200, 100, 100);
+
+        draw_text("Camera X: " + std::to_string(camera_x()),
+                  COLOR_BLACK,
+                  20,
+                  20,
+                  option_to_screen());
+
+        refresh_screen(60);
+    }
+
+    close_all_windows();
+    return 0;
+}
