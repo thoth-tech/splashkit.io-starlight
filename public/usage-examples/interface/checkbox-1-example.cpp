@@ -24,7 +24,16 @@ int main()
             clear_screen(COLOR_WHITE);
         }
 
-        color text_color = dark_background ? COLOR_WHITE : COLOR_BLACK;
+        color text_color;
+
+        if (dark_background)
+        {
+            text_color = COLOR_WHITE;
+        }
+        else
+        {
+            text_color = COLOR_BLACK;
+        }
 
         if (show_grid)
         {
@@ -48,7 +57,10 @@ int main()
 
         if (start_panel("Options", panel_area))
         {
-            show_grid = checkbox("Show Grid", show_grid);
+            show_grid = checkbox(
+                "Show Grid",
+                show_grid
+            );
 
             sound_enabled = checkbox(
                 "Sound",
