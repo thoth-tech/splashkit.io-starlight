@@ -23,7 +23,16 @@ while (!QuitRequested())
         ClearScreen(ColorWhite());
     }
 
-    Color textColor = darkBackground ? ColorWhite() : ColorBlack();
+    Color textColor;
+
+    if (darkBackground)
+    {
+        textColor = ColorWhite();
+    }
+    else
+    {
+        textColor = ColorBlack();
+    }
 
     if (showGrid)
     {
