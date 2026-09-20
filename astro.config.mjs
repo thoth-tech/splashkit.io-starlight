@@ -115,7 +115,7 @@ export default defineConfig({
               label: "Getting Started",
               collapsed: false,
               items: [
-                                { label: "Drawing with Procedures", link: "guides/graphics/drawing-using-procedures" },
+                { label: "Drawing with Procedures", link: "guides/graphics/drawing-using-procedures" },
                 { label: "Understanding Double Buffering", link: "guides/graphics/double-buffering" },
                 { label: "Shape Modelling", link: "guides/graphics/2-shape-modelling" },
                 { label: "Graphical User Inputs", link: "guides/input/user-inputs-in-graphical-applications" },
