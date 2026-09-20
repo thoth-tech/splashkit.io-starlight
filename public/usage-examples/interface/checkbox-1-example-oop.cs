@@ -1,5 +1,4 @@
 using SplashKitSDK;
-using static SplashKitSDK.SplashKit;
 
 namespace CheckboxExample
 {
@@ -7,81 +6,102 @@ namespace CheckboxExample
     {
         public static void Main(string[] args)
         {
-            OpenWindow("Checkbox Example", 700, 500);
+            SplashKit.OpenWindow("Checkbox Example", 700, 500);
 
             bool showGrid = false;
             bool soundEnabled = true;
             bool darkBackground = false;
 
-            Rectangle panelArea = RectangleFrom(40, 90, 280, 150);
-            Rectangle positionedCheckbox = RectangleFrom(380, 120, 220, 40);
+            Rectangle panelArea = SplashKit.RectangleFrom(40, 90, 280, 150);
+            Rectangle positionedCheckbox = SplashKit.RectangleFrom(380, 120, 220, 40);
 
-            while (!QuitRequested())
+            while (!SplashKit.QuitRequested())
             {
-                ProcessEvents();
+                SplashKit.ProcessEvents();
 
                 if (darkBackground)
                 {
-                    ClearScreen(ColorDarkSlateGray());
+                    SplashKit.ClearScreen(SplashKit.ColorDarkSlateGray());
                 }
                 else
                 {
-                    ClearScreen(ColorWhite());
+                    SplashKit.ClearScreen(SplashKit.ColorWhite());
                 }
 
-                Color textColor = darkBackground ? ColorWhite() : ColorBlack();
+                Color textColor;
+
+                if (darkBackground)
+                {
+                    textColor = SplashKit.ColorWhite();
+                }
+                else
+                {
+                    textColor = SplashKit.ColorBlack();
+                }
 
                 if (showGrid)
                 {
                     for (int x = 0; x < 700; x += 50)
                     {
-                        DrawLine(ColorLightGray(), x, 0, x, 500);
+                        SplashKit.DrawLine(
+                            SplashKit.ColorLightGray(),
+                            x,
+                            0,
+                            x,
+                            500
+                        );
                     }
 
                     for (int y = 0; y < 500; y += 50)
                     {
-                        DrawLine(ColorLightGray(), 0, y, 700, y);
+                        SplashKit.DrawLine(
+                            SplashKit.ColorLightGray(),
+                            0,
+                            y,
+                            700,
+                            y
+                        );
                     }
                 }
 
-                DrawText(
+                SplashKit.DrawText(
                     "SplashKit Checkbox Example",
                     textColor,
                     40,
                     35
                 );
 
-                if (StartPanel("Options", panelArea))
+                if (SplashKit.StartPanel("Options", panelArea))
                 {
-                    showGrid = Checkbox(
+                    showGrid = SplashKit.Checkbox(
                         "Show Grid",
                         showGrid
                     );
 
-                    soundEnabled = Checkbox(
+                    soundEnabled = SplashKit.Checkbox(
                         "Sound",
                         "Enabled",
                         soundEnabled
                     );
 
-                    EndPanel("Options");
+                    SplashKit.EndPanel("Options");
                 }
 
-                darkBackground = Checkbox(
+                darkBackground = SplashKit.Checkbox(
                     "Dark Background",
                     darkBackground,
                     positionedCheckbox
                 );
 
-                DrawText(
+                SplashKit.DrawText(
                     "Try clicking each checkbox",
                     textColor,
                     380,
                     190
                 );
 
-                DrawInterface();
-                RefreshScreen(60);
+                SplashKit.DrawInterface();
+                SplashKit.RefreshScreen(60);
             }
         }
     }
