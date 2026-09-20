@@ -17,7 +17,10 @@ while not quit_requested():
     else:
         clear_screen(color_white())
 
-    text_color = color_white() if dark_background else color_black()
+    if dark_background:
+        text_color = color_white()
+    else:
+        text_color = color_black()
 
     if show_grid:
         for x in range(0, 700, 50):
