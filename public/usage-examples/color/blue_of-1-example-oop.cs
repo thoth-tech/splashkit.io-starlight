@@ -16,7 +16,7 @@ namespace BlueOfExample
                 SplashKit.RGBAColor(80, 80, 230, 255)
             };
 
-            string[] labels = { "Low Blue", "Medium Blue", "Full Blue" };
+            string[] labels = { "Low Blue", "Medium Blue", "High Blue" };
 
             while (!SplashKit.QuitRequested())
             {

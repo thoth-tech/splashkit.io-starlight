@@ -3,14 +3,14 @@ from splashkit import *
 # Open the window for the usage example
 open_window("Reading the Blue Channel", 800, 400)
 
-# Three shades of blue with different red/green, same alpha
+# Three shades of blue with the same red/green/alpha, only blue differs
 shades = [
     rgba_color(80, 80, 30, 255),
     rgba_color(80, 80, 130, 255),
     rgba_color(80, 80, 230, 255)
 ]
 
-labels = ["Low Blue", "Medium Blue", "Full Blue"]
+labels = ["Low Blue", "Medium Blue", "High Blue"]
 
 while not quit_requested():
     process_events()

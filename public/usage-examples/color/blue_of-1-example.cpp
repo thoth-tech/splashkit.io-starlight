@@ -5,7 +5,7 @@ int main()
     // Open the window for the usage example
     open_window("Reading the Blue Channel", 800, 400);
 
-    // Three shades of blue with different red/green, same alpha
+    // Three shades of blue with the same red/green/alpha, only blue differs
     color shades[] = {
         rgba_color(80, 80, 30, 255),
         rgba_color(80, 80, 130, 255),
@@ -15,7 +15,7 @@ int main()
     string labels[] = {
         "Low Blue",
         "Medium Blue",
-        "Full Blue"
+        "High Blue"
     };
 
     while (!quit_requested())
