@@ -1,0 +1,1 @@
+I am demonstrating the camera/world vs screen coordinates: arrow keys are panning the camera, the screen HUD stays fixed, and SPACE is toggling the HUD.
