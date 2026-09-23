@@ -9,6 +9,22 @@ const path = require('path'); // Handle and transform file paths
 const srcDirectory = "./public/usage-examples"; //directory to be scraped
 const outputDirectory = "./scripts/json-files/usage-example-references.json" //directory where "Usage Example" functions will be savedc
 
+// Recursively collect all files inside a directory
+function getAllFilePaths(dir, allFiles = []) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+    entries.forEach(entry => {
+        const fullPath = path.join(dir, entry.name);
+
+        if (entry.isDirectory()) {
+            getAllFilePaths(fullPath, allFiles);
+        } else {
+            allFiles.push(fullPath);
+        }
+    });
+
+    return allFiles;
+}
 // ------------------------------------------------------------------------------
 // Scraping all of the folders in usage example and retrieving the functions and title 
 // ------------------------------------------------------------------------------
@@ -28,14 +44,15 @@ function getAvailableExamplesFunctionUsage(dir) {
 
             // Checking if the path is a directory
             if (stats.isDirectory()) {
-                const files = fs.readdirSync(folderPath);
-                // Filtering for JSON files
-                pythonFiles = files.filter(file => path.extname(file).toLowerCase() === '.py');
-                textFiles = files.filter(file => path.extname(file).toLowerCase() === '.txt');
+                const files = getAllFilePaths(folderPath);
+                
+                const pythonFiles = files.filter(
+                    file => path.extname(file).toLowerCase() === '.py'
+                );
 
-                pythonFiles.forEach(pyFile => {
-                    const fileName = path.join(folderPath, pyFile);
-                    const fileName2 = fileName.replace('.py', '.txt')
+                pythonFiles.forEach(fileName => {
+                    const pyFile = path.basename(fileName);
+                    const fileName2 = fileName.replace(/\.py$/, '.txt');
                     const pythonFile = fs.readFileSync(fileName);
                     const textFile = fs.readFileSync(fileName2, "utf8");
                     const title = textFile.split("\n")[0];
