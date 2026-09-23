@@ -1,0 +1,1 @@
+Flashes the screen if circle intersects triangle.
