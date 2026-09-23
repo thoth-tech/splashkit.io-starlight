@@ -1,0 +1,1 @@
+I am reading text lines and I am printing whether each is an integer; I am exiting when I type q.
