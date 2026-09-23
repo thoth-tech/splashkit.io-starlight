@@ -1,0 +1,12 @@
+{
+
+  "code-runner.runInTerminal": true,
+
+
+  "code-runner.executorMap": {
+    "cpp": "C:\\msys64\\usr\\bin\\bash.exe -lc 'skm g++ \"$fileName\" -o \"$fileNameWithoutExt.exe\" && ./\"$fileNameWithoutExt.exe\"'"
+  },
+
+
+  "code-runner.fileDirectoryAsCwd": true
+}
