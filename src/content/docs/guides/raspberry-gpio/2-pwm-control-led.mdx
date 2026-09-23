@@ -93,6 +93,9 @@ This code requires the `pigpio` daemon, so make sure it is running! For more inf
 
 Below is an example program to iterate over the entire range of frequencies available.
 
+<Tabs>
+<TabItem label="Local">
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -101,25 +104,32 @@ Below is an example program to iterate over the entire range of frequencies avai
 
 int main()
 {
-    const int freqs[] = {10, 20, 40, 50, 80, 100, 160, 200, 250,
-                        320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
+    const int freqs[] = {
+        10, 20, 40, 50, 80, 100, 160, 200, 250,
+        320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000
+    };
+
     const int pwm_range = 255;
+
     raspi_init();
+
     gpio_pin led_pin = PIN_11;
     raspi_set_mode(led_pin, GPIO_OUTPUT);
 
     raspi_set_pwm_range(led_pin, pwm_range);
-    raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
+    raspi_set_pwm_dutycycle(led_pin, pwm_range / 2);
 
     for(int i = 0; i < 18; i++)
     {
         write("At Frequency: ");
         write_line(freqs[i]);
+
         raspi_set_pwm_frequency(led_pin, freqs[i]);
         delay(1000);
     }
 
     raspi_cleanup();
+
     return 0;
 }
 ```
@@ -127,6 +137,135 @@ int main()
 </TabItem>
 </Tabs>
 
+</TabItem>
+
+<TabItem label="Remote">
+
+Remote GPIO operations require the Raspberry Pi daemon to be running. Use `remote_raspi_init()` to create a connection to the Raspberry Pi. The connection requires a name, the Raspberry Pi IP address, and the daemon port, which is `8888` by default. The returned connection is then passed as the first argument to the remote PWM functions.
+
+<Tabs syncKey="code-language">
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+
+int main()
+{
+    const int freqs[] = {
+        10, 20, 40, 50, 80, 100, 160, 200, 250,
+        320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000
+    };
+
+    const int pwm_range = 255;
+
+    connection pi = remote_raspi_init(
+        "my_pi",
+        "PI_IP_ADDRESS",
+        8888
+    );
+
+    gpio_pin led_pin = PIN_11;
+
+    remote_raspi_set_mode(
+        pi,
+        led_pin,
+        GPIO_OUTPUT
+    );
+
+    remote_raspi_set_pwm_range(
+        pi,
+        led_pin,
+        pwm_range
+    );
+
+    remote_raspi_set_pwm_dutycycle(
+        pi,
+        led_pin,
+        pwm_range / 2
+    );
+
+    for(int i = 0; i < 18; i++)
+    {
+        write("At Frequency: ");
+        write_line(freqs[i]);
+
+        remote_raspi_set_pwm_frequency(
+            pi,
+            led_pin,
+            freqs[i]
+        );
+
+        delay(1000);
+    }
+
+    remote_raspi_cleanup(pi);
+
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem label="C#">
+
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+int[] freqs = {
+    10, 20, 40, 50, 80, 100, 160, 200, 250,
+    320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000
+};
+
+const int pwmRange = 255;
+
+Connection pi = RemoteRaspiInit(
+    "my_pi",
+    "PI_IP_ADDRESS",
+    8888
+);
+
+GpioPin ledPin = GpioPin.Pin11;
+
+RemoteRaspiSetMode(
+    pi,
+    ledPin,
+    GpioPinMode.GpioOutput
+);
+
+RemoteRaspiSetPwmRange(
+    pi,
+    ledPin,
+    pwmRange
+);
+
+RemoteRaspiSetPwmDutycycle(
+    pi,
+    ledPin,
+    pwmRange / 2
+);
+
+foreach (int frequency in freqs)
+{
+    Write("At Frequency: ");
+    WriteLine(frequency);
+
+    RemoteRaspiSetPwmFrequency(
+        pi,
+        ledPin,
+        frequency
+    );
+
+    Delay(1000);
+}
+
+RemoteRaspiCleanup(pi);
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
 #### Understanding the code \{#understanding-the-code-changing-frequency\}
 
 Lets break down this code and look at it in sections.
@@ -321,10 +460,12 @@ We can then run the program with the following command:
 
 </TabItem>
 </Tabs>
-
 ### Changing Duty Cycle
 
 Below is an example program, very similar to the previous program, that demonstrates what the effect of modifying the duty cycle does to the LED.
+
+<Tabs>
+<TabItem label="Local">
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
@@ -337,7 +478,8 @@ int main()
     const int pwm_range = 255;
 
     raspi_init();
-    pin led_pin = PIN_11;
+
+    gpio_pin led_pin = PIN_11;
     raspi_set_mode(led_pin, GPIO_OUTPUT);
 
     raspi_set_pwm_frequency(led_pin, 1000);
@@ -347,18 +489,22 @@ int main()
     {
         write("At Duty Cycle: ");
         write_line(i);
+
         raspi_set_pwm_dutycycle(led_pin, i);
         delay(1000);
     }
+
     for(int i = pwm_range; i >= 0; i -= 10)
     {
         write("At Duty Cycle: ");
         write_line(i);
+
         raspi_set_pwm_dutycycle(led_pin, i);
         delay(1000);
     }
 
     raspi_cleanup();
+
     return 0;
 }
 ```
@@ -366,6 +512,157 @@ int main()
 </TabItem>
 </Tabs>
 
+</TabItem>
+
+<TabItem label="Remote">
+
+Remote GPIO operations require the Raspberry Pi daemon to be running. Use `remote_raspi_init()` to create a connection to the Raspberry Pi. The connection requires a name, the Raspberry Pi IP address, and the daemon port, which is `8888` by default. The returned connection is then passed as the first argument to the remote PWM functions.
+
+<Tabs syncKey="code-language">
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+
+int main()
+{
+    const int pwm_range = 255;
+
+    connection pi = remote_raspi_init(
+        "my_pi",
+        "PI_IP_ADDRESS",
+        8888
+    );
+
+    gpio_pin led_pin = PIN_11;
+
+    remote_raspi_set_mode(
+        pi,
+        led_pin,
+        GPIO_OUTPUT
+    );
+
+    remote_raspi_set_pwm_frequency(
+        pi,
+        led_pin,
+        1000
+    );
+
+    remote_raspi_set_pwm_range(
+        pi,
+        led_pin,
+        pwm_range
+    );
+
+    for(int i = 0; i <= pwm_range; i += 10)
+    {
+        write("At Duty Cycle: ");
+        write_line(i);
+
+        remote_raspi_set_pwm_dutycycle(
+            pi,
+            led_pin,
+            i
+        );
+
+        delay(1000);
+    }
+
+    for(int i = pwm_range; i >= 0; i -= 10)
+    {
+        write("At Duty Cycle: ");
+        write_line(i);
+
+        remote_raspi_set_pwm_dutycycle(
+            pi,
+            led_pin,
+            i
+        );
+
+        delay(1000);
+    }
+
+    remote_raspi_cleanup(pi);
+
+    return 0;
+}
+```
+
+</TabItem>
+
+
+<TabItem label="C#">
+
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+const int pwmRange = 255;
+
+Connection pi = RemoteRaspiInit(
+    "my_pi",
+    "PI_IP_ADDRESS",
+    8888
+);
+
+GpioPin ledPin = GpioPin.Pin11;
+
+RemoteRaspiSetMode(
+    pi,
+    ledPin,
+    GpioPinMode.GpioOutput
+);
+
+RemoteRaspiSetPwmFrequency(
+    pi,
+    ledPin,
+    1000
+);
+
+RemoteRaspiSetPwmRange(
+    pi,
+    ledPin,
+    pwmRange
+);
+
+for (int i = 0; i <= pwmRange; i += 10)
+{
+    Write("At Duty Cycle: ");
+    WriteLine(i);
+
+    RemoteRaspiSetPwmDutycycle(
+        pi,
+        ledPin,
+        i
+    );
+
+    Delay(1000);
+}
+
+for (int i = pwmRange; i >= 0; i -= 10)
+{
+    Write("At Duty Cycle: ");
+    WriteLine(i);
+
+    RemoteRaspiSetPwmDutycycle(
+        pi,
+        ledPin,
+        i
+    );
+
+    Delay(1000);
+}
+
+RemoteRaspiCleanup(pi);
+```
+
+</TabItem>
+
+</Tabs>
+
+
+</TabItem>
+</Tabs>
 #### Understanding the code \{#understanding-the-code-changing-duty-cycle\}
 
 Lets break down this code and look at the sections that are different.

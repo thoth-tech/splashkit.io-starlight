@@ -143,9 +143,11 @@ sudo killall pigpiod
 After the daemon is running, we can then create our program. Below is an example program that
 blinks an LED on and off.
 
+<Tabs>
+<TabItem label="Local">
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
-
 ```cpp
 #include "splashkit.h"
 
@@ -232,6 +234,75 @@ namespace RaspberryPiBlinkingLED
 }
 ```
 
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
+</TabItem>
+
+<TabItem label="Remote">
+
+Remote GPIO operations require the Raspberry Pi daemon to be running. Use remote_raspi_init() in C++ or RemoteRaspiInit() in C# to create a connection to the Raspberry Pi. The connection requires a name, the Raspberry Pi IP address, and the daemon port, which is 8888 by default. The returned connection is then passed as the first argument to the remote GPIO functions.
+
+<Tabs syncKey="code-language">
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+
+int main()
+{
+    connection pi = remote_raspi_init("my_pi", "PI_IP_ADDRESS", 8888);
+
+    gpio_pin led_pin = PIN_11;
+    remote_raspi_set_mode(pi, led_pin, GPIO_OUTPUT);
+
+    open_window("dummy_window", 1, 1);
+    while(!any_key_pressed())
+    {
+        process_events();
+        remote_raspi_write(pi, led_pin, GPIO_HIGH);
+        delay(500);
+        remote_raspi_write(pi, led_pin, GPIO_LOW);
+        delay(500);
+    }
+
+    close_all_windows();
+    remote_raspi_cleanup(pi);
+
+    return 0;
+
+}
+```
+</TabItem>
+
+<TabItem label="C#">
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+Connection pi = RemoteRaspiInit("my_pi", "PI_IP_ADDRESS", 8888);
+
+GpioPin ledPin = (GpioPin)11;
+RemoteRaspiSetMode(pi, ledPin, GpioPinMode.GpioOutput);
+
+OpenWindow("dummy_window", 1, 1);
+
+while (!AnyKeyPressed())
+{
+    ProcessEvents();
+
+    RemoteRaspiWrite(pi, ledPin, GpioPinValue.GpioHigh);
+    Delay(500);
+
+    RemoteRaspiWrite(pi, ledPin, GpioPinValue.GpioLow);
+    Delay(500);
+}
+
+CloseAllWindows();
+RemoteRaspiCleanup(pi);
+```
 </TabItem>
 </Tabs>
 

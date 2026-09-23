@@ -1,0 +1,1 @@
+Move a circle using arrow keys to demonstrate interactive usage of draw_circle.

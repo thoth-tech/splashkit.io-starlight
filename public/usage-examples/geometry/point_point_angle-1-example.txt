@@ -1,1 +1,4 @@
-How Does "Point Point Angle" Work?
+Splashkit Function: PointPointAngle
+
+Overview of example functionality:
+This example demonstrates how to calculate the angle between two points. As the mouse moves around the circle, the program updates and displays the angle from the center point to the mouse position.

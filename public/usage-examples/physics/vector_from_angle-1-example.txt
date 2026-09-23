@@ -1,0 +1,3 @@
+Archimedes' Voyage: Exploring Buoyancy
+
+This example demonstrates how vector_from_angle is used to generate the upward buoyancy force. The force pushes the boat upward when it becomes submerged, while gravity pulls it downward.

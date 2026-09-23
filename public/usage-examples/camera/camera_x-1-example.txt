@@ -1,0 +1,1 @@
+Read the camera X position while moving horizontally.

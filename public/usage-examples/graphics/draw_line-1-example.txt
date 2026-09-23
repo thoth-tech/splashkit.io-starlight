@@ -1,1 +1,1 @@
-Colourful Starburst
+Draw a red line across the screen

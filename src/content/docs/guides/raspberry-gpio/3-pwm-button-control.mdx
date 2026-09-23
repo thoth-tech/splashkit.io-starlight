@@ -42,12 +42,14 @@ Below we can see the circuit diagram for this project. First we have the Raspber
 :::caution[Before running the code.]
 This code requires the `pigpio` daemon, so make sure it is running! For more information see: [Starting the Daemon](/guides/raspberry-gpio/0-blink-led/#starting-the-daemon)
 :::
-
 Below is an example program that will detect button presses to increase or decrease the brightness of an LED.
+
+<Tabs>
+<TabItem label="Local">
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
-  
+
 ```cpp
 #include "splashkit.h"
 
@@ -59,6 +61,7 @@ int main()
     const unsigned long read_interval = 400;
 
     raspi_init();
+
     gpio_pin led_pin = PIN_11;
     gpio_pin increase_btn_pin = PIN_13;
     gpio_pin decrease_btn_pin = PIN_29;
@@ -69,43 +72,74 @@ int main()
     raspi_set_mode(increase_btn_pin, GPIO_INPUT);
     raspi_set_mode(decrease_btn_pin, GPIO_INPUT);
 
-    raspi_set_pull_up_down(increase_btn_pin, PUD_DOWN);
-    raspi_set_pull_up_down(decrease_btn_pin, PUD_DOWN);
+    raspi_set_pull_up_down(
+        increase_btn_pin,
+        PUD_DOWN
+    );
+
+    raspi_set_pull_up_down(
+        decrease_btn_pin,
+        PUD_DOWN
+    );
 
     timer run_timer = create_timer("run_timer");
     start_timer(run_timer);
+
     unsigned long current_time = 0;
 
     open_window("dummy_window", 1, 1);
+
     while(!any_key_pressed())
     {
         process_events();
+
         current_time = timer_ticks(run_timer);
+
         if(current_time - last_read_time > read_interval)
         {
             if(raspi_read(increase_btn_pin) == GPIO_HIGH)
             {
                 brightness += 25;
+
                 if(brightness > max_brightness)
+                {
                     brightness = max_brightness;
-                raspi_set_pwm_dutycycle(led_pin, brightness);
+                }
+
+                raspi_set_pwm_dutycycle(
+                    led_pin,
+                    brightness
+                );
+
                 last_read_time = current_time;
             }
+
             if(raspi_read(decrease_btn_pin) == GPIO_HIGH)
             {
                 brightness -= 25;
+
                 if(brightness < 0)
+                {
                     brightness = 0;
-                raspi_set_pwm_dutycycle(led_pin, brightness);
+                }
+
+                raspi_set_pwm_dutycycle(
+                    led_pin,
+                    brightness
+                );
+
                 last_read_time = current_time;
             }
         }
     }
 
     close_all_windows();
+
     stop_timer(run_timer);
     free_all_timers();
+
     raspi_cleanup();
+
     return 0;
 }
 ```
@@ -113,6 +147,281 @@ int main()
 </TabItem>
 </Tabs>
 
+</TabItem>
+
+<TabItem label="Remote">
+
+Remote GPIO operations require the Raspberry Pi daemon to be running. Use `remote_raspi_init()` to create a connection to the Raspberry Pi. The connection requires a name, the Raspberry Pi IP address, and the daemon port, which is `8888` by default. The returned connection is then passed as the first argument to the remote GPIO and PWM functions.
+
+<Tabs syncKey="code-language">
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+
+int main()
+{
+    int brightness = 128;
+    const int max_brightness = 255;
+    unsigned long last_read_time = 0;
+    const unsigned long read_interval = 400;
+
+    connection pi = remote_raspi_init(
+        "my_pi",
+        "PI_IP_ADDRESS",
+        8888
+    );
+
+    gpio_pin led_pin = PIN_11;
+    gpio_pin increase_btn_pin = PIN_13;
+    gpio_pin decrease_btn_pin = PIN_29;
+
+    remote_raspi_set_mode(
+        pi,
+        led_pin,
+        GPIO_OUTPUT
+    );
+
+    remote_raspi_set_pwm_dutycycle(
+        pi,
+        led_pin,
+        brightness
+    );
+
+    remote_raspi_set_mode(
+        pi,
+        increase_btn_pin,
+        GPIO_INPUT
+    );
+
+    remote_raspi_set_mode(
+        pi,
+        decrease_btn_pin,
+        GPIO_INPUT
+    );
+
+    remote_raspi_set_pull_up_down(
+        pi,
+        increase_btn_pin,
+        PUD_DOWN
+    );
+
+    remote_raspi_set_pull_up_down(
+        pi,
+        decrease_btn_pin,
+        PUD_DOWN
+    );
+
+    timer run_timer = create_timer("run_timer");
+    start_timer(run_timer);
+
+    unsigned long current_time = 0;
+
+    open_window("dummy_window", 1, 1);
+
+    while(!any_key_pressed())
+    {
+        process_events();
+
+        current_time = timer_ticks(run_timer);
+
+        if(current_time - last_read_time > read_interval)
+        {
+            if(
+                remote_raspi_read(
+                    pi,
+                    increase_btn_pin
+                ) == GPIO_HIGH
+            )
+            {
+                brightness += 25;
+
+                if(brightness > max_brightness)
+                {
+                    brightness = max_brightness;
+                }
+
+                remote_raspi_set_pwm_dutycycle(
+                    pi,
+                    led_pin,
+                    brightness
+                );
+
+                last_read_time = current_time;
+            }
+
+            if(
+                remote_raspi_read(
+                    pi,
+                    decrease_btn_pin
+                ) == GPIO_HIGH
+            )
+            {
+                brightness -= 25;
+
+                if(brightness < 0)
+                {
+                    brightness = 0;
+                }
+
+                remote_raspi_set_pwm_dutycycle(
+                    pi,
+                    led_pin,
+                    brightness
+                );
+
+                last_read_time = current_time;
+            }
+        }
+    }
+
+    close_all_windows();
+
+    stop_timer(run_timer);
+    free_all_timers();
+
+    remote_raspi_cleanup(pi);
+
+    return 0;
+}
+```
+
+</TabItem>
+
+<TabItem label="C#">
+
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+int brightness = 128;
+const int maxBrightness = 255;
+ulong lastReadTime = 0;
+const ulong readInterval = 400;
+
+Connection pi = RemoteRaspiInit(
+    "my_pi",
+    "PI_IP_ADDRESS",
+    8888
+);
+
+GpioPin ledPin = GpioPin.Pin11;
+GpioPin increaseBtnPin = GpioPin.Pin13;
+GpioPin decreaseBtnPin = GpioPin.Pin29;
+
+RemoteRaspiSetMode(
+    pi,
+    ledPin,
+    GpioPinMode.GpioOutput
+);
+
+RemoteRaspiSetPwmDutycycle(
+    pi,
+    ledPin,
+    brightness
+);
+
+RemoteRaspiSetMode(
+    pi,
+    increaseBtnPin,
+    GpioPinMode.GpioInput
+);
+
+RemoteRaspiSetMode(
+    pi,
+    decreaseBtnPin,
+    GpioPinMode.GpioInput
+);
+
+RemoteRaspiSetPullUpDown(
+    pi,
+    increaseBtnPin,
+    GpioPullUpDown.PudDown
+);
+
+RemoteRaspiSetPullUpDown(
+    pi,
+    decreaseBtnPin,
+    GpioPullUpDown.PudDown
+);
+
+Timer runTimer = CreateTimer("run_timer");
+StartTimer(runTimer);
+
+ulong currentTime = 0;
+
+OpenWindow("dummy_window", 1, 1);
+
+while (!AnyKeyPressed())
+{
+    ProcessEvents();
+
+    currentTime = TimerTicks(runTimer);
+
+    if (currentTime - lastReadTime > readInterval)
+    {
+        if (
+            RemoteRaspiRead(
+                pi,
+                increaseBtnPin
+            ) == GpioPinValue.GpioHigh
+        )
+        {
+            brightness += 25;
+
+            if (brightness > maxBrightness)
+            {
+                brightness = maxBrightness;
+            }
+
+            RemoteRaspiSetPwmDutycycle(
+                pi,
+                ledPin,
+                brightness
+            );
+
+            lastReadTime = currentTime;
+        }
+
+        if (
+            RemoteRaspiRead(
+                pi,
+                decreaseBtnPin
+            ) == GpioPinValue.GpioHigh
+        )
+        {
+            brightness -= 25;
+
+            if (brightness < 0)
+            {
+                brightness = 0;
+            }
+
+            RemoteRaspiSetPwmDutycycle(
+                pi,
+                ledPin,
+                brightness
+            );
+
+            lastReadTime = currentTime;
+        }
+    }
+}
+
+CloseAllWindows();
+
+StopTimer(runTimer);
+FreeAllTimers();
+
+RemoteRaspiCleanup(pi);
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+</Tabs>
 ### Understanding the code
 
 Okay, now lets break down this code and look at its sections.
