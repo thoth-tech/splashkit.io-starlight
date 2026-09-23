@@ -1,0 +1,3 @@
+Press S to Stop Timer
+
+Press S to stop the timer and reset its ticks to 0.
