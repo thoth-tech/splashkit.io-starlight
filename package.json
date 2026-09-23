@@ -8,6 +8,7 @@
     "build": "npm run setup && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test": "node --test tests/*.test.mjs",
     "setup": "node ./scripts/json-files-script.cjs && node ./scripts/usage-example-scraping.cjs && node ./scripts/api-pages-script.cjs",
     "generate-mdx": "node ./scripts/api-pages-script.cjs",
     "generate-json": "node ./scripts/json-files-script.cjs && node ./scripts/usage-example-scraping.cjs",
