@@ -1,14 +1,15 @@
 from splashkit import *
 
-window = open_window("Interactive Circle", 800, 600)
+open_window("Interactive Circle", 800, 600)
 
 x = 400
 y = 300
 
 while not quit_requested():
     process_events()
-    clear_screen_to_white()
+    clear_screen(color_white())
 
+    # Move the circle while the matching arrow key is held
     if key_down(KeyCode.left_key):
         x -= 5
     if key_down(KeyCode.right_key):
@@ -21,3 +22,5 @@ while not quit_requested():
     draw_circle(color_blue(), x, y, 50)
 
     refresh_screen_with_target_fps(60)
+
+close_all_windows()

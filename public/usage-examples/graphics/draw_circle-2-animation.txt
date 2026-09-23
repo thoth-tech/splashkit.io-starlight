@@ -1,1 +1,0 @@
-Animate a circle moving across the screen
