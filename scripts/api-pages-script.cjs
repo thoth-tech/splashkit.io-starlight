@@ -33,17 +33,14 @@ const typeMappings = {
   // Add more type mappings as needed
 };
 
-const guidesAvailable = {
-  animations: false,
-  audio: false,
-  camera: false,
-  database: false,
-  inputs: false,
-  json: false,
-  networking: false,
-  physics: false,
-  sprites: false,
-  utilities: false
+// API categories that have a guide, and the guide page each one links to (a path under /guides/)
+const guideLandingPages = {
+  animations: "animations/using-animations",
+  audio: "audio/getting-started-with-audio",
+  json: "json/getting-started-with-json",
+  networking: "networking/getting-started-with-servers",
+  physics: "physics/0-introduction-to-vectors",
+  utilities: "utilities/useful-utilities",
 };
 
 // Define language label mappings
@@ -526,13 +523,12 @@ for (const categoryKey in jsonData) {
     }
   }
   mdxContent += `\nimport { Code, Tabs, TabItem, LinkCard, CardGrid, LinkButton } from "@astrojs/starlight/components";\nimport Accordion from '../../../components/Accordion.astro'\n`;
-  if (guidesAvailable[categoryKey]) {
-    mdxContent += "\n## \n";
-    mdxContent += `## ${name} Guides\n`;
+  if (guideLandingPages[categoryKey]) {
+    mdxContent += `\n## ${name} Guides\n`;
     mdxContent += `<LinkCard
         title="Using ${name}"
         description="Examples & Guides"
-        href="/guides/${input}/"
+        href="/guides/${guideLandingPages[categoryKey]}/"
         />\n\n`;
   }
   mdxContent += "\n";
