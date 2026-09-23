@@ -569,6 +569,25 @@
             ]
         },
         {
+            "funcKey": "rectangle_ray_intersection",
+            "title": "Rectangle Ray Intersection",
+            "url": "/api/geometry/#rectangle-ray-intersection-with-hit-point-and-distance",
+            "functions": [
+                "open_window",
+                "point_at",
+                "vector_from_angle",
+                "rectangle_from",
+                "rectangle_ray_intersection",
+                "process_events",
+                "clear_screen",
+                "draw_rectangle",
+                "draw_line",
+                "fill_circle",
+                "refresh_screen",
+                "close_all_windows"
+            ]
+        },
+        {
             "funcKey": "same_point",
             "title": "Point 2D Guessing Game",
             "url": "/api/geometry/#same-point",
