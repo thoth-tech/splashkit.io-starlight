@@ -27,6 +27,21 @@ export default defineConfig({
     starlight({
       title: "SplashKit",
       description: 'SplashKit is a cross-platform game engine for C, C++ and Objective-C. It provides a simple API for 2D game development.',
+      defaultLocale: 'root',
+      locales: {
+        root: {
+          label: 'English',
+          lang: 'en',
+        },
+        'zh-cn': {
+          label: '简体中文',
+          lang: 'zh-CN',
+        },
+      },
+      components: {
+        // Override the default language switcher
+        LanguageSelect: './src/components/LanguageSwitcher.astro',
+      },
       plugins: [
         starlightBlog({
           title: 'Announcements',
@@ -72,11 +87,10 @@ export default defineConfig({
             {
               label: "Windows",
               collapsed: true,
-              items:
-                [
-                  { label: "MSYS2", autogenerate: { directory: "installation/Windows (MSYS2)" }, collapsed: false },
-                  { label: "WSL", autogenerate: { directory: "installation/Windows (WSL)" }, collapsed: false },
-                ]
+              items: [
+                { label: "MSYS2", autogenerate: { directory: "installation/Windows (MSYS2)" }, collapsed: false },
+                { label: "WSL", autogenerate: { directory: "installation/Windows (WSL)" }, collapsed: false },
+              ]
             },
             { label: "MacOS", autogenerate: { directory: "installation/MacOS" }, collapsed: true },
             { label: "Linux", autogenerate: { directory: "installation/Linux" }, collapsed: true },
@@ -91,11 +105,10 @@ export default defineConfig({
             {
               label: "Windows",
               collapsed: true,
-              items:
-                [
-                  { label: "MSYS2", autogenerate: { directory: "troubleshoot/Windows (MSYS2)" }, collapsed: false },
-                  { label: "WSL", autogenerate: { directory: "troubleshoot/Windows (WSL)" }, collapsed: false },
-                ]
+              items: [
+                { label: "MSYS2", autogenerate: { directory: "troubleshoot/Windows (MSYS2)" }, collapsed: false },
+                { label: "WSL", autogenerate: { directory: "troubleshoot/Windows (WSL)" }, collapsed: false },
+              ]
             },
             { label: "MacOS", autogenerate: { directory: "troubleshoot/MacOS" }, collapsed: true },
             { label: "Linux", autogenerate: { directory: "troubleshoot/Linux" }, collapsed: true },
@@ -144,9 +157,7 @@ export default defineConfig({
           ],
         },
       ],
-
     }),
-
     react(),
     sitemap()
   ],

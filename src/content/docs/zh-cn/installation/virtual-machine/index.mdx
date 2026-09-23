@@ -1,0 +1,66 @@
+---
+title: 虚拟机安装指南
+sidebar:
+  label: 虚拟机安装
+---
+
+# 在虚拟机中安装 SplashKit
+
+本指南将帮助您在虚拟机环境中安装和使用 SplashKit。
+
+## 支持的虚拟化平台
+
+- VMware Workstation / Fusion
+- VirtualBox
+- Hyper-V
+- Parallels Desktop (macOS)
+
+## 推荐配置
+
+### 系统要求
+- **RAM**: 至少 4GB，推荐 8GB
+- **存储**: 至少 20GB 可用空间
+- **CPU**: 支持虚拟化功能
+
+### 推荐的客户操作系统
+- Ubuntu 22.04 LTS
+- Fedora 最新版本
+- Windows 10/11
+
+## 安装步骤
+
+### 1. 创建虚拟机
+
+根据您选择的虚拟化平台创建新的虚拟机。
+
+### 2. 安装操作系统
+
+安装您选择的操作系统（建议使用 Ubuntu 22.04 LTS）。
+
+### 3. 安装虚拟机工具
+
+**VMware:**
+```bash
+sudo apt install open-vm-tools open-vm-tools-desktop
+```
+
+**VirtualBox:**
+```bash
+sudo apt install virtualbox-guest-additions-iso
+```
+
+### 4. 安装 SplashKit
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/splashkit/skm/master/install-scripts/skm-install.sh)
+```
+
+## 性能优化建议
+
+- 启用硬件加速
+- 分配足够的内存
+- 启用 3D 加速（如可用）
+
+---
+
+*详细的虚拟机配置指南正在编写中，敬请期待。*

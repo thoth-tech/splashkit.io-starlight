@@ -1,0 +1,234 @@
+---
+title: 安装 Visual Studio Code
+description: 下载并安装 Visual Studio Code 作为源代码编辑器，并安装 C# 和 C++ 的必要扩展
+sidebar:
+  label: 4. Visual Studio Code
+  order: 4
+---
+
+import { Steps, Tabs, TabItem, LinkButton } from "@astrojs/starlight/components";
+
+[Visual Studio Code](https://code.visualstudio.com/) 是一个多功能、用户友好的源代码编辑器，支持多种语言的扩展，包括 C#、C++ 和 Python。按照以下步骤在 Linux 上安装 Visual Studio Code 并设置必要的扩展。
+
+## 安装 Visual Studio Code
+
+<Tabs syncKey="linux-distro">
+<TabItem label="Ubuntu/Debian">
+
+<Steps>
+
+1. **下载 Visual Studio Code**
+
+    访问 [Visual Studio Code 下载页面](https://code.visualstudio.com/) 并选择适用于 Ubuntu/Debian 系统的 `.deb` 包。这将把安装程序下载到您的默认 `Downloads` 文件夹。
+
+    ![为 Ubuntu 下载 Visual Studio Code](/gifs/linux/download-vsc.gif)
+
+2. **打开终端**
+
+    在您的系统上打开终端：
+
+    - 使用应用程序菜单查找"终端"。
+    - 或者在大多数 Ubuntu 系统上按 `Ctrl + Alt + T` 作为快捷方式。
+
+3. **导航到下载位置**
+
+    默认情况下，下载的文件保存在 `~/Downloads` 目录中。使用以下命令导航到那里：
+
+    ```shell
+    cd ~/Downloads
+    ```
+
+    然后运行以下命令安装 Visual Studio Code：
+
+    ```shell
+    sudo dpkg -i code_1.*.deb
+    ```
+
+    ![在 Ubuntu 上安装 Visual Studio Code](/gifs/linux/install-vsc.gif)
+
+</Steps>
+
+</TabItem>
+<TabItem label="Arch">
+
+对于 Arch Linux，您有两个主要的安装选项：
+
+<Steps>
+
+1. **从 AUR 安装专有的 Visual Studio Code 二进制文件（推荐选项）**
+
+    这个版本包含 Microsoft 品牌和遥测，由 Arch 用户仓库（AUR）维护。使用以下命令安装：
+
+    ```shell
+    yay -S visual-studio-code-bin
+    ```
+
+    *注意：* 如果没有安装 `yay`，您可以使用其他 AUR 助手（如 `paru`）或按照 [AUR 手动安装说明](https://wiki.archlinux.org/title/Arch_User_Repository#Installing_and_upgrading_packages)。
+
+2. **安装官方开源版本（Code - OSS）**
+
+    Visual Studio Code 的开源版本可以直接从 Arch 社区仓库获得。
+
+    使用以下命令安装：
+
+    ```shell
+    sudo pacman -S code
+    ```
+
+</Steps>
+
+</TabItem>
+<TabItem label="Fedora">
+
+<Steps>
+
+1. **添加仓库**
+
+    打开终端并使用以下命令添加 Visual Studio Code 仓库和 GPG 密钥：
+
+    ```shell
+    sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+    echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+    ```
+
+2. **更新包缓存**
+
+    更新包缓存以确保您的系统识别新仓库：
+
+    ```shell
+    dnf check-update
+    ```
+
+3. **安装 Visual Studio Code**
+
+    对于 Fedora 22 及更新版本，使用以下命令安装 Visual Studio Code：
+
+    ```shell
+    sudo dnf install code
+    ```
+
+    对于较旧的系统，使用：
+
+    ```shell
+    sudo yum install code
+    ```
+
+</Steps>
+
+</TabItem>
+</Tabs>
+
+## 安装开发扩展
+
+设置 Visual Studio Code 后，通过添加 C#、C++ 和 Python 的必要扩展来增强您的开发环境。这些扩展提供强大的编码、调试和代码智能工具，使您的 SplashKit 项目设置完整。
+
+:::note
+如果您使用的是 Code OSS，您将无法通过命令行安装扩展。您需要直接从 Visual Studio 市场安装它们。
+:::
+
+### C# 扩展
+
+<Tabs syncKey="vscode-extensions-install-method">
+<TabItem label="命令行">
+
+您可以通过在终端中运行以下命令直接安装这些 C# 扩展：
+
+```shell
+code --install-extension ms-dotnettools.csharp
+code --install-extension ms-dotnettools.csdevkit
+```
+
+</TabItem>
+<TabItem label="Visual Studio Code">
+
+要在 Visual Studio Code 中添加这些扩展：
+
+1. 按 `Ctrl+Shift+X` 打开扩展视图。
+2. 搜索"C#"，上面列出的前 2 个扩展应该会出现。为每个扩展点击**安装**。如果它们没有出现，则单独搜索它们。
+
+![在 Visual Studio Code 中添加 C# 扩展](/images/installation/csharp-in-vscode.png)
+
+</TabItem>
+<TabItem label="扩展网站">
+
+直接从 Visual Studio 市场安装以下 C# 扩展：
+
+<LinkButton icon="external" href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" target="_blank">C#</LinkButton>
+<LinkButton icon="external" href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit" target="_blank">C# Dev Kit</LinkButton>
+
+</TabItem>
+</Tabs>
+
+### C++ 扩展
+
+<Tabs syncKey="vscode-extensions-install-method">
+<TabItem label="命令行">
+
+要从终端直接安装 C++ 扩展包：
+
+```shell
+code --install-extension ms-vscode.cpptools-extension-pack
+```
+
+</TabItem>
+<TabItem label="Visual Studio Code">
+
+要在 Visual Studio Code 中添加 C++ 扩展：
+
+1. 打开扩展视图（`Ctrl+Shift+X`）。
+2. 搜索"C++ Extension Pack"并点击**安装**。
+
+![在 Visual Studio Code 中添加 C++ 扩展](/images/installation/cplus-in-vscode.png)
+
+</TabItem>
+<TabItem label="扩展网站">
+
+安装 C++ 扩展包以获得全面的 C++ 支持：
+
+<LinkButton icon="external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-extension-pack" target="_blank">C++ Extension Pack</LinkButton>
+
+</TabItem>
+</Tabs>
+
+### Python 扩展
+
+<Tabs syncKey="vscode-extensions-install-method">
+<TabItem label="命令行">
+
+要从终端直接安装 Python 扩展：
+
+```shell
+code --install-extension ms-python.python
+```
+
+</TabItem>
+<TabItem label="Visual Studio Code">
+
+要在 Visual Studio Code 中安装 Python 扩展：
+
+1. 打开扩展视图（`Ctrl+Shift+X`）。
+2. 搜索"Python"并点击**安装**。
+
+![在 Visual Studio Code 中添加 Python 扩展](/images/installation/python-in-vscode.png)
+
+</TabItem>
+<TabItem label="扩展网站">
+
+要获得 Python 支持，请从 Visual Studio 市场安装 Python 扩展：
+
+<LinkButton icon="external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.python" target="_blank">Python</LinkButton>
+
+</TabItem>
+</Tabs>
+
+## 后续步骤
+
+恭喜！您已经完成了开始使用 SplashKit 所需的一切设置。您现在可以开始开发了。
+
+:::tip[准备开始编码了吗？]
+
+您可以在下面的链接中找到有关编译和运行 SplashKit 程序的更多信息：
+
+<LinkButton icon="open-book" href="/zh-cn/guides#using-splashkit">使用 SplashKit</LinkButton>
+
+:::
