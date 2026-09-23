@@ -16,8 +16,10 @@ _Last updated: {frontmatter.lastupdated}_
 
 In this guide, you’ll learn how to create and manage graphics in SplashKit, including shape creation, movement, resizing, and connecting shapes with lines.
 
+Before working with shape models, it is useful to understand the window as a coordinate-based drawing surface. Each shape is stored with values such as position, size, colour, and type. These values describe what should be drawn, while the rendering loop decides how those stored shapes appear on screen.
 
-## Graphics creation and Management
+
+## Graphics Creation and Management
 In this section, we'll detail how to implement the shape creation and management functionality using design patterns and code examples.
 
 
@@ -88,7 +90,7 @@ class ShapeModel:
 The `ShapeModel` can represent various shapes like rectangles, triangles, etc. The `type` field is used to distinguish between different shapes, allowing the correct drawing function to be called during rendering.
 
 ### Shape Creation
-The code simulates the user selecting a graphic and placing it on the canvas. When the user clicks on the canvas, the code creates a new graphic at the mouse position based on the preset shape type
+The code simulates the user selecting a graphic and placing it on the canvas. When the user clicks on the canvas, a new graphic is created at the mouse position based on the preset shape type.
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -271,7 +273,7 @@ int main()
 
         refresh_screen(60);
     }
-    close_all_windows()
+    close_all_windows();
     return 0;
 }
 ```
@@ -1035,7 +1037,7 @@ close_all_windows()
 </TabItem>
 </Tabs>
 
-## Wiring function 
+## Wiring Shapes Together
 
 In this section, we’ll add connection lines so users can visually link two shapes. Here’s how to implement it.
 
