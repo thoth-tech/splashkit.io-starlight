@@ -29,6 +29,7 @@ const typeMappings = {
   void: "`Void`",
   float: "`Float`",
   vector: "`Vector`",
+  "unsigned short": "`Unsigned Short`",
   // Add more type mappings as needed
 };
 
@@ -731,7 +732,10 @@ for (const categoryKey in jsonData) {
         mdxContent += "**Return Type:** Unsigned Integer\n\n";
       }
       else if (func.return.type != 'void') {
-        mdxContent += "**Return Type:** " + typeMappings[func.return.type] + "\n\n";
+       const returnType =
+        typeMappings[func.return.type] ?? `\`${func.return.type}\``;
+
+       mdxContent += "**Return Type:** " + returnType + "\n\n";
 
         mdxContent += "*Returns:* ";
         let returnDescription = func.return.description || "";
