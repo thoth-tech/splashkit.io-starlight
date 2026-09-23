@@ -1,1 +1,4 @@
-Random Triangles
+Splashkit Function: RandomBitmapPoint
+
+Overview of example functionality:
+This example demonstrates how to generate random points from a bitmap and use them to draw triangles. The program displays multiple triangles with random positions and colours on the screen.

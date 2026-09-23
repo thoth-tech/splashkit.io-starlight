@@ -246,6 +246,8 @@ colorOrder.forEach((row) => {
   /* Style for each colour box */
   .color-box {
     width: 100%;
+    padding: 0;
+    font: inherit;
     aspect-ratio: 0.725; /* Maintain aspect ratio */
     border: 1px solid #ccc; /* Border styling */
     border-radius: 4px; /* Rounded corners */
@@ -259,7 +261,8 @@ colorOrder.forEach((row) => {
   }
 
   /* Hover effect for colour boxes */
-  .color-box:hover {
+  .color-box:hover,
+  .color-box:focus-visible {
     transform: scale(1.1); /* Slight zoom-in effect */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
     z-index: 1;
@@ -280,8 +283,14 @@ colorOrder.forEach((row) => {
   }
 
   /* Show label on hover */
-  .color-box:hover span {
+  .color-box:hover span,
+  .color-box:focus-visible span {
     display: block; /* Make the text visible */
+  }
+
+  .color-box:focus-visible {
+    outline: 3px solid var(--sl-color-accent-high);
+    outline-offset: 2px;
   }
 
   /* Container for detailed colour info and code output */
@@ -357,12 +366,16 @@ colorOrder.forEach((row) => {
   }
 </style>
 
+<div id="color-palette-tool">
 <div class="palette-container" id="palette-container">
   <!-- Dynamically rendered colour boxes (with text colour based on contrast to box colour) -->
   {
     sortedColors.map((color) => (
-      <div
+      <button
+        type="button"
         class="color-box"
+        aria-label={`Show code for ${color.name}`}
+        aria-pressed="false"
         style={`background-color: rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b});`}
         data-color-name={color.name}
         data-color-rgb={`rgb_color(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})`}
@@ -373,7 +386,7 @@ colorOrder.forEach((row) => {
         >
           {color.name}
         </span>
-      </div>
+      </button>
     ))
   }
 </div>
@@ -433,118 +446,88 @@ colorOrder.forEach((row) => {
     </TabItem>
   </Tabs>
 </div>
+</div>
 
 <script>
-  // Wait until the DOM is fully loaded before executing the script
-  document.addEventListener("DOMContentLoaded", () => {
-    // Get the palette container element by its ID
-    const paletteContainer = document.getElementById("palette-container");
+  import { updateExpressiveCode } from "../utils/color-tools.mjs";
 
-    // Add a click event listener to the palette container
-    paletteContainer?.addEventListener("click", (event) => {
-      // Identify the closest clicked element with the class 'color-box'
-      const colorBox = event.target?.closest(".color-box");
-      if (colorBox) {
-        // Retrieve custom data attributes from the selected colour box
-        const colorName = colorBox.dataset.colorName; // Colour name (e.g., "Red")
-        const colorRgb = colorBox.dataset.colorRgb; // RGB value (e.g., "rgb_color(255, 0, 0)")
-        const colorHsb = colorBox.dataset.colorHsb; // HSB value (e.g., "hsb_color(0.00, 1.00, 1.00)")
+  function initializeColorPalette() {
+    const root = document.getElementById("color-palette-tool");
+    if (!(root instanceof HTMLElement) || root.dataset.initialized === "true") {
+      return;
+    }
 
-        // Generate the C++ code snippet using the colour data
-        const cppCodeForColorConst = `COLOR_${colorName
-          .toUpperCase()
-          .replaceAll(" ", "_")}`;
-        const cppCodeForColorFunc = `color_${colorName
-          .toLowerCase()
-          .replaceAll(" ", "_")}()`;
-        const cppCodeForRgb = `${colorRgb}`;
-        const cppCodeForHsb = `${colorHsb}`;
+    const paletteContainer = root.querySelector("#palette-container");
+    if (!(paletteContainer instanceof HTMLElement)) return;
 
-        // Generate the C# code snippet using the color data
-        const csCodeForColorSK = `SplashKit.Color${colorName.replaceAll(" ", "")}()`;
-        const csCodeForColorOO = `Color.${colorName.replaceAll(" ", "")}`;
-        const csCodeForRgbSK = `SplashKit.RGBColor(${colorRgb.slice(10, -1)})`;
-        const csCodeForRgbOO = `Color.RGBColor(${colorRgb.slice(10, -1)})`;
-        const csCodeForHsbSK = `SplashKit.HSBColor(${colorHsb.slice(10, -1)})`;
-        const csCodeForHsbOO = `Color.HSBColor(${colorHsb.slice(10, -1)})`;
+    root.dataset.initialized = "true";
 
-        // Generate the Python code snippet using the colour data
-        const pythonCodeForColor = `color_${colorName
-          .toLowerCase()
-          .replaceAll(" ", "_")}()`;
-        const pythonCodeForRgb = `rgb_color(${colorRgb.slice(10, -1)})`;
-        const pythonCodeForHsb = `hsb_color(${colorHsb.slice(10, -1)})`;
+    const setCode = (selector: string, code: string, reveal = false) => {
+      const container = root.querySelector<HTMLElement>(selector);
+      if (!container) return;
 
-        // Update the C++ tab content with the generated code
-        // C++ Color
-        const cppColorConst = document.querySelector(".cpp-color-const .code");
-        if (cppColorConst) cppColorConst.textContent = cppCodeForColorConst;
-        const cppColorFunc = document.querySelector(".cpp-color-func .code");
-        if (cppColorFunc) cppColorFunc.textContent = cppCodeForColorFunc;
-        const cppColorFuncDisplay = document.getElementById("cpp-color-func");
-        if (cppColorFuncDisplay) cppColorFuncDisplay.style.display = "block";
+      updateExpressiveCode(container, code);
+      if (reveal) container.style.display = "block";
+    };
 
-        // C++ RGB
-        const cppRgb = document.querySelector(".cpp-code-rgb .code");
-        if (cppRgb) cppRgb.textContent = cppCodeForRgb;
-        const cppRgbDisplay = document.getElementById("cpp-code-rgb");
-        if (cppRgbDisplay) cppRgbDisplay.style.display = "block";
+    const selectColor = (colorBox: HTMLButtonElement) => {
+      const { colorName, colorRgb, colorHsb } = colorBox.dataset;
+      if (!colorName || !colorRgb || !colorHsb) return;
 
-        // C++ HSB
-        const cppHsb = document.querySelector(".cpp-code-hsb .code");
-        if (cppHsb) cppHsb.textContent = cppCodeForHsb;
-        const cppHsbDisplay = document.getElementById("cpp-code-hsb");
-        if (cppHsbDisplay) cppHsbDisplay.style.display = "block";
+      root.querySelectorAll<HTMLButtonElement>(".color-box").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button === colorBox));
+      });
 
-        // Update the C# tab content with the generated code
-        // C# Color
-        const csColorSK = document.querySelector(".cs-code-color-sk .code");
-        if (csColorSK) csColorSK.textContent = csCodeForColorSK;
+      const identifier = colorName.replaceAll(" ", "_");
+      const compactName = colorName.replaceAll(" ", "");
+      const rgbArguments = colorRgb.slice("rgb_color(".length, -1);
+      const hsbArguments = colorHsb.slice("hsb_color(".length, -1);
+      setCode(".cpp-color-const", `COLOR_${identifier.toUpperCase()}`);
+      setCode(
+        ".cpp-color-func",
+        `color_${identifier.toLowerCase()}()`,
+        true,
+      );
+      setCode(".cpp-code-rgb", colorRgb, true);
+      setCode(".cpp-code-hsb", colorHsb, true);
 
-        const csColorOO = document.querySelector(".cs-code-color-oo .code");
-        if (csColorOO) csColorOO.textContent = csCodeForColorOO;
-        const csColorOODisplay = document.getElementById("cs-code-color-oo");
-        if (csColorOODisplay) csColorOODisplay.style.display = "block";
+      setCode(".cs-code-color-sk", `SplashKit.Color${compactName}()`);
+      setCode(".cs-code-color-oo", `Color.${compactName}`, true);
+      setCode(".cs-code-rgb-sk", `SplashKit.RGBColor(${rgbArguments})`, true);
+      setCode(".cs-code-rgb-oo", `Color.RGBColor(${rgbArguments})`, true);
+      setCode(".cs-code-hsb-sk", `SplashKit.HSBColor(${hsbArguments})`, true);
+      setCode(".cs-code-hsb-oo", `Color.HSBColor(${hsbArguments})`, true);
 
-        // C# RGB
-        const csRgbSK = document.querySelector(".cs-code-rgb-sk .code");
-        if (csRgbSK) csRgbSK.textContent = csCodeForRgbSK;
-        const csRgbSKDisplay = document.getElementById("cs-code-rgb-sk");
-        if (csRgbSKDisplay) csRgbSKDisplay.style.display = "block";
+      setCode(
+        ".python-code-color",
+        `color_${identifier.toLowerCase()}()`,
+      );
+      setCode(".python-code-rgb", `rgb_color(${rgbArguments})`, true);
+      setCode(".python-code-hsb", `hsb_color(${hsbArguments})`, true);
+    };
 
-        const csRgbOO = document.querySelector(".cs-code-rgb-oo .code");
-        if (csRgbOO) csRgbOO.textContent = csCodeForRgbOO;
-        const csRgbOODisplay = document.getElementById("cs-code-rgb-oo");
-        if (csRgbOODisplay) csRgbOODisplay.style.display = "block";
+    paletteContainer.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
 
-        // C# HSB
-        const csHsbSK = document.querySelector(".cs-code-hsb-sk .code");
-        if (csHsbSK) csHsbSK.textContent = csCodeForHsbSK;
-        const csHsbSKDisplay = document.getElementById("cs-code-hsb-sk");
-        if (csHsbSKDisplay) csHsbSKDisplay.style.display = "block";
-
-        const csHsbOO = document.querySelector(".cs-code-hsb-oo .code");
-        if (csHsbOO) csHsbOO.textContent = csCodeForHsbOO;
-        const csHsbOODisplay = document.getElementById("cs-code-hsb-oo");
-        if (csHsbOODisplay) csHsbOODisplay.style.display = "block";
-
-        // Update the Python tab content with the generated code
-        // Python Color
-        const pythonColor = document.querySelector(".python-code-color .code");
-        if (pythonColor) pythonColor.textContent = pythonCodeForColor;
-
-        // Python RGB
-        const pythonRgb = document.querySelector(".python-code-rgb .code");
-        if (pythonRgb) pythonRgb.textContent = pythonCodeForRgb;
-        const pythonRgbDisplay = document.getElementById("python-code-rgb");
-        if (pythonRgbDisplay) pythonRgbDisplay.style.display = "block";
-
-        // Python HSB
-        const pythonHsb = document.querySelector(".python-code-hsb .code");
-        if (pythonHsb) pythonHsb.textContent = pythonCodeForHsb;
-        const pythonHsbDisplay = document.getElementById("python-code-hsb");
-        if (pythonHsbDisplay) pythonHsbDisplay.style.display = "block";
+      const colorBox = event.target.closest(".color-box");
+      if (
+        !(colorBox instanceof HTMLButtonElement) ||
+        !paletteContainer.contains(colorBox)
+      ) {
+        return;
       }
+
+      selectColor(colorBox);
     });
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeColorPalette, {
+      once: true,
+    });
+  } else {
+    initializeColorPalette();
+  }
+
+  document.addEventListener("astro:page-load", initializeColorPalette);
 </script>

@@ -66,7 +66,9 @@ This code requires the `pigpio` daemon, so make sure it is running! For more inf
 :::
 
 We have a lot of complex looking code below, but as in previous tutorials lets break this down to analyse the program and how it works.
-
+:::note[Remote GPIO support]
+This tutorial uses SPI communication with the MCP3008 through `raspi_spi_open()`, `raspi_spi_transfer()`, and `raspi_spi_close()`. Remote equivalents for these SPI operations are not currently available, so this example runs locally on the Raspberry Pi.
+:::
 <Tabs syncKey="code-language">
 <TabItem label="C++">
   

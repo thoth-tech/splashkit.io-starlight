@@ -1,0 +1,1 @@
+Set the camera X position using the arrow keys.
