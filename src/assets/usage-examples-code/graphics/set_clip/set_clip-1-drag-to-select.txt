@@ -1,0 +1,1 @@
+Click-and-drag to set the clip region with set_clip; press R to reset.
