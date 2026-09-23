@@ -1,1 +1,4 @@
-Simple Line Length Squared
+Splashkit Function: LineLengthSquared
+
+Overview of example functionality:
+This example demonstrates how to use the LineLengthSquared function to calculate the squared length of a line. The program displays a line and shows its length squared value without applying the square root.

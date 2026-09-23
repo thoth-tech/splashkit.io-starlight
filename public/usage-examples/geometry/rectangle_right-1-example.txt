@@ -1,0 +1,1 @@
+Right Edge of a Moving Rectangle
