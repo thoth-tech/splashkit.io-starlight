@@ -1418,6 +1418,31 @@
             ]
         },
         {
+            "funcKey": "sprite_circle_collision",
+            "title": "Sprite Meets Circle",
+            "url": "/api/physics/#sprite-circle-collision",
+            "functions": [
+                "open_window",
+                "load_bitmap",
+                "create_sprite",
+                "sprite_set_position",
+                "point_at",
+                "circle_at",
+                "clear_screen",
+                "color_white",
+                "fill_circle",
+                "color_green",
+                "color_red",
+                "draw_sprite",
+                "write_line",
+                "refresh_screen",
+                "delay",
+                "free_sprite",
+                "free_bitmap",
+                "close_all_windows"
+            ]
+        },
+        {
             "funcKey": "sprite_collision",
             "title": "Colliding Sprites",
             "url": "/api/physics/#sprite-collision",
