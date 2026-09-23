@@ -1,0 +1,16 @@
+{
+    "level_name": "Skeleton Crypt",
+    "difficulty": 2,
+    "theme": "Gothic",
+    "dungeon_width": 800,
+    "dungeon_height": 600,
+    "spawn_points": [
+        {"type": "Player", "x": 100, "y": 100},
+        {"type": "Skeleton", "x": 400, "y": 300},
+        {"type": "Skeleton", "x": 600, "y": 450}
+    ],
+    "loot": [
+        {"item": "Health Potion", "x": 150, "y": 120},
+        {"item": "Rusty Key", "x": 750, "y": 50}
+    ]
+}
