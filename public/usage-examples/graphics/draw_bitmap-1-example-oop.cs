@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace BitmapLayerStudio
+namespace DrawBitmapExample
 {
     public class Program
     {

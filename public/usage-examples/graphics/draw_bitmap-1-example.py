@@ -25,7 +25,7 @@ overlay_guide = rgba_color(fg_red, fg_green, fg_blue, int(alpha * 255))
 
 while not quit_requested():
     process_events()
-    clear_screen()
+    clear_screen_to_white()
 
     # Layer pipeline: draw bitmaps back-to-front for stable compositing.
     draw_bitmap(background_layer, 0, 0)
@@ -39,7 +39,7 @@ while not quit_requested():
     draw_line(overlay_guide, 480, 120, 780, 520)
     draw_line(blend_guide, 120, 500, 840, 500)
 
-    refresh_screen(60)
+    refresh_screen_with_target_fps(60)
 
 free_all_bitmaps()
 close_all_windows()
