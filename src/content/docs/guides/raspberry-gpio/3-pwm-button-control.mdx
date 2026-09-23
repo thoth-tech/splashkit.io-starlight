@@ -111,6 +111,143 @@ int main()
 ```
 
 </TabItem>
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+```csharp
+using static SplashKitSDK.SplashKit;
+
+int brightness = 128;
+const int maxBrightness = 255;
+ulong lastReadTime = 0;
+const ulong readInterval = 400;
+
+RaspiInit();
+Pins ledPin = Pins.Pin11;
+Pins increaseBtnPin = Pins.Pin13;
+Pins decreaseBtnPin = Pins.Pin29;
+
+RaspiSetMode(ledPin, PinModes.GpioOutput);
+RaspiSetPwmDutycycle(ledPin, brightness);
+
+RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+Timer runTimer = CreateTimer("run_timer");
+StartTimer(runTimer);
+ulong currentTime = 0;
+
+OpenWindow("dummy_window", 1, 1);
+while (!AnyKeyPressed())
+{
+    ProcessEvents();
+    currentTime = TimerTicks(runTimer);
+    if (currentTime - lastReadTime > readInterval)
+    {
+        if (RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+        {
+            brightness += 25;
+            if (brightness > maxBrightness)
+                brightness = maxBrightness;
+            RaspiSetPwmDutycycle(ledPin, brightness);
+            lastReadTime = currentTime;
+        }
+        if (RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+        {
+            brightness -= 25;
+            if (brightness < 0)
+                brightness = 0;
+            RaspiSetPwmDutycycle(ledPin, brightness);
+            lastReadTime = currentTime;
+        }
+    }
+}
+
+CloseAllWindows();
+StopTimer(runTimer);
+FreeAllTimers();
+RaspiCleanup();
+```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace PwmButtonControlExample
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int brightness = 128;
+            const int maxBrightness = 255;
+            ulong lastReadTime = 0;
+            const ulong readInterval = 400;
+
+            SplashKit.RaspiInit();
+            Pins ledPin = Pins.Pin11;
+            Pins increaseBtnPin = Pins.Pin13;
+            Pins decreaseBtnPin = Pins.Pin29;
+
+            SplashKit.RaspiSetMode(ledPin, PinModes.GpioOutput);
+            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+
+            SplashKit.RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+            SplashKit.RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+            SplashKit.RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+            SplashKit.RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+            Timer runTimer = SplashKit.CreateTimer("run_timer");
+            SplashKit.StartTimer(runTimer);
+            ulong currentTime = 0;
+
+            SplashKit.OpenWindow("dummy_window", 1, 1);
+            while (!SplashKit.AnyKeyPressed())
+            {
+                SplashKit.ProcessEvents();
+                currentTime = SplashKit.TimerTicks(runTimer);
+                if (currentTime - lastReadTime > readInterval)
+                {
+                    if (SplashKit.RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+                    {
+                        brightness += 25;
+                        if (brightness > maxBrightness)
+                            brightness = maxBrightness;
+                        SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                        lastReadTime = currentTime;
+                    }
+                    if (SplashKit.RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+                    {
+                        brightness -= 25;
+                        if (brightness < 0)
+                            brightness = 0;
+                        SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                        lastReadTime = currentTime;
+                    }
+                }
+            }
+
+            SplashKit.CloseAllWindows();
+            SplashKit.StopTimer(runTimer);
+            SplashKit.FreeAllTimers();
+            SplashKit.RaspiCleanup();
+        }
+    }
+}
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
 </Tabs>
 
 ### Understanding the code
@@ -148,6 +285,186 @@ Okay, now lets break down this code and look at its sections.
 
         raspi_set_mode(increase_btn_pin, GPIO_INPUT);
         raspi_set_mode(decrease_btn_pin, GPIO_INPUT);
+        raspi_set_pull_up_down(increase_btn_pin, PUD_DOWN);
+        raspi_set_pull_up_down(decrease_btn_pin, PUD_DOWN);
+
+        timer run_timer = create_timer("run_timer");
+        start_timer(run_timer);
+        unsigned long current_time = 0;
+
+        open_window("dummy_window", 1, 1);
+        while(!any_key_pressed())
+        {
+            process_events();
+            current_time = timer_ticks(run_timer);
+            if(current_time - last_read_time > read_interval)
+            {
+                if(raspi_read(increase_btn_pin) == GPIO_HIGH)
+                {
+                    brightness += 25;
+                    if(brightness > max_brightness)
+                        brightness = max_brightness;
+                    raspi_set_pwm_dutycycle(led_pin, brightness);
+                    last_read_time = current_time;
+                }
+                if(raspi_read(decrease_btn_pin) == GPIO_HIGH)
+                {
+                    brightness -= 25;
+                    if(brightness < 0)
+                        brightness = 0;
+                    raspi_set_pwm_dutycycle(led_pin, brightness);
+                    last_read_time = current_time;
+                }
+            }
+        }
+
+        close_all_windows();
+        stop_timer(run_timer);
+        free_all_timers();
+        raspi_cleanup();
+        return 0;
+    }
+    ```
+
+    </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {1-4}
+    using static SplashKitSDK.SplashKit;
+
+    int brightness = 128;
+    const int maxBrightness = 255;
+    ulong lastReadTime = 0;
+    const ulong readInterval = 400;
+
+    RaspiInit();
+    Pins ledPin = Pins.Pin11;
+    Pins increaseBtnPin = Pins.Pin13;
+    Pins decreaseBtnPin = Pins.Pin29;
+
+    RaspiSetMode(ledPin, PinModes.GpioOutput);
+    RaspiSetPwmDutycycle(ledPin, brightness);
+
+    RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+    RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+    RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+    RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+    Timer runTimer = CreateTimer("run_timer");
+    StartTimer(runTimer);
+    ulong currentTime = 0;
+
+    OpenWindow("dummy_window", 1, 1);
+    while (!AnyKeyPressed())
+    {
+        ProcessEvents();
+        currentTime = TimerTicks(runTimer);
+        if (currentTime - lastReadTime > readInterval)
+        {
+            if (RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness += 25;
+                if (brightness > maxBrightness)
+                    brightness = maxBrightness;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+            if (RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness -= 25;
+                if (brightness < 0)
+                    brightness = 0;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+        }
+    }
+
+    CloseAllWindows();
+    StopTimer(runTimer);
+    FreeAllTimers();
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {7-10}
+    using SplashKitSDK;
+
+    namespace PwmButtonControlExample
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                int brightness = 128;
+                const int maxBrightness = 255;
+                ulong lastReadTime = 0;
+                const ulong readInterval = 400;
+
+                SplashKit.RaspiInit();
+                Pins ledPin = Pins.Pin11;
+                Pins increaseBtnPin = Pins.Pin13;
+                Pins decreaseBtnPin = Pins.Pin29;
+
+                SplashKit.RaspiSetMode(ledPin, PinModes.GpioOutput);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+
+                SplashKit.RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+                SplashKit.RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+                SplashKit.RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+                SplashKit.RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+                Timer runTimer = SplashKit.CreateTimer("run_timer");
+                SplashKit.StartTimer(runTimer);
+                ulong currentTime = 0;
+
+                SplashKit.OpenWindow("dummy_window", 1, 1);
+                while (!SplashKit.AnyKeyPressed())
+                {
+                    SplashKit.ProcessEvents();
+                    currentTime = SplashKit.TimerTicks(runTimer);
+                    if (currentTime - lastReadTime > readInterval)
+                    {
+                        if (SplashKit.RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness += 25;
+                            if (brightness > maxBrightness)
+                                brightness = maxBrightness;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                        if (SplashKit.RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness -= 25;
+                            if (brightness < 0)
+                                brightness = 0;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                    }
+                }
+
+                SplashKit.CloseAllWindows();
+                SplashKit.StopTimer(runTimer);
+                SplashKit.FreeAllTimers();
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
+    </Tabs>
 
         raspi_set_pull_up_down(increase_btn_pin, PUD_DOWN);
         raspi_set_pull_up_down(decrease_btn_pin, PUD_DOWN);
@@ -263,6 +580,143 @@ Okay, now lets break down this code and look at its sections.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {8-11}
+    using static SplashKitSDK.SplashKit;
+
+    int brightness = 128;
+    const int maxBrightness = 255;
+    ulong lastReadTime = 0;
+    const ulong readInterval = 400;
+
+    RaspiInit();
+    Pins ledPin = Pins.Pin11;
+    Pins increaseBtnPin = Pins.Pin13;
+    Pins decreaseBtnPin = Pins.Pin29;
+
+    RaspiSetMode(ledPin, PinModes.GpioOutput);
+    RaspiSetPwmDutycycle(ledPin, brightness);
+
+    RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+    RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+    RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+    RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+    Timer runTimer = CreateTimer("run_timer");
+    StartTimer(runTimer);
+    ulong currentTime = 0;
+
+    OpenWindow("dummy_window", 1, 1);
+    while (!AnyKeyPressed())
+    {
+        ProcessEvents();
+        currentTime = TimerTicks(runTimer);
+        if (currentTime - lastReadTime > readInterval)
+        {
+            if (RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness += 25;
+                if (brightness > maxBrightness)
+                    brightness = maxBrightness;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+            if (RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness -= 25;
+                if (brightness < 0)
+                    brightness = 0;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+        }
+    }
+
+    CloseAllWindows();
+    StopTimer(runTimer);
+    FreeAllTimers();
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {14-17}
+    using SplashKitSDK;
+
+    namespace PwmButtonControlExample
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                int brightness = 128;
+                const int maxBrightness = 255;
+                ulong lastReadTime = 0;
+                const ulong readInterval = 400;
+
+                SplashKit.RaspiInit();
+                Pins ledPin = Pins.Pin11;
+                Pins increaseBtnPin = Pins.Pin13;
+                Pins decreaseBtnPin = Pins.Pin29;
+
+                SplashKit.RaspiSetMode(ledPin, PinModes.GpioOutput);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+
+                SplashKit.RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+                SplashKit.RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+                SplashKit.RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+                SplashKit.RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+                Timer runTimer = SplashKit.CreateTimer("run_timer");
+                SplashKit.StartTimer(runTimer);
+                ulong currentTime = 0;
+
+                SplashKit.OpenWindow("dummy_window", 1, 1);
+                while (!SplashKit.AnyKeyPressed())
+                {
+                    SplashKit.ProcessEvents();
+                    currentTime = SplashKit.TimerTicks(runTimer);
+                    if (currentTime - lastReadTime > readInterval)
+                    {
+                        if (SplashKit.RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness += 25;
+                            if (brightness > maxBrightness)
+                                brightness = maxBrightness;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                        if (SplashKit.RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness -= 25;
+                            if (brightness < 0)
+                                brightness = 0;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                    }
+                }
+
+                SplashKit.CloseAllWindows();
+                SplashKit.StopTimer(runTimer);
+                SplashKit.FreeAllTimers();
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
     </Tabs>
 
 3. **Set PWM Range, Duty Cycle and GPIO Pins:**
@@ -298,6 +752,181 @@ Okay, now lets break down this code and look at its sections.
 
         timer run_timer = create_timer("run_timer");
         start_timer(run_timer);
+        unsigned long current_time = 0;
+
+        open_window("dummy_window", 1, 1);
+        while(!any_key_pressed())
+        {
+            process_events();
+            current_time = timer_ticks(run_timer);
+            if(current_time - last_read_time > read_interval)
+            {
+                if(raspi_read(increase_btn_pin) == GPIO_HIGH)
+                {
+                    brightness += 25;
+                    if(brightness > max_brightness)
+                        brightness = max_brightness;
+                    raspi_set_pwm_dutycycle(led_pin, brightness);
+                    last_read_time = current_time;
+                }
+                if(raspi_read(decrease_btn_pin) == GPIO_HIGH)
+                {
+                    brightness -= 25;
+                    if(brightness < 0)
+                        brightness = 0;
+                    raspi_set_pwm_dutycycle(led_pin, brightness);
+                    last_read_time = current_time;
+                }
+            }
+        }
+
+        close_all_windows();
+        stop_timer(run_timer);
+        free_all_timers();
+        raspi_cleanup();
+        return 0;
+    }
+    ```
+
+    </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {13-20}
+    using static SplashKitSDK.SplashKit;
+
+    int brightness = 128;
+    const int maxBrightness = 255;
+    ulong lastReadTime = 0;
+    const ulong readInterval = 400;
+
+    RaspiInit();
+    Pins ledPin = Pins.Pin11;
+    Pins increaseBtnPin = Pins.Pin13;
+    Pins decreaseBtnPin = Pins.Pin29;
+
+    RaspiSetMode(ledPin, PinModes.GpioOutput);
+    RaspiSetPwmDutycycle(ledPin, brightness);
+
+    RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+    RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+    RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+    RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+    Timer runTimer = CreateTimer("run_timer");
+    StartTimer(runTimer);
+    ulong currentTime = 0;
+
+    OpenWindow("dummy_window", 1, 1);
+    while (!AnyKeyPressed())
+    {
+        ProcessEvents();
+        currentTime = TimerTicks(runTimer);
+        if (currentTime - lastReadTime > readInterval)
+        {
+            if (RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness += 25;
+                if (brightness > maxBrightness)
+                    brightness = maxBrightness;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+            if (RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness -= 25;
+                if (brightness < 0)
+                    brightness = 0;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+        }
+    }
+
+    CloseAllWindows();
+    StopTimer(runTimer);
+    FreeAllTimers();
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {19-26}
+    using SplashKitSDK;
+
+    namespace PwmButtonControlExample
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                int brightness = 128;
+                const int maxBrightness = 255;
+                ulong lastReadTime = 0;
+                const ulong readInterval = 400;
+
+                SplashKit.RaspiInit();
+                Pins ledPin = Pins.Pin11;
+                Pins increaseBtnPin = Pins.Pin13;
+                Pins decreaseBtnPin = Pins.Pin29;
+
+                SplashKit.RaspiSetMode(ledPin, PinModes.GpioOutput);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+
+                SplashKit.RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+                SplashKit.RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+                SplashKit.RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+                SplashKit.RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+                Timer runTimer = SplashKit.CreateTimer("run_timer");
+                SplashKit.StartTimer(runTimer);
+                ulong currentTime = 0;
+
+                SplashKit.OpenWindow("dummy_window", 1, 1);
+                while (!SplashKit.AnyKeyPressed())
+                {
+                    SplashKit.ProcessEvents();
+                    currentTime = SplashKit.TimerTicks(runTimer);
+                    if (currentTime - lastReadTime > readInterval)
+                    {
+                        if (SplashKit.RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness += 25;
+                            if (brightness > maxBrightness)
+                                brightness = maxBrightness;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                        if (SplashKit.RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness -= 25;
+                            if (brightness < 0)
+                                brightness = 0;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                    }
+                }
+
+                SplashKit.CloseAllWindows();
+                SplashKit.StopTimer(runTimer);
+                SplashKit.FreeAllTimers();
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
+    </Tabs>
         unsigned long current_time = 0;
 
         open_window("dummy_window", 1, 1);
@@ -407,6 +1036,143 @@ Okay, now lets break down this code and look at its sections.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {22-24,26-29,50}
+    using static SplashKitSDK.SplashKit;
+
+    int brightness = 128;
+    const int maxBrightness = 255;
+    ulong lastReadTime = 0;
+    const ulong readInterval = 400;
+
+    RaspiInit();
+    Pins ledPin = Pins.Pin11;
+    Pins increaseBtnPin = Pins.Pin13;
+    Pins decreaseBtnPin = Pins.Pin29;
+
+    RaspiSetMode(ledPin, PinModes.GpioOutput);
+    RaspiSetPwmDutycycle(ledPin, brightness);
+
+    RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+    RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+    RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+    RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+    Timer runTimer = CreateTimer("run_timer");
+    StartTimer(runTimer);
+    ulong currentTime = 0;
+
+    OpenWindow("dummy_window", 1, 1);
+    while (!AnyKeyPressed())
+    {
+        ProcessEvents();
+        currentTime = TimerTicks(runTimer);
+        if (currentTime - lastReadTime > readInterval)
+        {
+            if (RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness += 25;
+                if (brightness > maxBrightness)
+                    brightness = maxBrightness;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+            if (RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness -= 25;
+                if (brightness < 0)
+                    brightness = 0;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+        }
+    }
+
+    CloseAllWindows();
+    StopTimer(runTimer);
+    FreeAllTimers();
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {28-30,32-35,56}
+    using SplashKitSDK;
+
+    namespace PwmButtonControlExample
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                int brightness = 128;
+                const int maxBrightness = 255;
+                ulong lastReadTime = 0;
+                const ulong readInterval = 400;
+
+                SplashKit.RaspiInit();
+                Pins ledPin = Pins.Pin11;
+                Pins increaseBtnPin = Pins.Pin13;
+                Pins decreaseBtnPin = Pins.Pin29;
+
+                SplashKit.RaspiSetMode(ledPin, PinModes.GpioOutput);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+
+                SplashKit.RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+                SplashKit.RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+                SplashKit.RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+                SplashKit.RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+                Timer runTimer = SplashKit.CreateTimer("run_timer");
+                SplashKit.StartTimer(runTimer);
+                ulong currentTime = 0;
+
+                SplashKit.OpenWindow("dummy_window", 1, 1);
+                while (!SplashKit.AnyKeyPressed())
+                {
+                    SplashKit.ProcessEvents();
+                    currentTime = SplashKit.TimerTicks(runTimer);
+                    if (currentTime - lastReadTime > readInterval)
+                    {
+                        if (SplashKit.RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness += 25;
+                            if (brightness > maxBrightness)
+                                brightness = maxBrightness;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                        if (SplashKit.RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness -= 25;
+                            if (brightness < 0)
+                                brightness = 0;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                    }
+                }
+
+                SplashKit.CloseAllWindows();
+                SplashKit.StopTimer(runTimer);
+                SplashKit.FreeAllTimers();
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
     </Tabs>
 
 5. **Change LED Brightness:**
@@ -481,6 +1247,143 @@ Okay, now lets break down this code and look at its sections.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {30-49}
+    using static SplashKitSDK.SplashKit;
+
+    int brightness = 128;
+    const int maxBrightness = 255;
+    ulong lastReadTime = 0;
+    const ulong readInterval = 400;
+
+    RaspiInit();
+    Pins ledPin = Pins.Pin11;
+    Pins increaseBtnPin = Pins.Pin13;
+    Pins decreaseBtnPin = Pins.Pin29;
+
+    RaspiSetMode(ledPin, PinModes.GpioOutput);
+    RaspiSetPwmDutycycle(ledPin, brightness);
+
+    RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+    RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+    RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+    RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+    Timer runTimer = CreateTimer("run_timer");
+    StartTimer(runTimer);
+    ulong currentTime = 0;
+
+    OpenWindow("dummy_window", 1, 1);
+    while (!AnyKeyPressed())
+    {
+        ProcessEvents();
+        currentTime = TimerTicks(runTimer);
+        if (currentTime - lastReadTime > readInterval)
+        {
+            if (RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness += 25;
+                if (brightness > maxBrightness)
+                    brightness = maxBrightness;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+            if (RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness -= 25;
+                if (brightness < 0)
+                    brightness = 0;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+        }
+    }
+
+    CloseAllWindows();
+    StopTimer(runTimer);
+    FreeAllTimers();
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {36-55}
+    using SplashKitSDK;
+
+    namespace PwmButtonControlExample
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                int brightness = 128;
+                const int maxBrightness = 255;
+                ulong lastReadTime = 0;
+                const ulong readInterval = 400;
+
+                SplashKit.RaspiInit();
+                Pins ledPin = Pins.Pin11;
+                Pins increaseBtnPin = Pins.Pin13;
+                Pins decreaseBtnPin = Pins.Pin29;
+
+                SplashKit.RaspiSetMode(ledPin, PinModes.GpioOutput);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+
+                SplashKit.RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+                SplashKit.RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+                SplashKit.RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+                SplashKit.RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+                Timer runTimer = SplashKit.CreateTimer("run_timer");
+                SplashKit.StartTimer(runTimer);
+                ulong currentTime = 0;
+
+                SplashKit.OpenWindow("dummy_window", 1, 1);
+                while (!SplashKit.AnyKeyPressed())
+                {
+                    SplashKit.ProcessEvents();
+                    currentTime = SplashKit.TimerTicks(runTimer);
+                    if (currentTime - lastReadTime > readInterval)
+                    {
+                        if (SplashKit.RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness += 25;
+                            if (brightness > maxBrightness)
+                                brightness = maxBrightness;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                        if (SplashKit.RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness -= 25;
+                            if (brightness < 0)
+                                brightness = 0;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                    }
+                }
+
+                SplashKit.CloseAllWindows();
+                SplashKit.StopTimer(runTimer);
+                SplashKit.FreeAllTimers();
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
     </Tabs>
 
 6. **Clean Up Memory:**
@@ -551,6 +1454,143 @@ Okay, now lets break down this code and look at its sections.
         return 0;
     }
     ```
+
+    </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {50-53}
+    using static SplashKitSDK.SplashKit;
+
+    int brightness = 128;
+    const int maxBrightness = 255;
+    ulong lastReadTime = 0;
+    const ulong readInterval = 400;
+
+    RaspiInit();
+    Pins ledPin = Pins.Pin11;
+    Pins increaseBtnPin = Pins.Pin13;
+    Pins decreaseBtnPin = Pins.Pin29;
+
+    RaspiSetMode(ledPin, PinModes.GpioOutput);
+    RaspiSetPwmDutycycle(ledPin, brightness);
+
+    RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+    RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+    RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+    RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+    Timer runTimer = CreateTimer("run_timer");
+    StartTimer(runTimer);
+    ulong currentTime = 0;
+
+    OpenWindow("dummy_window", 1, 1);
+    while (!AnyKeyPressed())
+    {
+        ProcessEvents();
+        currentTime = TimerTicks(runTimer);
+        if (currentTime - lastReadTime > readInterval)
+        {
+            if (RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness += 25;
+                if (brightness > maxBrightness)
+                    brightness = maxBrightness;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+            if (RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+            {
+                brightness -= 25;
+                if (brightness < 0)
+                    brightness = 0;
+                RaspiSetPwmDutycycle(ledPin, brightness);
+                lastReadTime = currentTime;
+            }
+        }
+    }
+
+    CloseAllWindows();
+    StopTimer(runTimer);
+    FreeAllTimers();
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {56-59}
+    using SplashKitSDK;
+
+    namespace PwmButtonControlExample
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                int brightness = 128;
+                const int maxBrightness = 255;
+                ulong lastReadTime = 0;
+                const ulong readInterval = 400;
+
+                SplashKit.RaspiInit();
+                Pins ledPin = Pins.Pin11;
+                Pins increaseBtnPin = Pins.Pin13;
+                Pins decreaseBtnPin = Pins.Pin29;
+
+                SplashKit.RaspiSetMode(ledPin, PinModes.GpioOutput);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+
+                SplashKit.RaspiSetMode(increaseBtnPin, PinModes.GpioInput);
+                SplashKit.RaspiSetMode(decreaseBtnPin, PinModes.GpioInput);
+
+                SplashKit.RaspiSetPullUpDown(increaseBtnPin, PullUpDown.PudDown);
+                SplashKit.RaspiSetPullUpDown(decreaseBtnPin, PullUpDown.PudDown);
+
+                Timer runTimer = SplashKit.CreateTimer("run_timer");
+                SplashKit.StartTimer(runTimer);
+                ulong currentTime = 0;
+
+                SplashKit.OpenWindow("dummy_window", 1, 1);
+                while (!SplashKit.AnyKeyPressed())
+                {
+                    SplashKit.ProcessEvents();
+                    currentTime = SplashKit.TimerTicks(runTimer);
+                    if (currentTime - lastReadTime > readInterval)
+                    {
+                        if (SplashKit.RaspiRead(increaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness += 25;
+                            if (brightness > maxBrightness)
+                                brightness = maxBrightness;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                        if (SplashKit.RaspiRead(decreaseBtnPin) == PinValues.GpioHigh)
+                        {
+                            brightness -= 25;
+                            if (brightness < 0)
+                                brightness = 0;
+                            SplashKit.RaspiSetPwmDutycycle(ledPin, brightness);
+                            lastReadTime = currentTime;
+                        }
+                    }
+                }
+
+                SplashKit.CloseAllWindows();
+                SplashKit.StopTimer(runTimer);
+                SplashKit.FreeAllTimers();
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
+    </Tabs>
 
     </TabItem>
     </Tabs>

@@ -55,7 +55,6 @@
                 "raspi_set_pull_up_down",
                 "create_timer",
                 "start_timer",
-                "raspi_set_pwm_frequency",
                 "open_window",
                 "any_key_pressed",
                 "process_events",
