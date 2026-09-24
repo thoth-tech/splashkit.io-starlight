@@ -1,6 +1,6 @@
 using SplashKitSDK;
 
-namespace ResetQuit
+namespace ResetQuitExample
 {
     public class Program
     {
