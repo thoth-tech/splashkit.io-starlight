@@ -2,7 +2,7 @@ from splashkit import *
 
 open_window("Three Column Layout", 800, 600)
 
-set_interface_style(InterfaceStyle.SHADED_LIGHT_STYLE)
+set_interface_style(InterfaceStyle.shaded_light_style)
 
 while not quit_requested():
     process_events()
