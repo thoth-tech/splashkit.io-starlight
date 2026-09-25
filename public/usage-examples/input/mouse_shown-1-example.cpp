@@ -1,4 +1,5 @@
 #include "splashkit.h"
+#include <string>
 
 int main()
 {
@@ -16,7 +17,7 @@ int main()
             hide_mouse();
 
         // mouse_shown returns true if the mouse cursor is currently visible
-        string status;
+        std::string status;
         if (mouse_shown())
             status = "Mouse is visible";
         else

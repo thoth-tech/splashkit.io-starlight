@@ -1,5 +1,5 @@
-using SplashKitSDK;
 using static SplashKitSDK.SplashKit;
+using SplashKitSDK;
 
 OpenWindow("Mouse Shown", 800, 600);
 
