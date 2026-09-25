@@ -1,4 +1,33 @@
 {
+    "animations": [
+        {
+            "funcKey": "update_animation",
+            "title": "Color Cycle Animation",
+            "url": "/api/animations/#update-animation",
+            "functions": [
+                "open_window",
+                "memory",
+                "create_bitmap",
+                "fill_rectangle_on_bitmap",
+                "color_red",
+                "color_green",
+                "color_blue",
+                "color_yellow",
+                "bitmap_set_cell_details",
+                "load_animation_script",
+                "create_animation",
+                "quit_requested",
+                "process_events",
+                "clear_screen_to_white",
+                "draw_bitmap_with_options",
+                "option_with_animation",
+                "refresh_screen_with_target_fps",
+                "free_animation",
+                "free_animation_script",
+                "close_all_windows"
+            ]
+        }
+    ],
     "audio": [
         {
             "funcKey": "play_music_named",
@@ -34,6 +63,50 @@
                 "color_black",
                 "refresh_window",
                 "free_all_music",
+                "close_all_windows"
+            ]
+        },
+        {
+            "funcKey": "stop_music",
+            "title": "Stop/Start Music",
+            "url": "/api/audio/#stop-music",
+            "functions": [
+                "audio_ready",
+                "open_audio",
+                "load_music",
+                "play_music",
+                "open_window",
+                "quit_requested",
+                "process_events",
+                "mouse_clicked",
+                "music_playing",
+                "clear_screen",
+                "color_white",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "refresh_screen",
+                "free_all_music"
+            ]
+        }
+    ],
+    "color": [
+        {
+            "funcKey": "string_to_color",
+            "title": "Color from Hex Code",
+            "url": "/api/color/#string-to-color",
+            "functions": [
+                "open_window",
+                "rectangle_from",
+                "clear_screen",
+                "color_white",
+                "fill_rectangle_record",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "red_of",
+                "green_of",
+                "blue_of",
+                "refresh_screen",
+                "delay",
                 "close_all_windows"
             ]
         }
@@ -1223,6 +1296,25 @@
             ]
         },
         {
+            "funcKey": "option_scale_bmp",
+            "title": "Ring Flying Towards The Screen",
+            "url": "/api/graphics/#option-scale-bmp",
+            "functions": [
+                "create_bitmap",
+                "clear_bitmap",
+                "color_black",
+                "fill_circle_on_bitmap",
+                "color_white",
+                "open_window",
+                "quit_requested",
+                "process_events",
+                "clear_screen",
+                "draw_bitmap_with_options",
+                "refresh_screen_with_target_fps",
+                "close_all_windows"
+            ]
+        },
+        {
             "funcKey": "refresh_screen",
             "title": "House Drawing",
             "url": "/api/graphics/#refresh-screen",
@@ -1255,6 +1347,29 @@
                 "fill_rectangle",
                 "refresh_screen",
                 "delay",
+                "close_all_windows"
+            ]
+        }
+    ],
+    "interface": [
+        {
+            "funcKey": "button",
+            "title": "Button Click Counter",
+            "url": "/api/interface/#button",
+            "functions": [
+                "open_window",
+                "quit_requested",
+                "process_events",
+                "clear_screen_to_white",
+                "draw_text_no_font_no_size",
+                "color_black",
+                "start_panel",
+                "rectangle_from",
+                "end_panel",
+                "color_red",
+                "color_blue",
+                "color_green",
+                "refresh_screen_with_target_fps",
                 "close_all_windows"
             ]
         }
@@ -1301,6 +1416,39 @@
         }
     ],
     "physics": [
+        {
+            "funcKey": "ray_intersection_point",
+            "title": "The Raycast Lantern",
+            "url": "/api/physics/#ray-intersection-point",
+            "functions": [
+                "open_window",
+                "rectangle_from",
+                "line_from",
+                "quit_requested",
+                "process_events",
+                "mouse_position",
+                "vector_from_angle",
+                "point_at",
+                "ray_intersection_point",
+                "point_point_distance",
+                "clear_screen",
+                "color_black",
+                "fill_triangle",
+                "rgba_color",
+                "draw_triangle",
+                "draw_line",
+                "draw_rectangle",
+                "color_dark_gray",
+                "fill_rectangle",
+                "color_gray",
+                "fill_circle",
+                "color_yellow",
+                "draw_text",
+                "color_white",
+                "refresh_screen",
+                "close_all_windows"
+            ]
+        },
         {
             "funcKey": "sprite_bitmap_collision",
             "title": "Does SplashKit have bugs?",
@@ -1787,6 +1935,24 @@
             "title": "Remove whitespace from a string",
             "url": "/api/utilities/#trim",
             "functions": [
+                "write_line"
+            ]
+        }
+    ],
+    "generative_ai": [
+        {
+            "funcKey": "free_conversation",
+            "title": "Freeing a Single AI Conversation Resource",
+            "url": "/api/ai/#free-conversation",
+            "usage_examples": [
+                {
+                    "name": "Freeing a Single AI Conversation Resource",
+                    "path": "generative_ai/free_conversation-1-example"
+                }
+            ],
+            "functions": [
+                "free_conversation",
+                "create_conversation",
                 "write_line"
             ]
         }

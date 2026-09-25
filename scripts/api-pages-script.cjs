@@ -29,20 +29,18 @@ const typeMappings = {
   void: "`Void`",
   float: "`Float`",
   vector: "`Vector`",
+  "unsigned short": "`Unsigned Short`",
   // Add more type mappings as needed
 };
 
-const guidesAvailable = {
-  animations: false,
-  audio: false,
-  camera: false,
-  database: false,
-  inputs: false,
-  json: false,
-  networking: false,
-  physics: false,
-  sprites: false,
-  utilities: false
+// API categories that have a guide, and the guide page each one links to (a path under /guides/)
+const guideLandingPages = {
+  animations: "animations/using-animations",
+  audio: "audio/getting-started-with-audio",
+  json: "json/getting-started-with-json",
+  networking: "networking/getting-started-with-servers",
+  physics: "physics/0-introduction-to-vectors",
+  utilities: "utilities/useful-utilities",
 };
 
 // Define language label mappings
@@ -75,20 +73,23 @@ const sk_colors = ["alice_blue", "antique_white", "aqua", "aquamarine", "azure",
 // ------------------------------------------------------------------------------
 // Get a list of all the files in a directory and it's subdirectories
 // ------------------------------------------------------------------------------
-function getAllFiles(dir, allFilesList = []) {
+function getAllFiles(dir, baseDir = dir, allFilesList = []) {
   try {
     const files = fs.readdirSync(dir);
-    files.map(file => {
-      const name = dir + '/' + file;
-      if (fs.statSync(name).isDirectory()) { // check if subdirectory is present
-        getAllFiles(name, allFilesList);     // do recursive execution for subdirectory
+
+    files.forEach((file) => {
+      const fullPath = path.join(dir, file);
+
+      if (fs.statSync(fullPath).isDirectory()) {
+        getAllFiles(fullPath, baseDir, allFilesList);
       } else {
-        allFilesList.push(file);             // push filename into the array
+        allFilesList.push(path.relative(baseDir, fullPath).replaceAll("\\", "/"));
       }
-    })
+    });
   } catch (err) {
     console.error(kleur.yellow(`Warning: Unable to access directory ${dir}`), err);
   }
+
   return allFilesList;
 }
 
@@ -247,19 +248,19 @@ function getUsageExampleImports(categoryKey, functionKey) {
   let categoryPath = '/usage-examples/' + categoryKey;
   let categoryFilePath = './public/usage-examples/' + categoryKey;
 
-  const functionFiles = getAllFiles(categoryFilePath).filter(file => file.startsWith(functionKey));
+  const functionFiles = getAllFiles(categoryFilePath).filter(file => path.basename(file).startsWith(functionKey));
   if (functionFiles.length > 0) {
     const txtFiles = functionFiles.filter(file => file.endsWith('.txt'))
     if (txtFiles.length > 0) {
       txtFiles.forEach((exampleTxtKey) => {
-        let exampleKey = exampleTxtKey.replaceAll(".txt", "");
+        let exampleKey = path.basename(exampleTxtKey).replaceAll(".txt", "");
 
         let importTitle = exampleKey.replaceAll("-", "_");
 
         languageOrder.forEach((lang) => {
           const languageFiles = functionFiles.filter(file => file.endsWith(languageFileExtensions[lang]));
-          let codeFilePath = categoryPath + "/" + exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
 
+          let codeFilePath = categoryPath + "/" + exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
           // import code if available
           if (languageFiles.length > 0) {
             languageCodeAvailable[lang] = true;
@@ -335,7 +336,7 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
   let categoryFilePath = './public/usage-examples/' + categoryKey;
 
   let exampleKey = functionKey.replaceAll(".txt", "");
-  const functionFiles = getAllFiles(categoryFilePath).filter(file => file.startsWith(exampleKey));
+  const functionFiles = getAllFiles(categoryFilePath).filter(file => path.basename(file).startsWith(exampleKey));
 
   if (functionFiles.length > 0) {
 
@@ -344,10 +345,10 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
 
       // import code if available
       if (functionFiles.length > 0) {
-        let importTitle = exampleKey.replaceAll("-", "_");
+        let importTitle = path.basename(exampleTxtKey).replaceAll(".txt", "").replaceAll("-", "_");
 
         // Description
-        let exampleNum = exampleKey.replace(/\D/g, '');
+        let exampleNum = path.basename(exampleTxtKey).replace(/\D/g, '');
         mdxData += `**Example ${exampleNum}**: `;
         let exampleTxt = fs.readFileSync(categoryFilePath + "/" + exampleTxtKey);
         mdxData += exampleTxt.toString();
@@ -368,7 +369,7 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
               // Check if both top level and oop code has been found for current function
               const csharpFiles = functionFiles.filter(file => file.endsWith("-top-level.cs") || file.endsWith("-oop.cs")).filter(file => file.includes(exampleKey));
               const cppFiles = functionFiles.filter(file => file.endsWith("-sk.cpp") || file.endsWith("-beyond.cpp")).filter(file => file.includes(exampleKey));
-              functionTag = exampleKey.split("-")[0];
+              functionTag = path.basename(exampleTxtKey).split("-")[0];
               if (lang == "cpp") {
                 functionTag = groupName;
               }
@@ -417,14 +418,14 @@ function getUsageExampleContent(jsonData, categoryKey, groupName, functionKey) {
       let outputFilePath = categoryPath + "/" + exampleTxtKey;
 
 
-      const imageFiles = functionFiles.filter(file => file.endsWith(exampleKey + '.png'));
+      const imageFiles = functionFiles.filter(file => path.basename(file) === path.basename(exampleTxtKey).replaceAll(".txt", ".png"));
       // Check for .png files
       if (imageFiles.length > 0) {
         outputFilePath = outputFilePath.replaceAll(".txt", ".png");
         mdxData += `![${exampleKey} example](${outputFilePath})\n`
       }
       else {
-        const gifFiles = functionFiles.filter(file => file.endsWith('.gif')).filter(file => file.startsWith(exampleKey));
+        const gifFiles = functionFiles.filter(file => file.endsWith('.gif')).filter(file => path.basename(file).startsWith(path.basename(exampleTxtKey).replaceAll(".txt", "")));
         // Check for .gif files
         if (gifFiles.length > 0) {
           outputFilePath = outputFilePath.replaceAll(".txt", ".gif");
@@ -522,13 +523,12 @@ for (const categoryKey in jsonData) {
     }
   }
   mdxContent += `\nimport { Code, Tabs, TabItem, LinkCard, CardGrid, LinkButton } from "@astrojs/starlight/components";\nimport Accordion from '../../../components/Accordion.astro'\n`;
-  if (guidesAvailable[categoryKey]) {
-    mdxContent += "\n## \n";
-    mdxContent += `## ${name} Guides\n`;
+  if (guideLandingPages[categoryKey]) {
+    mdxContent += `\n## ${name} Guides\n`;
     mdxContent += `<LinkCard
         title="Using ${name}"
         description="Examples & Guides"
-        href="/guides/${input}/"
+        href="/guides/${guideLandingPages[categoryKey]}/"
         />\n\n`;
   }
   mdxContent += "\n";
@@ -582,6 +582,7 @@ for (const categoryKey in jsonData) {
       const hasSymbol = (hasExampleInGroup || hasGuideInGroup || hasExampleReferenceInGroup) ? `&nbsp;&nbsp;&lcub;&lt;/&gt;&rcub;` : "";
       const formattedGroupLink = `${formattedLink}-functions`;
 
+      mdxContent += `\n<span id="${formattedLink}"></span>\n`;
       mdxContent += `\n### [${formattedFunctionName}](#${formattedGroupLink})${hasSymbol} \\{#${formattedGroupLink}\\}\n\n`;
 
       mdxContent += ":::note\n\n";
@@ -728,7 +729,10 @@ for (const categoryKey in jsonData) {
         mdxContent += "**Return Type:** Unsigned Integer\n\n";
       }
       else if (func.return.type != 'void') {
-        mdxContent += "**Return Type:** " + typeMappings[func.return.type] + "\n\n";
+       const returnType =
+        typeMappings[func.return.type] ?? `\`${func.return.type}\``;
+
+       mdxContent += "**Return Type:** " + returnType + "\n\n";
 
         mdxContent += "*Returns:* ";
         let returnDescription = func.return.description || "";

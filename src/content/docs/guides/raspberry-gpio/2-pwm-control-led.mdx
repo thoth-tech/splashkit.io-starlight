@@ -93,6 +93,9 @@ This code requires the `pigpio` daemon, so make sure it is running! For more inf
 
 Below is an example program to iterate over the entire range of frequencies available.
 
+<Tabs>
+<TabItem label="Local">
+
 <Tabs syncKey="code-language">
 <TabItem label="C++">
 
@@ -101,32 +104,240 @@ Below is an example program to iterate over the entire range of frequencies avai
 
 int main()
 {
-    const int freqs[] = {10, 20, 40, 50, 80, 100, 160, 200, 250,
-                        320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000 };
+    const int freqs[] = {
+        10, 20, 40, 50, 80, 100, 160, 200, 250,
+        320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000
+    };
+
     const int pwm_range = 255;
+
     raspi_init();
+
     gpio_pin led_pin = PIN_11;
     raspi_set_mode(led_pin, GPIO_OUTPUT);
 
     raspi_set_pwm_range(led_pin, pwm_range);
-    raspi_set_pwm_dutycycle(led_pin, (pwm_range / 2));
+    raspi_set_pwm_dutycycle(led_pin, pwm_range / 2);
 
     for(int i = 0; i < 18; i++)
     {
         write("At Frequency: ");
         write_line(freqs[i]);
+
         raspi_set_pwm_frequency(led_pin, freqs[i]);
         delay(1000);
     }
 
     raspi_cleanup();
+
     return 0;
+}
+```
+
+</TabItem>
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+int[] freqs = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+               320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000};
+const int pwmRange = 255;
+
+RaspiInit();
+GpioPin ledPin = GpioPin.Pin11;
+RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+RaspiSetPwmRange(ledPin, pwmRange);
+RaspiSetPwmDutycycle(ledPin, pwmRange / 2);
+
+for (int i = 0; i < freqs.Length; i++)
+{
+    Write("At Frequency: ");
+    WriteLine(freqs[i]);
+    RaspiSetPwmFrequency(ledPin, freqs[i]);
+    Delay(1000);
+}
+
+RaspiCleanup();
+```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace RaspberryPiPWMFrequency
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] freqs = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                           320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000};
+            const int pwmRange = 255;
+
+            SplashKit.RaspiInit();
+            GpioPin ledPin = GpioPin.Pin11;
+            SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+            SplashKit.RaspiSetPwmRange(ledPin, pwmRange);
+            SplashKit.RaspiSetPwmDutycycle(ledPin, pwmRange / 2);
+
+            for (int i = 0; i < freqs.Length; i++)
+            {
+                SplashKit.Write("At Frequency: ");
+                SplashKit.WriteLine(freqs[i]);
+                SplashKit.RaspiSetPwmFrequency(ledPin, freqs[i]);
+                SplashKit.Delay(1000);
+            }
+
+            SplashKit.RaspiCleanup();
+        }
+    }
 }
 ```
 
 </TabItem>
 </Tabs>
 
+</TabItem>
+</Tabs>
+
+</TabItem>
+
+<TabItem label="Remote">
+
+Remote GPIO operations require the Raspberry Pi daemon to be running. Use `remote_raspi_init()` to create a connection to the Raspberry Pi. The connection requires a name, the Raspberry Pi IP address, and the daemon port, which is `8888` by default. The returned connection is then passed as the first argument to the remote PWM functions.
+
+<Tabs syncKey="code-language">
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+
+int main()
+{
+    const int freqs[] = {
+        10, 20, 40, 50, 80, 100, 160, 200, 250,
+        320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000
+    };
+
+    const int pwm_range = 255;
+
+    connection pi = remote_raspi_init(
+        "my_pi",
+        "PI_IP_ADDRESS",
+        8888
+    );
+
+    gpio_pin led_pin = PIN_11;
+
+    remote_raspi_set_mode(
+        pi,
+        led_pin,
+        GPIO_OUTPUT
+    );
+
+    remote_raspi_set_pwm_range(
+        pi,
+        led_pin,
+        pwm_range
+    );
+
+    remote_raspi_set_pwm_dutycycle(
+        pi,
+        led_pin,
+        pwm_range / 2
+    );
+
+    for(int i = 0; i < 18; i++)
+    {
+        write("At Frequency: ");
+        write_line(freqs[i]);
+
+        remote_raspi_set_pwm_frequency(
+            pi,
+            led_pin,
+            freqs[i]
+        );
+
+        delay(1000);
+    }
+
+    remote_raspi_cleanup(pi);
+
+    return 0;
+}
+```
+
+</TabItem>
+<TabItem label="C#">
+
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+int[] freqs = {
+    10, 20, 40, 50, 80, 100, 160, 200, 250,
+    320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000
+};
+
+const int pwmRange = 255;
+
+Connection pi = RemoteRaspiInit(
+    "my_pi",
+    "PI_IP_ADDRESS",
+    8888
+);
+
+GpioPin ledPin = GpioPin.Pin11;
+
+RemoteRaspiSetMode(
+    pi,
+    ledPin,
+    GpioPinMode.GpioOutput
+);
+
+RemoteRaspiSetPwmRange(
+    pi,
+    ledPin,
+    pwmRange
+);
+
+RemoteRaspiSetPwmDutycycle(
+    pi,
+    ledPin,
+    pwmRange / 2
+);
+
+foreach (int frequency in freqs)
+{
+    Write("At Frequency: ");
+    WriteLine(frequency);
+
+    RemoteRaspiSetPwmFrequency(
+        pi,
+        ledPin,
+        frequency
+    );
+
+    Delay(1000);
+}
+
+RemoteRaspiCleanup(pi);
+```
+
+</TabItem>
+</Tabs>
+
+</TabItem>
+</Tabs>
 #### Understanding the code \{#understanding-the-code-changing-frequency\}
 
 Lets break down this code and look at it in sections.
@@ -171,7 +382,78 @@ Lets break down this code and look at it in sections.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {4-10}
+    using SplashKitSDK;
+    using static SplashKitSDK.SplashKit;
+
+    int[] freqs = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                   320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000};
+    const int pwmRange = 255;
+
+    RaspiInit();
+    GpioPin ledPin = GpioPin.Pin11;
+    RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+    RaspiSetPwmRange(ledPin, pwmRange);
+    RaspiSetPwmDutycycle(ledPin, pwmRange / 2);
+
+    for (int i = 0; i < freqs.Length; i++)
+    {
+        Write("At Frequency: ");
+        WriteLine(freqs[i]);
+        RaspiSetPwmFrequency(ledPin, freqs[i]);
+        Delay(1000);
+    }
+
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {9-16}
+    using SplashKitSDK;
+
+    namespace RaspberryPiPWMFrequency
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                int[] freqs = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                               320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000};
+                const int pwmRange = 255;
+
+                SplashKit.RaspiInit();
+                GpioPin ledPin = GpioPin.Pin11;
+                SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+                SplashKit.RaspiSetPwmRange(ledPin, pwmRange);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, pwmRange / 2);
+
+                for (int i = 0; i < freqs.Length; i++)
+                {
+                    SplashKit.Write("At Frequency: ");
+                    SplashKit.WriteLine(freqs[i]);
+                    SplashKit.RaspiSetPwmFrequency(ledPin, freqs[i]);
+                    SplashKit.Delay(1000);
+                }
+
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
     </Tabs>
+
+    </TabItem>    </Tabs>
 
 2. **Set PWM Range and Duty Cycle:**
 
@@ -209,7 +491,78 @@ Lets break down this code and look at it in sections.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {12-13}
+    using SplashKitSDK;
+    using static SplashKitSDK.SplashKit;
+
+    int[] freqs = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                   320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000};
+    const int pwmRange = 255;
+
+    RaspiInit();
+    GpioPin ledPin = GpioPin.Pin11;
+    RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+    RaspiSetPwmRange(ledPin, pwmRange);
+    RaspiSetPwmDutycycle(ledPin, pwmRange / 2);
+
+    for (int i = 0; i < freqs.Length; i++)
+    {
+        Write("At Frequency: ");
+        WriteLine(freqs[i]);
+        RaspiSetPwmFrequency(ledPin, freqs[i]);
+        Delay(1000);
+    }
+
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {18-19}
+    using SplashKitSDK;
+
+    namespace RaspberryPiPWMFrequency
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                int[] freqs = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                               320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000};
+                const int pwmRange = 255;
+
+                SplashKit.RaspiInit();
+                GpioPin ledPin = GpioPin.Pin11;
+                SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+                SplashKit.RaspiSetPwmRange(ledPin, pwmRange);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, pwmRange / 2);
+
+                for (int i = 0; i < freqs.Length; i++)
+                {
+                    SplashKit.Write("At Frequency: ");
+                    SplashKit.WriteLine(freqs[i]);
+                    SplashKit.RaspiSetPwmFrequency(ledPin, freqs[i]);
+                    SplashKit.Delay(1000);
+                }
+
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
     </Tabs>
+
+    </TabItem>    </Tabs>
 
 3. **Change the PWM Frequency:**
 
@@ -247,7 +600,78 @@ Lets break down this code and look at it in sections.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {15-21}
+    using SplashKitSDK;
+    using static SplashKitSDK.SplashKit;
+
+    int[] freqs = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                   320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000};
+    const int pwmRange = 255;
+
+    RaspiInit();
+    GpioPin ledPin = GpioPin.Pin11;
+    RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+    RaspiSetPwmRange(ledPin, pwmRange);
+    RaspiSetPwmDutycycle(ledPin, pwmRange / 2);
+
+    for (int i = 0; i < freqs.Length; i++)
+    {
+        Write("At Frequency: ");
+        WriteLine(freqs[i]);
+        RaspiSetPwmFrequency(ledPin, freqs[i]);
+        Delay(1000);
+    }
+
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {21-27}
+    using SplashKitSDK;
+
+    namespace RaspberryPiPWMFrequency
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                int[] freqs = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                               320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000};
+                const int pwmRange = 255;
+
+                SplashKit.RaspiInit();
+                GpioPin ledPin = GpioPin.Pin11;
+                SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+                SplashKit.RaspiSetPwmRange(ledPin, pwmRange);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, pwmRange / 2);
+
+                for (int i = 0; i < freqs.Length; i++)
+                {
+                    SplashKit.Write("At Frequency: ");
+                    SplashKit.WriteLine(freqs[i]);
+                    SplashKit.RaspiSetPwmFrequency(ledPin, freqs[i]);
+                    SplashKit.Delay(1000);
+                }
+
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
     </Tabs>
+
+    </TabItem>    </Tabs>
 
     :::note[Flicking at low frequencies]
     When running this program, you may be able to see a noticeable flicker when the frequency is at a low value but it quickly stabilises as it increases.
@@ -291,7 +715,78 @@ Lets break down this code and look at it in sections.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {23}
+    using SplashKitSDK;
+    using static SplashKitSDK.SplashKit;
+
+    int[] freqs = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                   320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000};
+    const int pwmRange = 255;
+
+    RaspiInit();
+    GpioPin ledPin = GpioPin.Pin11;
+    RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+    RaspiSetPwmRange(ledPin, pwmRange);
+    RaspiSetPwmDutycycle(ledPin, pwmRange / 2);
+
+    for (int i = 0; i < freqs.Length; i++)
+    {
+        Write("At Frequency: ");
+        WriteLine(freqs[i]);
+        RaspiSetPwmFrequency(ledPin, freqs[i]);
+        Delay(1000);
+    }
+
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {29}
+    using SplashKitSDK;
+
+    namespace RaspberryPiPWMFrequency
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                int[] freqs = {10, 20, 40, 50, 80, 100, 160, 200, 250,
+                               320, 400, 500, 800, 1000, 1600, 2000, 4000, 8000};
+                const int pwmRange = 255;
+
+                SplashKit.RaspiInit();
+                GpioPin ledPin = GpioPin.Pin11;
+                SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+                SplashKit.RaspiSetPwmRange(ledPin, pwmRange);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, pwmRange / 2);
+
+                for (int i = 0; i < freqs.Length; i++)
+                {
+                    SplashKit.Write("At Frequency: ");
+                    SplashKit.WriteLine(freqs[i]);
+                    SplashKit.RaspiSetPwmFrequency(ledPin, freqs[i]);
+                    SplashKit.Delay(1000);
+                }
+
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
     </Tabs>
+
+    </TabItem>    </Tabs>
 
 </Steps>
 
@@ -307,6 +802,13 @@ We can build this program with the following command:
   ```
 
 </TabItem>
+<TabItem label="C#">
+
+```shell
+dotnet build
+```
+
+</TabItem>
 
 </Tabs>
 
@@ -320,11 +822,20 @@ We can then run the program with the following command:
   ```
 
 </TabItem>
-</Tabs>
+<TabItem label="C#">
 
+```shell
+dotnet run
+```
+
+</TabItem>
+</Tabs>
 ### Changing Duty Cycle
 
 Below is an example program, very similar to the previous program, that demonstrates what the effect of modifying the duty cycle does to the LED.
+
+<Tabs>
+<TabItem label="Local">
 
 <Tabs syncKey="code-language">
 <TabItem label="C++">
@@ -337,7 +848,8 @@ int main()
     const int pwm_range = 255;
 
     raspi_init();
-    pin led_pin = PIN_11;
+
+    gpio_pin led_pin = PIN_11;
     raspi_set_mode(led_pin, GPIO_OUTPUT);
 
     raspi_set_pwm_frequency(led_pin, 1000);
@@ -347,25 +859,264 @@ int main()
     {
         write("At Duty Cycle: ");
         write_line(i);
+
         raspi_set_pwm_dutycycle(led_pin, i);
         delay(1000);
     }
+
     for(int i = pwm_range; i >= 0; i -= 10)
     {
         write("At Duty Cycle: ");
         write_line(i);
+
         raspi_set_pwm_dutycycle(led_pin, i);
         delay(1000);
     }
 
     raspi_cleanup();
+
     return 0;
+}
+```
+
+</TabItem>
+<TabItem label="C#">
+
+<Tabs syncKey="csharp-style">
+<TabItem label="Top-level Statements">
+
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+const int pwmRange = 255;
+
+RaspiInit();
+GpioPin ledPin = GpioPin.Pin11;
+RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+RaspiSetPwmFrequency(ledPin, 1000);
+RaspiSetPwmRange(ledPin, pwmRange);
+
+for (int i = 0; i <= pwmRange; i += 10)
+{
+    Write("At Duty Cycle: ");
+    WriteLine(i);
+    RaspiSetPwmDutycycle(ledPin, i);
+    Delay(1000);
+}
+
+for (int i = pwmRange; i >= 0; i -= 10)
+{
+    Write("At Duty Cycle: ");
+    WriteLine(i);
+    RaspiSetPwmDutycycle(ledPin, i);
+    Delay(1000);
+}
+
+RaspiCleanup();
+```
+
+</TabItem>
+<TabItem label="Object-Oriented">
+
+```csharp
+using SplashKitSDK;
+
+namespace RaspberryPiPWMDutyCycle
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            const int pwmRange = 255;
+
+            SplashKit.RaspiInit();
+            GpioPin ledPin = GpioPin.Pin11;
+            SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+            SplashKit.RaspiSetPwmFrequency(ledPin, 1000);
+            SplashKit.RaspiSetPwmRange(ledPin, pwmRange);
+
+            for (int i = 0; i <= pwmRange; i += 10)
+            {
+                SplashKit.Write("At Duty Cycle: ");
+                SplashKit.WriteLine(i);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, i);
+                SplashKit.Delay(1000);
+            }
+
+            for (int i = pwmRange; i >= 0; i -= 10)
+            {
+                SplashKit.Write("At Duty Cycle: ");
+                SplashKit.WriteLine(i);
+                SplashKit.RaspiSetPwmDutycycle(ledPin, i);
+                SplashKit.Delay(1000);
+            }
+
+            SplashKit.RaspiCleanup();
+        }
+    }
 }
 ```
 
 </TabItem>
 </Tabs>
 
+</TabItem>
+</Tabs>
+
+</TabItem>
+
+<TabItem label="Remote">
+
+Remote GPIO operations require the Raspberry Pi daemon to be running. Use `remote_raspi_init()` to create a connection to the Raspberry Pi. The connection requires a name, the Raspberry Pi IP address, and the daemon port, which is `8888` by default. The returned connection is then passed as the first argument to the remote PWM functions.
+
+<Tabs syncKey="code-language">
+<TabItem label="C++">
+
+```cpp
+#include "splashkit.h"
+
+int main()
+{
+    const int pwm_range = 255;
+
+    connection pi = remote_raspi_init(
+        "my_pi",
+        "PI_IP_ADDRESS",
+        8888
+    );
+
+    gpio_pin led_pin = PIN_11;
+
+    remote_raspi_set_mode(
+        pi,
+        led_pin,
+        GPIO_OUTPUT
+    );
+
+    remote_raspi_set_pwm_frequency(
+        pi,
+        led_pin,
+        1000
+    );
+
+    remote_raspi_set_pwm_range(
+        pi,
+        led_pin,
+        pwm_range
+    );
+
+    for(int i = 0; i <= pwm_range; i += 10)
+    {
+        write("At Duty Cycle: ");
+        write_line(i);
+
+        remote_raspi_set_pwm_dutycycle(
+            pi,
+            led_pin,
+            i
+        );
+
+        delay(1000);
+    }
+
+    for(int i = pwm_range; i >= 0; i -= 10)
+    {
+        write("At Duty Cycle: ");
+        write_line(i);
+
+        remote_raspi_set_pwm_dutycycle(
+            pi,
+            led_pin,
+            i
+        );
+
+        delay(1000);
+    }
+
+    remote_raspi_cleanup(pi);
+
+    return 0;
+}
+```
+
+</TabItem>
+
+
+<TabItem label="C#">
+
+```csharp
+using SplashKitSDK;
+using static SplashKitSDK.SplashKit;
+
+const int pwmRange = 255;
+
+Connection pi = RemoteRaspiInit(
+    "my_pi",
+    "PI_IP_ADDRESS",
+    8888
+);
+
+GpioPin ledPin = GpioPin.Pin11;
+
+RemoteRaspiSetMode(
+    pi,
+    ledPin,
+    GpioPinMode.GpioOutput
+);
+
+RemoteRaspiSetPwmFrequency(
+    pi,
+    ledPin,
+    1000
+);
+
+RemoteRaspiSetPwmRange(
+    pi,
+    ledPin,
+    pwmRange
+);
+
+for (int i = 0; i <= pwmRange; i += 10)
+{
+    Write("At Duty Cycle: ");
+    WriteLine(i);
+
+    RemoteRaspiSetPwmDutycycle(
+        pi,
+        ledPin,
+        i
+    );
+
+    Delay(1000);
+}
+
+for (int i = pwmRange; i >= 0; i -= 10)
+{
+    Write("At Duty Cycle: ");
+    WriteLine(i);
+
+    RemoteRaspiSetPwmDutycycle(
+        pi,
+        ledPin,
+        i
+    );
+
+    Delay(1000);
+}
+
+RemoteRaspiCleanup(pi);
+```
+
+</TabItem>
+
+</Tabs>
+
+
+</TabItem>
+</Tabs>
 #### Understanding the code \{#understanding-the-code-changing-duty-cycle\}
 
 Lets break down this code and look at the sections that are different.
@@ -414,7 +1165,90 @@ Lets break down this code and look at the sections that are different.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {4-9}
+    using SplashKitSDK;
+    using static SplashKitSDK.SplashKit;
+
+    const int pwmRange = 255;
+
+    RaspiInit();
+    GpioPin ledPin = GpioPin.Pin11;
+    RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+    RaspiSetPwmFrequency(ledPin, 1000);
+    RaspiSetPwmRange(ledPin, pwmRange);
+
+    for (int i = 0; i <= pwmRange; i += 10)
+    {
+        Write("At Duty Cycle: ");
+        WriteLine(i);
+        RaspiSetPwmDutycycle(ledPin, i);
+        Delay(1000);
+    }
+
+    for (int i = pwmRange; i >= 0; i -= 10)
+    {
+        Write("At Duty Cycle: ");
+        WriteLine(i);
+        RaspiSetPwmDutycycle(ledPin, i);
+        Delay(1000);
+    }
+
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {9-15}
+    using SplashKitSDK;
+
+    namespace RaspberryPiPWMDutyCycle
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                const int pwmRange = 255;
+
+                SplashKit.RaspiInit();
+                GpioPin ledPin = GpioPin.Pin11;
+                SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+                SplashKit.RaspiSetPwmFrequency(ledPin, 1000);
+                SplashKit.RaspiSetPwmRange(ledPin, pwmRange);
+
+                for (int i = 0; i <= pwmRange; i += 10)
+                {
+                    SplashKit.Write("At Duty Cycle: ");
+                    SplashKit.WriteLine(i);
+                    SplashKit.RaspiSetPwmDutycycle(ledPin, i);
+                    SplashKit.Delay(1000);
+                }
+
+                for (int i = pwmRange; i >= 0; i -= 10)
+                {
+                    SplashKit.Write("At Duty Cycle: ");
+                    SplashKit.WriteLine(i);
+                    SplashKit.RaspiSetPwmDutycycle(ledPin, i);
+                    SplashKit.Delay(1000);
+                }
+
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
     </Tabs>
+
+    </TabItem>    </Tabs>
 
 2. **Set PWM Range and Duty Cycle:**
 
@@ -458,7 +1292,90 @@ Lets break down this code and look at the sections that are different.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {11-12}
+    using SplashKitSDK;
+    using static SplashKitSDK.SplashKit;
+
+    const int pwmRange = 255;
+
+    RaspiInit();
+    GpioPin ledPin = GpioPin.Pin11;
+    RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+    RaspiSetPwmFrequency(ledPin, 1000);
+    RaspiSetPwmRange(ledPin, pwmRange);
+
+    for (int i = 0; i <= pwmRange; i += 10)
+    {
+        Write("At Duty Cycle: ");
+        WriteLine(i);
+        RaspiSetPwmDutycycle(ledPin, i);
+        Delay(1000);
+    }
+
+    for (int i = pwmRange; i >= 0; i -= 10)
+    {
+        Write("At Duty Cycle: ");
+        WriteLine(i);
+        RaspiSetPwmDutycycle(ledPin, i);
+        Delay(1000);
+    }
+
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {17-18}
+    using SplashKitSDK;
+
+    namespace RaspberryPiPWMDutyCycle
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                const int pwmRange = 255;
+
+                SplashKit.RaspiInit();
+                GpioPin ledPin = GpioPin.Pin11;
+                SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+                SplashKit.RaspiSetPwmFrequency(ledPin, 1000);
+                SplashKit.RaspiSetPwmRange(ledPin, pwmRange);
+
+                for (int i = 0; i <= pwmRange; i += 10)
+                {
+                    SplashKit.Write("At Duty Cycle: ");
+                    SplashKit.WriteLine(i);
+                    SplashKit.RaspiSetPwmDutycycle(ledPin, i);
+                    SplashKit.Delay(1000);
+                }
+
+                for (int i = pwmRange; i >= 0; i -= 10)
+                {
+                    SplashKit.Write("At Duty Cycle: ");
+                    SplashKit.WriteLine(i);
+                    SplashKit.RaspiSetPwmDutycycle(ledPin, i);
+                    SplashKit.Delay(1000);
+                }
+
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
     </Tabs>
+
+    </TabItem>    </Tabs>
 
 3. **Change the PWM Duty Cycle:**
 
@@ -502,7 +1419,90 @@ Lets break down this code and look at the sections that are different.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {14-27}
+    using SplashKitSDK;
+    using static SplashKitSDK.SplashKit;
+
+    const int pwmRange = 255;
+
+    RaspiInit();
+    GpioPin ledPin = GpioPin.Pin11;
+    RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+    RaspiSetPwmFrequency(ledPin, 1000);
+    RaspiSetPwmRange(ledPin, pwmRange);
+
+    for (int i = 0; i <= pwmRange; i += 10)
+    {
+        Write("At Duty Cycle: ");
+        WriteLine(i);
+        RaspiSetPwmDutycycle(ledPin, i);
+        Delay(1000);
+    }
+
+    for (int i = pwmRange; i >= 0; i -= 10)
+    {
+        Write("At Duty Cycle: ");
+        WriteLine(i);
+        RaspiSetPwmDutycycle(ledPin, i);
+        Delay(1000);
+    }
+
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {20-34}
+    using SplashKitSDK;
+
+    namespace RaspberryPiPWMDutyCycle
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                const int pwmRange = 255;
+
+                SplashKit.RaspiInit();
+                GpioPin ledPin = GpioPin.Pin11;
+                SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+                SplashKit.RaspiSetPwmFrequency(ledPin, 1000);
+                SplashKit.RaspiSetPwmRange(ledPin, pwmRange);
+
+                for (int i = 0; i <= pwmRange; i += 10)
+                {
+                    SplashKit.Write("At Duty Cycle: ");
+                    SplashKit.WriteLine(i);
+                    SplashKit.RaspiSetPwmDutycycle(ledPin, i);
+                    SplashKit.Delay(1000);
+                }
+
+                for (int i = pwmRange; i >= 0; i -= 10)
+                {
+                    SplashKit.Write("At Duty Cycle: ");
+                    SplashKit.WriteLine(i);
+                    SplashKit.RaspiSetPwmDutycycle(ledPin, i);
+                    SplashKit.Delay(1000);
+                }
+
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
     </Tabs>
+
+    </TabItem>    </Tabs>
 
 4. **Clean Up Memory:**
 
@@ -546,7 +1546,90 @@ Lets break down this code and look at the sections that are different.
     ```
 
     </TabItem>
+    <TabItem label="C#">
+
+    <Tabs syncKey="csharp-style">
+    <TabItem label="Top-level Statements">
+
+    ```csharp {29}
+    using SplashKitSDK;
+    using static SplashKitSDK.SplashKit;
+
+    const int pwmRange = 255;
+
+    RaspiInit();
+    GpioPin ledPin = GpioPin.Pin11;
+    RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+    RaspiSetPwmFrequency(ledPin, 1000);
+    RaspiSetPwmRange(ledPin, pwmRange);
+
+    for (int i = 0; i <= pwmRange; i += 10)
+    {
+        Write("At Duty Cycle: ");
+        WriteLine(i);
+        RaspiSetPwmDutycycle(ledPin, i);
+        Delay(1000);
+    }
+
+    for (int i = pwmRange; i >= 0; i -= 10)
+    {
+        Write("At Duty Cycle: ");
+        WriteLine(i);
+        RaspiSetPwmDutycycle(ledPin, i);
+        Delay(1000);
+    }
+
+    RaspiCleanup();
+    ```
+
+    </TabItem>
+    <TabItem label="Object-Oriented">
+
+    ```csharp {36}
+    using SplashKitSDK;
+
+    namespace RaspberryPiPWMDutyCycle
+    {
+        public class Program
+        {
+            public static void Main()
+            {
+                const int pwmRange = 255;
+
+                SplashKit.RaspiInit();
+                GpioPin ledPin = GpioPin.Pin11;
+                SplashKit.RaspiSetMode(ledPin, GpioPinMode.GpioOutput);
+
+                SplashKit.RaspiSetPwmFrequency(ledPin, 1000);
+                SplashKit.RaspiSetPwmRange(ledPin, pwmRange);
+
+                for (int i = 0; i <= pwmRange; i += 10)
+                {
+                    SplashKit.Write("At Duty Cycle: ");
+                    SplashKit.WriteLine(i);
+                    SplashKit.RaspiSetPwmDutycycle(ledPin, i);
+                    SplashKit.Delay(1000);
+                }
+
+                for (int i = pwmRange; i >= 0; i -= 10)
+                {
+                    SplashKit.Write("At Duty Cycle: ");
+                    SplashKit.WriteLine(i);
+                    SplashKit.RaspiSetPwmDutycycle(ledPin, i);
+                    SplashKit.Delay(1000);
+                }
+
+                SplashKit.RaspiCleanup();
+            }
+        }
+    }
+    ```
+
+    </TabItem>
     </Tabs>
+
+    </TabItem>    </Tabs>
 
 </Steps>
 
@@ -562,6 +1645,13 @@ g++ pwm_dutycycle.cpp -l SplashKit -o pwm_dutycycle
 ```
   
 </TabItem>
+<TabItem label="C#">
+
+```shell
+dotnet build
+```
+
+</TabItem>
 </Tabs>
 
 We can then run the program with the following command:
@@ -571,6 +1661,13 @@ We can then run the program with the following command:
 
 ```shell
 ./pwm_dutycycle
+```
+
+</TabItem>
+<TabItem label="C#">
+
+```shell
+dotnet run
 ```
 
 </TabItem>

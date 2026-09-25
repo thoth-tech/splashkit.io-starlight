@@ -1,0 +1,1 @@
+Draws five coloured rectangles and displays the hex string representation of each colour using color_to_string.

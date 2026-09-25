@@ -1,1 +1,4 @@
-Point 2D Guessing Game
+Splashkit Function: SamePoint
+
+Overview of example functionality:
+This example demonstrates how to check if two points are the same. The program compares user input coordinates with a target point and gives feedback until both x and y match.

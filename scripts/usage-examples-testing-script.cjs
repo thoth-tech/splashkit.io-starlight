@@ -95,41 +95,12 @@ function getAllFiles(dir, allFilesList = []) {
 
 // Create function link to match with functions in the API Documentation pages
 function getFunctionLink(jsonData, groupNameToCheck, uniqueNameToCheck) {
-  let isOverloaded;
-  let functionIndex = -1;
-  let functionLink = "";
-  for (const categoryKey in jsonData) {
-    const category = jsonData[categoryKey];
-    const categoryFunctions = category.functions;
-    const functionGroups = {}; // Store functions grouped by name
-    categoryFunctions.forEach((func) => {
-      const functionName = func.name;
-      if (!functionGroups[functionName]) {
-        functionGroups[functionName] = [];
-      }
-      functionGroups[functionName].push(func);
-    });
-
-    for (const functionName in functionGroups) {
-      if (functionName == groupNameToCheck) {
-        const overloads = functionGroups[functionName];
-        isOverloaded = overloads.length > 1;
-
-        if (isOverloaded) {
-          overloads.forEach((func, index) => {
-            functionIndex = index + 1;
-            if (uniqueNameToCheck == func.unique_global_name) {
-              functionLink = functionName + "-" + (index + 1);
-            }
-          });
-        }
-        else {
-          functionLink = functionName;
-        }
-      }
-    }
+  // API page anchors are keyed by unique_global_name (kebab-case), including overloads.
+  // Returning the unique name keeps links stable and avoids invalid numbered hashes.
+  if (uniqueNameToCheck) {
+    return uniqueNameToCheck;
   }
-  return functionLink;
+  return groupNameToCheck;
 }
 
 // Clean directory function to remove all files except those in the exclusions list
@@ -357,8 +328,14 @@ categories.forEach((categoryKey) => {
           }
           // -----------------------------------
 
+          // Support both nested and flat usage-example layouts.
+          const functionFolderPath = path.join(categoryFilePath, functionKey);
+          const useNestedLayout = fs.existsSync(functionFolderPath);
+
           // Description
-          let txtFilePath = categoryFilePath + "/" + functionKey + "/" + exampleTxtKey;
+          let txtFilePath = useNestedLayout
+            ? path.join(categoryFilePath, functionKey, exampleTxtKey)
+            : path.join(categoryFilePath, exampleTxtKey);
           let exampleTxt = fs.readFileSync(txtFilePath);
           mdxContent += "\n";
           mdxContent += exampleTxt.toString();
@@ -372,13 +349,16 @@ categories.forEach((categoryKey) => {
           };
 
           // import code
-          let codePath = categoryFilePath + "/" + functionKey;
+          let codePath = useNestedLayout ? functionFolderPath : categoryFilePath;
           const codeFiles = getAllFiles(codePath);
           let importTitle = exampleKey.replaceAll("-", "_");
           let functionTag = "";
+          const codeBasePath = useNestedLayout
+            ? categoryPath + "/" + functionKey + "/" + exampleTxtKey
+            : categoryPath + "/" + exampleTxtKey;
           languageOrder.forEach((lang) => {
             const languageFiles = codeFiles.filter(file => file.startsWith(exampleKey)).filter(file => file.endsWith(languageFileExtensions[lang]));
-            let codeFilePath = categoryPath + "/" + functionKey + "/" + exampleTxtKey.replaceAll(".txt", languageFileExtensions[lang]);
+            let codeFilePath = codeBasePath.replaceAll(".txt", languageFileExtensions[lang]);
 
             // import code if available
             if (languageFiles.length > 0) {
@@ -494,7 +474,7 @@ categories.forEach((categoryKey) => {
           mdxContent += "**Output**:\n\n";
 
           const imageFiles = categoryFiles.filter(file => file.endsWith(exampleKey + '.png'));
-          let outputFilePath = categoryPath + "/" + functionKey + "/" + exampleTxtKey;
+          let outputFilePath = codeBasePath;
           // Check for .png files
           if (imageFiles.length > 0) {
             outputFilePath = outputFilePath.replaceAll(".txt", ".png");

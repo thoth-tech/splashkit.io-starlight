@@ -1,1 +1,4 @@
-Volume Slider Simulation
+Splashkit Function: PointOnLine2
+
+Overview of example functionality:
+This example demonstrates how to use a point on a line to create an interactive slider. The program displays a horizontal line with a movable point, and as the point moves along the line, it updates and displays a corresponding volume percentage value.

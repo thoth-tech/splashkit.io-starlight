@@ -1,0 +1,1 @@
+Detecting When a Triangle Intersects a Rectangle

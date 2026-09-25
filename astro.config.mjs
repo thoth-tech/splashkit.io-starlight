@@ -111,17 +111,19 @@ export default defineConfig({
           collapsed: false,
           items: [
             { label: "Overview", link: "guides/" },
-            { 
+            {
               label: "Getting Started",
               collapsed: false,
               items: [
                 { label: "Drawing with Procedures", link: "guides/graphics/drawing-using-procedures" },
                 { label: "Understanding Double Buffering", link: "guides/graphics/double-buffering" },
+                { label: "Shape Modelling", link: "guides/graphics/2-shape-modelling" },
                 { label: "Graphical User Inputs", link: "guides/input/user-inputs-in-graphical-applications" },
                 { label: "Loading Resources with Bundles", link: "guides/resources/loading-resources-with-bundles" },
                 { label: "Getting Started With Audio", link: "guides/audio/getting-started-with-audio" },
                 { label: "Using Animations", link: "guides/animations/using-animations" },
-                { label: "SplashKit Camera", link: "guides/input/using-splashkit-camera" },
+                { label: "SplashKit Camera", link: "guides/camera/using-splashkit-camera" },
+                { label: "Dynamic Camera Control", link: "guides/camera/1-dynamic-camera-control" },
                 { label: "Useful Utilities", link: "guides/utilities/useful-utilities" },
                 { label: "Using JSON in SplashKit", link: "guides/json/getting-started-with-json" },
                 { label: "SplashKit Colors", link: "guides/color/splashkit-colors" },

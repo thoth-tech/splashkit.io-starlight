@@ -29,58 +29,81 @@ function getAvailableExamplesFunctionUsage(dir) {
             // Checking if the path is a directory
             if (stats.isDirectory()) {
                 const files = fs.readdirSync(folderPath);
-                // Filtering for JSON files
-                pythonFiles = files.filter(file => path.extname(file).toLowerCase() === '.py');
-                textFiles = files.filter(file => path.extname(file).toLowerCase() === '.txt');
+
+                const pythonFiles = files.filter(
+                    file => path.extname(file).toLowerCase() === ".py"
+                );
 
                 pythonFiles.forEach(pyFile => {
-                    const fileName = path.join(folderPath, pyFile);
-                    const fileName2 = fileName.replace('.py', '.txt')
-                    const pythonFile = fs.readFileSync(fileName);
-                    const textFile = fs.readFileSync(fileName2, "utf8");
+                    const pythonPath = path.join(folderPath, pyFile);
+                    const textPath = pythonPath.replace(/\.py$/i, ".txt");
+
+                    if (!fs.existsSync(textPath)) {
+                        throw new Error(
+                            `Missing description file for "${pythonPath}": expected "${textPath}"`
+                        );
+                    }
+
+                    const pythonFile = fs.readFileSync(pythonPath, "utf8");
+                    const textFile = fs.readFileSync(textPath, "utf8");
                     const title = textFile.split("\n")[0];
                     const pyFileMatch = fileNameRegex.exec(pyFile);
-                    try {
 
+                    try {
                         const folderKey = folder.toLowerCase();
                         const funcKey = pyFileMatch[1].toLowerCase();
 
                         if (!result[folderKey]) {
-                            result[folderKey] = []
+                            result[folderKey] = [];
                         }
 
-                        let funcEntry = result[folderKey].find(entry => entry.funcKey === funcKey);
+                        let funcEntry = result[folderKey].find(
+                            entry => entry.funcKey === funcKey
+                        );
 
                         if (!funcEntry) {
                             funcEntry = {
                                 funcKey: funcKey,
                                 title: title,
-                                url: `/api/${folderKey}/#${funcKey.replaceAll("_", "-")}`,
+                                url: `/api/${folderKey.replaceAll("_", "-")}/#${funcKey.replaceAll("_", "-")}`,
                                 functions: []
                             };
+
                             result[folderKey].push(funcEntry);
                         }
 
                         let match;
-                        while ((match = functionCallRegex.exec(pythonFile)) !== null) {
+
+                        while (
+                            (match = functionCallRegex.exec(pythonFile)) !== null
+                        ) {
                             const funcName = match[1];
-                            if (!funcEntry.functions.includes(funcName) && !ignoreKey.has(funcName) && funcKey != funcName) {
-                                funcEntry.functions.push(funcName)
+
+                            if (
+                                !funcEntry.functions.includes(funcName) &&
+                                !ignoreKey.has(funcName) &&
+                                funcKey !== funcName
+                            ) {
+                                funcEntry.functions.push(funcName);
                             }
                         }
-
                     } catch (error) {
-                        console.error(`Error parsing JSON in file: ${pythonFiles}`);
+                        console.error(`Error parsing usage example: ${pyFile}`);
                         console.error(error.message);
+                        throw error;
                     }
-                })
+                });
             } else {
-                if (folder != "CONTRIBUTING.mdx" && folder != ".DS_Store")
-                    console.log(`${folder} is not a diectory`);
+                if (folder !== "CONTRIBUTING.mdx" && folder !== ".DS_Store") {
+                    console.log(`${folder} is not a directory`);
+                }
             }
         } catch (err) {
-            console.log(`Error loading JSON in folder: ${folder}`);
+            throw new Error(
+                `Failed to process usage examples in "${folderPath}": ${err.message}`
+            );
         }
+
     })
     return result;
 }
@@ -89,17 +112,13 @@ function getAvailableExamplesFunctionUsage(dir) {
 // Writing to the output JSON file
 // ------------------------------------------------------------------------------
 function generateAvailableFunctionsInUsageExamples(srcDirectory, outputDirectory) {
-    try {
-        const usageExamplesContent = getAvailableExamplesFunctionUsage(srcDirectory);
+    const usageExamplesContent =
+        getAvailableExamplesFunctionUsage(srcDirectory);
 
-        try {
-            fs.writeFileSync(outputDirectory, JSON.stringify(usageExamplesContent, null, 4));
-        } catch (err) {
-            console.log('Error writing output files: ', err);
-        }
-    } catch (error) {
-        console.log('Error processing usage examples files: ', error);
-    }
+    fs.writeFileSync(
+        outputDirectory,
+        JSON.stringify(usageExamplesContent, null, 4)
+    );
 }
 
 // ==============================================================================
@@ -110,6 +129,13 @@ console.log(kleur.cyan('--------------------------------------------------------
 console.log(kleur.magenta('Usage Example Scraping:'));
 console.log(kleur.cyan('------------------------------------------------------------------------------\n'));
 
-generateAvailableFunctionsInUsageExamples(srcDirectory, outputDirectory);
+try {
+    generateAvailableFunctionsInUsageExamples(srcDirectory, outputDirectory);
 
-console.log(kleur.green("All examples have been scraped successfully.\n"));
+    console.log(
+        kleur.green("All examples have been scraped successfully.\n")
+    );
+} catch (error) {
+    console.error(kleur.red(`Usage example scraping failed: ${error.message}`));
+    process.exitCode = 1;
+}
