@@ -1,0 +1,1 @@
+I am demonstrating freeing a bitmap after drawing it: L loads a new random color and animates the square, F frees it, and ESC quits.
