@@ -1,0 +1,5 @@
+SplashKit Animation
+
+f: [0-3], [0-3], 60, 0
+
+i:Cycle,0
