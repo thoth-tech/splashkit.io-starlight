@@ -1,0 +1,3 @@
+Interactive random colour example
+
+Click the rectangle to change it to a random colour using random_color().
