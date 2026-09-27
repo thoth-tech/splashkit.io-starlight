@@ -1,0 +1,5 @@
+Loading Game Configuration from JSON
+
+This example demonstrates how to load game settings from a JSON configuration file.
+It shows how to read various data types from JSON (strings, numbers) and apply them
+to configure the game window and display values.
