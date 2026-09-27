@@ -1,0 +1,558 @@
+---
+title: VS Code cannot find 'splashkit.h'
+sidebar:
+  label: 12. VS Code cannot find splashkit.h
+  order: 12
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+:::caution[Issue:]
+
+After installing SplashKit on macOS, VS Code may show errors in a C++ SplashKit project such as:
+
+```text
+splashkit.h: No such file or directory
+```
+
+or:
+
+```text
+#include errors detected. Please update your includePath.
+```
+
+You may also see red error underlines on SplashKit functions such as `open_window`, `clear_screen`, or `refresh_screen`.
+
+In some cases, the program still compiles and runs successfully when using `skm clang++` from Terminal. This means SplashKit itself may be installed correctly, but VS Code's C/C++ IntelliSense configuration does not know where to find the SplashKit headers.
+
+SplashKit projects should be opened as a complete project folder rather than as individual source files. SplashKit learning material also recommends using `code .` from inside the project directory to allow VS Code to recognise the project correctly.
+
+:::
+
+---
+
+## Solution(s)
+
+### 1. Check whether SplashKit is installed correctly
+
+Before changing VS Code settings, check that SplashKit itself is working.
+
+Open Terminal and run:
+
+```shell
+skm --version
+```
+
+If `skm` cannot be found, see **Issue 3: `zsh: command not found: skm`** before continuing.
+
+Next, move into your SplashKit project:
+
+```shell
+cd path/to/your/project
+```
+
+Check that your source file contains the SplashKit header:
+
+```cpp
+#include <splashkit.h>
+```
+
+:::note
+
+Use the same include style that your project was created with. SplashKit examples commonly use `#include <splashkit.h>`.
+
+:::
+
+---
+
+### 2. Test the project using the SplashKit compiler
+
+Compile the project directly from Terminal:
+
+```shell
+skm clang++ *.cpp -o program
+```
+
+If your project contains a specific source file, you can compile it directly:
+
+```shell
+skm clang++ program.cpp -o program
+```
+
+Then run it:
+
+```shell
+./program
+```
+
+SplashKit Manager provides `skm clang++` specifically to compile C++ programs with the SplashKit settings required by the SDK.
+
+:::note
+
+If this works, SplashKit is most likely installed correctly. The problem is probably with VS Code's project or IntelliSense configuration rather than the SplashKit installation.
+
+If this command also reports that `splashkit.h` cannot be found, skip ahead to **Step 6: Repair the SplashKit installation**.
+
+:::
+
+---
+
+### 3. Open the entire project folder in VS Code
+
+One of the most common causes of false errors is opening the source file directly instead of opening the project directory.
+
+Do not open the project like this:
+
+```shell
+code program.cpp
+```
+
+Instead, navigate to the project directory:
+
+```shell
+cd path/to/your/project
+```
+
+Then run:
+
+```shell
+code .
+```
+
+<Steps>
+
+1. Close the current VS Code window.
+2. Open Terminal.
+3. Navigate to the folder containing your SplashKit source files.
+4. Run `code .`.
+5. Open the `.cpp` file from the VS Code Explorer.
+6. Check whether the `splashkit.h` error is still displayed.
+
+</Steps>
+
+SplashKit teaching material specifically recommends opening the complete directory with `code .`, rather than opening individual files, because VS Code needs the project context to correctly analyse the code.
+
+---
+
+### 4. Make sure the Microsoft C/C++ extension is installed
+
+VS Code uses the Microsoft C/C++ extension for C++ IntelliSense, error checking, and code navigation.
+
+<Steps>
+
+1. Open VS Code.
+2. Open the **Extensions** view.
+3. Search for **C/C++**.
+4. Install the Microsoft **C/C++** extension if it is not already installed.
+5. Restart VS Code.
+
+</Steps>
+
+:::note
+
+You do not need to install Xcode as your IDE for this. VS Code can use Apple's Clang compiler on macOS through the Command Line Tools.
+
+:::
+
+---
+
+### 5. Configure VS Code to use Clang
+
+If VS Code is using the wrong compiler, its IntelliSense configuration may not match the compiler being used by your Mac.
+
+Open the VS Code Command Palette:
+
+```text
+Command + Shift + P
+```
+
+Search for:
+
+```text
+C/C++: Edit Configurations (UI)
+```
+
+Open it.
+
+Under **Compiler path**, select:
+
+```text
+/usr/bin/clang++
+```
+
+Under **IntelliSense mode**, select the macOS Clang option appropriate for your Mac.
+
+For Apple Silicon Macs, this will normally be:
+
+```text
+macos-clang-arm64
+```
+
+For Intel Macs, use:
+
+```text
+macos-clang-x64
+```
+
+Set the C++ standard to a version supported by your project, such as:
+
+```text
+c++17
+```
+
+VS Code stores these settings in:
+
+```text
+.vscode/c_cpp_properties.json
+```
+
+A basic macOS configuration may look similar to:
+
+```json
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "compilerPath": "/usr/bin/clang++",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-clang-arm64"
+        }
+    ],
+    "version": 4
+}
+```
+
+:::warning
+
+Do not blindly copy the `macos-clang-arm64` value if you are using an Intel Mac. Choose the IntelliSense mode that matches your Mac's architecture.
+
+:::
+
+---
+
+### 6. Make sure VS Code can locate the SplashKit header
+
+If `splashkit.h` is still underlined after configuring Clang, VS Code's IntelliSense may still not know where the SplashKit header is located.
+
+First, check where SplashKit is installed:
+
+```shell
+ls ~/.splashkit
+```
+
+You should see the SplashKit installation files.
+
+You can also search for the header:
+
+```shell
+find ~/.splashkit -name "splashkit.h" 2>/dev/null
+```
+
+If the command returns a path, copy the directory containing `splashkit.h`.
+
+For example, if the result is:
+
+```text
+/Users/yourname/.splashkit/.../splashkit.h
+```
+
+add the directory containing that file to the **Include path** in VS Code's C/C++ configuration.
+
+You can do this through:
+
+```text
+Command + Shift + P
+```
+
+then:
+
+```text
+C/C++: Edit Configurations (UI)
+```
+
+Add the directory under **Include path**.
+
+Alternatively, edit:
+
+```text
+.vscode/c_cpp_properties.json
+```
+
+and add the directory to:
+
+```json
+"includePath"
+```
+
+For example:
+
+```json
+"includePath": [
+    "${workspaceFolder}/**",
+    "/path/to/the/directory/containing/splashkit.h"
+]
+```
+
+:::warning
+
+Do not copy the example path literally. Use the actual path returned by the `find` command on your Mac.
+
+Also avoid adding a random SplashKit directory just because it contains the word `splashkit`. The include path must point to the directory that actually contains `splashkit.h`.
+
+:::
+
+---
+
+### 7. Regenerate the project configuration if necessary
+
+If the project was created incorrectly or its VS Code configuration has become damaged, the simplest solution can be to recreate the SplashKit project configuration.
+
+Back up any source code you have written first.
+
+Create a new test folder:
+
+```shell
+mkdir splashkit-test
+cd splashkit-test
+```
+
+Create a new SplashKit C++ project:
+
+```shell
+skm new c++
+```
+
+Then open the project:
+
+```shell
+code .
+```
+
+Open the generated C++ file and check whether:
+
+```cpp
+#include <splashkit.h>
+```
+
+is recognised.
+
+If the new project works correctly, compare its `.vscode` configuration with the original project.
+
+---
+
+### 8. Reset VS Code's IntelliSense database
+
+Sometimes the project configuration is correct but VS Code's cached IntelliSense information is stale.
+
+Open the Command Palette:
+
+```text
+Command + Shift + P
+```
+
+Search for:
+
+```text
+C/C++: Reset IntelliSense Database
+```
+
+Run the command.
+
+Then close and reopen VS Code.
+
+Open the project using:
+
+```shell
+code .
+```
+
+and check the source file again.
+
+---
+
+### 9. Check that the project is not using an old or incorrect configuration
+
+If your project contains a:
+
+```text
+.vscode
+```
+
+folder, inspect its contents.
+
+Common configuration files include:
+
+```text
+.vscode/c_cpp_properties.json
+.vscode/tasks.json
+.vscode/launch.json
+```
+
+If `c_cpp_properties.json` contains an incorrect compiler path, architecture, or include path, VS Code may report errors even though the SplashKit compiler works correctly.
+
+If the configuration is clearly incorrect and you do not need to preserve it, make a backup of the `.vscode` folder and recreate the configuration through:
+
+```text
+C/C++: Edit Configurations (UI)
+```
+
+:::warning
+
+Do not delete the `.vscode` folder blindly if your project contains custom build or debugging configuration that you need.
+
+Make a backup first.
+
+:::
+
+---
+
+### 10. Check whether the problem is VS Code or SplashKit
+
+At this point, perform one final test from Terminal.
+
+From the project directory, run:
+
+```shell
+skm clang++ *.cpp -o program
+```
+
+If this succeeds:
+
+```shell
+./program
+```
+
+If the program runs correctly but VS Code still shows:
+
+```text
+splashkit.h: No such file or directory
+```
+
+then the problem is almost certainly VS Code's IntelliSense configuration.
+
+You do **not** need to reinstall SplashKit just because VS Code displays a red underline.
+
+:::note
+
+VS Code's IntelliSense is separate from the actual compilation process. It can report an include error even when the compiler being used by SplashKit can successfully locate the header.
+
+:::
+
+---
+
+### 11. If `skm clang++` also fails
+
+If the following command:
+
+```shell
+skm clang++ *.cpp -o program
+```
+
+also reports:
+
+```text
+splashkit.h: No such file or directory
+```
+
+then this is no longer just a VS Code problem.
+
+First check that `skm` is available:
+
+```shell
+which skm
+```
+
+Then check the SplashKit installation:
+
+```shell
+ls ~/.splashkit
+```
+
+If the SplashKit installation appears incomplete or damaged, run the SplashKit installation/update procedure again.
+
+You can also use:
+
+```shell
+skm update
+```
+
+and retry:
+
+```shell
+skm clang++ *.cpp -o program
+```
+
+If `skm` itself cannot be found, see **Issue 3: `zsh: command not found: skm`**.
+
+If the SplashKit installation command itself fails, see the earlier macOS troubleshooting issues.
+
+---
+
+## Quick Fix
+
+In most cases where the program works from Terminal but VS Code reports:
+
+```text
+splashkit.h: No such file or directory
+```
+
+try these steps first:
+
+<Steps>
+
+1. Close VS Code.
+2. Open Terminal.
+3. Navigate to your SplashKit project:
+
+```shell
+cd path/to/your/project
+```
+
+4. Confirm the project compiles:
+
+```shell
+skm clang++ *.cpp -o program
+```
+
+5. Open the whole project:
+
+```shell
+code .
+```
+
+6. Make sure the Microsoft **C/C++** extension is installed.
+7. Open **C/C++: Edit Configurations (UI)**.
+8. Select `/usr/bin/clang++` as the compiler.
+9. Make sure the IntelliSense mode matches your Mac's architecture.
+10. If `splashkit.h` is still not found, locate it with:
+
+```shell
+find ~/.splashkit -name "splashkit.h" 2>/dev/null
+```
+
+11. Add the directory containing `splashkit.h` to the project's **Include path**.
+12. Run **C/C++: Reset IntelliSense Database**.
+13. Restart VS Code.
+
+</Steps>
+
+After completing these steps, VS Code should be able to resolve:
+
+```cpp
+#include <splashkit.h>
+```
+
+and provide normal code completion and error checking for SplashKit functions.
+
+---
+
+:::tip
+
+If `skm clang++` successfully compiles and runs your program but VS Code still shows a red underline, focus on the VS Code configuration rather than reinstalling SplashKit.
+
+SplashKit Manager's `skm clang++` command is responsible for compiling the program with SplashKit's required compiler settings, while VS Code's C/C++ extension independently handles IntelliSense and code analysis.
+
+:::
