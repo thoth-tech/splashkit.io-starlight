@@ -69,6 +69,34 @@ Follow these steps to contribute to the SplashKit website repository:
     - Once your changes are approved, the maintainers will merge your PR into the main repository.
     - If your changes are rejected, understand the feedback and consider making improvements before submitting another PR.
 
+11. **Review Other Pull Requests Locally:**
+
+    - If you haven't already, add the main repository as the `upstream` remote (you only need to do this once):
+
+    ```shell
+    git remote add upstream https://github.com/thoth-tech/splashkit.io-starlight.git
+    ```
+
+    - Fetch the pull request and switch to it (replace `<PR_NUMBER>` with the number of the PR you want to review, e.g. `850`):
+
+    ```shell
+    git fetch upstream pull/<PR_NUMBER>/head:pr-<PR_NUMBER>
+    git checkout pr-<PR_NUMBER>
+    ```
+
+    - Afterwards, the PR's files will appear in your project, and you can run and test them locally.
+    - When you're done, switch back to your own branch:
+
+    ```shell
+    git checkout <your-branch>
+    ```
+
+    - Once you've finished reviewing, delete the local PR branch to keep your branches tidy (this only removes your local copy, not the PR itself):
+
+    ```shell
+    git branch -D pr-<PR_NUMBER>
+    ```
+
 By following these steps, you contribute effectively to the SplashKit website. Remember to adhere to the project's guidelines and maintain a collaborative and respectful environment.
 
 ## Website Guide
