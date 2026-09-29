@@ -14,6 +14,20 @@ To contribute a function usage example, you need to create the following files:
 - **Code files** with the example code. This must be a complete code example, not just a snippet of code.
 - ***Zip file*** (*only if your code requires resource files*) containing the "Resources" folder created with the `skm resources` command, with any resources needed for your example code to run. (More info about adding this at the end.)
 
+## Quick checklist before you open a PR
+
+- Files are placed in: `/public/usage-examples/<category folder>/`
+- File naming follows: `<unique_global_name>-<number>-example.<ext>`
+  - Example: `key_down-1-example.cpp`
+- Each example includes:
+  - `.txt` (title/description, and optional Resources link callout)
+  - `.cpp`
+  - `-oop.cs`
+  - `-top-level.cs`
+  - `.py`
+  - output file: `.png` (or `.gif` if interactive, or `.webm` if audio)
+- If the example needs assets, include a `*-resources.zip` containing a `Resources/` folder (created using `skm resources`).
+
 ## File Location
 
 Place the following files into the folder with the **unique global name** located in `/public/usage-examples/<category folder of the function>`:

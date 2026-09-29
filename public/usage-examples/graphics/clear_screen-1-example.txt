@@ -1,1 +1,5 @@
-Background Color
+Clear screen example
+
+Demonstrates how to clear the screen using clear_screen().
+
+This is typically used at the start of each frame to reset the drawing surface before rendering new graphics.
